@@ -11,45 +11,6 @@ class FIdConst
 {
 
   /**
-   * 自定义表单系统
-   */
-  const FORM_SYSTEM = "-7999";
-
-  /**
-   * 表单视图
-   *
-   * @var string
-   */
-  const FORM_VIEW_SYSTEM = "-7998";
-
-  /**
-   * 视图开发助手
-   *
-   * @var string
-   */
-  const FORM_VIEW_SYSTEM_DEV = "-7997";
-
-  /**
-   * 码表设置
-   *
-   * @var string
-   */
-  const CODE_TABLE = "-7996";
-
-  /**
-   * 主菜单维护
-   *
-   * @var string
-   */
-  const MAIN_MENU = "-7995";
-
-  /**
-   * 系统数据字典
-   *
-   * @var string
-   */
-  const SYS_DICT = "-7994";
-  /**
    * 首页
    */
   const HOME = "-9997";
@@ -73,11 +34,6 @@ class FIdConst
    * 关于
    */
   const ABOUT = "-9994";
-
-  /**
-   * 购买商业服务
-   */
-  const PSI_SERVICE = "-9993";
 
   /**
    * 用户管理
@@ -1136,58 +1092,4 @@ class FIdConst
    * @var string
    */
   const GL_PERIOD = "2103";
-
-  // --------------------------
-  // 制造相关模块使用3100段
-  // --------------------------
-
-  /**
-   * 物料单位
-   */
-  const MATERIAL_UNIT = "3101";
-
-  /**
-   * 原材料
-   */
-  const RAW_MATERIAL = "3102";
-
-  /**
-   * 原材料在业务单据中的使用权限
-   */
-  const RAW_MATERIAL_BILL = "3102-01";
-
-  /**
-   * 原材料分类
-   */
-  const RAW_MATERIAL_CATEGORY = "3102-02";
-
-  /**
-   * 新增原材料分类
-   */
-  const RAW_MATERIAL_CATEGORY_ADD = "3102-03";
-
-  /**
-   * 编辑原材料分类
-   */
-  const RAW_MATERIAL_CATEGORY_EDIT = "3102-04";
-
-  /**
-   * 删除原材料分类
-   */
-  const RAW_MATERIAL_CATEGORY_DELETE = "3102-05";
-
-  /**
-   * 新增原材料
-   */
-  const RAW_MATERIAL_ADD = "3102-06";
-
-  /**
-   * 编辑原材料
-   */
-  const RAW_MATERIAL_EDIT = "3102-07";
-
-  /**
-   * 删除原材料
-   */
-  const RAW_MATERIAL_DELETE = "3102-08";
 }

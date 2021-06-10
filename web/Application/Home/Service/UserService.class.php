@@ -39,11 +39,6 @@ class UserService extends PSIBaseExService
    */
   public function hasPermission($fid = null)
   {
-    if ($fid == FIdConst::PSI_SERVICE) {
-      // 停用 购买商业服务 这个菜单功能
-      return false;
-    }
-
     $result = session("loginUserId") != null;
     if (!$result) {
       return false;
