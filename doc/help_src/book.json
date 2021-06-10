@@ -1,0 +1,29 @@
+{
+    "title": "PSI使用手册",
+    "author": "李静波",
+    "language": "zh-hans",
+    "plugins": [
+        "splitter",
+        "-search"
+    ],
+    "pluginsConfig": {
+        "fontsettings": {
+            "family": "serif"
+        }
+    },
+    "links": {
+        "sidebar": {
+            "PSI官网": "https://gitee.com/crm8000/PSI"
+        },
+        "gitbook": false,
+        "sharing": {
+            "google": false,
+            "facebook": false,
+            "twitter": false,
+            "all": false
+        }
+    },
+    "styles": {
+        "website": "styles/website.css"
+    }
+}
