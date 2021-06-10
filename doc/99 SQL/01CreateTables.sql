@@ -1076,16 +1076,6 @@ CREATE TABLE IF NOT EXISTS `t_acc_fmt_cols` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `t_fv_md`;
-CREATE TABLE IF NOT EXISTS `t_fv_md` (
-  `id` varchar(255) NOT NULL,
-  `parent_id` varchar(255) DEFAULT NULL,
-  `prop_name` varchar(255) NOT NULL,
-  `prop_value` varchar(1000) NOT NULL,
-  `show_order` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 DROP TABLE IF EXISTS `t_acc_period`;
 CREATE TABLE IF NOT EXISTS `t_acc_period` (
   `id` varchar(255) NOT NULL,
