@@ -8,9 +8,9 @@ Ext.define("PSI.User.UserEditForm", {
     defaultOrg: null
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -349,11 +349,18 @@ Ext.define("PSI.User.UserEditForm", {
       },
       method: "POST",
       callback: function (options, success, response) {
+        el.unmask();
         if (success) {
+
           var data = Ext.JSON.decode(response.responseText);
 
           me.editLoginName.setValue(data.loginName);
+
+          // 先focus再设置null，之后设置字段的值，是为了保持光标在末尾
+          me.editName.focus();
+          me.editName.setValue(null);
           me.editName.setValue(data.name);
+
           me.editOrgCode.setValue(data.orgCode);
           me.editBirthday.setValue(data.birthday);
           me.editIdCardNumber.setValue(data.idCardNumber);
@@ -369,8 +376,6 @@ Ext.define("PSI.User.UserEditForm", {
           me.editOrgId.setValue(data.orgId);
           me.editOrgName.setValue(data.orgFullName);
         }
-
-        el.unmask();
       }
     });
 
@@ -418,8 +423,11 @@ Ext.define("PSI.User.UserEditForm", {
         var editorId = me.__editorList[i];
         if (id === editorId) {
           var edit = Ext.getCmp(me.__editorList[i + 1]);
+          // 先focus再设置null，之后设置字段的值，是为了保持光标在末尾
           edit.focus();
-          edit.setValue(edit.getValue());
+          const v = edit.getValue();
+          edit.setValue(null);
+          edit.setValue(v);
         }
       }
     }
