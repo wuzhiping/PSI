@@ -1,5 +1,5 @@
 /**
- * PSI的应用容器：承载主菜单、其他模块的UI
+ * PSI的应用容器：承载主菜单、业务模块的UI
  */
 Ext.define("PSI.App", {
   config: {
