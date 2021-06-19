@@ -115,6 +115,14 @@ class GoodsUnitDAO extends PSIBaseExDAO
       return $this->bad("计量单位不能超过10位");
     }
 
+    $code = trim($params["code"]);
+    if ($this->isEmptyStringAfterTrim($code)) {
+      return $this->bad("编码不能为空");
+    }
+    if ($this->stringBeyondLimit($code, 10)) {
+      return $this->bad("编码长度不能超过10位");
+    }
+
     return null;
   }
 
@@ -135,6 +143,14 @@ class GoodsUnitDAO extends PSIBaseExDAO
     $result = $this->checkParams($params);
     if ($result) {
       return $result;
+    }
+
+    // 检查编码是否以及存在
+    $sql = "select count(*) as cnt from t_goods_unit where code = '%s' ";
+    $data = $db->query($sql, $code);
+    $cnt = $data[0]["cnt"];
+    if ($cnt > 0) {
+      return $this->bad("编码为[$code]的计量单位已经存在");
     }
 
     // 检查计量单位是否存在
