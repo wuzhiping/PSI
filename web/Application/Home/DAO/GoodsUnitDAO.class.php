@@ -204,6 +204,13 @@ class GoodsUnitDAO extends PSIBaseExDAO
       return $result;
     }
 
+    // 检查编码是否以及存在
+    $sql = "select count(*) as cnt from t_goods_unit where code = '%s' and id <> '%s' ";
+    $data = $db->query($sql, $code, $id);
+    $cnt = $data[0]["cnt"];
+    if ($cnt > 0) {
+      return $this->bad("编码为[$code]的计量单位已经存在");
+    }
     // 检查计量单位是否存在
     $sql = "select count(*) as cnt from t_goods_unit where name = '%s' and id <> '%s' ";
     $data = $db->query($sql, $name, $id);
