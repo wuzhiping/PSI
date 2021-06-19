@@ -207,7 +207,9 @@ Ext.define("PSI.Goods.UnitEditForm", {
 
     if (e.getKey() == e.ENTER) {
       me.editCode.focus();
-      me.editCode.setValue(me.editCode.getValue());
+      var v = me.editCode.getValue();
+      me.editCode.setValue(null);
+      me.editCode.setValue(v);
     }
   },
 
@@ -245,7 +247,9 @@ Ext.define("PSI.Goods.UnitEditForm", {
 
     var editName = me.editName;
     editName.focus();
-    editName.setValue(editName.getValue());
+    var v = editName.getValue();
+    editName.setValue(null);
+    editName.setValue(v);
   },
 
   /**
