@@ -77,9 +77,9 @@ INSERT INTO `t_goods_category` (`id`, `code`, `name`) VALUES
 update t_goods_category set data_org = '01010001', full_name = name, company_id = '4D74E1E4-A129-11E4-9B6A-782BCBD7746B' ;
 
 TRUNCATE TABLE `t_goods_unit`;
-INSERT INTO `t_goods_unit` (`id`, `name`) VALUES
-('50C40382-B745-11E4-9C3C-782BCBD7746B', '套'),
-('5D6D901E-B3F3-11E4-9DEA-782BCBD7746B', '台');
+INSERT INTO `t_goods_unit` (`id`, `name`, `code`) VALUES
+('50C40382-B745-11E4-9C3C-782BCBD7746B', '套', '1'),
+('5D6D901E-B3F3-11E4-9DEA-782BCBD7746B', '台', '2');
 
 update t_goods_unit set data_org = '01010001', company_id = '4D74E1E4-A129-11E4-9B6A-782BCBD7746B';
 
