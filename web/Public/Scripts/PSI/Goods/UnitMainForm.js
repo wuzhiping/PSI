@@ -4,9 +4,9 @@
 Ext.define("PSI.Goods.UnitMainForm", {
   extend: "PSI.AFX.BaseOneGridMainForm",
 
-	/**
-	 * 重载父类方法
-	 */
+  /**
+   * 重载父类方法
+   */
   afxGetToolbarCmp: function () {
     var me = this;
     return [{
@@ -34,9 +34,9 @@ Ext.define("PSI.Goods.UnitMainForm", {
     }];
   },
 
-	/**
-	 * 重载父类方法
-	 */
+  /**
+   * 重载父类方法
+   */
   afxGetMainGrid: function () {
     var me = this;
     if (me.__mainGrid) {
@@ -60,7 +60,8 @@ Ext.define("PSI.Goods.UnitMainForm", {
         },
         items: [{
           xtype: "rownumberer",
-          width: 40
+          width: 40,
+          header: "#"
         }, {
           header: "编码",
           dataIndex: "code"
@@ -131,16 +132,16 @@ Ext.define("PSI.Goods.UnitMainForm", {
     return me.__mainGrid;
   },
 
-	/**
-	 * 重载父类方法
-	 */
+  /**
+   * 重载父类方法
+   */
   afxGetRefreshGridURL: function () {
     return "Home/Goods/allUnits";
   },
 
-	/**
-	 * 新增商品计量单位
-	 */
+  /**
+   * 新增商品计量单位
+   */
   onAddUnit: function () {
     var me = this;
     var form = Ext.create("PSI.Goods.UnitEditForm", {
@@ -150,9 +151,9 @@ Ext.define("PSI.Goods.UnitMainForm", {
     form.show();
   },
 
-	/**
-	 * 编辑商品计量单位
-	 */
+  /**
+   * 编辑商品计量单位
+   */
   onEditUnit: function () {
     var me = this;
 
@@ -172,9 +173,9 @@ Ext.define("PSI.Goods.UnitMainForm", {
     form.show();
   },
 
-	/**
-	 * 删除商品计量单位
-	 */
+  /**
+   * 删除商品计量单位
+   */
   onDeleteUnit: function () {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
