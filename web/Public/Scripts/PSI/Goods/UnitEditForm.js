@@ -4,9 +4,9 @@
 Ext.define("PSI.Goods.UnitEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
     var entity = me.getEntity();
@@ -33,12 +33,12 @@ Ext.define("PSI.Goods.UnitEditForm", {
       },
       scope: me
     }, {
-        text: entity == null ? "关闭" : "取消",
-        handler: function () {
-          me.close();
-        },
-        scope: me
-      });
+      text: entity == null ? "关闭" : "取消",
+      handler: function () {
+        me.close();
+      },
+      scope: me
+    });
 
     var t = entity == null ? "新增物料计量单位" : "编辑物料计量单位";
     var f = entity == null
@@ -110,6 +110,9 @@ Ext.define("PSI.Goods.UnitEditForm", {
         }, {
           id: "PSI_Goods_UnitEditForm_editCode",
           fieldLabel: "编码",
+          allowBlank: false,
+          blankText: "没有输入编码",
+          beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "code",
           value: entity == null ? null : entity
             .get("code"),
@@ -245,11 +248,11 @@ Ext.define("PSI.Goods.UnitEditForm", {
     editName.setValue(editName.getValue());
   },
 
-	/**
-	 * 刷新父窗体上Grid的数据
-	 * 
-	 * 连续新增计量单位后，这样不用关闭当前窗体就能看到数据
-	 */
+  /**
+   * 刷新父窗体上Grid的数据
+   * 
+   * 连续新增计量单位后，这样不用关闭当前窗体就能看到数据
+   */
   refreshParentFormMainGrid: function () {
     var me = this;
     var form = me.getParentForm();
