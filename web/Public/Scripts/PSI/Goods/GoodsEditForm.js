@@ -186,16 +186,11 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           }
         }, {
           id: "PSI_Goods_GoodsEditForm_editUnit",
-          xtype: "combo",
+          xtype: "psi_goodsunitfield",
           fieldLabel: "计量单位",
           allowBlank: false,
           blankText: "没有输入计量单位",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          valueField: "id",
-          displayField: "name",
-          store: unitStore,
-          queryMode: "local",
-          editable: false,
           name: "unitId",
           listeners: {
             specialkey: {

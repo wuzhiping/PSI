@@ -154,7 +154,6 @@ Ext.define("PSI.Goods.GoodsUnitField", {
         url: PSI.Const.BASE_URL + "Home/Goods/queryUnitData",
         params: {
           queryKey: editName.getValue(),
-          warehouseId: warehouseId
         },
         method: "POST",
         callback: function (opt, success, response) {
@@ -233,7 +232,7 @@ Ext.define("PSI.Goods.GoodsUnitField", {
 
     me.wnd.close();
     me.focus();
-    me.setValue(data.code);
+    me.setValue(data.name);
     me.focus();
     me.setIdValue(data.id);
 
