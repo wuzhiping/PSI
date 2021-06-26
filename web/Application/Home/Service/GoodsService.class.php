@@ -1093,4 +1093,23 @@ class GoodsService extends PSIBaseExService
     $writer = \PHPExcel_IOFactory::createWriter($excel, "Excel2007");
     $writer->save("php://output");
   }
+
+  /**
+   * 物料计量单位字段 - 查询数据
+   */
+  public function queryUnitData($queryKey)
+  {
+    if ($this->isNotOnline()) {
+      return $this->emptyResult();
+    }
+
+    $params = [
+      "queryKey" => $queryKey,
+      "loginUserId" => $this->getLoginUserId(),
+      "companyId" => $this->getCompanyId()
+    ];
+
+    $dao = new GoodsUnitDAO($this->db());
+    return $dao->queryUnitData($params);
+  }
 }

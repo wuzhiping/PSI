@@ -2,6 +2,8 @@
 
 namespace Home\DAO;
 
+use Home\Common\FIdConst;
+
 /**
  * 商品计量单位 DAO
  *
@@ -304,5 +306,60 @@ class GoodsUnitDAO extends PSIBaseExDAO
 
     // 操作成功
     return null;
+  }
+
+  /**
+   * 物料计量单位字段 - 查询数据
+   */
+  public function queryUnitData($params)
+  {
+    $db = $this->db;
+
+    $queryKey = $params["queryKey"];
+    $loginUserId = $params["loginUserId"];
+    if ($this->loginUserIdNotExists($loginUserId)) {
+      return $this->emptyResult();
+    }
+
+    $companyId = $params["companyId"];
+    if ($this->companyIdNotExists($companyId)) {
+      return $this->emptyResult();
+    }
+
+    if ($queryKey == null) {
+      $queryKey = "";
+    }
+
+    $key = "%{$queryKey}%";
+
+    $sql = "select u.id, u.code, u.name
+            from t_goods_unit u
+            where (u.record_status = 1)
+              and (u.code like '%s' or u.name like '%s') ";
+    $queryParams = [];
+    $queryParams[] = $key;
+    $queryParams[] = $key;
+
+    $ds = new DataOrgDAO($db);
+    $rs = $ds->buildSQL(FIdConst::GOODS_UNIT, "u", $loginUserId);
+    if ($rs) {
+      $sql .= " and " . $rs[0];
+      $queryParams = array_merge($queryParams, $rs[1]);
+    }
+
+    $sql .= " order by u.code
+              limit 20";
+    $data = $db->query($sql, $queryParams);
+    
+    $result = [];
+    foreach ($data as $v) {
+      $result[] = [
+        "id" => $v["id"],
+        "code" => $v["code"],
+        "name" => $v["name"],
+      ];
+    }
+
+    return $result;
   }
 }

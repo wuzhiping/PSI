@@ -369,7 +369,7 @@ class GoodsController extends PSIBaseController
   {
     if (IS_POST) {
       $us = new UserService();
-      if (!$us->hasPermission(FIdConst::GOODS_BILL)){
+      if (!$us->hasPermission(FIdConst::GOODS_BILL)) {
         die("没有权限");
       }
 
@@ -842,6 +842,20 @@ class GoodsController extends PSIBaseController
       $service->exportExcel();
     } else {
       die("没有导出Excel的权限");
+    }
+  }
+
+  /**
+   * 物料计量单位字段 - 查询数据
+   * 
+   * 在GoodsUnitField.js中调用
+   */
+  public function queryUnitData()
+  {
+    if (IS_POST) {
+      $queryKey = I("post.queryKey");
+      $service = new GoodsService();
+      $this->ajaxReturn($service->queryUnitData($queryKey));
     }
   }
 }
