@@ -110,8 +110,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
         items: [{
           xtype: "hidden",
           name: "id",
-          value: entity == null ? null : entity
-            .get("id")
+          value: entity == null ? null : entity.get("id")
         }, {
           id: "PSI_Goods_GoodsEditForm_editCategory",
           xtype: "psi_goodscategoryfield",
@@ -138,8 +137,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           blankText: "没有输入物料编码",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "code",
-          value: entity == null ? null : entity
-            .get("code"),
+          value: entity == null ? null : entity.get("code"),
           listeners: {
             specialkey: {
               fn: me.onEditSpecialKey,
@@ -155,8 +153,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           blankText: "没有输入品名",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "name",
-          value: entity == null ? null : entity
-            .get("name"),
+          value: entity == null ? null : entity.get("name"),
           listeners: {
             specialkey: {
               fn: me.onEditSpecialKey,
@@ -169,8 +166,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           colspan: 2,
           width: 430,
           name: "spec",
-          value: entity == null ? null : entity
-            .get("spec"),
+          value: entity == null ? null : entity.get("spec"),
           listeners: {
             specialkey: {
               fn: me.onEditSpecialKey,
@@ -200,8 +196,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           fieldLabel: "条形码",
           width: 205,
           name: "barCode",
-          value: entity == null ? null : entity
-            .get("barCode"),
+          value: entity == null ? null : entity.get("barCode"),
           listeners: {
             specialkey: {
               fn: me.onEditSpecialKey,
@@ -231,8 +226,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           hideTrigger: true,
           name: "salePrice",
           id: "PSI_Goods_GoodsEditForm_editSalePrice",
-          value: entity == null ? null : entity
-            .get("salePrice"),
+          value: entity == null ? null : entity.get("salePrice"),
           listeners: {
             specialkey: {
               fn: me.onEditSpecialKey,
@@ -246,8 +240,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           hideTrigger: true,
           name: "purchasePrice",
           id: "PSI_Goods_GoodsEditForm_editPurchasePrice",
-          value: entity == null ? null : entity
-            .get("purchasePrice"),
+          value: entity == null ? null : entity.get("purchasePrice"),
           listeners: {
             specialkey: {
               fn: me.onEditSpecialKey,
@@ -258,8 +251,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           fieldLabel: "备注",
           name: "memo",
           id: "PSI_Goods_GoodsEditForm_editMemo",
-          value: entity == null ? null : entity
-            .get("memo"),
+          value: entity == null ? null : entity.get("memo"),
           listeners: {
             specialkey: {
               fn: me.onLastEditSpecialKey,
@@ -357,9 +349,11 @@ Ext.define("PSI.Goods.GoodsEditForm", {
     me.editTaxRate = Ext.getCmp("PSI_Goods_GoodsEditForm_editTaxRate");
     me.editMType = Ext.getCmp("PSI_Goods_GoodsEditForm_editMType");
 
-    me.__editorList = [me.editCategory, me.editCode, me.editName,
-    me.editSpec, me.editUnit, me.editBarCode, me.editBrand,
-    me.editSalePrice, me.editPurchasePrice, me.editMemo];
+    me.__editorList = [
+      me.editCategory, me.editCode, me.editName,
+      me.editSpec, me.editUnit, me.editBarCode, me.editBrand,
+      me.editSalePrice, me.editPurchasePrice, me.editMemo
+    ];
   },
 
   onWindowBeforeUnload: function (e) {
