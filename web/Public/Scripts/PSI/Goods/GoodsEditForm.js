@@ -17,12 +17,12 @@ Ext.define("PSI.Goods.GoodsEditForm", {
       fields: ["id", "name"]
     });
 
-    var unitStore = Ext.create("Ext.data.Store", {
-      model: modelName,
-      autoLoad: false,
-      data: []
-    });
-    me.unitStore = unitStore;
+    // var unitStore = Ext.create("Ext.data.Store", {
+    //   model: modelName,
+    //   autoLoad: false,
+    //   data: []
+    // });
+    // me.unitStore = unitStore;
 
     me.adding = entity == null;
 
@@ -191,13 +191,17 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           allowBlank: false,
           blankText: "没有输入计量单位",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          name: "unitId",
+          name: "unitName",
           listeners: {
             specialkey: {
               fn: me.onEditSpecialKey,
               scope: me
             }
           }
+        }, {
+          id: "PSI_Goods_GoodsEditForm_editUnitId",
+          xtype: "hidden",
+          name: "unitId"
         }, {
           id: "PSI_Goods_GoodsEditForm_editBarCode",
           fieldLabel: "条形码",
@@ -344,12 +348,12 @@ Ext.define("PSI.Goods.GoodsEditForm", {
 
     me.editForm = Ext.getCmp("PSI_Goods_GoodsEditForm_editForm");
     me.editCategory = Ext.getCmp("PSI_Goods_GoodsEditForm_editCategory");
-    me.editCategoryId = Ext
-      .getCmp("PSI_Goods_GoodsEditForm_editCategoryId");
+    me.editCategoryId = Ext.getCmp("PSI_Goods_GoodsEditForm_editCategoryId");
     me.editCode = Ext.getCmp("PSI_Goods_GoodsEditForm_editCode");
     me.editName = Ext.getCmp("PSI_Goods_GoodsEditForm_editName");
     me.editSpec = Ext.getCmp("PSI_Goods_GoodsEditForm_editSpec");
     me.editUnit = Ext.getCmp("PSI_Goods_GoodsEditForm_editUnit");
+    me.editUnitId = Ext.getCmp("PSI_Goods_GoodsEditForm_editUnitId");
     me.editBarCode = Ext.getCmp("PSI_Goods_GoodsEditForm_editBarCode");
     me.editBrand = Ext.getCmp("PSI_Goods_GoodsEditForm_editBrand");
     me.editBrandId = Ext.getCmp("PSI_Goods_GoodsEditForm_editBrandId");
@@ -380,7 +384,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
 
     var categoryId = me.editCategoryId.getValue();
     var el = me.getEl();
-    var unitStore = me.unitStore;
+    // var unitStore = me.unitStore;
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
       url: me.URL("Home/Goods/goodsInfo"),
@@ -390,13 +394,13 @@ Ext.define("PSI.Goods.GoodsEditForm", {
       },
       method: "POST",
       callback: function (options, success, response) {
-        unitStore.removeAll();
+        // unitStore.removeAll();
 
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
-          if (data.units) {
-            unitStore.add(data.units);
-          }
+          // if (data.units) {
+          //   unitStore.add(data.units);
+          // }
 
           if (!me.adding) {
             // 编辑商品信息
@@ -429,10 +433,10 @@ Ext.define("PSI.Goods.GoodsEditForm", {
             }
           } else {
             // 新增商品
-            if (unitStore.getCount() > 0) {
-              var unitId = unitStore.getAt(0).get("id");
-              me.editUnit.setValue(unitId);
-            }
+            // if (unitStore.getCount() > 0) {
+            //   var unitId = unitStore.getAt(0).get("id");
+            //   me.editUnit.setValue(unitId);
+            // }
             if (data.categoryId) {
               me.editCategory.setIdValue(data.categoryId);
               me.editCategory.setValue(data.categoryName);
@@ -459,6 +463,9 @@ Ext.define("PSI.Goods.GoodsEditForm", {
 
     var categoryId = me.editCategory.getIdValue();
     me.editCategoryId.setValue(categoryId);
+
+    var unitId = me.editUnit.getIdValue();
+    me.editUnitId.setValue(unitId);
 
     var brandId = me.editBrand.getIdValue();
     me.editBrandId.setValue(brandId);
