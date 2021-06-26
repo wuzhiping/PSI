@@ -17,13 +17,6 @@ Ext.define("PSI.Goods.GoodsEditForm", {
       fields: ["id", "name"]
     });
 
-    // var unitStore = Ext.create("Ext.data.Store", {
-    //   model: modelName,
-    //   autoLoad: false,
-    //   data: []
-    // });
-    // me.unitStore = unitStore;
-
     me.adding = entity == null;
 
     var buttons = [];
@@ -384,7 +377,6 @@ Ext.define("PSI.Goods.GoodsEditForm", {
 
     var categoryId = me.editCategoryId.getValue();
     var el = me.getEl();
-    // var unitStore = me.unitStore;
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
       url: me.URL("Home/Goods/goodsInfo"),
@@ -394,13 +386,8 @@ Ext.define("PSI.Goods.GoodsEditForm", {
       },
       method: "POST",
       callback: function (options, success, response) {
-        // unitStore.removeAll();
-
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
-          // if (data.units) {
-          //   unitStore.add(data.units);
-          // }
 
           if (!me.adding) {
             // 编辑商品信息
@@ -409,10 +396,10 @@ Ext.define("PSI.Goods.GoodsEditForm", {
             me.editCode.setValue(data.code);
             me.editName.setValue(data.name);
             me.editSpec.setValue(data.spec);
-            me.editUnit.setValue(data.unitId);
+            me.editUnit.setIdValue(data.unitId);
+            me.editUnit.setValue(data.unitName);
             me.editSalePrice.setValue(data.salePrice);
-            me.editPurchasePrice
-              .setValue(data.purchasePrice);
+            me.editPurchasePrice.setValue(data.purchasePrice);
             me.editBarCode.setValue(data.barCode);
             me.editMemo.setValue(data.memo);
             var brandId = data.brandId;
@@ -433,10 +420,6 @@ Ext.define("PSI.Goods.GoodsEditForm", {
             }
           } else {
             // 新增商品
-            // if (unitStore.getCount() > 0) {
-            //   var unitId = unitStore.getAt(0).get("id");
-            //   me.editUnit.setValue(unitId);
-            // }
             if (data.categoryId) {
               me.editCategory.setIdValue(data.categoryId);
               me.editCategory.setValue(data.categoryName);

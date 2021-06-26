@@ -1119,7 +1119,15 @@ class GoodsDAO extends PSIBaseExDAO
       $result["code"] = $data[0]["code"];
       $result["name"] = $data[0]["name"];
       $result["spec"] = $data[0]["spec"];
-      $result["unitId"] = $data[0]["unit_id"];
+
+      $unitId = $data[0]["unit_id"];
+      $result["unitId"] = $unitId;
+      $sql = "select name from t_goods_unit where id = '%s' ";
+      $d = $db->query($sql, $unitId);
+      if ($d) {
+        $result["unitName"] = $d[0]["name"];
+      }
+
       $result["salePrice"] = $data[0]["sale_price"];
       $brandId = $data[0]["brand_id"];
       $result["brandId"] = $brandId;

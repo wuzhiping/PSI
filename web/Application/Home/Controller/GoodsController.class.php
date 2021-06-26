@@ -381,7 +381,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 查询某个商品的信息
+   * 查询某个物料的信息
    */
   public function goodsInfo()
   {
@@ -390,7 +390,6 @@ class GoodsController extends PSIBaseController
       $categoryId = I("post.categoryId");
       $gs = new GoodsService();
       $data = $gs->getGoodsInfo($id, $categoryId);
-      $data["units"] = $gs->allEnabledUnits($id);
       $this->ajaxReturn($data);
     }
   }
