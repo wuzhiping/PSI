@@ -491,7 +491,9 @@ Ext.define("PSI.Goods.GoodsEditForm", {
         if (id === editor.getId()) {
           var edit = me.__editorList[i + 1];
           edit.focus();
-          edit.setValue(edit.getValue());
+          var v = edit.getValue()
+          edit.setValue(null);
+          edit.setValue(v);
         }
       }
     }
