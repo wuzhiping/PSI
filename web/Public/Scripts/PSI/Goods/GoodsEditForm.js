@@ -367,7 +367,9 @@ Ext.define("PSI.Goods.GoodsEditForm", {
 
     var editCode = me.editCode;
     editCode.focus();
-    editCode.setValue(editCode.getValue());
+    var v = editCode.getValue();
+    editCode.setValue(null);
+    editCode.setValue(v);
 
     var categoryId = me.editCategoryId.getValue();
     var el = me.getEl();
