@@ -75,3 +75,13 @@ PSI的开源协议是GPL v3
 PSI 2022是当前开发中的版本，会增加很多重要模块，在开发期间不提供一键升级数据库的功能。
 
 **请谨慎升级到最新代码**
+
+# Wiki和Issue
+
+- 在应用PSI之前，请认真阅读Wiki：https://gitee.com/crm8000/PSI/wikis
+
+- 有任何问题，请提Issue：https://gitee.com/crm8000/PSI/issues
+
+> 及时回复和处理Issue，是我们运营PSI社区的日常工作
+
+> Issue不是论坛，Issue是一事一议，请把握这个原则后使用。不要在和自己无关的话题下发布新的话题。
