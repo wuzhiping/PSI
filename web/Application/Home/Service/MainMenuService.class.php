@@ -21,8 +21,33 @@ class MainMenuService extends PSIBaseExService
     if ($this->isNotOnline()) {
       return $this->emptyResult();
     }
+    $db = $this->db();
 
     $us = new UserService();
+
+    // 把常用功能也加入到主菜单的第一项中
+    $fs = new FIdService();
+    $data = $fs->recentFid();
+    $recent = [];
+    foreach ($data as $i => $v) {
+      // 常用功能默认是最多有10个显示在Grid
+      // 但是在主菜单中，显示10个反而不好选择
+      // 所以只显示5个
+      if ($i > 4) {
+        break;
+      }
+      $recent[] = [
+        "fid" => $v["fid"],
+        "caption" => $v["name"],
+        "children" => []
+      ];
+    }
+    $result = [
+      [
+        "caption" => count($recent) == 5 ? "五个常用功能" : "常用功能",
+        "children" => $recent,
+      ]
+    ];
 
     $sub = "select * from t_menu_item
             where sys_category = 1 
@@ -30,13 +55,13 @@ class MainMenuService extends PSIBaseExService
             select * from t_menu_item_plus
             where sys_category = 1";
 
+    // 第一级主菜单
     $sql = "select id, caption, fid from ($sub) m
 					where parent_id is null order by show_order";
-    $db = M();
     $m1 = $db->query($sql);
-    $result = [];
 
-    $index1 = 0;
+    // 从1开始，是因为0给常用功能了
+    $index1 = 1;
     foreach ($m1 as $menuItem1) {
 
       $children1 = [];
