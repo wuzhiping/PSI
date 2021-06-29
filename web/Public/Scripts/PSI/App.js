@@ -5,7 +5,8 @@ Ext.define("PSI.App", {
   config: {
     userName: "",
     productionName: "PSI",
-    showCopyright: false
+    showCopyright: false,
+    showRecent: false
   },
 
   constructor: function (config) {
@@ -154,7 +155,7 @@ Ext.define("PSI.App", {
           split: true,
           collapsible: true,
           collapseMode: "mini",
-          collapsed: me.getRecentFidPanelCollapsed(),
+          collapsed: !me.getShowRecent(),
           header: false,
           border: 1,
           layout: "border",
@@ -357,19 +358,5 @@ Ext.define("PSI.App", {
 
   add: function (comp) {
     this.mainPanel.add(comp);
-  },
-
-  onRecentFidPanelCollapse: function () {
-    Ext.util.Cookies.set("PSI_RECENT_FID", "1", Ext.Date.add(new Date(),
-      Ext.Date.YEAR, 1));
-  },
-
-  onRecentFidPanelExpand: function () {
-    Ext.util.Cookies.clear("PSI_RECENT_FID");
-  },
-
-  getRecentFidPanelCollapsed: function () {
-    var v = Ext.util.Cookies.get("PSI_RECENT_FID");
-    return v === "1";
   }
 });
