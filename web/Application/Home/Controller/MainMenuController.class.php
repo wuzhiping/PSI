@@ -289,41 +289,6 @@ class MainMenuController extends PSIBaseController
   }
 
   /**
-   * 主菜单维护 - 主界面
-   */
-  public function maintainIndex()
-  {
-    $us = new UserService();
-
-    if ($us->hasPermission(FIdConst::MAIN_MENU)) {
-      $this->initVar();
-
-      $this->assign("title", "主菜单维护");
-
-      $this->display();
-    } else {
-      $this->gotoLoginPage("/Home/MainMenu/maintainIndex");
-    }
-  }
-
-  /**
-   * 查询所有的主菜单项 - 主菜单维护模块中使用
-   */
-  public function allMenuItemsForMaintain()
-  {
-    if (IS_POST) {
-      $us = new UserService();
-      if (!$us->hasPermission(FIdConst::MAIN_MENU)) {
-        die("没有权限");
-      }
-
-      $params = [];
-      $service = new MainMenuService();
-      $this->ajaxReturn($service->allMenuItemsForMaintain($params));
-    }
-  }
-
-  /**
    * Fid自定义字段 - 查询数据
    */
   public function queryDataForFid()
