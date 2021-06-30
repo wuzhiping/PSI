@@ -29,22 +29,31 @@ class MainMenuService extends PSIBaseExService
     $fs = new FIdService();
     $data = $fs->recentFid();
     $recent = [];
+    $subRecent = [];
     foreach ($data as $i => $v) {
-      // 常用功能默认是最多有10个显示在Grid
-      // 但是在主菜单中，显示10个反而不好选择
-      // 所以只显示5个
-      if ($i > 4) {
-        break;
+      if ($i > 2) {
+        $subRecent[] = [
+          "fid" => $v["fid"],
+          "caption" => $v["name"],
+          "children" => []
+        ];
+      } else {
+        $recent[] = [
+          "fid" => $v["fid"],
+          "caption" => $v["name"],
+          "children" => []
+        ];
       }
+    }
+    if (count($subRecent) > 0) {
       $recent[] = [
-        "fid" => $v["fid"],
-        "caption" => $v["name"],
-        "children" => []
+        "caption" => "更多...",
+        "children" => $subRecent,
       ];
     }
     $result = [
       [
-        "caption" => count($recent) == 5 ? "五个常用功能" : "常用功能",
+        "caption" => "常用功能",
         "children" => $recent,
       ]
     ];
