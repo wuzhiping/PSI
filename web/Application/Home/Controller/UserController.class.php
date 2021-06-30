@@ -65,7 +65,7 @@ class UserController extends PSIBaseController
     $productionName = $bcs->getProductionName();
 
     if ($productionName == "PSI") {
-      $productionName .= " - 财务业务一体化的企业管理全面解决方案";
+      $productionName .= " - 基于开源技术，提供财务业务一体化的企业管理全面解决方案";
     }
 
     $this->assign("productionName", $productionName);
