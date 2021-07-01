@@ -28,6 +28,11 @@ Ext.define("PSI.User.MainForm", {
   /// 用Ext.create创建本class的时候，第二个参数中就传入了pAddOrg等参数
   /// 因为\web\Application\Home\View\User\index.html对应后台的Controller的一个方法
   /// 这样整个流程就实现了从后台取数，然后传递给ExtJS class
+  /// 
+  /// 用配置项，也能实现在ExtJS class之间传递参数
+  /// 在PSI中最常用的模式是：在MainForm中创建其他的Form的时候，把MainForm自身作为parentForm传递给
+  /// 其他Form，以便其他Form回调MainForm中的方法
+  /// 具体例子参见：本class的onAddOrg方法  
   config: {
     pAddOrg: null,
     pEditOrg: null,
