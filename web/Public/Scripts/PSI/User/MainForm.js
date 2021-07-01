@@ -43,12 +43,21 @@ Ext.define("PSI.User.MainForm", {
     pChangePassword: null
   },
 
+  /// 知识点4：initComponent
+  /// 创建UI的关键方法
+  /// ExtJS用了模板方法设计模式(Template Method)
+  /// 该设计模式也形象地称为【三明治模式】，具体见方法内的注释
   /**
    * 初始化组件
    */
   initComponent: function () {
+    /// 把this用me局部变量保存，然后后续的代码中都使用me，而不使用this
+    /// 这是避免JS this是上下文绑定这个特性带了的惊喜
+    /// 用me这个名称，是ExtJS的惯例
     var me = this;
 
+    /// 三明治模式的第一层
+    /// 通常就是 Ext.apply(...)
     Ext.apply(me, {
       tbar: [{
         text: "新增组织机构",
@@ -130,8 +139,10 @@ Ext.define("PSI.User.MainForm", {
       }]
     });
 
+    /// 三明治模式第二层：调用父类方法
     me.callParent(arguments);
 
+    /// 三明治模式第三层：使用创建的组件
     me.orgTree = me.getOrgGrid();
     me.grid = me.getUserGrid();
   },
