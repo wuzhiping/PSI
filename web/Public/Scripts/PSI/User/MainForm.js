@@ -14,6 +14,10 @@
 /// 每个JS中都是上述的套路
 
 Ext.define("PSI.User.MainForm", {
+
+  // 知识点2：继承
+  // 通过extend属性，实现继承
+  // 本例中PSI.User.MainForm 继承了PSI.AFX.BaseMainExForm
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
