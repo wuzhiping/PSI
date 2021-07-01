@@ -148,6 +148,14 @@ h1, h2, h3, p {
 	margin: 0;
 }
 
+.PSI-Copyright{
+  background-color: #fafafa !important;
+}
+
+.PSI-Copyright .x-panel-header-text-container-default{
+  color:#722ed1 !important;
+}
+
 .x-panel-header-default {
 	background-image: none;
 	background-color: #DAE6F3;

@@ -8,6 +8,6 @@ Ext.define("PSI.Const", {
     GC_DEC_NUMBER: 0, // 商品数量小数位数
     ENABLE_LODOP: "0", //是否启用Lodop打印
     PROD_NAME: "PSI", // 产品名称
-    VERSION: "PSI 2022 - built2021-06-30 15:15"
+    VERSION: "PSI 2022 - built2021-07-01 11:35"
   }
 });

@@ -196,6 +196,7 @@ Ext.define("PSI.App", {
           height: 25,
           border: 0,
           header: {
+            cls:"PSI-Copyright",
             titleAlign: "center",
             title: "Copyright &copy; 2015-"
               + year
