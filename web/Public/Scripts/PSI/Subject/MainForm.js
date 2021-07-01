@@ -4,9 +4,9 @@
 Ext.define("PSI.Subject.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -29,6 +29,7 @@ Ext.define("PSI.Subject.MainForm", {
           height: "40%",
           layout: "fit",
           split: true,
+          border: 0,
           items: me.getMainGrid()
         }, {
           region: "center",
