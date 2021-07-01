@@ -502,7 +502,11 @@ Ext.define("PSI.User.MainForm", {
   onAddOrg: function () {
     var me = this;
 
+    /// 知识点5：用Ext.create创建ExtJS class，不要是new创建ExtJS class
+    /// Ext.create(类名, 配置项JSON对象)
     var form = Ext.create("PSI.User.OrgEditForm", {
+      /// 这就是通过配置项在ExtJS组件之间传递参数
+      /// 参考PSI.User.OrgEditForm的onOK方法中如何回调本class的方法的
       parentForm: me
     });
     form.show();
