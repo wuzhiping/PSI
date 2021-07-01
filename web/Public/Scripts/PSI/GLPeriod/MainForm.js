@@ -25,6 +25,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
           region: "center",
           layout: "fit",
           split: true,
+          border: 0,
           items: me.getMainGrid()
         }]
       }]
