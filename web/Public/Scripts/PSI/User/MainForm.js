@@ -15,11 +15,19 @@
 
 Ext.define("PSI.User.MainForm", {
 
-  // 知识点2：继承
-  // 通过extend属性，实现继承
-  // 本例中PSI.User.MainForm 继承了PSI.AFX.BaseMainExForm
+  /// 知识点2：继承
+  /// 通过extend属性，实现继承
+  /// 本例中PSI.User.MainForm 继承了PSI.AFX.BaseMainExForm
   extend: "PSI.AFX.BaseMainExForm",
 
+  /// 知识点3：配置项，以及通过配置项在claas创建的时候，传入参数
+  /// 配置项会生成对应的方法
+  /// 例如下面的pAddOrg会生成 getPAddOrg()方法，该方法可以获得pAddOrg的值。
+  /// 那么它的值是怎么传入的呢？
+  /// \web\Application\Home\View\User\index.html 中
+  /// 用Ext.create创建本class的时候，第二个参数中就传入了pAddOrg等参数
+  /// 因为\web\Application\Home\View\User\index.html对应后台的Controller的一个方法
+  /// 这样整个流程就实现了从后台取数，然后传递给ExtJS class
   config: {
     pAddOrg: null,
     pEditOrg: null,
@@ -30,9 +38,9 @@ Ext.define("PSI.User.MainForm", {
     pChangePassword: null
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -467,9 +475,9 @@ Ext.define("PSI.User.MainForm", {
     return this.grid;
   },
 
-	/**
-	 * 新增组织机构
-	 */
+  /**
+   * 新增组织机构
+   */
   onAddOrg: function () {
     var me = this;
 
@@ -479,9 +487,9 @@ Ext.define("PSI.User.MainForm", {
     form.show();
   },
 
-	/**
-	 * 编辑组织机构
-	 */
+  /**
+   * 编辑组织机构
+   */
   onEditOrg: function () {
     var me = this;
     if (me.getPEditOrg() == "0") {
@@ -504,9 +512,9 @@ Ext.define("PSI.User.MainForm", {
     form.show();
   },
 
-	/**
-	 * 删除组织机构
-	 */
+  /**
+   * 删除组织机构
+   */
   onDeleteOrg: function () {
     var me = this;
     var tree = me.getOrgGrid();
@@ -567,9 +575,9 @@ Ext.define("PSI.User.MainForm", {
     me.onOrgTreeNodeSelect(item[0]);
   },
 
-	/**
-	 * 新增用户
-	 */
+  /**
+   * 新增用户
+   */
   onAddUser: function () {
     var me = this;
 
@@ -587,9 +595,9 @@ Ext.define("PSI.User.MainForm", {
     form.show();
   },
 
-	/**
-	 * 编辑用户
-	 */
+  /**
+   * 编辑用户
+   */
   onEditUser: function () {
     var me = this;
     if (me.getPEditUser() == "0") {
@@ -620,9 +628,9 @@ Ext.define("PSI.User.MainForm", {
     form.show();
   },
 
-	/**
-	 * 修改用户密码
-	 */
+  /**
+   * 修改用户密码
+   */
   onEditUserPassword: function () {
     var me = this;
 
@@ -639,9 +647,9 @@ Ext.define("PSI.User.MainForm", {
     form.show();
   },
 
-	/**
-	 * 删除用户
-	 */
+  /**
+   * 删除用户
+   */
   onDeleteUser: function () {
     var me = this;
     var item = me.getUserGrid().getSelectionModel().getSelection();
