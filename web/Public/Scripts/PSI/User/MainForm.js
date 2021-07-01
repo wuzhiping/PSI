@@ -63,6 +63,11 @@ Ext.define("PSI.User.MainForm", {
         text: "新增组织机构",
         disabled: me.getPAddOrg() == "0",
         handler: me.onAddOrg,
+        /// 特别知识点：scope
+        /// 在给组件绑定事件的时候，
+        /// 通常把scope也赋值为me
+        /// 这是进入避免JS this上下文绑定带来的莫名惊喜
+        /// 这样确保me.onAddOrg中的this是me
         scope: me
       }, {
         text: "编辑组织机构",
