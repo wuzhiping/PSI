@@ -13,6 +13,7 @@ gitbook install
 gitbook build
 
 # 复制Help文件到PSI主目录
+rm -rf /d/temp/PSI/help
 mkdir /d/temp/PSI/help
 cp -r /d/temp/PSI/doc/help_src/_book/* /d/temp/PSI/help
 
