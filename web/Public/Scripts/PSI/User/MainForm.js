@@ -10,6 +10,8 @@
 /// 知识点1：Ext.define
 /// 这是在ExtJS中定义class的方法
 /// 在ExtJS创立的年代，JS中并没有class，为了实现OOP，ExtJS采用这种自己独创的方式
+/// Ext.define(类名, JSON对象);
+/// 每个JS中都是上述的套路
 
 Ext.define("PSI.User.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
