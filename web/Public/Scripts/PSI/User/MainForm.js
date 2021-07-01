@@ -1,6 +1,16 @@
 /**
  * 用户管理 - 主界面
  */
+
+///==================================
+/// 在这个文件里面会编写大量的ExtJS编程技巧的注释
+/// 以帮助大家掌握其常见套路
+///==================================
+
+/// 知识点1：Ext.define
+/// 这是在ExtJS中定义class的方法
+/// 在ExtJS创立的年代，JS中并没有class，为了实现OOP，ExtJS采用这种自己独创的方式
+
 Ext.define("PSI.User.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
