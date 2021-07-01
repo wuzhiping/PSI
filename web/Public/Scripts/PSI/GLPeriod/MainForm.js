@@ -248,7 +248,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
           width: 100,
           align: "center"
         }, {
-          header: "年终结转",
+          header: "已年终结转",
           dataIndex: "yearForward",
           width: 90,
           align: "center"
