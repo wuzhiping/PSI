@@ -137,6 +137,7 @@ Ext.define("PSI.App", {
         border: 0,
         layout: "border",
         header: {
+          cls: "PSI-App",
           height: 40,
           tools: []
         },
@@ -196,7 +197,7 @@ Ext.define("PSI.App", {
           height: 25,
           border: 0,
           header: {
-            cls:"PSI-Copyright",
+            cls: "PSI-Copyright",
             titleAlign: "center",
             title: "Copyright &copy; 2015-"
               + year
@@ -322,6 +323,7 @@ Ext.define("PSI.App", {
     }
 
     var mainToolbar = Ext.create("Ext.toolbar.Toolbar", {
+      cls: "PSI-App",
       border: 0,
       dock: "top"
     });
@@ -338,7 +340,7 @@ Ext.define("PSI.App", {
     theCmp.addTool(spacers);
     theCmp.addTool({
       xtype: "tbtext",
-      text: "<span style='color:#196d6d;font-weight:bold;font-size:13px'>当前用户："
+      text: "<span style='color:#d9d9d9;font-weight:bold;font-size:13px'>当前用户："
         + me.getUserName() + "&nbsp;</span>"
     });
   },
@@ -352,7 +354,7 @@ Ext.define("PSI.App", {
       return;
     }
     var panel = Ext.getCmp("__PSITopPanel");
-    var title = "<span style='font-size:140%;color:#196d6d;font-weight:bold;'>"
+    var title = "<span style='font-size:140%;color:#d9d9d9;font-weight:bold;'>"
       + header.title + " - " + this.getProductionName() + "</span>";
     panel.setTitle(title);
   },
