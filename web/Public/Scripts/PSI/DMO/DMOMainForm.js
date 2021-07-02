@@ -12,11 +12,11 @@ Ext.define("PSI.DMO.DMOMainForm", {
     var me = this;
 
     Ext.apply(me, {
-      tbar: me.getToolbarCmp(),
       items: [{
+        tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
         region: "north",
-        height: 65,
+        height: 90,
         layout: "fit",
         border: 0,
         header: false,
@@ -259,7 +259,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
       items: [{
         xtype: "button",
         iconCls: "PSI-button-hide",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         margin: "5 0 0 10",
