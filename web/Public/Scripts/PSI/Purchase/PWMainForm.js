@@ -12,11 +12,11 @@ Ext.define("PSI.Purchase.PWMainForm", {
     var me = this;
 
     Ext.apply(me, {
-      tbar: me.getToolbarCmp(),
       items: [{
+        tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
         region: "north",
-        height: 95,
+        height: 90,
         layout: "fit",
         border: 0,
         header: false,
@@ -24,7 +24,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
         collapseMode: "mini",
         layout: {
           type: "table",
-          columns: 4
+          columns: 5
         },
         items: me.getQueryCmp()
       }, {
@@ -154,7 +154,6 @@ Ext.define("PSI.Purchase.PWMainForm", {
       value: -1
     }, {
       id: "editQueryRef",
-      labelWidth: 60,
       labelAlign: "right",
       labelSeparator: "",
       fieldLabel: "单号",
@@ -213,7 +212,16 @@ Ext.define("PSI.Purchase.PWMainForm", {
       }),
       value: -1
     }, {
+      id: "editQueryGoods",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "物料",
+      margin: "5, 0, 0, 0",
+      xtype: "psi_goodsfield",
+      showModal: true
+    }, {
       xtype: "container",
+      colspan: 2,
       items: [{
         xtype: "button",
         text: "查询",
@@ -232,7 +240,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
         scope: me
       }, {
         xtype: "button",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         iconCls: "PSI-button-hide",
@@ -242,15 +250,6 @@ Ext.define("PSI.Purchase.PWMainForm", {
         },
         scope: me
       }]
-    }, {
-      id: "editQueryGoods",
-      labelAlign: "right",
-      labelSeparator: "",
-      labelWidth: 60,
-      fieldLabel: "物料",
-      margin: "5, 0, 0, 0",
-      xtype: "psi_goodsfield",
-      showModal: true
     }];
   },
 
