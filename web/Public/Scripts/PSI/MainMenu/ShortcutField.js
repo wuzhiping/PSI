@@ -61,7 +61,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "拼音字头",
@@ -102,6 +102,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyCls: "PSI-Field",
           items: [{
             id: "PSI_MainMenu_ShortcutField_editName",
             xtype: "textfield",
