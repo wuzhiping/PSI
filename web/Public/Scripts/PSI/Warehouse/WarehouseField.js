@@ -67,7 +67,7 @@ Ext.define("PSI.Warehouse.WarehouseField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "编码",
@@ -107,6 +107,7 @@ Ext.define("PSI.Warehouse.WarehouseField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyCls: "PSI-Field",
           items: [{
             id: "PSI_Warehouse_WarehouseField_editWarehouse",
             xtype: "textfield",
