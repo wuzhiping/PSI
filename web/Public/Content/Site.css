@@ -194,6 +194,10 @@ h1, h2, h3, p {
 	background-image: none;
 }
 
+.PSI-Field {
+  border-color: white !important;
+}
+
 .x-grid-header-ct{
   border-color: #c3cbcc;
 }
