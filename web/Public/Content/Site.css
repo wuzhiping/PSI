@@ -172,6 +172,10 @@ h1, h2, h3, p {
   background-color: #434343;
 }
 
+.PSI-App .x-btn-default-toolbar-small .x-btn-arrow{
+	background-image: none;
+}
+
 
 .x-panel-header-default {
 	background-image: none;
