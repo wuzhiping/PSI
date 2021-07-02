@@ -34,22 +34,22 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
     });
 
     Ext.apply(me, {
-      tbar: [{
-        text: "总账导出Excel",
-        disabled: me.getPExcel() == "0",
-        handler: me.onExcel,
-        scope: me
-      }, "-", {
-        text: "关闭",
-        handler: function () {
-          me.closeWindow();
-        }
-      }],
       items: [{
+        tbar: [{
+          text: "总账导出Excel",
+          disabled: me.getPExcel() == "0",
+          handler: me.onExcel,
+          scope: me
+        }, "-", {
+          text: "关闭",
+          handler: function () {
+            me.closeWindow();
+          }
+        }],
         id: "panelQueryCmp",
         region: "north",
         border: 0,
-        height: 65,
+        height: 90,
         header: false,
         collapsible: true,
         collapseMode: "mini",
@@ -176,7 +176,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
         xtype: "button"
       }, {
         xtype: "button",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         iconCls: "PSI-button-hide",
