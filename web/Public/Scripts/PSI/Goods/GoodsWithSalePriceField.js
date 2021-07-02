@@ -12,9 +12,9 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
     showAddButton: false
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -44,9 +44,9 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
     });
   },
 
-	/**
-	 * 单击下拉组件
-	 */
+  /**
+   * 单击下拉组件
+   */
   onTriggerClick: function (e) {
     var me = this;
     var modelName = "PSIGoodsField";
@@ -64,7 +64,7 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "编码",
@@ -156,6 +156,7 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyCls: "PSI-Field",
           items: [{
             id: "__editGoods",
             xtype: "textfield",
