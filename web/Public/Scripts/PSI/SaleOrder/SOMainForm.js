@@ -17,11 +17,11 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     var me = this;
 
     Ext.apply(me, {
-      tbar: me.getToolbarCmp(),
       items: [{
+        tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
         region: "north",
-        height: 95,
+        height: 90,
         header: false,
         collapsible: true,
         collapseMode: "mini",
@@ -281,7 +281,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
         scope: me
       }, {
         xtype: "button",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         iconCls: "PSI-button-hide",
