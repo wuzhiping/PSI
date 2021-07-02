@@ -72,7 +72,7 @@ Ext.define("PSI.Goods.GoodsField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "物料编码",
@@ -151,6 +151,7 @@ Ext.define("PSI.Goods.GoodsField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyCls: "PSI-Field",
           items: [{
             id: "__editGoods",
             xtype: "textfield",
