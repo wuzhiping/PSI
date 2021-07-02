@@ -13,7 +13,7 @@ Ext.define("PSI.About.MainForm", {
 
   modal: true,
   closable: false,
-  width: 470,
+  width: 500,
   layout: "fit",
 
   initComponent: function () {
@@ -32,6 +32,7 @@ Ext.define("PSI.About.MainForm", {
         height: 40
       },
       height: 350,
+      bodyCls: "PSI-About-body",
       items: [{
         border: 0,
         xtype: "container",
@@ -48,7 +49,7 @@ Ext.define("PSI.About.MainForm", {
           + me.getMySQLVersion() + "</p><p>数据库表结构版本号: "
           + me.getPSIDBVersion() + "</p><p>数据库表结构更新时间: "
           + me.getPSIDBUpdateDT() + "</p>"
-          + c
+          + "<p>" + c + "</p>"
       }],
       buttons: [{
         id: "buttonAboutFormOK",

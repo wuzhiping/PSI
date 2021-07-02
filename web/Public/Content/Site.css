@@ -6,6 +6,10 @@ h1, h2, h3, p {
 		Arial, sans-serif;
 }
 
+.PSI-About-body {
+  background-color: white !important;
+}
+
 .PSI-about p {
 	font-size: 13px;
 	color: #262626;
