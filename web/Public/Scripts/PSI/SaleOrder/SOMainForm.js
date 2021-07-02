@@ -28,7 +28,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
         border: 0,
         layout: {
           type: "table",
-          columns: 4
+          columns: 5
         },
         items: me.getQueryCmp()
       }, {
@@ -230,11 +230,11 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       fieldLabel: "交货日期（止）"
     }, {
       id: "editQueryCustomer",
+      labelWidth: 60,
       xtype: "psi_customerfield",
       showModal: true,
       labelAlign: "right",
       labelSeparator: "",
-      labelWidth: 60,
       margin: "5, 0, 0, 0",
       fieldLabel: "客户"
     }, {
@@ -255,6 +255,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       value: -1
     }, {
       id: "editQueryGoods",
+      labelWidth: 60,
       labelAlign: "right",
       labelSeparator: "",
       fieldLabel: "商品",
@@ -262,7 +263,16 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       xtype: "psi_goodsfield",
       showModal: true
     }, {
+      id: "editQueryUser",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "制单人",
+      margin: "5, 0, 0, 0",
+      xtype: "psi_userfield",
+      showModal: true
+    }, {
       xtype: "container",
+      colspan: 2,
       items: [{
         xtype: "button",
         text: "查询",
@@ -291,15 +301,6 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
         },
         scope: me
       }]
-    }, {
-      id: "editQueryUser",
-      labelWidth: 60,
-      labelAlign: "right",
-      labelSeparator: "",
-      fieldLabel: "制单人",
-      margin: "5, 0, 0, 0",
-      xtype: "psi_userfield",
-      showModal: true
     }];
   },
 
