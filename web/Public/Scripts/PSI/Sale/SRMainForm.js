@@ -12,11 +12,11 @@ Ext.define("PSI.Sale.SRMainForm", {
     var me = this;
 
     Ext.apply(me, {
-      tbar: me.getToolbarCmp(),
       items: [{
+        tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
         region: "north",
-        height: 95,
+        height: 90,
         layout: "fit",
         border: 0,
         header: false,
@@ -24,7 +24,7 @@ Ext.define("PSI.Sale.SRMainForm", {
         collapseMode: "mini",
         layout: {
           type: "table",
-          columns: 4
+          columns: 5
         },
         items: me.getQueryCmp()
       }, {
@@ -197,6 +197,7 @@ Ext.define("PSI.Sale.SRMainForm", {
       id: "editQuerySN",
       labelAlign: "right",
       labelSeparator: "",
+      labelWidth: 60,
       fieldLabel: "序列号",
       margin: "5, 0, 0, 0",
       xtype: "textfield"
@@ -221,7 +222,6 @@ Ext.define("PSI.Sale.SRMainForm", {
       labelAlign: "right",
       labelSeparator: "",
       fieldLabel: "商品",
-      labelWidth: 60,
       margin: "5, 0, 0, 0",
       xtype: "psi_goodsfield",
       showModal: true
@@ -243,12 +243,9 @@ Ext.define("PSI.Sale.SRMainForm", {
         margin: "5, 0, 0, 10",
         handler: me.onClearQuery,
         scope: me
-      }]
-    }, {
-      xtype: "container",
-      items: [{
+      }, {
         xtype: "button",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         iconCls: "PSI-button-hide",
