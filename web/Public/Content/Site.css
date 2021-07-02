@@ -210,6 +210,10 @@ h1, h2, h3, p {
   border-color: white;
 }
 
+.x-window-header-default-top{
+  background-color: white;
+}
+
 .x-message-box .x-window-body{
   background-color: white;
 }
