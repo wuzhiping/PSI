@@ -53,7 +53,7 @@ Ext.define("PSI.Goods.SubGoodsField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "编码",
@@ -81,7 +81,7 @@ Ext.define("PSI.Goods.SubGoodsField", {
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
     var wnd = Ext.create("Ext.window.Window", {
-      title: "选择 - 子商品",
+      title: "选择 - 子件",
       modal: true,
       width: 600,
       height: 300,
@@ -102,6 +102,7 @@ Ext.define("PSI.Goods.SubGoodsField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyCls: "PSI-Field",
           items: [{
             id: "__editGoods",
             xtype: "textfield",
