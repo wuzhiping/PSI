@@ -162,34 +162,23 @@ h1, h2, h3, p {
 }
 
 .PSI-App .x-btn-default-toolbar-small .x-btn-inner {
-	color: #c7c6c6 !important;
+	color: white !important;
 }
 
 .PSI-App-MainMenu {
 	background-image: none;
 	background-color: #354a5f !important;
   border: 0;
-  line-height: 32px;
-  vertical-align: middle
-}
-
-.PSI-App-MainMenu .x-menu-item-icon{
-  vertical-align: middle;
-  margin-top: 5px;
-}
-
-.PSI-App-MainMenu .x-menu-item-arrow{
-  margin-top: 5px;
-  vertical-align: middle;
 }
 
 .PSI-App-MainMenu .x-menu-item-text{
-	color: #c7c6c6 !important;
+	color: white !important;
 }
 
 .PSI-App-MainMenu .x-menu-item-active {
 	background-image: none;
-  background-color: #434343;
+  background-color: #963838;
+  border-color:#963838;
 }
 
 
@@ -197,7 +186,9 @@ h1, h2, h3, p {
 .PSI-App .x-btn-default-toolbar-small-pressed, 
 .PSI-App .x-btn-default-toolbar-small-over {
 	background-image: none;
-  background-color: #434343;
+  background-color: #963838;
+  border: 0;
+  height: 30px;
 }
 
 .PSI-App .x-btn-default-toolbar-small .x-btn-arrow{
