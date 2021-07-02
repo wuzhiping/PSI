@@ -279,7 +279,7 @@ Ext.define("PSI.App", {
     for (var i = 0; i < root.length; i++) {
       var m1 = root[i];
 
-      var menuItem = Ext.create("Ext.menu.Menu", { plain: true });
+      var menuItem = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
       for (var j = 0; j < m1.children.length; j++) {
         var m2 = m1.children[j];
 
@@ -294,7 +294,7 @@ Ext.define("PSI.App", {
             });
           }
         } else {
-          var menuItem2 = Ext.create("Ext.menu.Menu", { plain: true });
+          var menuItem2 = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
 
           menuItem.add({
             text: m2.caption,
@@ -323,7 +323,7 @@ Ext.define("PSI.App", {
     }
 
     var mainToolbar = Ext.create("Ext.toolbar.Toolbar", {
-      cls: "PSI-App",
+      cls: "PSI-App-MainMenu",
       border: 0,
       dock: "top"
     });

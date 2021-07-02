@@ -165,6 +165,34 @@ h1, h2, h3, p {
 	color: #c7c6c6 !important;
 }
 
+.PSI-App-MainMenu {
+	background-image: none;
+	background-color: #354a5f !important;
+  border: 0;
+  line-height: 32px;
+  vertical-align: middle
+}
+
+.PSI-App-MainMenu .x-menu-item-icon{
+  vertical-align: middle;
+  margin-top: 5px;
+}
+
+.PSI-App-MainMenu .x-menu-item-arrow{
+  margin-top: 5px;
+  vertical-align: middle;
+}
+
+.PSI-App-MainMenu .x-menu-item-text{
+	color: #c7c6c6 !important;
+}
+
+.PSI-App-MainMenu .x-menu-item-active {
+	background-image: none;
+  background-color: #434343;
+}
+
+
 .PSI-App .x-btn-default-toolbar-small-menu-active,
 .PSI-App .x-btn-default-toolbar-small-pressed, 
 .PSI-App .x-btn-default-toolbar-small-over {
