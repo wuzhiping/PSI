@@ -12,9 +12,9 @@ Ext.define("PSI.Goods.GoodsWithPurchaseFieldField", {
     supplierIdScope: null
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -44,9 +44,9 @@ Ext.define("PSI.Goods.GoodsWithPurchaseFieldField", {
     });
   },
 
-	/**
-	 * 单击下拉按钮
-	 */
+  /**
+   * 单击下拉按钮
+   */
   onTriggerClick: function (e) {
     var me = this;
     var modelName = "PSI_Goods_GoodsWithPurchaseFieldField_PSIGoodsField";
@@ -64,7 +64,7 @@ Ext.define("PSI.Goods.GoodsWithPurchaseFieldField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "物料编码",
@@ -116,11 +116,11 @@ Ext.define("PSI.Goods.GoodsWithPurchaseFieldField", {
       handler: me.onOK,
       scope: me
     }, {
-        text: "取消",
-        handler: function () {
-          wnd.close();
-        }
-      });
+      text: "取消",
+      handler: function () {
+        wnd.close();
+      }
+    });
 
     var wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 物料",
@@ -145,6 +145,7 @@ Ext.define("PSI.Goods.GoodsWithPurchaseFieldField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyCls: "PSI-Field",
           items: [{
             id: "__editGoods",
             xtype: "textfield",
