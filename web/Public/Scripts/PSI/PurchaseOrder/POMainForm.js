@@ -17,11 +17,11 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     var me = this;
 
     Ext.apply(me, {
-      tbar: me.getToolbarCmp(),
       items: [{
+        tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
         region: "north",
-        height: 65,
+        height: 90,
         layout: "fit",
         border: 0,
         header: false,
