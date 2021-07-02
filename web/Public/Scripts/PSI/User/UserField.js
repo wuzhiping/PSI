@@ -7,9 +7,9 @@ Ext.define("PSI.User.UserField", {
     showModal: false
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
     me.__idValue = null;
@@ -60,7 +60,7 @@ Ext.define("PSI.User.UserField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "登录名",
@@ -100,6 +100,7 @@ Ext.define("PSI.User.UserField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyCls: "PSI-Field",
           items: [{
             id: "__editUser",
             xtype: "textfield",
