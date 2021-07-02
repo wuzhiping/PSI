@@ -138,7 +138,7 @@ Ext.define("PSI.App", {
         layout: "border",
         header: {
           cls: "PSI-App",
-          height: 40,
+          height: 38,
           tools: []
         },
         items: [{
