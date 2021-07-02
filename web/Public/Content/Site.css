@@ -181,7 +181,6 @@ h1, h2, h3, p {
   border-color:#963838;
 }
 
-
 .PSI-App .x-btn-default-toolbar-small-menu-active,
 .PSI-App .x-btn-default-toolbar-small-pressed, 
 .PSI-App .x-btn-default-toolbar-small-over {
@@ -195,6 +194,9 @@ h1, h2, h3, p {
 	background-image: none;
 }
 
+.x-grid-header-ct{
+  border-color: #c3cbcc;
+}
 
 .x-panel-header-default {
 	background-image: none;
