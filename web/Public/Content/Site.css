@@ -198,6 +198,22 @@ h1, h2, h3, p {
   border-color: #c3cbcc;
 }
 
+.x-border-layout-ct{
+  background-color: white;
+}
+
+.x-window-default{
+  background-color: white;
+}
+
+.x-window-body-default{
+  border-color: white;
+}
+
+.x-message-box .x-window-body{
+  background-color: white;
+}
+
 .x-panel-header-default {
 	background-image: none;
 	background-color: #f1f4f7;
