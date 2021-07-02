@@ -64,7 +64,7 @@ Ext.define("PSI.Customer.CustomerField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "编码",
@@ -115,6 +115,7 @@ Ext.define("PSI.Customer.CustomerField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyCls: "PSI-Field",
           items: [{
             id: "__editCustomer",
             xtype: "textfield",
@@ -276,9 +277,9 @@ Ext.define("PSI.Customer.CustomerField", {
     this.__idValue = null;
   },
 
-	/**
-	 * 新增客户资料
-	 */
+  /**
+   * 新增客户资料
+   */
   onAdd: function () {
     var form = Ext.create("PSI.Customer.CustomerEditForm");
     form.show();
