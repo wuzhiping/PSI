@@ -65,7 +65,7 @@ Ext.define("PSI.Factory.FactoryField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "编码",
@@ -105,6 +105,7 @@ Ext.define("PSI.Factory.FactoryField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyCls: "PSI-Field",
           items: [{
             id: "PSI_Factory_FactoryField_editFactory",
             xtype: "textfield",
