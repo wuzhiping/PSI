@@ -21,7 +21,7 @@ Ext.define("PSI.User.UserEditForm", {
     var f = entity == null
       ? "edit-form-create.png"
       : "edit-form-update.png";
-    var logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
+    var logoHtml = "<img style='float:left;margin:20px 20px 0px 10px;width:48px;height:48px;' src='"
       + PSI.Const.BASE_URL
       + "Public/Images/"
       + f
@@ -44,7 +44,7 @@ Ext.define("PSI.User.UserEditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 90,
+        height: 80,
         html: logoHtml
       }, {
         region: "center",
