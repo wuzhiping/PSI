@@ -140,7 +140,7 @@ Ext.define("PSI.Permission.MainForm", {
   getToolbarCmp: function () {
     var me = this;
     return [{
-      text: "新增角色",
+      text: "新建角色",
       handler: me.onAddRole,
       scope: me,
       disabled: me.getPAdd() == "0"
