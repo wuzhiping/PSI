@@ -67,13 +67,6 @@ Ext.define("PSI.App", {
         renderer: function (value, metaData, record) {
           var fid = record.get("fid");
           var fileName = PSI.Const.BASE_URL + "Public/Images/fid/fid" + fid + ".png";
-          if (fid.substring(0, 2) == "ct") {
-            // 码表
-            fileName = PSI.Const.BASE_URL + "Public/Images/fid/default.png";
-          } else if (fid.substring(0, 2) == "fm") {
-            // 自定义表单
-            fileName = PSI.Const.BASE_URL + "Public/Images/fid/default.png";
-          }
 
           return "<a href='#' style='text-decoration:none'><img src='"
             + fileName
