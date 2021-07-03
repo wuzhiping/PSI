@@ -250,6 +250,7 @@ Ext.define("PSI.App", {
       var fid = this.fid;
 
       if (fid == "-9995") {
+        me.vp.focus();
         window.open(PSI.Const.BASE_URL + "Home/Help/index");
       } else if (fid === "-9999") {
         // 重新登录
