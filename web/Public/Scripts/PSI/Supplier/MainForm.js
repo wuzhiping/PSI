@@ -17,11 +17,11 @@ Ext.define("PSI.Supplier.MainForm", {
     var me = this;
 
     Ext.apply(me, {
-      tbar: me.getToolbarCmp(),
       items: [{
+        tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
         region: "north",
-        height: 65,
+        height: 90,
         border: 0,
         collapsible: true,
         collapseMode: "mini",
@@ -106,7 +106,7 @@ Ext.define("PSI.Supplier.MainForm", {
     var me = this;
 
     return [{
-      text: "新增供应商分类",
+      text: "新建供应商分类",
       disabled: me.getPAddCategory() == "0",
       handler: me.onAddCategory,
       scope: me
@@ -121,7 +121,7 @@ Ext.define("PSI.Supplier.MainForm", {
       handler: me.onDeleteCategory,
       scope: me
     }, "-", {
-      text: "新增供应商",
+      text: "新建供应商",
       disabled: me.getPAddSupplier() == "0",
       handler: me.onAddSupplier,
       scope: me
@@ -289,7 +289,7 @@ Ext.define("PSI.Supplier.MainForm", {
       xtype: "container",
       items: [{
         xtype: "button",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         iconCls: "PSI-button-hide",
@@ -607,7 +607,7 @@ Ext.define("PSI.Supplier.MainForm", {
   },
 
   /**
-   * 新增供应商分类
+   * 新建供应商分类
    */
   onAddCategory: function () {
     var me = this;
@@ -756,7 +756,7 @@ Ext.define("PSI.Supplier.MainForm", {
     var me = this;
 
     if (me.getCategoryGrid().getStore().getCount() == 0) {
-      me.showInfo("没有供应商分类，请先新增供应商分类");
+      me.showInfo("没有供应商分类，请先新建供应商分类");
       return;
     }
 
