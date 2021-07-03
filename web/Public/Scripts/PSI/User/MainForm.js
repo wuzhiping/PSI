@@ -60,7 +60,7 @@ Ext.define("PSI.User.MainForm", {
     /// 通常就是 Ext.apply(...)
     Ext.apply(me, {
       tbar: [{
-        text: "新增组织机构",
+        text: "新建组织机构",
         disabled: me.getPAddOrg() == "0",
         handler: me.onAddOrg,
         /// 特别知识点：scope
@@ -80,7 +80,7 @@ Ext.define("PSI.User.MainForm", {
         handler: me.onDeleteOrg,
         scope: me
       }, "-", {
-        text: "新增用户",
+        text: "新建用户",
         disabled: me.getPAddUser() == "0",
         handler: me.onAddUser,
         scope: me
