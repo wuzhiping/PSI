@@ -48,7 +48,7 @@ Ext.define("PSI.Warehouse.EditForm", {
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新增仓库" : "编辑仓库";
+    var t = entity == null ? "新建仓库" : "编辑仓库";
     var logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {

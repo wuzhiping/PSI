@@ -19,7 +19,7 @@ Ext.define("PSI.Warehouse.MainForm", {
     var me = this;
 
     var result = [{
-      text: "新增仓库",
+      text: "新建仓库",
       disabled: me.getPAdd() == "0",
       handler: me.onAddWarehouse,
       scope: me
