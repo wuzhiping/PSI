@@ -13,12 +13,12 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
 
     var t = "修改用户登录密码";
     var f = "edit-form-password.png";
-    var logoHtml = "<img style='float:left;margin:20px 20px 0px 10px;width:48px;height:48px;' src='"
+    var logoHtml = "<img style='float:left;margin:0px 20px 0px 10px;width:48px;height:48px;' src='"
       + PSI.Const.BASE_URL
       + "Public/Images/"
       + f
       + "'></img>"
-      + "<h2 style='color:#196d83'>"
+      + "<h2 style='color:#196d83;margin-top:0px;'>"
       + t
       + "</h2>"
       + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";
@@ -29,12 +29,12 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
         height: 40
       },
       width: 400,
-      height: 290,
+      height: 300,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 90,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
