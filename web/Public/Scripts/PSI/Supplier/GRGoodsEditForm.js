@@ -41,12 +41,12 @@ Ext.define("PSI.Supplier.GRGoodsEditForm", {
 
     var t = "添加个别物料";
     var f = "edit-form-create.png";
-    var logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
+    var logoHtml = "<img style='float:left;margin:0px 20px 0px 10px;width:48px;height:48px;' src='"
       + PSI.Const.BASE_URL
       + "Public/Images/"
       + f
       + "'></img>"
-      + "<h2 style='color:#196d83'>"
+      + "<h2 style='color:#196d83;margin-top:0px;'>"
       + t
       + "</h2>"
       + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";;
@@ -72,7 +72,7 @@ Ext.define("PSI.Supplier.GRGoodsEditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 90,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
