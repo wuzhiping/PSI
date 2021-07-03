@@ -59,63 +59,63 @@ Ext.define("PSI.User.MainForm", {
     /// 三明治模式的第一层
     /// 通常就是 Ext.apply(...)
     Ext.apply(me, {
-      tbar: [{
-        text: "新建组织机构",
-        disabled: me.getPAddOrg() == "0",
-        handler: me.onAddOrg,
-        /// 特别知识点：scope
-        /// 在给组件绑定事件的时候，
-        /// 通常把scope也赋值为me
-        /// 这是进入避免JS this上下文绑定带来的莫名惊喜
-        /// 这样确保me.onAddOrg中的this是me
-        scope: me
-      }, {
-        text: "编辑组织机构",
-        disabled: me.getPEditOrg() == "0",
-        handler: me.onEditOrg,
-        scope: me
-      }, {
-        text: "删除组织机构",
-        disabled: me.getPDeleteOrg() == "0",
-        handler: me.onDeleteOrg,
-        scope: me
-      }, "-", {
-        text: "新建用户",
-        disabled: me.getPAddUser() == "0",
-        handler: me.onAddUser,
-        scope: me
-      }, {
-        text: "编辑用户",
-        disabled: me.getPEditUser() == "0",
-        handler: me.onEditUser,
-        scope: me
-      }, {
-        text: "删除用户",
-        disabled: me.getPDeleteUser() == "0",
-        handler: me.onDeleteUser,
-        scope: me
-      }, "-", {
-        text: "修改用户密码",
-        disabled: me.getPChangePassword() == "0",
-        handler: me.onEditUserPassword,
-        scope: me
-      }, "-", {
-        text: "帮助",
-        handler: function () {
-          window.open(me
-            .URL("/Home/Help/index?t=user"));
-        }
-      }, "-", {
-        text: "关闭",
-        handler: function () {
-          me.closeWindow();
-        }
-      }],
       items: [{
+        tbar: [{
+          text: "新建组织机构",
+          disabled: me.getPAddOrg() == "0",
+          handler: me.onAddOrg,
+          /// 特别知识点：scope
+          /// 在给组件绑定事件的时候，
+          /// 通常把scope也赋值为me
+          /// 这是进入避免JS this上下文绑定带来的莫名惊喜
+          /// 这样确保me.onAddOrg中的this是me
+          scope: me
+        }, {
+          text: "编辑组织机构",
+          disabled: me.getPEditOrg() == "0",
+          handler: me.onEditOrg,
+          scope: me
+        }, {
+          text: "删除组织机构",
+          disabled: me.getPDeleteOrg() == "0",
+          handler: me.onDeleteOrg,
+          scope: me
+        }, "-", {
+          text: "新建用户",
+          disabled: me.getPAddUser() == "0",
+          handler: me.onAddUser,
+          scope: me
+        }, {
+          text: "编辑用户",
+          disabled: me.getPEditUser() == "0",
+          handler: me.onEditUser,
+          scope: me
+        }, {
+          text: "删除用户",
+          disabled: me.getPDeleteUser() == "0",
+          handler: me.onDeleteUser,
+          scope: me
+        }, "-", {
+          text: "修改用户密码",
+          disabled: me.getPChangePassword() == "0",
+          handler: me.onEditUserPassword,
+          scope: me
+        }, "-", {
+          text: "帮助",
+          handler: function () {
+            window.open(me
+              .URL("/Home/Help/index?t=user"));
+          }
+        }, "-", {
+          text: "关闭",
+          handler: function () {
+            me.closeWindow();
+          }
+        }],
         id: "panelQueryCmp",
         region: "north",
         border: 0,
-        height: 35,
+        height: 65,
         header: false,
         collapsible: true,
         collapseMode: "mini",
@@ -206,7 +206,7 @@ Ext.define("PSI.User.MainForm", {
         scope: me
       }, {
         xtype: "button",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         iconCls: "PSI-button-hide",
