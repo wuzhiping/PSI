@@ -71,7 +71,7 @@ Ext.define("PSI.Warehouse.EditForm", {
       },
       items: [{
         region: "north",
-        height: 90,
+        height: 70,
         border: 0,
         html: logoHtml
       }, {
