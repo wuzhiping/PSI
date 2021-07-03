@@ -17,19 +17,8 @@ Ext.define("PSI.User.UserEditForm", {
     var entity = me.getEntity();
     me.adding = entity == null;
 
-    var t = entity == null ? "新增用户" : "编辑用户";
-    var f = entity == null
-      ? "edit-form-create.png"
-      : "edit-form-update.png";
-    var logoHtml = "<img style='float:left;margin:20px 20px 0px 10px;width:48px;height:48px;' src='"
-      + PSI.Const.BASE_URL
-      + "Public/Images/"
-      + f
-      + "'></img>"
-      + "<h2 style='color:#196d83'>"
-      + t
-      + "</h2>"
-      + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";
+    var t = entity == null ? "新建用户" : "编辑用户";
+    var logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
       header: {
@@ -39,12 +28,12 @@ Ext.define("PSI.User.UserEditForm", {
       modal: true,
       onEsc: Ext.emptyFn,
       width: 470,
-      height: me.adding ? 400 : 370,
+      height: me.adding ? 410 : 380,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 80,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
