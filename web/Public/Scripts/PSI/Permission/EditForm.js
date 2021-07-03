@@ -146,7 +146,7 @@ Ext.define("PSI.Permission.EditForm", {
 
     this.userGrid = userGrid;
 
-    var title = entity == null ? "新增角色" : "编辑角色";
+    var title = entity == null ? "新建角色" : "编辑角色";
     title = me.formatTitle(title);
     var iconCls = entity == null ? "PSI-button-add" : "PSI-button-edit";
 
@@ -567,9 +567,9 @@ Ext.define("PSI.Permission.EditForm", {
     form.show();
   },
 
-	/**
-	 * PSI.Permission.SelectDataOrgForm中回调本方法
-	 */
+  /**
+   * PSI.Permission.SelectDataOrgForm中回调本方法
+   */
   onEditDataOrgCallback: function (dataOrg) {
     var me = this;
 
