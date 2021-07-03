@@ -10,6 +10,10 @@ h1, h2, h3, p {
   background-color: white !important;
 }
 
+.PSI-Msgbx-tip {
+  background-color: white !important;
+}
+
 .PSI-about p {
 	font-size: 13px;
 	color: #262626;

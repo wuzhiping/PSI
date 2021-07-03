@@ -44,15 +44,16 @@ Ext.define("PSI.MsgBox", {
         header: false,
         laytout: "fit",
         border: 0,
+        bodyCls: "PSI-Msgbx-tip",
         items: [
           {
             xtype: "container",
-            html: "<h3>提示</h3><p>" + info + "</p>"
+            html: "<h1 style='color:#1890ff;margin-top:25px;margin-left:10px'>" + info + "</h1>"
           }
         ]
       });
 
-      wnd.showAt(document.body.clientWidth - 300, 0);
+      wnd.showAt(document.body.clientWidth - 320, 20);
 
       Ext.Function.defer(function () {
         wnd.hide();
