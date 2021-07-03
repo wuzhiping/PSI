@@ -41,10 +41,10 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
     };
     buttons.push(btn);
 
-    var logoHtml = "<img style='float:left;margin:10px 10px 0px 20px;width:48px;height:48px;' src='"
+    var logoHtml = "<img style='float:left;margin:0px 10px 0px 20px;width:48px;height:48px;' src='"
       + PSI.Const.BASE_URL
       + "Public/Images/edit-form-data.png'></img>"
-      + "<h2 style='color:#196d83'>修改数据域</h2>"
+      + "<h2 style='color:#196d83;margin-top:0px;'>修改数据域</h2>"
       + "<p style='color:#196d83'>点击帮助按钮可以了解更多数据域的应用场景</p>";
 
     Ext.apply(me, {
@@ -56,7 +56,7 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
       resizable: false,
       onEsc: Ext.emptyFn,
       width: 400,
-      height: 310,
+      height: 320,
       layout: "border",
       listeners: {
         show: {
@@ -70,7 +70,7 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
       },
       items: [{
         region: "north",
-        height: 90,
+        height: 70,
         border: 0,
         html: logoHtml
       }, {
