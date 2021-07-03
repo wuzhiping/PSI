@@ -17,12 +17,12 @@ Ext.define("PSI.Permission.MainForm", {
     var me = this;
 
     Ext.apply(me, {
-      tbar: me.getToolbarCmp(),
       items: [{
+        tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
         region: "north",
         border: 0,
-        height: 35,
+        height: 65,
         header: false,
         collapsible: true,
         collapseMode: "mini",
@@ -124,7 +124,7 @@ Ext.define("PSI.Permission.MainForm", {
         scope: me
       }, {
         xtype: "button",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         iconCls: "PSI-button-hide",
