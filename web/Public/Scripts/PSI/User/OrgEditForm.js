@@ -25,7 +25,7 @@ Ext.define("PSI.User.OrgEditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 80,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
