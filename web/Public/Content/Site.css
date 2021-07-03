@@ -220,6 +220,7 @@ h1, h2, h3, p {
 
 .x-window-body-default{
   border-color: white;
+  background-color: white;
 }
 
 .x-window-header-default-top{
