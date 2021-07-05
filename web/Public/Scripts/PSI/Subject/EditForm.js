@@ -8,9 +8,9 @@ Ext.define("PSI.Subject.EditForm", {
     company: null
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -52,19 +52,9 @@ Ext.define("PSI.Subject.EditForm", {
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新增科目" : "编辑科目";
-    var f = entity == null
-      ? "edit-form-create.png"
-      : "edit-form-update.png";
-    var logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
-      + PSI.Const.BASE_URL
-      + "Public/Images/"
-      + f
-      + "'></img>"
-      + "<h2 style='color:#196d83'>"
-      + t
-      + "</h2>"
-      + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";
+    var t = entity == null ? "新建科目" : "编辑科目";
+    var logoHtml = me.genLogoHtml(entity, t);
+
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -85,7 +75,7 @@ Ext.define("PSI.Subject.EditForm", {
       },
       items: [{
         region: "north",
-        height: 90,
+        height: 70,
         border: 0,
         html: logoHtml
       }, {
@@ -201,9 +191,9 @@ Ext.define("PSI.Subject.EditForm", {
     me.editIsLeaf = Ext.getCmp("PSI_Subject_EditForm_editIsLeaf");
   },
 
-	/**
-	 * 保存
-	 */
+  /**
+   * 保存
+   */
   onOK: function (thenAdd) {
     var me = this;
 

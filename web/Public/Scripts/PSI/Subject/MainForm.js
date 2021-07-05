@@ -67,7 +67,7 @@ Ext.define("PSI.Subject.MainForm", {
       handler: me.onInit,
       scope: me
     }, "-", {
-      text: "新增科目",
+      text: "新建科目",
       handler: me.onAddSubject,
       scope: me
     }, "-", {
