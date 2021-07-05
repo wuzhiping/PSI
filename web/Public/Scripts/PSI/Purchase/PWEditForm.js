@@ -417,13 +417,13 @@ Ext.define("PSI.Purchase.PWEditForm", {
         if (success) {
           var data = me.decodeJSON(response.responseText);
           if (data.success) {
-            me.showInfo("成功保存数据", function () {
-              me.close();
-              var pf = me.getParentForm();
-              if (pf) {
-                pf.refreshMainGrid(data.id);
-              }
-            });
+            me.close();
+            var pf = me.getParentForm();
+            if (pf) {
+              pf.refreshMainGrid(data.id);
+            }
+
+            me.tip("成功保存数据");
           } else {
             me.showInfo(data.msg);
           }
