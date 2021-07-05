@@ -41,7 +41,7 @@ Ext.define("PSI.Customer.CustomerEditForm", {
       categoryStore = me.getParentForm().categoryGrid.getStore();
     }
 
-    var t = entity == null ? "新建客户" : "编辑客户";
+    var t = entity == null ? "新建客户资料" : "编辑客户资料";
     var logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
