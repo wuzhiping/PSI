@@ -828,9 +828,9 @@ Ext.define("PSI.Purchase.PWMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成提交操作", function () {
-                me.refreshMainGrid(id);
-              });
+              me.refreshMainGrid(id);
+
+              me.tip("成功完成提交操作");
             } else {
               me.showInfo(data.msg);
             }
