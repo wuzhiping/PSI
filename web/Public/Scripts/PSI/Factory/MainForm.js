@@ -12,11 +12,11 @@ Ext.define("PSI.Factory.MainForm", {
     var me = this;
 
     Ext.apply(me, {
-      tbar: me.getToolbarCmp(),
       items: [{
+        tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
         region: "north",
-        height: 65,
+        height: 90,
         border: 0,
         collapsible: true,
         collapseMode: "mini",
@@ -65,7 +65,7 @@ Ext.define("PSI.Factory.MainForm", {
     var me = this;
 
     return [{
-      text: "新增工厂分类",
+      text: "新建工厂分类",
       hidden: me.getPermission().addCategory == "0",
       handler: me.onAddCategory,
       scope: me
@@ -89,7 +89,7 @@ Ext.define("PSI.Factory.MainForm", {
       hidden: me.getPermission().deleteCategory == "0",
       xtype: "tbseparator"
     }, {
-      text: "新增工厂",
+      text: "新建工厂",
       hidden: me.getPermission().add == "0",
       handler: me.onAddFactory,
       scope: me
@@ -248,7 +248,7 @@ Ext.define("PSI.Factory.MainForm", {
         scope: me
       }, {
         xtype: "button",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         iconCls: "PSI-button-hide",
