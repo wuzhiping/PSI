@@ -231,6 +231,10 @@ h1, h2, h3, p {
   background-color: white;
 }
 
+.x-panel-default{
+  border-color: #c3cbcc;
+}
+
 .x-panel-header-default {
 	background-image: none;
 	background-color: #f1f4f7;
