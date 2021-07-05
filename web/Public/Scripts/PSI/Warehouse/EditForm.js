@@ -56,8 +56,8 @@ Ext.define("PSI.Warehouse.EditForm", {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 400,
-      height: 410,
+      width: 800,
+      height: 340,
       layout: "border",
       listeners: {
         show: {
@@ -81,7 +81,7 @@ Ext.define("PSI.Warehouse.EditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 1
+          columns: 2
         },
         height: "100%",
         bodyPadding: 5,
