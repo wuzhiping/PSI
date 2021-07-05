@@ -36,7 +36,7 @@ Ext.define("PSI.Bank.MainForm", {
   getToolbarCmp: function () {
     var me = this;
     return [{
-      text: "新增银行账户",
+      text: "新建银行账户",
       handler: me.onAddBank,
       scope: me
     }, "-", {
