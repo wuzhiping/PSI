@@ -265,7 +265,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
       extend: "Ext.data.Model",
       fields: ["id", "ref", "bizDate", "supplierName",
         "warehouseName", "inputUserName", "bizUserName",
-        "billStatus", "amount", "dateCreated",
+        "billStatus", "billStatusCode", "amount", "dateCreated",
         "paymentType", "billMemo", "expandByBOM",
         "wspBillRef", "tax", "moneyWithTax"]
     });
@@ -726,7 +726,8 @@ Ext.define("PSI.Purchase.PWMainForm", {
       return;
     }
     var bill = item[0];
-    var commited = bill.get("billStatus") == "已入库";
+    var bsc = parseInt(bill.get("billStatusCode"));
+    var commited = bsc > 0;
 
     var buttonEdit = Ext.getCmp("buttonEdit");
     buttonEdit.setDisabled(false);

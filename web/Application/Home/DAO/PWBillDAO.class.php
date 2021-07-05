@@ -183,6 +183,7 @@ class PWBillDAO extends PSIBaseExDAO
         "inputUserName" => $v["input_user_name"],
         "bizUserName" => $v["biz_user_name"],
         "billStatus" => $this->billStatusCodeToName($v["bill_status"]),
+        "billStatusCode" => $v["bill_status"],
         "amount" => $canViewPrice ? $v["goods_money"] : null,
         "dateCreated" => $v["date_created"],
         "paymentType" => $v["payment_type"],
