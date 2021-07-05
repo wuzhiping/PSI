@@ -395,7 +395,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
           dataIndex: "billMemo",
           width: 150
         }, {
-          header: "自动拆分",
+          header: "自动拆分?",
           dataIndex: "expandByBOM",
           width: 80,
           align: "center",
@@ -449,9 +449,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = Ext.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
                 Ext.getCmp("pagingToobar").doRefresh();
               },
