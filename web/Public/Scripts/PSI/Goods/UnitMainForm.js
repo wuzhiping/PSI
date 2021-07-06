@@ -160,7 +160,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      PSI.MsgBox.showInfo("请选择要编辑的商品计量单位");
+      PSI.MsgBox.showInfo("请选择要编辑的计量单位");
       return;
     }
 
@@ -181,12 +181,12 @@ Ext.define("PSI.Goods.UnitMainForm", {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      PSI.MsgBox.showInfo("请选择要删除的商品计量单位");
+      PSI.MsgBox.showInfo("请选择要删除的计量单位");
       return;
     }
 
     var unit = item[0];
-    var info = "请确认是否删除商品计量单位 <span style='color:red'>" + unit.get("name")
+    var info = "请确认是否删除计量单位 <span style='color:red'>" + unit.get("name")
       + "</span> ?";
 
     var preIndex = me.getPreIndexInMainGrid(unit.get("id"));
