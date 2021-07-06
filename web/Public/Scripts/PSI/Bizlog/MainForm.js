@@ -285,7 +285,7 @@ Ext.define("PSI.Bizlog.MainForm", {
           sortable: false
         },
         items: [Ext.create("Ext.grid.RowNumberer", {
-          text: "序号",
+          text: "#",
           width: 60
         }), {
           text: "登录名",
