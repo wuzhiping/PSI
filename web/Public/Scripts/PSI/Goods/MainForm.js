@@ -344,7 +344,7 @@ Ext.define("PSI.Goods.MainForm", {
         }],
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "序号",
+        text: "#",
         width: 40
       }), {
         header: "编码",
