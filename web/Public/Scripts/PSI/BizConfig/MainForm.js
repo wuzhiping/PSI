@@ -56,8 +56,8 @@ Ext.define("PSI.BizConfig.MainForm", {
     }, "-", {
       text: "帮助",
       handler: function () {
-        window.open(me
-          .URL("/Home/Help/index?t=bizconfig"));
+        me.focus();
+        window.open(me.URL("/Home/Help/index?t=bizconfig"));
       }
     }, "-", {
       text: "关闭",
