@@ -61,6 +61,7 @@ Ext.define("PSI.BizConfig.EditForm", {
       layout: "fit",
       items: [{
         xtype: "tabpanel",
+        cls: "PSI-Bizconfig",
         bodyPadding: 5,
         border: 0,
         items: [{
