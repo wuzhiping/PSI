@@ -103,6 +103,7 @@ Ext.define("PSI.Warehouse.MainForm", {
         },
         items: [{
           xtype: "rownumberer",
+          header: "#",
           width: 40
         }, {
           header: "仓库编码",
