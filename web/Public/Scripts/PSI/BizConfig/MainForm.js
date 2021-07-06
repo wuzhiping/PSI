@@ -98,7 +98,7 @@ Ext.define("PSI.BizConfig.MainForm", {
       border: 0,
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "序号",
+        text: "#",
         width: 40
       }), {
         text: "设置项",
