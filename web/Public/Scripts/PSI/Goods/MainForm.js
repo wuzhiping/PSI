@@ -98,7 +98,7 @@ Ext.define("PSI.Goods.MainForm", {
     var me = this;
 
     return [{
-      text: "新增物料分类",
+      text: "新建物料分类",
       disabled: me.getPAddCategory() == "0",
       handler: me.onAddCategory,
       scope: me
@@ -113,7 +113,7 @@ Ext.define("PSI.Goods.MainForm", {
       handler: me.onDeleteCategory,
       scope: me
     }, "-", {
-      text: "新增物料",
+      text: "新建物料",
       disabled: me.getPAddGoods() == "0",
       handler: me.onAddGoods,
       scope: me
@@ -454,7 +454,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 新增商品分类
+   * 新建商品分类
    */
   onAddCategory: function () {
     var me = this;
@@ -570,13 +570,13 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 新增商品
+   * 新建物料
    */
   onAddGoods: function () {
     var me = this;
 
     if (me.getCategoryGrid().getStore().getCount() == 0) {
-      me.showInfo("没有物料分类，请先新增物料分类");
+      me.showInfo("没有物料分类，请先新建物料分类");
       return;
     }
 
@@ -1252,7 +1252,7 @@ Ext.define("PSI.Goods.MainForm", {
       },
       title: "BOM",
       tbar: [{
-        text: "新增子物料",
+        text: "新建子物料",
         scope: me,
         iconCls: "PSI-button-add",
         disabled: me.getPAddBOM() == "0",
@@ -1318,7 +1318,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 新增子商品
+   * 新建子件
    */
   onAddBOM: function () {
     var me = this;
