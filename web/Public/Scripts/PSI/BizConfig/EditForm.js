@@ -503,9 +503,9 @@ Ext.define("PSI.BizConfig.EditForm", {
           var data = Ext.JSON.decode(response.responseText);
           if (data.success) {
             me.__saved = true;
-            PSI.MsgBox.showInfo("成功保存数据", function () {
-              me.close();
-            });
+            me.close();
+
+            me.tip("成功保存数据");
           } else {
             PSI.MsgBox.showInfo(data.msg);
           }
