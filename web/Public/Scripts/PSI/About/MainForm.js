@@ -13,7 +13,7 @@ Ext.define("PSI.About.MainForm", {
 
   modal: true,
   closable: false,
-  width: 500,
+  width: 520,
   layout: "fit",
 
   initComponent: function () {
@@ -31,7 +31,7 @@ Ext.define("PSI.About.MainForm", {
         iconCls: "PSI-fid-9994",
         height: 40
       },
-      height: 350,
+      height: 400,
       bodyCls: "PSI-About-body",
       items: [{
         border: 0,
