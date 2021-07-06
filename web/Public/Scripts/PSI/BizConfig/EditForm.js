@@ -67,7 +67,6 @@ Ext.define("PSI.BizConfig.EditForm", {
           title: "公司",
           border: 0,
           layout: "form",
-          iconCls: "PSI-fid2008",
           items: [{
             id: "editName9000-01",
             xtype: "displayfield"
@@ -103,7 +102,6 @@ Ext.define("PSI.BizConfig.EditForm", {
           title: "采购",
           border: 0,
           layout: "form",
-          iconCls: "PSI-fid2001",
           items: [{
             id: "editName2001-01",
             xtype: "displayfield"
@@ -173,7 +171,6 @@ Ext.define("PSI.BizConfig.EditForm", {
           title: "销售",
           border: 0,
           layout: "form",
-          iconCls: "PSI-fid2002",
           items: [{
             id: "editName2002-02",
             xtype: "displayfield"
@@ -258,7 +255,6 @@ Ext.define("PSI.BizConfig.EditForm", {
           title: "存货",
           border: 0,
           layout: "form",
-          iconCls: "PSI-fid1003",
           items: [{
             id: "editName1003-02",
             xtype: "displayfield"
@@ -279,7 +275,6 @@ Ext.define("PSI.BizConfig.EditForm", {
         }, {
           title: "财务",
           border: 0,
-          iconCls: "PSI-fid2024",
           layout: "form",
           items: [{
             id: "editName9001-01",
@@ -373,7 +368,6 @@ Ext.define("PSI.BizConfig.EditForm", {
         }, {
           title: "系统",
           border: 0,
-          iconCls: "PSI-fid-9994",
           layout: "form",
           items: [{
             id: "editName9002-01",
