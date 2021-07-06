@@ -49,7 +49,7 @@ Ext.define("PSI.Goods.UnitEditForm", {
         height: 40
       },
       width: 400,
-      height: 280,
+      height: 290,
       layout: "border",
       items: [{
         region: "north",
