@@ -56,7 +56,7 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
       resizable: false,
       onEsc: Ext.emptyFn,
       width: 400,
-      height: 320,
+      height: 330,
       layout: "border",
       listeners: {
         show: {
