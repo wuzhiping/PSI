@@ -1,18 +1,18 @@
 /**
- * 商品品牌 - 主界面
+ * 物料品牌 - 主界面
  * 
  * @author 李静波
  */
 Ext.define("PSI.Goods.BrandMainForm", {
   extend: "PSI.AFX.BaseOneGridMainForm",
 
-	/**
-	 * 重载父类方法
-	 */
+  /**
+   * 重载父类方法
+   */
   afxGetToolbarCmp: function () {
     var me = this;
     return [{
-      text: "新增品牌",
+      text: "新建品牌",
       handler: me.onAddBrand,
       scope: me
     }, "-", {
@@ -30,6 +30,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
     }, "-", {
       text: "帮助",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=goodsBrand"));
       }
     }, "-", {
@@ -40,9 +41,9 @@ Ext.define("PSI.Goods.BrandMainForm", {
     }];
   },
 
-	/**
-	 * 重载父类方法
-	 */
+  /**
+   * 重载父类方法
+   */
   afxGetMainGrid: function () {
     var me = this;
     if (me.__mainGrid) {
@@ -112,11 +113,11 @@ Ext.define("PSI.Goods.BrandMainForm", {
             }
           }
         }, {
-          header: "使用该品牌的商品数",
+          header: "使用该品牌的物料数",
           align: "right",
           width: 180,
           columns: [{
-            header: "启用状态商品数",
+            header: "启用状态物料数",
             dataIndex: "goodsEnabledCount",
             align: "right",
             menuDisabled: true,
@@ -124,7 +125,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
             width: 120
 
           }, {
-            header: "停用状态商品数",
+            header: "停用状态物料数",
             dataIndex: "goodsDisabledCount",
             align: "right",
             menuDisabled: true,
@@ -132,7 +133,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
             width: 120
 
           }, {
-            header: "总商品数",
+            header: "总物料数",
             dataIndex: "goodsCount",
             align: "right",
             menuDisabled: true,
@@ -153,18 +154,18 @@ Ext.define("PSI.Goods.BrandMainForm", {
     return me.__mainGrid;
   },
 
-	/**
-	 * 重载父类方法
-	 */
+  /**
+   * 重载父类方法
+   */
   afxRefreshGrid: function (id) {
     var me = this;
     var store = me.getMainGrid().getStore();
     store.load();
   },
 
-	/**
-	 * 新增商品品牌
-	 */
+  /**
+   * 新建品牌
+   */
   onAddBrand: function () {
     var me = this;
     var form = Ext.create("PSI.Goods.BrandEditForm", {
@@ -173,14 +174,14 @@ Ext.define("PSI.Goods.BrandMainForm", {
     form.show();
   },
 
-	/**
-	 * 编辑商品品牌
-	 */
+  /**
+   * 编辑品牌
+   */
   onEditBrand: function () {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      PSI.MsgBox.showInfo("请选择要编辑的商品品牌");
+      PSI.MsgBox.showInfo("请选择要编辑的品牌");
       return;
     }
 
@@ -194,19 +195,19 @@ Ext.define("PSI.Goods.BrandMainForm", {
     form.show();
   },
 
-	/**
-	 * 删除商品品牌
-	 */
+  /**
+   * 删除商品品牌
+   */
   onDeleteBrand: function () {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      PSI.MsgBox.showInfo("请选择要删除的商品品牌");
+      PSI.MsgBox.showInfo("请选择要删除的品牌");
       return;
     }
 
     var brand = item[0];
-    var info = "请确认是否删除商品品牌: <span style='color:red'>" + brand.get("text")
+    var info = "请确认是否删除品牌: <span style='color:red'>" + brand.get("text")
       + "</span>";
     var confimFunc = function () {
       var el = Ext.getBody();
