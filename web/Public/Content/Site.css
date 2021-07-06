@@ -324,7 +324,7 @@ h1, h2, h3, p {
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
 		Arial, sans-serif;
-	color: #002766;
+	color: #777777;
 }
 
 .x-tab-default-top {
@@ -336,7 +336,11 @@ h1, h2, h3, p {
 .x-tab-default-top-active {
 	background-image: none;
 	background-color: white;
-	border-bottom: 2px solid #1890ff;
+	border-bottom: 2px solid #427cac;
+}
+
+.x-tab-default-top-active .x-tab-inner{
+  color:#427cac;
 }
 
 .x-horizontal-box-overflow-body {
