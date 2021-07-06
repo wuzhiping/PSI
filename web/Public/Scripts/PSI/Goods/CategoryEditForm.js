@@ -1,12 +1,12 @@
 /**
- * 商品分类 - 编辑界面
+ * 物料分类 - 编辑界面
  */
 Ext.define("PSI.Goods.CategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
     var entity = me.getEntity();
@@ -18,7 +18,7 @@ Ext.define("PSI.Goods.CategoryEditForm", {
     var buttons = [];
     if (!entity) {
       buttons.push({
-        text: "保存并继续新增",
+        text: "保存并继续新建",
         formBind: true,
         handler: function () {
           me.onOK(true);
@@ -43,19 +43,8 @@ Ext.define("PSI.Goods.CategoryEditForm", {
       scope: me
     });
 
-    var t = entity == null ? "新增物料分类" : "编辑物料分类";
-    var f = entity == null
-      ? "edit-form-create.png"
-      : "edit-form-update.png";
-    var logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
-      + PSI.Const.BASE_URL
-      + "Public/Images/"
-      + f
-      + "'></img>"
-      + "<h2 style='color:#196d83'>"
-      + t
-      + "</h2>"
-      + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";;
+    var t = entity == null ? "新建物料分类" : "编辑物料分类";
+    var logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
       header: {
@@ -68,7 +57,7 @@ Ext.define("PSI.Goods.CategoryEditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 90,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
@@ -296,9 +285,9 @@ Ext.define("PSI.Goods.CategoryEditForm", {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-	/**
-	 * 窗体显示的时候查询数据
-	 */
+  /**
+   * 窗体显示的时候查询数据
+   */
   onWndShow: function () {
     var me = this;
 
