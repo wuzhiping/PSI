@@ -10,7 +10,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
   afxGetToolbarCmp: function () {
     var me = this;
     return [{
-      text: "新增计量单位",
+      text: "新建计量单位",
       handler: me.onAddUnit,
       scope: me
     }, "-", {
@@ -24,6 +24,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
     }, "-", {
       text: "帮助",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=goodsUnit"));
       }
     }, "-", {
