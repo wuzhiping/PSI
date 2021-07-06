@@ -22,19 +22,19 @@ Ext.define("PSI.Goods.MainForm", {
     pExcel: null
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
     Ext.apply(me, {
-      tbar: me.getToolbarCmp(),
       items: [{
+        tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
         region: "north",
         border: 0,
-        height: 65,
+        height: 90,
         header: false,
         collapsible: true,
         collapseMode: "mini",
@@ -214,7 +214,7 @@ Ext.define("PSI.Goods.MainForm", {
         scope: me
       }, {
         xtype: "button",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         iconCls: "PSI-button-hide",
@@ -453,9 +453,9 @@ Ext.define("PSI.Goods.MainForm", {
     return me.__mainGrid;
   },
 
-	/**
-	 * 新增商品分类
-	 */
+  /**
+   * 新增商品分类
+   */
   onAddCategory: function () {
     var me = this;
 
@@ -466,9 +466,9 @@ Ext.define("PSI.Goods.MainForm", {
     form.show();
   },
 
-	/**
-	 * 编辑商品分类
-	 */
+  /**
+   * 编辑商品分类
+   */
   onEditCategory: function () {
     var me = this;
 
@@ -488,9 +488,9 @@ Ext.define("PSI.Goods.MainForm", {
     form.show();
   },
 
-	/**
-	 * 删除商品分类
-	 */
+  /**
+   * 删除商品分类
+   */
   onDeleteCategory: function () {
     var me = this;
     var item = me.categoryGrid.getSelectionModel().getSelection();
@@ -534,18 +534,18 @@ Ext.define("PSI.Goods.MainForm", {
     });
   },
 
-	/**
-	 * 刷新商品分类Grid
-	 */
+  /**
+   * 刷新商品分类Grid
+   */
   freshCategoryGrid: function (id) {
     var me = this;
     var store = me.getCategoryGrid().getStore();
     store.load();
   },
 
-	/**
-	 * 刷新商品Grid
-	 */
+  /**
+   * 刷新商品Grid
+   */
   freshGoodsGrid: function () {
     var me = this;
     var item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -569,9 +569,9 @@ Ext.define("PSI.Goods.MainForm", {
     me.freshGoodsGrid();
   },
 
-	/**
-	 * 新增商品
-	 */
+  /**
+   * 新增商品
+   */
   onAddGoods: function () {
     var me = this;
 
@@ -587,9 +587,9 @@ Ext.define("PSI.Goods.MainForm", {
     form.show();
   },
 
-	/**
-	 * 编辑商品
-	 */
+  /**
+   * 编辑商品
+   */
   onEditGoods: function () {
     var me = this;
     if (me.getPEditGoods() == "0") {
@@ -620,9 +620,9 @@ Ext.define("PSI.Goods.MainForm", {
     form.show();
   },
 
-	/**
-	 * 删除商品
-	 */
+  /**
+   * 删除商品
+   */
   onDeleteGoods: function () {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
@@ -807,9 +807,9 @@ Ext.define("PSI.Goods.MainForm", {
     return result;
   },
 
-	/**
-	 * 查询
-	 */
+  /**
+   * 查询
+   */
   onQuery: function () {
     var me = this;
 
@@ -824,9 +824,9 @@ Ext.define("PSI.Goods.MainForm", {
     me.freshCategoryGrid();
   },
 
-	/**
-	 * 清除查询条件
-	 */
+  /**
+   * 清除查询条件
+   */
   onClearQuery: function () {
     var me = this;
     var nameList = me.__queryEditNameList;
@@ -843,9 +843,9 @@ Ext.define("PSI.Goods.MainForm", {
     me.onQuery();
   },
 
-	/**
-	 * 安全库存Grid
-	 */
+  /**
+   * 安全库存Grid
+   */
   getSIGrid: function () {
     var me = this;
     if (me.__siGrid) {
@@ -1037,9 +1037,9 @@ Ext.define("PSI.Goods.MainForm", {
     });
   },
 
-	/**
-	 * 设置安全库存
-	 */
+  /**
+   * 设置安全库存
+   */
   onSafetyInventory: function () {
     var me = this;
     if (me.getPGoodsSI() == "0") {
@@ -1062,9 +1062,9 @@ Ext.define("PSI.Goods.MainForm", {
     form.show();
   },
 
-	/**
-	 * 导入商品资料
-	 */
+  /**
+   * 导入商品资料
+   */
   onImportGoods: function () {
     var form = Ext.create("PSI.Goods.GoodsImportForm", {
       parentForm: this
@@ -1073,9 +1073,9 @@ Ext.define("PSI.Goods.MainForm", {
     form.show();
   },
 
-	/**
-	 * 商品分类Grid
-	 */
+  /**
+   * 商品分类Grid
+   */
   getCategoryGrid: function () {
     var me = this;
     if (me.__categoryGrid) {
@@ -1228,9 +1228,9 @@ Ext.define("PSI.Goods.MainForm", {
     });
   },
 
-	/**
-	 * 商品构成Grid
-	 */
+  /**
+   * 商品构成Grid
+   */
   getGoodsBOMGrid: function () {
     var me = this;
     if (me.__bomGrid) {
@@ -1317,9 +1317,9 @@ Ext.define("PSI.Goods.MainForm", {
     return me.__bomGrid;
   },
 
-	/**
-	 * 新增子商品
-	 */
+  /**
+   * 新增子商品
+   */
   onAddBOM: function () {
     var me = this;
 
@@ -1338,9 +1338,9 @@ Ext.define("PSI.Goods.MainForm", {
     form.show();
   },
 
-	/**
-	 * 编辑子商品
-	 */
+  /**
+   * 编辑子商品
+   */
   onEditBOM: function () {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
@@ -1366,9 +1366,9 @@ Ext.define("PSI.Goods.MainForm", {
     form.show();
   },
 
-	/**
-	 * 删除子商品
-	 */
+  /**
+   * 删除子商品
+   */
   onDeleteBOM: function () {
     var me = this;
 
@@ -1424,9 +1424,9 @@ Ext.define("PSI.Goods.MainForm", {
     me.confirm(info, confirmFunc);
   },
 
-	/**
-	 * 价格体系Grid
-	 */
+  /**
+   * 价格体系Grid
+   */
   getGoodsPriceGrid: function () {
     var me = this;
     if (me.__priceGrid) {
@@ -1516,9 +1516,9 @@ Ext.define("PSI.Goods.MainForm", {
     });
   },
 
-	/**
-	 * 设置商品价格
-	 */
+  /**
+   * 设置商品价格
+   */
   onGoodsPriceSystem: function () {
     var me = this;
 
