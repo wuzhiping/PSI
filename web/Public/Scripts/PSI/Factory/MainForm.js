@@ -406,7 +406,7 @@ Ext.define("PSI.Factory.MainForm", {
           sortable: false
         },
         items: [Ext.create("Ext.grid.RowNumberer", {
-          text: "序号",
+          text: "#",
           width: 40
         }), {
           header: "工厂编码",
