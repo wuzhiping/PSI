@@ -4,9 +4,9 @@
 Ext.define("PSI.Goods.PriceSystemMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -14,7 +14,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
       border: 0,
       layout: "border",
       tbar: [{
-        text: "新增价格",
+        text: "新建价格",
         handler: me.onAddPrice,
         scope: me
       }, "-", {
@@ -28,8 +28,8 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
       }, "-", {
         text: "帮助",
         handler: function () {
-          var url = me
-            .URL("/Home/Help/index?t=priceSystem")
+          me.focus();
+          var url = me.URL("/Home/Help/index?t=priceSystem")
           window.open(url);
         }
       }, "-", {
@@ -52,9 +52,9 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
     me.freshGrid();
   },
 
-	/**
-	 * 新增价格
-	 */
+  /**
+   * 新增价格
+   */
   onAddPrice: function () {
     var me = this;
 
@@ -65,9 +65,9 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
     form.show();
   },
 
-	/**
-	 * 编辑价格
-	 */
+  /**
+   * 编辑价格
+   */
   onEditPrice: function () {
     var me = this;
 
@@ -87,9 +87,9 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
     form.show();
   },
 
-	/**
-	 * 删除价格
-	 */
+  /**
+   * 删除价格
+   */
   onDeletePrice: function () {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
@@ -141,9 +141,9 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
     PSI.MsgBox.confirm(info, funcConfirm);
   },
 
-	/**
-	 * 刷新Grid
-	 */
+  /**
+   * 刷新Grid
+   */
   freshGrid: function (id) {
     var me = this;
     var grid = me.getMainGrid();
