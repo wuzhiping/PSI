@@ -12,7 +12,7 @@ Ext.define("PSI.Supplier.SupplierEditForm", {
     var buttons = [];
     if (!entity) {
       buttons.push({
-        text: "保存并继续新增",
+        text: "保存并继续新建",
         formBind: true,
         handler: function () {
           me.onOK(true);
