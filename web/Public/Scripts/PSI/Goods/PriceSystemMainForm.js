@@ -200,6 +200,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
           sortable: false
         },
         items: [{
+          header: "#",
           xtype: "rownumberer",
           width: 40
         }, {
