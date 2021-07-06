@@ -17,7 +17,7 @@ Ext.define("PSI.Warehouse.EditForm", {
     var buttons = [];
     if (!entity) {
       var btn = {
-        text: "保存并继续新增",
+        text: "保存并继续新建",
         formBind: true,
         handler: function () {
           me.onOK(true);
