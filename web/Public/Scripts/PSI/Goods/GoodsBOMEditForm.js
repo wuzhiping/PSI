@@ -1,5 +1,5 @@
 /**
- * 商品构成 - 新增或编辑界面
+ * 物料BOM - 新增或编辑界面
  */
 Ext.define("PSI.Goods.GoodsBOMEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
@@ -8,9 +8,9 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
     goods: null
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -23,7 +23,7 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
     var buttons = [];
     if (!entity) {
       var btn = {
-        text: "保存并继续新增",
+        text: "保存并继续新建",
         formBind: true,
         handler: function () {
           me.onOK(true);
@@ -54,19 +54,8 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新增子商品" : "编辑子商品";
-    var f = entity == null
-      ? "edit-form-create.png"
-      : "edit-form-update.png";
-    var logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
-      + PSI.Const.BASE_URL
-      + "Public/Images/"
-      + f
-      + "'></img>"
-      + "<h2 style='color:#196d83'>"
-      + t
-      + "</h2>"
-      + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";;
+    var t = entity == null ? "新增子件" : "编辑子件";
+    var logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
       header: {
@@ -89,7 +78,7 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 90,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
@@ -249,9 +238,9 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
       .getCmp("PSI_Goods_GoodsBOMEditForm_editCostWeight");
   },
 
-	/**
-	 * 保存
-	 */
+  /**
+   * 保存
+   */
   onOK: function (thenAdd) {
     var me = this;
     var f = me.editForm;
