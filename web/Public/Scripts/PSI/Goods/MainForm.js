@@ -455,7 +455,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 新建商品分类
+   * 新建物料分类
    */
   onAddCategory: function () {
     var me = this;
@@ -468,7 +468,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 编辑商品分类
+   * 编辑物料分类
    */
   onEditCategory: function () {
     var me = this;
@@ -490,7 +490,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 删除商品分类
+   * 删除物料分类
    */
   onDeleteCategory: function () {
     var me = this;
@@ -536,7 +536,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 刷新商品分类Grid
+   * 刷新物料分类Grid
    */
   freshCategoryGrid: function (id) {
     var me = this;
@@ -545,7 +545,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 刷新商品Grid
+   * 刷新物料Grid
    */
   freshGoodsGrid: function () {
     var me = this;
@@ -589,7 +589,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 编辑商品
+   * 编辑物料
    */
   onEditGoods: function () {
     var me = this;
@@ -622,7 +622,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 删除商品
+   * 删除物料
    */
   onDeleteGoods: function () {
     var me = this;
@@ -1064,7 +1064,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 导入商品资料
+   * 导入物料
    */
   onImportGoods: function () {
     var form = Ext.create("PSI.Goods.GoodsImportForm", {
@@ -1075,7 +1075,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 商品分类Grid
+   * 物料分类Grid
    */
   getCategoryGrid: function () {
     var me = this;
@@ -1230,7 +1230,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 商品构成Grid
+   * 物料BOM Grid
    */
   getGoodsBOMGrid: function () {
     var me = this;
@@ -1340,7 +1340,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 编辑子商品
+   * 编辑子件
    */
   onEditBOM: function () {
     var me = this;
@@ -1368,7 +1368,7 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 删除子商品
+   * 删除子件
    */
   onDeleteBOM: function () {
     var me = this;
@@ -1468,7 +1468,7 @@ Ext.define("PSI.Goods.MainForm", {
         data: []
       }),
       tbar: [{
-        text: "设置商品价格体系",
+        text: "设置物料价格体系",
         disabled: me.getPPriceSystem() == "0",
         iconCls: "PSI-button-commit",
         handler: me.onGoodsPriceSystem,
@@ -1518,14 +1518,14 @@ Ext.define("PSI.Goods.MainForm", {
   },
 
   /**
-   * 设置商品价格
+   * 设置物料价格
    */
   onGoodsPriceSystem: function () {
     var me = this;
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      PSI.MsgBox.showInfo("请选择要设置价格的商品");
+      PSI.MsgBox.showInfo("请选择要设置价格的物料");
       return;
     }
 
