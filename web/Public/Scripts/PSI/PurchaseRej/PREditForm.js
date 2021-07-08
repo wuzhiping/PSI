@@ -247,34 +247,25 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
 
           if (data.ref) {
             Ext.getCmp("editRef").setValue(data.ref);
-            Ext.getCmp("editSupplierId")
-              .setValue(data.supplierId);
-            Ext.getCmp("editSupplier")
-              .setValue(data.supplierName
-                + " 采购入库单单号：" + data.pwbillRef);
+            Ext.getCmp("editSupplierId").setValue(data.supplierId);
+            Ext.getCmp("editSupplier").setValue(data.supplierName + " 采购入库单单号：" + data.pwbillRef);
 
-            Ext.getCmp("editWarehouse")
-              .setIdValue(data.warehouseId);
-            Ext.getCmp("editWarehouse")
-              .setValue(data.warehouseName);
-            Ext.getCmp("editBillMemo")
-              .setValue(data.billMemo);
+            Ext.getCmp("editWarehouse").setIdValue(data.warehouseId);
+            Ext.getCmp("editWarehouse").setValue(data.warehouseName);
+            Ext.getCmp("editBillMemo").setValue(data.billMemo);
           } else {
             // 新建采购退货出库单，第一步就是选择采购入库单
             me.onSelectPWBill();
           }
 
-          Ext.getCmp("editBizUser")
-            .setIdValue(data.bizUserId);
-          Ext.getCmp("editBizUser")
-            .setValue(data.bizUserName);
+          Ext.getCmp("editBizUser").setIdValue(data.bizUserId);
+          Ext.getCmp("editBizUser").setValue(data.bizUserName);
           if (data.bizDT) {
             Ext.getCmp("editBizDT").setValue(data.bizDT);
           }
 
           if (data.receivingType) {
-            Ext.getCmp("editReceivingType")
-              .setValue(data.receivingType);
+            Ext.getCmp("editReceivingType").setValue(data.receivingType);
           }
 
           me.__billId = data.pwbillId;
@@ -759,5 +750,6 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
     Ext.getCmp("editBizUser").setReadOnly(true);
     Ext.getCmp("editBizDT").setReadOnly(true);
     Ext.getCmp("editReceivingType").setReadOnly(true);
+    Ext.getCmp("editBillMemo").setReadOnly(true);
   }
 });
