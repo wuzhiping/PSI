@@ -120,7 +120,15 @@ Ext.define("PSI.Warehouse.MainForm", {
         }, {
           header: "仓库名称",
           dataIndex: "name",
-          width: 200
+          width: 200,
+          renderer: function (value, metaData, record) {
+            if (parseInt(record.get("enabled")) == 1) {
+              return value;
+            } else {
+              return "<span style='color:gray;text-decoration:line-through;'>"
+                + value + "</span>";
+            }
+          }
         }, {
           header: "核算组织机构",
           dataIndex: "orgName",
