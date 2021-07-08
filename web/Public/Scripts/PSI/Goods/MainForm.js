@@ -1253,19 +1253,19 @@ Ext.define("PSI.Goods.MainForm", {
       },
       title: "BOM",
       tbar: [{
-        text: "新建子物料",
+        text: "新建子件",
         scope: me,
         iconCls: "PSI-button-add",
         disabled: me.getPAddBOM() == "0",
         handler: me.onAddBOM
       }, "-", {
-        text: "编辑子物料",
+        text: "编辑子件",
         scope: me,
         iconCls: "PSI-button-edit",
         disabled: me.getPEditBOM() == "0",
         handler: me.onEditBOM
       }, "-", {
-        text: "删除子物料",
+        text: "删除子件",
         scope: me,
         iconCls: "PSI-button-delete",
         disabled: me.getPDeleteBOM() == "0",
@@ -1278,23 +1278,23 @@ Ext.define("PSI.Goods.MainForm", {
           sortable: false
         },
         items: [{
-          header: "子物料编码",
+          header: "子件编码",
           dataIndex: "goodsCode"
         }, {
-          header: "子物料名称",
+          header: "子件名称",
           dataIndex: "goodsName",
           width: 300
         }, {
-          header: "子物料规格型号",
+          header: "子件规格型号",
           dataIndex: "goodsSpec",
           width: 200
         }, {
-          header: "子物料数量",
+          header: "子件数量",
           dataIndex: "goodsCount",
           width: 90,
           align: "right"
         }, {
-          header: "子物料单位",
+          header: "子件单位",
           dataIndex: "unitName",
           width: 90
         }, {
