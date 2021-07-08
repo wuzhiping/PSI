@@ -103,35 +103,35 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
           name: "id",
           value: goods.get("id")
         }, {
-          fieldLabel: "商品编码",
+          fieldLabel: "母件编码",
           width: 470,
           readOnly: true,
           colspan: 2,
           value: goods.get("code")
         }, {
-          fieldLabel: "品名",
+          fieldLabel: "母件品名",
           width: 470,
           readOnly: true,
           colspan: 2,
           value: goods.get("name")
         }, {
-          fieldLabel: "规格型号",
+          fieldLabel: "母件规格型号",
           readOnly: true,
           width: 470,
           colspan: 2,
           value: goods.get("spec")
         }, {
-          fieldLabel: "商品单位",
+          fieldLabel: "母件单位",
           readOnly: true,
           colspan: 2,
           value: goods.get("unitName")
         }, {
           id: "PSI_Goods_GoodsBOMEditForm_editSubGoodsCode",
-          fieldLabel: "子商品编码",
+          fieldLabel: "子件编码",
           width: 470,
           colspan: 2,
           allowBlank: false,
-          blankText: "没有输入子商品",
+          blankText: "没有输入子件编码",
           beforeLabelTextTpl: entity == null
             ? PSI.Const.REQUIRED
             : "",
@@ -145,13 +145,13 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
             }
           }
         }, {
-          fieldLabel: "子商品名称",
+          fieldLabel: "子件品名",
           width: 470,
           readOnly: true,
           colspan: 2,
           id: "PSI_Goods_GoodsBOMEditForm_editSubGoodsName"
         }, {
-          fieldLabel: "子商品规格型号",
+          fieldLabel: "子件规格型号",
           readOnly: true,
           width: 470,
           colspan: 2,
@@ -159,7 +159,7 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
         }, {
           id: "PSI_Goods_GoodsBOMEditForm_editSubGoodsCount",
           xtype: "numberfield",
-          fieldLabel: "子商品数量",
+          fieldLabel: "子件数量",
           allowDecimals: PSI.Const.GC_DEC_NUMBER > 0,
           decimalPrecision: PSI.Const.GC_DEC_NUMBER,
           minValue: 0,
@@ -173,7 +173,7 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
             }
           }
         }, {
-          fieldLabel: "子商品单位",
+          fieldLabel: "子件单位",
           labelWidth: 70,
           width: 200,
           readOnly: true,
