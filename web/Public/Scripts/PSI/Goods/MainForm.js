@@ -1326,7 +1326,7 @@ Ext.define("PSI.Goods.MainForm", {
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("请选择一个物料");
+      me.showInfo("请先选择一个母件物料");
       return;
     }
 
@@ -1346,7 +1346,7 @@ Ext.define("PSI.Goods.MainForm", {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("请选择一个物料");
+      me.showInfo("请先选择一个母件物料");
       return;
     }
 
@@ -1354,7 +1354,7 @@ Ext.define("PSI.Goods.MainForm", {
 
     var item = me.getGoodsBOMGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("请选择要编辑的子物料");
+      me.showInfo("请选择要编辑的子件");
       return;
     }
     var subGoods = item[0];
@@ -1376,7 +1376,7 @@ Ext.define("PSI.Goods.MainForm", {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("请选择一个物料");
+      me.showInfo("请先选择一个母件物料");
       return;
     }
 
@@ -1384,12 +1384,12 @@ Ext.define("PSI.Goods.MainForm", {
 
     var item = me.getGoodsBOMGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("请选择要删除的子物料");
+      me.showInfo("请选择要删除的子件");
       return;
     }
     var subGoods = item[0];
 
-    var info = "请确认是否删除子物料: <span style='color:red'>"
+    var info = "请确认是否删除子件: <span style='color:red'>"
       + subGoods.get("goodsName") + " " + subGoods.get("goodsSpec")
       + "</span>?";
 
