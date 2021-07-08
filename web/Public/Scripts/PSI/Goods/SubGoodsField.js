@@ -10,9 +10,9 @@ Ext.define("PSI.Goods.SubGoodsField", {
     parentGoodsId: null
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -56,12 +56,12 @@ Ext.define("PSI.Goods.SubGoodsField", {
       border: 1,
       store: store,
       columns: [{
-        header: "编码",
+        header: "物料编码",
         dataIndex: "code",
         menuDisabled: true,
         width: 70
       }, {
-        header: "商品",
+        header: "品名",
         dataIndex: "name",
         menuDisabled: true,
         flex: 1
@@ -106,7 +106,7 @@ Ext.define("PSI.Goods.SubGoodsField", {
           items: [{
             id: "__editGoods",
             xtype: "textfield",
-            fieldLabel: "商品",
+            fieldLabel: "子件",
             labelWidth: 50,
             labelAlign: "right",
             labelSeparator: ""
