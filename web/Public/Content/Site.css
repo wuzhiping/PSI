@@ -498,12 +498,12 @@ h1, h2, h3, p {
 }
 
 .PSI-SCBill .x-form-text {
-	border-color: #adc6ff;
+	border-color: #dbdbdb;
 }
 
 .PSI-toolbox .x-form-text {
 	background-image: none;
-	border-color: #adc6ff;
+	border-color: #dbdbdb;
 }
 
 input:focus{
