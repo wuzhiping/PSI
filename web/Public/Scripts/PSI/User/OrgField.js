@@ -38,6 +38,12 @@ Ext.define("PSI.User.OrgField", {
   },
 
   onTriggerClick: function (e) {
+    var me = this;
+
+    if (me.readOnly) {
+      return;
+    }
+
     var modelName = "PSIOrgModel_OrgField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
