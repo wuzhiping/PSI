@@ -50,6 +50,11 @@ Ext.define("PSI.Supplier.SupplierField", {
 
   onTriggerClick: function (e) {
     var me = this;
+
+    if (me.readOnly) {
+      return;
+    }
+
     var modelName = "PSISupplierField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
