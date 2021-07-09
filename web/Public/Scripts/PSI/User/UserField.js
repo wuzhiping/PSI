@@ -46,6 +46,11 @@ Ext.define("PSI.User.UserField", {
 
   onTriggerClick: function (e) {
     var me = this;
+
+    if (me.readOnly) {
+      return;
+    }
+
     var modelName = "PSIUserField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
