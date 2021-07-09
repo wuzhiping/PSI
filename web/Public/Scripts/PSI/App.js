@@ -332,10 +332,15 @@ Ext.define("PSI.App", {
       });
     }
     theCmp.addTool(spacers);
+
+    // 右上角显示当前登录用户名
+    var uname = me.getUserName();
+    var index = uname.lastIndexOf("\\");
+    var shortName = uname.substring(index + 1);
     theCmp.addTool({
       xtype: "tbtext",
-      text: "<span style='color:#8c8c8c;font-weight:bold;font-size:13px'>"
-        + me.getUserName() + "</span>"
+      text: "<span style='color:#8c8c8c;font-weight:bold;font-size:13px' title=" + uname + ">"
+        + shortName + "</span>"
     });
   },
 
