@@ -2,7 +2,7 @@
  * 采购订单 - 查看界面
  */
 Ext.define("PSI.Bill.POViewForm", {
-  extend: "Ext.window.Window",
+  extend: "PSI.AFX.BaseDialogForm",
 
   config: {
     ref: null
@@ -12,7 +12,10 @@ Ext.define("PSI.Bill.POViewForm", {
     var me = this;
 
     Ext.apply(me, {
-      title: "查看采购订单",
+      header: {
+        title: me.formatTitle("查看采购订单"),
+        height: 40,
+      },
       modal: true,
       closable: false,
       onEsc: Ext.emptyFn,
@@ -40,86 +43,97 @@ Ext.define("PSI.Bill.POViewForm", {
           id: "editRef",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "",
           fieldLabel: "单号",
-          xtype: "displayfield",
+          xtype: "textfield",
+          readOnly: true,
           value: me.getRef()
         }, {
           id: "editDealDate",
           fieldLabel: "交货日期",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          labelSeparator: "",
+          xtype: "textfield",
+          readOnly: true
         }, {
           id: "editSupplier",
           colspan: 2,
           width: 430,
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield",
+          labelSeparator: "",
+          xtype: "textfield",
+          readOnly: true,
           fieldLabel: "供应商"
         }, {
           id: "editDealAddress",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "",
           fieldLabel: "交货地址",
           colspan: 2,
           width: 430,
-          xtype: "displayfield"
+          xtype: "textfield",
+          readOnly: true
         }, {
           id: "editContact",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "",
           fieldLabel: "联系人",
-          xtype: "displayfield"
+          xtype: "textfield",
+          readOnly: true
         }, {
           id: "editTel",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "",
           fieldLabel: "电话",
-          xtype: "displayfield"
+          xtype: "textfield",
+          readOnly: true
         }, {
           id: "editFax",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "",
           fieldLabel: "传真",
-          xtype: "displayfield"
+          xtype: "textfield",
+          readOnly: true
         }, {
           id: "editOrg",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "",
           fieldLabel: "组织机构",
-          xtype: "displayfield",
+          xtype: "textfield",
+          readOnly: true,
           colspan: 2,
           width: 430
         }, {
           id: "editBizUser",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "",
           fieldLabel: "业务员",
-          xtype: "displayfield"
+          xtype: "textfield",
+          readOnly: true
         }, {
           id: "editPaymentType",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "",
           fieldLabel: "付款方式",
-          xtype: "displayfield"
+          xtype: "textfield",
+          readOnly: true
         }, {
           id: "editBillMemo",
           labelWidth: 60,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "",
           fieldLabel: "备注",
-          xtype: "displayfield",
+          xtype: "textfield",
+          readOnly: true,
           colspan: 3,
           width: 645
         }]
