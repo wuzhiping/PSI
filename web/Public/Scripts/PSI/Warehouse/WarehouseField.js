@@ -10,9 +10,9 @@ Ext.define("PSI.Warehouse.WarehouseField", {
     showModal: false
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
     me.__idValue = null;
@@ -48,11 +48,16 @@ Ext.define("PSI.Warehouse.WarehouseField", {
     });
   },
 
-	/**
-	 * 单击下拉按钮
-	 */
+  /**
+   * 单击下拉按钮
+   */
   onTriggerClick: function (e) {
     var me = this;
+
+    if (me.readOnly) {
+      return;
+    }
+
     var modelName = "PSIWarehouseField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
