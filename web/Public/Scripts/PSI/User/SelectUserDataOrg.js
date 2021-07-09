@@ -3,9 +3,9 @@ Ext.define("PSI.User.SelectUserDataOrg", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.psi_selectuserdataorgfield",
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
     me.__idValue = null;
@@ -55,7 +55,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "数据域",
@@ -93,6 +93,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          bodyStyle: "border-color:white",
           items: [{
             id: "__editUser",
             xtype: "textfield",
