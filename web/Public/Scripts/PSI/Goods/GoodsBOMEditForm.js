@@ -54,7 +54,7 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新增子件" : "编辑子件";
+    var t = entity == null ? "新建子件" : "编辑子件";
     var logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
