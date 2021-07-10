@@ -105,22 +105,22 @@ Ext.define("PSI.Sale.WSEditForm", {
         border: 0,
         layout: {
           type: "table",
-          columns: 3
+          columns: 4
         },
-        height: 120,
+        height: 90,
         bodyPadding: 10,
         items: [{
           xtype: "hidden",
           id: "hiddenId",
           name: "id",
-          value: entity == null ? null : entity
-            .get("id")
+          value: entity == null ? null : entity.get("id")
         }, {
           id: "editRef",
           fieldLabel: "单号",
           labelWidth: 60,
           labelAlign: "right",
           labelSeparator: "",
+          width: 175,
           xtype: "displayfield",
           value: "<span style='color:red'>保存后自动生成</span>"
         }, {
@@ -128,7 +128,6 @@ Ext.define("PSI.Sale.WSEditForm", {
           fieldLabel: "业务日期",
           allowBlank: false,
           blankText: "没有输入业务日期",
-          labelWidth: 60,
           labelAlign: "right",
           labelSeparator: "",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -169,6 +168,7 @@ Ext.define("PSI.Sale.WSEditForm", {
           allowBlank: false,
           blankText: "没有输入出库仓库",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
+          width: 430,
           listeners: {
             specialkey: {
               fn: me.onEditWarehouseSpecialKey,
@@ -231,7 +231,6 @@ Ext.define("PSI.Sale.WSEditForm", {
               scope: me
             }
           },
-          colspan: 2,
           width: 430
         }, {
           id: "editBillMemo",
