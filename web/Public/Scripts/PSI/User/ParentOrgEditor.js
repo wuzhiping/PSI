@@ -69,7 +69,8 @@ Ext.define("PSI.User.ParentOrgEditor", {
         items: [{
           xtype: "treecolumn",
           text: "名称",
-          dataIndex: "text"
+          dataIndex: "text",
+          flex: 2
         }, {
           text: "编码",
           dataIndex: "orgCode"
@@ -82,7 +83,7 @@ Ext.define("PSI.User.ParentOrgEditor", {
     var wnd = Ext.create("Ext.window.Window", {
       title: "选择上级组织",
       modal: true,
-      width: 400,
+      width: 500,
       height: 300,
       layout: "fit",
       items: [orgTree],
