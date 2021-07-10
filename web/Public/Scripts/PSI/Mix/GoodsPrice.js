@@ -49,15 +49,28 @@ Ext.define("PSI.Mix.GoodsPrice", {
       return;
     }
 
-    goods.set("goodsMoney", goods.get("goodsCount")
-      * goods.get("goodsPrice"));
-    goods.set("tax", goods.get("goodsMoney") * goods.get("taxRate")
-      / 100);
-    goods.set("moneyWithTax", goods.get("goodsMoney")
-      + goods.get("tax"));
-    if (goods.get("goodsCount") != 0) {
-      goods.set("goodsPriceWithTax", goods.get("moneyWithTax")
-        / goods.get("goodsCount"));
+    var cnt = parseFloat(goods.get("goodsCount"));
+    var price = parseFloat(goods.get("goodsPrice"));
+    if (isNaN(cnt) || isNaN(price)) {
+      goods.set("goodsMoney", null);
+      goods.set("tax", null);
+      goods.set("moneyWithTax", null);
+      goods.set("goodsPriceWithTax", null);
+      return;
+    }
+
+    var money = cnt * price;
+    goods.set("goodsMoney", money);
+    var taxRate = parseInt(goods.get("taxRate"));
+    if (isNaN(taxRate)) {
+      taxRate = 0;
+    }
+    var tax = money * (taxRate / 100);
+    goods.set("tax", tax);
+    var moneyWithTax = money + tax;
+    goods.set("moneyWithTax", moneyWithTax);
+    if (cnt != 0) {
+      goods.set("goodsPriceWithTax", moneyWithTax / cnt);
     }
   },
 
