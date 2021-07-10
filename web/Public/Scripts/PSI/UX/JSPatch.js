@@ -29,6 +29,15 @@ Number.prototype.toFixed = function (length) {
       result += 0;
     }
   }
+
+  // 原来的算法有bug： (2.1).toFixed(0)结果是 '2.' 后面多了一个小数点
+  if (length == 0) {
+    var pos = result.indexOf(".");
+    if (pos == result.length - 1) {
+      result = result.substring(0, pos);
+    }
+  }
+
   return result;
 }
 //该方法的大致思路是首先找到舍入位，判断该位置是否大于等于5，条件成立手动进一位，然后通过参数大小将原浮点数放大10的参数指数倍，然后再将包括舍入位后的位数利用floor全部去掉，根据我们之前的手动进位来确定是否进位。
