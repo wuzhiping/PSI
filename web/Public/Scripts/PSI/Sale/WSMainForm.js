@@ -687,13 +687,10 @@ Ext.define("PSI.Sale.WSMainForm", {
           el.unmask();
 
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = Ext.JSON.decode(response.responseText);
             if (data.success) {
-              PSI.MsgBox.showInfo("成功完成删除操作",
-                function () {
-                  me.refreshMainGrid();
-                });
+              me.refreshMainGrid();
+              me.tip("成功完成删除操作");
             } else {
               PSI.MsgBox.showInfo(data.msg);
             }
