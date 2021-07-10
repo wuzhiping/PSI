@@ -9,19 +9,26 @@ Ext.define("PSI.Mix.GoodsPrice", {
       return;
     }
     var taxRate = goods.get("taxRate") / 100;
+    if (isNaN(taxRate)) {
+      taxRate = 0;
+    }
     var tax = goods.get("moneyWithTax") * taxRate / (1 + taxRate);
+    if (isNaN(tax)) {
+      tax = 0;
+    }
     goods.set("tax", tax);
     goods.set("goodsMoney", goods.get("moneyWithTax") - tax);
 
     // 计算单价
-    if (goods.get("goodsCount") == 0) {
+    var cnt = parseFloat(goods.get("goodsCount"));
+    if (isNaN(cnt) || Math.abs(cnt) < 1e-10) {
       goods.set("goodsPrice", null);
       goods.set("goodsPriceWithTax", null);
     } else {
       goods.set("goodsPrice", goods.get("goodsMoney")
-        / goods.get("goodsCount"));
+        / cnt);
       goods.set("goodsPriceWithTax", goods.get("moneyWithTax")
-        / goods.get("goodsCount"));
+        / cnt);
     }
   },
 
@@ -35,11 +42,10 @@ Ext.define("PSI.Mix.GoodsPrice", {
       / goods.get("taxRate"));
     goods.set("moneyWithTax", goods.get("goodsMoney")
       + goods.get("tax"));
-    if (goods.get("goodsCount") != 0) {
-      goods.set("goodsPrice", goods.get("goodsMoney")
-        / goods.get("goodsCount"));
-      goods.set("goodsPriceWithTax", goods.get("moneyWithTax")
-        / goods.get("goodsCount"));
+    var cnt = parseFloat(goods.get("goodsCount"));
+    if (!isNaN(cnt) && Math.abs(cnt) > 1e-10) {
+      goods.set("goodsPrice", goods.get("goodsMoney") / cnt);
+      goods.set("goodsPriceWithTax", goods.get("moneyWithTax") / cnt);
     }
   },
 
@@ -86,9 +92,10 @@ Ext.define("PSI.Mix.GoodsPrice", {
       / (1 + goods.get("taxRate") / 100));
     goods.set("tax", goods.get("moneyWithTax")
       - goods.get("goodsMoney"));
-    if (goods.get("goodsCount") != 0) {
-      goods.set("goodsPrice", goods.get("goodsMoney")
-        / goods.get("goodsCount"));
+
+    var cnt = parseFloat(goods.get("goodsCount"));
+    if (!isNaN(cnt) && Math.abs(cnt) > 1e-10) {
+      goods.set("goodsPrice", goods.get("goodsMoney") / cnt);
     }
   },
 
@@ -98,12 +105,10 @@ Ext.define("PSI.Mix.GoodsPrice", {
       return;
     }
 
-    var goodsCount = goods.get("goodsCount");
-    if (goodsCount && goodsCount != 0) {
-      goods.set("goodsPrice", goods.get("goodsMoney")
-        / goods.get("goodsCount"));
-      goods.set("goodsPriceWithTax", goods.get("moneyWithTax")
-        / goods.get("goodsCount"));
+    var cnt = parseFloat(goods.get("goodsCount"));
+    if (!isNaN(cnt) && Math.abs(cnt) > 1e-10) {
+      goods.set("goodsPrice", goods.get("goodsMoney") / cnt);
+      goods.set("goodsPriceWithTax", goods.get("moneyWithTax") / cnt);
     }
   }
 });
