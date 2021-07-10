@@ -430,13 +430,12 @@ Ext.define("PSI.Sale.WSEditForm", {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
           if (data.success) {
-            PSI.MsgBox.showInfo("成功保存数据", function () {
-              me.close();
-              var pf = me.getParentForm();
-              if (pf) {
-                pf.refreshMainGrid(data.id);
-              }
-            });
+            me.close();
+            var pf = me.getParentForm();
+            if (pf) {
+              pf.refreshMainGrid(data.id);
+            }
+            me.tip("成功保存数据");
           } else {
             if (data.checkInv == "1") {
               // 检查到库存不足，提醒用户
@@ -452,13 +451,12 @@ Ext.define("PSI.Sale.WSEditForm", {
                     Ext.getBody().unmask();
 
                     if (success) {
-                      PSI.MsgBox.showInfo("成功保存数据", function () {
-                        me.close();
-                        var pf = me.getParentForm();
-                        if (pf) {
-                          pf.refreshMainGrid(data.id);
-                        }
-                      });
+                      me.close();
+                      var pf = me.getParentForm();
+                      if (pf) {
+                        pf.refreshMainGrid(data.id);
+                      }
+                      me.tip("成功保存数据");
                     } else {
                       PSI.MsgBox.showInfo(data.msg);
                     }
