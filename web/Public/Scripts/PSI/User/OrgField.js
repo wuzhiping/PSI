@@ -83,7 +83,8 @@ Ext.define("PSI.User.OrgField", {
         items: [{
           xtype: "treecolumn",
           text: "名称",
-          dataIndex: "text"
+          dataIndex: "text",
+          flex: 2
         }, {
           text: "编码",
           dataIndex: "orgCode"
@@ -96,7 +97,7 @@ Ext.define("PSI.User.OrgField", {
     var wnd = Ext.create("Ext.window.Window", {
       title: "选择组织机构",
       modal: true,
-      width: 400,
+      width: 500,
       height: 300,
       layout: "fit",
       items: [orgTree],
