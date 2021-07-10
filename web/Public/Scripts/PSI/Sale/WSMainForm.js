@@ -538,11 +538,15 @@ Ext.define("PSI.Sale.WSMainForm", {
         header: "退货数量",
         width: 80,
         dataIndex: "rejGoodsCount",
+        menuDisabled: true,
+        sortable: false,
         align: "right"
       }, {
         header: "实际出库数量",
-        width: 80,
+        width: 90,
         dataIndex: "realGoodsCount",
+        menuDisabled: true,
+        sortable: false,
         align: "right"
       }, {
         header: "单位",
