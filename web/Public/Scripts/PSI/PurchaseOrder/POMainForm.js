@@ -172,8 +172,9 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
       xtype: "tbseparator",
       hidden: me.getPermission().print == "0"
     }, {
-      text: "帮助",
+      text: "指南",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=pobill"));
       }
     }, "-", {
