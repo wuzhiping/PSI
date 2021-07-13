@@ -806,9 +806,8 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成删除操作", function () {
-                me.refreshMainGrid(preIndex);
-              });
+              me.refreshMainGrid(preIndex);
+              me.tip("成功完成删除操作");
             } else {
               me.showInfo(data.msg);
             }
@@ -951,9 +950,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成审核操作", function () {
-                me.refreshMainGrid(id);
-              });
+              me.tip("成功完成审核操作");
             } else {
               me.showInfo(data.msg);
             }
