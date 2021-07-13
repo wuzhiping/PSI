@@ -121,7 +121,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
       hidden: me.getPermission().print == "0",
       xtype: "tbseparator"
     }, {
-      text: "帮助",
+      text: "指南",
       handler: function () {
         me.focus();
         window.open(me.URL("Home/Help/index?t=pwbill"));
