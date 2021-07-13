@@ -124,8 +124,9 @@ Ext.define("PSI.InvCheck.InvCheckMainForm", {
       xtype: "tbseparator",
       hidden: me.getPermission().print == "0"
     }, {
-      text: "帮助",
+      text: "指南",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=icbill"));
       }
     }, "-", {
@@ -421,6 +422,7 @@ Ext.define("PSI.InvCheck.InvCheckMainForm", {
       columnLines: true,
       columns: [{
         xtype: "rownumberer",
+        text: "#",
         width: 50
       }, {
         header: "状态",
@@ -562,7 +564,7 @@ Ext.define("PSI.InvCheck.InvCheckMainForm", {
       },
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "序号",
+        text: "#",
         width: 40
       }), {
         header: "物料编码",
