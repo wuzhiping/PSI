@@ -141,8 +141,9 @@ Ext.define("PSI.WSP.WSPMainForm", {
       xtype: "tbseparator",
       hidden: me.getPermission().print == "0"
     }, {
-      text: "帮助",
+      text: "指南",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=wspbill"));
       }
     }, "-", {
@@ -947,12 +948,10 @@ Ext.define("PSI.WSP.WSPMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成删除操作", function () {
-                me.getGoodsBOMGrid().getStore()
-                  .getRootNode().removeAll();
+              me.getGoodsBOMGrid().getStore().getRootNode().removeAll();
 
-                me.refreshMainGrid(preIndex);
-              });
+              me.refreshMainGrid(preIndex);
+              me.tip("成功完成删除操作");
             } else {
               me.showInfo(data.msg);
             }
