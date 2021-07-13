@@ -12,13 +12,11 @@ Ext.define("PSI.InvCheck.ICEditForm", {
 
     var title = entity == null ? "新建盘点单" : "编辑盘点单";
     title = me.formatTitle(title);
-    var iconCls = entity == null ? "PSI-button-add" : "PSI-button-edit";
 
     Ext.apply(me, {
       header: {
         title: title,
-        height: 40,
-        iconCls: iconCls
+        height: 40
       },
       maximized: true,
       width: 1000,
@@ -46,9 +44,10 @@ Ext.define("PSI.InvCheck.ICEditForm", {
         scope: me,
         id: "buttonCancel"
       }, "->", {
-        text: "表单通用操作帮助",
+        text: "表单通用操作指南",
         iconCls: "PSI-help",
         handler: function () {
+          me.focus();
           window.open(me.URL("Home/Help/index?t=commBill"));
         }
       }, "-", {
@@ -341,7 +340,7 @@ Ext.define("PSI.InvCheck.ICEditForm", {
       plugins: [me.__cellEditing],
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "",
+        text: "#",
         width: 30
       }), {
         header: "物料编码",
