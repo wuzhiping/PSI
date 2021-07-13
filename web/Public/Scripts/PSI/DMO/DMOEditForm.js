@@ -19,13 +19,11 @@ Ext.define("PSI.DMO.DMOEditForm", {
 
     var title = entity == null ? "新建成品委托生产订单" : "编辑成品委托生产订单";
     title = me.formatTitle(title);
-    var iconCls = entity == null ? "PSI-button-add" : "PSI-button-edit";
 
     Ext.apply(me, {
       header: {
         title: title,
-        height: 40,
-        iconCls: iconCls
+        height: 40
       },
       maximized: true,
       width: 1000,
@@ -379,10 +377,9 @@ Ext.define("PSI.DMO.DMOEditForm", {
         if (success) {
           var data = me.decodeJSON(response.responseText);
           if (data.success) {
-            me.showInfo("成功保存数据", function () {
-              me.close();
-              me.getParentForm().refreshMainGrid(data.id);
-            });
+            me.close();
+            me.getParentForm().refreshMainGrid(data.id);
+            me.tip("成功保存数据");
           } else {
             me.showInfo(data.msg);
           }
@@ -472,7 +469,8 @@ Ext.define("PSI.DMO.DMOEditForm", {
       plugins: [me.__cellEditing],
       columnLines: true,
       columns: [{
-        xtype: "rownumberer"
+        xtype: "rownumberer",
+        text: "#"
       }, {
         header: "物料编码",
         dataIndex: "goodsCode",
