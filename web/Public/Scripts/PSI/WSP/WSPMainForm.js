@@ -1004,9 +1004,8 @@ Ext.define("PSI.WSP.WSPMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成提交操作", function () {
-                me.refreshMainGrid(data.id);
-              });
+              me.refreshMainGrid(data.id);
+              me.tip("成功完成提交操作");
             } else {
               me.showInfo(data.msg);
             }
