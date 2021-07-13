@@ -12,13 +12,11 @@ Ext.define("PSI.WSP.WSPEditForm", {
 
     var title = entity == null ? "新建拆分单" : "编辑拆分单";
     title = me.formatTitle(title);
-    var iconCls = entity == null ? "PSI-button-add" : "PSI-button-edit";
 
     Ext.apply(me, {
       header: {
         title: title,
-        height: 40,
-        iconCls: iconCls
+        height: 40
       },
       maximized: true,
       width: 1000,
@@ -44,9 +42,10 @@ Ext.define("PSI.WSP.WSPEditForm", {
         scope: me,
         id: "PSI_WSP_WSPEditForm_buttonCancel"
       }, "->", {
-        text: "表单通用操作帮助",
+        text: "表单通用操作指南",
         iconCls: "PSI-help",
         handler: function () {
+          me.focus();
           window.open(me.URL("Home/Help/index?t=commBill"));
         }
       }, "-", {
@@ -313,10 +312,9 @@ Ext.define("PSI.WSP.WSPEditForm", {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
           if (data.success) {
-            PSI.MsgBox.showInfo("成功保存数据", function () {
-              me.close();
-              me.getParentForm().refreshMainGrid(data.id);
-            });
+            me.close();
+            me.getParentForm().refreshMainGrid(data.id);
+            me.tip("成功保存数据");
           } else {
             PSI.MsgBox.showInfo(data.msg);
           }
@@ -410,7 +408,7 @@ Ext.define("PSI.WSP.WSPEditForm", {
           sortable: false
         },
         items: [Ext.create("Ext.grid.RowNumberer", {
-          text: "",
+          text: "#",
           width: 30
         }), {
           header: "物料编码",
