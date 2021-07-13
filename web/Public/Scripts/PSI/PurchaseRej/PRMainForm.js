@@ -437,6 +437,7 @@ Ext.define("PSI.PurchaseRej.PRMainForm", {
       columnLines: true,
       columns: [{
         xtype: "rownumberer",
+        text: "#",
         width: 40
       }, {
         header: "状态",
@@ -621,7 +622,7 @@ Ext.define("PSI.PurchaseRej.PRMainForm", {
       },
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "序号",
+        text: "#",
         width: 40
       }), {
         header: "物料编码",
