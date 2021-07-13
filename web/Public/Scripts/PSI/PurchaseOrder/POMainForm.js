@@ -358,6 +358,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
         },
         items: [{
           xtype: "rownumberer",
+          text: "#",
           width: 50
         }, {
           header: "状态",
@@ -562,7 +563,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
           sortable: false
         },
         items: [Ext.create("Ext.grid.RowNumberer", {
-          text: "序号",
+          text: "#",
           width: 40
         }), {
           header: "物料编码",
