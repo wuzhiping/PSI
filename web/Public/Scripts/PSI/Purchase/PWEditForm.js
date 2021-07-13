@@ -566,6 +566,7 @@ Ext.define("PSI.Purchase.PWEditForm", {
         },
         items: [{
           xtype: "rownumberer",
+          text: "#",
           width: 30
         }, {
           header: "物料编码",
