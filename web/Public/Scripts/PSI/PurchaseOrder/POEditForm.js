@@ -486,6 +486,7 @@ Ext.define("PSI.PurchaseOrder.POEditForm", {
       columnLines: true,
       columns: [{
         xtype: "rownumberer",
+        text: "#",
         width: 30
       }, {
         header: "物料编码",
