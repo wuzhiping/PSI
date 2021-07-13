@@ -20,13 +20,11 @@ Ext.define("PSI.Purchase.PWEditForm", {
 
     var title = entity == null ? "新建采购入库单" : "编辑采购入库单";
     title = me.formatTitle(title);
-    var iconCls = entity == null ? "PSI-button-add" : "PSI-button-edit";
 
     Ext.apply(me, {
       header: {
         title: title,
-        height: 40,
-        iconCls: iconCls
+        height: 40
       },
       maximized: true,
       width: 1000,
