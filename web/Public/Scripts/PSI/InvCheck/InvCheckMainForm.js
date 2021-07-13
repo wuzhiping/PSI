@@ -306,9 +306,8 @@ Ext.define("PSI.InvCheck.InvCheckMainForm", {
             var data = Ext.JSON
               .decode(response.responseText);
             if (data.success) {
-              PSI.MsgBox.showInfo("成功完成删除操作", function () {
-                me.refreshMainGrid();
-              });
+              me.refreshMainGrid();
+              me.tip("成功完成删除操作");
             } else {
               PSI.MsgBox.showInfo(data.msg);
             }
