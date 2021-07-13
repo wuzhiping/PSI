@@ -999,9 +999,8 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成取消审核操作", function () {
-                me.refreshMainGrid(id);
-              });
+              me.refreshMainGrid(id);
+              me.tip("成功完成取消审核操作");
             } else {
               me.showInfo(data.msg);
             }
