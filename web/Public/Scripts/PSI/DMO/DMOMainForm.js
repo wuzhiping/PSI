@@ -1174,9 +1174,8 @@ Ext.define("PSI.DMO.DMOMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功关闭采购订单", function () {
-                me.refreshMainGrid(id);
-              });
+              me.refreshMainGrid(id);
+              me.tip("成功关闭采购订单");
             } else {
               me.showInfo(data.msg);
             }
@@ -1217,9 +1216,8 @@ Ext.define("PSI.DMO.DMOMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功取消生产订单关闭状态", function () {
-                me.refreshMainGrid(id);
-              });
+              me.refreshMainGrid(id);
+              me.tip("成功取消生产订单关闭状态");
             } else {
               me.showInfo(data.msg);
             }
