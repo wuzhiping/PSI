@@ -158,8 +158,9 @@ Ext.define("PSI.DMO.DMOMainForm", {
       xtype: "tbseparator",
       hidden: me.getPermission().print == "0"
     }, {
-      text: "帮助",
+      text: "指南",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=dmobill"));
       }
     }, "-", {
@@ -327,6 +328,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
         },
         items: [{
           xtype: "rownumberer",
+          text: "#",
           width: 50
         }, {
           header: "状态",
@@ -518,7 +520,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
           sortable: false
         },
         items: [Ext.create("Ext.grid.RowNumberer", {
-          text: "序号",
+          text: "#",
           width: 50
         }), {
           header: "物料编码",
