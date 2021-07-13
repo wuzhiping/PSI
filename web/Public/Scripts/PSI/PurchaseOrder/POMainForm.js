@@ -1311,11 +1311,6 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     }
     var bill = item[0];
 
-    // if (bill.get("billStatus") > 0) {
-    // me.showInfo("当前采购订单已经审核，不能再次审核");
-    // return;
-    // }
-
     var info = "请确认是否关闭单号: <span style='color:red'>" + bill.get("ref")
       + "</span> 的采购订单?";
     var id = bill.get("id");
@@ -1334,9 +1329,8 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功关闭采购订单", function () {
-                me.refreshMainGrid(id);
-              });
+              me.refreshMainGrid(id);
+              me.tip("成功关闭采购订单");
             } else {
               me.showInfo(data.msg);
             }
@@ -1359,11 +1353,6 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     }
     var bill = item[0];
 
-    // if (bill.get("billStatus") > 0) {
-    // me.showInfo("当前采购订单已经审核，不能再次审核");
-    // return;
-    // }
-
     var info = "请确认是否取消单号: <span style='color:red'>" + bill.get("ref")
       + "</span> 采购订单的关闭状态?";
     var id = bill.get("id");
@@ -1382,9 +1371,8 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功取消采购订单关闭状态", function () {
-                me.refreshMainGrid(id);
-              });
+              me.refreshMainGrid(id);
+              me.tip("成功取消采购订单关闭状态");
             } else {
               me.showInfo(data.msg);
             }
