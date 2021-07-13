@@ -326,9 +326,8 @@ Ext.define("PSI.PurchaseRej.PRMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成删除操作", function () {
-                me.refreshMainGrid();
-              });
+              me.refreshMainGrid();
+              me.tip("成功完成删除操作");
             } else {
               me.showInfo(data.msg);
             }
