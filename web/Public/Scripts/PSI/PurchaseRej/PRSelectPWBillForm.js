@@ -7,7 +7,10 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
   initComponent: function () {
     var me = this;
     Ext.apply(me, {
-      title: "选择要退货的采购入库单",
+      header: {
+        title: me.formatTitle("选择要退货的采购入库单"),
+        height: 40
+      },
       width: 1200,
       height: 600,
       layout: "border",
@@ -34,7 +37,7 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
           type: "table",
           columns: 4
         },
-        height: 70,
+        height: 65,
         bodyPadding: 10,
         items: [{
           id: "editPWRef",
@@ -172,7 +175,7 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
       cls: "PSI",
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "序号",
+        text: "#",
         width: 50
       }), {
         header: "单号",
@@ -312,7 +315,7 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
       },
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "序号",
+        text: "#",
         width: 40
       }), {
         header: "物料编码",
