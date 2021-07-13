@@ -388,14 +388,11 @@ Ext.define("PSI.PurchaseOrder.POEditForm", {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
           if (data.success) {
-            PSI.MsgBox.showInfo("成功保存数据", function () {
-              me.close();
-              if (!me.getGenBill()) {
-                me
-                  .getParentForm()
-                  .refreshMainGrid(data.id);
-              }
-            });
+            me.close();
+            if (!me.getGenBill()) {
+              me.getParentForm().refreshMainGrid(data.id);
+            }
+            me.tip("成功保存数据");
           } else {
             PSI.MsgBox.showInfo(data.msg);
           }
