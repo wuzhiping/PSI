@@ -121,8 +121,9 @@ Ext.define("PSI.DMW.DMWMainForm", {
       hidden: me.getPermission().print == "0",
       xtype: "tbseparator"
     }, {
-      text: "帮助",
+      text: "指南",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=dmwbill"));
       }
     }, "-", {
@@ -291,6 +292,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
         },
         items: [{
           xtype: "rownumberer",
+          text: "#",
           width: 50
         }, {
           header: "状态",
@@ -461,7 +463,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
           sortable: false
         },
         items: [Ext.create("Ext.grid.RowNumberer", {
-          text: "序号",
+          text: "#",
           width: 40
         }), {
           header: "物料编码",
@@ -616,9 +618,8 @@ Ext.define("PSI.DMW.DMWMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成删除操作", function () {
-                me.refreshMainGrid(preIndex);
-              });
+              me.refreshMainGrid(preIndex);
+              me.tip("成功完成删除操作");
             } else {
               me.showInfo(data.msg);
             }
@@ -741,9 +742,8 @@ Ext.define("PSI.DMW.DMWMainForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成提交操作", function () {
-                me.refreshMainGrid(id);
-              });
+              me.refreshMainGrid(id);
+              me.tip("成功完成提交操作");
             } else {
               me.showInfo(data.msg);
             }
