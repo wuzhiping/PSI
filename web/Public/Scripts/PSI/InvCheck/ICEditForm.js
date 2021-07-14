@@ -71,16 +71,15 @@ Ext.define("PSI.InvCheck.ICEditForm", {
         border: 0,
         layout: {
           type: "table",
-          columns: 2
+          columns: 4
         },
-        height: 90,
+        height: 60,
         bodyPadding: 10,
         items: [{
           xtype: "hidden",
           id: "hiddenId",
           name: "id",
-          value: entity == null ? null : entity
-            .get("id")
+          value: entity == null ? null : entity.get("id")
         }, {
           id: "editRef",
           fieldLabel: "单号",
@@ -88,13 +87,15 @@ Ext.define("PSI.InvCheck.ICEditForm", {
           labelAlign: "right",
           labelSeparator: "",
           xtype: "displayfield",
+          width: 170,
           value: "<span style='color:red'>保存后自动生成</span>"
         }, {
           id: "editBizDT",
           fieldLabel: "业务日期",
           allowBlank: false,
           blankText: "没有输入业务日期",
-          labelWidth: 60,
+          labelWidth: 80,
+          width: 200,
           labelAlign: "right",
           labelSeparator: "",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -111,7 +112,9 @@ Ext.define("PSI.InvCheck.ICEditForm", {
         }, {
           id: "editWarehouse",
           fieldLabel: "盘点仓库",
-          labelWidth: 60,
+          labelWidth: 80,
+          colspan: 2,
+          width: 300,
           labelAlign: "right",
           labelSeparator: "",
           xtype: "psi_warehousefield",
@@ -130,6 +133,7 @@ Ext.define("PSI.InvCheck.ICEditForm", {
           fieldLabel: "业务员",
           xtype: "psi_userfield",
           labelWidth: 60,
+          width: 170,
           labelAlign: "right",
           labelSeparator: "",
           allowBlank: false,
@@ -144,11 +148,11 @@ Ext.define("PSI.InvCheck.ICEditForm", {
         }, {
           id: "editBillMemo",
           fieldLabel: "备注",
-          labelWidth: 60,
+          labelWidth: 80,
           labelAlign: "right",
           labelSeparator: "",
-          colspan: 2,
-          width: 430,
+          colspan: 3,
+          width: 500,
           xtype: "textfield",
           listeners: {
             specialkey: {
