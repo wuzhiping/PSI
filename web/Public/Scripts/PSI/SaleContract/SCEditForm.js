@@ -18,13 +18,11 @@ Ext.define("PSI.SaleContract.SCEditForm", {
 
     var title = entity == null ? "新建销售合同" : "编辑销售合同";
     title = me.formatTitle(title);
-    var iconCls = entity == null ? "PSI-button-add" : "PSI-button-edit";
 
     Ext.apply(me, {
       header: {
         title: title,
-        height: 40,
-        iconCls: iconCls
+        height: 40
       },
       defaultFocus: "PSI_SaleContract_SCEditForm_editCustomer",
       maximized: true,
@@ -53,9 +51,10 @@ Ext.define("PSI.SaleContract.SCEditForm", {
         },
         scope: me
       }, "->", {
-        text: "表单通用操作帮助",
+        text: "表单通用操作指南",
         iconCls: "PSI-help",
         handler: function () {
+          me.focus();
           window.open(me.URL("Home/Help/index?t=commBill"));
         }
       }, "-", {
@@ -461,10 +460,9 @@ Ext.define("PSI.SaleContract.SCEditForm", {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
           if (data.success) {
-            PSI.MsgBox.showInfo("成功保存数据", function () {
-              me.close();
-              me.getParentForm().refreshMainGrid(data.id);
-            });
+            me.close();
+            me.getParentForm().refreshMainGrid(data.id);
+            me.tip("成功保存数据");
           } else {
             PSI.MsgBox.showInfo(data.msg);
           }
@@ -556,7 +554,8 @@ Ext.define("PSI.SaleContract.SCEditForm", {
       plugins: [me.__cellEditing],
       columnLines: true,
       columns: [{
-        xtype: "rownumberer"
+        xtype: "rownumberer",
+        text: "#"
       }, {
         header: "商品编码",
         dataIndex: "goodsCode",
