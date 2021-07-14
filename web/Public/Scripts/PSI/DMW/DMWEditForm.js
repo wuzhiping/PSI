@@ -19,13 +19,11 @@ Ext.define("PSI.DMW.DMWEditForm", {
 
     var title = entity == null ? "新建成品委托生产入库单" : "编辑成品委托生产入库单";
     title = me.formatTitle(title);
-    var iconCls = entity == null ? "PSI-button-add" : "PSI-button-edit";
 
     Ext.apply(me, {
       header: {
         title: title,
-        height: 40,
-        iconCls: iconCls
+        height: 40
       },
       maximized: true,
       width: 1000,
@@ -53,9 +51,10 @@ Ext.define("PSI.DMW.DMWEditForm", {
         },
         scope: me
       }, "->", {
-        text: "表单通用操作帮助",
+        text: "表单通用操作指南",
         iconCls: "PSI-help",
         handler: function () {
+          me.focus();
           window.open(me.URL("Home/Help/index?t=commBill"));
         }
       }, "-", {
@@ -370,13 +369,12 @@ Ext.define("PSI.DMW.DMWEditForm", {
         if (success) {
           var data = me.decodeJSON(response.responseText);
           if (data.success) {
-            me.showInfo("成功保存数据", function () {
-              me.close();
-              var pf = me.getParentForm();
-              if (pf) {
-                pf.refreshMainGrid(data.id);
-              }
-            });
+            me.close();
+            var pf = me.getParentForm();
+            if (pf) {
+              pf.refreshMainGrid(data.id);
+            }
+            me.tip("成功保存数据");
           } else {
             me.showInfo(data.msg);
           }
@@ -507,7 +505,8 @@ Ext.define("PSI.DMW.DMWEditForm", {
           draggable: false
         },
         items: [{
-          xtype: "rownumberer"
+          xtype: "rownumberer",
+          text: "#"
         }, {
           header: "物料编码",
           dataIndex: "goodsCode",
