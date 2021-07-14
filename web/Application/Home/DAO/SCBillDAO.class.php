@@ -227,7 +227,7 @@ class SCBillDAO extends PSIBaseExDAO
 						s.biz_dt, s.biz_user_id, u.name as biz_user_name,
 						s.deal_date, s.deal_address, s.discount, s.bill_memo,
 						s.quality_clause, s.insurance_clause, s.transport_clause,
-						s.other_clause
+						s.other_clause, s.bill_status
 					from t_sc_bill s, t_customer c, t_org g, t_user u
 					where s.id = '%s' and s.customer_id = c.id 
 						and s.org_id = g.id and s.biz_user_id = u.id";
@@ -255,6 +255,7 @@ class SCBillDAO extends PSIBaseExDAO
       $result["insuranceClause"] = $v["insurance_clause"];
       $result["transportClause"] = $v["transport_clause"];
       $result["otherClause"] = $v["other_clause"];
+      $result["billStatus"] = $v["bill_status"];
 
       // 明细
       $sql = "select s.id, s.goods_id, g.code, g.name, g.spec,
