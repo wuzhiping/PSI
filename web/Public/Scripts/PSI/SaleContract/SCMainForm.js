@@ -49,14 +49,10 @@ Ext.define("PSI.SaleContract.SCMainForm", {
 
     me.callParent(arguments);
 
-    me.editQualityClause = Ext
-      .getCmp("PSI_SaleContract_SCMainForm_editQulityClause");
-    me.editInsuranceClause = Ext
-      .getCmp("PSI_SaleContract_SCMainForm_editInsuranceClause");
-    me.editTransportClause = Ext
-      .getCmp("PSI_SaleContract_SCMainForm_editTrasportClause");
-    me.editOtherClause = Ext
-      .getCmp("PSI_SaleContract_SCMainForm_editOtherClause");
+    me.editQualityClause = Ext.getCmp("PSI_SaleContract_SCMainForm_editQulityClause");
+    me.editInsuranceClause = Ext.getCmp("PSI_SaleContract_SCMainForm_editInsuranceClause");
+    me.editTransportClause = Ext.getCmp("PSI_SaleContract_SCMainForm_editTrasportClause");
+    me.editOtherClause = Ext.getCmp("PSI_SaleContract_SCMainForm_editOtherClause");
 
     me.refreshMainGrid();
   },
@@ -155,8 +151,9 @@ Ext.define("PSI.SaleContract.SCMainForm", {
       xtype: "tbseparator",
       hidden: me.getPermission().print == "0"
     }, {
-      text: "帮助",
+      text: "指南",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=scbill"));
       }
     }, "-", {
@@ -325,6 +322,7 @@ Ext.define("PSI.SaleContract.SCMainForm", {
         },
         items: [{
           xtype: "rownumberer",
+          text: "#",
           width: 50
         }, {
           header: "状态",
@@ -547,7 +545,7 @@ Ext.define("PSI.SaleContract.SCMainForm", {
       border: 0,
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "序号",
+        text: "#",
         width: 40
       }), {
         header: "商品编码",
