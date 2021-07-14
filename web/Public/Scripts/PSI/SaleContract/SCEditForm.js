@@ -915,10 +915,19 @@ Ext.define("PSI.SaleContract.SCEditForm", {
     Ext.getCmp("buttonCancel").setText("关闭");
     me.editDealDate.setReadOnly(true);
     me.editCustomer.setReadOnly(true);
+    me.editBeginDT.setReadOnly(true);
+    me.editEndDT.setReadOnly(true);
+    me.editBizDT.setReadOnly(true);
     me.editDealAddress.setReadOnly(true);
     me.editOrg.setReadOnly(true);
     me.editBizUser.setReadOnly(true);
     me.editBillMemo.setReadOnly(true);
+    me.editDiscount.setReadOnly(true);
+
+    me.editQualityClause.setReadOnly(true);
+    me.editInsuranceClause.setReadOnly(true);
+    me.editTransportClause.setReadOnly(true);
+    me.editOtherClause.setReadOnly(true);
 
     Ext.getCmp("columnActionDelete").hide();
     Ext.getCmp("columnActionAdd").hide();
