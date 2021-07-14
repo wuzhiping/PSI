@@ -101,29 +101,20 @@ Ext.define("PSI.SaleContract.SCEditForm", {
 
     me.hiddenId = Ext.getCmp("PSI_SaleContract_SCEditForm_hiddenId");
     me.editRef = Ext.getCmp("PSI_SaleContract_SCEditForm_editRef");
-    me.editCustomer = Ext
-      .getCmp("PSI_SaleContract_SCEditForm_editCustomer");
+    me.editCustomer = Ext.getCmp("PSI_SaleContract_SCEditForm_editCustomer");
     me.editBeginDT = Ext.getCmp("PSI_SaleContract_SCEditForm_editBeginDT");
     me.editEndDT = Ext.getCmp("PSI_SaleContract_SCEditForm_editEndDT");
     me.editOrg = Ext.getCmp("PSI_SaleContract_SCEditForm_editOrg");
     me.editBizDT = Ext.getCmp("PSI_SaleContract_SCEditForm_editBizDT");
-    me.editDealDate = Ext
-      .getCmp("PSI_SaleContract_SCEditForm_editDealDate");
-    me.editDealAddress = Ext
-      .getCmp("PSI_SaleContract_SCEditForm_editDealAddress");
+    me.editDealDate = Ext.getCmp("PSI_SaleContract_SCEditForm_editDealDate");
+    me.editDealAddress = Ext.getCmp("PSI_SaleContract_SCEditForm_editDealAddress");
     me.editBizUser = Ext.getCmp("PSI_SaleContract_SCEditForm_editBizUser");
-    me.editDiscount = Ext
-      .getCmp("PSI_SaleContract_SCEditForm_editDiscount");
-    me.editBillMemo = Ext
-      .getCmp("PSI_SaleContract_SCEditForm_editBillMemo");
-    me.editQualityClause = Ext
-      .getCmp("PSI_SaleContract_SCEditForm_editQualityClause");
-    me.editInsuranceClause = Ext
-      .getCmp("PSI_SaleContract_SCEditForm_editInsuranceClause");
-    me.editTransportClause = Ext
-      .getCmp("PSI_SaleContract_SCEditForm_editTrasportClause");
-    me.editOtherClause = Ext
-      .getCmp("PSI_SaleContract_SCEditForm_editOtherClause");
+    me.editDiscount = Ext.getCmp("PSI_SaleContract_SCEditForm_editDiscount");
+    me.editBillMemo = Ext.getCmp("PSI_SaleContract_SCEditForm_editBillMemo");
+    me.editQualityClause = Ext.getCmp("PSI_SaleContract_SCEditForm_editQualityClause");
+    me.editInsuranceClause = Ext.getCmp("PSI_SaleContract_SCEditForm_editInsuranceClause");
+    me.editTransportClause = Ext.getCmp("PSI_SaleContract_SCEditForm_editTrasportClause");
+    me.editOtherClause = Ext.getCmp("PSI_SaleContract_SCEditForm_editOtherClause");
 
     me.__editorList = ["PSI_SaleContract_SCEditForm_editCustomer",
       "PSI_SaleContract_SCEditForm_editBeginDT",
@@ -371,12 +362,9 @@ Ext.define("PSI.SaleContract.SCEditForm", {
             me.editBillMemo.setValue(data.billMemo);
             me.editOrg.setIdValue(data.orgId);
             me.editOrg.setValue(data.orgFullName);
-            me.editQualityClause
-              .setValue(data.qualityClause);
-            me.editInsuranceClause
-              .setValue(data.insuranceClause);
-            me.editTransportClause
-              .setValue(data.transportClause);
+            me.editQualityClause.setValue(data.qualityClause);
+            me.editInsuranceClause.setValue(data.insuranceClause);
+            me.editTransportClause.setValue(data.transportClause);
             me.editOtherClause.setValue(data.otherClause);
           }
 
@@ -922,7 +910,7 @@ Ext.define("PSI.SaleContract.SCEditForm", {
   setBillReadonly: function () {
     var me = this;
     me.__readonly = true;
-    me.setTitle("<span style='font-size:160%;'>查看采购订单</span>");
+    me.setTitle("<span style='font-size:160%;'>查看销售合同</span>");
     Ext.getCmp("buttonSave").setDisabled(true);
     Ext.getCmp("buttonCancel").setText("关闭");
     me.editDealDate.setReadOnly(true);
