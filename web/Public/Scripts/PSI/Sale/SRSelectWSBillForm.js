@@ -7,7 +7,10 @@ Ext.define("PSI.Sale.SRSelectWSBillForm", {
   initComponent: function () {
     var me = this;
     Ext.apply(me, {
-      title: "选择要退货的销售出库单",
+      header: {
+        title: me.formatTitle("选择要退货的销售出库单"),
+        height: 40
+      },
       width: 1200,
       height: 600,
       layout: "border",
@@ -34,7 +37,7 @@ Ext.define("PSI.Sale.SRSelectWSBillForm", {
           type: "table",
           columns: 4
         },
-        height: 70,
+        height: 65,
         bodyPadding: 10,
         items: [{
           id: "editWSRef",
@@ -180,7 +183,7 @@ Ext.define("PSI.Sale.SRSelectWSBillForm", {
       cls: "PSI",
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "序号",
+        text: "#",
         width: 50
       }), {
         header: "单号",
@@ -375,7 +378,7 @@ Ext.define("PSI.Sale.SRSelectWSBillForm", {
       title: "销售出库单明细",
       columnLines: true,
       columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "序号",
+        text: "#",
         width: 50
       }), {
         header: "商品编码",
