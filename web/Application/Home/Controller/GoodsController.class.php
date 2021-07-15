@@ -535,7 +535,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 商品品牌主页面
+   * 物料品牌主页面
    */
   public function brandIndex()
   {
@@ -544,7 +544,7 @@ class GoodsController extends PSIBaseController
     if ($us->hasPermission(FIdConst::GOODS_BRAND)) {
       $this->initVar();
 
-      $this->assign("title", "商品品牌");
+      $this->assign("title", "物料品牌");
 
       $this->display();
     } else {

@@ -28,7 +28,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
       handler: me.onRefreshGrid,
       scope: me
     }, "-", {
-      text: "帮助",
+      text: "指南",
       handler: function () {
         me.focus();
         window.open(me.URL("Home/Help/index?t=goodsBrand"));
