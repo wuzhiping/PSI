@@ -22,7 +22,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
       handler: me.onDeleteUnit,
       scope: me
     }, "-", {
-      text: "帮助",
+      text: "指南",
       handler: function () {
         me.focus();
         window.open(me.URL("Home/Help/index?t=goodsUnit"));
