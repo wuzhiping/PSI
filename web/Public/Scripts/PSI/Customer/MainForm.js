@@ -115,8 +115,9 @@ Ext.define("PSI.Customer.MainForm", {
       handler: me.onDeleteCustomer,
       scope: me
     }, "-", {
-      text: "帮助",
+      text: "指南",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=customer"));
       }
     }, "-", {
