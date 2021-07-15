@@ -332,10 +332,8 @@ Ext.define("PSI.Sale.SRMainForm", {
             var data = Ext.JSON
               .decode(response.responseText);
             if (data.success) {
-              PSI.MsgBox.showInfo("成功完成删除操作",
-                function () {
-                  me.refreshMainGrid();
-                });
+              me.refreshMainGrid();
+              me.tip("成功完成删除操作");
             } else {
               PSI.MsgBox.showInfo(data.msg);
             }
@@ -383,11 +381,8 @@ Ext.define("PSI.Sale.SRMainForm", {
             var data = Ext.JSON
               .decode(response.responseText);
             if (data.success) {
-              PSI.MsgBox.showInfo("成功完成提交操作",
-                function () {
-                  me
-                    .refreshMainGrid(data.id);
-                });
+              me.refreshMainGrid(data.id);
+              me.tip("成功完成提交操作");
             } else {
               PSI.MsgBox.showInfo(data.msg);
             }
