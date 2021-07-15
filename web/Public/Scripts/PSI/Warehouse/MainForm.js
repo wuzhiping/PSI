@@ -51,8 +51,9 @@ Ext.define("PSI.Warehouse.MainForm", {
     }
 
     result.push("-", {
-      text: "帮助",
+      text: "指南",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=warehouse"));
       }
     }, "-", {
