@@ -54,7 +54,7 @@ Ext.define("PSI.BizConfig.MainForm", {
       handler: me.onEdit,
       scope: me
     }, "-", {
-      text: "帮助",
+      text: "指南",
       handler: function () {
         me.focus();
         window.open(me.URL("/Home/Help/index?t=bizconfig"));
