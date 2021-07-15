@@ -108,9 +108,10 @@ Ext.define("PSI.Bizlog.MainForm", {
       xtype: "displayfield",
       value: "条记录"
     }, "-", {
-      text: "帮助",
+      text: "指南",
       iconCls: "PSI-help",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=bizlog"));
       }
     }, "-", {
@@ -345,9 +346,9 @@ Ext.define("PSI.Bizlog.MainForm", {
     }
   },
 
-	/**
-	 * 刷新
-	 */
+  /**
+   * 刷新
+   */
   onRefresh: function () {
     var me = this;
 
@@ -356,9 +357,9 @@ Ext.define("PSI.Bizlog.MainForm", {
     me.focus();
   },
 
-	/**
-	 * 升级数据库
-	 */
+  /**
+   * 升级数据库
+   */
   onUpdateDatabase: function () {
     var me = this;
 
