@@ -20,13 +20,11 @@ Ext.define("PSI.Sale.WSEditForm", {
 
     var title = entity == null ? "新建销售出库单" : "编辑销售出库单";
     title = me.formatTitle(title);
-    var iconCls = entity == null ? "PSI-button-add" : "PSI-button-edit";
 
     Ext.apply(me, {
       header: {
         title: title,
-        height: 40,
-        iconCls: iconCls
+        height: 40
       },
       maximized: true,
       width: 1000,
@@ -79,9 +77,10 @@ Ext.define("PSI.Sale.WSEditForm", {
         scope: me,
         id: "buttonCancel"
       }, "->", {
-        text: "表单通用操作帮助",
+        text: "表单通用操作指南",
         iconCls: "PSI-help",
         handler: function () {
+          me.focus();
           window.open(me.URL("Home/Help/index?t=commBill"));
         }
       }, "-", {
