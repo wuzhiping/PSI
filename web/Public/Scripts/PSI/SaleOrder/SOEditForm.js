@@ -508,7 +508,8 @@ Ext.define("PSI.SaleOrder.SOEditForm", {
       plugins: [me.__cellEditing],
       columnLines: true,
       columns: [{
-        xtype: "rownumberer"
+        xtype: "rownumberer",
+        text: "#"
       }, {
         header: "商品编码",
         dataIndex: "goodsCode",
