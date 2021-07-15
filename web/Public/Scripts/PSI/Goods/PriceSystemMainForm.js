@@ -26,7 +26,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
         handler: me.onDeletePrice,
         scope: me
       }, "-", {
-        text: "帮助",
+        text: "指南",
         handler: function () {
           me.focus();
           var url = me.URL("/Home/Help/index?t=priceSystem")
