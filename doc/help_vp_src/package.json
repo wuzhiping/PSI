@@ -1,0 +1,15 @@
+{
+  "name": "psi-help",
+  "version": "1.0.0",
+  "description": "PSI实施指南",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "author": "李静波",
+  "license": "GPL v3",
+  "devDependencies": {
+    "vuepress": "^1.8.2"
+  }
+}
