@@ -390,10 +390,9 @@ Ext.define("PSI.User.UserEditForm", {
       method: "POST",
       success: function (form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo("数据保存成功", function () {
-          me.close();
-          me.getParentForm().freshUserGrid();
-        });
+        me.close();
+        me.getParentForm().freshUserGrid();
+        me.tip("数据保存成功");
       },
       failure: function (form, action) {
         el.unmask();
