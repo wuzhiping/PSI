@@ -371,7 +371,15 @@ Ext.define("PSI.Goods.MainForm", {
         dataIndex: "name",
         menuDisabled: true,
         sortable: false,
-        width: 300
+        width: 300,
+        renderer: function (value, metaData, record) {
+          if (parseInt(record.get("recordStatus")) == 1000) {
+            return value;
+          } else {
+            return "<span style='color:gray;text-decoration:line-through;'>"
+              + value + "</span>";
+          }
+        }
       }, {
         header: "规格型号",
         dataIndex: "spec",
