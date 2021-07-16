@@ -430,11 +430,9 @@ Ext.define("PSI.Permission.EditForm", {
       method: "POST",
       success: function (form, action) {
         el.unmask();
-        me.showInfo("数据保存成功", function () {
-          me.close();
-          me.getParentForm()
-            .refreshRoleGrid(action.result.id);
-        });
+        me.close();
+        me.getParentForm().refreshRoleGrid(action.result.id);
+        me.tip("数据保存成功");
       },
       failure: function (form, action) {
         el.unmask();
