@@ -425,7 +425,15 @@ Ext.define("PSI.Factory.MainForm", {
           header: "工厂名称",
           locked: true,
           dataIndex: "name",
-          width: 300
+          width: 300,
+          renderer: function (value, metaData, record) {
+            if (parseInt(record.get("recordStatus")) == 1000) {
+              return value;
+            } else {
+              return "<span style='color:gray;text-decoration:line-through;'>"
+                + value + "</span>";
+            }
+          }
         }, {
           header: "地址",
           dataIndex: "address",
