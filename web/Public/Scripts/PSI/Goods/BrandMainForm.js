@@ -88,7 +88,15 @@ Ext.define("PSI.Goods.BrandMainForm", {
           xtype: "treecolumn",
           text: "品牌",
           dataIndex: "text",
-          flex: 1
+          flex: 1,
+          renderer: function (value, metaData, record) {
+            if (parseInt(record.get("recordStatus")) == 1) {
+              return value;
+            } else {
+              return "<span style='color:gray;text-decoration:line-through;'>"
+                + value + "</span>";
+            }
+          }
         }, {
           text: "全名",
           dataIndex: "fullName",
