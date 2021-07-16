@@ -9,7 +9,6 @@ Ext.define("PSI.Permission.SelectUserForm", {
     parentForm: null
   },
 
-  title: "选择用户",
   width: 850,
   height: 570,
   modal: true,
@@ -71,6 +70,10 @@ Ext.define("PSI.Permission.SelectUserForm", {
     me.__grid = grid;
 
     Ext.apply(me, {
+      header: {
+        height: 40,
+        title: me.formatTitle("选择用户")
+      },
       items: [{
         region: "center",
         layout: "fit",

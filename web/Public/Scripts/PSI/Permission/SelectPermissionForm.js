@@ -9,7 +9,6 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     idList: []
   },
 
-  title: "选择权限",
   width: 1200,
   height: 600,
   layout: "border",
@@ -18,6 +17,10 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     var me = this;
 
     Ext.apply(me, {
+      header: {
+        height: 40,
+        title: me.formatTitle("选择权限")
+      },
       padding: 5,
       items: [{
         region: "center",

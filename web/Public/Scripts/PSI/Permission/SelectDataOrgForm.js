@@ -2,15 +2,14 @@
  * 选择数据域
  */
 Ext.define("PSI.Permission.SelectDataOrgForm", {
-  extend: "Ext.window.Window",
+  extend: "PSI.AFX.BaseDialogForm",
 
   config: {
     parentForm: null,
-    editForm: null
     // PSI.Permission.EditForm
+    editForm: null
   },
 
-  title: "选择数据域",
   width: 600,
   height: 500,
   modal: true,
@@ -20,6 +19,10 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
     var me = this;
 
     Ext.apply(me, {
+      header: {
+        height: 40,
+        title: me.formatTitle("选择数据域")
+      },
       items: [me.getMainGrid()],
       buttons: [{
         text: "把数据域设置为[本人数据]",
