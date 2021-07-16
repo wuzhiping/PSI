@@ -455,7 +455,15 @@ Ext.define("PSI.Customer.MainForm", {
           header: "客户名称",
           dataIndex: "name",
           locked: true,
-          width: 300
+          width: 300,
+          renderer: function (value, metaData, record) {
+            if (parseInt(record.get("recordStatus")) == 1000) {
+              return value;
+            } else {
+              return "<span style='color:gray;text-decoration:line-through;'>"
+                + value + "</span>";
+            }
+          }
         }, {
           header: "地址",
           dataIndex: "address",
