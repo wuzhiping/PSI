@@ -26,9 +26,6 @@ Ext.define("PSI.BizConfig.MainForm", {
       fields: ["id", "name"]
     });
     return [{
-      xtype: "displayfield",
-      value: "公司 "
-    }, {
       cls: "PSI-toolbox",
       xtype: "combobox",
       id: "comboCompany",
@@ -41,7 +38,7 @@ Ext.define("PSI.BizConfig.MainForm", {
         autoLoad: false,
         data: []
       }),
-      width: 400,
+      width: 500,
       listeners: {
         select: {
           fn: me.onComboCompanySelect,

@@ -53,8 +53,7 @@ Ext.define("PSI.BizConfig.EditForm", {
     Ext.apply(me, {
       header: {
         title: me.formatTitle("业务设置"),
-        height: 40,
-        iconCls: "PSI-button-edit"
+        height: 40
       },
       width: 500,
       height: 470,
