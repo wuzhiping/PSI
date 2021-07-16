@@ -65,7 +65,15 @@ Ext.define("PSI.Goods.UnitMainForm", {
           header: "#"
         }, {
           header: "编码",
-          dataIndex: "code"
+          dataIndex: "code",
+          renderer: function (value, metaData, record) {
+            if (parseInt(record.get("recordStatus")) == 1) {
+              return value;
+            } else {
+              return "<span style='color:gray;text-decoration:line-through;'>"
+                + value + "</span>";
+            }
+          }
         }, {
           header: "物料计量单位",
           dataIndex: "name",
