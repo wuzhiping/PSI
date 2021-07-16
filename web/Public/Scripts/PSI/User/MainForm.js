@@ -383,7 +383,15 @@ Ext.define("PSI.User.MainForm", {
         dataIndex: "name",
         menuDisabled: true,
         sortable: false,
-        locked: true
+        locked: true,
+        renderer: function (value, metaData, record) {
+          if (parseInt(record.get("enabled")) == 1) {
+            return value;
+          } else {
+            return "<span style='color:gray;text-decoration:line-through;'>"
+              + value + "</span>";
+          }
+        }
       }, {
         header: "权限角色",
         dataIndex: "roleName",
