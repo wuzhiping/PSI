@@ -10,6 +10,7 @@ Ext.define("PSI.AFX.BaseDialogForm", {
   },
 
   modal: true,
+  closable: false,
   resizable: false,
   onEsc: Ext.emptyFn,
 
