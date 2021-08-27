@@ -9,6 +9,7 @@ Ext.define("PSI.MsgBox", {
         icon: Ext.Msg.INFO,
         buttons: Ext.Msg.OK,
         modal: true,
+        closable: false,
         fn: function () {
           if (func) {
             func();
@@ -26,6 +27,7 @@ Ext.define("PSI.MsgBox", {
         buttons: Ext.Msg.YESNO,
         modal: true,
         defaultFocus: "no",
+        closable: false,
         fn: function (id) {
           if (id === "yes" && funcOnYes) {
             funcOnYes();
