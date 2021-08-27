@@ -5,7 +5,7 @@ Ext.define("PSI.Const", {
     SAVING: "数据保存中...",
     BASE_URL: "",
     MOT: "0", // 模块打开方式
-    GC_DEC_NUMBER: 0, // 商品数量小数位数
+    GC_DEC_NUMBER: 0, // 物料数量小数位数
     ENABLE_LODOP: "0", //是否启用Lodop打印
     PROD_NAME: "PSI", // 产品名称
     VERSION: "PSI 2022 - built2021-07-16 09:15"
