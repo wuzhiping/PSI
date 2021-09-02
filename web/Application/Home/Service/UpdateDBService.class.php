@@ -22,6 +22,11 @@ class UpdateDBService extends PSIBaseService
       return $this->notOnlineError();
     }
 
+    // 2021-9-2 begin
+    // 在PSI2022开发期间，停用一键升级数据库功能
+    return $this->bad("在PSI2022开发期间暂不提供一键升级数据库功能");
+    // 2021-9-2 end
+
     // 脚本执行最长时间设置为5分钟
     ini_set("max_execution_time", 60 * 5);
 
