@@ -310,7 +310,7 @@ Ext.define("PSI.PurchaseOrder.POEditForm", {
     var el = me.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
-      url: PSI.Const.BASE_URL + "Home/Purchase/poBillInfo",
+      url: PSI.Const.BASE_URL + "Home/PurchaseOrder/poBillInfo",
       params: {
         id: Ext.getCmp("hiddenId").getValue(),
         genBill: me.getGenBill(),
@@ -377,7 +377,7 @@ Ext.define("PSI.PurchaseOrder.POEditForm", {
     var me = this;
     Ext.getBody().mask("正在保存中...");
     Ext.Ajax.request({
-      url: PSI.Const.BASE_URL + "Home/Purchase/editPOBill",
+      url: PSI.Const.BASE_URL + "Home/PurchaseOrder/editPOBill",
       method: "POST",
       params: {
         jsonStr: me.getSaveData()
