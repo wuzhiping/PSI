@@ -328,7 +328,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
         actionMethods: {
           read: "POST"
         },
-        url: me.URL("Home/Purchase/pobillList"),
+        url: me.URL("Home/PurchaseOrder/pobillList"),
         reader: {
           root: 'dataList',
           totalProperty: 'totalCount'
@@ -796,7 +796,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
       var el = Ext.getBody();
       el.mask("正在删除中...");
       var r = {
-        url: me.URL("Home/Purchase/deletePOBill"),
+        url: me.URL("Home/PurchaseOrder/deletePOBill"),
         params: {
           id: bill.get("id")
         },
@@ -880,7 +880,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     el.mask(PSI.Const.LOADING);
 
     var r = {
-      url: me.URL("Home/Purchase/poBillDetailList"),
+      url: me.URL("Home/PurchaseOrder/poBillDetailList"),
       params: {
         id: bill.get("id")
       },
@@ -940,7 +940,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/Purchase/commitPOBill"),
+        url: me.URL("Home/PurchaseOrder/commitPOBill"),
         params: {
           id: id
         },
@@ -989,7 +989,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/Purchase/cancelConfirmPOBill"),
+        url: me.URL("Home/PurchaseOrder/cancelConfirmPOBill"),
         params: {
           id: id
         },
@@ -1134,7 +1134,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     }
     var bill = item[0];
 
-    var url = me.URL("Home/Purchase/poBillPdf?ref=" + bill.get("ref"));
+    var url = me.URL("Home/PurchaseOrder/poBillPdf?ref=" + bill.get("ref"));
     window.open(url);
   },
 
@@ -1147,7 +1147,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     }
     var bill = item[0];
 
-    var url = me.URL("Home/Purchase/poBillExcel?ref=" + bill.get("ref"));
+    var url = me.URL("Home/PurchaseOrder/poBillExcel?ref=" + bill.get("ref"));
     window.open(url);
   },
 
@@ -1280,7 +1280,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     }
 
     var r = {
-      url: me.URL("Home/Purchase/poBillPWBillList"),
+      url: me.URL("Home/PurchaseOrder/poBillPWBillList"),
       params: {
         id: bill.get("id")
       },
@@ -1319,7 +1319,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/Purchase/closePOBill"),
+        url: me.URL("Home/PurchaseOrder/closePOBill"),
         params: {
           id: id
         },
@@ -1361,7 +1361,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/Purchase/cancelClosedPOBill"),
+        url: me.URL("Home/PurchaseOrder/cancelClosedPOBill"),
         params: {
           id: id
         },
@@ -1413,7 +1413,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/Purchase/genPOBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/PurchaseOrder/genPOBillPrintPage",
       params: {
         id: bill.get("id")
       },
@@ -1475,7 +1475,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/Purchase/genPOBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/PurchaseOrder/genPOBillPrintPage",
       params: {
         id: bill.get("id")
       },
@@ -1521,7 +1521,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     var bill = item[0];
 
     var r = {
-      url: me.URL("Home/Purchase/getPOBillDataAterChangeOrder"),
+      url: me.URL("Home/PurchaseOrder/getPOBillDataAterChangeOrder"),
       params: {
         id: bill.get("id")
       },
