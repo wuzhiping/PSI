@@ -167,47 +167,6 @@ class PurchaseController extends PSIBaseController
   }
 
   /**
-   * 采购订单 - 主页面
-   */
-  public function pobillIndex()
-  {
-    $us = new UserService();
-
-    if ($us->hasPermission(FIdConst::PURCHASE_ORDER)) {
-      $this->initVar();
-
-      $this->assign("title", "采购订单");
-
-      $this->assign("pAdd", $us->hasPermission(FIdConst::PURCHASE_ORDER_ADD) ? "1" : "0");
-      $this->assign("pEdit", $us->hasPermission(FIdConst::PURCHASE_ORDER_EDIT) ? "1" : "0");
-      $this->assign(
-        "pDelete",
-        $us->hasPermission(FIdConst::PURCHASE_ORDER_DELETE) ? "1" : "0"
-      );
-      $this->assign(
-        "pConfirm",
-        $us->hasPermission(FIdConst::PURCHASE_ORDER_CONFIRM) ? "1" : "0"
-      );
-      $this->assign(
-        "pGenPWBill",
-        $us->hasPermission(FIdConst::PURCHASE_ORDER_GEN_PWBILL) ? "1" : "0"
-      );
-      $this->assign("showAddGoodsButton", $us->hasPermission(FIdConst::GOODS_ADD) ? "1" : "0");
-      $this->assign(
-        "pCloseBill",
-        $us->hasPermission(FIdConst::PURCHASE_ORDER_CLOSE) ? "1" : "0"
-      );
-      $this->assign("pGenPDF", $us->hasPermission(FIdConst::PURCHASE_ORDER_PDF) ? "1" : "0");
-      $this->assign("pGenExcel", $us->hasPermission(FIdConst::PURCHASE_ORDER_EXCEL) ? "1" : "0");
-      $this->assign("pPrint", $us->hasPermission(FIdConst::PURCHASE_ORDER_PRINT) ? "1" : "0");
-
-      $this->display();
-    } else {
-      $this->gotoLoginPage("/Home/Purchase/pobillIndex");
-    }
-  }
-
-  /**
    * 获得采购订单主表信息列表
    */
   public function pobillList()
