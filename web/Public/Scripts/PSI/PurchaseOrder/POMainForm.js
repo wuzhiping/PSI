@@ -287,7 +287,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
       }, {
         xtype: "button",
         iconCls: "PSI-button-hide",
-        text: "隐藏查询条件栏",
+        text: "隐藏工具栏",
         width: 130,
         height: 26,
         margin: "5 0 0 10",
