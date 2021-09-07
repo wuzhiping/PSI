@@ -203,7 +203,7 @@ class MainMenuController extends PSIBaseController
         break;
       case FIdConst::PURCHASE_ORDER:
         // 采购订单
-        redirect(__ROOT__ . "/Home/Purchase/pobillIndex");
+        redirect(__ROOT__ . "/Home/PurchaseOrder/pobillIndex");
         break;
       case FIdConst::SALE_ORDER:
         // 销售订单
