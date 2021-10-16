@@ -282,7 +282,7 @@ Ext.define("PSI.User.MainForm", {
           xtype: "treecolumn",
           text: "名称",
           dataIndex: "text",
-          width: 220
+          width: 300
         }, {
           text: "编码",
           dataIndex: "orgCode",
