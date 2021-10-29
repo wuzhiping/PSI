@@ -99,11 +99,25 @@ class PurchaseOrderController extends PSIBaseController
   }
 
   /**
-   * 新增或编辑采购订单
+   * 新建或编辑采购订单
    */
   public function editPOBill()
   {
     if (IS_POST) {
+      $adding = I("post.adding");
+      $us = new UserService();
+      if ($adding == "1") {
+        // 新建采购订单
+        if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_ADD)) {
+          die("没有权限");
+        }
+      } else {
+        // 编辑采购订单
+        if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_EDIT)) {
+          die("没有权限");
+        }
+      }
+
       $json = I("post.jsonStr");
       $ps = new POBillService();
       $this->ajaxReturn($ps->editPOBill($json));
