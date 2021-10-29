@@ -163,6 +163,10 @@ class PurchaseOrderController extends PSIBaseController
   {
     if (IS_POST) {
       $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_ORDER)) {
+        die("没有权限");
+      }
+
       $companyId = $us->getCompanyId();
 
       $params = [
