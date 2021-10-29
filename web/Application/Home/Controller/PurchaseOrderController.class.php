@@ -49,13 +49,19 @@ class PurchaseOrderController extends PSIBaseController
         "pGenPWBill",
         $us->hasPermission(FIdConst::PURCHASE_ORDER_GEN_PWBILL) ? "1" : "0"
       );
+      // 新增物料 - 在编辑采购订单页面，录入物料的时候，其弹出窗口中有新增物料的按钮
+      //           用于控制用户是否有该按钮的权限
       $this->assign("showAddGoodsButton", $us->hasPermission(FIdConst::GOODS_ADD) ? "1" : "0");
+      // 按钮权限：关闭采购订单、取消采购订单关闭状态
       $this->assign(
         "pCloseBill",
         $us->hasPermission(FIdConst::PURCHASE_ORDER_CLOSE) ? "1" : "0"
       );
+      // 按钮权限：单据生成PDF
       $this->assign("pGenPDF", $us->hasPermission(FIdConst::PURCHASE_ORDER_PDF) ? "1" : "0");
+      // 按钮权限：单据生成Excel
       $this->assign("pGenExcel", $us->hasPermission(FIdConst::PURCHASE_ORDER_EXCEL) ? "1" : "0");
+      // 按钮权限：打印预览、直接打印
       $this->assign("pPrint", $us->hasPermission(FIdConst::PURCHASE_ORDER_PRINT) ? "1" : "0");
 
       $this->display();
