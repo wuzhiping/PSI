@@ -380,6 +380,7 @@ Ext.define("PSI.PurchaseOrder.POEditForm", {
       url: PSI.Const.BASE_URL + "Home/PurchaseOrder/editPOBill",
       method: "POST",
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
