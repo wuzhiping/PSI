@@ -226,10 +226,10 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
         scope: me,
         handler: me.onCancel
       }, "-", {
-        text: "帮助",
+        text: "指南",
         handler: function () {
-          window.open(me
-            .URL("/Home/Help/index?t=initInv"));
+          me.focus();
+          window.open(me.URL("/Home/Help/index?t=initInv"));
         }
       }, "-", {
         text: "关闭",
