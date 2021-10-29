@@ -30,16 +30,21 @@ class PurchaseOrderController extends PSIBaseController
 
       $this->assign("title", "采购订单");
 
+      // 按钮权限：新建采购订单
       $this->assign("pAdd", $us->hasPermission(FIdConst::PURCHASE_ORDER_ADD) ? "1" : "0");
+      // 按钮权限：编辑采购订单
       $this->assign("pEdit", $us->hasPermission(FIdConst::PURCHASE_ORDER_EDIT) ? "1" : "0");
+      // 按钮权限：删除采购订单
       $this->assign(
         "pDelete",
         $us->hasPermission(FIdConst::PURCHASE_ORDER_DELETE) ? "1" : "0"
       );
+      // 按钮权限：审核、取消审核
       $this->assign(
         "pConfirm",
         $us->hasPermission(FIdConst::PURCHASE_ORDER_CONFIRM) ? "1" : "0"
       );
+      // 按钮权限：生成采购入库单
       $this->assign(
         "pGenPWBill",
         $us->hasPermission(FIdConst::PURCHASE_ORDER_GEN_PWBILL) ? "1" : "0"
