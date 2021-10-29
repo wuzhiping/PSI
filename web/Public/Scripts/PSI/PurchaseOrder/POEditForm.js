@@ -21,7 +21,7 @@ Ext.define("PSI.PurchaseOrder.POEditForm", {
     var me = this;
     me.__readOnly = false;
     var entity = me.getEntity();
-    this.adding = entity == null;
+    me.adding = entity == null;
 
     var title = entity == null ? "新建采购订单" : "编辑采购订单";
     title = me.formatTitle(title);
