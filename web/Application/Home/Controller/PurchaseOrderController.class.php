@@ -130,6 +130,21 @@ class PurchaseOrderController extends PSIBaseController
   public function poBillInfo()
   {
     if (IS_POST) {
+      $id = I("post.id");
+      $us = new UserService();
+
+      if ($id) {
+        // 编辑采购订单
+        if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_EDIT)) {
+          die("没有权限");
+        }
+      } else {
+        // 新建采购订单
+        if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_ADD)) {
+          die("没有权限");
+        }
+      }
+
       $params = [
         "id" => I("post.id"),
         "genBill" => I("post.genBill"),
