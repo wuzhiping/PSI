@@ -76,6 +76,12 @@ class PurchaseOrderController extends PSIBaseController
   public function pobillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PURCHASE_ORDER)) {
+        die("没有权限");
+      }
+
       $ps = new POBillService();
       $params = [
         "billStatus" => I("post.billStatus"),
