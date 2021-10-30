@@ -345,10 +345,10 @@ Ext.define("PSI.User.UserEditForm", {
 
           me.editLoginName.setValue(data.loginName);
 
-          // 先focus再设置null，之后设置字段的值，是为了保持光标在末尾
           me.editName.focus();
-          me.editName.setValue(null);
-          me.editName.setValue(data.name);
+          const name = data.name;
+          me.editName.setValue(name);
+          me.editName.inputEl.dom.selectionStart = name.length;
 
           me.editOrgCode.setValue(data.orgCode);
           me.editBirthday.setValue(data.birthday);
@@ -367,9 +367,6 @@ Ext.define("PSI.User.UserEditForm", {
         }
       }
     });
-
-    me.editLoginName.focus();
-    me.editLoginName.setValue(me.editLoginName.getValue());
   },
 
   setOrg: function (data) {
@@ -411,11 +408,9 @@ Ext.define("PSI.User.UserEditForm", {
         var editorId = me.__editorList[i];
         if (id === editorId) {
           var edit = Ext.getCmp(me.__editorList[i + 1]);
-          // 先focus再设置null，之后设置字段的值，是为了保持光标在末尾
           edit.focus();
           const v = edit.getValue();
-          edit.setValue(null);
-          edit.setValue(v);
+          edit.inputEl.dom.selectionStart = v ? v.length : 0;
         }
       }
     }
