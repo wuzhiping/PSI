@@ -205,6 +205,11 @@ class PurchaseOrderController extends PSIBaseController
   public function commitPOBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_CONFIRM)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
