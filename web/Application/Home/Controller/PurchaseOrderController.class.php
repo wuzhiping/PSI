@@ -185,6 +185,11 @@ class PurchaseOrderController extends PSIBaseController
   public function deletePOBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_DELETE)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
