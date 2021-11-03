@@ -64,6 +64,9 @@ class PurchaseOrderController extends PSIBaseController
       // 按钮权限：打印预览、直接打印
       $this->assign("pPrint", $us->hasPermission(FIdConst::PURCHASE_ORDER_PRINT) ? "1" : "0");
 
+      // 按钮权限：订单变更
+      $this->assign("pChangeOrder", $us->hasPermission(FIdConst::PURCHASE_ORDER_CHANGE) ? "1" : "0");
+
       $this->display();
     } else {
       $this->gotoLoginPage("/Home/Purchase/pobillIndex");
