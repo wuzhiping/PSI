@@ -328,6 +328,11 @@ class PurchaseOrderController extends PSIBaseController
   public function poBillPWBillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_ORDER)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -343,6 +348,11 @@ class PurchaseOrderController extends PSIBaseController
   public function closePOBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_CLOSE)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -358,6 +368,11 @@ class PurchaseOrderController extends PSIBaseController
   public function cancelClosedPOBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_CLOSE)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -373,6 +388,11 @@ class PurchaseOrderController extends PSIBaseController
   public function genPOBillPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_PRINT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
