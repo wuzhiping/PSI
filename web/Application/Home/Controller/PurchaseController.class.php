@@ -217,6 +217,11 @@ class PurchaseController extends PSIBaseController
    */
   public function pwBillPdf()
   {
+    $us = new UserService();
+    if (!$us->hasPermission(FIdConst::PURCHASE_WAREHOUSE_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
