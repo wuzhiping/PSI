@@ -129,6 +129,19 @@ class PurchaseController extends PSIBaseController
   public function editPWBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      $adding = I("post.adding");
+      if ($adding == "1") {
+        // 新建
+        if (!$us->hasPermission(FIdConst::PURCHASE_WAREHOUSE_ADD)) {
+          die("没有权限");
+        }
+      } else {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::PURCHASE_WAREHOUSE_EDIT)) {
+          die("没有权限");
+        }
+      }
       $json = I("post.jsonStr");
       $ps = new PWBillService();
       $this->ajaxReturn($ps->editPWBill($json));
