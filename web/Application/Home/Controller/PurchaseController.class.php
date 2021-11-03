@@ -184,6 +184,11 @@ class PurchaseController extends PSIBaseController
   public function deletePWBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_WAREHOUSE_DELETE)) {
+        die("没有权限");
+      }
+
       $id = I("post.id");
       $ps = new PWBillService();
       $this->ajaxReturn($ps->deletePWBill($id));
