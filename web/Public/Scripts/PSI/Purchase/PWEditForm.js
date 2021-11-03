@@ -408,6 +408,7 @@ Ext.define("PSI.Purchase.PWEditForm", {
     var r = {
       url: me.URL("Home/Purchase/editPWBill"),
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
