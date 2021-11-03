@@ -112,6 +112,11 @@ class PurchaseController extends PSIBaseController
   public function pwBillDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_WAREHOUSE)) {
+        die("没有权限");
+      }
+
       $pwbillId = I("post.pwBillId");
       $ps = new PWBillService();
       $this->ajaxReturn($ps->pwBillDetailList($pwbillId));
