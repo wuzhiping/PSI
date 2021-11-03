@@ -84,6 +84,11 @@ class PurchaseController extends PSIBaseController
   public function pwbillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_WAREHOUSE)) {
+        die("没有权限");
+      }
+
       $ps = new PWBillService();
       $params = [
         "billStatus" => I("post.billStatus"),
