@@ -271,6 +271,11 @@ class PurchaseOrderController extends PSIBaseController
   public function getPOBillDataAterChangeOrder()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_CHANGE)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -285,6 +290,11 @@ class PurchaseOrderController extends PSIBaseController
    */
   public function poBillPdf()
   {
+    $us = new UserService();
+    if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
