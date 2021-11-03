@@ -842,13 +842,13 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
     buttonEdit.setDisabled(false);
     if (commited) {
       buttonEdit.setText("查看采购订单");
-      Ext.getCmp("columnActionChangeOrder").show();
     } else {
       buttonEdit.setText("编辑采购订单");
-      Ext.getCmp("columnActionChangeOrder").hide();
     }
-    if (me.getPermission().confirm == "0") {
-      // 没有审核权限就不能做订单变更
+    if (commited && me.getPermission().changeOrder == "1") {
+      Ext.getCmp("columnActionChangeOrder").show();
+    }
+    else {
       Ext.getCmp("columnActionChangeOrder").hide();
     }
 
