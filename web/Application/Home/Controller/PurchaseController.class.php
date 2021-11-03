@@ -201,6 +201,11 @@ class PurchaseController extends PSIBaseController
   public function commitPWBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_WAREHOUSE_COMMIT)) {
+        die("没有权限");
+      }
+
       $id = I("post.id");
       $ps = new PWBillService();
       $this->ajaxReturn($ps->commitPWBill($id));
