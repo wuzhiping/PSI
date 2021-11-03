@@ -691,6 +691,11 @@ class FIdConst
   const PURCHASE_ORDER_EXCEL = "2027-09";
 
   /**
+   * 采购订单 - 订单变更
+   */
+  const PURCHASE_ORDER_CHANGE = "2027-10";
+
+  /**
    * 销售订单
    */
   const SALE_ORDER = "2028";
