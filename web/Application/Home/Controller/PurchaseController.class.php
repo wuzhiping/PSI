@@ -236,6 +236,11 @@ class PurchaseController extends PSIBaseController
   public function genPWBillPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_WAREHOUSE_PRINT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
