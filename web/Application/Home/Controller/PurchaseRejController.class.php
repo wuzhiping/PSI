@@ -272,6 +272,11 @@ class PurchaseRejController extends PSIBaseController
   public function commitPRBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_REJECTION_COMMIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
