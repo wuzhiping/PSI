@@ -311,6 +311,11 @@ class PurchaseRejController extends PSIBaseController
   public function genPRBillPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_REJECTION_PRINT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
