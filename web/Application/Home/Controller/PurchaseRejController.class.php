@@ -28,23 +28,29 @@ class PurchaseRejController extends PSIBaseController
 
       $this->assign("title", "采购退货出库");
 
+      // 按钮权限：新建采购退货出库单
       $this->assign("pAdd", $us->hasPermission(FIdConst::PURCHASE_REJECTION_ADD) ? "1" : "0");
+      // 按钮权限：编辑采购退货出库单
       $this->assign(
         "pEdit",
         $us->hasPermission(FIdConst::PURCHASE_REJECTION_EDIT) ? "1" : "0"
       );
+      // 按钮权限：删除采购退货出库单
       $this->assign(
         "pDelete",
         $us->hasPermission(FIdConst::PURCHASE_REJECTION_DELETE) ? "1" : "0"
       );
+      // 按钮权限：提交出库
       $this->assign(
         "pCommit",
         $us->hasPermission(FIdConst::PURCHASE_REJECTION_COMMIT) ? "1" : "0"
       );
+      // 按钮权限：单据生成PDF
       $this->assign(
         "pGenPDF",
         $us->hasPermission(FIdConst::PURCHASE_REJECTION_PDF) ? "1" : "0"
       );
+      // 按钮权限：打印预览、直接打印
       $this->assign(
         "pPrint",
         $us->hasPermission(FIdConst::PURCHASE_REJECTION_PRINT) ? "1" : "0"
