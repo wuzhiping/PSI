@@ -128,6 +128,21 @@ class PurchaseRejController extends PSIBaseController
   public function editPRBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      $adding = I("post.adding");
+      if ($adding == "1") {
+        // 新增
+        if (!$us->hasPermission(FIdConst::PURCHASE_REJECTION_ADD)) {
+          die("没有权限");
+        }
+      } else {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::PURCHASE_REJECTION_EDIT)) {
+          die("没有权限");
+        }
+      }
+
       $params = [
         "jsonStr" => I("post.jsonStr")
       ];
