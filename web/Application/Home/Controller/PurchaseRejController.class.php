@@ -159,6 +159,12 @@ class PurchaseRejController extends PSIBaseController
   public function selectPWBillList()
   {
     if (IS_POST) {
+      // 新建采购退货出库单的时候，会调用本函数，所以权限控制用新建采购退货出库单这个权限项
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_REJECTION_ADD)) {
+        die("没有权限");
+      }
+
       $params = [
         "ref" => I("post.ref"),
         "supplierId" => I("post.supplierId"),
@@ -182,6 +188,12 @@ class PurchaseRejController extends PSIBaseController
   public function pwBillDetailList()
   {
     if (IS_POST) {
+      // 新建采购退货出库单的时候，会调用本函数，所以权限控制用新建采购退货出库单这个权限项
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_REJECTION_ADD)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.pwBillId")
       ];
