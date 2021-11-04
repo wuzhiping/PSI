@@ -68,6 +68,11 @@ class PurchaseRejController extends PSIBaseController
   public function prbillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PURCHASE_REJECTION)) {
+        die("没有权限");
+      }
+
       $params = [
         "billStatus" => I("post.billStatus"),
         "ref" => I("post.ref"),
