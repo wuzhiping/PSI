@@ -229,7 +229,7 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
         menuDisabled: true,
         sortable: false
       }, {
-        header: "录单人",
+        header: "制单人",
         dataIndex: "inputUserName",
         menuDisabled: true,
         sortable: false
