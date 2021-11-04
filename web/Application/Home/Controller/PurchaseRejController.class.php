@@ -292,6 +292,11 @@ class PurchaseRejController extends PSIBaseController
    */
   public function prBillPdf()
   {
+    $us = new UserService();
+    if (!$us->hasPermission(FIdConst::PURCHASE_REJECTION_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
