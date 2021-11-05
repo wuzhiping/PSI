@@ -334,7 +334,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
         actionMethods: {
           read: "POST"
         },
-        url: me.URL("Home/Sale/sobillList"),
+        url: me.URL("Home/SaleOrder/sobillList"),
         reader: {
           root: 'dataList',
           totalProperty: 'totalCount'
@@ -815,7 +815,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       var el = Ext.getBody();
       el.mask("正在删除中...");
       var r = {
-        url: me.URL("Home/Sale/deleteSOBill"),
+        url: me.URL("Home/SaleOrder/deleteSOBill"),
         params: {
           id: bill.get("id")
         },
@@ -902,7 +902,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     el.mask(PSI.Const.LOADING);
 
     var r = {
-      url: me.URL("Home/Sale/soBillDetailList"),
+      url: me.URL("Home/SaleOrder/soBillDetailList"),
       params: {
         id: bill.get("id")
       },
@@ -962,7 +962,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/Sale/commitSOBill"),
+        url: me.URL("Home/SaleOrder/commitSOBill"),
         params: {
           id: id
         },
@@ -1011,7 +1011,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/Sale/cancelConfirmSOBill"),
+        url: me.URL("Home/SaleOrder/cancelConfirmSOBill"),
         params: {
           id: id
         },
@@ -1153,7 +1153,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     var el = Ext.getBody();
     el.mask("正在查询是否已经生成过采购订单...");
     var r = {
-      url: me.URL("Home/Sale/getPOBillRefListBySOBillRef"),
+      url: me.URL("Home/SaleOrder/getPOBillRefListBySOBillRef"),
       params: {
         soRef: bill.get("ref")
       },
@@ -1217,7 +1217,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     var el = Ext.getBody();
     el.mask("正在查询是否已经生成过销售出库单...");
     var r = {
-      url: me.URL("Home/Sale/getWSBillRefListBySOBillRef"),
+      url: me.URL("Home/SaleOrder/getWSBillRefListBySOBillRef"),
       params: {
         soRef: bill.get("ref")
       },
@@ -1260,7 +1260,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     }
     var bill = item[0];
 
-    var url = me.URL("Home/Sale/soBillPdf?ref=" + bill.get("ref"));
+    var url = me.URL("Home/SaleOrder/soBillPdf?ref=" + bill.get("ref"));
     window.open(url);
   },
 
@@ -1409,7 +1409,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     }
 
     var r = {
-      url: me.URL("Home/Sale/soBillWSBillList"),
+      url: me.URL("Home/SaleOrder/soBillWSBillList"),
       params: {
         id: bill.get("id")
       },
@@ -1455,7 +1455,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/Sale/genSOBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/SaleOrder/genSOBillPrintPage",
       params: {
         id: bill.get("id")
       },
@@ -1514,7 +1514,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/Sale/genSOBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/SaleOrder/genSOBillPrintPage",
       params: {
         id: bill.get("id")
       },
@@ -1592,7 +1592,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     var bill = item[0];
 
     var r = {
-      url: me.URL("Home/Sale/getSOBillDataAterChangeOrder"),
+      url: me.URL("Home/SaleOrder/getSOBillDataAterChangeOrder"),
       params: {
         id: bill.get("id")
       },
@@ -1630,7 +1630,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/Sale/closeSOBill"),
+        url: me.URL("Home/SaleOrder/closeSOBill"),
         params: {
           id: id
         },
@@ -1674,7 +1674,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/Sale/cancelClosedSOBill"),
+        url: me.URL("Home/SaleOrder/cancelClosedSOBill"),
         params: {
           id: id
         },
