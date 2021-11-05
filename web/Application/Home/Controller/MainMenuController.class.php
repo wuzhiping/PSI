@@ -123,7 +123,7 @@ class MainMenuController extends PSIBaseController
         break;
       case FIdConst::SALE_REJECTION:
         // 销售退货入库
-        redirect(__ROOT__ . "/Home/Sale/srIndex");
+        redirect(__ROOT__ . "/Home/SaleRej/srIndex");
         break;
       case FIdConst::BIZ_CONFIG:
         // 业务设置
