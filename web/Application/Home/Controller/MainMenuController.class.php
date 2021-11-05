@@ -207,7 +207,7 @@ class MainMenuController extends PSIBaseController
         break;
       case FIdConst::SALE_ORDER:
         // 销售订单
-        redirect(__ROOT__ . "/Home/Sale/soIndex");
+        redirect(__ROOT__ . "/Home/SaleOrder/soIndex");
         break;
       case FIdConst::GOODS_BRAND:
         // 基础数据 - 商品品牌
