@@ -239,6 +239,13 @@ class SaleContractController extends PSIBaseController
    */
   public function scBillWord()
   {
+    $us = new UserService();
+
+    // TODO 给生成Word增加一个单独的权限项
+    if (!$us->hasPermission(FIdConst::SALE_CONTRACT_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
