@@ -179,6 +179,12 @@ class SaleContractController extends PSIBaseController
   public function commitSCBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_CONTRACT_COMMIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -194,6 +200,12 @@ class SaleContractController extends PSIBaseController
   public function cancelConfirmSCBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_CONTRACT_COMMIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
