@@ -158,6 +158,12 @@ class SaleContractController extends PSIBaseController
   public function deleteSCBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_CONTRACT_DELETE)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
