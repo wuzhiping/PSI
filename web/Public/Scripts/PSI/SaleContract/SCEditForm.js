@@ -440,6 +440,7 @@ Ext.define("PSI.SaleContract.SCEditForm", {
       url: PSI.Const.BASE_URL + "Home/SaleContract/editSCBill",
       method: "POST",
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
