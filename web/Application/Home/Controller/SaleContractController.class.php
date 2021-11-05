@@ -52,6 +52,12 @@ class SaleContractController extends PSIBaseController
   public function scbillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_CONTRACT)) {
+        die("没有权限");
+      }
+
       $params = [
         "billStatus" => I("post.billStatus"),
         "ref" => I("post.ref"),
