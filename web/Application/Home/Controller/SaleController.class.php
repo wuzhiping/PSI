@@ -9,7 +9,10 @@ use Home\Service\UserService;
 use Home\Service\WSBillService;
 
 /**
- * 销售Controller
+ * 销售出库Controller
+ * 
+ * 最初的代码中，销售订单、销售出库、销售退货入库，都是写在这一个Controller里面的，
+ * 之后把销售订单和销售退货入库移到单独的Contoller里面了，就只剩下销售出库了
  *
  * @author 李静波
  *        
