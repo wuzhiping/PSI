@@ -320,7 +320,7 @@ Ext.define("PSI.Sale.SRMainForm", {
       el.mask("正在删除中...");
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL
-          + "Home/Sale/deleteSRBill",
+          + "Home/SaleRej/deleteSRBill",
         method: "POST",
         params: {
           id: bill.get("id")
@@ -369,7 +369,7 @@ Ext.define("PSI.Sale.SRMainForm", {
       el.mask("正在提交中...");
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL
-          + "Home/Sale/commitSRBill",
+          + "Home/SaleRej/commitSRBill",
         method: "POST",
         params: {
           id: bill.get("id")
@@ -420,7 +420,7 @@ Ext.define("PSI.Sale.SRMainForm", {
         actionMethods: {
           read: "POST"
         },
-        url: PSI.Const.BASE_URL + "Home/Sale/srbillList",
+        url: PSI.Const.BASE_URL + "Home/SaleRej/srbillList",
         reader: {
           root: 'dataList',
           totalProperty: 'totalCount'
@@ -792,7 +792,7 @@ Ext.define("PSI.Sale.SRMainForm", {
     var el = grid.getEl();
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
-      url: PSI.Const.BASE_URL + "Home/Sale/srBillDetailList",
+      url: PSI.Const.BASE_URL + "Home/SaleRej/srBillDetailList",
       params: {
         billId: bill.get("id")
       },
@@ -901,7 +901,7 @@ Ext.define("PSI.Sale.SRMainForm", {
     }
     var bill = item[0];
 
-    var url = PSI.Const.BASE_URL + "Home/Sale/srBillPdf?ref="
+    var url = PSI.Const.BASE_URL + "Home/SaleRej/srBillPdf?ref="
       + bill.get("ref");
     window.open(url);
   },
@@ -933,7 +933,7 @@ Ext.define("PSI.Sale.SRMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/Sale/genSRBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/SaleRej/genSRBillPrintPage",
       params: {
         id: bill.get("id")
       },
@@ -995,7 +995,7 @@ Ext.define("PSI.Sale.SRMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/Sale/genSRBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/SaleRej/genSRBillPrintPage",
       params: {
         id: bill.get("id")
       },

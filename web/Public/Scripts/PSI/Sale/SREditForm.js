@@ -234,7 +234,7 @@ Ext.define("PSI.Sale.SREditForm", {
     var el = me.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
-      url: PSI.Const.BASE_URL + "Home/Sale/srBillInfo",
+      url: PSI.Const.BASE_URL + "Home/SaleRej/srBillInfo",
       params: {
         id: Ext.getCmp("hiddenId").getValue()
       },
@@ -300,7 +300,7 @@ Ext.define("PSI.Sale.SREditForm", {
     var me = this;
     Ext.getBody().mask("正在保存中...");
     Ext.Ajax.request({
-      url: PSI.Const.BASE_URL + "Home/Sale/editSRBill",
+      url: PSI.Const.BASE_URL + "Home/SaleRej/editSRBill",
       method: "POST",
       params: {
         jsonStr: me.getSaveData()
@@ -741,7 +741,7 @@ Ext.define("PSI.Sale.SREditForm", {
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
       url: PSI.Const.BASE_URL
-        + "Home/Sale/getWSBillInfoForSRBill",
+        + "Home/SaleRej/getWSBillInfoForSRBill",
       params: {
         id: id
       },
