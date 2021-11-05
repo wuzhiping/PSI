@@ -27,17 +27,25 @@ class SaleContractController extends PSIBaseController
 
       $this->assign("title", "销售合同");
 
+      // 按钮权限：审核、取消审核
       $this->assign("pCommit", $us->hasPermission(FIdConst::SALE_CONTRACT_COMMIT) ? "1" : "0");
+      // 按钮权限：生成销售订单
       $this->assign(
         "pGenSOBill",
         $us->hasPermission(FIdConst::SALE_CONTRACT_GEN_SOBILL) ? "1" : "0"
       );
 
+      // 按钮权限：新建销售合同
       $this->assign("pAdd", $us->hasPermission(FIdConst::SALE_CONTRACT_ADD) ? "1" : "0");
+      // 按钮权限：编辑销售合同
       $this->assign("pEdit", $us->hasPermission(FIdConst::SALE_CONTRACT_EDIT) ? "1" : "0");
+      // 按钮权限：删除销售合同
       $this->assign("pDelete", $us->hasPermission(FIdConst::SALE_CONTRACT_DELETE) ? "1" : "0");
+      // 按钮权限：单据生成PDF
       $this->assign("pGenPDF", $us->hasPermission(FIdConst::SALE_CONTRACT_PDF) ? "1" : "0");
+      // 按钮权限：打印预览、直接打印
       $this->assign("pPrint", $us->hasPermission(FIdConst::SALE_CONTRACT_PRINT) ? "1" : "0");
+      // 按钮权限：在新建/编辑销售合同的时候，录入物料的弹出窗体中新增物料按钮的权限
       $this->assign("showAddGoodsButton", $us->hasPermission(FIdConst::GOODS_ADD) ? "1" : "0");
 
       $this->display();
