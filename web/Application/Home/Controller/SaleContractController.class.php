@@ -220,6 +220,12 @@ class SaleContractController extends PSIBaseController
    */
   public function scBillPdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::SALE_CONTRACT_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
