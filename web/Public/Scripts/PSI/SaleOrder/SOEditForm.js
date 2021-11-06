@@ -402,6 +402,7 @@ Ext.define("PSI.SaleOrder.SOEditForm", {
       url: PSI.Const.BASE_URL + "Home/SaleOrder/editSOBill",
       method: "POST",
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
