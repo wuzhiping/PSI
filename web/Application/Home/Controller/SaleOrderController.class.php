@@ -70,6 +70,12 @@ class SaleOrderController extends PSIBaseController
   public function sobillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_ORDER)) {
+        die("没有权限");
+      }
+
       $ps = new SOBillService();
       $params = [
         "billStatus" => I("post.billStatus"),
