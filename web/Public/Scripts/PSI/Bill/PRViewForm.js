@@ -12,7 +12,10 @@ Ext.define("PSI.Bill.PRViewForm", {
     var me = this;
 
     Ext.apply(me, {
-      title: "查看采购退货出库单",
+      header: {
+        title: "<span style='font-size:160%'>查看采购退货出库单</span>",
+        height: 40
+      },
       modal: true,
       onEsc: Ext.emptyFn,
       maximized: true,
