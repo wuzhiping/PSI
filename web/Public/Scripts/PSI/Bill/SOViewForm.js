@@ -12,7 +12,10 @@ Ext.define("PSI.Bill.SOViewForm", {
     var me = this;
 
     Ext.apply(me, {
-      title: "查看销售订单",
+      header: {
+        title: "<span style='font-size:160%'>查看销售订单</span>",
+        height: 40
+      },
       modal: true,
       closable: false,
       onEsc: Ext.emptyFn,
