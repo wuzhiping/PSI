@@ -99,6 +99,21 @@ class SaleOrderController extends PSIBaseController
   public function soBillInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      $id = I("post.id");
+      if ($id) {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::SALE_ORDER_EDIT)) {
+          die("没有权限");
+        }
+      } else {
+        // 新建
+        if (!$us->hasPermission(FIdConst::SALE_ORDER_ADD)) {
+          die("没有权限");
+        }
+      }
+
       $params = [
         "id" => I("post.id"),
         "genBill" => I("post.genBill"),
