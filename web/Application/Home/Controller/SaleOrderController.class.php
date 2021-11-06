@@ -131,6 +131,20 @@ class SaleOrderController extends PSIBaseController
   public function editSOBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      $adding = I("post.adding");
+      if ($adding == "1") {
+        // 新建
+        if (!$us->hasPermission(FIdConst::SALE_ORDER_ADD)) {
+          die("没有权限");
+        }
+      } else {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::SALE_ORDER_EDIT)) {
+          die("没有权限");
+        }
+      }
       $json = I("post.jsonStr");
       $ps = new SOBillService();
       $this->ajaxReturn($ps->editSOBill($json));
