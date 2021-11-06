@@ -199,6 +199,12 @@ class SaleOrderController extends PSIBaseController
   public function commitSOBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_ORDER_CONFIRM)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -214,6 +220,12 @@ class SaleOrderController extends PSIBaseController
   public function cancelConfirmSOBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_ORDER_CONFIRM)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
