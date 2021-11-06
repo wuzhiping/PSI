@@ -28,25 +28,34 @@ class SaleOrderController extends PSIBaseController
 
       $this->assign("title", "销售订单");
 
+      // 按钮权限：审核、取消审核
       $this->assign("pConfirm", $us->hasPermission(FIdConst::SALE_ORDER_CONFIRM) ? "1" : "0");
+      // 按钮权限：生成销售出库单
       $this->assign(
         "pGenWSBill",
         $us->hasPermission(FIdConst::SALE_ORDER_GEN_WSBILL) ? "1" : "0"
       );
+      // 按钮权限：生成采购订单
       $this->assign(
         "pGenPOBill",
         $us->hasPermission(FIdConst::SALE_ORDER_GEN_POBILL) ? "1" : "0"
       );
-
+      // 按钮权限：新建销售订单
       $this->assign("pAdd", $us->hasPermission(FIdConst::SALE_ORDER_ADD) ? "1" : "0");
+      // 按钮权限：编辑销售订单
       $this->assign("pEdit", $us->hasPermission(FIdConst::SALE_ORDER_EDIT) ? "1" : "0");
+      // 按钮权限：删除销售订单
       $this->assign("pDelete", $us->hasPermission(FIdConst::SALE_ORDER_DELETE) ? "1" : "0");
+      // 按钮权限：单据生成PDF
       $this->assign("pGenPDF", $us->hasPermission(FIdConst::SALE_ORDER_PDF) ? "1" : "0");
+      // 按钮权限：打印预览、直接打印
       $this->assign("pPrint", $us->hasPermission(FIdConst::SALE_ORDER_PRINT) ? "1" : "0");
+      // 按钮权限：关闭订单、取消订单关闭状态
       $this->assign(
         "pCloseBill",
         $us->hasPermission(FIdConst::SALE_ORDER_CLOSE_BILL) ? "1" : "0"
       );
+      // 按钮权限：新建或编辑销售订单时，录入物料弹出窗体中的新增物料按钮
       $this->assign("showAddGoodsButton", $us->hasPermission(FIdConst::GOODS_ADD) ? "1" : "0");
 
       $this->display();
