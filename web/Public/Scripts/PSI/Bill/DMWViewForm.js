@@ -12,7 +12,10 @@ Ext.define("PSI.Bill.DMWViewForm", {
     var me = this;
 
     Ext.apply(me, {
-      title: "查看成品委托生产入库单",
+      header: {
+        title: "<span style='font-size:160%'>查看成品委托生产入库单</span>",
+        height: 40
+      },
       modal: true,
       closable: false,
       onEsc: Ext.emptyFn,
