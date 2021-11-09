@@ -567,6 +567,14 @@ class PermissionDAO extends PSIBaseExDAO
       return $result;
     }
 
+    // 检查编码是否已经存在
+    $sql = "select count(*) as cnt from t_role where code = '%s' ";
+    $data = $db->query($sql, $code);
+    $cnt = $data[0]["cnt"];
+    if ($cnt > 0) {
+      return $this->bad("角色编码[{$code}]已经存在");
+    }
+
     $pid = explode(",", $permissionIdList);
     $doList = explode(",", $dataOrgList);
     $uid = explode(",", $userIdList);
@@ -649,6 +657,14 @@ class PermissionDAO extends PSIBaseExDAO
     $result = $this->checkParams($params);
     if ($result) {
       return $result;
+    }
+
+    // 检查编码是否已经存在
+    $sql = "select count(*) as cnt from t_role where code = '%s' and id <> '%s' ";
+    $data = $db->query($sql, $code, $id);
+    $cnt = $data[0]["cnt"];
+    if ($cnt > 0) {
+      return $this->bad("角色编码[{$code}]已经存在");
     }
 
     $pid = explode(",", $permissionIdList);
