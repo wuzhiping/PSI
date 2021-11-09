@@ -521,6 +521,10 @@ class PermissionDAO extends PSIBaseExDAO
       return $this->bad("角色名称不能为空");
     }
 
+    if ($this->isEmptyStringAfterTrim($code)) {
+      return $this->bad("角色编码不能为空");
+    }
+
     if ($this->stringBeyondLimit($name, 40)) {
       return $this->bad("角色名称长度不能超过40位");
     }
