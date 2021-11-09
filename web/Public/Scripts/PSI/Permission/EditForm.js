@@ -194,7 +194,7 @@ Ext.define("PSI.Permission.EditForm", {
             id: "editName",
             fieldLabel: "角色名称",
             allowBlank: false,
-            blankText: "没有输入名称",
+            blankText: "没有输入角色名称",
             beforeLabelTextTpl: PSI.Const.REQUIRED,
             name: "name",
             value: entity == null
@@ -203,6 +203,9 @@ Ext.define("PSI.Permission.EditForm", {
           }, {
             id: "editCode",
             fieldLabel: "角色编码",
+            blankText: "没有输入角色编码",
+            allowBlank: false,
+            beforeLabelTextTpl: PSI.Const.REQUIRED,
             name: "code",
             value: entity == null
               ? null
@@ -391,6 +394,14 @@ Ext.define("PSI.Permission.EditForm", {
     if (name == null || name == "") {
       me.showInfo("没有输入角色名称", function () {
         editName.focus();
+      });
+      return;
+    }
+    const editCode = Ext.getCmp("editCode");
+    const code = editCode.getValue();
+    if (code == null || code == "") {
+      me.showInfo("没有输入角色编码", function () {
+        editCode.focus();
       });
       return;
     }
