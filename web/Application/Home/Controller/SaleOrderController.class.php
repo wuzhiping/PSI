@@ -241,6 +241,13 @@ class SaleOrderController extends PSIBaseController
   public function changeSaleOrder()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      // TODO 新增一个单独的权限项，目前临时使用审核这个权限项
+      if (!$us->hasPermission(FIdConst::SALE_ORDER_CONFIRM)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "goodsCount" => I("post.goodsCount"),
@@ -258,6 +265,13 @@ class SaleOrderController extends PSIBaseController
   public function getSOBillDataAterChangeOrder()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      // TODO 新增一个单独的权限项，目前临时使用审核这个权限项
+      if (!$us->hasPermission(FIdConst::SALE_ORDER_CONFIRM)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
