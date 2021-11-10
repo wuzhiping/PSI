@@ -286,6 +286,12 @@ class SaleOrderController extends PSIBaseController
    */
   public function soBillPdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::SALE_ORDER_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
