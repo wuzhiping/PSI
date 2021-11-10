@@ -409,6 +409,12 @@ class SaleOrderController extends PSIBaseController
   public function genSOBillPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_ORDER_PRINT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
