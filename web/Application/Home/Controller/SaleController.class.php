@@ -241,6 +241,12 @@ class SaleController extends PSIBaseController
   public function genWSBillPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::WAREHOUSING_SALE_PRINT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
