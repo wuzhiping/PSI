@@ -79,7 +79,7 @@ class SaleController extends PSIBaseController
           die("没有权限");
         }
       }
-      
+
       $params = [
         "id" => I("post.id"),
         "sobillRef" => I("post.sobillRef")
@@ -96,6 +96,21 @@ class SaleController extends PSIBaseController
   public function editWSBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      $adding = I("post.adding");
+      if ($adding == "1") {
+        // 新建
+        if (!$us->hasPermission(FIdConst::WAREHOUSING_SALE_ADD)) {
+          die("没有权限");
+        }
+      } else {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::WAREHOUSING_SALE_EDIT)) {
+          die("没有权限");
+        }
+      }
+
       $params = [
         "jsonStr" => I("post.jsonStr"),
         "checkInv" => I("post.checkInv")
