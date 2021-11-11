@@ -127,6 +127,12 @@ class SaleController extends PSIBaseController
   public function wsbillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::WAREHOUSING_SALE)) {
+        die("没有权限");
+      }
+
       $params = [
         "billStatus" => I("post.billStatus"),
         "ref" => I("post.ref"),
@@ -153,6 +159,12 @@ class SaleController extends PSIBaseController
   public function wsBillDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::WAREHOUSING_SALE)) {
+        die("没有权限");
+      }
+
       $params = [
         "billId" => I("post.billId")
       ];
