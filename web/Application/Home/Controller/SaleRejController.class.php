@@ -28,17 +28,23 @@ class SaleRejController extends PSIBaseController
 
       $this->assign("title", "销售退货入库");
 
+      // 按钮权限：新建销售退货入库单
       $this->assign("pAdd", $us->hasPermission(FIdConst::SALE_REJECTION_ADD) ? "1" : "0");
+      // 按钮权限：编辑销售退货入库单
       $this->assign("pEdit", $us->hasPermission(FIdConst::SALE_REJECTION_EDIT) ? "1" : "0");
+      // 按钮权限：删除销售退货入库单
       $this->assign(
         "pDelete",
         $us->hasPermission(FIdConst::SALE_REJECTION_DELETE) ? "1" : "0"
       );
+      //  按钮权限：提交入库
       $this->assign(
         "pCommit",
         $us->hasPermission(FIdConst::SALE_REJECTION_COMMIT) ? "1" : "0"
       );
+      // 按钮权限：单据生成PDF
       $this->assign("pGenPDF", $us->hasPermission(FIdConst::SALE_REJECTION_PDF) ? "1" : "0");
+      // 按钮权限：打印预览、直接打印
       $this->assign("pPrint", $us->hasPermission(FIdConst::SALE_REJECTION_PRINT) ? "1" : "0");
 
       $this->display();
