@@ -1,5 +1,5 @@
 /**
- * 自定义字段 - 商品分类字段
+ * 自定义字段 - 物料分类字段
  */
 Ext.define("PSI.Goods.GoodsCategoryField", {
   extend: "Ext.form.field.Trigger",
@@ -89,7 +89,7 @@ Ext.define("PSI.Goods.GoodsCategoryField", {
     this.tree = orgTree;
 
     var wnd = Ext.create("Ext.window.Window", {
-      title: "选择商品分类",
+      title: "选择物料分类",
       header: false,
       border: 0,
       width: 400,
