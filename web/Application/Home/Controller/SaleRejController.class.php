@@ -223,6 +223,11 @@ class SaleRejController extends PSIBaseController
   public function deleteSRBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::SALE_REJECTION_DELETE)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
