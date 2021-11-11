@@ -420,6 +420,7 @@ Ext.define("PSI.Sale.WSEditForm", {
       url: PSI.Const.BASE_URL + "Home/Sale/editWSBill",
       method: "POST",
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData(),
         checkInv: 1
       },
