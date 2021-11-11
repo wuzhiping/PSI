@@ -221,6 +221,12 @@ class SaleController extends PSIBaseController
    */
   public function pdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::WAREHOUSING_SALE_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
