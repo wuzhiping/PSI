@@ -304,6 +304,11 @@ class SaleRejController extends PSIBaseController
   public function genSRBillPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::SALE_REJECTION_PDF)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
