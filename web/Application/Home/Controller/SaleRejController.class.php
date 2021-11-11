@@ -58,6 +58,12 @@ class SaleRejController extends PSIBaseController
   public function srbillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_REJECTION)) {
+        die("没有权限");
+      }
+
       $params = [
         "billStatus" => I("post.billStatus"),
         "ref" => I("post.ref"),
@@ -84,6 +90,12 @@ class SaleRejController extends PSIBaseController
   public function srBillDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::SALE_REJECTION)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.billId")
       ];
