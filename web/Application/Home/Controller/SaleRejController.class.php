@@ -201,6 +201,13 @@ class SaleRejController extends PSIBaseController
   public function getWSBillInfoForSRBill()
   {
     if (IS_POST) {
+      // 只有在新建销售退货入库单的时候，才能选择销售出库单
+      // 所以用的是新建这个权限项
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::SALE_REJECTION_ADD)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
