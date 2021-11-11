@@ -257,13 +257,16 @@ class SaleRejController extends PSIBaseController
     }
   }
 
-
-
   /**
    * 销售退货入库单生成pdf文件
    */
   public function srBillPdf()
   {
+    $us = new UserService();
+    if (!$us->hasPermission(FIdConst::SALE_REJECTION_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
