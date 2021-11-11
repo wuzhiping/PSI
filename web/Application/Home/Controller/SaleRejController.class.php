@@ -171,6 +171,21 @@ class SaleRejController extends PSIBaseController
   public function editSRBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      $adding = I("post.adding");
+      if ($adding == "1") {
+        // 新建
+        if (!$us->hasPermission(FIdConst::SALE_REJECTION_ADD)) {
+          die("没有权限");
+        }
+      } else {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::SALE_REJECTION_EDIT)) {
+          die("没有权限");
+        }
+      }
+
       $params = [
         "jsonStr" => I("post.jsonStr")
       ];
