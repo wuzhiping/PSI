@@ -25,11 +25,17 @@ class WSPController extends PSIBaseController
     if ($us->hasPermission(FIdConst::WSP)) {
       $this->initVar();
 
+      // 按钮权限：新建拆分单
       $this->assign("pAdd", $us->hasPermission(FIdConst::WSP_ADD) ? "1" : "0");
+      // 按钮权限：编辑拆分单
       $this->assign("pEdit", $us->hasPermission(FIdConst::WSP_EDIT) ? "1" : "0");
+      // 按钮权限：删除拆分单
       $this->assign("pDelete", $us->hasPermission(FIdConst::WSP_DELETE) ? "1" : "0");
+      // 按钮权限：提交
       $this->assign("pCommit", $us->hasPermission(FIdConst::WSP_COMMIT) ? "1" : "0");
+      // 按钮权限：单据生成PDF
       $this->assign("pGenPDF", $us->hasPermission(FIdConst::WSP_PDF) ? "1" : "0");
+      // 按钮权限：打印预览、直接打印
       $this->assign("pPrint", $us->hasPermission(FIdConst::WSP_PRINT) ? "1" : "0");
 
       $this->assign("title", "存货拆分");
