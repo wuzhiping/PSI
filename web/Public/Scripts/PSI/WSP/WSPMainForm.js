@@ -716,7 +716,7 @@ Ext.define("PSI.WSP.WSPMainForm", {
       cls: "PSI",
       header: {
         height: 30,
-        title: me.formatGridHeaderTitle("BOM")
+        title: me.formatGridHeaderTitle("静态BOM")
       },
       store: store,
       rootVisible: false,
@@ -872,7 +872,7 @@ Ext.define("PSI.WSP.WSPMainForm", {
 
   onDetailGridSelect: function () {
     var me = this;
-    me.getGoodsBOMGrid().setTitle(me.formatGridHeaderTitle("BOM"));
+    me.getGoodsBOMGrid().setTitle(me.formatGridHeaderTitle("静态BOM"));
 
     me.refreshGoodsBomGrid();
   },
