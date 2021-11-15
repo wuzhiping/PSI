@@ -52,6 +52,12 @@ class WSPController extends PSIBaseController
   public function goodsBOM()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::WSP)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -67,6 +73,21 @@ class WSPController extends PSIBaseController
   public function wspBillInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      $id = I("post.id");
+      if ($id) {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::WSP_EDIT)) {
+          die("没有权限");
+        }
+      } else {
+        // 新建
+        if (!$us->hasPermission(FIdConst::WSP_ADD)) {
+          die("没有权限");
+        }
+      }
+
       $params = [
         "id" => I("post.id")
       ];
