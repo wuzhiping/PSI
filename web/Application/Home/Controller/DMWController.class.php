@@ -193,6 +193,11 @@ class DMWController extends PSIBaseController
   public function commitDMWBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::DMW_COMMIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
