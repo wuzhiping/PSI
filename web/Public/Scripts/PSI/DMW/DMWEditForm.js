@@ -361,6 +361,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
     var r = {
       url: me.URL("Home/DMW/editDMWBill"),
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
