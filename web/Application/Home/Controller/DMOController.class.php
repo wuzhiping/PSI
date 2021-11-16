@@ -68,12 +68,12 @@ class DMOController extends PSIBaseController
       $id = I("post.id");
       if ($id) {
         // 编辑
-        if ($us->hasPermission(FIdConst::DMO_EDIT)) {
+        if (!$us->hasPermission(FIdConst::DMO_EDIT)) {
           die("没有权限");
         }
       } else {
         // 新建
-        if ($us->hasPermission(FIdConst::DMO_ADD)) {
+        if (!$us->hasPermission(FIdConst::DMO_ADD)) {
           die("没有权限");
         }
       }
