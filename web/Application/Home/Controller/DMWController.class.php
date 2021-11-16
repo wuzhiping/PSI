@@ -51,6 +51,21 @@ class DMWController extends PSIBaseController
   public function dmwBillInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      $id = I("post.id");
+      if ($id) {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::DMW_EDIT)) {
+          die("没有权限");
+        }
+      } else {
+        // 新建
+        if (!$us->hasPermission(FIdConst::DMW_ADD)) {
+          die("没有权限");
+        }
+      }
+
       $params = [
         "id" => I("post.id"),
         "dmobillRef" => I("post.dmobillRef")
