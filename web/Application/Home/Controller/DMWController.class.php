@@ -174,6 +174,11 @@ class DMWController extends PSIBaseController
    */
   public function dmwBillPdf()
   {
+    $us = new UserService();
+    if (!$us->hasPermission(FIdConst::DMW_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
