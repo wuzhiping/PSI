@@ -201,6 +201,12 @@ class WSPController extends PSIBaseController
   public function deleteWSPBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::WSP_DELETE)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
