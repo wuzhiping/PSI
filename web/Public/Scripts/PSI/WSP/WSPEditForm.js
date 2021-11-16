@@ -304,6 +304,7 @@ Ext.define("PSI.WSP.WSPEditForm", {
       url: PSI.Const.BASE_URL + "Home/WSP/editWSPBill",
       method: "POST",
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
