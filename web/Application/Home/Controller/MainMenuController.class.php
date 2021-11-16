@@ -243,11 +243,11 @@ class MainMenuController extends PSIBaseController
         break;
       case FIdConst::DMO:
         // 成品委托生产订单
-        redirect(__ROOT__ . "/Home/DM/dmobillIndex");
+        redirect(__ROOT__ . "/Home/DMO/dmobillIndex");
         break;
       case FIdConst::DMW:
         // 成品委托生产入库
-        redirect(__ROOT__ . "/Home/DM/dmwbillIndex");
+        redirect(__ROOT__ . "/Home/DMW/dmwbillIndex");
         break;
       case FIdConst::PURCHASE_DETAIL_REPORT:
         // 采购入库明细表
