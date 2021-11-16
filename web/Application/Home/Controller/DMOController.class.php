@@ -25,18 +25,28 @@ class DMOController extends PSIBaseController
     if ($us->hasPermission(FIdConst::DMO)) {
       $this->initVar();
 
+      // 按钮权限：新建成品委托生产订单
       $this->assign("pAdd", $us->hasPermission(FIdConst::DMO_ADD) ? "1" : "0");
+      // 按钮权限：编辑成品委托生产订单
       $this->assign("pEdit", $us->hasPermission(FIdConst::DMO_EDIT) ? "1" : "0");
+      // 按钮权限：删除成品委托生产订单
       $this->assign("pDelete", $us->hasPermission(FIdConst::DMO_DELETE) ? "1" : "0");
+      // 按钮权限：审核、取消审核
       $this->assign("pCommit", $us->hasPermission(FIdConst::DMO_COMMIT) ? "1" : "0");
+      // 按钮权限：生成成品委托生产入库单
       $this->assign("pGenDMWBill", $us->hasPermission(FIdConst::DMO_GEN_DMW_BILL) ? "1" : "0");
+      // 按钮权限：新建或编辑订单的时候，录入物料的弹出窗口新建物料按钮的权限
       $this->assign("showAddGoodsButton", $us->hasPermission(FIdConst::GOODS_ADD) ? "1" : "0");
+      // 按钮权限：新建或编辑订单的时候，录入工厂的弹出窗口中新建工厂按钮的权限
       $this->assign(
         "showAddFactoryButton",
         $us->hasPermission(FIdConst::FACTORY_ADD) ? "1" : "0"
       );
+      // 按钮权限：关闭订单、取消订单关闭状态
       $this->assign("pCloseBill", $us->hasPermission(FIdConst::DMO_CLOSE_BILL) ? "1" : "0");
+      // 按钮权限：单据生成PDF
       $this->assign("pGenPDF", $us->hasPermission(FIdConst::DMO_PDF) ? "1" : "0");
+      // 按钮权限：打印预览、直接打印
       $this->assign("pPrint", $us->hasPermission(FIdConst::DMO_PRINT) ? "1" : "0");
 
       $this->assign("title", "成品委托生产订单");
