@@ -242,6 +242,12 @@ class WSPController extends PSIBaseController
    */
   public function wspBillPdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::WSP_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
@@ -256,6 +262,12 @@ class WSPController extends PSIBaseController
   public function genWSPBillPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::WSP_PRINT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
