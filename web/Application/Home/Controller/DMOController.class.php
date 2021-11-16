@@ -189,8 +189,7 @@ class DMOController extends PSIBaseController
     if (IS_POST) {
       $us = new UserService();
       if (!$us->hasPermission(FIdConst::DMO_DELETE)) {
-        $this->ajaxReturn($this->noPermission("删除成品委托生产订单"));
-        return;
+        die("没有权限");
       }
 
       $params = [
