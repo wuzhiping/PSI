@@ -159,6 +159,12 @@ class WSPController extends PSIBaseController
   public function wspBillDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::WSP)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -174,6 +180,12 @@ class WSPController extends PSIBaseController
   public function wspBillDetailExList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::WSP)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
