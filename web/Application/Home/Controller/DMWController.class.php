@@ -82,6 +82,21 @@ class DMWController extends PSIBaseController
   public function editDMWBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      $adding = I("post.adding");
+      if ($adding == "1") {
+        // 新建
+        if (!$us->hasPermission(FIdConst::DMW_ADD)) {
+          die("没有权限");
+        }
+      } else {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::DMW_EDIT)) {
+          die("没有权限");
+        }
+      }
+
       $json = I("post.jsonStr");
       $service = new DMWBillService();
       $this->ajaxReturn($service->editDMWBill($json));
