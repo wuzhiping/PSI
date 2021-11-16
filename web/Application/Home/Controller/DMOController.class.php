@@ -286,6 +286,11 @@ class DMOController extends PSIBaseController
    */
   public function dmoBillPdf()
   {
+    $us = new UserService();
+    if (!$us->hasPermission(FIdConst::DMO_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
