@@ -298,7 +298,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
         actionMethods: {
           read: "POST"
         },
-        url: me.URL("Home/DM/dmobillList"),
+        url: me.URL("Home/DMO/dmobillList"),
         reader: {
           root: 'dataList',
           totalProperty: 'totalCount'
@@ -688,7 +688,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
       var el = Ext.getBody();
       el.mask("正在删除中...");
       var r = {
-        url: me.URL("Home/DM/deleteDMOBill"),
+        url: me.URL("Home/DMO/deleteDMOBill"),
         params: {
           id: bill.get("id")
         },
@@ -763,7 +763,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
     el && el.mask(PSI.Const.LOADING);
 
     var r = {
-      url: me.URL("Home/DM/dmoBillDetailList"),
+      url: me.URL("Home/DMO/dmoBillDetailList"),
       params: {
         id: bill.get("id")
       },
@@ -820,7 +820,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/DM/commitDMOBill"),
+        url: me.URL("Home/DMO/commitDMOBill"),
         params: {
           id: id
         },
@@ -866,7 +866,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/DM/cancelConfirmDMOBill"),
+        url: me.URL("Home/DMO/cancelConfirmDMOBill"),
         params: {
           id: id
         },
@@ -998,7 +998,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
     }
     var bill = item[0];
 
-    var url = me.URL("Home/DM/dmoBillPdf?ref=" + bill.get("ref"));
+    var url = me.URL("Home/DMO/dmoBillPdf?ref=" + bill.get("ref"));
     window.open(url);
   },
 
@@ -1125,7 +1125,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
     }
 
     var r = {
-      url: me.URL("Home/DM/dmoBillDMWBillList"),
+      url: me.URL("Home/DMO/dmoBillDMWBillList"),
       params: {
         id: bill.get("id")
       },
@@ -1164,7 +1164,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/DM/closeDMOBill"),
+        url: me.URL("Home/DMO/closeDMOBill"),
         params: {
           id: id
         },
@@ -1206,7 +1206,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/DM/cancelClosedDMOBill"),
+        url: me.URL("Home/DMO/cancelClosedDMOBill"),
         params: {
           id: id
         },
@@ -1255,7 +1255,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/DM/genDMOBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/DMO/genDMOBillPrintPage",
       params: {
         id: bill.get("id")
       },
@@ -1314,7 +1314,7 @@ Ext.define("PSI.DMO.DMOMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/DM/genDMOBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/DMO/genDMOBillPrintPage",
       params: {
         id: bill.get("id")
       },

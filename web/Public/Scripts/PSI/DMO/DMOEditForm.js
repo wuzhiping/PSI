@@ -303,7 +303,7 @@ Ext.define("PSI.DMO.DMOEditForm", {
     var el = me.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
-      url: me.URL("Home/DM/dmoBillInfo"),
+      url: me.URL("Home/DMO/dmoBillInfo"),
       params: {
         id: Ext.getCmp("hiddenId").getValue()
       },
@@ -368,7 +368,7 @@ Ext.define("PSI.DMO.DMOEditForm", {
     var me = this;
     Ext.getBody().mask("正在保存中...");
     me.ajax({
-      url: me.URL("Home/DM/editDMOBill"),
+      url: me.URL("Home/DMO/editDMOBill"),
       params: {
         jsonStr: me.getSaveData()
       },
