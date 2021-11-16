@@ -24,11 +24,17 @@ class DMWController extends PSIBaseController
     if ($us->hasPermission(FIdConst::DMW)) {
       $this->initVar();
 
+      // 按钮权限：新建成品委托生产入库单
       $this->assign("pAdd", $us->hasPermission(FIdConst::DMW_ADD) ? "1" : "0");
+      // 按钮权限：编辑成品委托生产入库单
       $this->assign("pEdit", $us->hasPermission(FIdConst::DMW_EDIT) ? "1" : "0");
+      // 按钮权限：删除成品委托生产入库单
       $this->assign("pDelete", $us->hasPermission(FIdConst::DMW_DELETE) ? "1" : "0");
+      // 按钮权限：提交入库
       $this->assign("pCommit", $us->hasPermission(FIdConst::DMW_COMMIT) ? "1" : "0");
+      // 按钮权限：单据生成PDF
       $this->assign("pGenPDF", $us->hasPermission(FIdConst::DMW_PDF) ? "1" : "0");
+      // 按钮权限：打印预览、直接打印
       $this->assign("pPrint", $us->hasPermission(FIdConst::DMW_PRINT) ? "1" : "0");
 
       $this->assign("title", "成品委托生产入库");
