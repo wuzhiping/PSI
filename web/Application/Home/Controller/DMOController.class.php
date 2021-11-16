@@ -93,6 +93,21 @@ class DMOController extends PSIBaseController
   public function editDMOBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      $adding = I("post.adding");
+      if ($adding == "1") {
+        // 新建
+        if (!$us->hasPermission(FIdConst::DMO_ADD)) {
+          die("没有权限");
+        }
+      } else {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::DMO_EDIT)) {
+          die("没有权限");
+        }
+      }
+
       $json = I("post.jsonStr");
       $service = new DMOBillService();
       $this->ajaxReturn($service->editDMOBill($json));
