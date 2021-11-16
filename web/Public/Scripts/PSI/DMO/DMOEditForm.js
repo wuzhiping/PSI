@@ -370,6 +370,7 @@ Ext.define("PSI.DMO.DMOEditForm", {
     me.ajax({
       url: me.URL("Home/DMO/editDMOBill"),
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
