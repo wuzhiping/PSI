@@ -147,6 +147,11 @@ class DMOController extends PSIBaseController
   public function dmoBillDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::DMO)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -162,6 +167,11 @@ class DMOController extends PSIBaseController
   public function dmoBillDMWBillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::DMO)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
