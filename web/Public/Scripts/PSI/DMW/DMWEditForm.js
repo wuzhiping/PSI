@@ -263,7 +263,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
     var el = me.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     me.ajax({
-      url: me.URL("Home/DM/dmwBillInfo"),
+      url: me.URL("Home/DMW/dmwBillInfo"),
       params: {
         id: me.editHiddenId.getValue(),
         dmobillRef: me.getDmobillRef()
@@ -359,7 +359,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
     var me = this;
     Ext.getBody().mask("正在保存中...");
     var r = {
-      url: me.URL("Home/DM/editDMWBill"),
+      url: me.URL("Home/DMW/editDMWBill"),
       params: {
         jsonStr: me.getSaveData()
       },

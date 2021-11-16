@@ -262,7 +262,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
         actionMethods: {
           read: "POST"
         },
-        url: me.URL("Home/DM/dmwbillList"),
+        url: me.URL("Home/DMW/dmwbillList"),
         reader: {
           root: 'dataList',
           totalProperty: 'totalCount'
@@ -608,7 +608,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
       el.mask("正在删除中...");
 
       var r = {
-        url: me.URL("Home/DM/deleteDMWBill"),
+        url: me.URL("Home/DMW/deleteDMWBill"),
         params: {
           id: bill.get("id")
         },
@@ -677,7 +677,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
     var el = grid.getEl();
     el.mask(PSI.Const.LOADING);
     me.ajax({
-      url: me.URL("Home/DM/dmwBillDetailList"),
+      url: me.URL("Home/DMW/dmwBillDetailList"),
       params: {
         id: bill.get("id")
       },
@@ -732,7 +732,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
       var el = Ext.getBody();
       el.mask("正在提交中...");
       var r = {
-        url: me.URL("Home/DM/commitDMWBill"),
+        url: me.URL("Home/DMW/commitDMWBill"),
         params: {
           id: id
         },
@@ -844,7 +844,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
     }
     var bill = item[0];
 
-    var url = me.URL("Home/DM/dmwBillPdf?ref=" + bill.get("ref"));
+    var url = me.URL("Home/DMW/dmwBillPdf?ref=" + bill.get("ref"));
     window.open(url);
   },
 
@@ -872,7 +872,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/DM/genDMWBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/DMW/genDMWBillPrintPage",
       params: {
         id: bill.get("id")
       },
@@ -931,7 +931,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
     var el = Ext.getBody();
     el.mask("数据加载中...");
     var r = {
-      url: PSI.Const.BASE_URL + "Home/DM/genDMWBillPrintPage",
+      url: PSI.Const.BASE_URL + "Home/DMW/genDMWBillPrintPage",
       params: {
         id: bill.get("id")
       },
