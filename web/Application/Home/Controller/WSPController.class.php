@@ -130,6 +130,12 @@ class WSPController extends PSIBaseController
   public function wspbillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::WSP)) {
+        die("没有权限");
+      }
+
       $params = [
         "billStatus" => I("post.billStatus"),
         "ref" => I("post.ref"),
