@@ -480,7 +480,7 @@ Ext.define("PSI.WSP.WSPMainForm", {
     }
     var bill = item[0];
 
-    var commited = parseInt(bill.get("billStatus")) == 1;
+    var commited = parseInt(bill.get("billStatus")) == 1000;
 
     var buttonEdit = Ext.getCmp("buttonEdit");
     buttonEdit.setDisabled(false);
