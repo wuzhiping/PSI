@@ -109,6 +109,11 @@ class DMWController extends PSIBaseController
   public function dmwbillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::DMW)) {
+        die("没有权限");
+      }
+
       $ps = new DMWBillService();
       $params = [
         "billStatus" => I("post.billStatus"),
@@ -132,6 +137,11 @@ class DMWController extends PSIBaseController
   public function dmwBillDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::DMW)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
