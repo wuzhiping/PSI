@@ -27,17 +27,23 @@ class InvCheckController extends PSIBaseController
 
       $this->assign("title", "库存盘点");
 
+      // 按钮权限：新建盘点单
       $this->assign("pAdd", $us->hasPermission(FIdConst::INVENTORY_CHECK_ADD) ? "1" : "0");
+      // 按钮权限：编辑盘点单
       $this->assign("pEdit", $us->hasPermission(FIdConst::INVENTORY_CHECK_EDIT) ? "1" : "0");
+      // 按钮权限：删除盘点单
       $this->assign(
         "pDelete",
         $us->hasPermission(FIdConst::INVENTORY_CHECK_DELETE) ? "1" : "0"
       );
+      // 按钮权限：提交盘点单
       $this->assign(
         "pCommit",
         $us->hasPermission(FIdConst::INVENTORY_CHECK_COMMIT) ? "1" : "0"
       );
+      // 按钮权限：单据生成PDF
       $this->assign("pGenPDF", $us->hasPermission(FIdConst::INVENTORY_CHECK_PDF) ? "1" : "0");
+      // 按钮权限：打印预览、直接打印
       $this->assign("pPrint", $us->hasPermission(FIdConst::INVENTORY_CHECK_PRINT) ? "1" : "0");
 
       $this->display();
