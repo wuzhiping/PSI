@@ -275,6 +275,7 @@ Ext.define("PSI.InvTransfer.ITEditForm", {
       url: PSI.Const.BASE_URL + "Home/InvTransfer/editITBill",
       method: "POST",
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
