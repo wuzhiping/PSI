@@ -204,6 +204,12 @@ class InvTransferController extends PSIBaseController
   public function commitITBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_TRANSFER_COMMIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
