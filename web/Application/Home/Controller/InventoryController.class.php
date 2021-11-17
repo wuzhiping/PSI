@@ -62,6 +62,12 @@ class InventoryController extends PSIBaseController
   public function warehouseList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_QUERY)) {
+        die("没有权限");
+      }
+      
       $is = new InventoryService();
       $this->ajaxReturn($is->warehouseList());
     }
