@@ -7,7 +7,7 @@ use Home\Service\ITBillService;
 use Home\Service\UserService;
 
 /**
- * 库间调拨
+ * 库间调拨 Controller
  *
  * @author 李静波
  *        
@@ -27,23 +27,29 @@ class InvTransferController extends PSIBaseController
 
       $this->assign("title", "库间调拨");
 
+      // 按钮权限：新建调拨单
       $this->assign("pAdd", $us->hasPermission(FIdConst::INVENTORY_TRANSFER_ADD) ? "1" : "0");
+      // 按钮权限：编辑调拨单
       $this->assign(
         "pEdit",
         $us->hasPermission(FIdConst::INVENTORY_TRANSFER_EDIT) ? "1" : "0"
       );
+      // 按钮权限：删除调拨单
       $this->assign(
         "pDelete",
         $us->hasPermission(FIdConst::INVENTORY_TRANSFER_DELETE) ? "1" : "0"
       );
+      // 按钮权限：提交调拨单
       $this->assign(
         "pCommit",
         $us->hasPermission(FIdConst::INVENTORY_TRANSFER_COMMIT) ? "1" : "0"
       );
+      // 按钮权限：单据生成PDF
       $this->assign(
         "pGenPDF",
         $us->hasPermission(FIdConst::INVENTORY_TRANSFER_PDF) ? "1" : "0"
       );
+      // 按钮权限：打印预览、直接打印
       $this->assign(
         "pPrint",
         $us->hasPermission(FIdConst::INVENTORY_TRANSFER_PRINT) ? "1" : "0"
