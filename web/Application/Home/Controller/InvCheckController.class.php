@@ -58,6 +58,12 @@ class InvCheckController extends PSIBaseController
   public function icbillList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if ($us->hasPermission(FIdConst::INVENTORY_CHECK)) {
+        die("没有权限");
+      }
+
       $params = [
         "billStatus" => I("post.billStatus"),
         "ref" => I("post.ref"),
