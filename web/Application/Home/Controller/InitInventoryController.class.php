@@ -2,7 +2,9 @@
 
 namespace Home\Controller;
 
+use Home\Common\FIdConst;
 use Home\Service\InitInventoryService;
+use Home\Service\UserService;
 
 /**
  * 库存建账Controller
@@ -18,7 +20,14 @@ class InitInventoryController extends PSIBaseController
    */
   public function warehouseList()
   {
+
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_INIT)) {
+        die("没有权限");
+      }
+
       $is = new InitInventoryService();
       $this->ajaxReturn($is->warehouseList());
     }
@@ -30,6 +39,12 @@ class InitInventoryController extends PSIBaseController
   public function initInfoList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_INIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "warehouseId" => I("post.warehouseId"),
         "page" => I("post.page"),
@@ -47,6 +62,12 @@ class InitInventoryController extends PSIBaseController
   public function goodsCategoryList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_INIT)) {
+        die("没有权限");
+      }
+
       $is = new InitInventoryService();
       $this->ajaxReturn($is->goodsCategoryList());
     }
@@ -58,6 +79,12 @@ class InitInventoryController extends PSIBaseController
   public function goodsList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_INIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "warehouseId" => I("post.warehouseId"),
         "categoryId" => I("post.categoryId"),
@@ -76,6 +103,12 @@ class InitInventoryController extends PSIBaseController
   public function commitInitInventoryGoods()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_INIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "warehouseId" => I("post.warehouseId"),
         "goodsId" => I("post.goodsId"),
@@ -93,6 +126,12 @@ class InitInventoryController extends PSIBaseController
   public function finish()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_INIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "warehouseId" => I("post.warehouseId")
       ];
@@ -107,6 +146,12 @@ class InitInventoryController extends PSIBaseController
   public function cancel()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_INIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "warehouseId" => I("post.warehouseId")
       ];
