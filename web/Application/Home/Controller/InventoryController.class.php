@@ -67,7 +67,7 @@ class InventoryController extends PSIBaseController
       if (!$us->hasPermission(FIdConst::INVENTORY_QUERY)) {
         die("没有权限");
       }
-      
+
       $is = new InventoryService();
       $this->ajaxReturn($is->warehouseList());
     }
@@ -79,6 +79,12 @@ class InventoryController extends PSIBaseController
   public function inventoryList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_QUERY)) {
+        die("没有权限");
+      }
+
       $params = [
         "warehouseId" => I("post.warehouseId"),
         "code" => I("post.code"),
@@ -101,6 +107,12 @@ class InventoryController extends PSIBaseController
   public function inventoryDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_QUERY)) {
+        die("没有权限");
+      }
+
       $params = [
         "warehouseId" => I("post.warehouseId"),
         "goodsId" => I("post.goodsId"),
@@ -122,18 +134,18 @@ class InventoryController extends PSIBaseController
   {
     $us = new UserService();
 
-    if ($us->hasPermission(FIdConst::INVENTORY_QUERY_EXPORT_EXCEL)) {
-      $params = [
-        "code" => I("get.code"),
-        "name" => I("get.name"),
-        "spec" => I("get.spec"),
-        "brandId" => I("get.brandId"),
-        "hasInv" => I("get.hasInv"),
-      ];
-      $service = new InventoryService();
-      $service->exportExcel($params);
-    } else {
-      echo "没有导出Excel的权限";
+    if (!$us->hasPermission(FIdConst::INVENTORY_QUERY_EXPORT_EXCEL)) {
+      die("没有权限");
     }
+
+    $params = [
+      "code" => I("get.code"),
+      "name" => I("get.name"),
+      "spec" => I("get.spec"),
+      "brandId" => I("get.brandId"),
+      "hasInv" => I("get.hasInv"),
+    ];
+    $service = new InventoryService();
+    $service->exportExcel($params);
   }
 }
