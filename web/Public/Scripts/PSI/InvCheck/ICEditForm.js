@@ -254,6 +254,7 @@ Ext.define("PSI.InvCheck.ICEditForm", {
       url: PSI.Const.BASE_URL + "Home/InvCheck/editICBill",
       method: "POST",
       params: {
+        adding: me.adding ? "1" : "0",
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
