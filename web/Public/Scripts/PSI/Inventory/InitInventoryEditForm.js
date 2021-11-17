@@ -28,7 +28,10 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
       + warehouse.get("name") + "</span></h2>";
 
     Ext.apply(me, {
-      title: PSI.Const.PROD_NAME,
+      header: {
+        title: "<span style='font-size:160%'>录入建账数据</span>",
+        height: 40
+      },
       modal: true,
       onEsc: Ext.emptyFn,
       width: 1000,
