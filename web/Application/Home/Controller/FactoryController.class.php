@@ -201,10 +201,17 @@ class FactoryController extends PSIBaseController
   {
     if (IS_POST) {
       $us = new UserService();
-      $f1 = $us->hasPermission(FIdConst::FACTORY_ADD);
-      $f2 = $us->hasPermission(FIdConst::FACTORY_EDIT);
-      if (!($f1 || $f2)) {
-        die("没有权限");
+      $id = I("post.id");
+      if ($id) {
+        // 编辑
+        if (!$us->hasPermission(FIdConst::FACTORY_EDIT)) {
+          die("没有权限");
+        }
+      } else {
+        // 新建
+        if (!$us->hasPermission(FIdConst::FACTORY_ADD)) {
+          die("没有权限");
+        }
       }
 
       $params = [
