@@ -213,6 +213,12 @@ class InvCheckController extends PSIBaseController
    */
   public function pdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::INVENTORY_CHECK_PDF)) {
+      die("没有权限");
+    }
+
     $params = [
       "ref" => I("get.ref")
     ];
@@ -227,6 +233,12 @@ class InvCheckController extends PSIBaseController
   public function genICBillPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_CHECK_PRINT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
