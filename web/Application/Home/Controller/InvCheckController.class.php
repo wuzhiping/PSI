@@ -60,7 +60,7 @@ class InvCheckController extends PSIBaseController
     if (IS_POST) {
       $us = new UserService();
 
-      if ($us->hasPermission(FIdConst::INVENTORY_CHECK)) {
+      if (!$us->hasPermission(FIdConst::INVENTORY_CHECK)) {
         die("没有权限");
       }
 
