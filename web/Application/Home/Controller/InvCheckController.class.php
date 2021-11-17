@@ -170,6 +170,12 @@ class InvCheckController extends PSIBaseController
   public function deleteICBill()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_CHECK_DELETE)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
