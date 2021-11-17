@@ -160,6 +160,12 @@ class InvTransferController extends PSIBaseController
   public function itBillDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::INVENTORY_TRANSFER)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
