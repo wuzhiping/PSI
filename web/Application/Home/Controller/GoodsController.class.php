@@ -132,6 +132,12 @@ class GoodsController extends PSIBaseController
   public function editUnit()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GOODS_UNIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "name" => I("post.name"),
@@ -151,6 +157,12 @@ class GoodsController extends PSIBaseController
   public function deleteUnit()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GOODS_UNIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
