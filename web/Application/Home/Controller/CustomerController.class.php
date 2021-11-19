@@ -317,6 +317,21 @@ class CustomerController extends PSIBaseController
   public function priceSystemList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      // id: 客户分类id
+      $id = I("post.id");
+      if ($id) {
+        //编辑
+        if (!$us->hasPermission(FIdConst::CUSTOMER_CATEGORY_EDIT)) {
+          die("没有权限");
+        }
+      } else {
+        // 新建
+        if (!$us->hasPermission(FIdConst::CUSTOMER_CATEGORY_ADD)) {
+          die("没有权限");
+        }
+      }
+
       $params = [
         "id" => I("post.id")
       ];
