@@ -30,21 +30,28 @@ class CustomerController extends PSIBaseController
 
       $this->assign("title", "客户资料");
 
+      // 按钮权限：新建客户分类
       $this->assign(
         "pAddCategory",
         $us->hasPermission(FIdConst::CUSTOMER_CATEGORY_ADD) ? 1 : 0
       );
+      // 按钮权限：编辑客户分类
       $this->assign(
         "pEditCategory",
         $us->hasPermission(FIdConst::CUSTOMER_CATEGORY_EDIT) ? 1 : 0
       );
+      // 按钮权限：删除客户分类
       $this->assign(
         "pDeleteCategory",
         $us->hasPermission(FIdConst::CUSTOMER_CATEGORY_DELETE) ? 1 : 0
       );
+      // 按钮权限：新建客户
       $this->assign("pAddCustomer", $us->hasPermission(FIdConst::CUSTOMER_ADD) ? 1 : 0);
+      // 按钮权限：编辑客户
       $this->assign("pEditCustomer", $us->hasPermission(FIdConst::CUSTOMER_EDIT) ? 1 : 0);
+      // 按钮权限：删除客户
       $this->assign("pDeleteCustomer", $us->hasPermission(FIdConst::CUSTOMER_DELETE) ? 1 : 0);
+      // 按钮权限：导入客户资料
       $this->assign("pImportCustomer", $us->hasPermission(FIdConst::CUSTOMER_IMPORT) ? 1 : 0);
 
       $this->display();
