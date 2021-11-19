@@ -232,6 +232,11 @@ class CustomerController extends PSIBaseController
   public function queryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::CUSTOMER_BILL)) {
+        die("没有权限");
+      }
+
       $params = [
         "queryKey" => I("post.queryKey")
       ];
