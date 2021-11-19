@@ -113,6 +113,12 @@ class GoodsController extends PSIBaseController
   public function allUnits()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GOODS_UNIT)) {
+        die("没有权限");
+      }
+
       $gs = new GoodsService();
       $this->ajaxReturn($gs->allUnits());
     }
