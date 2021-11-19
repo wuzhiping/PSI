@@ -280,12 +280,6 @@ class CustomerController extends PSIBaseController
         die("没有权限");
       }
 
-      $us = new UserService();
-      if (!$us->hasPermission(FIdConst::CUSTOMER_IMPORT)) {
-        $this->ajaxReturn($this->noPermission("导入客户"));
-        return;
-      }
-
       $upload = new \Think\Upload();
 
       // 允许上传的文件后缀
