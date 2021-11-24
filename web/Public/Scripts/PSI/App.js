@@ -219,20 +219,20 @@ Ext.define("PSI.App", {
   },
 
   // 刷新常用功能Grid中的数据
-  refreshRectFidGrid: function () {
-    var me = this;
+  refreshRectFidGrid() {
+    const me = this;
 
-    var el = me.gridRecentFid.getEl() || Ext.getBody();
+    const el = me.gridRecentFid.getEl() || Ext.getBody();
     el.mask("系统正在加载中...");
-    var store = me.gridRecentFid.getStore();
+    const store = me.gridRecentFid.getStore();
     store.removeAll();
 
     Ext.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/MainMenu/recentFid",
       method: "POST",
-      callback: function (opt, success, response) {
+      callback(opt, success, response) {
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          const data = Ext.JSON.decode(response.responseText);
           store.add(data);
         }
         el.unmask();
@@ -242,11 +242,11 @@ Ext.define("PSI.App", {
   },
 
   // 创建主菜单
-  createMainMenu: function (root) {
-    var me = this;
+  createMainMenu(root) {
+    const me = this;
 
-    var menuItemClick = function () {
-      var fid = this.fid;
+    const menuItemClick = function () {
+      const fid = this.fid;
 
       if (fid == "-9995") {
         me.vp.focus();
@@ -268,13 +268,13 @@ Ext.define("PSI.App", {
       }
     };
 
-    var mainMenu = [];
-    for (var i = 0; i < root.length; i++) {
-      var m1 = root[i];
+    const mainMenu = [];
+    for (let i = 0; i < root.length; i++) {
+      const m1 = root[i];
 
-      var menuItem = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
-      for (var j = 0; j < m1.children.length; j++) {
-        var m2 = m1.children[j];
+      const menuItem = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
+      for (let j = 0; j < m1.children.length; j++) {
+        const m2 = m1.children[j];
 
         if (m2.children.length === 0) {
           // 只有二级菜单
@@ -287,7 +287,7 @@ Ext.define("PSI.App", {
             });
           }
         } else {
-          var menuItem2 = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
+          const menuItem2 = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
 
           menuItem.add({
             text: m2.caption,
@@ -295,8 +295,8 @@ Ext.define("PSI.App", {
           });
 
           // 三级菜单
-          for (var k = 0; k < m2.children.length; k++) {
-            var m3 = m2.children[k];
+          for (let k = 0; k < m2.children.length; k++) {
+            const m3 = m2.children[k];
             menuItem2.add({
               text: m3.caption,
               fid: m3.fid,
@@ -315,17 +315,17 @@ Ext.define("PSI.App", {
       }
     }
 
-    var mainToolbar = Ext.create("Ext.toolbar.Toolbar", {
+    const mainToolbar = Ext.create("Ext.toolbar.Toolbar", {
       cls: "PSI-App-MainMenu",
       border: 0,
       dock: "top"
     });
     mainToolbar.add(mainMenu);
 
-    var theCmp = me.vp.getComponent(0);
+    const theCmp = me.vp.getComponent(0);
     theCmp.addTool(mainToolbar);
-    var spacers = [];
-    for (var i = 0; i < 10; i++) {
+    const spacers = [];
+    for (let i = 0; i < 10; i++) {
       spacers.push({
         xtype: "tbspacer"
       });
@@ -333,13 +333,14 @@ Ext.define("PSI.App", {
     theCmp.addTool(spacers);
 
     // 右上角显示当前登录用户名
-    var uname = me.getUserName();
-    var index = uname.lastIndexOf("\\");
-    var shortName = uname.substring(index + 1);
+    const uname = me.getUserName();
+    const index = uname.lastIndexOf("\\");
+    const shortName = uname.substring(index + 1);
     theCmp.addTool({
       xtype: "tbtext",
-      text: "<span style='color:#8c8c8c;font-weight:bold;font-size:13px' title=" + uname + ">"
-        + shortName + "</span>"
+      text: `<span style='color:#8c8c8c;font-weight:bold;font-size:13px' title=${uname}>
+                ${shortName}
+            </span>"`
     });
   },
 
