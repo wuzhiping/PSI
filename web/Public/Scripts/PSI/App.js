@@ -36,14 +36,15 @@ Ext.define("PSI.App", {
       layout: "fit"
     });
 
-    Ext.define("PSIFId", {
+    const modelName = "PSI_App_FId";
+    Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["fid", "name"]
     });
 
     const storeRecentFid = Ext.create("Ext.data.Store", {
       autoLoad: false,
-      model: "PSIFId",
+      model: modelName,
       data: []
     });
 
