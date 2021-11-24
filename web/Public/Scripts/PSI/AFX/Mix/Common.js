@@ -13,4 +13,17 @@ Ext.define("PSI.AFX.Mix.Common", {
   confirm(confirmInfo, funcOnYes) {
     PSI.MsgBox.confirm(confirmInfo, funcOnYes);
   },
+
+  // 构建最终的URL
+  URL: function (url) {
+    return PSI.Const.BASE_URL + url;
+  },
+
+  // Ajax调用
+  ajax: function (r) {
+    if (!r.method) {
+      r.method = "POST";
+    }
+    Ext.Ajax.request(r);
+  }
 });
