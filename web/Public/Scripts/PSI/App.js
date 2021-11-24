@@ -21,6 +21,11 @@ Ext.define("PSI.App", {
     }
   },
 
+  // 构建URL的助手函数
+  URL(url) {
+    return PSI.Const.BASE_URL + url;
+  },
+
   // 创建UI：主菜单、常用功能、状态栏、模块主容器
   createMainUI() {
     const me = this;
@@ -67,11 +72,14 @@ Ext.define("PSI.App", {
         width: 16,
         renderer(value, metaData, record) {
           const fid = record.get("fid");
-          const fileName = PSI.Const.BASE_URL + "Public/Images/fid/fid" + fid + ".png";
+          const fileName = `Public/Images/fid/fid${fid}.png`;
+          const url = me.URL(fileName);
 
-          return "<a href='#' style='text-decoration:none'><img src='"
-            + fileName
-            + "' style='vertical-align: middle;margin:0px 5px 0px 5px'></img></a>";
+          return `
+            <a href='#' style='text-decoration:none'>
+              <img src='${url}' style='vertical-align: middle;margin:0px 5px 0px 5px'></img>
+            </a>
+            `;
         }
       }, {
         dataIndex: "name",
