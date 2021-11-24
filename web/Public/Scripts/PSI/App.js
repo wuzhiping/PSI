@@ -193,9 +193,7 @@ Ext.define("PSI.App", {
           header: {
             cls: "PSI-Copyright",
             titleAlign: "center",
-            title: "Copyright &copy; 2015-"
-              + year
-              + " 艾格林门信息服务（大连）有限公司, All Rights Reserved"
+            title: `Copyright &copy; 2015-${year} 艾格林门信息服务（大连）有限公司, All Rights Reserved`
           }
         }]
       }]
