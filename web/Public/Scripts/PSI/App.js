@@ -113,12 +113,13 @@ Ext.define("PSI.App", {
       store: storeRecentFid
     });
 
-    me.gridRecentFid.on("cellclick", function (me, td, cellIndex, r, tr, rowIndex, e, eOpts) {
+    me.gridRecentFid.on("cellclick", (me, td, cellIndex, r, tr, rowIndex, e, eOpts) => {
       const fid = r.get("fid");
 
       const url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid + "/t/1";
 
       if (fid === "-9999") {
+        // TODO 在常用功能里面，应该是没有重新登录这项
         PSI.MsgBox.confirm("请确认是否重新登录", function () {
           location.replace(url);
         });
