@@ -30,5 +30,18 @@ Ext.define("PSI.AFX.Mix.Common", {
   // 把字符串解析为JSON
   decodeJSON(str) {
     return Ext.JSON.decode(str);
+  },
+
+  // 关闭当前模块
+  closeWindow: function () {
+    if (PSI.Const.MOT == "0") {
+      window.location.replace(PSI.Const.BASE_URL);
+    } else {
+      window.close();
+
+      if (!window.closed) {
+        window.location.replace(PSI.Const.BASE_URL);
+      }
+    }
   }
 });
