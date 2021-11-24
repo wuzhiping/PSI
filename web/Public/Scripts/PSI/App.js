@@ -9,8 +9,8 @@ Ext.define("PSI.App", {
     showRecent: false
   },
 
-  constructor: function (config) {
-    var me = this;
+  constructor(config) {
+    const me = this;
 
     me.initConfig(config);
 
@@ -21,8 +21,9 @@ Ext.define("PSI.App", {
     }
   },
 
-  createMainUI: function () {
-    var me = this;
+  // 创建UI：主菜单、常用功能、状态栏、模块主容器
+  createMainUI() {
+    const me = this;
 
     // mainPanel中放置各个具体模块的UI
     me.mainPanel = Ext.create("Ext.panel.Panel", {
@@ -35,7 +36,7 @@ Ext.define("PSI.App", {
       fields: ["fid", "name"]
     });
 
-    var storeRecentFid = Ext.create("Ext.data.Store", {
+    const storeRecentFid = Ext.create("Ext.data.Store", {
       autoLoad: false,
       model: "PSIFId",
       data: []
@@ -53,7 +54,7 @@ Ext.define("PSI.App", {
       hideHeaders: true,
       tools: [{
         type: "close",
-        handler: function () {
+        handler() {
           Ext.getCmp("PSI_Main_RecentPanel").collapse();
         },
         scope: me
@@ -64,9 +65,9 @@ Ext.define("PSI.App", {
         menuDisabled: true,
         sortable: false,
         width: 16,
-        renderer: function (value, metaData, record) {
-          var fid = record.get("fid");
-          var fileName = PSI.Const.BASE_URL + "Public/Images/fid/fid" + fid + ".png";
+        renderer(value, metaData, record) {
+          const fid = record.get("fid");
+          const fileName = PSI.Const.BASE_URL + "Public/Images/fid/fid" + fid + ".png";
 
           return "<a href='#' style='text-decoration:none'><img src='"
             + fileName
@@ -77,7 +78,7 @@ Ext.define("PSI.App", {
         menuDisabled: true,
         menuDisabled: true,
         sortable: false,
-        renderer: function (value, metaData, record) {
+        renderer(value, metaData, record) {
           return "<a href='#' style='text-decoration:none'><span style='vertical-align: middle'>"
             + value + "</span></a>";
         }
@@ -88,7 +89,7 @@ Ext.define("PSI.App", {
         sortable: false,
         width: 30,
         hidden: PSI.Const.MOT != "0",
-        renderer: function (v, m, r) {
+        renderer(v, m, r) {
           var fileName = PSI.Const.BASE_URL + "Public/Images/icons/open_in_new_window.png";
           var name = r.get("name");
           return "<a href='#'><img src='" + fileName + "' style='vertical-align: middle' title='新窗口打开【" + name + "】'></img></a>";
@@ -98,9 +99,9 @@ Ext.define("PSI.App", {
     });
 
     me.gridRecentFid.on("cellclick", function (me, td, cellIndex, r, tr, rowIndex, e, eOpts) {
-      var fid = r.get("fid");
+      const fid = r.get("fid");
 
-      var url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid + "/t/1";
+      const url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid + "/t/1";
 
       if (fid === "-9999") {
         PSI.MsgBox.confirm("请确认是否重新登录", function () {
@@ -120,7 +121,7 @@ Ext.define("PSI.App", {
       }
     }, me);
 
-    var year = new Date().getFullYear();
+    const year = new Date().getFullYear();
 
     me.vp = Ext.create("Ext.container.Viewport", {
       layout: "fit",
@@ -200,15 +201,15 @@ Ext.define("PSI.App", {
       }]
     });
 
-    var el = Ext.getBody();
+    const el = Ext.getBody();
     el.mask("系统正在加载中...");
 
     Ext.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/MainMenu/mainMenuItems",
       method: "POST",
-      callback: function (opt, success, response) {
+      callback(opt, success, response) {
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          const data = Ext.JSON.decode(response.responseText);
           me.createMainMenu(data);
           me.refreshRectFidGrid();
         }
