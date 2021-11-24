@@ -219,7 +219,7 @@ Ext.define("PSI.App", {
     el.mask("系统正在加载中...");
 
     Ext.Ajax.request({
-      url: PSI.Const.BASE_URL + "Home/MainMenu/mainMenuItems",
+      url: me.URL("Home/MainMenu/mainMenuItems"),
       method: "POST",
       callback(opt, success, response) {
         if (success) {
@@ -244,7 +244,7 @@ Ext.define("PSI.App", {
     store.removeAll();
 
     Ext.Ajax.request({
-      url: PSI.Const.BASE_URL + "Home/MainMenu/recentFid",
+      url: me.URL("Home/MainMenu/recentFid"),
       method: "POST",
       callback(opt, success, response) {
         if (success) {
