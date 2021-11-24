@@ -269,6 +269,7 @@ Ext.define("PSI.App", {
     };
 
     const mainMenu = [];
+    // TODO 这里的for循环可以改为array.forEach()的写法
     for (let i = 0; i < root.length; i++) {
       const m1 = root[i];
 
