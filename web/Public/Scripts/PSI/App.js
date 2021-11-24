@@ -262,20 +262,23 @@ Ext.define("PSI.App", {
     const me = this;
 
     const menuItemClick = function () {
+      // TODO
+      // 这里的this是具体的某个菜单项，并不是上面的me
+      // 所以上面的function也不能改成 ()=> 这种写法
       const fid = this.fid;
 
       if (fid == "-9995") {
         me.vp.focus();
-        window.open(PSI.Const.BASE_URL + "Home/Help/index");
+        window.open(me.URL("Home/Help/index"));
       } else if (fid === "-9999") {
         // 重新登录
         PSI.MsgBox.confirm("请确认是否重新登录", function () {
-          location.replace(PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/-9999");
+          location.replace(me.URL("Home/MainMenu/navigateTo/fid/-9999"));
         });
       } else {
         me.vp.focus();
 
-        const url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid;
+        const url = me.URL(`Home/MainMenu/navigateTo/fid/${fid}`);
         if (PSI.Const.MOT == "0") {
           location.replace(url);
         } else {
