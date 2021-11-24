@@ -4,6 +4,8 @@
 Ext.define("PSI.AFX.BusinessObject.BillMainForm", {
   extend: "Ext.panel.Panel",
 
+  mixins: ["PSI.AFX.Mix.Common"],
+
   border: 0,
 
   layout: "border",
