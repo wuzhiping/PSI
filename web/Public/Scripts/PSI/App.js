@@ -90,8 +90,8 @@ Ext.define("PSI.App", {
         width: 30,
         hidden: PSI.Const.MOT != "0",
         renderer(v, m, r) {
-          var fileName = PSI.Const.BASE_URL + "Public/Images/icons/open_in_new_window.png";
-          var name = r.get("name");
+          const fileName = PSI.Const.BASE_URL + "Public/Images/icons/open_in_new_window.png";
+          const name = r.get("name");
           return "<a href='#'><img src='" + fileName + "' style='vertical-align: middle' title='新窗口打开【" + name + "】'></img></a>";
         }
       }],
@@ -259,7 +259,7 @@ Ext.define("PSI.App", {
       } else {
         me.vp.focus();
 
-        var url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid;
+        const url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid;
         if (PSI.Const.MOT == "0") {
           location.replace(url);
         } else {
@@ -360,7 +360,7 @@ Ext.define("PSI.App", {
         ${header.title} - ${me.getProductionName()}
       </span>
       `;
-      
+
     panel.setTitle(title);
   },
 
