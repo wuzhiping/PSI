@@ -101,9 +101,13 @@ Ext.define("PSI.App", {
         width: 30,
         hidden: PSI.Const.MOT != "0",
         renderer(v, m, r) {
-          const fileName = PSI.Const.BASE_URL + "Public/Images/icons/open_in_new_window.png";
+          const fileName = me.URL("Public/Images/icons/open_in_new_window.png");
           const name = r.get("name");
-          return "<a href='#'><img src='" + fileName + "' style='vertical-align: middle' title='新窗口打开【" + name + "】'></img></a>";
+          return `
+            <a href='#'>
+              <img src='${fileName}' style='vertical-align: middle' title='新窗口打开【${name}】'></img>
+            </a>
+            `;
         }
       }],
       store: storeRecentFid
