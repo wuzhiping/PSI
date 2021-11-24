@@ -53,7 +53,7 @@ Ext.define("PSI.MsgBox", {
             html: `
               <h1 style='color:#1890ff;margin-top:25px;margin-left:10px'>
                 ${info}
-              </h1>"`
+              </h1>`
           }
         ]
       });
