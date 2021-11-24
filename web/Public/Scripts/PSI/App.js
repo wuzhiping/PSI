@@ -87,8 +87,11 @@ Ext.define("PSI.App", {
         menuDisabled: true,
         sortable: false,
         renderer(value, metaData, record) {
-          return "<a href='#' style='text-decoration:none'><span style='vertical-align: middle'>"
-            + value + "</span></a>";
+          return `
+            <a href='#' style='text-decoration:none'>
+              <span style='vertical-align: middle'>${value}</span>
+            </a>
+            `;
         }
       }, {
         dataIndex: "name",
