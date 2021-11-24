@@ -2,7 +2,7 @@
 Ext.define("PSI.MsgBox", {
   statics: {
     // 显示提示信息
-    showInfo: function (info, func) {
+    showInfo(info, func) {
       Ext.Msg.show({
         title: "提示",
         msg: info,
@@ -10,7 +10,7 @@ Ext.define("PSI.MsgBox", {
         buttons: Ext.Msg.OK,
         modal: true,
         closable: false,
-        fn: function () {
+        fn() {
           if (func) {
             func();
           }
@@ -19,7 +19,7 @@ Ext.define("PSI.MsgBox", {
     },
 
     // 显示确认信息
-    confirm: function (confirmInfo, funcOnYes) {
+    confirm(confirmInfo, funcOnYes) {
       Ext.Msg.show({
         title: "提示",
         msg: confirmInfo,
@@ -28,7 +28,7 @@ Ext.define("PSI.MsgBox", {
         modal: true,
         defaultFocus: "no",
         closable: false,
-        fn: function (id) {
+        fn(id) {
           if (id === "yes" && funcOnYes) {
             funcOnYes();
           }
@@ -37,8 +37,8 @@ Ext.define("PSI.MsgBox", {
     },
 
     // 显示提示信息，提示信息会自动关闭
-    tip: function (info) {
-      var wnd = Ext.create("Ext.window.Window", {
+    tip(info) {
+      const wnd = Ext.create("Ext.window.Window", {
         modal: false,
         onEsc: Ext.emptyFn,
         width: 300,
@@ -50,14 +50,17 @@ Ext.define("PSI.MsgBox", {
         items: [
           {
             xtype: "container",
-            html: "<h1 style='color:#1890ff;margin-top:25px;margin-left:10px'>" + info + "</h1>"
+            html: `
+              <h1 style='color:#1890ff;margin-top:25px;margin-left:10px'>
+                ${info}
+              </h1>"`
           }
         ]
       });
 
       wnd.showAt(document.body.clientWidth - 320, 20);
 
-      Ext.Function.defer(function () {
+      Ext.Function.defer(() => {
         wnd.hide();
         wnd.close();
       }, 2000);
