@@ -8,7 +8,7 @@ Ext.define("PSI.AFX.BusinessObject.BillMainForm", {
 
   layout: "border",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
@@ -20,10 +20,10 @@ Ext.define("PSI.AFX.BusinessObject.BillMainForm", {
     me.afxInitComponent();
   },
 
-  afxGetToolbarCmp: function () {
+  afxGetToolbarCmp() {
     return [];
   },
 
-  afxInitComponent: function () {
+  afxInitComponent() {
   }
 });
