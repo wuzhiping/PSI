@@ -349,17 +349,22 @@ Ext.define("PSI.App", {
   // 这个方法最初是给View中公开调用的
   // 现在已经在构造函数里面自动调用了，所以可以视为是私有方法了
   // 不再推荐在View中调用
-  setAppHeader: function (header) {
+  setAppHeader(header) {
     if (!header) {
       return;
     }
-    var panel = Ext.getCmp("__PSITopPanel");
-    var title = "<span style='font-size:140%;color:#c7c6c6;font-weight:bold;'>"
-      + header.title + " - " + this.getProductionName() + "</span>";
+    const me = this;
+    const panel = Ext.getCmp("__PSITopPanel");
+    const title = `
+      <span style='font-size:140%;color:#c7c6c6;font-weight:bold;'>
+        ${header.title} - ${me.getProductionName()}
+      </span>
+      `;
+      
     panel.setTitle(title);
   },
 
-  add: function (comp) {
+  add(comp) {
     this.mainPanel.add(comp);
   }
 });
