@@ -33,7 +33,7 @@ Ext.define("PSI.AFX.Mix.Common", {
   },
 
   // 关闭当前模块
-  closeWindow: function () {
+  closeWindow() {
     if (PSI.Const.MOT == "0") {
       window.location.replace(PSI.Const.BASE_URL);
     } else {
