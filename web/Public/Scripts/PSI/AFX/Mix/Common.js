@@ -15,15 +15,20 @@ Ext.define("PSI.AFX.Mix.Common", {
   },
 
   // 构建最终的URL
-  URL: function (url) {
+  URL(url) {
     return PSI.Const.BASE_URL + url;
   },
 
   // Ajax调用
-  ajax: function (r) {
+  ajax(r) {
     if (!r.method) {
       r.method = "POST";
     }
     Ext.Ajax.request(r);
+  },
+
+  // 把字符串解析为JSON
+  decodeJSON(str) {
+    return Ext.JSON.decode(str);
   }
 });
