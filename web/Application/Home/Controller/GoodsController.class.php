@@ -22,7 +22,7 @@ class GoodsController extends PSIBaseController
 {
 
   /**
-   * 商品主页面
+   * 物料主页面
    */
   public function index()
   {
@@ -33,43 +33,43 @@ class GoodsController extends PSIBaseController
 
       $this->assign("title", "物料");
 
-      // 按钮权限：新增商品分类
+      // 按钮权限：新建物料分类
       $this->assign("pAddCategory", $us->hasPermission(FIdConst::GOODS_CATEGORY_ADD) ? 1 : 0);
 
-      // 按钮权限：编辑商品分类
+      // 按钮权限：编辑物料分类
       $this->assign(
         "pEditCategory",
         $us->hasPermission(FIdConst::GOODS_CATEGORY_EDIT) ? 1 : 0
       );
 
-      // 按钮权限：删除商品分类
+      // 按钮权限：删除物料分类
       $this->assign(
         "pDeleteCategory",
         $us->hasPermission(FIdConst::GOODS_CATEGORY_DELETE) ? 1 : 0
       );
 
-      // 按钮权限：新增商品
+      // 按钮权限：新建物料
       $this->assign("pAddGoods", $us->hasPermission(FIdConst::GOODS_ADD) ? 1 : 0);
 
-      // 按钮权限：编辑商品
+      // 按钮权限：编辑物料
       $this->assign("pEditGoods", $us->hasPermission(FIdConst::GOODS_EDIT) ? 1 : 0);
 
-      // 按钮权限：删除商品
+      // 按钮权限：删除物料
       $this->assign("pDeleteGoods", $us->hasPermission(FIdConst::GOODS_DELETE) ? 1 : 0);
 
-      // 按钮权限：导入商品
+      // 按钮权限：导入物料
       $this->assign("pImportGoods", $us->hasPermission(FIdConst::GOODS_IMPORT) ? 1 : 0);
 
-      // 按钮权限：设置商品安全库存
+      // 按钮权限：设置物料安全库存
       $this->assign("pGoodsSI", $us->hasPermission(FIdConst::GOODS_SI) ? 1 : 0);
 
-      // 按钮权限：新增子商品
+      // 按钮权限：新增子件
       $this->assign("pAddBOM", $us->hasPermission(FIdConst::GOODS_BOM_ADD) ? 1 : 0);
 
-      // 按钮权限：编辑子商品
+      // 按钮权限：编辑子件
       $this->assign("pEditBOM", $us->hasPermission(FIdConst::GOODS_BOM_EDIT) ? 1 : 0);
 
-      // 按钮权限：删除子商品
+      // 按钮权限：删除子件
       $this->assign("pDeleteBOM", $us->hasPermission(FIdConst::GOODS_BOM_DELETE) ? 1 : 0);
 
       // 按钮权限：设置商品价格体系
@@ -106,7 +106,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 获得所有的商品计量单位列表
+   * 获得所有的物料计量单位列表
    *
    * JS:PSI.Goods.UnitMainForm中调用本Action
    */
@@ -125,7 +125,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 新增或编辑商品单位
+   * 新增或编辑物料单位
    *
    * JS:PSI.Goods.UnitEditForm中调用本Action
    */
@@ -150,7 +150,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 删除商品计量单位
+   * 删除物料计量单位
    *
    * JS:PSI.Goods.UnitMainForm中调用本Action
    */
@@ -172,7 +172,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 获得商品分类
+   * 获得物料分类
    */
   public function allCategories()
   {
@@ -196,19 +196,19 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 新增或编辑商品分类
+   * 新增或编辑物料分类
    */
   public function editCategory()
   {
     if (IS_POST) {
       $us = new UserService();
       if (I("post.id")) {
-        // 编辑商品分类
+        // 编辑物料分类
         if (!$us->hasPermission(FIdConst::GOODS_CATEGORY_EDIT)) {
           die("没有权限");
         }
       } else {
-        // 新增商品分类
+        // 新增物料分类
         if (!$us->hasPermission(FIdConst::GOODS_CATEGORY_ADD)) {
           die("没有权限");
         }
@@ -242,7 +242,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 删除商品分类
+   * 删除物料分类
    */
   public function deleteCategory()
   {
@@ -262,7 +262,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 获得商品列表
+   * 获得物料列表
    */
   public function goodsList()
   {
@@ -284,20 +284,20 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 新增或编辑商品
+   * 新增或编辑物料
    */
   public function editGoods()
   {
     if (IS_POST) {
       $us = new UserService();
       if (I("post.id")) {
-        // 编辑商品
+        // 编辑
         if (!$us->hasPermission(FIdConst::GOODS_EDIT)) {
           $this->ajaxReturn($this->noPermission("编辑商品"));
           return;
         }
       } else {
-        // 新增商品
+        // 新建
         if (!$us->hasPermission(FIdConst::GOODS_ADD)) {
           $this->ajaxReturn($this->noPermission("新增商品"));
           return;
@@ -326,7 +326,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 删除商品
+   * 删除物料
    */
   public function deleteGoods()
   {
@@ -346,7 +346,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 商品自定义字段，查询数据
+   * 物料自定义字段，查询数据
    */
   public function queryData()
   {
@@ -359,7 +359,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 商品自定义字段，查询数据 - 只显示有子商品的商品，用于加工业务中
+   * 物料自定义字段，查询数据 - 只显示有子件的物料，用于加工业务中
    */
   public function queryDataForBOM()
   {
@@ -371,7 +371,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 商品自定义字段，查询数据
+   * 物料自定义字段，查询数据
    */
   public function queryDataWithSalePrice()
   {
@@ -385,7 +385,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 商品自定义字段，查询数据
+   * 物料自定义字段，查询数据
    */
   public function queryDataWithPurchasePrice()
   {
@@ -417,7 +417,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 获得商品的安全库存信息
+   * 获得物料的安全库存信息
    */
   public function goodsSafetyInventoryList()
   {
@@ -479,7 +479,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 根据条形码，查询商品信息, 采购入库单使用
+   * 根据条形码，查询物料信息, 采购入库单使用
    */
   public function queryGoodsInfoByBarcodeForPW()
   {
@@ -493,7 +493,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 通过Excel导入商品
+   * 通过Excel导入物料
    */
   public function import()
   {
@@ -539,7 +539,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 获得所有的商品种类数
+   * 获得所有的物料种类数
    */
   public function getTotalGoodsCount()
   {
@@ -586,7 +586,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 新增或编辑商品品牌
+   * 新增或编辑物料品牌
    */
   public function editBrand()
   {
@@ -619,7 +619,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 删除商品品牌
+   * 删除物料品牌
    */
   public function deleteBrand()
   {
@@ -634,7 +634,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 某个商品的商品构成
+   * 某个物料的静态BOM
    */
   public function goodsBOMList()
   {
@@ -649,7 +649,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 新增或编辑商品构成
+   * 新增或编辑静态BOM
    */
   public function editGoodsBOM()
   {
@@ -682,7 +682,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 子商品字段，查询数据
+   * 子件字段，查询数据
    */
   public function queryDataForSubGoods()
   {
@@ -698,7 +698,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 查询子商品的详细信息
+   * 查询子件的详细信息
    */
   public function getSubGoodsInfo()
   {
@@ -714,7 +714,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 删除商品构成中的子商品
+   * 删除物料构成中的子件
    */
   public function deleteGoodsBOM()
   {
@@ -840,7 +840,7 @@ class GoodsController extends PSIBaseController
   }
 
   /**
-   * 商品品牌自定义字段 - 查询数据
+   * 物料品牌自定义字段 - 查询数据
    */
   public function queryGoodsBrandData()
   {
