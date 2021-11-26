@@ -1476,7 +1476,7 @@ Ext.define("PSI.Goods.MainForm", {
         data: []
       }),
       tbar: [{
-        text: "设置物料价格体系",
+        text: "设置商品价格体系",
         disabled: me.getPPriceSystem() == "0",
         iconCls: "PSI-button-commit",
         handler: me.onGoodsPriceSystem,
