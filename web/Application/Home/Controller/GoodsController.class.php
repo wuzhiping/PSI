@@ -421,6 +421,21 @@ class GoodsController extends PSIBaseController
    */
   public function goodsInfo()
   {
+    $us = new UserService();
+
+    $id = I("post.id");
+    if ($id) {
+      // 编辑
+      if (!$us->hasPermission(FIdConst::GOODS_EDIT)) {
+        die("没有权限");
+      }
+    } else {
+      // 新建
+      if (!$us->hasPermission(FIdConst::GOODS_ADD)) {
+        die("没有权限");
+      }
+    }
+
     if (IS_POST) {
       $id = I("post.id");
       $categoryId = I("post.categoryId");
