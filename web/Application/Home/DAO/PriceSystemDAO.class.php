@@ -271,7 +271,7 @@ class PriceSystemDAO extends PSIBaseExDAO
     $goodsId = $bill["id"];
     $baseSalePrice = $bill["basePrice"];
 
-    $sql = "select code, name, spec from t_goods
+    $sql = "select code, name, spec, m_type from t_goods
             where id = '%s' ";
     $data = $db->query($sql, $goodsId);
     if (!$data) {
@@ -281,7 +281,12 @@ class PriceSystemDAO extends PSIBaseExDAO
     $code = $data[0]["code"];
     $name = $data[0]["name"];
     $spec = $data[0]["spec"];
+    $mType = intval($data[0]["m_type"]);
+    if ($mType != 4000) {
+      return $this->bad("只能给商品设置价格体系");
+    }
 
+    // 有可能同时修改了销售基准价，所以此处也同步一下销售基准价
     $sql = "update t_goods
             set sale_price = %f
             where id = '%s' ";
