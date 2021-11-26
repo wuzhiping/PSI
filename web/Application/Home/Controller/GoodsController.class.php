@@ -279,6 +279,11 @@ class GoodsController extends PSIBaseController
   public function goodsList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS)) {
+        die("没有权限");
+      }
+
       $params = [
         "categoryId" => I("post.categoryId"),
         "code" => I("post.code"),
