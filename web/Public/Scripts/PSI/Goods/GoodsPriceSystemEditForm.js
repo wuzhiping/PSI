@@ -133,7 +133,7 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
   },
 
   onOK: function () {
-    var me = this;
+    const me = this;
     Ext.getBody().mask("正在保存中...");
     Ext.Ajax.request({
       url: PSI.Const.BASE_URL
@@ -142,19 +142,15 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
       params: {
         jsonStr: me.getSaveData()
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         Ext.getBody().unmask();
 
         if (success) {
-          var data = Ext.JSON
-            .decode(response.responseText);
+          const data = Ext.JSON.decode(response.responseText);
           if (data.success) {
-            PSI.MsgBox.showInfo("成功保存数据",
-              function () {
-                me.close();
-                me.getParentForm()
-                  .onGoodsSelect();
-              });
+            me.close();
+            me.getParentForm().onGoodsSelect();
+            PSI.MsgBox.tip("成功保存数据");
           } else {
             PSI.MsgBox.showInfo(data.msg);
           }
