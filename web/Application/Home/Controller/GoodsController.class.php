@@ -205,14 +205,12 @@ class GoodsController extends PSIBaseController
       if (I("post.id")) {
         // 编辑商品分类
         if (!$us->hasPermission(FIdConst::GOODS_CATEGORY_EDIT)) {
-          $this->ajaxReturn($this->noPermission("编辑商品分类"));
-          return;
+          die("没有权限");
         }
       } else {
         // 新增商品分类
         if (!$us->hasPermission(FIdConst::GOODS_CATEGORY_ADD)) {
-          $this->ajaxReturn($this->noPermission("新增商品分类"));
-          return;
+          die("没有权限");
         }
       }
 
