@@ -746,8 +746,7 @@ class GoodsController extends PSIBaseController
     if (IS_POST) {
       $us = new UserService();
       if (!$us->hasPermission(FIdConst::GOODS_BOM_DELETE)) {
-        $this->ajaxReturn($this->noPermission("删除子商品"));
-        return;
+        die("没有权限");
       }
 
       $params = [
