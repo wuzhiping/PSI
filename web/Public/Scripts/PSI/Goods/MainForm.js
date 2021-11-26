@@ -1529,17 +1529,24 @@ Ext.define("PSI.Goods.MainForm", {
    * 设置物料价格
    */
   onGoodsPriceSystem: function () {
-    var me = this;
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       PSI.MsgBox.showInfo("请选择要设置价格的物料");
       return;
     }
 
-    var goods = item[0];
+    const goods = item[0];
 
-    var form = Ext.create("PSI.Goods.GoodsPriceSystemEditForm", {
+    // 只能给商品设置价格体系
+    const mType = goods.get("mType");
+    if (mType != "商品") {
+      PSI.MsgBox.showInfo("只能给商品设置价格体系");
+      return;
+    }
+
+    const form = Ext.create("PSI.Goods.GoodsPriceSystemEditForm", {
       parentForm: me,
       entity: goods
     });
