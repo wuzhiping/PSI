@@ -730,6 +730,11 @@ class GoodsController extends PSIBaseController
   public function goodsBOMList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -776,6 +781,11 @@ class GoodsController extends PSIBaseController
   public function queryDataForSubGoods()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_BILL)) {
+        die("没有权限");
+      }
+
       $params = [
         "queryKey" => I("post.queryKey"),
         "parentGoodsId" => I("post.parentGoodsId")
