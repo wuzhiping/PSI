@@ -13,12 +13,11 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
 
     Ext.apply(me, {
       header: {
-        title: me.formatTitle("设置商品价格体系"),
+        title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40,
-        iconCls: "PSI-button-commit"
       },
       width: 580,
-      height: 400,
+      height: 500,
       layout: "border",
       items: [{
         region: "center",
@@ -33,9 +32,19 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
           type: "table",
           columns: 2
         },
-        height: 40,
+        height: 90,
         bodyPadding: 10,
         items: [{
+          border: 0,
+          html: `<div style='margin-bottom:30px'>
+                    <img style='float:left;margin:0px 20px 0px 10px;width:48px;height:48px;' 
+                    src='${PSI.Const.BASE_URL}Public/Images/edit-form-update.png'></img>
+                    <div style='margin-left:60px;margin-top:0px;'>
+                      <h2 style='color:#196d83;margin-top:0px;'>设置商品价格体系</h2>
+                    </div>
+                  </div>`,
+          colspan: 2
+        }, {
           xtype: "hidden",
           id: "hiddenId",
           name: "id",
@@ -43,9 +52,9 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
         }, {
           id: "editRef",
           fieldLabel: "商品",
-          labelWidth: 60,
+          labelWidth: 40,
           labelAlign: "right",
-          labelSeparator: ":",
+          labelSeparator: "：",
           xtype: "displayfield",
           value: entity.get("code")
             + " "
