@@ -610,6 +610,11 @@ class GoodsController extends PSIBaseController
   public function getTotalGoodsCount()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS)) {
+        die("没有权限");
+      }
+
       $params = [
         "code" => I("post.code"),
         "name" => I("post.name"),
