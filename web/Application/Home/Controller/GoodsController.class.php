@@ -861,6 +861,11 @@ class GoodsController extends PSIBaseController
   public function priceSystemList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PRICE_SYSTEM)) {
+        die("没有权限");
+      }
+
       $gs = new GoodsService();
       $this->ajaxReturn($gs->priceSystemList());
     }
@@ -872,6 +877,11 @@ class GoodsController extends PSIBaseController
   public function editPriceSystem()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PRICE_SYSTEM)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "name" => I("post.name"),
@@ -889,6 +899,11 @@ class GoodsController extends PSIBaseController
   public function deletePriceSystem()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PRICE_SYSTEM)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
