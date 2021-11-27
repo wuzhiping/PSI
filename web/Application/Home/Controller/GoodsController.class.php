@@ -523,6 +523,12 @@ class GoodsController extends PSIBaseController
   public function queryGoodsInfoByBarcode()
   {
     if (IS_POST) {
+      $us = new UserService();
+      $f1 = $us->hasPermission(FIdConst::SALE_ORDER_ADD);
+      $f2 = $us->hasPermission(FIdConst::SALE_ORDER_EDIT);
+      if (!($f1 || $f2)) {
+        die("没有权限");
+      }
       $params = [
         "barcode" => I("post.barcode")
       ];
