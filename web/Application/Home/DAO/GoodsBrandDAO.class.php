@@ -284,7 +284,7 @@ class GoodsBrandDAO extends PSIBaseExDAO
               from t_goods_brand
               where id = '%s' ";
       $data = $db->query($sql, $parentId);
-      if (!data) {
+      if (!$data) {
         return $this->bad("选择的上级品牌不存在");
       }
       $parentFullName = $data[0]["full_name"];
