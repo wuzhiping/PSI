@@ -939,6 +939,11 @@ class GoodsController extends PSIBaseController
   public function goodsPriceSystemInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PRICE_SYSTEM_SETTING_GOODS)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -954,6 +959,11 @@ class GoodsController extends PSIBaseController
   public function editGoodsPriceSystem()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::PRICE_SYSTEM_SETTING_GOODS)) {
+        die("没有权限");
+      }
+
       $params = [
         "jsonStr" => I("post.jsonStr")
       ];
