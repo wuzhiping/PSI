@@ -529,6 +529,7 @@ class GoodsController extends PSIBaseController
       if (!($f1 || $f2)) {
         die("没有权限");
       }
+
       $params = [
         "barcode" => I("post.barcode")
       ];
@@ -543,6 +544,13 @@ class GoodsController extends PSIBaseController
   public function queryGoodsInfoByBarcodeForPW()
   {
     if (IS_POST) {
+      $us = new UserService();
+      $f1 = $us->hasPermission(FIdConst::PURCHASE_WAREHOUSE_ADD);
+      $f2 = $us->hasPermission(FIdConst::PURCHASE_WAREHOUSE_EDIT);
+      if (!($f1 || $f2)) {
+        die("没有权限");
+      }
+
       $params = [
         "barcode" => I("post.barcode")
       ];
