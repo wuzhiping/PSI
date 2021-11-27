@@ -1533,7 +1533,7 @@ Ext.define("PSI.Goods.MainForm", {
 
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      PSI.MsgBox.showInfo("请选择要设置价格的物料");
+      PSI.MsgBox.showInfo("请选择要设置价格的商品");
       return;
     }
 
