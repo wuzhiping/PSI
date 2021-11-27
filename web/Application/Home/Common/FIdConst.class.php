@@ -186,57 +186,57 @@ class FIdConst
   const SUPPLIER_DELETE = "1004-08";
 
   /**
-   * 基础数据-商品
+   * 基础数据-物料
    */
   const GOODS = "1001";
 
   /**
-   * 商品在业务单据中的使用权限
+   * 物料在业务单据中的使用权限
    */
   const GOODS_BILL = "1001-01";
 
   /**
-   * 商品分类
+   * 物料分类
    */
   const GOODS_CATEGORY = "1001-02";
 
   /**
-   * 新增商品分类
+   * 新增物料分类
    */
   const GOODS_CATEGORY_ADD = "1001-03";
 
   /**
-   * 编辑商品分类
+   * 编辑物料分类
    */
   const GOODS_CATEGORY_EDIT = "1001-04";
 
   /**
-   * 删除商品分类
+   * 删除物料分类
    */
   const GOODS_CATEGORY_DELETE = "1001-05";
 
   /**
-   * 新增商品
+   * 新建物料
    */
   const GOODS_ADD = "1001-06";
 
   /**
-   * 编辑商品
+   * 编辑物料
    */
   const GOODS_EDIT = "1001-07";
 
   /**
-   * 删除商品
+   * 删除物料
    */
   const GOODS_DELETE = "1001-08";
 
   /**
-   * 导入商品
+   * 导入物料
    */
   const GOODS_IMPORT = "1001-09";
 
   /**
-   * 设置商品安全库存
+   * 设置物料安全库存
    */
   const GOODS_SI = "1001-10";
 
@@ -246,7 +246,7 @@ class FIdConst
   const GOODS_EXPORT_EXCEL = "1001-11";
 
   /**
-   * 基础数据-商品计量单位
+   * 基础数据-物料计量单位
    */
   const GOODS_UNIT = "1002";
 
@@ -746,22 +746,22 @@ class FIdConst
   const SALE_ORDER_CLOSE_BILL = "2028-09";
 
   /**
-   * 基础数据 - 商品品牌
+   * 基础数据 - 物料品牌
    */
   const GOODS_BRAND = "2029";
 
   /**
-   * 商品构成 - 新增子商品
+   * 物料静态BOM - 新增子件
    */
   const GOODS_BOM_ADD = "2030-01";
 
   /**
-   * 商品构成 - 编辑子商品
+   * 物料静态BOM - 编辑子件
    */
   const GOODS_BOM_EDIT = "2030-02";
 
   /**
-   * 商品构成 - 删除子商品
+   * 物料静态BOM - 删除子件
    */
   const GOODS_BOM_DELETE = "2030-03";
 
@@ -773,7 +773,7 @@ class FIdConst
   const PRICE_SYSTEM = "2031";
 
   /**
-   * 商品模块 - 设置商品价格体系
+   * 物料模块 - 设置商品价格体系
    *
    * 按钮权限
    *
