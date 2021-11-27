@@ -651,6 +651,11 @@ class GoodsController extends PSIBaseController
   public function allBrands()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_BRAND)) {
+        die("没有权限");
+      }
+
       $gs = new GoodsService();
       $this->ajaxReturn($gs->allBrands());
     }
@@ -662,6 +667,11 @@ class GoodsController extends PSIBaseController
   public function editBrand()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_BRAND)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "name" => I("post.name"),
@@ -680,6 +690,11 @@ class GoodsController extends PSIBaseController
   public function brandParentName()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_BRAND)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -695,6 +710,11 @@ class GoodsController extends PSIBaseController
   public function deleteBrand()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_BRAND)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
