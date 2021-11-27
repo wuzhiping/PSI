@@ -802,6 +802,11 @@ class GoodsController extends PSIBaseController
   public function getSubGoodsInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_BOM_EDIT)) {
+        die("没有权限");
+      }
+
       $params = [
         "goodsId" => I("post.goodsId"),
         "subGoodsId" => I("post.subGoodsId")
