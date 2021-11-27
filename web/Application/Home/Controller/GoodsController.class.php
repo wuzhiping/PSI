@@ -1012,6 +1012,11 @@ class GoodsController extends PSIBaseController
   public function queryUnitData()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_UNIT)) {
+        die("没有权限");
+      }
+
       $queryKey = I("post.queryKey");
       $service = new GoodsService();
       $this->ajaxReturn($service->queryUnitData($queryKey));
