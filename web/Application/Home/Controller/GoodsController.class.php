@@ -365,6 +365,11 @@ class GoodsController extends PSIBaseController
   public function queryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_BILL)) {
+        die("没有权限");
+      }
+
       $queryKey = I("post.queryKey");
       $warehouseId = I("post.warehouseId");
       $gs = new GoodsService();
@@ -378,6 +383,11 @@ class GoodsController extends PSIBaseController
   public function queryDataForBOM()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_BILL)) {
+        die("没有权限");
+      }
+
       $queryKey = I("post.queryKey");
       $gs = new GoodsService();
       $this->ajaxReturn($gs->queryDataForBOM($queryKey));
@@ -390,6 +400,11 @@ class GoodsController extends PSIBaseController
   public function queryDataWithSalePrice()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::GOODS_BILL)) {
+        die("没有权限");
+      }
+
       $queryKey = I("post.queryKey");
       $customerId = I("post.customerId");
       $warehouseId = I("post.warehouseId");
