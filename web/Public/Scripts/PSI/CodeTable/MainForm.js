@@ -777,43 +777,43 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onAddCol: function () {
-    var me = this;
+  onAddCol() {
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要新增列的码表");
       return;
     }
 
-    var codeTable = item[0];
+    const codeTable = item[0];
 
-    var form = Ext.create("PSI.CodeTable.CodeTableColEditForm", {
+    const form = Ext.create("PSI.CodeTable.CodeTableColEditForm", {
       codeTable: codeTable,
       parentForm: me
     });
     form.show();
   },
 
-  onEditCol: function () {
-    var me = this;
+  onEditCol() {
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑列的码表");
       return;
     }
 
-    var codeTable = item[0];
+    const codeTable = item[0];
 
-    var item = me.getColsGrid().getSelectionModel().getSelection();
+    const item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的列");
       return;
     }
-    var col = item[0];
+    const col = item[0];
 
-    var form = Ext.create("PSI.CodeTable.CodeTableColEditForm", {
+    const form = Ext.create("PSI.CodeTable.CodeTableColEditForm", {
       codeTable: codeTable,
       entity: col,
       parentForm: me
