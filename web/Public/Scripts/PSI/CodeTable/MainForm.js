@@ -494,23 +494,23 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.ajax(r);
   },
 
-  onEditCategory: function () {
-    var me = this;
+  onEditCategory() {
+    const me = this;
 
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的码表分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
     if (category.get("isSystem") == 1) {
       me.showInfo("不能编辑系统分类");
       return;
     }
 
-    var form = Ext.create("PSI.CodeTable.CategoryEditForm", {
+    const form = Ext.create("PSI.CodeTable.CategoryEditForm", {
       parentForm: me,
       entity: category
     });
@@ -518,47 +518,46 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
-  onDeleteCategory: function () {
-    var me = this;
-    var item = me.getCategoryGrid().getSelectionModel()
-      .getSelection();
+  onDeleteCategory() {
+    const me = this;
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
+
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的码表分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
     if (category.get("isSystem") == 1) {
       me.showInfo("不能删除系统分类");
       return;
     }
 
-    var store = me.getCategoryGrid().getStore();
-    var index = store.findExact("id", category.get("id"));
+    const store = me.getCategoryGrid().getStore();
+    let index = store.findExact("id", category.get("id"));
     index--;
-    var preIndex = null;
-    var preItem = store.getAt(index);
+    let preIndex = null;
+    const preItem = store.getAt(index);
     if (preItem) {
       preIndex = preItem.get("id");
     }
 
-    var info = "请确认是否删除码表分类: <span style='color:red'>"
-      + category.get("name") + "</span>";
+    const info = `请确认是否删除码表分类: <span style='color:red'>${category.get("name")}</span> ?`;
 
-    var funcConfirm = function () {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/CodeTable/deleteCodeTableCategory"),
         params: {
           id: category.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
               me.refreshCategoryGrid(preIndex);
