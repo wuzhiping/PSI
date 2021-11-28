@@ -7,7 +7,7 @@ Ext.define("PSI.CodeTable.MainForm", {
   extend: "Ext.panel.Panel",
   border: 0,
 
-  mixins: ["PSI.AFX.Mix.Common"],
+  mixins: ["PSI.AFX.Mix.Common", "PSI.AFX.Mix.Grid"],
 
   initComponent() {
     const me = this;
@@ -175,7 +175,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     return me.__categoryGrid;
   },
 
-  getMainGrid () {
+  getMainGrid() {
     const me = this;
 
     if (me.__mainGrid) {
