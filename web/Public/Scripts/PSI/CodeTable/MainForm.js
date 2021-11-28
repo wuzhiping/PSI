@@ -109,14 +109,14 @@ Ext.define("PSI.CodeTable.MainForm", {
     }];
   },
 
-  getCategoryGrid: function () {
-    var me = this;
+  getCategoryGrid() {
+    const me = this;
 
     if (me.__categoryGrid) {
       return me.__categoryGrid;
     }
 
-    var modelName = "PSICodeTableCategory";
+    const modelName = "PSICodeTableCategory";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -134,9 +134,8 @@ Ext.define("PSI.CodeTable.MainForm", {
       },
       tools: [{
         type: "close",
-        handler: function () {
-          Ext.getCmp("panelCategory")
-            .collapse();
+        handler() {
+          Ext.getCmp("panelCategory").collapse();
         }
       }],
       columnLines: true,
@@ -176,14 +175,14 @@ Ext.define("PSI.CodeTable.MainForm", {
     return me.__categoryGrid;
   },
 
-  getMainGrid: function () {
-    var me = this;
+  getMainGrid () {
+    const me = this;
 
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSICodeTable";
+    const modelName = "PSICodeTable";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
