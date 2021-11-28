@@ -632,45 +632,44 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.ajax(r);
   },
 
-  onAddCodeTable: function () {
-    var me = this;
+  onAddCodeTable() {
+    const me = this;
 
-    var item = me.getCategoryGrid().getSelectionModel()
-      .getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择一个的码表分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
-    var form = Ext.create("PSI.CodeTable.CodeTableEditForm", {
+    const form = Ext.create("PSI.CodeTable.CodeTableEditForm", {
       parentForm: me,
       category: category
     });
     form.show();
   },
 
-  onEditCodeTable: function () {
-    var me = this;
+  onEditCodeTable() {
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的码表");
       return;
     }
 
-    var codeTable = item[0];
+    const codeTable = item[0];
 
-    var form = Ext.create("PSI.CodeTable.CodeTableEditForm", {
+    const form = Ext.create("PSI.CodeTable.CodeTableEditForm", {
       parentForm: me,
       entity: codeTable
     });
     form.show();
   },
 
-  onMainGridSelect: function () {
-    var me = this;
+  onMainGridSelect() {
+    const me = this;
     me.refreshColsGrid();
   },
 
