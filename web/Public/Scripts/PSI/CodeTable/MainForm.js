@@ -576,46 +576,46 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onCategoryGridSelect: function () {
-    var me = this;
+  onCategoryGridSelect() {
+    const me = this;
     me.refreshMainGrid();
   },
 
-  refreshMainGrid: function (id) {
-    var me = this;
+  refreshMainGrid(id) {
+    const me = this;
     me.getColsGrid().setTitle(me.formatGridHeaderTitle("码表列"));
     me.getColsGrid().getStore().removeAll();
 
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.getMainGrid().setTitle(me.formatGridHeaderTitle("码表"));
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
-    var grid = me.getMainGrid();
+    const grid = me.getMainGrid();
     grid.setTitle(me.formatGridHeaderTitle("属于分类["
       + category.get("name") + "]的码表"));
-    var el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/CodeTable/codeTableList"),
       params: {
         categoryId: category.get("id")
       },
-      callback: function (options, success, response) {
-        var store = grid.getStore();
+      callback(options, success, response) {
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
