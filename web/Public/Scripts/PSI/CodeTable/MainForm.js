@@ -932,18 +932,18 @@ Ext.define("PSI.CodeTable.MainForm", {
   },
 
   // 调整编辑界面字段显示次序
-  onChangeEditShowOrder: function () {
-    var me = this;
+  onChangeEditShowOrder() {
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择码表");
       return;
     }
 
-    var codeTable = item[0];
+    const codeTable = item[0];
 
-    var form = Ext.create("PSI.CodeTable.CodeTableEditColShowOrderForm", {
+    const form = Ext.create("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       codeTable: codeTable,
       parentForm: me
     });
@@ -951,17 +951,17 @@ Ext.define("PSI.CodeTable.MainForm", {
   },
 
   // 生成SQL语句
-  onGenSQL: function () {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+  onGenSQL() {
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择码表");
       return;
     }
 
-    var codeTable = item[0];
+    const codeTable = item[0];
 
-    var form = Ext.create("PSI.CodeTable.CodeTableGenSQLForm", {
+    const form = Ext.create("PSI.CodeTable.CodeTableGenSQLForm", {
       codeTable: codeTable
     });
     form.show();
