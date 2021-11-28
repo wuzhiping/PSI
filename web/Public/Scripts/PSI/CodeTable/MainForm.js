@@ -822,46 +822,46 @@ Ext.define("PSI.CodeTable.MainForm", {
   },
 
   // 删除码表列
-  onDeleteCol: function () {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+  onDeleteCol() {
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择码表");
       return;
     }
-    var codeTable = item[0];
+    const codeTable = item[0];
 
-    var item = me.getColsGrid().getSelectionModel().getSelection();
+    const item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的列");
       return;
     }
-    var col = item[0];
+    const col = item[0];
 
-    var store = me.getColsGrid().getStore();
-    var index = store.findExact("id", col.get("id"));
+    const store = me.getColsGrid().getStore();
+    let index = store.findExact("id", col.get("id"));
     index--;
-    var preIndex = null;
-    var preItem = store.getAt(index);
+    let preIndex = null;
+    const preItem = store.getAt(index);
     if (preItem) {
       preIndex = preItem.get("id");
     }
 
-    var info = "请确认是否删除码表列: <span style='color:red'>"
+    const info = "请确认是否删除码表列: <span style='color:red'>"
       + col.get("caption")
       + "</span><br /><br />当前操作只删除码表列的元数据，数据库表的字段不会删除";
 
-    var funcConfirm = function () {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/CodeTable/deleteCodeTableCol"),
         params: {
           tableId: codeTable.get("id"),
           id: col.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
@@ -884,35 +884,35 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onConvertToSys: function () {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+  onConvertToSys() {
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要操作的码表");
       return;
     }
 
-    var codeTable = item[0];
+    const codeTable = item[0];
 
-    var info = "请确认是否把码表: <span style='color:red'>"
+    const info = "请确认是否把码表: <span style='color:red'>"
       + codeTable.get("name")
       + "</span> 转化为系统固有码表?";
-    var id = codeTable.get("id");
+    const id = codeTable.get("id");
 
-    var funcConfirm = function () {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在处理中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/CodeTable/convertCodeTable"),
         params: {
           id: id
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成操作");
               me.refreshMainGrid(id);
