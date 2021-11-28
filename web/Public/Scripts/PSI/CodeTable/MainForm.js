@@ -673,39 +673,39 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.refreshColsGrid();
   },
 
-  refreshColsGrid: function (id) {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+  refreshColsGrid(id) {
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.getMainGrid().setTitle(me.formatGridHeaderTitle("码表"));
       me.getColsGrid().setTitle(me.formatGridHeaderTitle("码表列"));
       return;
     }
 
-    var codeTable = item[0];
+    const codeTable = item[0];
 
-    var grid = me.getColsGrid();
+    const grid = me.getColsGrid();
     grid.setTitle(me.formatGridHeaderTitle("属于码表["
       + codeTable.get("name") + "]的列"));
-    var el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/CodeTable/codeTableColsList"),
       params: {
         id: codeTable.get("id")
       },
-      callback: function (options, success, response) {
-        var store = grid.getStore();
+      callback(options, success, response) {
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
