@@ -275,7 +275,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         menuDisabled: true,
         sortable: false,
         align: "center",
-        renderer: function (value) {
+        renderer(value) {
           return parseInt(value) == 1 ? "▲" : "";
         }
       }, {
@@ -307,14 +307,14 @@ Ext.define("PSI.CodeTable.MainForm", {
     return me.__mainGrid;
   },
 
-  getColsGrid: function () {
-    var me = this;
+  getColsGrid() {
+    const me = this;
 
     if (me.__colsGrid) {
       return me.__colsGrid;
     }
 
-    var modelName = "PSICodeTableCols";
+    const modelName = "PSICodeTableCols";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -449,35 +449,35 @@ Ext.define("PSI.CodeTable.MainForm", {
     return me.__colsGrid;
   },
 
-  onAddCategory: function () {
-    var me = this;
+  onAddCategory() {
+    const me = this;
 
-    var form = Ext.create("PSI.CodeTable.CategoryEditForm", {
+    const form = Ext.create("PSI.CodeTable.CategoryEditForm", {
       parentForm: me
     });
 
     form.show();
   },
 
-  refreshCategoryGrid: function (id) {
-    var me = this;
-    var grid = me.getCategoryGrid();
-    var el = grid.getEl() || Ext.getBody();
+  refreshCategoryGrid(id) {
+    const me = this;
+    const grid = me.getCategoryGrid();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/CodeTable/categoryList"),
-      callback: function (options, success, response) {
-        var store = grid.getStore();
+      callback(options, success, response) {
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
