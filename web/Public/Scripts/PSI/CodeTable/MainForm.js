@@ -1,11 +1,15 @@
-//
-// 码表设置 - 主界面
-//
+/**
+ * 码表设置 - 主界面
+ * 
+ * @author 李静波
+ */
 Ext.define("PSI.CodeTable.MainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
+  extend: "Ext.panel.Panel",
   border: 0,
 
-  initComponent: function () {
+  mixins: ["PSI.AFX.Mix.Common"],
+
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
