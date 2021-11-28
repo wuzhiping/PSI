@@ -10,7 +10,7 @@ Ext.define("PSI.CodeTable.MainForm", {
   mixins: ["PSI.AFX.Mix.Common"],
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
@@ -57,8 +57,8 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.refreshCategoryGrid();
   },
 
-  getToolbarCmp: function () {
-    var me = this;
+  getToolbarCmp() {
+    const me = this;
 
     return [{
       text: "新增码表分类",
@@ -97,12 +97,13 @@ Ext.define("PSI.CodeTable.MainForm", {
       }]
     }, "-", {
       text: "帮助",
-      handler: function () {
-        window.open(me.URL("Home/Help/index?t=codetable"));
+      handler() {
+        me.showInfo("TODO")
+        // window.open(me.URL("Home/Help/index?t=codetable"));
       }
     }, "-", {
       text: "关闭",
-      handler: function () {
+      handler() {
         me.closeWindow();
       }
     }];
