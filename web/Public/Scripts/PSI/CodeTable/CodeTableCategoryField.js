@@ -169,7 +169,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
             PSI.MsgBox.showInfo("网络错误");
           }
         },
-        scope: this
+        scope: me
       });
 
     }, me);

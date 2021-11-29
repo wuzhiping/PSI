@@ -11,8 +11,8 @@ Ext.define("PSI.CodeTable.CodeTableParentIdField", {
     idCmp: null
   },
 
-  initComponent: function () {
-    var me = this;
+  initComponent() {
+    const me = this;
 
     me.__idValue = null;
 
@@ -20,7 +20,7 @@ Ext.define("PSI.CodeTable.CodeTableParentIdField", {
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (e.getKey() == e.BACKSPACE) {
         field.setValue(null);
         me.setIdValue(null);
@@ -29,13 +29,13 @@ Ext.define("PSI.CodeTable.CodeTableParentIdField", {
       }
 
       if (e.getKey() !== e.ENTER) {
-        this.onTriggerClick(e);
+        me.onTriggerClick(e);
       }
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -43,16 +43,16 @@ Ext.define("PSI.CodeTable.CodeTableParentIdField", {
     });
   },
 
-  onTriggerClick: function (e) {
-    var me = this;
-    var modelName = "PSICodeTableParentIdField";
+  onTriggerClick(e) {
+    const me = this;
+    const modelName = "PSICodeTableParentIdField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name", "full_name", "code",
         "leaf", "children"]
     });
 
-    var store = Ext.create("Ext.data.TreeStore", {
+    const store = Ext.create("Ext.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -66,7 +66,7 @@ Ext.define("PSI.CodeTable.CodeTableParentIdField", {
       }
     });
 
-    var tree = Ext.create("Ext.tree.Panel", {
+    const tree = Ext.create("Ext.tree.Panel", {
       cls: "PSI",
       store: store,
       rootVisible: false,
@@ -91,10 +91,10 @@ Ext.define("PSI.CodeTable.CodeTableParentIdField", {
         }]
       }
     });
-    tree.on("itemdblclick", this.onOK, this);
-    this.tree = tree;
+    tree.on("itemdblclick", me.onOK, me);
+    me.tree = tree;
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择上级",
       modal: true,
       width: 400,
@@ -107,21 +107,21 @@ Ext.define("PSI.CodeTable.CodeTableParentIdField", {
         scope: this
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
-    this.wnd = wnd;
+    me.wnd = wnd;
     wnd.show();
   },
 
   // private
-  onOK: function () {
-    var me = this;
+  onOK() {
+    const me = this;
 
-    var tree = me.tree;
-    var item = tree.getSelectionModel().getSelection();
+    const tree = me.tree;
+    const item = tree.getSelectionModel().getSelection();
 
     if (item === null || item.length !== 1) {
       PSI.MsgBox.showInfo("没有选择记录");
@@ -129,7 +129,7 @@ Ext.define("PSI.CodeTable.CodeTableParentIdField", {
       return;
     }
 
-    var data = item[0];
+    const data = item[0];
 
     me.setIdValue(data.get("id"));
     me.setValue(data.get("full_name"));
@@ -138,18 +138,17 @@ Ext.define("PSI.CodeTable.CodeTableParentIdField", {
     me.focus();
   },
 
-  setIdValue: function (id) {
-    var me = this;
+  setIdValue(id) {
+    const me = this;
     me.__idValue = id;
 
-    var idCmp = me.getIdCmp();
-    debugger;
+    const idCmp = me.getIdCmp();
     if (idCmp) {
       idCmp.setValue(id);
     }
   },
 
-  getIdValue: function () {
+  getIdValue() {
     return this.__idValue;
   }
 });
