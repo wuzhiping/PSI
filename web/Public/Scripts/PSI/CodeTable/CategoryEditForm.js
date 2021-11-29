@@ -185,8 +185,8 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
 
     if (e.getKey() == e.ENTER) {
       const editName = me.editName;
-      editName.focus();
-      editName.setValue(editName.getValue());
+
+      me.setFocusAndCursorPosToLast(editName);
     }
   },
 
@@ -229,13 +229,12 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     }
   },
 
-  onWndShow () {
+  onWndShow() {
     const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     const editCode = me.editCode;
-    editCode.focus();
-    editCode.setValue(editCode.getValue());
+    me.setFocusAndCursorPosToLast(editCode);
   }
 });
