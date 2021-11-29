@@ -43,6 +43,12 @@ class FundsController extends PSIBaseController
   public function payCategoryList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PAYABLES)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -57,6 +63,12 @@ class FundsController extends PSIBaseController
   public function payList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PAYABLES)) {
+        die("没有权限");
+      }
+
       $params = [
         "caType" => I("post.caType"),
         "categoryId" => I("post.categoryId"),
@@ -78,6 +90,12 @@ class FundsController extends PSIBaseController
   public function payDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PAYABLES)) {
+        die("没有权限");
+      }
+
       $params = [
         "caType" => I("post.caType"),
         "caId" => I("post.caId"),
@@ -96,6 +114,12 @@ class FundsController extends PSIBaseController
   public function payRecordList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PAYABLES)) {
+        die("没有权限");
+      }
+
       $params = [
         "refType" => I("post.refType"),
         "refNumber" => I("post.refNumber"),
@@ -116,6 +140,12 @@ class FundsController extends PSIBaseController
     if (IS_POST) {
       $us = new UserService();
 
+      if (!$us->hasPermission(FIdConst::PAYABLES)) {
+        die("没有权限");
+      }
+
+      $us = new UserService();
+
       $this->ajaxReturn(
         [
           "bizUserId" => $us->getLoginUserId(),
@@ -131,6 +161,12 @@ class FundsController extends PSIBaseController
   public function addPayment()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PAYABLES)) {
+        die("没有权限");
+      }
+
       $params = [
         "refType" => I("post.refType"),
         "refNumber" => I("post.refNumber"),
@@ -150,6 +186,12 @@ class FundsController extends PSIBaseController
   public function refreshPayInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PAYABLES)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -164,6 +206,12 @@ class FundsController extends PSIBaseController
   public function refreshPayDetailInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PAYABLES)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
