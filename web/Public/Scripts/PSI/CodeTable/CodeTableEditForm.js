@@ -1,38 +1,45 @@
 //
 // 码表 - 新建或编辑界面
 //
+/**
+ * 码表设置 - 新建或编辑码表元数据界面
+ * 
+ * @author 李静波
+ */
 Ext.define("PSI.CodeTable.CodeTableEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "Ext.window.Window",
+
+  mixins: ["PSI.AFX.Mix.Common"],
 
   config: {
     category: null
   },
 
-  initComponent: function () {
-    var me = this;
-    var entity = me.getEntity();
-    this.adding = entity == null;
+  initComponent() {
+    const me = this;
+    const entity = me.getEntity();
+    me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
 
     buttons.push({
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
     }, {
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
     });
 
-    var t = entity == null ? "新增码表" : "编辑码表";
-    var logoHtml = me.genLogoHtml(entity, t);
+    const t = entity == null ? "新建码表" : "编辑码表";
+    const logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
       header: {
@@ -68,8 +75,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
         items: [{
           xtype: "hidden",
           name: "id",
-          value: entity == null ? null : entity
-            .get("id")
+          value: entity == null ? null : entity.get("id")
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editCategoryId",
           xtype: "hidden",
@@ -270,15 +276,15 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
       me.editTableName, me.editEditColCnt, me.editAutoCodeLength,
       me.editHandlerClassName, me.editMemo];
 
-    var c = me.getCategory();
+    const c = me.getCategory();
     if (c) {
       me.editCategory.setIdValue(c.get("id"));
       me.editCategory.setValue(c.get("name"));
     }
   },
 
-  onWndShow: function () {
-    var me = this;
+  onWndShow() {
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
@@ -287,17 +293,16 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
       me.editTableName.setValue("t_ct_");
     } else {
       // 编辑
-      var el = me.getEl();
+      const el = me.getEl();
       el && el.mask(PSI.Const.LOADING);
-      Ext.Ajax.request({
+      me.ajax({
         url: me.URL("Home/CodeTable/codeTableInfo"),
         params: {
           id: me.getEntity().get("id")
         },
-        method: "POST",
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             me.editCategory.setIdValue(data.categoryId);
             me.editCategory.setValue(data.categoryName);
             me.editCode.setValue(data.code);
@@ -319,70 +324,68 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
       });
     }
 
-    me.editCode.focus();
-    me.editCode.setValue(me.editCode.getValue());
+    me.setFocusAndCursorPosToLast(me.editCode);
   },
 
-  onOK: function () {
-    var me = this;
+  onOK() {
+    const me = this;
 
     me.editCategoryId.setValue(me.editCategory.getIdValue());
 
-    var f = me.editForm;
-    var el = f.getEl();
+    const f = me.editForm;
+    const el = f.getEl();
     el && el.mask(PSI.Const.SAVING);
     f.submit({
       url: me.URL("Home/CodeTable/editCodeTable"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         el && el.unmask();
         PSI.MsgBox.tip("数据保存成功");
         me.focus();
         me.__lastId = action.result.id;
         me.close();
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el && el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        me.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
     });
   },
 
-  onEditSpecialKey: function (field, e) {
-    var me = this;
+  onEditSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() === e.ENTER) {
-      var id = field.getId();
-      for (var i = 0; i < me.__editorList.length; i++) {
-        var edit = me.__editorList[i];
+      const id = field.getId();
+      for (let i = 0; i < me.__editorList.length; i++) {
+        const edit = me.__editorList[i];
         if (id == edit.getId()) {
-          var edit = me.__editorList[i + 1];
-          edit.focus();
-          edit.setValue(edit.getValue());
+          const editNext = me.__editorList[i + 1];
+          me.setFocusAndCursorPosToLast(editNext);
         }
       }
     }
   },
 
-  onEditLastSpecialKey: function (field, e) {
-    var me = this;
+  onEditLastSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() === e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK();
       }
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
-    var me = this;
+  onWndClose() {
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
