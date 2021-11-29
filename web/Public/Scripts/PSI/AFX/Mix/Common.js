@@ -52,6 +52,11 @@ Ext.define("PSI.AFX.Mix.Common", {
     edit.inputEl.dom.selectionStart = v ? v.length : 0;
   },
 
+  // 格式化Dialogue Form的标题
+  formatTitle(title) {
+    return `<span style='font-size:160%'>${title}</span>`;
+  },
+
   // 格式化Grid标题
   formatGridHeaderTitle(title) {
     return `<span style='font-size:13px'>${title}</sapn>`;
