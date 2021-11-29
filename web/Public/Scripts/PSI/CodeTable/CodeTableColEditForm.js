@@ -1,19 +1,23 @@
-//
-// 码表列 - 新建或编辑界面
-//
+/**
+ * 码表列 - 新建或编辑界面
+ * 
+ * @author 李静波
+ */
 Ext.define("PSI.CodeTable.CodeTableColEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "Ext.window.Window",
+
+  mixins: ["PSI.AFX.Mix.Common"],
 
   config: {
     codeTable: null
   },
 
-  initComponent: function () {
-    var me = this;
-    var entity = me.getEntity();
+  initComponent() {
+    const me = this;
+    const entity = me.getEntity();
     this.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
 
     buttons.push({
       text: "保存",
@@ -25,21 +29,24 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       scope: me
     }, {
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
     }, {
       text: "帮助",
-      handler: function () { window.open(me.URL("Home/Help/index?t=codetable")); },
+      handler() {
+        me.showInfo("TODO")
+        // window.open(me.URL("Home/Help/index?t=codetable")); 
+      },
       scope: me
     });
 
-    var t = entity == null ? "新增码表列" : "编辑码表列";
-    var logoHtml = me.genLogoHtml(entity, t);
+    const t = entity == null ? "新增码表列" : "编辑码表列";
+    const logoHtml = me.genLogoHtml(entity, t);
 
-    var col2Width = 550;
-    var col3Width = 830;
+    const col2Width = 550;
+    const col3Width = 830;
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -416,34 +423,33 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     me.buttonRefCol = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
   },
 
-  onWndShow: function () {
-    var me = this;
+  onWndShow() {
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var el = me.getEl();
+    const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    me.ajax({
       url: me.URL("Home/CodeTable/codeTableColInfo"),
       params: {
         id: me.adding ? null : me.getEntity().get("id"),
         tableId: me.getCodeTable().get("id")
       },
-      method: "POST",
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         if (success) {
           el && el.unmask();
 
-          var data = Ext.JSON.decode(response.responseText);
+          const data = Ext.JSON.decode(response.responseText);
           if (data.editorXtype) {
-            var store = me.editEditorXtype.getStore();
+            const store = me.editEditorXtype.getStore();
             store.removeAll();
             store.add(data.editorXtype);
           }
 
           if (me.adding) {
             // 新建
-            var store = me.editEditorXtype.getStore();
+            const store = me.editEditorXtype.getStore();
             me.editEditorXtype.setValue(store.getAt(0));
           } else {
             // 编辑
@@ -456,13 +462,13 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
             me.editFieldDec.setReadOnly(true);
             me.editFieldDec.setDisabled(false);
 
-            var col = data.col;
+            const col = data.col;
             if (col) {
               me.editCaption.setValue(col.caption);
               me.editFieldName.setValue(col.fieldName);
               me.editFieldType.setValue(col.fieldType);
               me.editFieldDec.setValue(col.fieldDecimal);
-              var valueFrom = parseInt(col.valueFrom);
+              const valueFrom = parseInt(col.valueFrom);
               me.editValueFrom.setValue(valueFrom);
               me.editValueFromTableName.setValue(col.valueFromTableName);
               me.editValueFromColName.setValue(col.valueFromColName);
@@ -513,67 +519,65 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     });
   },
 
-  onOK: function () {
-    var me = this;
+  onOK() {
+    const me = this;
 
-    var f = me.editForm;
-    var el = f.getEl();
+    const f = me.editForm;
+    const el = f.getEl();
     el && el.mask(PSI.Const.SAVING);
     f.submit({
       url: me.URL("Home/CodeTable/editCodeTableCol"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         el && el.unmask();
-        PSI.MsgBox.tip("数据保存成功");
+        me.tip("数据保存成功");
         me.focus();
         me.__lastId = action.result.id;
         me.close();
-        var parentForm = me.getParentForm();
+        const parentForm = me.getParentForm();
         if (parentForm) {
           parentForm.refreshColsGrid(me.__lastId);
         }
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el && el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
-        });
+        me.showInfo(action.result.msg);
       }
     });
   },
 
-  onEditSpecialKey: function (field, e) {
-    var me = this;
+  onEditSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() === e.ENTER) {
-      var id = field.getId();
-      for (var i = 0; i < me.__editorList.length; i++) {
-        var edit = me.__editorList[i];
+      const id = field.getId();
+      for (let i = 0; i < me.__editorList.length; i++) {
+        const edit = me.__editorList[i];
         if (id == edit.getId()) {
-          var edit = me.__editorList[i + 1];
-          edit.focus();
-          edit.setValue(edit.getValue());
+          const edit = me.__editorList[i + 1];
+          me.setFocusAndCursorPosToLast(edit);
         }
       }
     }
   },
 
-  onEditLastSpecialKey: function (field, e) {
-    var me = this;
+  onEditLastSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() === e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK();
       }
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
-    var me = this;
+  onWndClose() {
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
@@ -584,9 +588,9 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }
   },
 
-  onFieldTypeChange: function () {
-    var me = this;
-    var v = me.editFieldType.getValue();
+  onFieldTypeChange() {
+    const me = this;
+    const v = me.editFieldType.getValue();
     if (v == "varchar") {
       me.editFieldLength.setValue(255);
       me.editFieldLength.setDisabled(false);
@@ -610,9 +614,9 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }
   },
 
-  onValueFromChange: function () {
-    var me = this;
-    var v = me.editValueFrom.getValue();
+  onValueFromChange() {
+    const me = this;
+    const v = me.editValueFrom.getValue();
     if (v == 1) {
       me.buttonRefCol.setDisabled(true);
       me.editValueFromTableName.setDisabled(true);
@@ -636,8 +640,8 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }
   },
 
-  onRefCol: function () {
-    var me = this;
+  onRefCol() {
+    const me = this;
     me.showInfo("TODO")
   }
 });
