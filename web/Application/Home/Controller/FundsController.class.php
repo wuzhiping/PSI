@@ -505,6 +505,12 @@ class FundsController extends PSIBaseController
   public function addPreReceivingInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_RECEIVING)) {
+        die("没有权限");
+      }
+
       $ps = new PreReceivingService();
       $this->ajaxReturn($ps->addPreReceivingInfo());
     }
@@ -516,6 +522,12 @@ class FundsController extends PSIBaseController
   public function returnPreReceivingInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_RECEIVING)) {
+        die("没有权限");
+      }
+
       $ps = new PreReceivingService();
       $this->ajaxReturn($ps->returnPreReceivingInfo());
     }
@@ -527,6 +539,12 @@ class FundsController extends PSIBaseController
   public function addPreReceiving()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "customerId" => I("post.customerId"),
         "bizUserId" => I("post.bizUserId"),
@@ -546,6 +564,12 @@ class FundsController extends PSIBaseController
   public function returnPreReceiving()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "customerId" => I("post.customerId"),
         "bizUserId" => I("post.bizUserId"),
@@ -565,6 +589,12 @@ class FundsController extends PSIBaseController
   public function prereceivingList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "categoryId" => I("post.categoryId"),
         "customerId" => I("post.customerId"),
@@ -584,6 +614,12 @@ class FundsController extends PSIBaseController
   public function prereceivingDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "customerId" => I("post.customerId"),
         "dtFrom" => I("post.dtFrom"),
