@@ -1,25 +1,28 @@
-//
-// 码表分类 - 新增或编辑界面
-//
+/**
+ * 码表分类 - 新增或编辑界面
+ * @author 李静波
+ */
 Ext.define("PSI.CodeTable.CategoryEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "Ext.window.Window",
 
-	/**
-	 * 初始化组件
-	 */
-  initComponent: function () {
-    var me = this;
+  mixins: ["PSI.AFX.Mix.Common"],
 
-    var entity = me.getEntity();
+  /**
+   * 初始化组件
+   */
+  initComponent() {
+    const me = this;
+
+    const entity = me.getEntity();
 
     me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
     if (!entity) {
-      var btn = {
+      const btn = {
         text: "保存并继续新增",
         formBind: true,
-        handler: function () {
+        handler() {
           me.onOK(true);
         },
         scope: me
@@ -28,25 +31,23 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
       buttons.push(btn);
     }
 
-    var btn = {
+    buttons.push({
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
-    };
-    buttons.push(btn);
+    });
 
-    var btn = {
+    buttons.push({
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
-    };
-    buttons.push(btn);
+    });
 
     var t = entity == null ? "新增码表分类" : "编辑码表分类";
     var f = entity == null
@@ -107,14 +108,12 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
         items: [{
           xtype: "hidden",
           name: "id",
-          value: entity == null ? null : entity
-            .get("id")
+          value: entity == null ? null : entity.get("id")
         }, {
           id: "PSI_CodeTable_CategoryEditForm_editCode",
           fieldLabel: "分类编码",
           name: "code",
-          value: entity == null ? null : entity
-            .get("code"),
+          value: entity == null ? null : entity.get("code"),
           listeners: {
             specialkey: {
               fn: me.onEditCodeSpecialKey,
@@ -128,8 +127,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
           blankText: "没有输入分类",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "name",
-          value: entity == null ? null : entity
-            .get("name"),
+          value: entity == null ? null : entity.get("name"),
           listeners: {
             specialkey: {
               fn: me.onEditNameSpecialKey,
@@ -149,22 +147,22 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     me.editName = Ext.getCmp("PSI_CodeTable_CategoryEditForm_editName");
   },
 
-	/**
-	 * 保存
-	 */
-  onOK: function (thenAdd) {
-    var me = this;
-    var f = me.editForm;
-    var el = f.getEl();
+  /**
+   * 保存
+   */
+  onOK(thenAdd) {
+    const me = this;
+    const f = me.editForm;
+    const el = f.getEl();
     el.mask(PSI.Const.SAVING);
-    var sf = {
+    const sf = {
       url: me.URL("Home/CodeTable/editCodeTableCategory"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         me.__lastId = action.result.id;
         el.unmask();
 
-        PSI.MsgBox.tip("数据保存成功");
+        me.tip("数据保存成功");
         me.focus();
         if (thenAdd) {
           me.clearEdit();
@@ -172,9 +170,9 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
           me.close();
         }
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        me.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
@@ -182,45 +180,45 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     f.submit(sf);
   },
 
-  onEditCodeSpecialKey: function (field, e) {
-    var me = this;
+  onEditCodeSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var editName = me.editName;
+      const editName = me.editName;
       editName.focus();
       editName.setValue(editName.getValue());
     }
   },
 
-  onEditNameSpecialKey: function (field, e) {
-    var me = this;
+  onEditNameSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK(me.adding);
       }
     }
   },
 
-  clearEdit: function () {
-    var me = this;
+  clearEdit() {
+    const me = this;
     me.editCode.focus();
 
-    var editors = [me.editCode, me.editName];
-    for (var i = 0; i < editors.length; i++) {
-      var edit = editors[i];
+    const editors = [me.editCode, me.editName];
+    for (let i = 0; i < editors.length; i++) {
+      const edit = editors[i];
       edit.setValue(null);
       edit.clearInvalid();
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
-    var me = this;
+  onWndClose() {
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
@@ -231,12 +229,12 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     }
   },
 
-  onWndShow: function () {
-    var me = this;
+  onWndShow () {
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var editCode = me.editCode;
+    const editCode = me.editCode;
     editCode.focus();
     editCode.setValue(editCode.getValue());
   }

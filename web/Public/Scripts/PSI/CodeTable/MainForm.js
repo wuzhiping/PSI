@@ -865,7 +865,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
               me.refreshColsGrid(preIndex);
