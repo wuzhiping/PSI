@@ -32,6 +32,11 @@ Ext.define("PSI.AFX.Mix.Common", {
     return Ext.JSON.decode(str);
   },
 
+  // 把对象转换成JSON字符串
+  encodeJSON(obj) {
+    return Ext.JSON.encode(obj);
+  },
+
   // 关闭当前模块
   closeWindow() {
     if (PSI.Const.MOT == "0") {

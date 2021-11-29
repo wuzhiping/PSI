@@ -107,7 +107,7 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       const c = cols[i];
       layout.push({ dataIndex: c.dataIndex });
     }
-    const json = Ext.JSON.encode(layout);
+    const json = me.encodeJSON(layout);
 
     const info = "请确认是否保存编辑字段显示次序?";
 
