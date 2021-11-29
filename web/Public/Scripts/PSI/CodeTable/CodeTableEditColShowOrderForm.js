@@ -1,36 +1,39 @@
-//
-// 码表 - 调整编辑界面字段显示次序
-//
+/**
+ * 码表设置 - 调整编辑界面字段显示次序
+ * 
+ * @author 李静波
+ */
 Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "Ext.window.Window",
+
+  mixins: ["PSI.AFX.Mix.Common"],
 
   config: {
     codeTable: null
   },
 
-  initComponent: function () {
-    var me = this;
-    var entity = me.getEntity();
+  initComponent() {
+    const me = this;
+    const entity = me.getEntity();
     this.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
 
     buttons.push({
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
     }, {
       text: "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
     });
-
 
     Ext.apply(me, {
       resizable: true,
@@ -70,24 +73,23 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
     me.__mainPanel = Ext.getCmp("CodeTableEditColShowOrderForm_panelMain");
   },
 
-  onWndShow: function () {
-    var me = this;
+  onWndShow() {
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var el = me.getEl();
+    const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    me.ajax({
       url: me.URL("Home/CodeTable/queryCodeTableEditColShowOrder"),
       params: {
         tableId: me.getCodeTable().get("id")
       },
-      method: "POST",
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         if (success) {
           el && el.unmask();
 
-          var data = Ext.JSON.decode(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           me.__mainPanel.add(me.createMainGrid(data));
         }
       }
@@ -95,31 +97,30 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
 
   },
 
-  onOK: function () {
-    var me = this;
+  onOK() {
+    const me = this;
 
-    var grid = me.getMainGrid();
-    var cols = grid.columnManager.columns;
-    var layout = [];
-    for (var i = 0; i < cols.length; i++) {
-      var c = cols[i];
+    const grid = me.getMainGrid();
+    const cols = grid.columnManager.columns;
+    const layout = [];
+    for (let i = 0; i < cols.length; i++) {
+      const c = cols[i];
       layout.push({ dataIndex: c.dataIndex });
     }
-    var json = Ext.JSON.encode(layout);
+    const json = Ext.JSON.encode(layout);
 
-    var info = "请确认是否保存编辑字段显示次序?";
+    const info = "请确认是否保存编辑字段显示次序?";
 
-    var funcConfirm = function () {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el && el.mask(PSI.Const.LOADING);
-      var r = {
+      const r = {
         url: me.URL("Home/CodeTable/saveColEditShowOrder"),
         params: {
           id: me.getCodeTable().get("id"),
           json: json
         },
-        method: "POST",
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el && el.unmask();
           if (success) {
             var data = me.decodeJSON(response.responseText);
@@ -142,32 +143,31 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
-    var me = this;
+  onWndClose() {
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
-  getMainGrid: function () {
-    var me = this;
+  getMainGrid() {
+    const me = this;
     return me.__mainGrid;
   },
 
-  createMainGrid: function (cols) {
-    var me = this;
+  createMainGrid(cols) {
+    const me = this;
 
-
-    var fields = [];
-    var columns = [];
+    const fields = [];
+    const columns = [];
     if (!cols) {
       columns.push({});
     } else {
-      for (var i = 0; i < cols.length; i++) {
-        var col = cols[i];
+      for (let i = 0; i < cols.length; i++) {
+        const col = cols[i];
         columns.push({
           header: col.caption,
           dataIndex: col.dataIndex
@@ -176,7 +176,7 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       }
     }
 
-    var modelName = "PSICodeTableEditColShowOrder";
+    const modelName = "PSICodeTableEditColShowOrder";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
