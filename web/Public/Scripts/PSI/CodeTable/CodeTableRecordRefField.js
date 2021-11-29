@@ -1,5 +1,7 @@
 /**
  * 自定义字段 - 码表记录引用字段
+ * 
+ * @author 李静波
  */
 Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
   extend: "Ext.form.field.Trigger",
@@ -10,18 +12,18 @@ Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
     showModal: false
   },
 
-	/**
-	 * 初始化组件
-	 */
-  initComponent: function () {
-    var me = this;
+  /**
+   * 初始化组件
+   */
+  initComponent() {
+    const me = this;
     me.__idValue = null;
 
     me.enableKeyEvents = true;
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (me.readOnly) {
         return;
       }
@@ -39,8 +41,8 @@ Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -48,23 +50,23 @@ Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
     });
   },
 
-	/**
-	 * 单击下拉按钮
-	 */
-  onTriggerClick: function (e) {
-    var me = this;
-    var modelName = "PSICodeTableRecordRefField";
+  /**
+   * 单击下拉按钮
+   */
+  onTriggerClick(e) {
+    const me = this;
+    const modelName = "PSICodeTableRecordRefField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "code", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    const lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 0,
@@ -137,7 +139,7 @@ Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
@@ -153,9 +155,9 @@ Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("PSI_CodeTable_CodeTableRecordRefField_editName");
+    const editName = Ext.getCmp("PSI_CodeTable_CodeTableRecordRefField_editName");
     editName.on("change", function () {
-      var store = me.lookupGrid.getStore();
+      const store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/CodeTable/queryDataForRecordRef",
         params: {
@@ -163,10 +165,10 @@ Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
           fid: me.getFid()
         },
         method: "POST",
-        callback: function (opt, success, response) {
+        callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            const data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -181,14 +183,14 @@ Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
 
     }, me);
 
-    editName.on("specialkey", function (field, e) {
+    editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -201,10 +203,10 @@ Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
         e.preventDefault();
         editName.focus();
       } else if (e.getKey() == e.DOWN) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -219,40 +221,40 @@ Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
       }
     }, me);
 
-    me.wnd.on("show", function () {
+    me.wnd.on("show", () => {
       editName.focus();
       editName.fireEvent("change");
     }, me);
     wnd.showBy(me);
   },
 
-  onOK: function () {
-    var me = this;
-    var grid = me.lookupGrid;
-    var item = grid.getSelectionModel().getSelection();
+  onOK() {
+    const me = this;
+    const grid = me.lookupGrid;
+    const item = grid.getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var data = item[0].getData();
+    const data = item[0];
 
     me.wnd.close();
     me.focus();
-    me.setValue(data.name);
+    me.setValue(data.get("name"));
     me.focus();
 
-    me.setIdValue(data.id);
+    me.setIdValue(data.get("id"));
   },
 
-  setIdValue: function (id) {
+  setIdValue(id) {
     this.__idValue = id;
   },
 
-  getIdValue: function () {
+  getIdValue() {
     return this.__idValue;
   },
 
-  clearIdValue: function () {
+  clearIdValue() {
     this.setValue(null);
     this.__idValue = null;
   }
