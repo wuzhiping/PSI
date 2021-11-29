@@ -7,7 +7,7 @@ Ext.define("PSI.CodeTable.MainForm", {
   extend: "Ext.panel.Panel",
   border: 0,
 
-  mixins: ["PSI.AFX.Mix.Common", "PSI.AFX.Mix.Grid"],
+  mixins: ["PSI.AFX.Mix.Common"],
 
   initComponent() {
     const me = this;
