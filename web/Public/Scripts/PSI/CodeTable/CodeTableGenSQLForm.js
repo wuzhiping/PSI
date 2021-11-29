@@ -1,15 +1,19 @@
 /**
  * 导出SQL
+ * 
+ * @author 李静波
  */
 Ext.define("PSI.CodeTable.CodeTableGenSQLForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "Ext.window.Window",
+
+  mixins: ["PSI.AFX.Mix.Common"],
 
   config: {
     codeTable: null
   },
 
-  initComponent: function () {
-    var me = this;
+  initComponent() {
+    const me = this;
 
     Ext.apply(me, {
       title: "导出SQL",
@@ -38,7 +42,7 @@ Ext.define("PSI.CodeTable.CodeTableGenSQLForm", {
         }],
         buttons: [{
           text: "关闭",
-          handler: function () {
+          handler() {
             me.close();
           },
           scope: me
@@ -55,19 +59,19 @@ Ext.define("PSI.CodeTable.CodeTableGenSQLForm", {
     me.callParent(arguments);
   },
 
-  onWndShow: function () {
-    var me = this;
+  onWndShow() {
+    const me = this;
 
-    var el = me.getEl();
+    const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/CodeTable/codeTableGenSQL"),
       params: {
         id: me.getCodeTable().get("id")
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
 
           if (data.success) {
             Ext.getCmp("editSQL").setValue(data.sql);
