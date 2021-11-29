@@ -9,8 +9,8 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
     showModal: false
   },
 
-  initComponent: function () {
-    var me = this;
+  initComponent() {
+    const me = this;
 
     me.__idValue = null;
 
@@ -18,7 +18,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (me.readOnly) {
         return;
       }
@@ -36,8 +36,8 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -45,20 +45,20 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
     });
   },
 
-  onTriggerClick: function (e) {
-    var me = this;
-    var modelName = "PSICodeTableCategoryField";
+  onTriggerClick(e) {
+    const me = this;
+    const modelName = "PSICodeTableCategoryField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "code", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    const lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 0,
@@ -77,7 +77,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 码表分类",
       modal: me.getShowModal(),
       header: false,
@@ -131,36 +131,35 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
 
-    wnd.on("close", function () {
+    wnd.on("close", () => {
       me.focus();
     });
     if (!me.getShowModal()) {
-      wnd.on("deactivate", function () {
+      wnd.on("deactivate", () => {
         wnd.close();
       });
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("PSI_CodeTable_CodeTableCategoryField_editCategory");
-    editName.on("change", function () {
-      var store = me.lookupGrid.getStore();
+    const editName = Ext.getCmp("PSI_CodeTable_CodeTableCategoryField_editCategory");
+    editName.on("change", () => {
+      const store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/CodeTable/queryDataForCategory",
         params: {
           queryKey: editName.getValue()
         },
         method: "POST",
-        callback: function (opt, success, response) {
+        callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            const data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -175,14 +174,14 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
 
     }, me);
 
-    editName.on("specialkey", function (field, e) {
+    editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -195,10 +194,10 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
         e.preventDefault();
         editName.focus();
       } else if (e.getKey() == e.DOWN) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -213,7 +212,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
       }
     }, me);
 
-    me.wnd.on("show", function () {
+    me.wnd.on("show", () => {
       editName.focus();
       editName.fireEvent("change");
     }, me);
@@ -221,15 +220,15 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
   },
 
   // private
-  onOK: function () {
-    var me = this;
-    var grid = me.lookupGrid;
-    var item = grid.getSelectionModel().getSelection();
+  onOK() {
+    const me = this;
+    const grid = me.lookupGrid;
+    const item = grid.getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var data = item[0];
+    const data = item[0];
 
     me.wnd.close();
     me.focus();
@@ -239,15 +238,15 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
     me.setIdValue(data.get("id"));
   },
 
-  setIdValue: function (id) {
+  setIdValue(id) {
     this.__idValue = id;
   },
 
-  getIdValue: function () {
+  getIdValue() {
     return this.__idValue;
   },
 
-  clearIdValue: function () {
+  clearIdValue() {
     this.setValue(null);
     this.__idValue = null;
   }
