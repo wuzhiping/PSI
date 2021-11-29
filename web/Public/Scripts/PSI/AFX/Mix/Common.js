@@ -43,5 +43,10 @@ Ext.define("PSI.AFX.Mix.Common", {
         window.location.replace(PSI.Const.BASE_URL);
       }
     }
+  },
+
+  // 格式化Grid标题
+  formatGridHeaderTitle(title) {
+    return `<span style='font-size:13px'>${title}</sapn>`;
   }
 });
