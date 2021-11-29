@@ -658,6 +658,12 @@ class FundsController extends PSIBaseController
   public function addPrePaymentInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_PAYMENT)) {
+        die("没有权限");
+      }
+
       $ps = new PrePaymentService();
       $this->ajaxReturn($ps->addPrePaymentInfo());
     }
@@ -669,6 +675,12 @@ class FundsController extends PSIBaseController
   public function addPrePayment()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_PAYMENT)) {
+        die("没有权限");
+      }
+
       $params = [
         "supplierId" => I("post.supplierId"),
         "bizUserId" => I("post.bizUserId"),
@@ -688,6 +700,12 @@ class FundsController extends PSIBaseController
   public function prepaymentList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_PAYMENT)) {
+        die("没有权限");
+      }
+
       $params = [
         "categoryId" => I("post.categoryId"),
         "supplierId" => I("post.supplierId"),
@@ -707,6 +725,12 @@ class FundsController extends PSIBaseController
   public function prepaymentDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_PAYMENT)) {
+        die("没有权限");
+      }
+
       $params = [
         "supplierId" => I("post.supplierId"),
         "dtFrom" => I("post.dtFrom"),
@@ -726,6 +750,12 @@ class FundsController extends PSIBaseController
   public function returnPrePaymentInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_PAYMENT)) {
+        die("没有权限");
+      }
+
       $ps = new PrePaymentService();
       $this->ajaxReturn($ps->returnPrePaymentInfo());
     }
@@ -737,6 +767,12 @@ class FundsController extends PSIBaseController
   public function returnPrePayment()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::PRE_PAYMENT)) {
+        die("没有权限");
+      }
+
       $params = [
         "supplierId" => I("post.supplierId"),
         "bizUserId" => I("post.bizUserId"),
