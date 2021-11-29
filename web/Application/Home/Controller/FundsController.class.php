@@ -440,6 +440,12 @@ class FundsController extends PSIBaseController
   public function cashList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::CASH_INDEX)) {
+        die("没有权限");
+      }
+
       $params = [
         "dtFrom" => I("post.dtFrom"),
         "dtTo" => I("post.dtTo"),
@@ -458,6 +464,12 @@ class FundsController extends PSIBaseController
   public function cashDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::CASH_INDEX)) {
+        die("没有权限");
+      }
+
       $params = [
         "bizDT" => I("post.bizDT"),
         "page" => I("post.page"),
