@@ -144,8 +144,6 @@ class FundsController extends PSIBaseController
         die("没有权限");
       }
 
-      $us = new UserService();
-
       $this->ajaxReturn(
         [
           "bizUserId" => $us->getLoginUserId(),
@@ -244,6 +242,12 @@ class FundsController extends PSIBaseController
   public function rvCategoryList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -284,6 +288,12 @@ class FundsController extends PSIBaseController
   public function rvDetailList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "caType" => I("post.caType"),
         "caId" => I("post.caId"),
@@ -302,6 +312,12 @@ class FundsController extends PSIBaseController
   public function rvRecordList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "refType" => I("post.refType"),
         "refNumber" => I("post.refNumber"),
@@ -322,6 +338,10 @@ class FundsController extends PSIBaseController
     if (IS_POST) {
       $us = new UserService();
 
+      if (!$us->hasPermission(FIdConst::RECEIVING)) {
+        die("没有权限");
+      }
+
       $this->ajaxReturn(
         [
           "bizUserId" => $us->getLoginUserId(),
@@ -337,6 +357,12 @@ class FundsController extends PSIBaseController
   public function addRvRecord()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "refType" => I("post.refType"),
         "refNumber" => I("post.refNumber"),
@@ -356,6 +382,12 @@ class FundsController extends PSIBaseController
   public function refreshRvInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -370,6 +402,12 @@ class FundsController extends PSIBaseController
   public function refreshRvDetailInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::RECEIVING)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
