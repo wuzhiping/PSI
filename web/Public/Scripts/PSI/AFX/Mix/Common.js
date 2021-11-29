@@ -45,6 +45,13 @@ Ext.define("PSI.AFX.Mix.Common", {
     }
   },
 
+  // 把input的光标定位到最后
+  setFocusAndCursorPosToLast(edit) {
+    edit.focus();
+    const v = edit.getValue();
+    edit.inputEl.dom.selectionStart = v ? v.length : 0;
+  },
+
   // 格式化Grid标题
   formatGridHeaderTitle(title) {
     return `<span style='font-size:13px'>${title}</sapn>`;
