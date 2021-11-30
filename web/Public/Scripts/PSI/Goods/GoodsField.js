@@ -109,7 +109,7 @@ Ext.define("PSI.Goods.GoodsField", {
     var buttons = [];
     if (me.getShowAddButton()) {
       buttons.push({
-        text: "新增物料",
+        text: "新建物料",
         handler: me.onAddGoods,
         iconCls: "PSI-button-add",
         scope: me
