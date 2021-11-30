@@ -116,7 +116,7 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
     var buttons = [];
     if (me.getShowAddButton()) {
       buttons.push({
-        text: "新增商品",
+        text: "新建商品",
         handler: me.onAddGoods,
         iconCls: "PSI-button-add",
         scope: me
