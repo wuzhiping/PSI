@@ -131,7 +131,7 @@ Ext.define("PSI.Factory.FactoryField", {
         }]
       }],
       buttons: [{
-        text: "新增工厂",
+        text: "新建工厂",
         iconCls: "PSI-button-add",
         hidden: !me.getShowAddButton(),
         handler: me.onAdd,
