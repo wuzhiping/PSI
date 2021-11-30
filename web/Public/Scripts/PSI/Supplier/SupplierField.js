@@ -136,7 +136,7 @@ Ext.define("PSI.Supplier.SupplierField", {
         }]
       }],
       buttons: [{
-        text: "新增供应商档案",
+        text: "新建供应商档案",
         iconCls: "PSI-button-add",
         hidden: !me.getShowAddButton(),
         handler: me.onAdd,
