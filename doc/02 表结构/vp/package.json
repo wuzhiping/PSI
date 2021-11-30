@@ -1,0 +1,14 @@
+{
+  "name": "psi-db-doc",
+  "version": "1.0.0",
+  "description": "PSI数据库文档",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"  },
+  "author": "李静波",
+  "license": "GPL v3",
+  "devDependencies": {
+    "vuepress": "^1.8.2"
+  }
+}
