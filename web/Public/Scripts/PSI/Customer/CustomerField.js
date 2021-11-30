@@ -146,7 +146,7 @@ Ext.define("PSI.Customer.CustomerField", {
         }]
       }],
       buttons: [{
-        text: "新增客户资料",
+        text: "新建客户资料",
         iconCls: "PSI-button-add",
         hidden: !me.getShowAddButton(),
         handler: me.onAdd,
