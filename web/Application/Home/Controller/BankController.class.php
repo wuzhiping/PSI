@@ -56,6 +56,12 @@ class BankController extends PSIBaseController
   public function bankList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_BANK_ACCOUNT)) {
+        die("没有权限");
+      }
+
       $params = [
         "companyId" => I("post.companyId")
       ];
@@ -71,6 +77,12 @@ class BankController extends PSIBaseController
   public function editBank()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_BANK_ACCOUNT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "companyId" => I("post.companyId"),
@@ -90,6 +102,12 @@ class BankController extends PSIBaseController
   public function deleteBank()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_BANK_ACCOUNT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
