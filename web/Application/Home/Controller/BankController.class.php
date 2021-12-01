@@ -39,6 +39,12 @@ class BankController extends PSIBaseController
   public function companyList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_BANK_ACCOUNT)) {
+        die("没有权限");
+      }
+
       $service = new BankService();
       $this->ajaxReturn($service->companyList());
     }
