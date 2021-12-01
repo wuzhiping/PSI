@@ -39,6 +39,12 @@ class GLPeriodController extends PSIBaseController
   public function companyList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_PERIOD)) {
+        die("没有权限");
+      }
+
       $service = new GLPeriodService();
       $this->ajaxReturn($service->companyList());
     }
@@ -50,6 +56,12 @@ class GLPeriodController extends PSIBaseController
   public function periodList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_PERIOD)) {
+        die("没有权限");
+      }
+
       $params = [
         "companyId" => I("post.companyId")
       ];
@@ -65,6 +77,12 @@ class GLPeriodController extends PSIBaseController
   public function initPeriod()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_PERIOD)) {
+        die("没有权限");
+      }
+
       $params = [
         "companyId" => I("post.companyId")
       ];
