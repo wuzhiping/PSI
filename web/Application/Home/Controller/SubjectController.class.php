@@ -39,6 +39,12 @@ class SubjectController extends PSIBaseController
   public function companyList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $service = new SubjectService();
       $this->ajaxReturn($service->companyList());
     }
@@ -50,6 +56,12 @@ class SubjectController extends PSIBaseController
   public function subjectList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "companyId" => I("post.companyId")
       ];
@@ -65,6 +77,12 @@ class SubjectController extends PSIBaseController
   public function init()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -77,6 +95,12 @@ class SubjectController extends PSIBaseController
   public function editSubject()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "companyId" => I("post.companyId"),
         "id" => I("post.id"),
@@ -97,6 +121,12 @@ class SubjectController extends PSIBaseController
   public function queryDataForParentSubject()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $queryKey = I("post.queryKey");
       $companyId = I("post.companyId");
 
@@ -111,6 +141,12 @@ class SubjectController extends PSIBaseController
   public function subjectInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -126,6 +162,12 @@ class SubjectController extends PSIBaseController
   public function deleteSubject()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -141,6 +183,12 @@ class SubjectController extends PSIBaseController
   public function initFmt()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "companyId" => I("post.companyId")
@@ -157,6 +205,12 @@ class SubjectController extends PSIBaseController
   public function fmtPropList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "companyId" => I("post.companyId")
@@ -173,6 +227,12 @@ class SubjectController extends PSIBaseController
   public function fmtColsList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "companyId" => I("post.companyId")
@@ -189,6 +249,12 @@ class SubjectController extends PSIBaseController
   public function undoInitFmt()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "companyId" => I("post.companyId")
@@ -205,6 +271,12 @@ class SubjectController extends PSIBaseController
   public function editFmtCol()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "companyId" => I("post.companyId"),
@@ -225,6 +297,12 @@ class SubjectController extends PSIBaseController
   public function fmtColInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -240,6 +318,12 @@ class SubjectController extends PSIBaseController
   public function deleteFmtCol()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -255,6 +339,12 @@ class SubjectController extends PSIBaseController
   public function fmtGridColsList()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -270,6 +360,12 @@ class SubjectController extends PSIBaseController
   public function editFmtColShowOrder()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::GL_SUBJECT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"), // 科目id
         "idList" => I("post.idList")
