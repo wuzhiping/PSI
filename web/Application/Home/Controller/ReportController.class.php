@@ -1479,6 +1479,12 @@ class ReportController extends PSIBaseController
   public function inventoryUpperQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_INVENTORY_UPPER)) {
+        die("没有权限");
+      }
+
       $params = [
         "page" => I("post.page"),
         "start" => I("post.start"),
@@ -1497,6 +1503,12 @@ class ReportController extends PSIBaseController
   public function genInventoryUpperPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_INVENTORY_UPPER)) {
+        die("没有权限");
+      }
+
       $params = [
         "limit" => I("post.limit")
       ];
@@ -1514,6 +1526,12 @@ class ReportController extends PSIBaseController
    */
   public function inventoryUpperPdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_INVENTORY_UPPER)) {
+      die("没有权限");
+    }
+
     $params = [
       "limit" => I("get.limit")
     ];
@@ -1527,6 +1545,12 @@ class ReportController extends PSIBaseController
    */
   public function inventoryUpperExcel()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_INVENTORY_UPPER)) {
+      die("没有权限");
+    }
+
     $params = [
       "limit" => I("get.limit")
     ];
