@@ -45,6 +45,12 @@ class ReportController extends PSIBaseController
   public function saleDayByGoodsQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_GOODS)) {
+        die("没有权限");
+      }
+
       $params = [
         "dt" => I("post.dt"),
         "page" => I("post.page"),
@@ -65,6 +71,12 @@ class ReportController extends PSIBaseController
   public function saleDayByGoodsSummaryQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_GOODS)) {
+        die("没有权限");
+      }
+
       $params = [
         "dt" => I("post.dt")
       ];
