@@ -1129,6 +1129,12 @@ class ReportController extends PSIBaseController
   public function safetyInventoryQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SAFETY_INVENTORY)) {
+        die("没有权限");
+      }
+
       $params = [
         "page" => I("post.page"),
         "start" => I("post.start"),
@@ -1147,6 +1153,12 @@ class ReportController extends PSIBaseController
   public function genSafetyInventoryPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SAFETY_INVENTORY)) {
+        die("没有权限");
+      }
+
       $params = [
         "page" => I("post.page"),
         "start" => I("post.start"),
@@ -1166,6 +1178,12 @@ class ReportController extends PSIBaseController
    */
   public function safetyInventoryPdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_SAFETY_INVENTORY)) {
+      die("没有权限");
+    }
+
     $params = [
       "limit" => I("get.limit")
     ];
@@ -1179,6 +1197,12 @@ class ReportController extends PSIBaseController
    */
   public function safetyInventoryExcel()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_SAFETY_INVENTORY)) {
+      die("没有权限");
+    }
+
     $params = [
       "limit" => I("get.limit")
     ];
