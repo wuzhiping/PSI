@@ -991,6 +991,12 @@ class ReportController extends PSIBaseController
   public function saleMonthByBizuserQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SALE_MONTH_BY_BIZUSER)) {
+        die("没有权限");
+      }
+
       $params = [
         "year" => I("post.year"),
         "month" => I("post.month"),
@@ -1012,6 +1018,12 @@ class ReportController extends PSIBaseController
   public function saleMonthByBizuserSummaryQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SALE_MONTH_BY_BIZUSER)) {
+        die("没有权限");
+      }
+
       $params = [
         "year" => I("post.year"),
         "month" => I("post.month")
@@ -1029,6 +1041,12 @@ class ReportController extends PSIBaseController
   public function genSaleMonthByBizuserPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SALE_MONTH_BY_BIZUSER)) {
+        die("没有权限");
+      }
+
       $params = [
         "year" => I("post.year"),
         "month" => I("post.month"),
@@ -1048,6 +1066,12 @@ class ReportController extends PSIBaseController
    */
   public function saleMonthByBizuserPdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_SALE_MONTH_BY_BIZUSER)) {
+      die("没有权限");
+    }
+
     $params = [
       "year" => I("get.year"),
       "month" => I("get.month"),
@@ -1064,6 +1088,12 @@ class ReportController extends PSIBaseController
    */
   public function saleMonthByBizuserExcel()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_SALE_MONTH_BY_BIZUSER)) {
+      die("没有权限");
+    }
+
     $params = [
       "year" => I("get.year"),
       "month" => I("get.month"),
