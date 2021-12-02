@@ -311,6 +311,12 @@ class ReportController extends PSIBaseController
   public function saleDayByWarehouseQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_WAREHOUSE)) {
+        die("没有权限");
+      }
+
       $params = [
         "dt" => I("post.dt"),
         "page" => I("post.page"),
@@ -331,6 +337,12 @@ class ReportController extends PSIBaseController
   public function saleDayByWarehouseSummaryQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_WAREHOUSE)) {
+        die("没有权限");
+      }
+
       $params = [
         "dt" => I("post.dt")
       ];
@@ -347,6 +359,12 @@ class ReportController extends PSIBaseController
   public function genSaleDayByWarehousePrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_WAREHOUSE)) {
+        die("没有权限");
+      }
+
       $params = [
         "dt" => I("post.dt"),
         "limit" => I("post.limit"),
@@ -365,6 +383,12 @@ class ReportController extends PSIBaseController
    */
   public function saleDayByWarehousePdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_WAREHOUSE)) {
+      die("没有权限");
+    }
+
     $params = [
       "dt" => I("get.dt"),
       "limit" => I("get.limit"),
@@ -380,6 +404,12 @@ class ReportController extends PSIBaseController
    */
   public function saleDayByWarehouseExcel()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_WAREHOUSE)) {
+      die("没有权限");
+    }
+
     $params = [
       "dt" => I("get.dt"),
       "limit" => I("get.limit"),
