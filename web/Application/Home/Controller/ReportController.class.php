@@ -1357,6 +1357,12 @@ class ReportController extends PSIBaseController
   public function payablesAgeQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_PAYABLES_AGE)) {
+        die("没有权限");
+      }
+
       $params = [
         "page" => I("post.page"),
         "start" => I("post.start"),
@@ -1375,6 +1381,12 @@ class ReportController extends PSIBaseController
   public function payablesSummaryQueryData()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_PAYABLES_AGE)) {
+        die("没有权限");
+      }
+
       $ps = new PayablesReportService();
 
       $this->ajaxReturn($ps->payablesSummaryQueryData());
@@ -1387,6 +1399,12 @@ class ReportController extends PSIBaseController
   public function genPayablesAgePrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_PAYABLES_AGE)) {
+        die("没有权限");
+      }
+
       $params = [
         "limit" => I("post.limit")
       ];
@@ -1404,6 +1422,12 @@ class ReportController extends PSIBaseController
    */
   public function payablesAgePdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_PAYABLES_AGE)) {
+      die("没有权限");
+    }
+
     $params = [
       "limit" => I("get.limit")
     ];
@@ -1417,6 +1441,12 @@ class ReportController extends PSIBaseController
    */
   public function payablesAgeExcel()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_PAYABLES_AGE)) {
+      die("没有权限");
+    }
+
     $params = [
       "limit" => I("get.limit")
     ];
