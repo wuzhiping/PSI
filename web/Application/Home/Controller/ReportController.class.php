@@ -93,6 +93,12 @@ class ReportController extends PSIBaseController
   public function genSaleDayByGoodsPrintPage()
   {
     if (IS_POST) {
+      $us = new UserService();
+
+      if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_GOODS)) {
+        die("没有权限");
+      }
+
       $params = [
         "dt" => I("post.dt"),
         "limit" => I("post.limit"),
@@ -111,6 +117,12 @@ class ReportController extends PSIBaseController
    */
   public function saleDayByGoodsPdf()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_GOODS)) {
+      die("没有权限");
+    }
+
     $params = [
       "dt" => I("get.dt"),
       "limit" => I("get.limit"),
@@ -126,6 +138,12 @@ class ReportController extends PSIBaseController
    */
   public function saleDayByGoodsExcel()
   {
+    $us = new UserService();
+
+    if (!$us->hasPermission(FIdConst::REPORT_SALE_DAY_BY_GOODS)) {
+      die("没有权限");
+    }
+
     $params = [
       "dt" => I("get.dt"),
       "limit" => I("get.limit"),
