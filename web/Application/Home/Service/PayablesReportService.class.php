@@ -45,23 +45,24 @@ class PayablesReportService extends PSIBaseExService
 
     $db = M();
     $sql = "select t.ca_type, t.id, t.code, t.name, t.balance_money
-				from (
-					select p.ca_type, c.id, c.code, c.name, p.balance_money
-					from t_payables p, t_customer c
-					where p.ca_id = c.id and p.ca_type = 'customer'
-						and p.company_id = '%s'
-					union
-					select p.ca_type, s.id, s.code, s.name, p.balance_money
-					from t_payables p, t_supplier s
-					where p.ca_id = s.id and p.ca_type = 'supplier'
-						and p.company_id = '%s'
-					union
-					select p.ca_type, f.id, f.code, f.name, p.balance_money
-					from t_payables p, t_factory f
-					where p.ca_id = f.id and p.ca_type = 'factory'
-						and p.company_id = '%s'
-				) t
-				order by t.ca_type desc, t.code ";
+            from (
+              select p.ca_type, c.id, c.code, c.name, p.balance_money
+              from t_payables p, t_customer c
+              where p.ca_id = c.id and p.ca_type = 'customer'
+                and p.company_id = '%s'
+              union
+              select p.ca_type, s.id, s.code, s.name, p.balance_money
+              from t_payables p, t_supplier s
+              where p.ca_id = s.id and p.ca_type = 'supplier'
+                and p.company_id = '%s'
+              union
+              select p.ca_type, f.id, f.code, f.name, p.balance_money
+              from t_payables p, t_factory f
+              where p.ca_id = f.id and p.ca_type = 'factory'
+                and p.company_id = '%s'
+            ) t
+            where t.balance_money > 0
+            order by t.ca_type desc, t.code ";
     if (!$showAllData) {
       $sql .= " limit %d, %d";
     }
