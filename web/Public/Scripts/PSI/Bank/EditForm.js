@@ -229,11 +229,10 @@ Ext.define("PSI.Bank.EditForm", {
     me.editBankName.focus();
 
     const editors = [me.editBankName, me.editBankNumber, me.editMemo];
-    for (let i = 0; i < editors.length; i++) {
-      const edit = editors[i];
+    editors.forEach(edit => {
       edit.setValue(null);
       edit.clearInvalid();
-    }
+    })
   },
 
   onWindowBeforeUnload(e) {
