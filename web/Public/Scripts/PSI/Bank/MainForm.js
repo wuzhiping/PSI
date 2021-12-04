@@ -13,7 +13,6 @@ Ext.define("PSI.Bank.MainForm", {
     const me = this;
 
     Ext.apply(me, {
-      layout: "border",
       tbar: me.getToolbarCmp(),
       items: [{
         region: "west",
@@ -65,15 +64,14 @@ Ext.define("PSI.Bank.MainForm", {
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/Bank/companyList"),
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         store.removeAll();
 
         if (success) {
           const data = me.decodeJSON(response.responseText);
           store.add(data);
           if (store.getCount() > 0) {
-            me.getCompanyGrid().getSelectionModel()
-              .select(0);
+            me.getCompanyGrid().getSelectionModel().select(0);
           }
         }
 
