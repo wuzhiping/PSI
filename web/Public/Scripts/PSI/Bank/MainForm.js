@@ -194,25 +194,25 @@ Ext.define("PSI.Bank.MainForm", {
         title: me.formatGridHeaderTitle("银行账户")
       },
       columnLines: true,
-      columns: [{
-        header: "银行",
-        dataIndex: "bankName",
-        menuDisabled: true,
-        sortable: false,
-        width: 300
-      }, {
-        header: "账号",
-        dataIndex: "bankNumber",
-        width: 300,
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "备注",
-        dataIndex: "memo",
-        width: 200,
-        menuDisabled: true,
-        sortable: false
-      }],
+      columns: {
+        defaults: {
+          menuDisabled: true,
+          sortable: false,
+        },
+        items: [{
+          header: "银行",
+          dataIndex: "bankName",
+          width: 300
+        }, {
+          header: "账号",
+          dataIndex: "bankNumber",
+          width: 300,
+        }, {
+          header: "备注",
+          dataIndex: "memo",
+          width: 400,
+        }]
+      },
       store: Ext.create("Ext.data.Store", {
         model: modelName,
         autoLoad: false,
