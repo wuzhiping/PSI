@@ -173,13 +173,12 @@ Ext.define("PSI.Bank.EditForm", {
     el.mask(PSI.Const.SAVING);
     const sf = {
       url: me.URL("Home/Bank/editBank"),
-      method: "POST",
       success(form, action) {
         me.__lastId = action.result.id;
 
         el.unmask();
 
-        PSI.MsgBox.tip("数据保存成功");
+        me.tip("数据保存成功");
         me.focus();
         if (thenAdd) {
           me.clearEdit();
@@ -189,7 +188,7 @@ Ext.define("PSI.Bank.EditForm", {
       },
       failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, () => {
+        me.showInfo(action.result.msg, () => {
           me.editBankName.focus();
         });
       }
