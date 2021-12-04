@@ -1,5 +1,7 @@
 /**
  * 银行账户 - 主界面
+ * 
+ * @author 李静波
  */
 Ext.define("PSI.Bank.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
@@ -7,8 +9,8 @@ Ext.define("PSI.Bank.MainForm", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
-    var me = this;
+  initComponent() {
+    const me = this;
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
@@ -33,8 +35,8 @@ Ext.define("PSI.Bank.MainForm", {
     me.refreshCompanyGrid();
   },
 
-  getToolbarCmp: function () {
-    var me = this;
+  getToolbarCmp() {
+    const me = this;
     return [{
       text: "新建银行账户",
       handler: me.onAddBank,
@@ -49,18 +51,18 @@ Ext.define("PSI.Bank.MainForm", {
       scope: me
     }, "-", {
       text: "关闭",
-      handler: function () {
+      handler() {
         me.closeWindow();
       }
     }];
   },
 
-  refreshCompanyGrid: function () {
-    var me = this;
-    var el = Ext.getBody();
-    var store = me.getCompanyGrid().getStore();
+  refreshCompanyGrid() {
+    const me = this;
+    const el = Ext.getBody();
+    const store = me.getCompanyGrid().getStore();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/Bank/companyList"),
       callback: function (options, success, response) {
         store.removeAll();
@@ -80,30 +82,28 @@ Ext.define("PSI.Bank.MainForm", {
     me.ajax(r);
   },
 
-  refreshMainGrid: function () {
-    var me = this;
+  refreshMainGrid() {
+    const me = this;
 
     me.getMainGrid().setTitle(me.formatGridHeaderTitle("银行账户"));
-    var item = me.getCompanyGrid().getSelectionModel()
-      .getSelection();
+    const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var company = item[0];
-    var title = Ext.String
-      .format("{0} - 银行账户", company.get("name"));
+    const company = item[0];
+    const title = `${company.get("name")} - 银行账户`;
     me.getMainGrid().setTitle(me.formatGridHeaderTitle(title));
 
-    var el = me.getMainGrid().getEl();
-    var store = me.getMainGrid().getStore();
+    const el = me.getMainGrid().getEl();
+    const store = me.getMainGrid().getStore();
     el && el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       params: {
         companyId: company.get("id")
       },
       url: me.URL("Home/Bank/bankList"),
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         store.removeAll();
 
         if (success) {
@@ -120,13 +120,13 @@ Ext.define("PSI.Bank.MainForm", {
     me.ajax(r);
   },
 
-  getCompanyGrid: function () {
-    var me = this;
+  getCompanyGrid() {
+    const me = this;
     if (me.__companyGrid) {
       return me.__companyGrid;
     }
 
-    var modelName = "PSI_Bank_CompanyModel";
+    const modelName = "PSI_Bank_CompanyModel";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -175,13 +175,13 @@ Ext.define("PSI.Bank.MainForm", {
     return me.__companyGrid;
   },
 
-  getMainGrid: function () {
-    var me = this;
+  getMainGrid() {
+    const me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSI_Bank_BankAccountModel";
+    const modelName = "PSI_Bank_BankAccountModel";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -223,50 +223,48 @@ Ext.define("PSI.Bank.MainForm", {
     return me.__mainGrid;
   },
 
-  onCompanyGridSelect: function () {
-    var me = this;
+  onCompanyGridSelect() {
+    const me = this;
 
     me.refreshMainGrid();
   },
 
-  onAddBank: function () {
-    var me = this;
+  onAddBank() {
+    const me = this;
 
-    var item = me.getCompanyGrid().getSelectionModel()
-      .getSelection();
+    const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var form = Ext.create("PSI.Bank.EditForm", {
+    const form = Ext.create("PSI.Bank.EditForm", {
       parentForm: me,
       company: company
     });
     form.show();
   },
 
-  onEditBank: function () {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel()
-      .getSelection();
+  onEditBank() {
+    const me = this;
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要编辑的银行账户");
       return;
     }
 
-    var bank = item[0];
-    var form = Ext.create("PSI.Bank.EditForm", {
+    const bank = item[0];
+    const form = Ext.create("PSI.Bank.EditForm", {
       parentForm: me,
       company: company,
       entity: bank
@@ -274,33 +272,32 @@ Ext.define("PSI.Bank.MainForm", {
     form.show();
   },
 
-  onDeleteBank: function () {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+  onDeleteBank() {
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要删除的银行账户");
       return;
     }
 
-    var bank = item[0];
+    const bank = item[0];
 
-    var info = Ext.String.format(
-      "请确认是否删除银行账户 <span style='color:red'>{0}-{1}</span> ?",
-      bank.get("bankName"), bank.get("bankNumber"));
+    const bankName = bank.get("bankName");
+    const bankNumber = bank.get("bankNumber");
+    const info = `请确认是否删除银行账户 <span style='color:red'>${bankName}-${bankNumber}</span> ?`;
 
-    var funcConfirm = function () {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask(PSI.Const.LOADING);
-      var r = {
+      const r = {
         url: me.URL("Home/Bank/deleteBank"),
         params: {
           id: bank.get("id")
         },
-        method: "POST",
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
               me.refreshMainGrid();
@@ -317,6 +314,5 @@ Ext.define("PSI.Bank.MainForm", {
     };
 
     me.confirm(info, funcConfirm);
-
   }
 });
