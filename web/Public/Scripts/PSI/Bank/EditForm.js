@@ -120,7 +120,7 @@ Ext.define("PSI.Bank.EditForm", {
           value: entity == null ? null : entity.get("bankName"),
           listeners: {
             specialkey: {
-              fn: me.onEditBankNameSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -134,7 +134,7 @@ Ext.define("PSI.Bank.EditForm", {
           value: entity == null ? null : entity.get("bankNumber"),
           listeners: {
             specialkey: {
-              fn: me.onEditBankNumberSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -145,7 +145,7 @@ Ext.define("PSI.Bank.EditForm", {
           value: entity == null ? null : entity.get("memo"),
           listeners: {
             specialkey: {
-              fn: me.onEditMemoSpecialKey,
+              fn: me.onLastEditSpecialKey,
               scope: me
             }
           }
@@ -161,6 +161,8 @@ Ext.define("PSI.Bank.EditForm", {
     me.editBankName = Ext.getCmp("PSI_Bank_EditForm_editBankName");
     me.editBankNumber = Ext.getCmp("PSI_Bank_EditForm_editBankNumber");
     me.editMemo = Ext.getCmp("PSI_Bank_EditForm_editMemo");
+
+    me.__editorList = [me.editBankName, me.editBankNumber, me.editMemo];
   },
 
   /**
@@ -196,23 +198,7 @@ Ext.define("PSI.Bank.EditForm", {
     f.submit(sf);
   },
 
-  onEditBankNameSpecialKey(field, e) {
-    const me = this;
-
-    if (e.getKey() == e.ENTER) {
-      me.setFocusAndCursorPosToLast(me.editBankNumber);
-    }
-  },
-
-  onEditBankNumberSpecialKey(field, e) {
-    const me = this;
-
-    if (e.getKey() == e.ENTER) {
-      me.setFocusAndCursorPosToLast(me.editMemo);
-    }
-  },
-
-  onEditMemoSpecialKey(field, e) {
+  onLastEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() == e.ENTER) {

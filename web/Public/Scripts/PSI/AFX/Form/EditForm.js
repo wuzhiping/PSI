@@ -25,4 +25,22 @@ Ext.define("PSI.AFX.Form.EditForm", {
   __onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
+
+  // 保持input，用于在回车的时候跳转
+  __editorList: [],
+  __onEditSpecialKey(field, e) {
+    const me = this;
+
+    if (e.getKey() === e.ENTER) {
+      const id = field.getId();
+      for (let i = 0; i < me.__editorList.length; i++) {
+        const editor = me.__editorList[i];
+        if (id === editor.getId()) {
+          const edit = me.__editorList[i + 1];
+          me.setFocusAndCursorPosToLast(edit);
+        }
+      }
+    }
+  },
+
 });
