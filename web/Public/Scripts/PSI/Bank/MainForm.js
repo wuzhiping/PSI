@@ -4,7 +4,9 @@
  * @author 李静波
  */
 Ext.define("PSI.Bank.MainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
+  extend: "Ext.panel.Panel",
+
+  mixins: ["PSI.AFX.Mix.Common"],
 
   /**
    * 初始化组件
@@ -13,6 +15,7 @@ Ext.define("PSI.Bank.MainForm", {
     const me = this;
 
     Ext.apply(me, {
+      layout: "border",
       tbar: me.getToolbarCmp(),
       items: [{
         region: "west",
