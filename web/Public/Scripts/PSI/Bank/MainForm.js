@@ -4,9 +4,7 @@
  * @author 李静波
  */
 Ext.define("PSI.Bank.MainForm", {
-  extend: "Ext.panel.Panel",
-
-  mixins: ["PSI.AFX.Mix.Common"],
+  extend: "PSI.AFX.Form.MainForm",
 
   /**
    * 初始化组件

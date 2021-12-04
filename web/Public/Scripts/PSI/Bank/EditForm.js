@@ -4,7 +4,7 @@
  * @author 李静波
  */
 Ext.define("PSI.Bank.EditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     company: null
