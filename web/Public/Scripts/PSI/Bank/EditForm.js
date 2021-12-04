@@ -1,5 +1,7 @@
 /**
- * 银行账户 - 新增或编辑界面
+ * 银行账户 - 新建或编辑界面
+ * 
+ * @author 李静波
  */
 Ext.define("PSI.Bank.EditForm", {
   extend: "PSI.AFX.BaseDialogForm",
@@ -11,19 +13,19 @@ Ext.define("PSI.Bank.EditForm", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
-    var me = this;
+  initComponent() {
+    const me = this;
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
 
     me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
     if (!entity) {
-      var btn = {
+      const btn = {
         text: "保存并继续新增",
         formBind: true,
-        handler: function () {
+        handler() {
           me.onOK(true);
         },
         scope: me
@@ -32,28 +34,26 @@ Ext.define("PSI.Bank.EditForm", {
       buttons.push(btn);
     }
 
-    var btn = {
+    buttons.push({
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
-    };
-    buttons.push(btn);
+    });
 
-    var btn = {
+    buttons.push({
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
-    };
-    buttons.push(btn);
+    });
 
-    var t = entity == null ? "新建银行账户" : "编辑银行账户";
-    var logoHtml = me.genLogoHtml(entity, t);
+    const t = entity == null ? "新建银行账户" : "编辑银行账户";
+    const logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
       header: {
@@ -101,8 +101,7 @@ Ext.define("PSI.Bank.EditForm", {
         items: [{
           xtype: "hidden",
           name: "id",
-          value: entity == null ? null : entity
-            .get("id")
+          value: entity == null ? null : entity.get("id")
         }, {
           xtype: "hidden",
           name: "companyId",
@@ -118,8 +117,7 @@ Ext.define("PSI.Bank.EditForm", {
           blankText: "没有输入银行名称",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "bankName",
-          value: entity == null ? null : entity
-            .get("bankName"),
+          value: entity == null ? null : entity.get("bankName"),
           listeners: {
             specialkey: {
               fn: me.onEditBankNameSpecialKey,
@@ -133,8 +131,7 @@ Ext.define("PSI.Bank.EditForm", {
           blankText: "没有输入账号",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "bankNumber",
-          value: entity == null ? null : entity
-            .get("bankNumber"),
+          value: entity == null ? null : entity.get("bankNumber"),
           listeners: {
             specialkey: {
               fn: me.onEditBankNumberSpecialKey,
@@ -145,8 +142,7 @@ Ext.define("PSI.Bank.EditForm", {
           id: "PSI_Bank_EditForm_editMemo",
           fieldLabel: "备注",
           name: "memo",
-          value: entity == null ? null : entity
-            .get("memo"),
+          value: entity == null ? null : entity.get("memo"),
           listeners: {
             specialkey: {
               fn: me.onEditMemoSpecialKey,
@@ -170,15 +166,15 @@ Ext.define("PSI.Bank.EditForm", {
   /**
    * 保存
    */
-  onOK: function (thenAdd) {
-    var me = this;
-    var f = me.editForm;
-    var el = f.getEl();
+  onOK(thenAdd) {
+    const me = this;
+    const f = me.editForm;
+    const el = f.getEl();
     el.mask(PSI.Const.SAVING);
-    var sf = {
+    const sf = {
       url: me.URL("Home/Bank/editBank"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         me.__lastId = action.result.id;
 
         el.unmask();
@@ -191,9 +187,9 @@ Ext.define("PSI.Bank.EditForm", {
           me.close();
         }
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        PSI.MsgBox.showInfo(action.result.msg, () => {
           me.editBankName.focus();
         });
       }
@@ -201,7 +197,7 @@ Ext.define("PSI.Bank.EditForm", {
     f.submit(sf);
   },
 
-  onEditBankNameSpecialKey: function (field, e) {
+  onEditBankNameSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -210,7 +206,7 @@ Ext.define("PSI.Bank.EditForm", {
     }
   },
 
-  onEditBankNumberSpecialKey: function (field, e) {
+  onEditBankNumberSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -219,7 +215,7 @@ Ext.define("PSI.Bank.EditForm", {
     }
   },
 
-  onEditMemoSpecialKey: function (field, e) {
+  onEditMemoSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -230,7 +226,7 @@ Ext.define("PSI.Bank.EditForm", {
     }
   },
 
-  clearEdit: function () {
+  clearEdit() {
     var me = this;
     me.editBankName.focus();
 
@@ -242,11 +238,11 @@ Ext.define("PSI.Bank.EditForm", {
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
@@ -258,7 +254,7 @@ Ext.define("PSI.Bank.EditForm", {
     }
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);

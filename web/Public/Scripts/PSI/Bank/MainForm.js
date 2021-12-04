@@ -68,7 +68,7 @@ Ext.define("PSI.Bank.MainForm", {
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
           if (store.getCount() > 0) {
             me.getCompanyGrid().getSelectionModel()
@@ -107,7 +107,7 @@ Ext.define("PSI.Bank.MainForm", {
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
           if (store.getCount() > 0) {
             me.getMainGrid().getSelectionModel().select(0);
