@@ -217,7 +217,13 @@ Ext.define("PSI.Bank.MainForm", {
         model: modelName,
         autoLoad: false,
         data: []
-      })
+      }),
+      listeners: {
+        itemdblclick: {
+          fn: me.onEditBank,
+          scope: me
+        }
+      }
     });
     return me.__mainGrid;
   },
