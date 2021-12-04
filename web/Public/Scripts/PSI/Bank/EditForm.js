@@ -234,14 +234,10 @@ Ext.define("PSI.Bank.EditForm", {
     })
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
   onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -253,7 +249,7 @@ Ext.define("PSI.Bank.EditForm", {
   onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     me.setFocusAndCursorPosToLast(me.editBankName);
   }

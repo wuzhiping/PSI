@@ -21,4 +21,8 @@ Ext.define("PSI.AFX.Form.EditForm", {
   closable: false,
   resizable: false,
   onEsc: Ext.emptyFn,
+
+  __onWindowBeforeUnload(e) {
+    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
+  },
 });
