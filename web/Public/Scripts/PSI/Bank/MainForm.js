@@ -140,25 +140,25 @@ Ext.define("PSI.Bank.MainForm", {
       },
       forceFit: true,
       columnLines: true,
-      columns: [{
-        header: "编码",
-        dataIndex: "code",
-        menuDisabled: true,
-        sortable: false,
-        width: 70
-      }, {
-        header: "组织机构名称",
-        dataIndex: "name",
-        flex: 1,
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "组织机构性质",
-        dataIndex: "orgType",
-        width: 100,
-        menuDisabled: true,
-        sortable: false
-      }],
+      columns: {
+        defaults: {
+          menuDisabled: true,
+          sortable: false,
+        },
+        items: [{
+          header: "编码",
+          dataIndex: "code",
+          width: 70
+        }, {
+          header: "组织机构名称",
+          dataIndex: "name",
+          flex: 1,
+        }, {
+          header: "组织机构性质",
+          dataIndex: "orgType",
+          width: 100,
+        }]
+      },
       store: Ext.create("Ext.data.Store", {
         model: modelName,
         autoLoad: false,
