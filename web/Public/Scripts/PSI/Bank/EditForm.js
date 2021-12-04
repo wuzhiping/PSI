@@ -198,7 +198,7 @@ Ext.define("PSI.Bank.EditForm", {
   },
 
   onEditBankNameSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
       me.editBankNumber.focus();
@@ -207,7 +207,7 @@ Ext.define("PSI.Bank.EditForm", {
   },
 
   onEditBankNumberSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
       me.editMemo.focus();
@@ -216,10 +216,10 @@ Ext.define("PSI.Bank.EditForm", {
   },
 
   onEditMemoSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK(me.adding);
       }
@@ -227,12 +227,12 @@ Ext.define("PSI.Bank.EditForm", {
   },
 
   clearEdit() {
-    var me = this;
+    const me = this;
     me.editBankName.focus();
 
-    var editors = [me.editBankName, me.editBankNumber, me.editMemo];
-    for (var i = 0; i < editors.length; i++) {
-      var edit = editors[i];
+    const editors = [me.editBankName, me.editBankNumber, me.editMemo];
+    for (let i = 0; i < editors.length; i++) {
+      const edit = editors[i];
       edit.setValue(null);
       edit.clearInvalid();
     }
@@ -243,7 +243,7 @@ Ext.define("PSI.Bank.EditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
@@ -255,7 +255,7 @@ Ext.define("PSI.Bank.EditForm", {
   },
 
   onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
