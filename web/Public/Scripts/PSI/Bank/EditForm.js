@@ -201,8 +201,7 @@ Ext.define("PSI.Bank.EditForm", {
     const me = this;
 
     if (e.getKey() == e.ENTER) {
-      me.editBankNumber.focus();
-      me.editBankNumber.setValue(me.editBankNumber.getValue());
+      me.setFocusAndCursorPosToLast(me.editBankNumber);
     }
   },
 
@@ -210,8 +209,7 @@ Ext.define("PSI.Bank.EditForm", {
     const me = this;
 
     if (e.getKey() == e.ENTER) {
-      me.editMemo.focus();
-      me.editMemo.setValue(me.editMemo.getValue());
+      me.setFocusAndCursorPosToLast(me.editMemo);
     }
   },
 
@@ -259,7 +257,6 @@ Ext.define("PSI.Bank.EditForm", {
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    me.editBankName.focus();
-    me.editBankName.setValue(me.editBankName.getValue());
+    me.setFocusAndCursorPosToLast(me.editBankName);
   }
 });
