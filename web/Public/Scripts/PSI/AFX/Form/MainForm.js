@@ -34,6 +34,12 @@ Ext.define("PSI.AFX.Form.MainForm", {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
+      // ComboBox的下拉框出现的时候，回车是选中下拉框中相应的条码
+      // 这里ComboBox的默认键盘操作行为，所以不触发查询
+      if (field.isExpanded) {
+        return;
+      }
+
       if (me.onQuery) {
         me.onQuery.apply(me);
       }
