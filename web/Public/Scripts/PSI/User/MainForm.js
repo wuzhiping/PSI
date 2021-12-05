@@ -17,8 +17,8 @@ Ext.define("PSI.User.MainForm", {
 
   /// 知识点2：继承
   /// 通过extend属性，实现继承
-  /// 本例中PSI.User.MainForm 继承了PSI.AFX.BaseMainExForm
-  extend: "PSI.AFX.BaseMainExForm",
+  /// 本例中PSI.User.MainForm 继承了PSI.AFX.Form.MainForm
+  extend: "PSI.AFX.Form.MainForm",
 
   /// 知识点3：配置项，以及通过配置项在claas创建的时候，传入参数
   /// 配置项会生成对应的方法
