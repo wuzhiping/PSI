@@ -198,6 +198,10 @@ Ext.define("PSI.Bank.EditForm", {
     f.submit(sf);
   },
 
+  /**
+   * 最后一个input回车的时候，提交Form
+   * 注：其他input的回车处理函数在父类中实现了
+   */
   onLastEditSpecialKey(field, e) {
     const me = this;
 
@@ -209,6 +213,9 @@ Ext.define("PSI.Bank.EditForm", {
     }
   },
 
+  /**
+   * 当保存并继续新建的时候，清除之前input里面录入的数据
+   */
   clearEdit() {
     const me = this;
     me.editBankName.focus();
@@ -220,6 +227,9 @@ Ext.define("PSI.Bank.EditForm", {
     })
   },
 
+  /**
+   * Form关闭时候的事件处理函数
+   */
   onWndClose() {
     const me = this;
 
@@ -232,6 +242,9 @@ Ext.define("PSI.Bank.EditForm", {
     }
   },
 
+  /**
+   * Form显示时候的事件处理函数
+   */
   onWndShow() {
     const me = this;
 
