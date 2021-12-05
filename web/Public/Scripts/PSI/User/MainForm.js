@@ -50,7 +50,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     /// 把this用me局部变量保存，然后后续的代码中都使用me，而不使用this
     /// 这是避免JS this是上下文绑定这个特性带了的惊喜
     /// 用me这个名称，是ExtJS的惯例
@@ -152,7 +152,7 @@ Ext.define("PSI.User.MainForm", {
     me.grid = me.getUserGrid();
   },
 
-  getQueryCmp: function () {
+  getQueryCmp() {
     var me = this;
     return [{
       id: "editQueryLoginName",
@@ -219,7 +219,7 @@ Ext.define("PSI.User.MainForm", {
     }];
   },
 
-  getOrgGrid: function () {
+  getOrgGrid() {
     var me = this;
     if (me.__orgGrid) {
       return me.__orgGrid;
@@ -315,7 +315,7 @@ Ext.define("PSI.User.MainForm", {
     return me.__orgGrid;
   },
 
-  getUserGrid: function () {
+  getUserGrid() {
     var me = this;
 
     if (me.__userGrid) {
