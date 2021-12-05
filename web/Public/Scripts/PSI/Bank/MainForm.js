@@ -38,6 +38,9 @@ Ext.define("PSI.Bank.MainForm", {
     me.refreshCompanyGrid();
   },
 
+  /**
+   * 工具栏
+   */
   getToolbarCmp() {
     const me = this;
     return [{
@@ -60,6 +63,9 @@ Ext.define("PSI.Bank.MainForm", {
     }];
   },
 
+  /**
+   * 刷新组织机构Grid
+   */
   refreshCompanyGrid() {
     const me = this;
     const el = Ext.getBody();
@@ -84,6 +90,9 @@ Ext.define("PSI.Bank.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * 刷新银行账户Grid
+   */
   refreshMainGrid() {
     const me = this;
 
@@ -122,6 +131,9 @@ Ext.define("PSI.Bank.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * 组织机构Grid
+   */
   getCompanyGrid() {
     const me = this;
     if (me.__companyGrid) {
@@ -139,7 +151,7 @@ Ext.define("PSI.Bank.MainForm", {
       cls: "PSI",
       header: {
         height: 30,
-        title: me.formatGridHeaderTitle("核算组织机构")
+        title: me.formatGridHeaderTitle("组织机构")
       },
       forceFit: true,
       columnLines: true,
