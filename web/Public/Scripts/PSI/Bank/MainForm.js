@@ -15,6 +15,10 @@ Ext.define("PSI.Bank.MainForm", {
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
       items: [{
+        region: "north",
+        border: 0,
+        height: 2,
+      }, {
         region: "west",
         width: 300,
         layout: "fit",
@@ -23,7 +27,6 @@ Ext.define("PSI.Bank.MainForm", {
         items: [me.getCompanyGrid()]
       }, {
         region: "center",
-        xtype: "panel",
         layout: "fit",
         border: 0,
         items: [me.getMainGrid()]
