@@ -247,7 +247,7 @@ Ext.define("PSI.User.UserEditForm", {
           xtype: "displayfield",
           fieldLabel: "说明",
           colspan: 2,
-          value: "新用户的默认登录密码是 123456",
+          value: "<span class='PSI-field-note'>新用户的默认登录密码是 123456</span>",
           hidden: !me.adding
         }],
         buttons: [{

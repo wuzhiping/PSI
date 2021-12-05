@@ -4,9 +4,9 @@
 Ext.define("PSI.User.OrgEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
     var entity = me.getEntity();
@@ -123,7 +123,7 @@ Ext.define("PSI.User.OrgEditForm", {
         }, {
           xtype: "displayfield",
           fieldLabel: "说明",
-          value: "上级组织机构为空的时候，该组织机构是公司"
+          value: "<span class='PSI-field-note'>上级组织机构为空的时候，该组织机构是公司</span>"
         }],
         buttons: [{
           text: "确定",
