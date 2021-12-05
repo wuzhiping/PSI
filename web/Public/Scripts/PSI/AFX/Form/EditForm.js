@@ -26,7 +26,7 @@ Ext.define("PSI.AFX.Form.EditForm", {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  // 保持input，用于在回车的时候跳转
+  // 保存input列表，用于在回车的时候跳转
   __editorList: [],
   __onEditSpecialKey(field, e) {
     const me = this;
