@@ -500,14 +500,14 @@ Ext.define("PSI.User.MainForm", {
     return me.__userGrid;
   },
 
-  getGrid: function () {
+  getGrid() {
     return this.grid;
   },
 
   /**
    * 新增组织机构
    */
-  onAddOrg: function () {
+  onAddOrg() {
     var me = this;
 
     /// 知识点5：用Ext.create创建ExtJS class，不要是new创建ExtJS class
@@ -523,7 +523,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 编辑组织机构
    */
-  onEditOrg: function () {
+  onEditOrg() {
     var me = this;
     if (me.getPEditOrg() == "0") {
       return;
@@ -548,7 +548,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 删除组织机构
    */
-  onDeleteOrg: function () {
+  onDeleteOrg() {
     var me = this;
     var tree = me.getOrgGrid();
     var item = tree.getSelectionModel().getSelection();
@@ -590,13 +590,13 @@ Ext.define("PSI.User.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  freshOrgGrid: function () {
+  freshOrgGrid() {
     var me = this;
 
     me.getOrgGrid().getStore().reload();
   },
 
-  freshUserGrid: function () {
+  freshUserGrid() {
     var me = this;
 
     var tree = me.getOrgGrid();
@@ -611,7 +611,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 新增用户
    */
-  onAddUser: function () {
+  onAddUser() {
     var me = this;
 
     var tree = me.getOrgGrid();
@@ -631,7 +631,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 编辑用户
    */
-  onEditUser: function () {
+  onEditUser() {
     var me = this;
     if (me.getPEditUser() == "0") {
       return;
@@ -664,7 +664,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 修改用户密码
    */
-  onEditUserPassword: function () {
+  onEditUserPassword() {
     var me = this;
 
     var item = me.getUserGrid().getSelectionModel().getSelection();
@@ -683,7 +683,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 删除用户
    */
-  onDeleteUser: function () {
+  onDeleteUser() {
     var me = this;
     var item = me.getUserGrid().getSelectionModel().getSelection();
     if (item === null || item.length !== 1) {
@@ -723,7 +723,7 @@ Ext.define("PSI.User.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onOrgTreeNodeSelect: function (rec) {
+  onOrgTreeNodeSelect(rec) {
     if (!rec) {
       return;
     }
@@ -741,7 +741,7 @@ Ext.define("PSI.User.MainForm", {
     Ext.getCmp("pagingToolbar").doRefresh();
   },
 
-  onOrgStoreLoad: function () {
+  onOrgStoreLoad() {
     var me = this;
 
     var tree = me.getOrgGrid();
@@ -754,7 +754,7 @@ Ext.define("PSI.User.MainForm", {
     }
   },
 
-  getUserParam: function () {
+  getUserParam() {
     var me = this;
     var item = me.getOrgGrid().getSelectionModel().getSelection();
     if (item == null || item.length == 0) {
@@ -789,7 +789,7 @@ Ext.define("PSI.User.MainForm", {
     }
   },
 
-  onClearQuery: function () {
+  onClearQuery() {
     var me = this;
 
     Ext.getCmp("editQueryLoginName").setValue(null);
@@ -799,7 +799,7 @@ Ext.define("PSI.User.MainForm", {
     me.onQuery();
   },
 
-  onQuery: function () {
+  onQuery() {
     var me = this;
 
     me.getUserGrid().getStore().removeAll();
@@ -807,7 +807,7 @@ Ext.define("PSI.User.MainForm", {
     me.freshOrgGrid();
   },
 
-  getQueryParamForCategory: function () {
+  getQueryParamForCategory() {
     var queryLoginName = null;
     var editLoginName = Ext.getCmp("editQueryLoginName");
     if (editLoginName) {
