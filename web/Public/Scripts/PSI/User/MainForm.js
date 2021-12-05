@@ -150,6 +150,10 @@ Ext.define("PSI.User.MainForm", {
     /// 三明治模式第三层：使用创建的组件
     me.orgTree = me.getOrgGrid();
     me.grid = me.getUserGrid();
+
+
+    // 查询input
+    me.__editorList = [Ext.getCmp("editQueryLoginName"), Ext.getCmp("editQueryName"), Ext.getCmp("editQueryEnabled")];
   },
 
   getQueryCmp() {
@@ -161,7 +165,13 @@ Ext.define("PSI.User.MainForm", {
       labelSeparator: "",
       fieldLabel: "登录名",
       margin: "5, 0, 0, 0",
-      xtype: "textfield"
+      xtype: "textfield",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       id: "editQueryName",
       labelWidth: 60,
@@ -169,7 +179,13 @@ Ext.define("PSI.User.MainForm", {
       labelSeparator: "",
       fieldLabel: "姓名",
       margin: "5, 0, 0, 0",
-      xtype: "textfield"
+      xtype: "textfield",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       id: "editQueryEnabled",
       xtype: "combo",
@@ -185,7 +201,13 @@ Ext.define("PSI.User.MainForm", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [1, "允许登录"], [0, "禁止登录"]]
       }),
-      value: -1
+      value: -1,
+      listeners: {
+        specialkey: {
+          fn: me.__onLastEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       xtype: "container",
       items: [{
