@@ -189,6 +189,9 @@ Ext.define("PSI.Bank.MainForm", {
     return me.__companyGrid;
   },
 
+  /**
+   * 银行账户Grid
+   */
   getMainGrid() {
     const me = this;
     if (me.__mainGrid) {
@@ -243,18 +246,24 @@ Ext.define("PSI.Bank.MainForm", {
     return me.__mainGrid;
   },
 
+  /**
+   * 组织机构Grid中某条记录被选中后的事件处理函数
+   */
   onCompanyGridSelect() {
     const me = this;
 
     me.refreshMainGrid();
   },
 
+  /**
+   * 新建银行账户
+   */
   onAddBank() {
     const me = this;
 
     const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("没有选择公司");
+      me.showInfo("没有选择组织机构");
       return;
     }
 
@@ -267,11 +276,14 @@ Ext.define("PSI.Bank.MainForm", {
     form.show();
   },
 
+  /**
+   * 编辑银行账户
+   */
   onEditBank() {
     const me = this;
     let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("没有选择公司");
+      me.showInfo("没有选择组织机构");
       return;
     }
 
@@ -292,6 +304,9 @@ Ext.define("PSI.Bank.MainForm", {
     form.show();
   },
 
+  /**
+   * 删除银行账户
+   */
   onDeleteBank() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
