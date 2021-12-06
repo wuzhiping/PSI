@@ -138,18 +138,24 @@ class UserController extends PSIBaseController
 
   /**
    * 用户登录
+   * 
+   * JS: web\Application\Home\View\User\login.html
    */
   public function loginPOST()
   {
     if (IS_POST) {
       $ip = get_client_ip();
+      // $ipFrom: 把IP转为文字，
+      // 其主要用途是在业务日志中记录IP的时候，也记录下IP对应地区
       $ipFrom = (new IPService())->toRegion($ip);
 
       session("PSI_login_user_ip", $ip);
       session("PSI_login_user_ip_from", $ipFrom);
 
       $params = [
+        // 登录名
         "loginName" => I("post.loginName"),
+        // 登录密码
         "password" => I("post.password")
       ];
 
