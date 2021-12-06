@@ -1,5 +1,7 @@
 ﻿/**
  * 修改我的密码
+ * 
+ * @author 李静波
  */
 Ext.define("PSI.User.ChangeMyPasswordForm", {
   extend: "Ext.panel.Panel",
@@ -13,12 +15,12 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
   border: 0,
   layout: "border",
 
-	/**
-	 * 初始化组件
-	 */
-  initComponent: function () {
-    var me = this;
-    var user = {
+  /**
+   * 初始化组件
+   */
+  initComponent() {
+    const me = this;
+    const user = {
       id: me.getLoginUserId(),
       loginName: me.getLoginUserName(),
       name: me.getLoginUserFullName()
@@ -123,76 +125,75 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
 
     me.callParent(arguments);
 
-    me.editNewPassword = Ext
-      .getCmp("PSI_User_ChangeMyPasswordForm_editNewPassword");
-    me.editConfirmPassword = Ext
-      .getCmp("PSI_User_ChangeMyPasswordForm_editConfirmPassword");
+    me.editNewPassword = Ext.getCmp("PSI_User_ChangeMyPasswordForm_editNewPassword");
+    me.editConfirmPassword = Ext.getCmp("PSI_User_ChangeMyPasswordForm_editConfirmPassword");
     me.editForm = Ext.getCmp("PSI_User_ChangeMyPasswordForm_editForm");
     me.buttonOK = Ext.getCmp("PSI_User_ChangeMyPasswordForm_buttonOK");
   },
 
-	/**
-	 * 修改密码
-	 */
-  onOK: function () {
-    var me = this;
+  /**
+   * 修改密码
+   */
+  onOK() {
+    const me = this;
 
-    var editNewPassword = me.editNewPassword;
-    var editConfirmPassword = me.editConfirmPassword;
+    const editNewPassword = me.editNewPassword;
+    const editConfirmPassword = me.editConfirmPassword;
 
-    var np = editNewPassword.getValue();
-    var cp = editConfirmPassword.getValue();
+    const np = editNewPassword.getValue();
+    const cp = editConfirmPassword.getValue();
 
     if (np != cp) {
-      PSI.MsgBox.showInfo("确认密码与新密码不一致", function () {
+      PSI.MsgBox.showInfo("确认密码与新密码不一致", () => {
         editNewPassword.focus();
       });
       return;
     }
 
-    var form = me.editForm;
-    var el = Ext.getBody();
+    const form = me.editForm;
+    const el = Ext.getBody();
+    el.mask("数据保存中...");
     form.submit({
       url: PSI.Const.BASE_URL + "Home/User/changeMyPasswordPOST",
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo("成功修改登录密码", function () {
+        PSI.MsgBox.showInfo("成功修改登录密码", () => {
           me.closeWindow();
         });
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
         PSI.MsgBox.showInfo(action.result.msg);
       }
     });
   },
 
-  onEditOldPasswordSpecialKey: function (field, e) {
-    var me = this;
+  onEditOldPasswordSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
       me.editNewPassword.focus();
     }
   },
 
-  onEditNewPasswordSpecialKey: function (field, e) {
-    var me = this;
+  onEditNewPasswordSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
       me.editConfirmPassword.focus();
     }
   },
 
-  onEditConfirmPasswordSpecialKey: function (field, e) {
-    var me = this;
+  onEditConfirmPasswordSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
       me.buttonOK.focus();
     }
   },
 
-  closeWindow: function () {
+  closeWindow() {
     if (PSI.Const.MOT == "0") {
       window.location.replace(PSI.Const.BASE_URL);
     } else {
