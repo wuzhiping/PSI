@@ -107,6 +107,8 @@ class UserController extends PSIBaseController
 
   /**
    * 修改我的密码，POST方法
+   * 
+   * JS: web\Public\Scripts\PSI\User\ChangeMyPasswordForm.js
    */
   public function changeMyPasswordPOST()
   {
@@ -121,8 +123,11 @@ class UserController extends PSIBaseController
       // 每个登录用户都能修改自己的密码，就不需要额外的权限判断了
 
       $params = [
+        // 当前登录的用户Id
         "userId" => I("post.userId"),
+        // 旧密码
         "oldPassword" => I("post.oldPassword"),
+        // 新密码
         "newPassword" => I("post.newPassword")
       ];
 
