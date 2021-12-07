@@ -6,7 +6,7 @@ Ext.define("PSI.User.OrgField", {
   alias: "widget.psi_orgfield",
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     me.__idValue = null;
 
@@ -14,7 +14,7 @@ Ext.define("PSI.User.OrgField", {
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (e.getKey() == e.BACKSPACE) {
         field.setValue(null);
         me.setIdValue(null);
@@ -28,8 +28,8 @@ Ext.define("PSI.User.OrgField", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -38,20 +38,20 @@ Ext.define("PSI.User.OrgField", {
   },
 
   onTriggerClick(e) {
-    var me = this;
+    const me = this;
 
     if (me.readOnly) {
       return;
     }
 
-    var modelName = "PSIOrgModel_OrgField";
+    const modelName = "PSIOrgModel_OrgField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "text", "fullName", "orgCode",
         "leaf", "children"]
     });
 
-    var orgStore = Ext.create("Ext.data.TreeStore", {
+    const orgStore = Ext.create("Ext.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -65,7 +65,7 @@ Ext.define("PSI.User.OrgField", {
       }
     });
 
-    var orgTree = Ext.create("Ext.tree.Panel", {
+    const orgTree = Ext.create("Ext.tree.Panel", {
       cls: "PSI",
       store: orgStore,
       rootVisible: false,
@@ -91,10 +91,10 @@ Ext.define("PSI.User.OrgField", {
         }]
       }
     });
-    orgTree.on("itemdblclick", this.onOK, this);
-    this.tree = orgTree;
+    orgTree.on("itemdblclick", me.onOK, me);
+    me.tree = orgTree;
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择组织机构",
       modal: true,
       width: 500,
@@ -103,25 +103,25 @@ Ext.define("PSI.User.OrgField", {
       items: [orgTree],
       buttons: [{
         text: "确定",
-        handler: this.onOK,
-        scope: this
+        handler: me.onOK,
+        scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
-    this.wnd = wnd;
-    wnd.show();
+    me.wnd = wnd;
+    wnd.showBy(me);
   },
 
   // private
   onOK() {
-    var me = this;
+    const me = this;
 
-    var tree = me.tree;
-    var item = tree.getSelectionModel().getSelection();
+    const tree = me.tree;
+    const item = tree.getSelectionModel().getSelection();
 
     if (item === null || item.length !== 1) {
       PSI.MsgBox.showInfo("没有选择组织机构");
@@ -129,7 +129,7 @@ Ext.define("PSI.User.OrgField", {
       return;
     }
 
-    var data = item[0];
+    const data = item[0];
 
     me.setIdValue(data.get("id"));
     me.setValue(data.get("fullName"));
