@@ -223,6 +223,8 @@ class UserController extends PSIBaseController
 
   /**
    * 新建或编辑组织结构
+   * 
+   * JS: web\Public\Scripts\PSI\User\MainForm.js
    */
   public function editOrg()
   {
