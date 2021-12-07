@@ -11,14 +11,14 @@ Ext.define("PSI.User.UserField", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
+    const me = this;
     me.__idValue = null;
 
     me.enableKeyEvents = true;
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (me.readOnly) {
         return;
       }
@@ -35,8 +35,8 @@ Ext.define("PSI.User.UserField", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -45,24 +45,24 @@ Ext.define("PSI.User.UserField", {
   },
 
   onTriggerClick(e) {
-    var me = this;
+    const me = this;
 
     if (me.readOnly) {
       return;
     }
 
-    var modelName = "PSIUserField";
+    const modelName = "PSIUserField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "loginName", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    const lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -81,7 +81,7 @@ Ext.define("PSI.User.UserField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 人员",
       header: false,
       modal: me.getShowModal(),
@@ -122,34 +122,33 @@ Ext.define("PSI.User.UserField", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
 
-    wnd.on("close", function () {
+    wnd.on("close", () => {
       me.focus();
     });
-    wnd.on("deactivate", function () {
+    wnd.on("deactivate", () => {
       wnd.close();
     });
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("__editUser");
-    editName.on("change", function () {
-      var store = me.lookupGrid.getStore();
+    const editName = Ext.getCmp("__editUser");
+    editName.on("change", () => {
+      const store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/User/queryData",
         params: {
           queryKey: editName.getValue()
         },
         method: "POST",
-        callback: function (opt, success, response) {
+        callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            const data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -159,19 +158,19 @@ Ext.define("PSI.User.UserField", {
             PSI.MsgBox.showInfo("网络错误");
           }
         },
-        scope: this
+        scope: me
       });
 
     }, me);
 
-    editName.on("specialkey", function (field, e) {
+    editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -184,10 +183,10 @@ Ext.define("PSI.User.UserField", {
         e.preventDefault();
         editName.focus();
       } else if (e.getKey() == e.DOWN) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -202,7 +201,7 @@ Ext.define("PSI.User.UserField", {
       }
     }, me);
 
-    me.wnd.on("show", function () {
+    me.wnd.on("show", () => {
       editName.focus();
       editName.fireEvent("change");
     }, me);
@@ -210,14 +209,14 @@ Ext.define("PSI.User.UserField", {
   },
 
   onOK() {
-    var me = this;
-    var grid = me.lookupGrid;
-    var item = grid.getSelectionModel().getSelection();
+    const me = this;
+    const grid = me.lookupGrid;
+    const item = grid.getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var data = item[0].getData();
+    const data = item[0].getData();
 
     me.wnd.close();
     me.focus();
