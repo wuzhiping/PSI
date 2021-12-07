@@ -1,18 +1,20 @@
 /**
  * 自定义字段 - 组织机构字段
+ * 
+ * @author 李静波
  */
 Ext.define("PSI.User.OrgEditor", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.PSI_org_editor",
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     me.enableKeyEvents = true;
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (e.getKey() === e.BACKSPACE) {
         e.preventDefault();
         return false;
@@ -23,21 +25,23 @@ Ext.define("PSI.User.OrgEditor", {
       }
     });
 
-    me.on("render", function (p) {
-      p.getEl().on("dblclick", function () {
+    me.on("render", (p) => {
+      p.getEl().on("dblclick", () => {
         me.onTriggerClick();
       });
     });
   },
 
   onTriggerClick(e) {
+    const me = this;
+
     Ext.define("PSIOrgModel_PSI_org_editor", {
       extend: "Ext.data.Model",
       fields: ["id", "text", "fullName", "orgCode",
         "leaf", "children"]
     });
 
-    var orgStore = Ext.create("Ext.data.TreeStore", {
+    const orgStore = Ext.create("Ext.data.TreeStore", {
       model: "PSIOrgModel_PSI_org_editor",
       proxy: {
         type: "ajax",
@@ -51,7 +55,7 @@ Ext.define("PSI.User.OrgEditor", {
       }
     });
 
-    var orgTree = Ext.create("Ext.tree.Panel", {
+    const orgTree = Ext.create("Ext.tree.Panel", {
       cls: "PSI",
       store: orgStore,
       rootVisible: false,
@@ -77,10 +81,10 @@ Ext.define("PSI.User.OrgEditor", {
         }]
       }
     });
-    orgTree.on("itemdblclick", this.onOK, this);
-    this.tree = orgTree;
+    orgTree.on("itemdblclick", me.onOK, me);
+    me.tree = orgTree;
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择组织机构",
       modal: true,
       width: 500,
@@ -89,22 +93,24 @@ Ext.define("PSI.User.OrgEditor", {
       items: [orgTree],
       buttons: [{
         text: "确定",
-        handler: this.onOK,
-        scope: this
+        handler: me.onOK,
+        scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
-    this.wnd = wnd;
+    me.wnd = wnd;
     wnd.show();
   },
 
   onOK() {
-    var tree = this.tree;
-    var item = tree.getSelectionModel().getSelection();
+    const me = this;
+
+    const tree = me.tree;
+    const item = tree.getSelectionModel().getSelection();
 
     if (item === null || item.length !== 1) {
       PSI.MsgBox.showInfo("没有选择组织机构");
@@ -112,12 +118,12 @@ Ext.define("PSI.User.OrgEditor", {
       return;
     }
 
-    var data = item[0].data;
-    var parentItem = this.initialConfig.parentItem;
+    const data = item[0].data;
+    const parentItem = this.initialConfig.parentItem;
     if (parentItem && parentItem.setOrg) {
       parentItem.setOrg(data);
     }
-    this.wnd.close();
-    this.focus();
+    me.wnd.close();
+    me.focus();
   }
 });
