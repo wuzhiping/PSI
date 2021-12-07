@@ -2,26 +2,22 @@
  * 修改用户密码
  */
 Ext.define("PSI.User.ChangeUserPasswordForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
-	/**
-	 * 初始化组件
-	 */
-  initComponent: function () {
-    var me = this;
-    var entity = me.getEntity();
+  /**
+   * 初始化组件
+   */
+  initComponent() {
+    const me = this;
+    const entity = me.getEntity();
 
-    var t = "修改用户登录密码";
-    var f = "edit-form-password.png";
-    var logoHtml = "<img style='float:left;margin:0px 20px 0px 10px;width:48px;height:48px;' src='"
-      + PSI.Const.BASE_URL
-      + "Public/Images/"
-      + f
-      + "'></img>"
-      + "<h2 style='color:#196d83;margin-top:0px;'>"
-      + t
-      + "</h2>"
-      + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";
+    const t = "修改用户登录密码";
+    const f = "edit-form-password.png";
+    const logoHtml = `
+      <img style='float:left;margin:0px 20px 0px 10px;width:48px;height:48px;' 
+        src='${PSI.Const.BASE_URL}Public/Images/${f}'></img>
+      <h2 style='color:#196d83;margin-top:0px;'>${t}</h2>
+      <p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>`;
 
     Ext.apply(me, {
       header: {
@@ -77,7 +73,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
           name: "password",
           listeners: {
             specialkey: {
-              fn: me.onEditPasswordSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -90,7 +86,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
           inputType: "password",
           listeners: {
             specialkey: {
-              fn: me.onEditConfirmPasswordSpecialKey,
+              fn: me.onLastEditSpecialKey,
               scope: me
             }
           }
@@ -103,7 +99,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
           scope: me
         }, {
           text: "取消",
-          handler: function () {
+          handler() {
             me.close();
           },
           scope: me
@@ -119,62 +115,53 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
 
     me.callParent(arguments);
 
-    me.editPassword = Ext
-      .getCmp("PSI_User_ChangeUserPasswordForm_editPassword");
-    me.editConfirmPassword = Ext
-      .getCmp("PSI_User_ChangeUserPasswordForm_editConfirmPassword");
+    me.editPassword = Ext.getCmp("PSI_User_ChangeUserPasswordForm_editPassword");
+    me.editConfirmPassword = Ext.getCmp("PSI_User_ChangeUserPasswordForm_editConfirmPassword");
     me.editForm = Ext.getCmp("PSI_User_ChangeUserPasswordForm_editForm");
+
+    me.__editorList = [me.editPassword, me.editConfirmPassword];
   },
 
-  onEditFormShow: function () {
+  onEditFormShow() {
     var me = this;
-    me.editPassword.focus();
+    me.setFocusAndCursorPosToLast(me.editPassword);
   },
 
-	/**
-	 * 修改密码
-	 */
-  onOK: function () {
-    var me = this;
-    var pass = me.editPassword.getValue();
-    var pass2 = me.editConfirmPassword.getValue();
+  /**
+   * 修改密码
+   */
+  onOK() {
+    const me = this;
+    const pass = me.editPassword.getValue();
+    const pass2 = me.editConfirmPassword.getValue();
     if (pass != pass2) {
-      me.showInfo("输入的密码和确认密码不一致，请重新输入", function () {
+      me.showInfo("输入的密码和确认密码不一致，请重新输入", () => {
         me.editPassword.focus();
       });
 
       return;
     }
 
-    var f = me.editForm;
-    var el = f.getEl();
+    const f = me.editForm;
+    const el = f.getEl();
     el.mask("数据保存中...");
     f.submit({
       url: me.URL("Home/User/changePassword"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         el.unmask();
-        me.showInfo("成功修改密码", function () {
-          me.close();
-        });
+        me.tip("成功修改密码");
+        me.close();
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
         me.showInfo(action.result.msg);
       }
     });
   },
 
-  onEditPasswordSpecialKey: function (field, e) {
-    var me = this;
-
-    if (e.getKey() == e.ENTER) {
-      me.editConfirmPassword.focus();
-    }
-  },
-
-  onEditConfirmPasswordSpecialKey: function (field, e) {
-    var me = this;
+  onLastEditSpecialKey(field, e) {
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
       if (me.editForm.getForm().isValid()) {

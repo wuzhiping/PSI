@@ -4,6 +4,10 @@
  * @author 李静波
  */
 Ext.define("PSI.AFX.Mix.Common", {
+  showInfo: function (info, func) {
+    PSI.MsgBox.showInfo(info, func);
+  },
+
   // 显示提示信息
   tip(info) {
     PSI.MsgBox.tip(info);
