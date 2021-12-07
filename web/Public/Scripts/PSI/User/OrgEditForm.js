@@ -2,7 +2,7 @@
  * 新增或编辑组织机构
  */
 Ext.define("PSI.User.OrgEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   /**
    * 初始化组件
@@ -48,8 +48,7 @@ Ext.define("PSI.User.OrgEditForm", {
         items: [{
           xtype: "hidden",
           name: "id",
-          value: entity === null ? null : entity
-            .get("id")
+          value: entity === null ? null : entity.get("id")
         }, {
           id: "PSI_User_OrgEditForm_editName",
           fieldLabel: "名称",
@@ -57,11 +56,10 @@ Ext.define("PSI.User.OrgEditForm", {
           blankText: "没有输入名称",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "name",
-          value: entity === null ? null : entity
-            .get("text"),
+          value: entity === null ? null : entity.get("text"),
           listeners: {
             specialkey: {
-              fn: me.onEditNameSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -73,7 +71,7 @@ Ext.define("PSI.User.OrgEditForm", {
           fieldLabel: "上级组织",
           listeners: {
             specialkey: {
-              fn: me.onEditParentOrgSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -82,8 +80,7 @@ Ext.define("PSI.User.OrgEditForm", {
           id: "PSI_User_OrgEditForm_editParentOrgId",
           xtype: "hidden",
           name: "parentId",
-          value: entity === null ? null : entity
-            .get("parentId")
+          value: entity === null ? null : entity.get("parentId")
         }, {
           id: "PSI_User_OrgEditForm_editOrgCode",
           fieldLabel: "编码",
@@ -91,11 +88,10 @@ Ext.define("PSI.User.OrgEditForm", {
           blankText: "没有输入编码",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "orgCode",
-          value: entity === null ? null : entity
-            .get("orgCode"),
+          value: entity === null ? null : entity.get("orgCode"),
           listeners: {
             specialkey: {
-              fn: me.onEditOrgCodeSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -119,7 +115,13 @@ Ext.define("PSI.User.OrgEditForm", {
             [4000, "外协工厂"], [5000, "外部物流商"]]
           }),
           value: 0,
-          width: 370
+          width: 370,
+          listeners: {
+            specialkey: {
+              fn: me.onLastEditSpecialKey,
+              scope: me
+            }
+          }
         }, {
           xtype: "displayfield",
           fieldLabel: "说明",
@@ -162,6 +164,8 @@ Ext.define("PSI.User.OrgEditForm", {
     me.editOrgType = Ext.getCmp("PSI_User_OrgEditForm_editOrgType");
 
     me.editForm = Ext.getCmp("PSI_User_OrgEditForm_editForm");
+
+    me.__editorList = [me.editName, me.editParentOrg, me.editOrgCode, me.editOrgType];
   },
 
   onWindowBeforeUnload(e) {
@@ -238,21 +242,7 @@ Ext.define("PSI.User.OrgEditForm", {
     });
   },
 
-  onEditNameSpecialKey(field, e) {
-    var me = this;
-    if (e.getKey() == e.ENTER) {
-      me.editParentOrg.focus();
-    }
-  },
-
-  onEditParentOrgSpecialKey(field, e) {
-    var me = this;
-    if (e.getKey() == e.ENTER) {
-      me.editOrgCode.focus();
-    }
-  },
-
-  onEditOrgCodeSpecialKey(field, e) {
+  onLastEditSpecialKey(field, e) {
     var me = this;
     if (e.getKey() == e.ENTER) {
       if (me.editForm.getForm().isValid()) {
