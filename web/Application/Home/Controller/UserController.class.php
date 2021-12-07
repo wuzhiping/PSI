@@ -166,6 +166,12 @@ class UserController extends PSIBaseController
 
   /**
    * 获得组织机构树
+   * 
+   * JS:
+   * web\Public\Scripts\PSI\User\MainForm.js
+   * web\Public\Scripts\PSI\User\OrgEditor.js
+   * web\Public\Scripts\PSI\User\OrgField.js
+   * web\Public\Scripts\PSI\User\ParentOrgEditor.js
    */
   public function allOrgs()
   {
