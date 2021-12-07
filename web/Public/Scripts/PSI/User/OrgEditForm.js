@@ -8,12 +8,12 @@ Ext.define("PSI.User.OrgEditForm", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
-    var entity = me.getEntity();
+    const me = this;
+    const entity = me.getEntity();
 
-    var t = entity == null ? "新建组织机构" : "编辑组织机构";
+    const t = entity == null ? "新建组织机构" : "编辑组织机构";
 
-    var logoHtml = me.genLogoHtml(entity, t);
+    const logoHtml = me.genLogoHtml(entity, t);
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -135,8 +135,8 @@ Ext.define("PSI.User.OrgEditForm", {
           scope: me
         }, {
           text: "取消",
-          handler: function () {
-            me.confirm("请确认是否取消操作?", function () {
+          handler() {
+            me.confirm("请确认是否取消操作?", () => {
               me.close();
             });
           },
@@ -169,42 +169,43 @@ Ext.define("PSI.User.OrgEditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
   onEditFormShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
-    me.editName.focus();
+    me.setFocusAndCursorPosToLast(me.editName);
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
     if (entity === null) {
       return;
     }
-    var el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || Ext.getBody();
     el.mask("数据加载中...");
     me.ajax({
       url: me.URL("Home/User/orgParentName"),
       params: {
         id: entity.get("id")
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         el.unmask();
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
-          me.editParentOrg.setValue(data.parentOrgName);
-          me.editParentOrgId.setValue(data.parentOrgId);
-          me.editName.setValue(data.name);
-          me.editOrgCode.setValue(data.orgCode);
-          var orgType = data.orgType;
+          const { parentOrgName, parentOrgId, name, orgCode, orgType }
+            = Ext.JSON.decode(response.responseText);
+          me.editParentOrg.setValue(parentOrgName);
+          me.editParentOrgId.setValue(parentOrgId);
+          me.editName.setValue(name);
+          me.editOrgCode.setValue(orgCode);
           if (!orgType) {
-            orgType = 0;
+            me.editOrgType.setValue(0);
+          } else {
+            me.editOrgType.setValue(parseInt(orgType));
           }
-          me.editOrgType.setValue(parseInt(orgType));
         }
       }
     });
@@ -224,14 +225,14 @@ Ext.define("PSI.User.OrgEditForm", {
     f.submit({
       url: me.URL("Home/User/editOrg"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         el.unmask();
         me.close();
         me.getParentForm().freshOrgGrid();
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        me.showInfo(action.result.msg, function () {
+        me.showInfo(action.result.msg, () => {
           me.editName.focus();
         });
       }
