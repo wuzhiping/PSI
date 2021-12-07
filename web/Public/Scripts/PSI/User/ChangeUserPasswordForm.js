@@ -123,7 +123,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
   },
 
   onEditFormShow() {
-    var me = this;
+    const me = this;
     me.setFocusAndCursorPosToLast(me.editPassword);
   },
 
