@@ -613,10 +613,10 @@ Ext.define("PSI.User.MainForm", {
   },
 
   freshUserGrid() {
-    var me = this;
+    const me = this;
 
-    var tree = me.getOrgGrid();
-    var item = tree.getSelectionModel().getSelection();
+    const tree = me.getOrgGrid();
+    const item = tree.getSelectionModel().getSelection();
     if (item === null || item.length !== 1) {
       return;
     }
@@ -628,16 +628,16 @@ Ext.define("PSI.User.MainForm", {
    * 新增用户
    */
   onAddUser() {
-    var me = this;
+    const me = this;
 
-    var tree = me.getOrgGrid();
-    var item = tree.getSelectionModel().getSelection();
-    var org = null;
+    const tree = me.getOrgGrid();
+    const item = tree.getSelectionModel().getSelection();
+    let org = null;
     if (item != null && item.length > 0) {
       org = item[0];
     }
 
-    var form = Ext.create("PSI.User.UserEditForm", {
+    const form = Ext.create("PSI.User.UserEditForm", {
       parentForm: me,
       defaultOrg: org
     });
@@ -648,29 +648,29 @@ Ext.define("PSI.User.MainForm", {
    * 编辑用户
    */
   onEditUser() {
-    var me = this;
+    const me = this;
     if (me.getPEditUser() == "0") {
       return;
     }
 
-    var item = me.getUserGrid().getSelectionModel().getSelection();
+    const item = me.getUserGrid().getSelectionModel().getSelection();
     if (item === null || item.length !== 1) {
       me.showInfo("请选择要编辑的用户");
       return;
     }
 
-    var user = item[0].data;
+    const user = item[0].data;
 
-    var tree = me.orgTree;
-    var node = tree.getSelectionModel().getSelection();
+    const tree = me.getOrgGrid();
+    const node = tree.getSelectionModel().getSelection();
     if (node && node.length === 1) {
-      var org = node[0].data;
+      const org = node[0].data;
 
       user.orgId = org.id;
       user.orgName = org.fullName;
     }
 
-    var form = Ext.create("PSI.User.UserEditForm", {
+    const form = Ext.create("PSI.User.UserEditForm", {
       parentForm: me,
       entity: user
     });
@@ -681,16 +681,16 @@ Ext.define("PSI.User.MainForm", {
    * 修改用户密码
    */
   onEditUserPassword() {
-    var me = this;
+    const me = this;
 
-    var item = me.getUserGrid().getSelectionModel().getSelection();
+    const item = me.getUserGrid().getSelectionModel().getSelection();
     if (item === null || item.length !== 1) {
       me.showInfo("请选择要修改密码的用户");
       return;
     }
 
-    var user = item[0].getData();
-    var form = Ext.create("PSI.User.ChangeUserPasswordForm", {
+    const user = item[0].getData();
+    const form = Ext.create("PSI.User.ChangeUserPasswordForm", {
       entity: user
     });
     form.show();
@@ -700,31 +700,30 @@ Ext.define("PSI.User.MainForm", {
    * 删除用户
    */
   onDeleteUser() {
-    var me = this;
-    var item = me.getUserGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getUserGrid().getSelectionModel().getSelection();
     if (item === null || item.length !== 1) {
       me.showInfo("请选择要删除的用户");
       return;
     }
 
-    var user = item[0].getData();
+    const user = item[0].getData();
 
-    var funcConfirm = function () {
+    const funcConfirm = () => {
       Ext.getBody().mask("正在删除中...");
-      var r = {
+      const r = {
         url: me.URL("Home/User/deleteUser"),
         params: {
           id: user.id
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           Ext.getBody().unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成删除操作", function () {
-                me.freshUserGrid();
-              });
+              me.tip("成功完成删除操作");
+              me.freshUserGrid();
             } else {
               me.showInfo(data.msg);
             }
@@ -734,8 +733,7 @@ Ext.define("PSI.User.MainForm", {
       me.ajax(r);
     };
 
-    var info = "请确认是否删除用户 <span style='color:red'>" + user.name
-      + "</span> ?";
+    const info = `请确认是否删除用户 <span style='color:red'>${user.name}</span> ?`;
     me.confirm(info, funcConfirm);
   },
 
@@ -744,13 +742,13 @@ Ext.define("PSI.User.MainForm", {
       return;
     }
 
-    var org = rec.data;
+    const org = rec.data;
     if (!org) {
       return;
     }
 
-    var me = this;
-    var grid = me.getUserGrid();
+    const me = this;
+    const grid = me.getUserGrid();
 
     grid.setTitle(me.formatGridHeaderTitle(org.fullName + " - 人员列表"));
 
@@ -758,12 +756,12 @@ Ext.define("PSI.User.MainForm", {
   },
 
   onOrgStoreLoad() {
-    var me = this;
+    const me = this;
 
-    var tree = me.getOrgGrid();
-    var root = tree.getRootNode();
+    const tree = me.getOrgGrid();
+    const root = tree.getRootNode();
     if (root) {
-      var node = root.firstChild;
+      const node = root.firstChild;
       if (node) {
         tree.getSelectionModel().select(node);
       }
@@ -771,42 +769,44 @@ Ext.define("PSI.User.MainForm", {
   },
 
   getUserParam() {
-    var me = this;
-    var item = me.getOrgGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getOrgGrid().getSelectionModel().getSelection();
     if (item == null || item.length == 0) {
       return {};
     }
 
-    var org = item[0];
+    const org = item[0];
 
-    var queryLoginName = null;
-    var editLoginName = Ext.getCmp("editQueryLoginName");
+    let queryLoginName = null;
+    const editLoginName = Ext.getCmp("editQueryLoginName");
     if (editLoginName) {
       queryLoginName = editLoginName.getValue();
     }
 
-    var queryName = null;
-    var editQueryName = Ext.getCmp("editQueryName");
+    let queryName = null;
+    const editQueryName = Ext.getCmp("editQueryName");
     if (editQueryName) {
       queryName = editQueryName.getValue();
     }
 
-    var enabled = -1;
-    var edit = Ext.getCmp("editQueryEnabled");
+    let enabled = -1;
+    const edit = Ext.getCmp("editQueryEnabled");
     if (edit) {
       enabled = edit.getValue();
     }
 
+    const orgId = org.get("id");
+
     return {
-      orgId: org.get("id"),
-      queryLoginName: queryLoginName,
-      queryName: queryName,
-      enabled: enabled
+      orgId,
+      queryLoginName,
+      queryName,
+      enabled,
     }
   },
 
   onClearQuery() {
-    var me = this;
+    const me = this;
 
     Ext.getCmp("editQueryLoginName").setValue(null);
     Ext.getCmp("editQueryName").setValue(null);
@@ -816,7 +816,7 @@ Ext.define("PSI.User.MainForm", {
   },
 
   onQuery() {
-    var me = this;
+    const me = this;
 
     me.getUserGrid().getStore().removeAll();
 
@@ -824,28 +824,28 @@ Ext.define("PSI.User.MainForm", {
   },
 
   getQueryParamForCategory() {
-    var queryLoginName = null;
-    var editLoginName = Ext.getCmp("editQueryLoginName");
+    let queryLoginName = null;
+    const editLoginName = Ext.getCmp("editQueryLoginName");
     if (editLoginName) {
       queryLoginName = editLoginName.getValue();
     }
 
-    var queryName = null;
-    var editQueryName = Ext.getCmp("editQueryName");
+    let queryName = null;
+    const editQueryName = Ext.getCmp("editQueryName");
     if (editQueryName) {
       queryName = editQueryName.getValue();
     }
 
-    var enabled = -1;
-    var edit = Ext.getCmp("editQueryEnabled");
+    let enabled = -1;
+    const edit = Ext.getCmp("editQueryEnabled");
     if (edit) {
       enabled = edit.getValue();
     }
 
     return {
-      queryLoginName: queryLoginName,
-      queryName: queryName,
-      enabled: enabled
+      queryLoginName,
+      queryName,
+      enabled
     };
   }
 });
