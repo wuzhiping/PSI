@@ -155,7 +155,9 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
       },
       failure(form, action) {
         el.unmask();
-        me.showInfo(action.result.msg);
+        me.showInfo(action.result.msg, () => {
+          me.editPassword.focus();
+        });
       }
     });
   },
