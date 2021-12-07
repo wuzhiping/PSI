@@ -196,6 +196,8 @@ class UserController extends PSIBaseController
 
   /**
    * 获得组织机构下的用户列表
+   * 
+   * JS: web\Public\Scripts\PSI\User\MainForm.js
    */
   public function users()
   {
