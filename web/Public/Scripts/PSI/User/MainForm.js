@@ -526,11 +526,11 @@ Ext.define("PSI.User.MainForm", {
    * 新增组织机构
    */
   onAddOrg() {
-    var me = this;
+    const me = this;
 
     /// 知识点5：用Ext.create创建ExtJS class，不要是new创建ExtJS class
     /// Ext.create(类名, 配置项JSON对象)
-    var form = Ext.create("PSI.User.OrgEditForm", {
+    const form = Ext.create("PSI.User.OrgEditForm", {
       /// 这就是通过配置项在ExtJS组件之间传递参数
       /// 参考PSI.User.OrgEditForm的onOK方法中如何回调本class的方法的
       parentForm: me
@@ -542,21 +542,21 @@ Ext.define("PSI.User.MainForm", {
    * 编辑组织机构
    */
   onEditOrg() {
-    var me = this;
+    const me = this;
     if (me.getPEditOrg() == "0") {
       return;
     }
 
-    var tree = me.getOrgGrid();
-    var item = tree.getSelectionModel().getSelection();
+    const tree = me.getOrgGrid();
+    const item = tree.getSelectionModel().getSelection();
     if (item === null || item.length !== 1) {
       me.showInfo("请选择要编辑的组织机构");
       return;
     }
 
-    var org = item[0];
+    const org = item[0];
 
-    var form = Ext.create("PSI.User.OrgEditForm", {
+    const form = Ext.create("PSI.User.OrgEditForm", {
       parentForm: me,
       entity: org
     });
@@ -567,32 +567,31 @@ Ext.define("PSI.User.MainForm", {
    * 删除组织机构
    */
   onDeleteOrg() {
-    var me = this;
-    var tree = me.getOrgGrid();
-    var item = tree.getSelectionModel().getSelection();
+    const me = this;
+    const tree = me.getOrgGrid();
+    const item = tree.getSelectionModel().getSelection();
     if (item === null || item.length !== 1) {
       me.showInfo("请选择要删除的组织机构");
       return;
     }
 
-    var org = item[0].getData();
+    const org = item[0].getData();
 
-    var funcConfirm = function () {
+    const funcConfirm = () => {
       Ext.getBody().mask("正在删除中...");
-      var r = {
+      const r = {
         url: me.URL("Home/User/deleteOrg"),
         params: {
           id: org.id
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           Ext.getBody().unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.showInfo("成功完成删除操作", function () {
-                me.freshOrgGrid();
-              });
+              me.tip("成功完成删除操作");
+              me.freshOrgGrid();
             } else {
               me.showInfo(data.msg);
             }
@@ -603,13 +602,12 @@ Ext.define("PSI.User.MainForm", {
       me.ajax(r);
     };
 
-    var info = "请确认是否删除组织机构 <span style='color:red'>" + org.fullName
-      + "</span> ?";
+    const info = `请确认是否删除组织机构 <span style='color:red'>${org.fullName}</span> ?`;
     me.confirm(info, funcConfirm);
   },
 
   freshOrgGrid() {
-    var me = this;
+    const me = this;
 
     me.getOrgGrid().getStore().reload();
   },
