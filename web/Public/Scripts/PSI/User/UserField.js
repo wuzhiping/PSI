@@ -10,7 +10,7 @@ Ext.define("PSI.User.UserField", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     var me = this;
     me.__idValue = null;
 
@@ -44,7 +44,7 @@ Ext.define("PSI.User.UserField", {
     });
   },
 
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     var me = this;
 
     if (me.readOnly) {
@@ -209,7 +209,7 @@ Ext.define("PSI.User.UserField", {
     wnd.showBy(me);
   },
 
-  onOK: function () {
+  onOK() {
     var me = this;
     var grid = me.lookupGrid;
     var item = grid.getSelectionModel().getSelection();
@@ -227,15 +227,15 @@ Ext.define("PSI.User.UserField", {
     me.setIdValue(data.id);
   },
 
-  setIdValue: function (id) {
+  setIdValue(id) {
     this.__idValue = id;
   },
 
-  getIdValue: function () {
+  getIdValue() {
     return this.__idValue;
   },
 
-  clearIdValue: function () {
+  clearIdValue() {
     this.setValue(null);
     this.__idValue = null;
   }
