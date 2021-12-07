@@ -5,7 +5,7 @@ Ext.define("PSI.User.OrgField", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.psi_orgfield",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     me.__idValue = null;
@@ -37,7 +37,7 @@ Ext.define("PSI.User.OrgField", {
     });
   },
 
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     var me = this;
 
     if (me.readOnly) {
@@ -117,7 +117,7 @@ Ext.define("PSI.User.OrgField", {
   },
 
   // private
-  onOK: function () {
+  onOK() {
     var me = this;
 
     var tree = me.tree;
@@ -137,11 +137,11 @@ Ext.define("PSI.User.OrgField", {
     me.focus();
   },
 
-  setIdValue: function (id) {
+  setIdValue(id) {
     this.__idValue = id;
   },
 
-  getIdValue: function () {
+  getIdValue() {
     return this.__idValue;
   }
 });
