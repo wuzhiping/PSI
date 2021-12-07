@@ -13,6 +13,10 @@ Ext.define("PSI.Subject.MainForm", {
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
       items: [{
+        region: "north",
+        border: 0,
+        height: 2,
+      }, {
         region: "west",
         width: 300,
         layout: "fit",
