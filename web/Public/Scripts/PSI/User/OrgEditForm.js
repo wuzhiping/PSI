@@ -7,7 +7,7 @@ Ext.define("PSI.User.OrgEditForm", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     var me = this;
     var entity = me.getEntity();
 
@@ -164,17 +164,17 @@ Ext.define("PSI.User.OrgEditForm", {
     me.editForm = Ext.getCmp("PSI_User_OrgEditForm_editForm");
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
-  onEditFormShow: function () {
+  onEditFormShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
@@ -210,13 +210,13 @@ Ext.define("PSI.User.OrgEditForm", {
     });
   },
 
-  setParentOrg: function (data) {
+  setParentOrg(data) {
     var me = this;
     me.editParentOrg.setValue(data.fullName);
     me.editParentOrgId.setValue(data.id);
   },
 
-  onOK: function () {
+  onOK() {
     var me = this;
     var f = me.editForm;
     var el = f.getEl();
@@ -238,21 +238,21 @@ Ext.define("PSI.User.OrgEditForm", {
     });
   },
 
-  onEditNameSpecialKey: function (field, e) {
+  onEditNameSpecialKey(field, e) {
     var me = this;
     if (e.getKey() == e.ENTER) {
       me.editParentOrg.focus();
     }
   },
 
-  onEditParentOrgSpecialKey: function (field, e) {
+  onEditParentOrgSpecialKey(field, e) {
     var me = this;
     if (e.getKey() == e.ENTER) {
       me.editOrgCode.focus();
     }
   },
 
-  onEditOrgCodeSpecialKey: function (field, e) {
+  onEditOrgCodeSpecialKey(field, e) {
     var me = this;
     if (e.getKey() == e.ENTER) {
       if (me.editForm.getForm().isValid()) {
