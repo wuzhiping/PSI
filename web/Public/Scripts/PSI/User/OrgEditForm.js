@@ -212,15 +212,15 @@ Ext.define("PSI.User.OrgEditForm", {
   },
 
   setParentOrg(data) {
-    var me = this;
+    const me = this;
     me.editParentOrg.setValue(data.fullName);
     me.editParentOrgId.setValue(data.id);
   },
 
   onOK() {
-    var me = this;
-    var f = me.editForm;
-    var el = f.getEl();
+    const me = this;
+    const f = me.editForm;
+    const el = f.getEl();
     el.mask("数据保存中...");
     f.submit({
       url: me.URL("Home/User/editOrg"),
@@ -240,7 +240,7 @@ Ext.define("PSI.User.OrgEditForm", {
   },
 
   onLastEditSpecialKey(field, e) {
-    var me = this;
+    const me = this;
     if (e.getKey() == e.ENTER) {
       if (me.editForm.getForm().isValid()) {
         me.onOK();
