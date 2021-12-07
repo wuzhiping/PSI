@@ -168,20 +168,16 @@ Ext.define("PSI.User.OrgEditForm", {
     me.__editorList = [me.editName, me.editParentOrg, me.editOrgCode, me.editOrgType];
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
   onWndClose() {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
   onEditFormShow() {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     me.editName.focus();
 
