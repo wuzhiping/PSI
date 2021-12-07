@@ -5,7 +5,7 @@ Ext.define("PSI.User.OrgEditor", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.PSI_org_editor",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     me.enableKeyEvents = true;
@@ -30,7 +30,7 @@ Ext.define("PSI.User.OrgEditor", {
     });
   },
 
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     Ext.define("PSIOrgModel_PSI_org_editor", {
       extend: "Ext.data.Model",
       fields: ["id", "text", "fullName", "orgCode",
@@ -102,7 +102,7 @@ Ext.define("PSI.User.OrgEditor", {
     wnd.show();
   },
 
-  onOK: function () {
+  onOK() {
     var tree = this.tree;
     var item = tree.getSelectionModel().getSelection();
 
