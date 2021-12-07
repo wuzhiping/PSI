@@ -54,7 +54,7 @@ Ext.define("PSI.User.MainForm", {
     /// 把this用me局部变量保存，然后后续的代码中都使用me，而不使用this
     /// 这是避免JS this是上下文绑定这个特性带了的惊喜
     /// 用me这个名称，是ExtJS的惯例
-    var me = this;
+    const me = this;
 
     /// 三明治模式的第一层
     /// 通常就是 Ext.apply(...)
@@ -102,13 +102,13 @@ Ext.define("PSI.User.MainForm", {
           scope: me
         }, "-", {
           text: "指南",
-          handler: function () {
+          handler() {
             me.focus();
             window.open(me.URL("/Home/Help/index?t=user"));
           }
         }, "-", {
           text: "关闭",
-          handler: function () {
+          handler() {
             me.closeWindow();
           }
         }],
@@ -151,13 +151,12 @@ Ext.define("PSI.User.MainForm", {
     me.orgTree = me.getOrgGrid();
     me.grid = me.getUserGrid();
 
-
-    // 查询input
+    // 查询控件input List
     me.__editorList = [Ext.getCmp("editQueryLoginName"), Ext.getCmp("editQueryName"), Ext.getCmp("editQueryEnabled")];
   },
 
   getQueryCmp() {
-    var me = this;
+    const me = this;
     return [{
       id: "editQueryLoginName",
       labelWidth: 60,
@@ -242,19 +241,19 @@ Ext.define("PSI.User.MainForm", {
   },
 
   getOrgGrid() {
-    var me = this;
+    const me = this;
     if (me.__orgGrid) {
       return me.__orgGrid;
     }
 
-    var modelName = "PSIOrgModel";
+    const modelName = "PSIOrgModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "text", "fullName", "orgCode", "dataOrg",
         "leaf", "children", "userCount", "orgType"]
     });
 
-    var orgStore = Ext.create("Ext.data.TreeStore", {
+    const orgStore = Ext.create("Ext.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -265,9 +264,8 @@ Ext.define("PSI.User.MainForm", {
       },
       listeners: {
         beforeload: {
-          fn: function () {
-            orgStore.proxy.extraParams = me
-              .getQueryParamForCategory();
+          fn() {
+            orgStore.proxy.extraParams = me.getQueryParamForCategory();
           },
           scope: me
         }
@@ -276,7 +274,7 @@ Ext.define("PSI.User.MainForm", {
 
     orgStore.on("load", me.onOrgStoreLoad, me);
 
-    var orgTree = Ext.create("Ext.tree.Panel", {
+    const orgTree = Ext.create("Ext.tree.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -290,7 +288,7 @@ Ext.define("PSI.User.MainForm", {
       },
       tools: [{
         type: "close",
-        handler: function () {
+        handler() {
           Ext.getCmp("panelOrg").collapse();
         }
       }],
@@ -326,7 +324,7 @@ Ext.define("PSI.User.MainForm", {
       }
     });
 
-    orgTree.on("select", function (rowModel, record) {
+    orgTree.on("select", (rowModel, record) => {
       me.onOrgTreeNodeSelect(record);
     }, me);
 
@@ -338,20 +336,20 @@ Ext.define("PSI.User.MainForm", {
   },
 
   getUserGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__userGrid) {
       return me.__userGrid;
     }
 
-    var modelName = "PSIUser";
+    const modelName = "PSIUser";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "loginName", "name", "enabled", "orgCode",
         "gender", "birthday", "idCardNumber", "tel",
         "tel02", "address", "dataOrg", "roleName"]
     });
-    var storeGrid = Ext.create("Ext.data.Store", {
+    const storeGrid = Ext.create("Ext.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -368,7 +366,7 @@ Ext.define("PSI.User.MainForm", {
         }
       }
     });
-    storeGrid.on("beforeload", function () {
+    storeGrid.on("beforeload", () => {
       storeGrid.proxy.extraParams = me.getUserParam();
     });
 
@@ -392,7 +390,7 @@ Ext.define("PSI.User.MainForm", {
         sortable: false,
         locked: true,
         width: 250,
-        renderer: function (value, metaData, record) {
+        renderer(value, metaData, record) {
           if (parseInt(record.get("enabled")) == 1) {
             return value;
           } else {
@@ -406,7 +404,7 @@ Ext.define("PSI.User.MainForm", {
         menuDisabled: true,
         sortable: false,
         locked: true,
-        renderer: function (value, metaData, record) {
+        renderer(value, metaData, record) {
           if (parseInt(record.get("enabled")) == 1) {
             return value;
           } else {
@@ -430,7 +428,7 @@ Ext.define("PSI.User.MainForm", {
         dataIndex: "enabled",
         menuDisabled: true,
         sortable: false,
-        renderer: function (value) {
+        renderer(value) {
           return value == 1
             ? "允许登录"
             : "<span style='color:red'>禁止登录</span>";
@@ -503,10 +501,8 @@ Ext.define("PSI.User.MainForm", {
           value: 20,
           listeners: {
             change: {
-              fn: function () {
-                storeGrid.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+              fn() {
+                storeGrid.pageSize = Ext.getCmp("comboCountPerPage").getValue();
                 storeGrid.currentPage = 1;
                 Ext.getCmp("pagingToolbar").doRefresh();
               },
