@@ -1,7 +1,9 @@
 /**
  * 常用的公共Mix
  * 
- * @author 李静波
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.AFX.Mix.Common", {
   showInfo: function (info, func) {

@@ -1,7 +1,9 @@
 /**
  * 新建或编辑业务实体的对话框窗体基类
  * 
- * @author 李静波
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.AFX.Form.EditForm", {
   extend: 'Ext.window.Window',
