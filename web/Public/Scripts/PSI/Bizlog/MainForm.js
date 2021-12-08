@@ -12,7 +12,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     unitTest: "0"
   },
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
@@ -46,7 +46,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     me.onRefresh();
   },
 
-  fetchLogCategory: function () {
+  fetchLogCategory() {
     var me = this;
 
     var r = {
@@ -70,7 +70,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     me.ajax(r);
   },
 
-  getToolbarCmp: function () {
+  getToolbarCmp() {
     var me = this;
 
     var store = me.getMainGrid().getStore();
@@ -139,7 +139,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     return buttons;
   },
 
-  getQueryCmp: function () {
+  getQueryCmp() {
     var me = this;
 
     Ext.define("PSILogCategory", {
@@ -242,7 +242,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     }];
   },
 
-  getMainGrid: function () {
+  getMainGrid() {
     var me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
@@ -337,7 +337,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     return me.__mainGrid;
   },
 
-  onCellDbclick: function (ths, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+  onCellDbclick(ths, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     var me = this;
     if (cellIndex == 1) {
       Ext.getCmp("editQueryLoginName").setValue(record.get("loginName"));
@@ -351,7 +351,7 @@ Ext.define("PSI.Bizlog.MainForm", {
   /**
    * 刷新
    */
-  onRefresh: function () {
+  onRefresh() {
     var me = this;
 
     me.getMainGrid().getStore().currentPage = 1;
@@ -362,7 +362,7 @@ Ext.define("PSI.Bizlog.MainForm", {
   /**
    * 升级数据库
    */
-  onUpdateDatabase: function () {
+  onUpdateDatabase() {
     var me = this;
 
     PSI.MsgBox.confirm("请确认是否升级数据库？", function () {
@@ -396,12 +396,12 @@ Ext.define("PSI.Bizlog.MainForm", {
     });
   },
 
-  onUnitTest: function () {
+  onUnitTest() {
     var url = PSI.Const.BASE_URL + "UnitTest";
     window.open(url);
   },
 
-  getQueryParam: function () {
+  getQueryParam() {
     var result = {
       loginName: Ext.getCmp("editQueryLoginName").getValue(),
       userId: Ext.getCmp("editQueryUser").getIdValue(),
@@ -422,7 +422,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     return result;
   },
 
-  onClearQuery: function () {
+  onClearQuery() {
     var me = this;
 
     Ext.getCmp("editQueryLoginName").setValue(null);
