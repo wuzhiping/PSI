@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.Bizlog.MainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
+  extend: "PSI.AFX.Form.MainForm",
 
   config: {
     // 是否显示单元测试按钮，0 - 不启用； 1 - 启用
@@ -44,7 +44,7 @@ Ext.define("PSI.Bizlog.MainForm", {
 
     me.fetchLogCategory();
 
-    me.onRefresh();
+    me.onQuery();
   },
 
   fetchLogCategory() {
@@ -59,7 +59,7 @@ Ext.define("PSI.Bizlog.MainForm", {
         store.removeAll();
 
         if (success) {
-          const data = Ext.JSON.decode(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
@@ -155,7 +155,13 @@ Ext.define("PSI.Bizlog.MainForm", {
       labelSeparator: "",
       fieldLabel: "登录名",
       margin: "5, 0, 0, 0",
-      xtype: "textfield"
+      xtype: "textfield",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       id: "editQueryUser",
       labelWidth: 60,
@@ -164,7 +170,13 @@ Ext.define("PSI.Bizlog.MainForm", {
       fieldLabel: "姓名",
       margin: "5, 0, 0, 0",
       xtype: "psi_userfield",
-      showModal: true
+      showModal: true,
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       id: "editQueryFromDT",
       xtype: "datefield",
@@ -172,7 +184,13 @@ Ext.define("PSI.Bizlog.MainForm", {
       format: "Y-m-d",
       labelAlign: "right",
       labelSeparator: "",
-      fieldLabel: "日志日期（起）"
+      fieldLabel: "日志日期（起）",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       id: "editQueryToDT",
       xtype: "datefield",
@@ -180,7 +198,13 @@ Ext.define("PSI.Bizlog.MainForm", {
       format: "Y-m-d",
       labelAlign: "right",
       labelSeparator: "",
-      fieldLabel: "日志日期（止）"
+      fieldLabel: "日志日期（止）",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       id: "editQueryIP",
       labelWidth: 60,
@@ -188,7 +212,13 @@ Ext.define("PSI.Bizlog.MainForm", {
       labelSeparator: "",
       fieldLabel: "IP",
       margin: "5, 0, 0, 0",
-      xtype: "textfield"
+      xtype: "textfield",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       xtype: "combobox",
       id: "comboCategory",
@@ -206,7 +236,13 @@ Ext.define("PSI.Bizlog.MainForm", {
         model: "PSILogCategory",
         autoLoad: false,
         data: []
-      })
+      }),
+      listeners: {
+        specialkey: {
+          fn: me.__onLastEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       xtype: "container",
       items: [{
@@ -215,7 +251,7 @@ Ext.define("PSI.Bizlog.MainForm", {
         width: 100,
         height: 26,
         margin: "5 0 0 10",
-        handler: me.onRefresh,
+        handler: me.onQuery,
         scope: me
       }, {
         xtype: "button",
@@ -340,17 +376,17 @@ Ext.define("PSI.Bizlog.MainForm", {
     const me = this;
     if (cellIndex == 1) {
       Ext.getCmp("editQueryLoginName").setValue(record.get("loginName"));
-      me.onRefresh();
+      me.onQuery();
     } else if (cellIndex == 3) {
       Ext.getCmp("editQueryIP").setValue(record.get("ip"));
-      me.onRefresh();
+      me.onQuery();
     }
   },
 
   /**
    * 刷新
    */
-  onRefresh() {
+  onQuery() {
     const me = this;
 
     me.getMainGrid().getStore().currentPage = 1;
@@ -380,7 +416,7 @@ Ext.define("PSI.Bizlog.MainForm", {
             const data = Ext.JSON.decode(response.responseText);
             if (data.success) {
               PSI.MsgBox.showInfo("成功升级数据库", function () {
-                me.onRefresh();
+                me.onQuery();
               });
             } else {
               PSI.MsgBox.showInfo(data.msg);
@@ -437,6 +473,6 @@ Ext.define("PSI.Bizlog.MainForm", {
 
     me.getMainGrid().getStore().currentPage = 1;
 
-    me.onRefresh();
+    me.onQuery();
   }
 });
