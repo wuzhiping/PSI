@@ -42,6 +42,14 @@ Ext.define("PSI.Bizlog.MainForm", {
 
     me.callParent();
 
+    me.__editorList =
+      [Ext.getCmp("editQueryLoginName"),
+      Ext.getCmp("editQueryUser"),
+      Ext.getCmp("editQueryFromDT"),
+      Ext.getCmp("editQueryToDT"),
+      Ext.getCmp("editQueryIP"),
+      Ext.getCmp("comboCategory"),];
+
     me.fetchLogCategory();
 
     me.onQuery();
@@ -400,31 +408,27 @@ Ext.define("PSI.Bizlog.MainForm", {
   onUpdateDatabase() {
     const me = this;
 
-    PSI.MsgBox.confirm("请确认是否升级数据库？", function () {
+    me.confirm("请确认是否升级数据库？", () => {
       const el = Ext.getBody();
       el.mask("正在升级数据库，请稍等......");
 
       // 把超时设置为5分钟，主要是为了在低端配置上能正确升级
       Ext.Ajax.timeout = 5 * 60 * 1000;
-      Ext.Ajax.request({
-        url: PSI.Const.BASE_URL + "Home/Bizlog/updateDatabase",
-        method: "POST",
+      me.ajax({
+        url: me.URL("Home/Bizlog/updateDatabase"),
         callback: function (options, success, response) {
           el.unmask();
 
           if (success) {
-            const data = Ext.JSON.decode(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              PSI.MsgBox.showInfo("成功升级数据库", function () {
-                me.onQuery();
-              });
+              me.tip("成功升级数据库");
+              me.onQuery();
             } else {
-              PSI.MsgBox.showInfo(data.msg);
+              me.showInfo(data.msg);
             }
           } else {
-            PSI.MsgBox.showInfo("网络错误", function () {
-              window.location.reload();
-            });
+            me.showInfo("网络错误");
           }
         }
       });
