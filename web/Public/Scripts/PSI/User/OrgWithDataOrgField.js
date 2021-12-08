@@ -1,5 +1,9 @@
 /**
  * 自定义字段 - 组织机构字段,用数据域过滤
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.User.OrgWithDataOrgField", {
   extend: "Ext.form.field.Trigger",

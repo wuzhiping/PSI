@@ -1,5 +1,9 @@
 /**
  * 新增或编辑组织机构
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.User.OrgEditForm", {
   extend: "PSI.AFX.Form.EditForm",

@@ -1,4 +1,10 @@
-// 自定义字段 - 选择用户数据域
+/**
+ * 自定义字段 - 选择用户数据域
+ *
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.User.SelectUserDataOrg", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.psi_selectuserdataorgfield",
