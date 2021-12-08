@@ -1,5 +1,9 @@
 /**
  * PSI的应用容器：承载主菜单、业务模块的UI
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.App", {
   config: {
