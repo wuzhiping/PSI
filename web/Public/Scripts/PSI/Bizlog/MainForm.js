@@ -9,11 +9,12 @@ Ext.define("PSI.Bizlog.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
+    // 是否显示单元测试按钮，0 - 不启用； 1 - 启用
     unitTest: "0"
   },
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
@@ -47,18 +48,18 @@ Ext.define("PSI.Bizlog.MainForm", {
   },
 
   fetchLogCategory() {
-    var me = this;
+    const me = this;
 
-    var r = {
+    const r = {
       url: me.URL("Home/Bizlog/getLogCategoryList"),
       callback: function (options, success, response) {
-        var combo = Ext.getCmp("comboCategory");
-        var store = combo.getStore();
+        const combo = Ext.getCmp("comboCategory");
+        const store = combo.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          const data = Ext.JSON.decode(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
@@ -71,11 +72,11 @@ Ext.define("PSI.Bizlog.MainForm", {
   },
 
   getToolbarCmp() {
-    var me = this;
+    const me = this;
 
-    var store = me.getMainGrid().getStore();
+    const store = me.getMainGrid().getStore();
 
-    var buttons = [{
+    const buttons = [{
       cls: "PSI-toolbox",
       id: "pagingToobar",
       xtype: "pagingtoolbar",
@@ -98,7 +99,7 @@ Ext.define("PSI.Bizlog.MainForm", {
       value: 20,
       listeners: {
         change: {
-          fn: function () {
+          fn() {
             store.pageSize = Ext.getCmp("comboCountPerPage").getValue();
             store.currentPage = 1;
             Ext.getCmp("pagingToobar").doRefresh();
@@ -112,13 +113,13 @@ Ext.define("PSI.Bizlog.MainForm", {
     }, "-", {
       text: "指南",
       iconCls: "PSI-help",
-      handler: function () {
+      handler() {
         me.focus();
         window.open(me.URL("Home/Help/index?t=bizlog"));
       }
     }, "-", {
       text: "关闭",
-      handler: function () {
+      handler() {
         me.closeWindow();
       }
     }, "->", {
@@ -140,7 +141,7 @@ Ext.define("PSI.Bizlog.MainForm", {
   },
 
   getQueryCmp() {
-    var me = this;
+    const me = this;
 
     Ext.define("PSILogCategory", {
       extend: "Ext.data.Model",
@@ -234,7 +235,7 @@ Ext.define("PSI.Bizlog.MainForm", {
         width: 130,
         height: 26,
         margin: "5 0 0 10",
-        handler: function () {
+        handler() {
           Ext.getCmp("panelQueryCmp").collapse();
         },
         scope: me
@@ -243,19 +244,19 @@ Ext.define("PSI.Bizlog.MainForm", {
   },
 
   getMainGrid() {
-    var me = this;
+    const me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSI_Bizlog_MainForm_PSILog";
+    const modelName = "PSI_Bizlog_MainForm_PSILog";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "loginName", "userName", "ip", "ipFrom",
         "content", "dt", "logCategory"],
       idProperty: "id"
     });
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       pageSize: 20,
       proxy: {
@@ -271,7 +272,7 @@ Ext.define("PSI.Bizlog.MainForm", {
       },
       autoLoad: true
     });
-    store.on("beforeload", function () {
+    store.on("beforeload", () => {
       store.proxy.extraParams = me.getQueryParam();
     });
 
@@ -302,10 +303,8 @@ Ext.define("PSI.Bizlog.MainForm", {
           text: "IP",
           dataIndex: "ip",
           width: 120,
-          renderer: function (value, md, record) {
-            return "<a href='http://www.baidu.com/s?wd="
-              + encodeURIComponent(value)
-              + "' target='_blank'>" + value + "</a>";
+          renderer(value, md, record) {
+            return `<a href='http://www.baidu.com/s?wd=${encodeURIComponent(value)}' target='_blank'>${value}</a>`;
           }
         }, {
           text: "IP所属地",
@@ -338,7 +337,7 @@ Ext.define("PSI.Bizlog.MainForm", {
   },
 
   onCellDbclick(ths, td, cellIndex, record, tr, rowIndex, e, eOpts) {
-    var me = this;
+    const me = this;
     if (cellIndex == 1) {
       Ext.getCmp("editQueryLoginName").setValue(record.get("loginName"));
       me.onRefresh();
@@ -352,7 +351,7 @@ Ext.define("PSI.Bizlog.MainForm", {
    * 刷新
    */
   onRefresh() {
-    var me = this;
+    const me = this;
 
     me.getMainGrid().getStore().currentPage = 1;
     Ext.getCmp("pagingToobar").doRefresh();
@@ -363,10 +362,10 @@ Ext.define("PSI.Bizlog.MainForm", {
    * 升级数据库
    */
   onUpdateDatabase() {
-    var me = this;
+    const me = this;
 
     PSI.MsgBox.confirm("请确认是否升级数据库？", function () {
-      var el = Ext.getBody();
+      const el = Ext.getBody();
       el.mask("正在升级数据库，请稍等......");
 
       // 把超时设置为5分钟，主要是为了在低端配置上能正确升级
@@ -378,7 +377,7 @@ Ext.define("PSI.Bizlog.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            const data = Ext.JSON.decode(response.responseText);
             if (data.success) {
               PSI.MsgBox.showInfo("成功升级数据库", function () {
                 me.onRefresh();
@@ -397,24 +396,24 @@ Ext.define("PSI.Bizlog.MainForm", {
   },
 
   onUnitTest() {
-    var url = PSI.Const.BASE_URL + "UnitTest";
+    const url = PSI.Const.BASE_URL + "UnitTest";
     window.open(url);
   },
 
   getQueryParam() {
-    var result = {
+    const result = {
       loginName: Ext.getCmp("editQueryLoginName").getValue(),
       userId: Ext.getCmp("editQueryUser").getIdValue(),
       ip: Ext.getCmp("editQueryIP").getValue(),
       logCategory: Ext.getCmp("comboCategory").getValue()
     };
 
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    const fromDT = Ext.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
       result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    const toDT = Ext.getCmp("editQueryToDT").getValue();
     if (toDT) {
       result.toDT = Ext.Date.format(toDT, "Y-m-d");
     }
@@ -423,15 +422,15 @@ Ext.define("PSI.Bizlog.MainForm", {
   },
 
   onClearQuery() {
-    var me = this;
+    const me = this;
 
     Ext.getCmp("editQueryLoginName").setValue(null);
     Ext.getCmp("editQueryUser").clearIdValue();
     Ext.getCmp("editQueryIP").setValue(null);
     Ext.getCmp("editQueryFromDT").setValue(null);
     Ext.getCmp("editQueryToDT").setValue(null);
-    var combo = Ext.getCmp("comboCategory");
-    var store = combo.getStore();
+    const combo = Ext.getCmp("comboCategory");
+    const store = combo.getStore();
     if (store.getCount() > 0) {
       combo.setValue(store.getAt(0).get("id"))
     }
