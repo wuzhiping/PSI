@@ -319,6 +319,11 @@ Ext.define("PSI.Bizlog.MainForm", {
     store.on("beforeload", () => {
       store.proxy.extraParams = me.getQueryParam();
     });
+    store.on("load", function (e, records, successful) {
+      if (successful) {
+        me.gotoMainGridRecord(null);
+      }
+    });
 
     me.__mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
@@ -380,6 +385,24 @@ Ext.define("PSI.Bizlog.MainForm", {
     return me.__mainGrid;
   },
 
+  gotoMainGridRecord(id) {
+    var me = this;
+    var grid = me.getMainGrid();
+    grid.getSelectionModel().deselectAll();
+    var store = grid.getStore();
+    if (id) {
+      var r = store.findExact("id", id);
+      if (r != -1) {
+        grid.getSelectionModel().select(r);
+      } else {
+        grid.getSelectionModel().select(0);
+      }
+    } else {
+      grid.getSelectionModel().select(0);
+    }
+  },
+
+
   onCellDbclick(ths, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     const me = this;
     if (cellIndex == 1) {
@@ -399,7 +422,6 @@ Ext.define("PSI.Bizlog.MainForm", {
 
     me.getMainGrid().getStore().currentPage = 1;
     Ext.getCmp("pagingToobar").doRefresh();
-    me.focus();
   },
 
   /**
