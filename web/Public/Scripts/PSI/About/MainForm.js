@@ -20,11 +20,11 @@ Ext.define("PSI.About.MainForm", {
   width: 700,
   layout: "fit",
 
-  initComponent: function () {
-    var me = this;
+  initComponent() {
+    const me = this;
 
-    var year = new Date().getFullYear();
-    var c = `Copyright &copy; 2015-${year} 艾格林门信息服务（大连）有限公司, All Rights Reserved`;
+    const year = new Date().getFullYear();
+    const c = `Copyright &copy; 2015-${year} 艾格林门信息服务（大连）有限公司, All Rights Reserved`;
 
     Ext.apply(me, {
       header: {
@@ -67,11 +67,11 @@ Ext.define("PSI.About.MainForm", {
     me.callParent(arguments);
   },
 
-  onWndShow: function () {
+  onWndShow() {
     Ext.getCmp("buttonAboutFormOK").focus();
   },
 
-  onOK: function () {
+  onOK() {
     if (PSI.Const.MOT == "0") {
       window.location.replace(PSI.Const.BASE_URL);
 
