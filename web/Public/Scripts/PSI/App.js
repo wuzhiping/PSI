@@ -121,7 +121,7 @@ Ext.define("PSI.App", {
     me.gridRecentFid.on("cellclick", (me, td, cellIndex, r, tr, rowIndex, e, eOpts) => {
       const fid = r.get("fid");
 
-      const url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid + "/t/1";
+      const url = `${PSI.Const.BASE_URL}Home/MainMenu/navigateTo/fid/${fid}/t/1`;
 
       if (fid === "-9999") {
         // TODO 在常用功能里面，应该是没有重新登录这项
