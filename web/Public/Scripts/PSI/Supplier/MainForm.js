@@ -1274,9 +1274,9 @@ Ext.define("PSI.Supplier.MainForm", {
 
     var info = "供应商[" + supplier.get("name") + "]";
     if (goodsRange == 1) {
-      info += "能使用全部物料(下表的设置不生效)";
+      info += "能使用<strong>全部物料</strong>(<span class='PSI-field-note'>下表的设置不生效</span>)";
     } else {
-      info += "只能使用如下设置中的关联物料";
+      info += "只能使用如下设置中的<strong>关联物料</strong>";
     }
     info = "<span style='font-size:120%;'>" + info + "</span>";
     Ext.getCmp("panelGoodsRange").setTitle(info);
