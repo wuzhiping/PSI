@@ -6,6 +6,9 @@
  * 所以，以后逐步减少对本class的使用，直至从代码库中移除
  * ==============================================
  * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.AFX.BaseOneGridMainForm", {
   extend: "PSI.AFX.BaseMainForm",
