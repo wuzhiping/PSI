@@ -266,11 +266,8 @@ Ext.define("PSI.App", {
   createMainMenu(root) {
     const me = this;
 
-    const menuItemClick = function () {
-      // TODO
-      // 这里的this是具体的某个菜单项，并不是上面的me
-      // 所以上面的function也不能改成 ()=> 这种写法
-      const fid = this.fid;
+    const menuItemClick = (item) => {
+      const fid = item.fid;
 
       if (fid == "-9995") {
         me.vp.focus();
