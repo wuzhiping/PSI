@@ -44,8 +44,8 @@ Ext.define("PSI.Warehouse.MainForm", {
       result.push("-", {
         text: "打开库存建账模块",
         handler: function () {
-          window.open(me
-            .URL("Home/MainMenu/navigateTo/fid/2000"));
+          me.focus();
+          window.open(me.URL("Home/MainMenu/navigateTo/fid/2000"));
         }
       });
     }
