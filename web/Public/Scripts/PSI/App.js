@@ -291,13 +291,9 @@ Ext.define("PSI.App", {
 
     const mainMenu = [];
     // TODO 这里的for循环可以改为array.forEach()的写法
-    for (let i = 0; i < root.length; i++) {
-      const m1 = root[i];
-
+    root.forEach((m1) => {
       const menuItem = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
-      for (let j = 0; j < m1.children.length; j++) {
-        const m2 = m1.children[j];
-
+      m1.children.forEach((m2) => {
         if (m2.children.length === 0) {
           // 只有二级菜单
           if (m2.fid) {
@@ -317,17 +313,16 @@ Ext.define("PSI.App", {
           });
 
           // 三级菜单
-          for (let k = 0; k < m2.children.length; k++) {
-            const m3 = m2.children[k];
+          m2.children.forEach((m3) => {
             menuItem2.add({
               text: m3.caption,
               fid: m3.fid,
               handler: menuItemClick,
               iconCls: "PSI-fid" + m3.fid
             });
-          }
+          });
         }
-      }
+      });
 
       if (m1.children.length > 0) {
         mainMenu.push({
@@ -335,7 +330,7 @@ Ext.define("PSI.App", {
           menu: menuItem
         });
       }
-    }
+    });
 
     const mainToolbar = Ext.create("Ext.toolbar.Toolbar", {
       cls: "PSI-App-MainMenu",
