@@ -36,8 +36,7 @@ Ext.define("PSI.SysDict.MainForm", {
             border: 0,
             height: "60%",
             split: true,
-            items: [me
-              .getDictDataGrid()]
+            items: [me.getDictDataGrid()]
           }]
         }, {
           id: "panelCategory",
@@ -65,7 +64,8 @@ Ext.define("PSI.SysDict.MainForm", {
     return [{
       text: "帮助",
       handler: function () {
-        window.open(me.URL("Home/Help/index?t=sysdict"));
+        me.showInfo("TODO")
+        // window.open(me.URL("Home/Help/index?t=sysdict"));
       }
     }, "-", {
       text: "关闭",
