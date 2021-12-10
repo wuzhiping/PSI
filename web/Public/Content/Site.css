@@ -597,3 +597,8 @@ input:focus{
 .PSI-field-note {
   color: #a8071a;
 }
+
+/* 标题里面的关键高亮字词 */
+.PSI-title-keyword {
+  color:#08979c;
+}
