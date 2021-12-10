@@ -13,8 +13,11 @@ Ext.define("PSI.SysDict.MainForm", {
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
-      layout: "border",
       items: [{
+        region: "north",
+        border: 0,
+        height: 2
+      }, {
         region: "center",
         layout: "border",
         border: 0,
@@ -27,8 +30,7 @@ Ext.define("PSI.SysDict.MainForm", {
             region: "center",
             layout: "fit",
             border: 0,
-            items: me
-              .getMainGrid()
+            items: me.getMainGrid()
           }, {
             region: "south",
             layout: "fit",
@@ -61,7 +63,7 @@ Ext.define("PSI.SysDict.MainForm", {
     var me = this;
 
     return [{
-      text: "帮助",
+      text: "指南",
       handler: function () {
         me.showInfo("TODO")
         // window.open(me.URL("Home/Help/index?t=sysdict"));
