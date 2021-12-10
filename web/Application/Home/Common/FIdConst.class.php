@@ -9,6 +9,11 @@ namespace Home\Common;
  */
 class FIdConst
 {
+  /**
+   * 系统数据字典
+   *
+   */
+  const SYS_DICT = "-7994";
 
   /**
    * 首页
