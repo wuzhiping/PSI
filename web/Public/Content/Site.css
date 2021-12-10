@@ -600,5 +600,6 @@ input:focus{
 
 /* 标题里面的关键高亮字词 */
 .PSI-title-keyword {
-  color:#08979c;
+  color:#120338;
+  font-weight: bold;
 }

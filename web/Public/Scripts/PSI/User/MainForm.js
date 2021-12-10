@@ -754,7 +754,7 @@ Ext.define("PSI.User.MainForm", {
     const me = this;
     const grid = me.getUserGrid();
 
-    grid.setTitle(me.formatGridHeaderTitle(org.fullName + " - 人员列表"));
+    grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${org.fullName}</span> - 人员列表`));
 
     Ext.getCmp("pagingToolbar").doRefresh();
   },

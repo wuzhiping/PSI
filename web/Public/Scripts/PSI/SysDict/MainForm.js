@@ -309,7 +309,7 @@ Ext.define("PSI.SysDict.MainForm", {
     const category = item[0];
 
     const grid = me.getMainGrid();
-    grid.setTitle(me.formatGridHeaderTitle(`属于分类[<span class='PSI-title-keyword'><strong>${category.get("name")}</strong></span>]的数据字典`));
+    grid.setTitle(me.formatGridHeaderTitle(`属于分类[<span class='PSI-title-keyword'>${category.get("name")}</span>]的数据字典`));
     const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
@@ -362,7 +362,7 @@ Ext.define("PSI.SysDict.MainForm", {
     const sysDict = item[0];
 
     const grid = me.getDictDataGrid();
-    grid.setTitle(me.formatGridHeaderTitle(`[<span class='PSI-title-keyword'><strong>${sysDict.get("name")}</strong></span>]的数据`));
+    grid.setTitle(me.formatGridHeaderTitle(`[<span class='PSI-title-keyword'>${sysDict.get("name")}</span>]的数据`));
     const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
