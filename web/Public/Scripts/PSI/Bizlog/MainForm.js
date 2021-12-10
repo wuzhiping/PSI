@@ -386,12 +386,12 @@ Ext.define("PSI.Bizlog.MainForm", {
   },
 
   gotoMainGridRecord(id) {
-    var me = this;
-    var grid = me.getMainGrid();
+    const me = this;
+    const grid = me.getMainGrid();
     grid.getSelectionModel().deselectAll();
-    var store = grid.getStore();
+    const store = grid.getStore();
     if (id) {
-      var r = store.findExact("id", id);
+      const r = store.findExact("id", id);
       if (r != -1) {
         grid.getSelectionModel().select(r);
       } else {
