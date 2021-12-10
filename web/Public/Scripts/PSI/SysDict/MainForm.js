@@ -6,10 +6,9 @@
  * @license GPL v3
  */
 Ext.define("PSI.SysDict.MainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
-  border: 0,
+  extend: "PSI.AFX.Form.MainForm",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
@@ -58,7 +57,7 @@ Ext.define("PSI.SysDict.MainForm", {
     me.refreshCategoryGrid();
   },
 
-  getToolbarCmp: function () {
+  getToolbarCmp() {
     var me = this;
 
     return [{
@@ -75,7 +74,7 @@ Ext.define("PSI.SysDict.MainForm", {
     }];
   },
 
-  getCategoryGrid: function () {
+  getCategoryGrid() {
     var me = this;
 
     if (me.__categoryGrid) {
@@ -134,7 +133,7 @@ Ext.define("PSI.SysDict.MainForm", {
     return me.__categoryGrid;
   },
 
-  getMainGrid: function () {
+  getMainGrid() {
     var me = this;
 
     if (me.__mainGrid) {
@@ -199,7 +198,7 @@ Ext.define("PSI.SysDict.MainForm", {
     return me.__mainGrid;
   },
 
-  getDictDataGrid: function () {
+  getDictDataGrid() {
     var me = this;
 
     if (me.__dataGrid) {
@@ -257,7 +256,7 @@ Ext.define("PSI.SysDict.MainForm", {
     return me.__dataGrid;
   },
 
-  refreshCategoryGrid: function (id) {
+  refreshCategoryGrid(id) {
     var me = this;
     var grid = me.getCategoryGrid();
     var el = grid.getEl() || Ext.getBody();
@@ -292,12 +291,12 @@ Ext.define("PSI.SysDict.MainForm", {
     me.ajax(r);
   },
 
-  onCategoryGridSelect: function () {
+  onCategoryGridSelect() {
     var me = this;
     me.refreshMainGrid();
   },
 
-  refreshMainGrid: function (id) {
+  refreshMainGrid(id) {
     var me = this;
     me.getDictDataGrid().getStore().removeAll();
 
@@ -347,12 +346,12 @@ Ext.define("PSI.SysDict.MainForm", {
     me.ajax(r);
   },
 
-  onMainGridSelect: function () {
+  onMainGridSelect() {
     var me = this;
     me.refreshDictDataGrid();
   },
 
-  refreshDictDataGrid: function (id) {
+  refreshDictDataGrid(id) {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
