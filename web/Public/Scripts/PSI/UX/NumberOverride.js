@@ -1,3 +1,10 @@
+/**
+ * 修正ExtJS中number column在格式化负数时候的bug
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.UX.NumberOverride", {
   override: "Ext.grid.column.Number",
 
