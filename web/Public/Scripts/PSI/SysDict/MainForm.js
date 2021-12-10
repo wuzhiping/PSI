@@ -9,7 +9,7 @@ Ext.define("PSI.SysDict.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
@@ -60,30 +60,30 @@ Ext.define("PSI.SysDict.MainForm", {
   },
 
   getToolbarCmp() {
-    var me = this;
+    const me = this;
 
     return [{
       text: "指南",
-      handler: function () {
+      handler() {
         me.showInfo("TODO")
         // window.open(me.URL("Home/Help/index?t=sysdict"));
       }
     }, "-", {
       text: "关闭",
-      handler: function () {
+      handler() {
         me.closeWindow();
       }
     }];
   },
 
   getCategoryGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__categoryGrid) {
       return me.__categoryGrid;
     }
 
-    var modelName = "PSISysDictCategory";
+    const modelName = "PSISysDictCategory";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -101,7 +101,7 @@ Ext.define("PSI.SysDict.MainForm", {
       },
       tools: [{
         type: "close",
-        handler: function () {
+        handler() {
           Ext.getCmp("panelCategory").collapse();
         }
       }],
@@ -136,13 +136,13 @@ Ext.define("PSI.SysDict.MainForm", {
   },
 
   getMainGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSISysDict";
+    const modelName = "PSISysDict";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -159,31 +159,29 @@ Ext.define("PSI.SysDict.MainForm", {
         title: me.formatGridHeaderTitle("数据字典")
       },
       columnLines: true,
-      columns: [{
-        header: "编码",
-        dataIndex: "code",
-        width: 80,
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "数据字典名称",
-        dataIndex: "name",
-        width: 200,
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "数据库表名",
-        dataIndex: "tableName",
-        width: 200,
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "备注",
-        dataIndex: "memo",
-        width: 300,
-        menuDisabled: true,
-        sortable: false
-      }],
+      columns: {
+        defaults: {
+          menuDisabled: true,
+          sortable: false
+        },
+        items: [{
+          header: "编码",
+          dataIndex: "code",
+          width: 80,
+        }, {
+          header: "数据字典名称",
+          dataIndex: "name",
+          width: 200,
+        }, {
+          header: "数据库表名",
+          dataIndex: "tableName",
+          width: 200,
+        }, {
+          header: "备注",
+          dataIndex: "memo",
+          width: 300,
+        }]
+      },
       store: Ext.create("Ext.data.Store", {
         model: modelName,
         autoLoad: false,
@@ -201,13 +199,13 @@ Ext.define("PSI.SysDict.MainForm", {
   },
 
   getDictDataGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__dataGrid) {
       return me.__dataGrid;
     }
 
-    var modelName = "PSISysDictData";
+    const modelName = "PSISysDictData";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -259,24 +257,24 @@ Ext.define("PSI.SysDict.MainForm", {
   },
 
   refreshCategoryGrid(id) {
-    var me = this;
-    var grid = me.getCategoryGrid();
-    var el = grid.getEl() || Ext.getBody();
+    const me = this;
+    const grid = me.getCategoryGrid();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/SysDict/categoryList"),
-      callback: function (options, success, response) {
-        var store = grid.getStore();
+      callback(options, success, response) {
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
@@ -294,44 +292,44 @@ Ext.define("PSI.SysDict.MainForm", {
   },
 
   onCategoryGridSelect() {
-    var me = this;
+    const me = this;
     me.refreshMainGrid();
   },
 
   refreshMainGrid(id) {
-    var me = this;
+    const me = this;
     me.getDictDataGrid().getStore().removeAll();
 
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.getMainGrid().setTitle(me.formatGridHeaderTitle("数据字典"));
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
-    var grid = me.getMainGrid();
+    const grid = me.getMainGrid();
     grid.setTitle(me.formatGridHeaderTitle("属于分类[ " + category.get("name")
       + " ]的数据字典"));
-    var el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/SysDict/sysDictList"),
       params: {
         categoryId: category.get("id")
       },
-      callback: function (options, success, response) {
-        var store = grid.getStore();
+      callback(options, success, response) {
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
@@ -349,43 +347,43 @@ Ext.define("PSI.SysDict.MainForm", {
   },
 
   onMainGridSelect() {
-    var me = this;
+    const me = this;
     me.refreshDictDataGrid();
   },
 
   refreshDictDataGrid(id) {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.getMainGrid().setTitle(me.formatGridHeaderTitle("数据字典"));
       me.getDictDataGrid().setTitle(me.formatGridHeaderTitle("数据"));
       return;
     }
 
-    var sysDict = item[0];
+    const sysDict = item[0];
 
-    var grid = me.getDictDataGrid();
+    const grid = me.getDictDataGrid();
     grid.setTitle(me.formatGridHeaderTitle("[ " + sysDict.get("name")
       + " ]的数据"));
-    var el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/SysDict/dictDataList"),
       params: {
         id: sysDict.get("id")
       },
-      callback: function (options, success, response) {
-        var store = grid.getStore();
+      callback(options, success, response) {
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
