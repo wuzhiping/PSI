@@ -1486,6 +1486,53 @@ CREATE TABLE IF NOT EXISTS `t_dict_table_md` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `t_sysdict_record_status`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_record_status` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `code_int` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `py` varchar(255) NOT NULL,
+  `memo` varchar(255) NOT NULL,
+  `show_order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_sysdict_editor_xtype`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_editor_xtype` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `code_int` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `py` varchar(255) NOT NULL,
+  `memo` varchar(255) NOT NULL,
+  `show_order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_sysdict_form_editor_xtype`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_form_editor_xtype` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `code_int` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `py` varchar(255) NOT NULL,
+  `memo` varchar(255) NOT NULL,
+  `show_order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_sysdict_fv_xtype`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_fv_xtype` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `code_int` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `py` varchar(255) NOT NULL,
+  `memo` varchar(255) NOT NULL,
+  `show_order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
