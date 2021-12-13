@@ -1,5 +1,9 @@
 /**
  * 客户分类 - 新增或编辑界面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.Customer.CategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
