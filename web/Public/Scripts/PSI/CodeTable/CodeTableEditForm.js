@@ -1,10 +1,9 @@
-//
-// 码表 - 新建或编辑界面
-//
 /**
  * 码表设置 - 新建或编辑码表元数据界面
  * 
- * @author 李静波
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.CodeTable.CodeTableEditForm", {
   extend: "Ext.window.Window",

@@ -1,6 +1,10 @@
-//
-// 码表分类自定义字段
-//
+/**
+ * 码表分类自定义字段
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.CodeTable.CodeTableCategoryField", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.psi_codetablecategoryfield",
