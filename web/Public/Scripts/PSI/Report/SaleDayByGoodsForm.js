@@ -1,5 +1,9 @@
 /**
  * 销售日报表(按商品汇总)
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.Report.SaleDayByGoodsForm", {
   extend: "PSI.AFX.BaseMainExForm",
