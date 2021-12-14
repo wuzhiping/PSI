@@ -1,5 +1,9 @@
 /**
  * 应收账款 - 收款记录
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.Funds.RvRecordEditForm", {
   extend: "PSI.AFX.BaseDialogForm",

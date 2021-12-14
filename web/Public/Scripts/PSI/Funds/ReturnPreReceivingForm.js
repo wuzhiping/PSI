@@ -1,5 +1,9 @@
 /**
  * 预收款管理 - 退还预收款
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.Funds.ReturnPreReceivingForm", {
   extend: "PSI.AFX.BaseDialogForm",

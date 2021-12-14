@@ -1,5 +1,9 @@
 /**
  * 预付款管理 - 供应商退回采购预付款
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.Funds.ReturnPrePaymentForm", {
   extend: "PSI.AFX.BaseDialogForm",
