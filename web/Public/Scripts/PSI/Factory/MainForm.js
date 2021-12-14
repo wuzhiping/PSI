@@ -1,6 +1,10 @@
-//
-// 工厂 - 主界面
-//
+/**
+ * 工厂 - 主界面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.Factory.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 

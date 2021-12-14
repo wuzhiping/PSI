@@ -1,6 +1,10 @@
-//
-// 工厂分类 - 新增或编辑界面
-//
+/**
+ * 工厂分类 - 新增或编辑界面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.Factory.CategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
