@@ -1,12 +1,16 @@
-//
-// 主菜单维护 - 新增或编辑界面
-//
+/**
+ * 主菜单维护 - 新增或编辑界面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.MainMenu.MenuItemEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
@@ -186,9 +190,9 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
       .getCmp("PSI_MainMenu_MenuItemEditForm_hiddenParentMenuId");
   },
 
-	/**
-	 * 保存
-	 */
+  /**
+   * 保存
+   */
   onOK: function () {
     var me = this;
 
