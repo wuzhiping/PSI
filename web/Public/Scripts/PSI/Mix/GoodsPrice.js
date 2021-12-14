@@ -1,7 +1,11 @@
-//
-// 计算商品价格的Mix
-// 用于单据编辑页面
-//
+/**
+ * 计算商品价格的Mix
+ * 用于单据编辑页面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.Mix.GoodsPrice", {
   // 因价税合计变化，重新计算
   calcTax: function (goods) {
