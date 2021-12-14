@@ -1,5 +1,9 @@
 ﻿/**
  * 自定义字段 - 物料字段，显示建议采购价
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.Goods.GoodsWithPurchaseFieldField", {
   extend: "Ext.form.field.Trigger",

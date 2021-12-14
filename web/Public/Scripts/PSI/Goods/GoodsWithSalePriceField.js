@@ -1,5 +1,9 @@
 ﻿/**
  * 自定义字段 - 商品字段，带销售价格
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.Goods.GoodsWithSalePriceField", {
   extend: "Ext.form.field.Trigger",

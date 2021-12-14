@@ -1,5 +1,9 @@
 /**
  * 商品价格体系 - 设置界面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
   extend: "PSI.AFX.BaseDialogForm",

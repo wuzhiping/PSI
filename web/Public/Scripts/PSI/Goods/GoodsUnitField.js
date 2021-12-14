@@ -1,5 +1,9 @@
 /**
  * 自定义字段 - 物料计量单位字段
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 Ext.define("PSI.Goods.GoodsUnitField", {
   extend: "Ext.form.field.Trigger",
