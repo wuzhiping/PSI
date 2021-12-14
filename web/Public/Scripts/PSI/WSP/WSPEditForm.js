@@ -1,6 +1,10 @@
-//
-// 拆分单 - 新建或编辑页面
-//
+/**
+ * 拆分单 - 新建或编辑页面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.WSP.WSPEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
