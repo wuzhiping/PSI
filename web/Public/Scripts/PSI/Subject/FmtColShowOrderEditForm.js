@@ -1,6 +1,10 @@
-//
-// 账样字段显示次序
-//
+/**
+ * 账样字段显示次序
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
