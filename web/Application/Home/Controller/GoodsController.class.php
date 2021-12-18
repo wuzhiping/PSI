@@ -15,8 +15,9 @@ require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
  * 因为PSI最开始是做的商贸企业的进销存，所以只做了商品模块。
  * 随着PSI项目的拓展，逐步开始实现完整的ERP，就把商品模块升级为物料模块了。
  *
- * @author 李静波
- *        
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 class GoodsController extends PSIBaseController
 {
