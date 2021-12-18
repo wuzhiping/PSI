@@ -7,7 +7,9 @@ use Home\DAO\BizlogDAO;
 /**
  * 业务日志Service
  *
- * @author 李静波
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 class BizlogService extends PSIBaseExService
 {
