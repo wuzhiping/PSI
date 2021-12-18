@@ -11,8 +11,9 @@ use Home\Service\UserService;
 /**
  * 主菜单Controller
  *
- * @author 李静波
- *        
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 class MainMenuController extends PSIBaseController
 {
