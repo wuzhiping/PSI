@@ -5,7 +5,9 @@ namespace Home\Service;
 /**
  * 应收账款报表Service
  *
- * @author 李静波
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 class ReceivablesReportService extends PSIBaseExService
 {

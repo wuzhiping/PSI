@@ -7,7 +7,9 @@ use Home\DAO\WSBillDAO;
 /**
  * 销售出库Service
  *
- * @author 李静波
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 class WSBillService extends PSIBaseExService
 {
