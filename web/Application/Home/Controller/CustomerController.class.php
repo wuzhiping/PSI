@@ -12,8 +12,9 @@ require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
 /**
  * 客户资料Controller
  *
- * @author 李静波
- *        
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 class CustomerController extends PSIBaseController
 {

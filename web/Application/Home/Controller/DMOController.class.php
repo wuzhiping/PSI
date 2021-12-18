@@ -9,8 +9,9 @@ use Home\Service\DMOBillService;
 /**
  * 成品委托生产订单Controller
  *
- * @author 李静波
- *        
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 class DMOController extends PSIBaseController
 {
