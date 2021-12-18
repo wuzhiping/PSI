@@ -8,7 +8,9 @@ use Home\DAO\BizConfigDAO;
 /**
  * 库存建账Service
  *
- * @author 李静波
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 class InitInventoryService extends PSIBaseExService
 {
