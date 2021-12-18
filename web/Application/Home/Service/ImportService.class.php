@@ -10,6 +10,9 @@ use Think\Exception;
  * PHPExcel文件 Service
  *
  * @author James(张健)
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
  */
 class ImportService extends PSIBaseService
 {
