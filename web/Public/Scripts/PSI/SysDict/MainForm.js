@@ -362,7 +362,7 @@ Ext.define("PSI.SysDict.MainForm", {
     const sysDict = item[0];
 
     const grid = me.getDictDataGrid();
-    grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${sysDict.get("name")}</span> - 数据`));
+    grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${sysDict.get("name")} ${sysDict.get("tableName")}</span> - 数据`));
     const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
