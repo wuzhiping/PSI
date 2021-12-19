@@ -109,7 +109,7 @@ Ext.define("PSI.SysDict.MainForm", {
       columns: [{
         header: "分类编码",
         dataIndex: "code",
-        width: 80,
+        width: 100,
         menuDisabled: true,
         sortable: false
       }, {
@@ -167,7 +167,7 @@ Ext.define("PSI.SysDict.MainForm", {
         items: [{
           header: "编码",
           dataIndex: "code",
-          width: 80,
+          width: 140,
         }, {
           header: "数据字典名称",
           dataIndex: "name",
