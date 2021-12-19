@@ -7,16 +7,16 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
 TRUNCATE TABLE `t_dict_table_category`;
 INSERT INTO `t_dict_table_category` (`id`, `code`, `name`, `parent_id`) VALUES
-('01', '01', '码表', NULL),
-('02', '02', '自定义表单', NULL),
-('03', '03', '视图', NULL);
+('SLN0000.01', 'SLN0000.01', '码表', NULL),
+('SLN0000.02', 'SLN0000.02', '自定义表单', NULL),
+('SLN0000.03', 'SLN0000.03', '视图', NULL);
 
 TRUNCATE TABLE `t_dict_table_md`;
 INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`, `memo`, `py`) VALUES
-('0101', '0101', '码表记录状态', 't_sysdict_ct_record_status', '01', '码表记录的状态', 'MBJLZT'),
-('0102', '0102', '码表字段编辑器类型', 't_sysdict_ct_editor_xtype', '01', '码表字段编辑器的类型', 'MBZDBJQLX'),
-('0201', '0201', '表单字段编辑器类型', 't_sysdict_form_editor_xtype', '02', '表单字段编辑器的类型', 'BDZDBJQLX'),
-('0301', '0301', '视图xtype', 't_sysdict_fv_xtype', '03', '视图的组件类型(xtype)', 'STXTYPE');
+('0101', '0101', '码表记录状态', 't_sysdict_ct_record_status', 'SLN0000.01', '码表记录的状态', 'MBJLZT'),
+('0102', '0102', '码表字段编辑器类型', 't_sysdict_ct_editor_xtype', 'SLN0000.01', '码表字段编辑器的类型', 'MBZDBJQLX'),
+('0201', '0201', '表单字段编辑器类型', 't_sysdict_form_editor_xtype', 'SLN0000.02', '表单字段编辑器的类型', 'BDZDBJQLX'),
+('0301', '0301', '视图xtype', 't_sysdict_fv_xtype', 'SLN0000.03', '视图的组件类型(xtype)', 'STXTYPE');
 
 TRUNCATE TABLE `t_sysdict_ct_record_status`;
 INSERT INTO `t_sysdict_ct_record_status` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
