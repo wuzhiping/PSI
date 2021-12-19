@@ -352,6 +352,8 @@ class InventoryService extends PSIBaseService
       return;
     }
 
+    require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
+
     $db = M();
 
     $data = $this->getDataForExcel($params);

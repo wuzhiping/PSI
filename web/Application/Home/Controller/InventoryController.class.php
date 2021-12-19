@@ -6,8 +6,6 @@ use Home\Common\FIdConst;
 use Home\Service\InventoryService;
 use Home\Service\UserService;
 
-require __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
-
 /**
  * 库存Controller
  *
@@ -137,6 +135,10 @@ class InventoryController extends PSIBaseController
 
     if (!$us->hasPermission(FIdConst::INVENTORY_QUERY_EXPORT_EXCEL)) {
       die("没有权限");
+    }
+
+    if (version_compare(PHP_VERSION, '8.0.0') >= 0) {
+      die("尚不支持PHP 8下导出Excel");
     }
 
     $params = [
