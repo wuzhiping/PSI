@@ -299,6 +299,7 @@ Ext.define("PSI.SysDict.MainForm", {
   refreshMainGrid(id) {
     const me = this;
     me.getDictDataGrid().getStore().removeAll();
+    me.getDictDataGrid().setTitle(me.formatGridHeaderTitle("数据"));
 
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
