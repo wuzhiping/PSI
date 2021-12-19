@@ -1486,8 +1486,8 @@ CREATE TABLE IF NOT EXISTS `t_dict_table_md` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `t_sysdict_record_status`;
-CREATE TABLE IF NOT EXISTS `t_sysdict_record_status` (
+DROP TABLE IF EXISTS `t_sysdict_ct_record_status`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_ct_record_status` (
   `id` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
   `code_int` int(11) NOT NULL,
@@ -1498,8 +1498,8 @@ CREATE TABLE IF NOT EXISTS `t_sysdict_record_status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `t_sysdict_editor_xtype`;
-CREATE TABLE IF NOT EXISTS `t_sysdict_editor_xtype` (
+DROP TABLE IF EXISTS `t_sysdict_ct_editor_xtype`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_ct_editor_xtype` (
   `id` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
   `code_int` int(11) NOT NULL,

@@ -13,18 +13,18 @@ INSERT INTO `t_dict_table_category` (`id`, `code`, `name`, `parent_id`) VALUES
 
 TRUNCATE TABLE `t_dict_table_md`;
 INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`, `memo`, `py`) VALUES
-('0101', '0101', '码表记录状态', 't_sysdict_record_status', '01', '码表记录的状态', 'MBJLZT'),
-('0102', '0102', '码表字段编辑器类型', 't_sysdict_editor_xtype', '01', '码表字段编辑器的类型', 'MBZDBJQLX'),
+('0101', '0101', '码表记录状态', 't_sysdict_ct_record_status', '01', '码表记录的状态', 'MBJLZT'),
+('0102', '0102', '码表字段编辑器类型', 't_sysdict_ct_editor_xtype', '01', '码表字段编辑器的类型', 'MBZDBJQLX'),
 ('0201', '0201', '表单字段编辑器类型', 't_sysdict_form_editor_xtype', '02', '表单字段编辑器的类型', 'BDZDBJQLX'),
 ('0301', '0301', '视图xtype', 't_sysdict_fv_xtype', '03', '视图的组件类型(xtype)', 'STXTYPE');
 
-TRUNCATE TABLE `t_sysdict_record_status`;
-INSERT INTO `t_sysdict_record_status` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+TRUNCATE TABLE `t_sysdict_ct_record_status`;
+INSERT INTO `t_sysdict_ct_record_status` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('9B90C56E-696E-11E9-B2BF-782BCBD7746B', '1000', 1000, '启用', 'QY', '记录处于启用状态', 1),
 ('AC7F3FAB-696E-11E9-B2BF-782BCBD7746B', '0', 0, '停用', 'TY', '记录处于停用状态', 2);
 
-TRUNCATE TABLE `t_sysdict_editor_xtype`;
-INSERT INTO `t_sysdict_editor_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+TRUNCATE TABLE `t_sysdict_ct_editor_xtype`;
+INSERT INTO `t_sysdict_ct_editor_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('5104A62E-9F97-11E9-9BDF-F0BF9790E21F', '1', 1, 'textfield', 'textfield', '字符串编辑器', 1),
 ('7B795BEF-9F97-11E9-9BDF-F0BF9790E21F', '2', 2, 'numberfield', 'numberfield', '数值编辑器', 2),
 ('FD1F4CF4-9F97-11E9-9BDF-F0BF9790E21F', '3', 3, 'psi_codetable_parentidfield', 'psi_codetable_parentidfield', '上级记录编辑器', 3),
