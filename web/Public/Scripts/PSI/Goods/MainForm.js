@@ -1261,7 +1261,7 @@ Ext.define("PSI.Goods.MainForm", {
       viewConfig: {
         enableTextSelection: true
       },
-      title: "BOM",
+      title: "静态BOM",
       tbar: [{
         text: "新建子件",
         scope: me,
