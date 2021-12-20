@@ -1000,6 +1000,8 @@ class GoodsService extends PSIBaseExService
       return;
     }
 
+    require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
+
     $params["loginUserId"] = $this->getLoginUserId();
 
     $dao = new GoodsDAO($this->db());

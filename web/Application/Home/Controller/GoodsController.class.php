@@ -7,8 +7,6 @@ use Home\Service\GoodsService;
 use Home\Service\ImportService;
 use Home\Service\UserService;
 
-require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
-
 /**
  * 物料Controller
  * 
@@ -571,6 +569,17 @@ class GoodsController extends PSIBaseController
         die("没有权限");
       }
 
+      if (version_compare(PHP_VERSION, '8.0.0') >= 0) {
+        $this->ajaxReturn(
+          [
+            "msg" => "尚不支持PHP 8下导入Excel",
+            "success" => false
+          ]
+        );
+        return;
+      }
+
+
       $upload = new \Think\Upload();
 
       // 允许上传的文件后缀
@@ -995,6 +1004,10 @@ class GoodsController extends PSIBaseController
    */
   public function exportExcel()
   {
+    if (version_compare(PHP_VERSION, '8.0.0') >= 0) {
+      die("尚不支持PHP 8下导出Excel");
+    }
+
     $us = new UserService();
 
     if ($us->hasPermission(FIdConst::GOODS_EXPORT_EXCEL)) {

@@ -27,6 +27,8 @@ class ImportService extends PSIBaseService
    */
   public function importGoodsFromExcelFile($params)
   {
+    require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
+
     $dataFile = $params["datafile"];
     $ext = $params["ext"];
     $message = "";
