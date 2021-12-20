@@ -32,7 +32,7 @@ PSI是由`艾格林门信息服务（大连）有限公司`发起的商业项目
 
 # PSI开源协议
 
-PSI的开源协议是GPL v3
+PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https://gitee.com/crm8000/PSI/wikis/%E5%85%B3%E4%BA%8EGPL%20v3)
 
 我们同时授权您可以把PSI的代码用于任何您需要的商业用途，例如：
 
