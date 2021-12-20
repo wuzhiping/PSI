@@ -1,3 +1,7 @@
+# @author 艾格林门信息服务（大连）有限公司
+# @copyright 2015 - present
+# @license GPL v3
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
