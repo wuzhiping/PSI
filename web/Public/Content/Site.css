@@ -606,3 +606,8 @@ input:focus{
   color:#0050b3;
   font-weight: bold;
 }
+
+::selection{
+  background-color: #006d75;
+  color: white;
+}
