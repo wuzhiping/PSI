@@ -17,7 +17,7 @@ Ext.define("PSI.Permission.MainForm", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
@@ -90,7 +90,7 @@ Ext.define("PSI.Permission.MainForm", {
     me.refreshRoleGrid();
   },
 
-  getQueryCmp: function () {
+  getQueryCmp() {
     var me = this;
     return [{
       id: "editQueryLoginName",
@@ -133,7 +133,7 @@ Ext.define("PSI.Permission.MainForm", {
         height: 26,
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
-        handler: function () {
+        handler() {
           Ext.getCmp("panelQueryCmp").collapse();
         },
         scope: me
@@ -141,7 +141,7 @@ Ext.define("PSI.Permission.MainForm", {
     }];
   },
 
-  getToolbarCmp: function () {
+  getToolbarCmp() {
     var me = this;
     return [{
       text: "新建角色",
@@ -160,19 +160,19 @@ Ext.define("PSI.Permission.MainForm", {
       disabled: me.getPDelete() == "0"
     }, "-", {
       text: "指南",
-      handler: function () {
+      handler() {
         me.focus();
         window.open(me.URL("Home/Help/index?t=permission"));
       }
     }, "-", {
       text: "关闭",
-      handler: function () {
+      handler() {
         me.closeWindow();
       }
     }];
   },
 
-  getRoleGrid: function () {
+  getRoleGrid() {
     var me = this;
     if (me.__roleGrid) {
       return me.__roleGrid;
@@ -216,7 +216,7 @@ Ext.define("PSI.Permission.MainForm", {
     return me.__roleGrid;
   },
 
-  getPermissionGrid: function () {
+  getPermissionGrid() {
     var me = this;
     if (me.__permissionGrid) {
       return me.__permissionGrid;
@@ -269,7 +269,7 @@ Ext.define("PSI.Permission.MainForm", {
     return me.__permissionGrid;
   },
 
-  getUserGrid: function () {
+  getUserGrid() {
     var me = this;
     if (me.__userGrid) {
       return me.__userGrid;
@@ -318,7 +318,7 @@ Ext.define("PSI.Permission.MainForm", {
   /**
    * 刷新角色Grid
    */
-  refreshRoleGrid: function (id) {
+  refreshRoleGrid(id) {
     var me = this;
 
     var grid = me.getRoleGrid();
@@ -332,7 +332,7 @@ Ext.define("PSI.Permission.MainForm", {
           .getValue(),
         queryName: Ext.getCmp("editQueryName").getValue()
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         store.removeAll();
 
         if (success) {
@@ -357,7 +357,7 @@ Ext.define("PSI.Permission.MainForm", {
     });
   },
 
-  onRoleGridItemClick: function () {
+  onRoleGridItemClick() {
     var me = this;
     me.getDataOrgGrid().getStore().removeAll();
     me.getDataOrgGrid().setTitle(me.formatGridHeaderTitle("数据域"));
@@ -381,7 +381,7 @@ Ext.define("PSI.Permission.MainForm", {
       params: {
         roleId: role.id
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         store.removeAll();
 
         if (success) {
@@ -404,7 +404,7 @@ Ext.define("PSI.Permission.MainForm", {
       params: {
         roleId: role.id
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         userStore.removeAll();
 
         if (success) {
@@ -420,7 +420,7 @@ Ext.define("PSI.Permission.MainForm", {
   /**
    * 新增角色
    */
-  onAddRole: function () {
+  onAddRole() {
     var me = this;
     var form = Ext.create("PSI.Permission.EditForm", {
       parentForm: me
@@ -432,7 +432,7 @@ Ext.define("PSI.Permission.MainForm", {
   /**
    * 编辑角色
    */
-  onEditRole: function () {
+  onEditRole() {
     var me = this;
 
     var grid = me.getRoleGrid();
@@ -456,7 +456,7 @@ Ext.define("PSI.Permission.MainForm", {
   /**
    * 删除角色
    */
-  onDeleteRole: function () {
+  onDeleteRole() {
     var me = this;
     var grid = me.getRoleGrid();
     var items = grid.getSelectionModel().getSelection();
@@ -470,14 +470,14 @@ Ext.define("PSI.Permission.MainForm", {
 
     var info = "请确认是否删除角色 <span style='color:red'>" + role.name
       + "</span> ?";
-    var funcConfirm = function () {
+    var funcConfirm = () => {
       Ext.getBody().mask("正在删除中...");
       var r = {
         url: me.URL("Home/Permission/deleteRole"),
         params: {
           id: role.id
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           Ext.getBody().unmask();
 
           if (success) {
@@ -498,7 +498,7 @@ Ext.define("PSI.Permission.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  getDataOrgGrid: function () {
+  getDataOrgGrid() {
     var me = this;
     if (me.__dataOrgGrid) {
       return me.__dataOrgGrid;
@@ -539,7 +539,7 @@ Ext.define("PSI.Permission.MainForm", {
     return me.__dataOrgGrid;
   },
 
-  onPermissionGridItemClick: function () {
+  onPermissionGridItemClick() {
     var me = this;
     var grid = me.getRoleGrid();
     var items = grid.getSelectionModel().getSelection();
@@ -572,7 +572,7 @@ Ext.define("PSI.Permission.MainForm", {
         roleId: role.get("id"),
         permissionId: permission.get("id")
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         store.removeAll();
 
         if (success) {
@@ -585,7 +585,7 @@ Ext.define("PSI.Permission.MainForm", {
     });
   },
 
-  onClearQuery: function () {
+  onClearQuery() {
     var me = this;
 
     Ext.getCmp("editQueryLoginName").setValue(null);
@@ -594,7 +594,7 @@ Ext.define("PSI.Permission.MainForm", {
     me.onQuery();
   },
 
-  onQuery: function () {
+  onQuery() {
     var me = this;
 
     me.getPermissionGrid().getStore().removeAll();
