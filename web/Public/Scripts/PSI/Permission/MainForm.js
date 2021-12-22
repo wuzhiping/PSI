@@ -225,7 +225,13 @@ Ext.define("PSI.Permission.MainForm", {
         dataIndex: "name",
         flex: 1,
         menuDisabled: true
-      }]
+      }],
+      listeners: {
+        itemdblclick: {
+          fn: me.onEditRole,
+          scope: me
+        }
+      },
     });
 
     roleGrid.on("itemclick", me.onRoleGridItemClick, me);
