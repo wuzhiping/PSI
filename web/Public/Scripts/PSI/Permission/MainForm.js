@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.Permission.MainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
+  extend: "PSI.AFX.Form.MainForm",
 
   config: {
     pAdd: "",
