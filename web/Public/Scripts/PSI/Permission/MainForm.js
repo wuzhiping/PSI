@@ -211,6 +211,9 @@ Ext.define("PSI.Permission.MainForm", {
         height: 30,
         title: me.formatGridHeaderTitle("角色")
       },
+      viewConfig: {
+        enableTextSelection: true
+      },
       store: roleStore,
       columns: [{
         header: "编码",
@@ -257,6 +260,9 @@ Ext.define("PSI.Permission.MainForm", {
       cls: "PSI",
       store: permissionStore,
       columnLines: true,
+      viewConfig: {
+        enableTextSelection: true
+      },
       columns: [{
         header: "权限名称",
         dataIndex: "name",
@@ -307,6 +313,9 @@ Ext.define("PSI.Permission.MainForm", {
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("用户")
+      },
+      viewConfig: {
+        enableTextSelection: true
       },
       cls: "PSI",
       store: userStore,
@@ -535,6 +544,9 @@ Ext.define("PSI.Permission.MainForm", {
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("数据域")
+      },
+      viewConfig: {
+        enableTextSelection: true
       },
       store: store,
       columns: [{
