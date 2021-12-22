@@ -540,8 +540,8 @@ Ext.define("PSI.Permission.MainForm", {
 
   onPermissionGridItemClick() {
     const me = this;
-    const grid = me.getRoleGrid();
-    const items = grid.getSelectionModel().getSelection();
+    const roleGrid = me.getRoleGrid();
+    let items = roleGrid.getSelectionModel().getSelection();
 
     if (items == null || items.length != 1) {
       return;
@@ -549,8 +549,8 @@ Ext.define("PSI.Permission.MainForm", {
 
     const role = items[0];
 
-    const grid = me.getPermissionGrid();
-    const items = grid.getSelectionModel().getSelection();
+    const permissionGrid = me.getPermissionGrid();
+    items = permissionGrid.getSelectionModel().getSelection();
 
     if (items == null || items.length != 1) {
       return;
