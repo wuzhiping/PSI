@@ -88,6 +88,9 @@ Ext.define("PSI.Permission.MainForm", {
     me.userGrid = me.getUserGrid();
 
     me.refreshRoleGrid();
+
+    // 查询控件input List
+    me.__editorList = [Ext.getCmp("editQueryLoginName"), Ext.getCmp("editQueryName")];
   },
 
   getQueryCmp() {
@@ -99,7 +102,13 @@ Ext.define("PSI.Permission.MainForm", {
       labelSeparator: "",
       fieldLabel: "登录名",
       margin: "5, 0, 0, 0",
-      xtype: "textfield"
+      xtype: "textfield",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       id: "editQueryName",
       labelWidth: 60,
@@ -107,7 +116,13 @@ Ext.define("PSI.Permission.MainForm", {
       labelSeparator: "",
       fieldLabel: "用户姓名",
       margin: "5, 0, 0, 0",
-      xtype: "textfield"
+      xtype: "textfield",
+      listeners: {
+        specialkey: {
+          fn: me.__onLastEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       xtype: "container",
       items: [{
