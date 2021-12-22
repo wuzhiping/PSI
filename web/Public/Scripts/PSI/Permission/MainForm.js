@@ -394,7 +394,7 @@ Ext.define("PSI.Permission.MainForm", {
 
     const role = item[0].data;
     const store = grid.getStore();
-    grid.setTitle(me.formatGridHeaderTitle("角色 [" + role.name + "] 的权限列表"));
+    grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${role.name}</span> - 权限列表`));
 
     const el = grid.getEl() || Ext.getBody();
 
@@ -419,8 +419,7 @@ Ext.define("PSI.Permission.MainForm", {
     const userGrid = me.getUserGrid();
     const userStore = userGrid.getStore();
     const userEl = userGrid.getEl() || Ext.getBody();
-    userGrid.setTitle(me.formatGridHeaderTitle("属于角色 [" + role.name
-      + "] 的人员列表"));
+    userGrid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${role.name}</span> - 人员列表`));
     userEl.mask("数据加载中...");
     me.ajax({
       url: me.URL("Home/Permission/userList"),
@@ -585,8 +584,8 @@ Ext.define("PSI.Permission.MainForm", {
     const permission = items[0];
 
     const grid = me.getDataOrgGrid();
-    grid.setTitle(me.formatGridHeaderTitle("角色 [" + role.get("name")
-      + "] - 权限 [" + permission.get("name") + "] - 数据域"));
+    const info = `<span class='PSI-title-keyword'>${role.get("name")}</span> -  <span class='PSI-title-keyword'>${permission.get("name")}</span>  - 数据域`
+    grid.setTitle(me.formatGridHeaderTitle(info));
 
     const el = grid.getEl() || Ext.getBody();
     const store = grid.getStore();
