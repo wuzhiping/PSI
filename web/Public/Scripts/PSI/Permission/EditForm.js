@@ -8,7 +8,7 @@
 Ext.define("PSI.Permission.EditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
     var entity = me.getEntity();
 
@@ -54,7 +54,7 @@ Ext.define("PSI.Permission.EditForm", {
         items: [{
           icon: PSI.Const.BASE_URL
             + "Public/Images/icons/delete.png",
-          handler: function (grid, row) {
+          handler(grid, row) {
             var store = grid.getStore();
             store.remove(store.getAt(row));
           },
@@ -126,7 +126,7 @@ Ext.define("PSI.Permission.EditForm", {
         items: [{
           icon: PSI.Const.BASE_URL
             + "Public/Images/icons/delete.png",
-          handler: function (grid, row) {
+          handler(grid, row) {
             var store = grid.getStore();
             store.remove(store.getAt(row));
           },
@@ -253,18 +253,18 @@ Ext.define("PSI.Permission.EditForm", {
         text: "确定",
         formBind: true,
         iconCls: "PSI-button-ok",
-        handler: function () {
+        handler() {
           var me = this;
-          me.confirm("请确认是否保存数据?", function () {
+          me.confirm("请确认是否保存数据?", () => {
             me.onOK();
           });
         },
         scope: this
       }, "-", {
         text: "取消",
-        handler: function () {
+        handler() {
           var me = this;
-          me.confirm("请确认是否取消操作?", function () {
+          me.confirm("请确认是否取消操作?", () => {
             me.close();
           });
         },
@@ -287,17 +287,17 @@ Ext.define("PSI.Permission.EditForm", {
     me.editName = Ext.getCmp("editName");
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     me.editName.focus();
@@ -320,7 +320,7 @@ Ext.define("PSI.Permission.EditForm", {
       params: {
         roleId: entity.id
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         store.removeAll();
 
         if (success) {
@@ -342,7 +342,7 @@ Ext.define("PSI.Permission.EditForm", {
       params: {
         roleId: entity.id
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         userStore.removeAll();
 
         if (success) {
@@ -356,7 +356,7 @@ Ext.define("PSI.Permission.EditForm", {
 
   },
 
-  setSelectedPermission: function (data, dataOrgList, fullNameList) {
+  setSelectedPermission(data, dataOrgList, fullNameList) {
     var store = this.permissionGrid.getStore();
 
     var cnt = data.length;
@@ -376,7 +376,7 @@ Ext.define("PSI.Permission.EditForm", {
     store.add(d);
   },
 
-  setSelectedUsers: function (data) {
+  setSelectedUsers(data) {
     var store = this.userGrid.getStore();
 
     for (var i = 0; i < data.length; i++) {
@@ -390,13 +390,13 @@ Ext.define("PSI.Permission.EditForm", {
     }
   },
 
-  onOK: function () {
+  onOK() {
     var me = this;
     var editName = Ext.getCmp("editName");
 
     var name = editName.getValue();
     if (name == null || name == "") {
-      me.showInfo("没有输入角色名称", function () {
+      me.showInfo("没有输入角色名称", () => {
         editName.focus();
       });
       return;
@@ -404,7 +404,7 @@ Ext.define("PSI.Permission.EditForm", {
     const editCode = Ext.getCmp("editCode");
     const code = editCode.getValue();
     if (code == null || code == "") {
-      me.showInfo("没有输入角色编码", function () {
+      me.showInfo("没有输入角色编码", () => {
         editCode.focus();
       });
       return;
@@ -443,22 +443,22 @@ Ext.define("PSI.Permission.EditForm", {
     editForm.submit({
       url: me.URL("Home/Permission/editRole"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         el.unmask();
         me.close();
         me.getParentForm().refreshRoleGrid(action.result.id);
         me.tip("数据保存成功");
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        me.showInfo(action.result.msg, function () {
+        me.showInfo(action.result.msg, () => {
           editName.focus();
         });
       }
     });
   },
 
-  onAddPermission: function () {
+  onAddPermission() {
     var me = this;
 
     var store = me.permissionGrid.getStore();
@@ -476,7 +476,7 @@ Ext.define("PSI.Permission.EditForm", {
     form.show();
   },
 
-  onRemovePermission: function () {
+  onRemovePermission() {
     var me = this;
 
     var grid = me.permissionGrid;
@@ -490,7 +490,7 @@ Ext.define("PSI.Permission.EditForm", {
     grid.getStore().remove(items);
   },
 
-  onAddUser: function () {
+  onAddUser() {
     var me = this;
 
     var store = me.userGrid.getStore();
@@ -509,7 +509,7 @@ Ext.define("PSI.Permission.EditForm", {
     form.show();
   },
 
-  onRemoveUser: function () {
+  onRemoveUser() {
     var me = this;
 
     var grid = me.userGrid;
@@ -523,7 +523,7 @@ Ext.define("PSI.Permission.EditForm", {
     grid.getStore().remove(items);
   },
 
-  getDataOrgGrid: function () {
+  getDataOrgGrid() {
     var me = this;
     if (me.__dataOrgGrid) {
       return me.__dataOrgGrid;
@@ -563,7 +563,7 @@ Ext.define("PSI.Permission.EditForm", {
     return me.__dataOrgGrid;
   },
 
-  onEditDataOrg: function () {
+  onEditDataOrg() {
     var me = this;
 
     var grid = me.permissionGrid;
@@ -583,7 +583,7 @@ Ext.define("PSI.Permission.EditForm", {
   /**
    * PSI.Permission.SelectDataOrgForm中回调本方法
    */
-  onEditDataOrgCallback: function (dataOrg) {
+  onEditDataOrgCallback(dataOrg) {
     var me = this;
 
     var grid = me.permissionGrid;
