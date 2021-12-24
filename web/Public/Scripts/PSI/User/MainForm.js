@@ -384,99 +384,81 @@ Ext.define("PSI.User.MainForm", {
         enableTextSelection: true
       },
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
-        text: "#",
-        width: 40
-      }), {
-        header: "登录名",
-        dataIndex: "loginName",
-        menuDisabled: true,
-        sortable: false,
-        locked: true,
-        width: 250, // 登录名用这么宽，是因为常用手机号作为登录名
-        renderer(value, metaData, record) {
-          if (parseInt(record.get("enabled")) == 1) {
-            return value;
-          } else {
-            return "<span style='color:gray;text-decoration:line-through;'>"
-              + value + "</span>";
+      columns: {
+        defaults: {
+          menuDisabled: true,
+          sortable: false,
+        },
+        items: [Ext.create("Ext.grid.RowNumberer", {
+          text: "#",
+          width: 40
+        }), {
+          header: "登录名",
+          dataIndex: "loginName",
+          locked: true,
+          width: 250, // 登录名用这么宽，是因为常用手机号作为登录名
+          renderer(value, metaData, record) {
+            if (parseInt(record.get("enabled")) == 1) {
+              return value;
+            } else {
+              return "<span style='color:gray;text-decoration:line-through;'>"
+                + value + "</span>";
+            }
           }
-        }
-      }, {
-        header: "姓名",
-        dataIndex: "name",
-        menuDisabled: true,
-        sortable: false,
-        locked: true,
-        renderer(value, metaData, record) {
-          if (parseInt(record.get("enabled")) == 1) {
-            return value;
-          } else {
-            return "<span style='color:gray;text-decoration:line-through;'>"
-              + value + "</span>";
+        }, {
+          header: "姓名",
+          dataIndex: "name",
+          locked: true,
+          renderer(value, metaData, record) {
+            if (parseInt(record.get("enabled")) == 1) {
+              return value;
+            } else {
+              return "<span style='color:gray;text-decoration:line-through;'>"
+                + value + "</span>";
+            }
           }
-        }
-      }, {
-        header: "权限角色",
-        dataIndex: "roleName",
-        menuDisabled: true,
-        sortable: false,
-        width: 200
-      }, {
-        header: "编码",
-        dataIndex: "orgCode",
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "是否允许登录",
-        dataIndex: "enabled",
-        menuDisabled: true,
-        sortable: false,
-        renderer(value) {
-          return value == 1
-            ? "允许登录"
-            : "<span style='color:red'>禁止登录</span>";
-        }
-      }, {
-        header: "性别",
-        dataIndex: "gender",
-        menuDisabled: true,
-        sortable: false,
-        width: 70
-      }, {
-        header: "生日",
-        dataIndex: "birthday",
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "身份证号",
-        dataIndex: "idCardNumber",
-        menuDisabled: true,
-        sortable: false,
-        width: 200
-      }, {
-        header: "联系电话",
-        dataIndex: "tel",
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "备用联系电话",
-        dataIndex: "tel02",
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "家庭住址",
-        dataIndex: "address",
-        menuDisabled: true,
-        sortable: false,
-        width: 200
-      }, {
-        header: "数据域",
-        dataIndex: "dataOrg",
-        menuDisabled: true,
-        sortable: false,
-        width: 100
-      }],
+        }, {
+          header: "权限角色",
+          dataIndex: "roleName",
+          width: 200
+        }, {
+          header: "编码",
+          dataIndex: "orgCode",
+        }, {
+          header: "是否允许登录",
+          dataIndex: "enabled",
+          renderer(value) {
+            return value == 1
+              ? "允许登录"
+              : "<span style='color:red'>禁止登录</span>";
+          }
+        }, {
+          header: "性别",
+          dataIndex: "gender",
+          width: 70
+        }, {
+          header: "生日",
+          dataIndex: "birthday",
+        }, {
+          header: "身份证号",
+          dataIndex: "idCardNumber",
+          width: 200
+        }, {
+          header: "联系电话",
+          dataIndex: "tel",
+        }, {
+          header: "备用联系电话",
+          dataIndex: "tel02",
+        }, {
+          header: "家庭住址",
+          dataIndex: "address",
+          width: 200
+        }, {
+          header: "数据域",
+          dataIndex: "dataOrg",
+          width: 100
+        }]
+      },
       store: storeGrid,
       listeners: {
         itemdblclick: {
