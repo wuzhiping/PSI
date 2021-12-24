@@ -18,7 +18,7 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (e.getKey() == e.BACKSPACE) {
         field.setValue(null);
         me.setIdValue(null);
@@ -31,8 +31,8 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
       }
     });
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
