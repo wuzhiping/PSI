@@ -393,7 +393,7 @@ Ext.define("PSI.User.MainForm", {
         menuDisabled: true,
         sortable: false,
         locked: true,
-        width: 250,
+        width: 250, // 登录名用这么宽，是因为常用手机号作为登录名
         renderer(value, metaData, record) {
           if (parseInt(record.get("enabled")) == 1) {
             return value;
