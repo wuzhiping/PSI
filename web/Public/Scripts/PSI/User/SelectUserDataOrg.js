@@ -13,7 +13,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
+    const me = this;
     me.__idValue = null;
 
     me.enableKeyEvents = true;
@@ -46,19 +46,19 @@ Ext.define("PSI.User.SelectUserDataOrg", {
   },
 
   onTriggerClick(e) {
-    var me = this;
-    var modelName = "PSISelectUserDataOrgField";
+    const me = this;
+    const modelName = "PSISelectUserDataOrgField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "dataOrg", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    const lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -77,7 +77,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 数据域",
       modal: true,
       width: 400,
@@ -127,9 +127,9 @@ Ext.define("PSI.User.SelectUserDataOrg", {
     });
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("__editUser");
+    const editName = Ext.getCmp("__editUser");
     editName.on("change", () => {
-      var store = me.lookupGrid.getStore();
+      const store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/User/queryUserDataOrg",
         params: {
@@ -139,7 +139,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
         callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            const data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -158,10 +158,10 @@ Ext.define("PSI.User.SelectUserDataOrg", {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -174,10 +174,10 @@ Ext.define("PSI.User.SelectUserDataOrg", {
         e.preventDefault();
         editName.focus();
       } else if (e.getKey() == e.DOWN) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -200,14 +200,14 @@ Ext.define("PSI.User.SelectUserDataOrg", {
   },
 
   onOK() {
-    var me = this;
-    var grid = me.lookupGrid;
-    var item = grid.getSelectionModel().getSelection();
+    const me = this;
+    const grid = me.lookupGrid;
+    const item = grid.getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var data = item[0].getData();
+    const data = item[0].getData();
 
     me.wnd.close();
     me.focus();
