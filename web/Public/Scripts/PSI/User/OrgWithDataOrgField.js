@@ -9,7 +9,7 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.psi_orgwithdataorgfield",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     me.__idValue = null;
@@ -40,7 +40,7 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
     });
   },
 
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     var me = this;
 
     if (me.readOnly) {
@@ -87,14 +87,14 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
         scope: this
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
     this.wnd = wnd;
 
-    wnd.on("deactivate", function () {
+    wnd.on("deactivate", () => {
       wnd.close();
     });
 
@@ -103,24 +103,22 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
     me.refreshGrid();
   },
 
-  refreshGrid: function () {
+  refreshGrid() {
     var me = this;
     var grid = me.tree;
 
     var el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
-      url: PSI.Const.BASE_URL
-        + "Home/User/orgWithDataOrg",
+      url: PSI.Const.BASE_URL + "Home/User/orgWithDataOrg",
       method: "POST",
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         var store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON
-            .decode(response.responseText);
+          var data = Ext.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -129,7 +127,7 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
     });
   },
 
-  onOK: function () {
+  onOK() {
     var me = this;
 
     var tree = me.tree;
@@ -149,11 +147,11 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
     me.focus();
   },
 
-  setIdValue: function (id) {
+  setIdValue(id) {
     this.__idValue = id;
   },
 
-  getIdValue: function () {
+  getIdValue() {
     return this.__idValue;
   }
 });
