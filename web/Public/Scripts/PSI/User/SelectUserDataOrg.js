@@ -12,7 +12,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     var me = this;
     me.__idValue = null;
 
@@ -20,7 +20,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (me.readOnly) {
         return;
       }
@@ -36,8 +36,8 @@ Ext.define("PSI.User.SelectUserDataOrg", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -45,7 +45,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
     });
   },
 
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     var me = this;
     var modelName = "PSISelectUserDataOrgField";
     Ext.define(modelName, {
@@ -116,19 +116,19 @@ Ext.define("PSI.User.SelectUserDataOrg", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
 
-    wnd.on("close", function () {
+    wnd.on("close", () => {
       me.focus();
     });
     me.wnd = wnd;
 
     var editName = Ext.getCmp("__editUser");
-    editName.on("change", function () {
+    editName.on("change", () => {
       var store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/User/queryUserDataOrg",
@@ -136,11 +136,10 @@ Ext.define("PSI.User.SelectUserDataOrg", {
           queryKey: editName.getValue()
         },
         method: "POST",
-        callback: function (opt, success, response) {
+        callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -155,7 +154,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
 
     }, me);
 
-    editName.on("specialkey", function (field, e) {
+    editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
@@ -193,14 +192,14 @@ Ext.define("PSI.User.SelectUserDataOrg", {
       }
     }, me);
 
-    me.wnd.on("show", function () {
+    me.wnd.on("show", () => {
       editName.focus();
       editName.fireEvent("change");
     }, me);
     wnd.show();
   },
 
-  onOK: function () {
+  onOK() {
     var me = this;
     var grid = me.lookupGrid;
     var item = grid.getSelectionModel().getSelection();
