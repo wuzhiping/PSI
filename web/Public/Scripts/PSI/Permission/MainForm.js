@@ -564,17 +564,21 @@ Ext.define("PSI.Permission.MainForm", {
         enableTextSelection: true
       },
       store: store,
-      columns: [{
-        header: "数据域",
-        dataIndex: "dataOrg",
-        width: 120,
-        menuDisabled: true
-      }, {
-        header: "组织机构/人",
-        dataIndex: "fullName",
-        flex: 1,
-        menuDisabled: true
-      }]
+      columns: {
+        defaults: {
+          sortable: false,
+          menuDisabled: true,
+        },
+        items: [{
+          header: "数据域",
+          dataIndex: "dataOrg",
+          width: 120,
+        }, {
+          header: "组织机构/人",
+          dataIndex: "fullName",
+          flex: 1,
+        }]
+      }
     });
 
     return me.__dataOrgGrid;
