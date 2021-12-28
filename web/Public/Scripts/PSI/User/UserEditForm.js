@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.User.UserEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     defaultOrg: null
@@ -75,7 +75,7 @@ Ext.define("PSI.User.UserEditForm", {
           width: 430,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -91,7 +91,7 @@ Ext.define("PSI.User.UserEditForm", {
             : entity.name,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -107,7 +107,7 @@ Ext.define("PSI.User.UserEditForm", {
             : entity.orgCode,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -125,7 +125,7 @@ Ext.define("PSI.User.UserEditForm", {
             : entity.orgName,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -149,7 +149,7 @@ Ext.define("PSI.User.UserEditForm", {
             : entity.birthday,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -162,7 +162,7 @@ Ext.define("PSI.User.UserEditForm", {
             : entity.idCardNumber,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -173,7 +173,7 @@ Ext.define("PSI.User.UserEditForm", {
           value: entity === null ? null : entity.tel,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -186,7 +186,7 @@ Ext.define("PSI.User.UserEditForm", {
             : entity.tel02,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -285,10 +285,6 @@ Ext.define("PSI.User.UserEditForm", {
 
     me.callParent(arguments);
 
-    me.__editorList = ["editLoginName", "editName", "editOrgCode",
-      "editOrgName", "editBirthday", "editIdCardNumber", "editTel",
-      "editTel02", "editAddress"];
-
     if (me.getDefaultOrg()) {
       const org = me.getDefaultOrg();
       me.setOrg({
@@ -309,25 +305,26 @@ Ext.define("PSI.User.UserEditForm", {
     me.editAddress = Ext.getCmp("editAddress");
     me.editGender = Ext.getCmp("editGender");
     me.editEnabled = Ext.getCmp("editEnabled");
-  },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
+    me.__editorList = [
+      me.editLoginName, me.editName, me.editOrgCode,
+      me.editOrgName, me.editBirthday, me.editIdCardNumber, me.editTel,
+      me.editTel02, me.editAddress];
   },
 
   onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
   onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.adding) {
-      me.editLoginName.focus();
+      me.setFocusAndCursorPosToLast(me.editLoginName);
       return;
     }
 
@@ -335,24 +332,22 @@ Ext.define("PSI.User.UserEditForm", {
 
     const el = me.getEl();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    me.ajax({
       url: me.URL("Home/User/userInfo"),
       params: {
         id: me.getEntity().id
       },
-      method: "POST",
       callback(options, success, response) {
         el.unmask();
         if (success) {
 
-          const data = Ext.JSON.decode(response.responseText);
+          const data = me.decodeJSON(response.responseText);
 
           me.editLoginName.setValue(data.loginName);
 
-          me.editName.focus();
           const name = data.name;
           me.editName.setValue(name);
-          me.editName.inputEl.dom.selectionStart = name.length;
+          me.setFocusAndCursorPosToLast(me.editName);
 
           me.editOrgCode.setValue(data.orgCode);
           me.editBirthday.setValue(data.birthday);
@@ -388,7 +383,7 @@ Ext.define("PSI.User.UserEditForm", {
     const el = f.getEl();
     el.mask("数据保存中...");
     f.submit({
-      url: PSI.Const.BASE_URL + "Home/User/editUser",
+      url: me.URL("Home/User/editUser"),
       method: "POST",
       success(form, action) {
         el.unmask();
@@ -398,27 +393,11 @@ Ext.define("PSI.User.UserEditForm", {
       },
       failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, () => {
+        me.showInfo(action.result.msg, () => {
           Ext.getCmp("editName").focus();
         });
       }
     });
-  },
-
-  onEditSpecialKey(field, e) {
-    if (e.getKey() === e.ENTER) {
-      const me = this;
-      const id = field.getId();
-      for (let i = 0; i < me.__editorList.length; i++) {
-        const editorId = me.__editorList[i];
-        if (id === editorId) {
-          const edit = Ext.getCmp(me.__editorList[i + 1]);
-          edit.focus();
-          const v = edit.getValue();
-          edit.inputEl.dom.selectionStart = v ? v.length : 0;
-        }
-      }
-    }
   },
 
   onLastEditSpecialKey(field, e) {
