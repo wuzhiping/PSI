@@ -16,13 +16,13 @@ Ext.define("PSI.User.UserEditForm", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
     me.adding = entity == null;
 
-    var t = entity == null ? "新建用户" : "编辑用户";
-    var logoHtml = me.genLogoHtml(entity, t);
+    const t = entity == null ? "新建用户" : "编辑用户";
+    const logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
       header: {
@@ -290,7 +290,7 @@ Ext.define("PSI.User.UserEditForm", {
       "editTel02", "editAddress"];
 
     if (me.getDefaultOrg()) {
-      var org = me.getDefaultOrg();
+      const org = me.getDefaultOrg();
       me.setOrg({
         id: org.get("id"),
         fullName: org.get("fullName")
@@ -316,13 +316,13 @@ Ext.define("PSI.User.UserEditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
   onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
@@ -331,9 +331,9 @@ Ext.define("PSI.User.UserEditForm", {
       return;
     }
 
-    // 下面的是编辑
+    // 下面的业务逻辑是编辑用户
 
-    var el = me.getEl();
+    const el = me.getEl();
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
       url: me.URL("Home/User/userInfo"),
@@ -345,7 +345,7 @@ Ext.define("PSI.User.UserEditForm", {
         el.unmask();
         if (success) {
 
-          var data = Ext.JSON.decode(response.responseText);
+          const data = Ext.JSON.decode(response.responseText);
 
           me.editLoginName.setValue(data.loginName);
 
@@ -373,18 +373,19 @@ Ext.define("PSI.User.UserEditForm", {
     });
   },
 
+  // xtype: "PSI_org_editor"回调本方法
   setOrg(data) {
-    var editOrgName = Ext.getCmp("editOrgName");
+    const editOrgName = Ext.getCmp("editOrgName");
     editOrgName.setValue(data.fullName);
 
-    var editOrgId = Ext.getCmp("editOrgId");
+    const editOrgId = Ext.getCmp("editOrgId");
     editOrgId.setValue(data.id);
   },
 
   onOK() {
-    var me = this;
-    var f = Ext.getCmp("editForm");
-    var el = f.getEl();
+    const me = this;
+    const f = Ext.getCmp("editForm");
+    const el = f.getEl();
     el.mask("数据保存中...");
     f.submit({
       url: PSI.Const.BASE_URL + "Home/User/editUser",
@@ -406,12 +407,12 @@ Ext.define("PSI.User.UserEditForm", {
 
   onEditSpecialKey(field, e) {
     if (e.getKey() === e.ENTER) {
-      var me = this;
-      var id = field.getId();
-      for (var i = 0; i < me.__editorList.length; i++) {
-        var editorId = me.__editorList[i];
+      const me = this;
+      const id = field.getId();
+      for (let i = 0; i < me.__editorList.length; i++) {
+        const editorId = me.__editorList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__editorList[i + 1]);
+          const edit = Ext.getCmp(me.__editorList[i + 1]);
           edit.focus();
           const v = edit.getValue();
           edit.inputEl.dom.selectionStart = v ? v.length : 0;
@@ -421,10 +422,12 @@ Ext.define("PSI.User.UserEditForm", {
   },
 
   onLastEditSpecialKey(field, e) {
+    const me = this;
+
     if (e.getKey() === e.ENTER) {
-      var f = Ext.getCmp("editForm");
+      const f = Ext.getCmp("editForm");
       if (f.getForm().isValid()) {
-        this.onOK();
+        me.onOK();
       }
     }
   }
