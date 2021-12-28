@@ -215,17 +215,21 @@ Ext.define("PSI.Permission.MainForm", {
         enableTextSelection: true
       },
       store: roleStore,
-      columns: [{
-        header: "编码",
-        dataIndex: "code",
-        width: 100,
-        menuDisabled: true
-      }, {
-        header: "角色名称",
-        dataIndex: "name",
-        flex: 1,
-        menuDisabled: true
-      }],
+      columns: {
+        defaults: {
+          sortable: false,
+          menuDisabled: true,
+        },
+        items: [{
+          header: "编码",
+          dataIndex: "code",
+          width: 100,
+        }, {
+          header: "角色名称",
+          dataIndex: "name",
+          flex: 1,
+        }]
+      },
       listeners: {
         itemdblclick: {
           fn: me.onEditRole,
