@@ -273,22 +273,25 @@ Ext.define("PSI.Permission.MainForm", {
       viewConfig: {
         enableTextSelection: true
       },
-      columns: [{
-        header: "权限名称",
-        dataIndex: "name",
-        width: 200,
-        menuDisabled: true
-      }, {
-        header: "说明",
-        dataIndex: "note",
-        flex: 1,
-        menuDisabled: true
-      }, {
-        header: "数据域",
-        dataIndex: "dataOrg",
-        width: 100,
-        menuDisabled: true
-      }],
+      columns: {
+        defaults: {
+          sortable: false,
+          menuDisabled: true,
+        },
+        items: [{
+          header: "权限名称",
+          dataIndex: "name",
+          width: 200,
+        }, {
+          header: "说明",
+          dataIndex: "note",
+          flex: 1,
+        }, {
+          header: "数据域",
+          dataIndex: "dataOrg",
+          width: 100,
+        }]
+      },
       listeners: {
         itemclick: {
           fn: me.onPermissionGridItemClick,
