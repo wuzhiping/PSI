@@ -9,14 +9,14 @@ Ext.define("PSI.User.ParentOrgEditor", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.PSI_parent_org_editor",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     me.enableKeyEvents = true;
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (e.getKey() === e.BACKSPACE) {
         e.preventDefault();
         return false;
@@ -27,14 +27,14 @@ Ext.define("PSI.User.ParentOrgEditor", {
       }
     });
 
-    me.on("render", function (p) {
-      p.getEl().on("dblclick", function () {
+    me.on("render", (p) => {
+      p.getEl().on("dblclick", () => {
         me.onTriggerClick();
       });
     });
   },
 
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     Ext.define("PSIOrgModel_ParentOrgEditor", {
       extend: "Ext.data.Model",
       fields: ["id", "text", "fullName", "orgCode",
@@ -101,7 +101,7 @@ Ext.define("PSI.User.ParentOrgEditor", {
         scope: this
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
@@ -110,7 +110,7 @@ Ext.define("PSI.User.ParentOrgEditor", {
     wnd.show();
   },
 
-  onOK: function () {
+  onOK() {
     var tree = this.tree;
     var item = tree.getSelectionModel().getSelection();
 
@@ -128,7 +128,7 @@ Ext.define("PSI.User.ParentOrgEditor", {
     this.focus();
   },
 
-  onNone: function () {
+  onNone() {
     var parentItem = this.initialConfig.parentItem;
     parentItem.setParentOrg({
       id: "",
