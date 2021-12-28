@@ -332,22 +332,25 @@ Ext.define("PSI.Permission.MainForm", {
       },
       cls: "PSI",
       store: userStore,
-      columns: [{
-        header: "用户姓名",
-        dataIndex: "name",
-        menuDisabled: true,
-        flex: 1
-      }, {
-        header: "登录名",
-        dataIndex: "loginName",
-        menuDisabled: true,
-        flex: 1
-      }, {
-        header: "所属组织",
-        dataIndex: "orgFullName",
-        menuDisabled: true,
-        flex: 1
-      }]
+      columns: {
+        defaults: {
+          sortable: false,
+          menuDisabled: true,
+        },
+        items: [{
+          header: "用户姓名",
+          dataIndex: "name",
+          flex: 1
+        }, {
+          header: "登录名",
+          dataIndex: "loginName",
+          flex: 1
+        }, {
+          header: "所属组织",
+          dataIndex: "orgFullName",
+          flex: 1
+        }]
+      }
     });
     return me.__userGrid;
   },
