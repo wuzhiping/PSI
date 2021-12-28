@@ -15,7 +15,7 @@ Ext.define("PSI.User.UserEditForm", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     var entity = me.getEntity();
@@ -311,17 +311,17 @@ Ext.define("PSI.User.UserEditForm", {
     me.editEnabled = Ext.getCmp("editEnabled");
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
@@ -373,7 +373,7 @@ Ext.define("PSI.User.UserEditForm", {
     });
   },
 
-  setOrg: function (data) {
+  setOrg(data) {
     var editOrgName = Ext.getCmp("editOrgName");
     editOrgName.setValue(data.fullName);
 
@@ -381,7 +381,7 @@ Ext.define("PSI.User.UserEditForm", {
     editOrgId.setValue(data.id);
   },
 
-  onOK: function () {
+  onOK() {
     var me = this;
     var f = Ext.getCmp("editForm");
     var el = f.getEl();
@@ -404,7 +404,7 @@ Ext.define("PSI.User.UserEditForm", {
     });
   },
 
-  onEditSpecialKey: function (field, e) {
+  onEditSpecialKey(field, e) {
     if (e.getKey() === e.ENTER) {
       var me = this;
       var id = field.getId();
@@ -420,7 +420,7 @@ Ext.define("PSI.User.UserEditForm", {
     }
   },
 
-  onLastEditSpecialKey: function (field, e) {
+  onLastEditSpecialKey(field, e) {
     if (e.getKey() === e.ENTER) {
       var f = Ext.getCmp("editForm");
       if (f.getForm().isValid()) {
