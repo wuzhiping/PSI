@@ -262,9 +262,9 @@ Ext.define("PSI.User.UserEditForm", {
           scope: me
         }, {
           text: "取消",
-          handler: function () {
+          handler() {
             PSI.MsgBox.confirm("请确认是否取消操作?",
-              function () {
+              () => {
                 me.close();
               });
           },
@@ -341,7 +341,7 @@ Ext.define("PSI.User.UserEditForm", {
         id: me.getEntity().id
       },
       method: "POST",
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         el.unmask();
         if (success) {
 
@@ -389,15 +389,15 @@ Ext.define("PSI.User.UserEditForm", {
     f.submit({
       url: PSI.Const.BASE_URL + "Home/User/editUser",
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         el.unmask();
         me.close();
         me.getParentForm().freshUserGrid();
         me.tip("数据保存成功");
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        PSI.MsgBox.showInfo(action.result.msg, () => {
           Ext.getCmp("editName").focus();
         });
       }
