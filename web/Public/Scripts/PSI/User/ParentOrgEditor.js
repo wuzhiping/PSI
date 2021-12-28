@@ -10,7 +10,7 @@ Ext.define("PSI.User.ParentOrgEditor", {
   alias: "widget.PSI_parent_org_editor",
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     me.enableKeyEvents = true;
 
@@ -35,13 +35,14 @@ Ext.define("PSI.User.ParentOrgEditor", {
   },
 
   onTriggerClick(e) {
+    const me = this;
     Ext.define("PSIOrgModel_ParentOrgEditor", {
       extend: "Ext.data.Model",
       fields: ["id", "text", "fullName", "orgCode",
         "leaf", "children"]
     });
 
-    var orgStore = Ext.create("Ext.data.TreeStore", {
+    const orgStore = Ext.create("Ext.data.TreeStore", {
       model: "PSIOrgModel_ParentOrgEditor",
       proxy: {
         type: "ajax",
@@ -55,7 +56,7 @@ Ext.define("PSI.User.ParentOrgEditor", {
       }
     });
 
-    var orgTree = Ext.create("Ext.tree.Panel", {
+    const orgTree = Ext.create("Ext.tree.Panel", {
       cls: "PSI",
       store: orgStore,
       rootVisible: false,
@@ -81,10 +82,10 @@ Ext.define("PSI.User.ParentOrgEditor", {
         }]
       }
     });
-    orgTree.on("itemdblclick", this.onOK, this);
-    this.tree = orgTree;
+    orgTree.on("itemdblclick", me.onOK, me);
+    me.tree = orgTree;
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择上级组织",
       modal: true,
       width: 500,
@@ -93,12 +94,12 @@ Ext.define("PSI.User.ParentOrgEditor", {
       items: [orgTree],
       buttons: [{
         text: "没有上级组织",
-        handler: this.onNone,
-        scope: this
+        handler: me.onNone,
+        scope: me
       }, {
         text: "确定",
-        handler: this.onOK,
-        scope: this
+        handler: me.onOK,
+        scope: me
       }, {
         text: "取消",
         handler() {
@@ -106,13 +107,14 @@ Ext.define("PSI.User.ParentOrgEditor", {
         }
       }]
     });
-    this.wnd = wnd;
+    me.wnd = wnd;
     wnd.show();
   },
 
   onOK() {
-    var tree = this.tree;
-    var item = tree.getSelectionModel().getSelection();
+    const me = this;
+    const tree = me.tree;
+    const item = tree.getSelectionModel().getSelection();
 
     if (item === null || item.length !== 1) {
       PSI.MsgBox.showInfo("没有选择上级组织");
@@ -120,21 +122,22 @@ Ext.define("PSI.User.ParentOrgEditor", {
       return;
     }
 
-    var data = item[0].data;
-    var parentItem = this.initialConfig.parentItem;
-    this.focus();
+    const data = item[0].data;
+    const parentItem = me.initialConfig.parentItem;
+    me.focus();
     parentItem.setParentOrg(data);
-    this.wnd.close();
-    this.focus();
+    me.wnd.close();
+    me.focus();
   },
 
   onNone() {
-    var parentItem = this.initialConfig.parentItem;
+    const me = this;
+    const parentItem = me.initialConfig.parentItem;
     parentItem.setParentOrg({
       id: "",
       fullName: ""
     });
-    this.wnd.close();
-    this.focus();
+    me.wnd.close();
+    me.focus();
   }
 });
