@@ -954,6 +954,7 @@ class UserDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
+    // 用户id
     $id = $params["id"];
 
     $sql = "select login_name, name, org_code, org_id,

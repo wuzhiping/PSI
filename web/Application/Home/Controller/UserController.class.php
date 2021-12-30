@@ -449,6 +449,7 @@ class UserController extends PSIBaseController
       }
 
       $params = [
+        // 用户id
         "id" => I("post.id")
       ];
       $us = new UserService();
