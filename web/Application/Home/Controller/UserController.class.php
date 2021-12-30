@@ -262,7 +262,7 @@ class UserController extends PSIBaseController
   /**
    * 获得组织机构的名称
    * 
-   * 新增或编辑组织机构的时候，在 /PSI/User/OrgEditForm.js 中调用
+   * JS: web\Public\Scripts\PSI\User\OrgEditForm.js 
    */
   public function orgParentName()
   {
