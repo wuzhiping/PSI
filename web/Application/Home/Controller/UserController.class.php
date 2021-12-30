@@ -52,6 +52,8 @@ class UserController extends PSIBaseController
 
   /**
    * 登录页面
+   * 
+   * web\Application\Home\View\User\login.html
    */
   public function login()
   {
