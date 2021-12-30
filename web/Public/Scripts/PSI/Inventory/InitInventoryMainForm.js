@@ -215,6 +215,11 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
         text: "录入建账数据",
         scope: me,
         handler: me.onInitInv
+      },
+      {
+        text: "电子表格式录入建账数据",
+        scope: me,
+        handler: me.onInitInvBySheet
       }, "-", {
         text: "刷新",
         scope: me,
@@ -328,6 +333,27 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
     });
     form.show();
   },
+
+  /**
+   * 通过电子表格录入建账数据
+   */
+  onInitInvBySheet() {
+    const me = this;
+    const item = me.gridWarehouse.getSelectionModel().getSelection();
+    if (item == null || item.length != 1) {
+      me.showInfo("请选择要建账的仓库");
+      return;
+    }
+    const warehouse = item[0];
+
+    if (warehouse.get("inited") == 1) {
+      me.showInfo(`仓库[${warehouse.get("name")}]已经建账完毕`);
+      return;
+    }
+
+    me.showInfo("TODO")
+  },
+
   onFinish: function () {
     var me = this;
     var item = this.gridWarehouse.getSelectionModel().getSelection();
