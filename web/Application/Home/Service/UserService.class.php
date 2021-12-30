@@ -232,6 +232,9 @@ class UserService extends PSIBaseExService
     return $dao->orgParentName($id);
   }
 
+  /**
+   * 删除组织机构
+   */
   public function deleteOrg($id)
   {
     if ($this->isNotOnline()) {

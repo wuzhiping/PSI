@@ -295,6 +295,7 @@ class UserController extends PSIBaseController
         die("没有权限");
       }
 
+      // orgId
       $id = I("post.id");
       $data = $us->deleteOrg($id);
 
