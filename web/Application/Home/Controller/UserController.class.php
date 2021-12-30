@@ -89,6 +89,8 @@ class UserController extends PSIBaseController
 
   /**
    * 页面：修改我的密码
+   * 
+   * web\Application\Home\View\User\changeMyPassword.html
    */
   public function changeMyPassword()
   {
