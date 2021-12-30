@@ -439,6 +439,8 @@ class UserController extends PSIBaseController
 
   /**
    * 获得某个用户的完整信息
+   * 
+   * JS: web\Public\Scripts\PSI\User\UserEditForm.js
    */
   public function userInfo()
   {
