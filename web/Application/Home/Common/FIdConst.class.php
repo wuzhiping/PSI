@@ -18,6 +18,11 @@ class FIdConst
   const SYS_DICT = "-7994";
 
   /**
+   * 解决方案
+   */
+  const SOLUTION="-8000";
+
+  /**
    * 首页
    */
   const HOME = "-9997";
