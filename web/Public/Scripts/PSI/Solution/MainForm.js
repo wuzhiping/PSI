@@ -19,15 +19,15 @@ Ext.define("PSI.Solution.MainForm", {
     Ext.apply(me, {
       tbar: [{
         text: "新建解决方案",
-        handler: me.onAdd,
+        handler: me._onAdd,
         scope: me
       }, {
         text: "编辑解决方案",
-        handler: me.onEdit,
+        handler: me._onEdit,
         scope: me
       }, {
         text: "删除解决方案",
-        handler: me.onDelete,
+        handler: me._onDelete,
         scope: me
       }, "-", {
         text: "指南",
@@ -55,7 +55,7 @@ Ext.define("PSI.Solution.MainForm", {
   /**
    * 新增解决方案
    */
-  onAdd() {
+  _onAdd() {
     const me = this;
 
     me.showInfo("TODO")
@@ -64,7 +64,7 @@ Ext.define("PSI.Solution.MainForm", {
   /**
    * 编辑解决方案
    */
-  onEdit() {
+  _onEdit() {
     const me = this;
 
     me.showInfo("TODO")
@@ -73,7 +73,7 @@ Ext.define("PSI.Solution.MainForm", {
   /**
    * 删除解决方案
    */
-  onDelete() {
+  _onDelete() {
     const me = this;
     me.showInfo("TODO")
   },

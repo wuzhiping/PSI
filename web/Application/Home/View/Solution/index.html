@@ -5,6 +5,8 @@
 */}
 <layout name="layout" />
 
+<script src="{$uri}Public/Scripts/PSI/Solution/MainForm.js?dt={$dtFlag}" type="text/javascript"></script>
+
 <script>
   Ext.onReady(() => {
     const app = Ext.create("PSI.App", {
@@ -14,5 +16,7 @@
         title: "{$title}"
       }
     });
+
+    app.add(Ext.create("PSI.Solution.MainForm"));
   });
 </script>
