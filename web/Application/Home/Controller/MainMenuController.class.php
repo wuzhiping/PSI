@@ -262,6 +262,10 @@ class MainMenuController extends PSIBaseController
         // 系统数据字典
         redirect(__ROOT__ . "/Home/SysDict/index");
         break;
+      case FIdConst::SOLUTION:
+        //  解决方案
+        redirect(__ROOT__ . "/Home/Solution/index");
+        break;
       default:
         redirect(__ROOT__ . "/Home");
     }
