@@ -20,7 +20,7 @@ class FIdConst
   /**
    * 解决方案
    */
-  const SOLUTION="-6000";
+  const SOLUTION = "-6000";
 
   /**
    * 首页
