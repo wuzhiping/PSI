@@ -105,7 +105,7 @@ Ext.define("PSI.Subject.MainForm", {
       handler: me.onUndoInitFmt,
       scope: me
     }, "-", {
-      text: "新增账样字段",
+      text: "新建账样字段",
       handler: me.onAddFmtCol,
       scope: me
     }, "-", {
