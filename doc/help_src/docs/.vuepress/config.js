@@ -4,10 +4,10 @@ module.exports = {
   description: 'PSI实施指南',
 
   base: '/help/',
-  head: [['link', { rel: 'icon', href: 'favicon.ico' }]],
+  head: [['link', { rel: 'icon', href: '/help/images/favicon.ico' }]],
 
   themeConfig: {
-    logo: 'logo.png',
+    logo: '/images/logo.png',
     editLink: false,
     contributors: false,
     backToHome: '返回首页',
