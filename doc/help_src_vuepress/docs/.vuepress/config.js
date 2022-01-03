@@ -1,7 +1,7 @@
 module.exports = {
   lang: 'zh-CN',
-  title: 'PSI应用指南',
-  description: 'PSI应用指南',
+  title: 'PSI实施指南',
+  description: 'PSI实施指南',
 
   base: '/help/',
 

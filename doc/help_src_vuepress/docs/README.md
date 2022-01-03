@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: PSI应用指南
+heroText: PSI实施指南
 tagline: Partner, Solution, Infrastructure
 actions:
   - text: 使用手册
