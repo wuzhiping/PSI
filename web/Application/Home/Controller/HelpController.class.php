@@ -34,11 +34,11 @@ class HelpController extends PSIBaseController
         break;
       case "initInv":
         $bs->insertBizlog("访问帮助页面：库存建账", "帮助");
-        redirect("/help/02-06.html");
+        redirect("/help/admin/02-06.html");
         break;
       case "permission":
         $bs->insertBizlog("访问帮助页面：权限管理", "帮助");
-        redirect("/help/02-02.html");
+        redirect("/help/admin/02-02.html");
         break;
       case "bizlog":
         $bs->insertBizlog("访问帮助页面：业务日志", "帮助");
