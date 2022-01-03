@@ -51,7 +51,23 @@ module.exports = {
         {
           text: '系统管理',
           children: [
-            {text:'安装',link:'/admin/01.html'}
+            { text: '安装', link: '/admin/01.html' },
+            {
+              text: '初始化', link: '/admin/02.html',
+              children: [
+                { text: '用户管理', link: '/admin/02-01.html' },
+                { text: '权限管理', link: '/admin/02-02.html' },
+                {
+                  text: '物料', link: '/admin/02-04.html',
+                  children: [
+                    { text: '物料计量单位', link: '/admin/02-04-01.html' },
+                    { text: '物料品牌', link: '/admin/02-04-02.html' },
+                    { text: '价格体系', link: '/admin/02-04-03.html' },
+                    { text: '成本分摊', link: '/admin/02-04-04.html' },
+                  ]
+                },
+              ]
+            },
           ],
         },
       ],
