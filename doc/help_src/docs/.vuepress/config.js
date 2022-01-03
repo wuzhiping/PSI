@@ -4,7 +4,7 @@ module.exports = {
   description: 'PSI实施指南',
 
   base: '/help/',
-  head: [['link', { rel: 'icon', href: '/help/images/favicon.ico' }]],
+  head: [['link', { rel: 'shortcut icon', href: '/help/images/favicon.ico', type: 'image/x-icon' }]],
 
   themeConfig: {
     logo: '/images/logo.png',
