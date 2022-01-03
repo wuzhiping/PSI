@@ -25,6 +25,34 @@ module.exports = {
         link: '/dev/'
       }
     ],
-    sidebar: false,
+    sidebar: {
+      '/user/': [
+        {
+          text: '使用手册',
+          children: [{
+            text: '通用操作',
+            link: '/user/00.html',
+          },
+          {
+            text: '登录',
+            link: '/user/10.html',
+          },
+          {
+            text: '采购业务',
+            link: '/user/20.html',
+            children: [
+              { text: '采购订单', link: '/user/20-01.html' },
+              { text: '采购入库', link: '/user/20-02.html' },
+              { text: '采购退货出库', link: '/user/20-03.html' }]
+          }],
+        },
+      ],
+      '/admin/': [
+        {
+          text: '系统管理',
+          children: ['/reference/cli.md', '/reference/config.md'],
+        },
+      ],
+    },
   },
 }
