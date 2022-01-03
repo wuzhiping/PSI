@@ -66,6 +66,9 @@ module.exports = {
                     { text: '成本分摊', link: '/admin/02-04-04.html' },
                   ]
                 },
+                { text: '供应商档案', link: '/admin/02-07.html' },
+                { text: '客户资料', link: '/admin/02-08.html' },
+                { text: '仓库', link: '/admin/02-05.html' },
               ]
             },
           ],
