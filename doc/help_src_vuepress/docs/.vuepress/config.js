@@ -53,7 +53,16 @@ module.exports = {
               { text: '销售订单', link: '/user/30-01.html' },
               { text: '销售出库', link: '/user/30-02.html' },
               { text: '销售退货入库', link: '/user/30-03.html' }]
-          }],
+          },
+          {
+            text: '库存管理',
+            link: '/user/40.html',
+            children: [
+              { text: '库间调拨', link: '/user/40-01.html' },
+              { text: '库存盘点', link: '/user/40-02.html' },
+            ]
+          }
+          ],
         },
       ],
       '/admin/': [
