@@ -50,7 +50,18 @@ module.exports = {
       '/admin/': [
         {
           text: '系统管理',
-          children: ['/reference/cli.md', '/reference/config.md'],
+          children: [
+            {text:'安装',link:'/admin/01.html'}
+          ],
+        },
+      ],
+      '/dev/': [
+        {
+          text: '二次开发',
+          children: [{
+            text: '如何新增一个模块',
+            link: '/dev/100.html'
+          }],
         },
       ],
     },
