@@ -26,11 +26,11 @@ class HelpController extends PSIBaseController
         break;
       case "user":
         $bs->insertBizlog("访问帮助页面：用户管理", "帮助");
-        redirect("/help/02-01.html");
+        redirect("/help/admin/02-01.html");
         break;
       case "priceSystem":
         $bs->insertBizlog("访问帮助页面：价格体系", "帮助");
-        redirect("/help/02-04-03.html");
+        redirect("/help/admin/02-04-03.html");
         break;
       case "initInv":
         $bs->insertBizlog("访问帮助页面：库存建账", "帮助");
