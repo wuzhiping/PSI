@@ -9,13 +9,13 @@ git clone https://gitee.com/crm8000/PSI.git
 # 构建Help
 echo 'Step 2: building PSI Help'
 cd /d/temp/PSI/doc/help_src
-gitbook install 
-gitbook build
+npm install 
+npm run build
 
 # 复制Help文件到PSI主目录
 rm -rf /d/temp/PSI/help
 mkdir /d/temp/PSI/help
-cp -r /d/temp/PSI/doc/help_src/_book/* /d/temp/PSI/help
+cp -r /d/temp/PSI/doc/help_src/docs/.vuepress/dist/* /d/temp/PSI/help
 
 
 # 删除不用发布的文件
