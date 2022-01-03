@@ -44,6 +44,15 @@ module.exports = {
               { text: '采购订单', link: '/user/20-01.html' },
               { text: '采购入库', link: '/user/20-02.html' },
               { text: '采购退货出库', link: '/user/20-03.html' }]
+          },
+          {
+            text: '销售业务',
+            link: '/user/30.html',
+            children: [
+              { text: '销售合同', link: '/user/30-04.html' },
+              { text: '销售订单', link: '/user/30-01.html' },
+              { text: '销售出库', link: '/user/30-02.html' },
+              { text: '销售退货入库', link: '/user/30-03.html' }]
           }],
         },
       ],
