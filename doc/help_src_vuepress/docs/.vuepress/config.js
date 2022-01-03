@@ -74,6 +74,11 @@ module.exports = {
                 { text: '工厂', link: '/admin/02-09.html' },
               ]
             },
+            { text: '业务日志', link: '/admin/03.html' },
+            { text: '如何升级PSI', link: '/admin/04.html' },
+            { text: '数据域应用详解', link: '/admin/05.html' },
+            { text: '环境变量', link: '/admin/06.html' },
+            { text: 'Lodop打印', link: '/admin/07.html' },
           ],
         },
       ],
