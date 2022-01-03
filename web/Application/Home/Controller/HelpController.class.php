@@ -74,84 +74,84 @@ class HelpController extends PSIBaseController
         break;
       case "pobill":
         $bs->insertBizlog("访问帮助页面：采购订单", "帮助");
-        redirect("/help/20-01.html");
+        redirect("/help/user/20-01.html");
         break;
       case "pwbill":
         $bs->insertBizlog("访问帮助页面：采购入库", "帮助");
-        redirect("/help/20-02.html");
+        redirect("/help/user/20-02.html");
         break;
       case "prbill":
         $bs->insertBizlog("访问帮助页面：采购退货出库", "帮助");
-        redirect("/help/20-03.html");
+        redirect("/help/user/20-03.html");
         break;
       case "sobill":
         $bs->insertBizlog("访问帮助页面：销售订单", "帮助");
-        redirect("/help/30-01.html");
+        redirect("/help/user/30-01.html");
         break;
       case "wsbill":
         $bs->insertBizlog("访问帮助页面：销售出库", "帮助");
-        redirect("/help/30-02.html");
+        redirect("/help/user/30-02.html");
         break;
       case "srbill":
         $bs->insertBizlog("访问帮助页面：销售退货入库", "帮助");
-        redirect("/help/30-03.html");
+        redirect("/help/user/30-03.html");
         break;
       case "itbill":
         $bs->insertBizlog("访问帮助页面：库间调拨", "帮助");
-        redirect("/help/40-01.html");
+        redirect("/help/user/40-01.html");
         break;
       case "icbill":
         $bs->insertBizlog("访问帮助页面：库存盘点", "帮助");
-        redirect("/help/40-02.html");
+        redirect("/help/user/40-02.html");
         break;
       case "dataOrg":
         $bs->insertBizlog("访问帮助页面：数据域应用详解", "帮助");
-        redirect("/help/05.html");
+        redirect("/help/admin/05.html");
         break;
       case "commBill":
         $bs->insertBizlog("访问帮助页面：表单通用操作", "帮助");
-        redirect("/help/00.html");
+        redirect("/help/user/00.html");
         break;
       case "scbill":
         $bs->insertBizlog("访问帮助页面：销售合同", "帮助");
-        redirect("/help/30-04.html");
+        redirect("/help/user/30-04.html");
         break;
       case "costWeight":
         $bs->insertBizlog("访问帮助页面：BOM-成本分摊权重", "帮助");
-        redirect("/help/02-04-04.html");
+        redirect("/help/admin/02-04-04.html");
         break;
       case "wspbill":
         $bs->insertBizlog("访问帮助页面：存货拆分", "帮助");
-        redirect("/help/60-01.html");
+        redirect("/help/user/60-01.html");
         break;
       case "factory":
         $bs->insertBizlog("访问帮助页面：工厂", "帮助");
-        redirect("/help/02-09.html");
+        redirect("/help/admin/02-09.html");
         break;
       case "dmobill":
         $bs->insertBizlog("访问帮助页面：成品委托生产订单", "帮助");
-        redirect("/help/60-02.html");
+        redirect("/help/user/60-02.html");
         break;
       case "dmwbill":
         $bs->insertBizlog("访问帮助页面：成品委托生产入库", "帮助");
-        redirect("/help/60-03.html");
+        redirect("/help/user/60-03.html");
         break;
-      case "mainMenuMaintain":
-        $bs->insertBizlog("访问帮助页面：主菜单维护", "帮助");
-        redirect("/help/08-01.html");
-        break;
-      case "sysdict":
-        $bs->insertBizlog("访问帮助页面：系统数据字典", "帮助");
-        redirect("/help/08-02.html");
-        break;
-      case "codetable":
-        $bs->insertBizlog("访问帮助页面：码表设置", "帮助");
-        redirect("/help/08-03.html");
-        break;
-      case "formview":
-        $bs->insertBizlog("访问帮助页面：视图开发助手", "帮助");
-        redirect("/help/08-04.html");
-        break;
+        // case "mainMenuMaintain":
+        //   $bs->insertBizlog("访问帮助页面：主菜单维护", "帮助");
+        //   redirect("/help/08-01.html");
+        //   break;
+        // case "sysdict":
+        //   $bs->insertBizlog("访问帮助页面：系统数据字典", "帮助");
+        //   redirect("/help/08-02.html");
+        //   break;
+        // case "codetable":
+        //   $bs->insertBizlog("访问帮助页面：码表设置", "帮助");
+        //   redirect("/help/08-03.html");
+        //   break;
+        // case "formview":
+        //   $bs->insertBizlog("访问帮助页面：视图开发助手", "帮助");
+        //   redirect("/help/08-04.html");
+        //   break;
       default:
         $bs->insertBizlog("通过主菜单进入帮助页面", "帮助");
         redirect("/help/index.html");
