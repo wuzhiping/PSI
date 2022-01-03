@@ -24,6 +24,7 @@ module.exports = {
         text: '二次开发',
         link: '/dev/'
       }
-    ]
+    ],
+    sidebar: false,
   },
 }
