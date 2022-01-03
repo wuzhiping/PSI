@@ -1,7 +1,7 @@
 ---
 home: true
-heroText: null
-tagline: PSI - Partner, Solution, Infrastructure
+heroText: PSI应用指南
+tagline: Partner, Solution, Infrastructure
 actions:
   - text: 使用手册
     link: /user/
