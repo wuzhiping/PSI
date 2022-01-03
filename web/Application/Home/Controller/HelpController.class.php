@@ -22,7 +22,7 @@ class HelpController extends PSIBaseController
     switch ($key) {
       case "login":
         // 用户直接访问登录帮助的时候，多半还没有登录所以没法记录业务日志
-        redirect("/help/10.html");
+        redirect("/help/user/10.html");
         break;
       case "user":
         $bs->insertBizlog("访问帮助页面：用户管理", "帮助");
