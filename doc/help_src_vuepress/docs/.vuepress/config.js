@@ -1,5 +1,3 @@
-var path = require("path")
-
 module.exports = {
   lang: 'zh-CN',
   title: 'PSI指南',
