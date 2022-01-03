@@ -69,6 +69,9 @@ module.exports = {
                 { text: '供应商档案', link: '/admin/02-07.html' },
                 { text: '客户资料', link: '/admin/02-08.html' },
                 { text: '仓库', link: '/admin/02-05.html' },
+                { text: '库存建账', link: '/admin/02-06.html' },
+                { text: '业务设置', link: '/admin/02-03.html' },
+                { text: '工厂', link: '/admin/02-09.html' },
               ]
             },
           ],
