@@ -61,8 +61,20 @@ module.exports = {
               { text: '库间调拨', link: '/user/40-01.html' },
               { text: '库存盘点', link: '/user/40-02.html' },
             ]
-          }
-          ],
+          },
+          {
+            text: '加工业务',
+            link: '/user/60.html',
+            children: [
+              { text: '存货拆分', link: '/user/60-01.html' },
+              { text: '成品委托生产订单', link: '/user/60-02.html' },
+              { text: '成品委托生产入库', link: '/user/60-03.html' },
+            ]
+          },
+          {
+            text: '资金管理',
+            link: '/user/50.html',
+          }],
         },
       ],
       '/admin/': [
