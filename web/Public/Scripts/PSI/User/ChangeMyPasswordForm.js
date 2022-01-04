@@ -76,7 +76,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
             name: "oldPassword",
             listeners: {
               specialkey: {
-                fn: me.onEditOldPasswordSpecialKey,
+                fn: me._onEditOldPasswordSpecialKey,
                 scope: me
               }
             }
@@ -90,7 +90,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
             name: "newPassword",
             listeners: {
               specialkey: {
-                fn: me.onEditNewPasswordSpecialKey,
+                fn: me._onEditNewPasswordSpecialKey,
                 scope: me
               }
             }
@@ -103,7 +103,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
             inputType: "password",
             listeners: {
               specialkey: {
-                fn: me.onEditConfirmPasswordSpecialKey,
+                fn: me._onEditConfirmPasswordSpecialKey,
                 scope: me
               }
             }
@@ -112,7 +112,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
             id: "PSI_User_ChangeMyPasswordForm_buttonOK",
             text: "修改密码",
             formBind: true,
-            handler: me.onOK,
+            handler: me._onOK,
             scope: me,
             iconCls: "PSI-button-ok"
           }, {
@@ -136,7 +136,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
   /**
    * 修改密码
    */
-  onOK() {
+  _onOK() {
     const me = this;
 
     const editNewPassword = me.editNewPassword;
@@ -171,7 +171,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
     });
   },
 
-  onEditOldPasswordSpecialKey(field, e) {
+  _onEditOldPasswordSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -179,7 +179,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
     }
   },
 
-  onEditNewPasswordSpecialKey(field, e) {
+  _onEditNewPasswordSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -187,7 +187,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
     }
   },
 
-  onEditConfirmPasswordSpecialKey(field, e) {
+  _onEditConfirmPasswordSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() == e.ENTER) {
