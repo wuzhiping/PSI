@@ -117,7 +117,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
             iconCls: "PSI-button-ok"
           }, {
             text: "取消",
-            handler: function () {
+            handler() {
               me.closeWindow();
             }
           }]
