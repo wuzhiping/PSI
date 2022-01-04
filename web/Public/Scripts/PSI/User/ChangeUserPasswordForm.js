@@ -90,7 +90,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
           inputType: "password",
           listeners: {
             specialkey: {
-              fn: me.onLastEditSpecialKey,
+              fn: me._onLastEditSpecialKey,
               scope: me
             }
           }
@@ -99,7 +99,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
           text: "确定",
           formBind: true,
           iconCls: "PSI-button-ok",
-          handler: me.onOK,
+          handler: me._onOK,
           scope: me
         }, {
           text: "取消",
@@ -111,7 +111,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
       }],
       listeners: {
         show: {
-          fn: me.onEditFormShow,
+          fn: me._onEditFormShow,
           scope: me
         }
       }
@@ -126,7 +126,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
     me.__editorList = [me.editPassword, me.editConfirmPassword];
   },
 
-  onEditFormShow() {
+  _onEditFormShow() {
     const me = this;
     me.setFocusAndCursorPosToLast(me.editPassword);
   },
@@ -134,7 +134,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
   /**
    * 修改密码
    */
-  onOK() {
+  _onOK() {
     const me = this;
     const pass = me.editPassword.getValue();
     const pass2 = me.editConfirmPassword.getValue();
@@ -166,12 +166,12 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
     });
   },
 
-  onLastEditSpecialKey(field, e) {
+  _onLastEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() == e.ENTER) {
       if (me.editForm.getForm().isValid()) {
-        me.onOK();
+        me._onOK();
       }
     }
   }
