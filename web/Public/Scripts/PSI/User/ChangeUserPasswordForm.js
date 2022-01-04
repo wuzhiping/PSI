@@ -113,6 +113,10 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
         show: {
           fn: me._onEditFormShow,
           scope: me
+        },
+        close: {
+          fn: me._onWndClose,
+          scope: me
         }
       }
     });
@@ -129,6 +133,14 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
   _onEditFormShow() {
     const me = this;
     me.setFocusAndCursorPosToLast(me.editPassword);
+
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+  },
+
+  _onWndClose() {
+    const me = this;
+
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
   /**
