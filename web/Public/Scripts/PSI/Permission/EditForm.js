@@ -153,13 +153,11 @@ Ext.define("PSI.Permission.EditForm", {
 
     const t = entity == null ? "新建角色" : "编辑角色";
     const title = me.formatTitle(t);
-    const iconCls = entity == null ? "PSI-button-add" : "PSI-button-edit";
 
     Ext.apply(me, {
       header: {
         title,
         height: 40,
-        iconCls: iconCls
       },
       maximized: true,
       width: 700,
