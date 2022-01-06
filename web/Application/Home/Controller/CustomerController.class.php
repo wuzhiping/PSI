@@ -7,8 +7,6 @@ use Home\Service\CustomerService;
 use Home\Service\ImportService;
 use Home\Service\UserService;
 
-require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
-
 /**
  * 客户资料Controller
  *
@@ -280,6 +278,16 @@ class CustomerController extends PSIBaseController
       if (!$us->hasPermission(FIdConst::CUSTOMER_IMPORT)) {
         die("没有权限");
       }
+      if (version_compare(PHP_VERSION, '8.0.0') >= 0) {
+        $this->ajaxReturn(
+          [
+            "msg" => "尚不支持PHP 8下导入Excel",
+            "success" => false
+          ]
+        );
+        return;
+      }
+
 
       $upload = new \Think\Upload();
 
