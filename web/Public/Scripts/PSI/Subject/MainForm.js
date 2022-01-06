@@ -220,7 +220,7 @@ Ext.define("PSI.Subject.MainForm", {
     }
 
     var company = item[0];
-    var title = Ext.String.format("{0} - 会计科目", company.get("name"));
+    var title = Ext.String.format("<span class='PSI-title-keyword'>{0}</span> - 会计科目", company.get("name"));
     me.getMainGrid().setTitle(me.formatGridHeaderTitle(title));
 
     var store = me.getMainGrid().getStore();
@@ -677,10 +677,10 @@ Ext.define("PSI.Subject.MainForm", {
       return;
     }
 
-    var title = Ext.String.format("{0} {1} - 账样属性", record.get("code"),
+    var title = Ext.String.format("<span class='PSI-title-keyword'>{0} {1}</span> - 账样属性", record.get("code"),
       record.get("name"));
     me.getFmtPropGrid().setTitle(title);
-    var title = Ext.String.format("{0} {1} - 账样字段", record.get("code"),
+    var title = Ext.String.format("<span class='PSI-title-keyword'>{0} {1}</span> - 账样字段", record.get("code"),
       record.get("name"));
     me.getFmtColsGrid().setTitle(title);
 
