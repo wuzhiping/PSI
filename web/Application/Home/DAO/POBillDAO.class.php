@@ -822,7 +822,7 @@ class POBillDAO extends PSIBaseExDAO
         $result["orgFullName"] = $v["full_name"];
         $result["bizUserId"] = $v["biz_user_id"];
         $result["bizUserName"] = $v["biz_user_name"];
-        $result["paymentType"] = $v["payment_type"];
+        $result["paymentType"] = "{$v['payment_type']}"; //数字转换成字符串
         $result["billMemo"] = $v["bill_memo"];
         $result["billStatus"] = $v["bill_status"];
 
