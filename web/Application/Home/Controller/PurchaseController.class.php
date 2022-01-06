@@ -6,8 +6,6 @@ use Home\Common\FIdConst;
 use Home\Service\PWBillService;
 use Home\Service\UserService;
 
-require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
-
 /**
  * 采购Controller
  *
