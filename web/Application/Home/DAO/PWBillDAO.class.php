@@ -1132,7 +1132,7 @@ class PWBillDAO extends PSIBaseExDAO
       $result["bizUserId"] = $v["biz_user_id"];
       $result["bizUserName"] = $v["biz_user_name"];
       $result["bizDT"] = $this->toYMD($v["biz_dt"]);
-      $result["paymentType"] = $v["payment_type"];
+      $result["paymentType"] = "{$v['payment_type']}"; // 数字转换成字符串
       $result["billMemo"] = $v["bill_memo"];
       $result["expandByBOM"] = $v["expand_by_bom"];
 
