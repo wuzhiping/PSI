@@ -953,7 +953,7 @@ class SRBillDAO extends PSIBaseExDAO
         $result["bizUserId"] = $data[0]["biz_user_id"];
         $result["bizUserName"] = $data[0]["biz_user_name"];
         $result["wsBillRef"] = $data[0]["ws_bill_ref"];
-        $result["paymentType"] = $data[0]["payment_type"];
+        $result["paymentType"] = "{$data[0]['payment_type']}";
         $result["billMemo"] = $data[0]["bill_memo"];
       }
 
