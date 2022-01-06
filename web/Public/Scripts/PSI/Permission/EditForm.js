@@ -8,6 +8,10 @@
 Ext.define("PSI.Permission.EditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
+  config: {
+    roleCopy: null
+  },
+
   initComponent() {
     const me = this;
     const entity = me.getEntity();
@@ -294,6 +298,12 @@ Ext.define("PSI.Permission.EditForm", {
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
+  loadDataForCopy() {
+    const me = this;
+    const roleCopy = me.getRoleCopy();
+
+  },
+
   onWndShow() {
     const me = this;
 
@@ -303,6 +313,12 @@ Ext.define("PSI.Permission.EditForm", {
 
     const entity = me.getEntity();
     if (!entity) {
+      const roleCopy = me.getRoleCopy();
+      if (roleCopy) {
+        // 以复制方式新建角色
+        me.loadDataForCopy();
+      }
+
       return;
     }
 
