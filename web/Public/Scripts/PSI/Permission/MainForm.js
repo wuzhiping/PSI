@@ -164,6 +164,11 @@ Ext.define("PSI.Permission.MainForm", {
       scope: me,
       disabled: me.getPAdd() == "0"
     }, {
+      text: "以复制方式新建角色",
+      handler: me.onCopyRole,
+      scope: me,
+      disabled: me.getPAdd() == "0"
+    }, "-", {
       text: "编辑角色",
       handler: me.onEditRole,
       scope: me,
@@ -462,6 +467,29 @@ Ext.define("PSI.Permission.MainForm", {
     const me = this;
     const form = Ext.create("PSI.Permission.EditForm", {
       parentForm: me
+    });
+
+    form.show();
+  },
+
+  /**
+   * 以复制方式新建角色
+   */
+  onCopyRole() {
+    const me = this;
+    const grid = me.getRoleGrid();
+    const items = grid.getSelectionModel().getSelection();
+
+    if (items == null || items.length != 1) {
+      me.showInfo("请选择要编辑的角色");
+      return;
+    }
+
+    const roleCopy = items[0];
+
+    const form = Ext.create("PSI.Permission.EditForm", {
+      parentForm: me,
+      roleCopy
     });
 
     form.show();
