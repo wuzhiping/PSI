@@ -164,11 +164,6 @@ Ext.define("PSI.Permission.MainForm", {
       scope: me,
       disabled: me.getPAdd() == "0"
     }, {
-      text: "以复制方式新建角色",
-      handler: me.onCopyRole,
-      scope: me,
-      disabled: me.getPAdd() == "0"
-    }, "-", {
       text: "编辑角色",
       handler: me.onEditRole,
       scope: me,
@@ -178,6 +173,15 @@ Ext.define("PSI.Permission.MainForm", {
       handler: me.onDeleteRole,
       scope: me,
       disabled: me.getPDelete() == "0"
+    }, "-", {
+      disabled: me.getPAdd() == "0",
+      text: "工具",
+      menu: [{
+        text: "以复制当前角色的方式新建角色",
+        handler: me.onCopyRole,
+        scope: me,
+        disabled: me.getPAdd() == "0"
+      }]
     }, "-", {
       text: "指南",
       handler() {
