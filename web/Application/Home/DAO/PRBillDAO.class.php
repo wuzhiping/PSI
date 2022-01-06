@@ -904,7 +904,7 @@ class PRBillDAO extends PSIBaseExDAO
       $result["supplierName"] = $data[0]["supplier_name"];
       $result["pwbillId"] = $data[0]["pwbill_id"];
       $result["bizDT"] = $this->toYMD($data[0]["bizdt"]);
-      $result["receivingType"] = $data[0]["receiving_type"];
+      $result["receivingType"] = "{$data[0]['receiving_type']}"; //数字转换成字符串
       $result["billMemo"] = $data[0]["bill_memo"];
 
       $items = [];
