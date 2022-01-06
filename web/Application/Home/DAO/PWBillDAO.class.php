@@ -1209,7 +1209,7 @@ class PWBillDAO extends PSIBaseExDAO
           $result["supplierId"] = $v["supplier_id"];
           $result["supplierName"] = $v["supplier_name"];
           $result["dealDate"] = $this->toYMD($v["deal_date"]);
-          $result["paymentType"] = $v["payment_type"];
+          $result["paymentType"] = "{$v['payment_type']}"; //数字转为字符串
           $result["billMemo"] = $v["bill_memo"];
 
           $pobillId = $v["id"];
