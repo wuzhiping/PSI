@@ -327,9 +327,15 @@ function I($name,$default='',$filter=null,$datas=null) {
         case 'server'  :   
         	$input =& $_SERVER;    
         	break;
+        /*
+        ThinkPHP原来的代码 - begin
         case 'globals' :   
         	$input =& $GLOBALS;    
         	break;
+        ThinkPHP原来的代码 - end
+
+        2022-1-6 为了升级到PHP 8.1，把上述代码注释掉
+        */
         case 'data'    :   
         	$input =& $datas;      
         	break;
