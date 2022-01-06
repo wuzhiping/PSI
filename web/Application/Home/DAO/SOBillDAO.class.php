@@ -782,7 +782,7 @@ class SOBillDAO extends PSIBaseExDAO
         $result["orgFullName"] = $v["full_name"];
         $result["bizUserId"] = $v["biz_user_id"];
         $result["bizUserName"] = $v["biz_user_name"];
-        $result["receivingType"] = $v["receiving_type"];
+        $result["receivingType"] = "{$v['receiving_type']}"; // 数字转成字符串
         $result["billMemo"] = $v["bill_memo"];
         $result["billStatus"] = $v["bill_status"];
 
