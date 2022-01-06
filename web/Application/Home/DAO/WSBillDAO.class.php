@@ -888,7 +888,7 @@ class WSBillDAO extends PSIBaseExDAO
           $result["customerId"] = $v["customer_id"];
           $result["customerName"] = $v["customer_name"];
           $result["dealDate"] = $this->toYMD($v["deal_date"]);
-          $result["receivingType"] = $v["receiving_type"];
+          $result["receivingType"] = "{$v['receiving_type']}"; // 数字转成字符串
           $result["memo"] = $v["bill_memo"];
           $result["dealAddress"] = $v["deal_address"];
 
@@ -968,7 +968,7 @@ class WSBillDAO extends PSIBaseExDAO
         $result["warehouseName"] = $data[0]["warehouse_name"];
         $result["bizUserId"] = $data[0]["biz_user_id"];
         $result["bizUserName"] = $data[0]["biz_user_name"];
-        $result["receivingType"] = $data[0]["receiving_type"];
+        $result["receivingType"] = "{$data[0]['receiving_type']}";
         $result["memo"] = $data[0]["memo"];
         $result["dealAddress"] = $data[0]["deal_address"];
       }
