@@ -284,6 +284,7 @@ Ext.define("PSI.Permission.EditForm", {
     me.callParent(arguments);
 
     me.editName = Ext.getCmp("editName");
+    me.editCode = Ext.getCmp("editCode");
   },
 
   onWindowBeforeUnload(e) {
@@ -299,6 +300,54 @@ Ext.define("PSI.Permission.EditForm", {
   loadDataForCopy() {
     const me = this;
     const roleCopy = me.getRoleCopy();
+
+    const roleName = roleCopy.get("name");
+    me.editName.setValue(roleName + " - (复制，请修改)");
+    me.editCode.setValue(roleCopy.get("code") + " - (复制，请修改)");
+
+    // 获得数据
+    const store = me.permissionGrid.getStore();
+    const el = me.getEl() || Ext.getBody();
+    const roleId = roleCopy.get("id");
+    el.mask("数据加载中...");
+    me.ajax({
+      url: me.URL("Home/Permission/permissionList"),
+      params: {
+        roleId
+      },
+      callback(options, success, response) {
+        store.removeAll();
+
+        if (success) {
+          const data = Ext.JSON.decode(response.responseText);
+          store.add(data);
+        }
+
+        el.unmask();
+      }
+    });
+
+    const userGrid = me.userGrid;
+    const userStore = userGrid.getStore();
+    const userEl = userGrid.getEl() || Ext.getBody();
+    userGrid.setTitle("属于角色 [" + roleName + "] 的人员列表");
+    userEl.mask("数据加载中...");
+    me.ajax({
+      url: me.URL("Home/Permission/userList"),
+      params: {
+        roleId
+      },
+      callback(options, success, response) {
+        userStore.removeAll();
+
+        if (success) {
+          var data = Ext.JSON.decode(response.responseText);
+          userStore.add(data);
+        }
+
+        userEl.unmask();
+      }
+    });
 
   },
 
