@@ -10,8 +10,6 @@ use Home\Service\ReceivablesReportService;
 use Home\Service\SaleReportService;
 use Home\Service\UserService;
 
-require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
-
 /**
  * 报表Controller
  *
