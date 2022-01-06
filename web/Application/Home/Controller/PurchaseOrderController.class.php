@@ -7,8 +7,6 @@ use Home\Service\POBillService;
 use Home\Service\PWBillService;
 use Home\Service\UserService;
 
-require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
-
 /**
  * 采购订单Controller
  *
@@ -313,6 +311,9 @@ class PurchaseOrderController extends PSIBaseController
     $us = new UserService();
     if (!$us->hasPermission(FIdConst::PURCHASE_ORDER_EXCEL)) {
       die("没有权限");
+    }
+    if (version_compare(PHP_VERSION, '8.0.0') >= 0) {
+      die("尚不支持PHP 8下导出Excel");
     }
 
     $params = [

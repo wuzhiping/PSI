@@ -239,6 +239,8 @@ class POBillService extends PSIBaseExService
       return;
     }
 
+    require_once __DIR__ . '/../Common/Excel/PHPExcel/IOFactory.php';
+
     $bs = new BizConfigService();
     $productionName = $bs->getProductionName();
 
