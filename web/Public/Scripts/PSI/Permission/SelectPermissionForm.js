@@ -67,7 +67,8 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
                 fieldLabel: "分类",
                 labelWidth: 30,
                 labelAlign: "right",
-                labelSeparator: ""
+                labelSeparator: "",
+                emptyText: "输入拼音字头过滤分类"
               }]
             }]
           }, {
