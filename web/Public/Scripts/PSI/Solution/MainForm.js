@@ -95,6 +95,12 @@ Ext.define("PSI.Solution.MainForm", {
         autoLoad: false,
         data: []
       }),
+      listeners: {
+        itemdblclick: {
+          fn: me._onEdit,
+          scope: me
+        }
+      },
     });
 
     return me.__mainGrid;
