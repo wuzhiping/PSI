@@ -50,6 +50,8 @@ Ext.define("PSI.Solution.MainForm", {
     });
 
     me.callParent(arguments);
+
+    me.refreshMainGrid();
   },
 
   getMainGrid() {
