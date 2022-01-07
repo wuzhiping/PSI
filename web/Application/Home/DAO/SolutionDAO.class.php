@@ -70,7 +70,7 @@ class SolutionDAO extends PSIBaseExDAO
     }
 
     $db = $this->db;
-    $code = trim($params["code"]);
+    $code = strtoupper(trim($params["code"]));
     $name = trim($params["name"]);
 
     // 检查编码是否存在
