@@ -33,6 +33,10 @@ class SolutionService extends PSIBaseExService
    */
   public function editSolution($params)
   {
+    if ($this->isNotOnline()) {
+      return $this->notOnlineError();
+    }
+
     $id = $params["id"];
     $name = $params["name"];
     $code = $params["code"];
@@ -75,6 +79,10 @@ class SolutionService extends PSIBaseExService
    */
   public function deleteSolution($params)
   {
+    if ($this->isNotOnline()) {
+      return $this->notOnlineError();
+    }
+
     $db = $this->db();
     $db->startTrans();
     $dao = new SolutionDAO($db);
@@ -99,6 +107,10 @@ class SolutionService extends PSIBaseExService
    */
   public function solutionInfo($params)
   {
+    if ($this->isNotOnline()) {
+      return $this->emptyResult();
+    }
+
     $dao = new SolutionDAO($this->db());
     return $dao->solutionInfo($params);
   }
