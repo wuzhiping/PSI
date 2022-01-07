@@ -35,4 +35,20 @@ class SolutionDAO extends PSIBaseExDAO
 
     return $result;
   }
+
+  /**
+   * 新建解决方案
+   */
+  public function addSolution(&$params)
+  {
+    return $this->todo();
+  }
+
+  /**
+   * 编辑解决方案
+   */
+  public function updateSolution(&$params)
+  {
+    return $this->todo();
+  }
 }
