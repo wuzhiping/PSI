@@ -101,12 +101,15 @@ Ext.define("PSI.Solution.MainForm", {
   },
 
   /**
-   * 新增解决方案
+   * 新建解决方案
    */
   _onAdd() {
     const me = this;
 
-    me.showInfo("TODO")
+    const form = Ext.create("PSI.Solution.EditForm", {
+      parentForm: me
+    });
+    form.show();
   },
 
   /**
