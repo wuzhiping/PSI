@@ -69,4 +69,28 @@ class SolutionService extends PSIBaseExService
 
     return $this->ok($id);
   }
+
+  /**
+   * 删除解决方案
+   */
+  public function deleteSolution($params)
+  {
+    $db = $this->db();
+    $db->startTrans();
+    $dao = new SolutionDAO($db);
+    $rc = $dao->deleteSolution($params);
+    if ($rc) {
+      $db->rollback();
+      return $rc;
+    }
+
+    // 记录业务日志
+    $log = $params["log"];
+    $bs = new BizlogService($db);
+    $bs->insertBizlog($log, $this->LOG_CATEGORY);
+
+    $db->commit();
+
+    return $this->ok();
+  }
 }

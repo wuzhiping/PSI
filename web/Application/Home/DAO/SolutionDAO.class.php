@@ -108,4 +108,12 @@ class SolutionDAO extends PSIBaseExDAO
   {
     return $this->todo();
   }
+
+  /**
+   * 删除解决方案
+   */
+  public function deleteSolution(&$params)
+  {
+    return $this->todo();
+  }
 }
