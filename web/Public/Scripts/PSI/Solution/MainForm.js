@@ -135,6 +135,15 @@ Ext.define("PSI.Solution.MainForm", {
 
     const solution = item[0];
 
+    const store = me.getMainGrid().getStore();
+    let index = store.findExact("id", solution.get("id"));
+    index--;
+    const preItem = store.getAt(index);
+    let preId = null;
+    if (preItem) {
+      preId = preItem.get("id");
+    }
+
     const funcConfirm = () => {
       Ext.getBody().mask("正在删除中...");
       const r = {
@@ -149,7 +158,7 @@ Ext.define("PSI.Solution.MainForm", {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
-              me.refreshMainGrid();
+              me.refreshMainGrid(preId);
             } else {
               me.showInfo(data.msg);
             }
