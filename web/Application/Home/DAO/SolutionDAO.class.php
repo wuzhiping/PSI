@@ -129,7 +129,7 @@ class SolutionDAO extends PSIBaseExDAO
 
     // 删除操作
     $sql = "delete from t_solution where id = '%s' ";
-    $rc = $db->execute($sql);
+    $rc = $db->execute($sql, $id);
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);
     }
