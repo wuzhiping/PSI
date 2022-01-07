@@ -65,8 +65,8 @@ Ext.define("PSI.SysDict.MainForm", {
     return [{
       text: "指南",
       handler() {
-        me.showInfo("TODO")
-        // window.open(me.URL("Home/Help/index?t=sysdict"));
+        me.focus();
+        window.open(me.URL("Home/Help/index?t=sysdict"));
       }
     }, "-", {
       text: "关闭",
