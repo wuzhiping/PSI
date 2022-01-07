@@ -93,4 +93,13 @@ class SolutionService extends PSIBaseExService
 
     return $this->ok();
   }
+
+  /**
+   * 获得某个解决方案的详情
+   */
+  public function solutionInfo($params)
+  {
+    $dao = new SolutionDAO($this->db());
+    return $dao->solutionInfo($params);
+  }
 }

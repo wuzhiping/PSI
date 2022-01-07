@@ -156,4 +156,13 @@ class SolutionDAO extends PSIBaseExDAO
       return null;
     }
   }
+
+  /**
+   * 获得某个解决方案的详情
+   */
+  public function solutionInfo($params)
+  {
+    $id = $params["id"];
+    return $this->getSolutionById($id);
+  }
 }
