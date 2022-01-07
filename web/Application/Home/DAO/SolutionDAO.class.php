@@ -114,6 +114,46 @@ class SolutionDAO extends PSIBaseExDAO
    */
   public function deleteSolution(&$params)
   {
-    return $this->todo();
+    $db = $this->db;
+
+    $id = $params["id"];
+
+    $solution = $this->getSolutionById($id);
+    if (!$solution) {
+      return $this->bad("要删除的解决方案不存在");
+    }
+
+    $code = $solution["code"];
+    $name = $solution["name"];
+    $log = "删除解决方案：名称：{$name}，编码：{$code}";
+
+    // 删除操作
+    $sql = "delete from t_solution where id = '%s' ";
+    $rc = $db->execute($sql);
+    if ($rc === false) {
+      return $this->sqlError(__METHOD__, __LINE__);
+    }
+
+    // 操作成功
+    $params["log"] = $log;
+    return null;
+  }
+
+  public function getSolutionById($id)
+  {
+    $db = $this->db;
+
+    $sql = "select code, name from t_solution where id = '%s' ";
+    $data = $db->query($sql, $id);
+    if ($data) {
+      $v = $data[0];
+      return [
+        "id" => $id,
+        "code" => $v["code"],
+        "name" => $v["name"],
+      ];
+    } else {
+      return null;
+    }
   }
 }
