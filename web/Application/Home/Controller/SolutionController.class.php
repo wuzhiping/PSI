@@ -2,6 +2,8 @@
 
 namespace Home\Controller;
 
+use Home\Common\FIdConst;
+use Home\Service\SolutionService;
 use Home\Service\UserService;
 
 /**
@@ -19,7 +21,7 @@ class SolutionController extends PSIBaseController
   public function index()
   {
     $us = new UserService();
-    if ($us->getLoginUserId()) {
+    if ($us->hasPermission(FIdConst::SOLUTION)) {
       $this->initVar();
 
       $this->assign("title", "解决方案");
@@ -27,6 +29,22 @@ class SolutionController extends PSIBaseController
       $this->display();
     } else {
       $this->gotoLoginPage("/Home/Solution/index");
+    }
+  }
+
+  /**
+   * 解决方案列表
+   */
+  public function solutionList()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::SOLUTION)) {
+        die("没有权限");
+      }
+
+      $service = new SolutionService();
+      $this->ajaxReturn($service->solutionList());
     }
   }
 }

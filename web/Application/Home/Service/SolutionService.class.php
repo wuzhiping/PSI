@@ -17,13 +17,13 @@ class SolutionService extends PSIBaseExService
   /**
    * 解决方案列表
    */
-  public function solutionList($params)
+  public function solutionList()
   {
     if ($this->isNotOnline()) {
       return $this->emptyResult();
     }
 
     $dao = new SolutionDAO($this->db());
-    return $dao->solutionList($params);
+    return $dao->solutionList();
   }
 }
