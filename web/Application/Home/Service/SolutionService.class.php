@@ -2,6 +2,8 @@
 
 namespace Home\Service;
 
+use Home\DAO\SolutionDAO;
+
 /**
  * 解决方案Service
  *
@@ -21,7 +23,7 @@ class SolutionService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    // $dao = new SolutionDAO($this->db());
-    // return $dao->solutionList($params);
+    $dao = new SolutionDAO($this->db());
+    return $dao->solutionList($params);
   }
 }
