@@ -118,8 +118,14 @@ module.exports = {
         {
           text: '二次开发',
           children: [{
-            text: '如何新增一个模块',
-            link: '/dev/100.html'
+            text: '独立模块',
+            link:'/dev/alone/',
+            children:[
+              {
+                text: '如何新增一个模块',
+                link: '/dev/alone/100.html'
+              }
+            ]
           }],
         },
       ],
