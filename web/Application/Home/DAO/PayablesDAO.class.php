@@ -141,7 +141,7 @@ class PayablesDAO extends PSIBaseExDAO
         $result[$i]["balanceMoney"] = $v["balance_money"];
       }
 
-      $queryParams[] = [];
+      $queryParams = [];
       $sql = "select count(*) as cnt from t_payables p, t_supplier s
               where p.ca_id = s.id and p.ca_type = 'supplier' ";
       if ($supplierId) {
@@ -198,7 +198,7 @@ class PayablesDAO extends PSIBaseExDAO
         $result[$i]["balanceMoney"] = $v["balance_money"];
       }
 
-      $queryParams[] = [];
+      $queryParams = [];
       $sql = "select count(*) as cnt from t_payables p, t_supplier s
               where p.ca_id = s.id and p.ca_type = 'factory' ";
       if ($factoryId) {
