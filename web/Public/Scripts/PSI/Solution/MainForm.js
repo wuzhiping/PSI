@@ -123,4 +123,40 @@ Ext.define("PSI.Solution.MainForm", {
     const me = this;
     me.showInfo("TODO")
   },
+
+  refreshMainGrid(id) {
+    const me = this;
+
+    const grid = me.getMainGrid();
+    const el = grid.getEl() || Ext.getBody();
+    el.mask(PSI.Const.LOADING);
+    const r = {
+      url: me.URL("Home/Solution/solutionList"),
+      callback(options, success, response) {
+        const store = grid.getStore();
+
+        store.removeAll();
+
+        if (success) {
+          const data = me.decodeJSON(response.responseText);
+          store.add(data);
+
+          if (store.getCount() > 0) {
+            if (id) {
+              const r = store.findExact("id", id);
+              if (r != -1) {
+                grid.getSelectionModel().select(r);
+              }
+            } else {
+              grid.getSelectionModel().select(0);
+            }
+          }
+        }
+
+        el.unmask();
+      }
+    };
+
+    me.ajax(r);
+  },
 });
