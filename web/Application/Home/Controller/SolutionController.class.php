@@ -69,4 +69,24 @@ class SolutionController extends PSIBaseController
       $this->ajaxReturn($service->editSolution($params));
     }
   }
+
+  /**
+   * 删除解决方案
+   */
+  public function deleteSolution()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::SOLUTION)) {
+        die("没有权限");
+      }
+
+      $params = [
+        "id" => I("post.id"),
+      ];
+
+      $service = new SolutionService();
+      $this->ajaxReturn($service->deleteSolution($params));
+    }
+  }
 }
