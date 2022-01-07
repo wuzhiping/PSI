@@ -45,11 +45,57 @@ Ext.define("PSI.Solution.MainForm", {
         xtype: "panel",
         layout: "fit",
         border: 0,
-        items: []
+        items: [me.getMainGrid()]
       }
     });
 
     me.callParent(arguments);
+  },
+
+  getMainGrid() {
+    const me = this;
+
+    if (me.__mainGrid) {
+      return me.__mainGrid;
+    }
+
+    const modelName = "PSISolution";
+
+    Ext.define(modelName, {
+      extend: "Ext.data.Model",
+      fields: ["id", "code", "name"]
+    });
+
+    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+      cls: "PSI",
+      border: 0,
+      viewConfig: {
+        enableTextSelection: true
+      },
+      columnLines: true,
+      columns: {
+        defaults: {
+          menuDisabled: true,
+          sortable: false
+        },
+        items: [{
+          header: "编码",
+          dataIndex: "code",
+          width: 140,
+        }, {
+          header: "解决方案名称",
+          dataIndex: "name",
+          width: 400,
+        }]
+      },
+      store: Ext.create("Ext.data.Store", {
+        model: modelName,
+        autoLoad: false,
+        data: []
+      }),
+    });
+
+    return me.__mainGrid;
   },
 
   /**
