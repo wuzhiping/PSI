@@ -17,6 +17,8 @@ class SolutionController extends PSIBaseController
 {
   /**
    * 解决方案 - 主页面
+   * 
+   * web\Application\Home\View\Solution\index.html
    */
   public function index()
   {
@@ -34,6 +36,8 @@ class SolutionController extends PSIBaseController
 
   /**
    * 解决方案列表
+   * 
+   * JS: web\Public\Scripts\PSI\Solution\MainForm.js
    */
   public function solutionList()
   {
@@ -50,6 +54,8 @@ class SolutionController extends PSIBaseController
 
   /**
    * 新建或编辑解决方案
+   * 
+   * JS: web\Public\Scripts\PSI\Solution\EditForm.js
    */
   public function editSolution()
   {
@@ -72,6 +78,8 @@ class SolutionController extends PSIBaseController
 
   /**
    * 删除解决方案
+   * 
+   * JS: web\Public\Scripts\PSI\Solution\MainForm.js
    */
   public function deleteSolution()
   {
@@ -82,6 +90,7 @@ class SolutionController extends PSIBaseController
       }
 
       $params = [
+        // 解决方案id
         "id" => I("post.id"),
       ];
 
@@ -92,6 +101,8 @@ class SolutionController extends PSIBaseController
 
   /**
    * 获得某个解决方案的详情
+   * 
+   * JS: web\Public\Scripts\PSI\Solution\EditForm.js
    */
   public function solutionInfo()
   {
@@ -102,6 +113,7 @@ class SolutionController extends PSIBaseController
       }
 
       $params = [
+        // 解决方案id
         "id" => I("post.id"),
       ];
 
