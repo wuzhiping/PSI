@@ -126,7 +126,42 @@ Ext.define("PSI.Solution.MainForm", {
    */
   _onDelete() {
     const me = this;
-    me.showInfo("TODO")
+
+    const item = me.getMainGrid().getSelectionModel().getSelection();
+    if (item === null || item.length !== 1) {
+      me.showInfo("请选择要删除的解决方案");
+      return;
+    }
+
+    const solution = item[0];
+
+    const funcConfirm = () => {
+      Ext.getBody().mask("正在删除中...");
+      const r = {
+        url: me.URL("Home/Solution/deleteSolution"),
+        params: {
+          id: solution.get("id")
+        },
+        callback(options, success, response) {
+          Ext.getBody().unmask();
+
+          if (success) {
+            const data = me.decodeJSON(response.responseText);
+            if (data.success) {
+              me.tip("成功完成删除操作");
+              me.refreshMainGrid();
+            } else {
+              me.showInfo(data.msg);
+            }
+          }
+        }
+      };
+
+      me.ajax(r);
+    };
+
+    const info = `请确认是否删除解决方案 <span style='color:red'>${solution.get("name")}</span> ?`;
+    me.confirm(info, funcConfirm);
   },
 
   refreshMainGrid(id) {
