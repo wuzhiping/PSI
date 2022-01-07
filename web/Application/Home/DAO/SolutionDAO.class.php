@@ -136,7 +136,17 @@ class SolutionDAO extends PSIBaseExDAO
       return $this->bad("解决方案[{$name}]已经存在");
     }
 
-    return $this->todo();
+    // 执行更新操作
+    $sql = "update t_solution 
+            set code = '%s', name = '%s'
+            where id = '%s' ";
+    $rc = $db->execute($sql, $code, $name, $id);
+    if ($rc === false) {
+      return $this->sqlError(__METHOD__, __LINE__);
+    }
+
+    // 操作成功
+    return null;
   }
 
   /**
