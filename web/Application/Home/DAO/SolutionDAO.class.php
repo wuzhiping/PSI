@@ -106,6 +106,36 @@ class SolutionDAO extends PSIBaseExDAO
    */
   public function updateSolution(&$params)
   {
+    $rc = $this->checkParams($params);
+    if ($rc) {
+      return $rc;
+    }
+
+    $id = $params["id"];
+    $solution = $this->getSolutionById($id);
+    if (!$solution) {
+      return $this->bad("要编辑的解决方案不存在");
+    }
+
+    $db = $this->db;
+    $code = strtoupper(trim($params["code"]));
+    $name = trim($params["name"]);
+
+    // 检查编码是否存在
+    $sql = "select count(*) as cnt from t_solution where code = '%s' and id <> '%s' ";
+    $data = $db->query($sql, $code, $id);
+    $cnt = $data[0]["cnt"];
+    if ($cnt > 0) {
+      return $this->bad("编码[{$code}]已经存在");
+    }
+    // 检查名称是否已经存在
+    $sql = "select count(*) as cnt from t_solution where name = '%s' and id <> '%s' ";
+    $data = $db->query($sql, $name, $id);
+    $cnt = $data[0]["cnt"];
+    if ($cnt > 0) {
+      return $this->bad("解决方案[{$name}]已经存在");
+    }
+
     return $this->todo();
   }
 
