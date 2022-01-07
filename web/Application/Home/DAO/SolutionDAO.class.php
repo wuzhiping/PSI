@@ -163,6 +163,11 @@ class SolutionDAO extends PSIBaseExDAO
   public function solutionInfo($params)
   {
     $id = $params["id"];
-    return $this->getSolutionById($id);
+    $solution = $this->getSolutionById($id);
+    if ($solution) {
+      return $solution;
+    } else {
+      return $this->emptyResult();
+    }
   }
 }
