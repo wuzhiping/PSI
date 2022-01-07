@@ -40,6 +40,11 @@ class SysDictController extends PSIBaseController
   public function categoryList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::SYS_DICT)) {
+        die("没有权限");
+      }
+
       $params = [];
 
       $service = new SysDictService();
@@ -53,6 +58,11 @@ class SysDictController extends PSIBaseController
   public function sysDictList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::SYS_DICT)) {
+        die("没有权限");
+      }
+
       $params = [
         "categoryId" => I("post.categoryId")
       ];
@@ -68,6 +78,11 @@ class SysDictController extends PSIBaseController
   public function dictDataList()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::SYS_DICT)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
