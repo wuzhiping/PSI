@@ -114,20 +114,27 @@ module.exports = {
           ],
         },
       ],
-      '/dev/': [
-        {
-          text: '二次开发',
-          children: [{
-            text: '独立模块',
-            link:'/dev/alone/',
-            children:[
-              {
-                text: '如何新增一个模块',
-                link: '/dev/alone/100.html'
-              }
-            ]
-          }],
-        },
+      '/dev/': [{
+        text: '低代码应用平台',
+        link: '/dev/lcap/',
+        children: [{
+          text: '系统数据字典',
+          link: '/dev/lcap/08-02.html'
+        }]
+      },
+      {
+        text: '二次开发',
+        children: [{
+          text: '独立模块',
+          link: '/dev/alone/',
+          children: [
+            {
+              text: '如何新增一个模块',
+              link: '/dev/alone/100.html'
+            }
+          ]
+        }],
+      },
       ],
     },
   },
