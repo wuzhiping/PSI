@@ -118,7 +118,19 @@ Ext.define("PSI.Solution.MainForm", {
   _onEdit() {
     const me = this;
 
-    me.showInfo("TODO")
+    const item = me.getMainGrid().getSelectionModel().getSelection();
+    if (item === null || item.length !== 1) {
+      me.showInfo("请选择要编辑的解决方案");
+      return;
+    }
+
+    const solution = item[0];
+
+    const form = Ext.create("PSI.Solution.EditForm", {
+      entity: solution,
+      parentForm: me
+    });
+    form.show();
   },
 
   /**
