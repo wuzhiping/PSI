@@ -59,7 +59,7 @@ Ext.define("PSI.Solution.EditForm", {
           allowBlank: false,
           blankText: "没有输入编码",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          name: "orgCode",
+          name: "code",
           value: entity === null ? null : entity.get("code"),
           listeners: {
             specialkey: {
