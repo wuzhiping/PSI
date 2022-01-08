@@ -6,10 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.CodeTable.MainForm", {
-  extend: "Ext.panel.Panel",
-  border: 0,
-
-  mixins: ["PSI.AFX.Mix.Common"],
+  extend: "PSI.AFX.Form.MainForm",
 
   initComponent() {
     const me = this;
