@@ -152,6 +152,10 @@ class HelpController extends PSIBaseController
         //   $bs->insertBizlog("访问帮助页面：视图开发助手", "帮助");
         //   redirect("/help/08-04.html");
         //   break;
+      case "solution":
+        $bs->insertBizlog("访问指南页面：解决方案", "实施指南");
+        redirect("/help/dev/lcap/08-05.html");
+        break;
       default:
         $bs->insertBizlog("通过主菜单进入帮助页面", "帮助");
         redirect("/help/index.html");

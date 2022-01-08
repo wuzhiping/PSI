@@ -32,8 +32,9 @@ Ext.define("PSI.Solution.MainForm", {
       }, "-", {
         text: "指南",
         handler() {
-          me.showInfo("TODO");
-        }
+          me.focus();
+          window.open(me.URL("Home/Help/index?t=solution"));
+          }
       }, "-", {
         text: "关闭",
         handler() {
