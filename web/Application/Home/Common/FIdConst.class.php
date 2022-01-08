@@ -12,17 +12,6 @@ namespace Home\Common;
 class FIdConst
 {
   /**
-   * 系统数据字典
-   *
-   */
-  const SYS_DICT = "-7994";
-
-  /**
-   * 解决方案
-   */
-  const SOLUTION = "-6000";
-
-  /**
    * 首页
    */
   const HOME = "-9997";
@@ -1121,4 +1110,15 @@ class FIdConst
    * @var string
    */
   const CODE_TABLE = "-7996";
+
+  /**
+   * 系统数据字典
+   *
+   */
+  const SYS_DICT = "-7994";
+
+  /**
+   * 解决方案
+   */
+  const SOLUTION = "-6000";
 }
