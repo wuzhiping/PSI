@@ -12,7 +12,7 @@ module.exports = {
     contributors: false,
     backToHome: '返回首页',
     notFound: ['文档页面不存在'],
-    lastUpdatedText: '文档更新时间',
+    lastUpdated: false,
     navbar: [
       {
         text: '使用手册',
@@ -118,6 +118,9 @@ module.exports = {
         text: '低代码应用平台',
         link: '/dev/lcap/',
         children: [{
+          text: '解决方案',
+          link: '/dev/lcap/08-05.html'
+        }, {
           text: '系统数据字典',
           link: '/dev/lcap/08-02.html'
         }]
