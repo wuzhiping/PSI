@@ -800,7 +800,7 @@ Ext.define("PSI.CodeTable.MainForm", {
   onEditCol() {
     const me = this;
 
-    const item = me.getMainGrid().getSelectionModel().getSelection();
+    let item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑列的码表");
       return;
@@ -808,7 +808,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const codeTable = item[0];
 
-    const item = me.getColsGrid().getSelectionModel().getSelection();
+    item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的列");
       return;
@@ -826,14 +826,14 @@ Ext.define("PSI.CodeTable.MainForm", {
   // 删除码表列
   onDeleteCol() {
     const me = this;
-    const item = me.getMainGrid().getSelectionModel().getSelection();
+    let item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择码表");
       return;
     }
     const codeTable = item[0];
 
-    const item = me.getColsGrid().getSelectionModel().getSelection();
+    item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的列");
       return;
