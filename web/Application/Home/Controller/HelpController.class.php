@@ -5,7 +5,9 @@ namespace Home\Controller;
 use Home\Service\BizlogService;
 
 /**
- * 实施指南Controller
+ * 实施指南导航Controller
+ * 
+ * 各个模块先访问本Controller的Action，然后由Action跳转到对于的指南HTML页面
  *
  * @author 艾格林门信息服务（大连）有限公司
  * @copyright 2015 - present
