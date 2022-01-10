@@ -92,6 +92,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 码表分类列表
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\MainForm.js
    */
   public function categoryList()
   {
@@ -101,7 +103,10 @@ class CodeTableController extends PSIBaseController
         die("没有权限");
       }
 
-      $params = [];
+      $params = [
+        // 解决方案编码
+        "slnCode" => I("post.slnCode")
+      ];
 
       $service = new CodeTableService();
       $this->ajaxReturn($service->categoryList($params));
