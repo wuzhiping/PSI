@@ -63,7 +63,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
         height: 40
       },
       width: 400,
-      height: 310,
+      height: 290,
       layout: "border",
       listeners: {
         show: {
@@ -77,7 +77,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
       },
       items: [{
         region: "north",
-        height: 90,
+        height: 70,
         border: 0,
         html: logoHtml
       }, {
