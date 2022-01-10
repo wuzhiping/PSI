@@ -3165,7 +3165,7 @@ class CodeTableDAO extends PSIBaseExDAO
     foreach ($data as $v) {
       $result[] = [
         "code" => $v["code"],
-        "name" => $v["name"],
+        "name" => $v["code"] . " - " . $v["name"],
       ];
     }
 
