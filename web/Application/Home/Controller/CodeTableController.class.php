@@ -19,6 +19,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 码表设置 - 主页面
+   * 
+   * web\Application\Home\View\CodeTable\index.html
    */
   public function index()
   {
@@ -37,6 +39,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 码表运行 - 主页面
+   * 
+   * web\Application\Home\View\CodeTable\run.html
    */
   public function run()
   {
