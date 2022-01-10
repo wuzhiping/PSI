@@ -95,7 +95,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         }
       }
     }, {
-      text: "新增码表分类",
+      text: "新建码表分类",
       handler: me._onAddCategory,
       scope: me
     }, {
@@ -107,7 +107,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       handler: me.onDeleteCategory,
       scope: me
     }, "-", {
-      text: "新增码表",
+      text: "新建码表",
       handler: me.onAddCodeTable,
       scope: me
     }, {
@@ -371,7 +371,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         title: me.formatGridHeaderTitle("码表列")
       },
       tbar: [{
-        text: "新增列",
+        text: "新建列",
         handler: me.onAddCol,
         scope: me
       }, "-", {
@@ -839,7 +839,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("请选择要新增列的码表");
+      me.showInfo("请选择要新建列的码表");
       return;
     }
 
