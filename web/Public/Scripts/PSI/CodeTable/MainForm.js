@@ -1002,22 +1002,25 @@ Ext.define("PSI.CodeTable.MainForm", {
   },
 
   // 解决方案combo选中项改变的时候的时间处理函数
-  _onComboSolutionSelect() { },
+  _onComboSolutionSelect() {
+    const me = this;
+    me.refreshCategoryGrid();
+  },
 
   querySolutionList() {
-    var me = this;
-    var el = Ext.getBody();
-    var comboCompany = me.comboSolution;
-    var store = comboCompany.getStore();
+    const me = this;
+    const el = Ext.getBody();
+    const comboCompany = me.comboSolution;
+    const store = comboCompany.getStore();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/CodeTable/querySolutionList"),
       callback(options, success, response) {
         el.unmask();
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
           if (data.length > 0) {
             comboCompany.setValue(data[0]["code"]);
