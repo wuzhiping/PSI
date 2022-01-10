@@ -115,6 +115,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 新增或编辑码表分类
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\CategoryEditForm.js
    */
   public function editCodeTableCategory()
   {
@@ -127,7 +129,8 @@ class CodeTableController extends PSIBaseController
       $params = [
         "id" => I("post.id"),
         "code" => I("post.code"),
-        "name" => I("post.name")
+        "name" => I("post.name"),
+        "slnCode" => I("post.slnCode"),
       ];
 
       $service = new CodeTableService();
