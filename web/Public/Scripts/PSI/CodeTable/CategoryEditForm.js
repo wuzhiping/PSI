@@ -8,6 +8,11 @@
 Ext.define("PSI.CodeTable.CategoryEditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
+  config: {
+    slnCode: "",
+    slnName: "",
+  },
+
   /**
    * 初始化组件
    */
