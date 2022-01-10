@@ -1575,6 +1575,7 @@ CREATE TABLE IF NOT EXISTS `t_code_table_md` (
   `edit_col_cnt` int(11) NOT NULL DEFAULT 1,
   `view_paging` int(11) NOT NULL DEFAULT 2,
   `auto_code_length` int(11) NOT NULL DEFAULT 0,
+  `sln_code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
