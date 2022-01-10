@@ -100,7 +100,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       scope: me
     }, {
       text: "编辑码表分类",
-      handler: me.onEditCategory,
+      handler: me._onEditCategory,
       scope: me
     }, {
       text: "删除码表分类",
@@ -543,8 +543,15 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.ajax(r);
   },
 
-  onEditCategory() {
+  _onEditCategory() {
     const me = this;
+    const slnCode = me.comboSolution.getValue();
+    const sln = me.comboSolution.findRecordByValue(slnCode);
+    if (!sln) {
+      me.showInfo("没有选择解决方案");
+      return;
+    }
+    const slnName = sln.get("name");
 
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -561,7 +568,8 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const form = Ext.create("PSI.CodeTable.CategoryEditForm", {
       parentForm: me,
-      entity: category
+      entity: category,
+      slnCode, slnName,
     });
 
     form.show();
