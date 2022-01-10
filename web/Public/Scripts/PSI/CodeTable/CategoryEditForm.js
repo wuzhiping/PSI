@@ -63,15 +63,15 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
         height: 40
       },
       width: 400,
-      height: 240,
+      height: 310,
       layout: "border",
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       },
@@ -104,6 +104,10 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
           xtype: "hidden",
           name: "id",
           value: entity == null ? null : entity.get("id")
+        }, {
+          xtype: "displayfield",
+          fieldLabel: "解决方案",
+          value: `<span class='PSI-field-note'>${me.getSlnName()}</span>`
         }, {
           id: "PSI_CodeTable_CategoryEditForm_editCode",
           fieldLabel: "分类编码",
@@ -208,14 +212,10 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     }
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -224,10 +224,10 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     }
   },
 
-  onWndShow() {
+  _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const editCode = me.editCode;
     me.setFocusAndCursorPosToLast(editCode);
