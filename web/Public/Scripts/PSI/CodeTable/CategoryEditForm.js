@@ -105,6 +105,10 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
           name: "id",
           value: entity == null ? null : entity.get("id")
         }, {
+          xtype: "hidden",
+          name: "slnCode",
+          value: me.getSlnCode()
+        }, {
           xtype: "displayfield",
           fieldLabel: "解决方案",
           value: `<span class='PSI-field-note'>${me.getSlnName()}</span>`
