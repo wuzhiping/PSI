@@ -73,6 +73,24 @@ class CodeTableController extends PSIBaseController
   }
 
   /**
+   * 查询解决方案列表
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\MainForm.js
+   */
+  public function querySolutionList()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::CODE_TABLE)) {
+        die("没有权限");
+      }
+
+      $service = new CodeTableService();
+      $this->ajaxReturn($service->querySolutionList());
+    }
+  }
+
+  /**
    * 码表分类列表
    */
   public function categoryList()

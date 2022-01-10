@@ -642,4 +642,17 @@ class CodeTableService extends PSIBaseExService
     $dao = new CodeTableDAO($this->db());
     return $dao->codeTableGenSQL($params);
   }
+
+  /**
+   * 查询解决方案列表
+   */
+  public function querySolutionList()
+  {
+    if ($this->isNotOnline()) {
+      return $this->emptyResult();
+    }
+
+    $dao = new CodeTableDAO($this->db());
+    return $dao->querySolutionList();
+  }
 }
