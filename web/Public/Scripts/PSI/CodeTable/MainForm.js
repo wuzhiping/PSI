@@ -130,7 +130,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         handler: me.onGenSQL
       }]
     }, "-", {
-      text: "帮助",
+      text: "指南",
       handler() {
         me.showInfo("TODO")
         // window.open(me.URL("Home/Help/index?t=codetable"));
