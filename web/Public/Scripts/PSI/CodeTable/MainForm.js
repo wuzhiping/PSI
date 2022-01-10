@@ -63,7 +63,36 @@ Ext.define("PSI.CodeTable.MainForm", {
   getToolbarCmp() {
     const me = this;
 
+    const modelName = "PSI_CodeTable_MainForm_PSISolution";
+    Ext.define(modelName, {
+      extend: "Ext.data.Model",
+      fields: ["code", "name"]
+    });
+
     return [{
+      xtype: "displayfield",
+      value: "解决方案"
+    }, {
+      cls: "PSI-toolbox",
+      xtype: "combobox",
+      id: "comboSolution",
+      queryMode: "local",
+      editable: false,
+      valueField: "code",
+      displayField: "name",
+      store: Ext.create("Ext.data.Store", {
+        model: modelName,
+        autoLoad: false,
+        data: []
+      }),
+      width: 400,
+      listeners: {
+        select: {
+          fn: me._onComboSolutionSelect,
+          scope: me
+        }
+      }
+    }, {
       text: "新增码表分类",
       handler: me.onAddCategory,
       scope: me
@@ -968,5 +997,8 @@ Ext.define("PSI.CodeTable.MainForm", {
       codeTable: codeTable
     });
     form.show();
-  }
+  },
+
+  // 解决方案combo选中项改变的时候的时间处理函数
+  _onComboSolutionSelect() { }
 });
