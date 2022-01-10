@@ -6,9 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.CodeTable.CategoryEditForm", {
-  extend: "Ext.window.Window",
-
-  mixins: ["PSI.AFX.Mix.Common"],
+  extend: "PSI.AFX.Form.EditForm",
 
   /**
    * 初始化组件
@@ -53,7 +51,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     });
 
     const t = entity == null ? "新建码表分类" : "编辑码表分类";
-    const logoHtml = m.genLogoHtml(entity, t);
+    const logoHtml = me.genLogoHtml(entity, t);
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
