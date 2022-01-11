@@ -214,6 +214,7 @@ class CodeTableController extends PSIBaseController
 
       $params = [
         "id" => I("post.id"),
+        "slnCode" => I("post.slnCode"),
         "categoryId" => I("post.categoryId"),
         "code" => I("post.code"),
         "name" => I("post.name"),

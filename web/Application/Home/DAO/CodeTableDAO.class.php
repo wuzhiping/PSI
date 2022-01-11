@@ -592,6 +592,15 @@ class CodeTableDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
+    $slnCode = $params["slnCode"];
+    // 检查解决方案是否存在
+    $sql = "select count(*) as cnt from t_solution where code = '%s' ";
+    $data = $db->query($sql, $slnCode);
+    $cnt = $data[0]["cnt"];
+    if ($cnt != 1) {
+      return $this->bad("解决方案不存在");
+    }
+
     $categoryId = $params["categoryId"];
     if (!$this->getCodeTableCategoryById($categoryId)) {
       return $this->bad("码表分类不存在");
