@@ -367,6 +367,23 @@ class MainMenuController extends PSIBaseController
   }
 
   /**
+   * 查询所有的主菜单项 - 主菜单维护模块中使用
+   */
+  public function allMenuItemsForMaintain()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::MAIN_MENU)) {
+        die("没有权限");
+      }
+
+      $params = [];
+      $service = new MainMenuService();
+      $this->ajaxReturn($service->allMenuItemsForMaintain($params));
+    }
+  }
+
+  /**
    * 主菜单维护 - 新增或编辑菜单项
    */
   public function editMenuItem()
