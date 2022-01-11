@@ -35,8 +35,6 @@ class MainMenuDAO extends PSIBaseExDAO
 
     $iconCls = "PSI-MainMenuItemIconClass";
 
-    // TODO 因为中台和移动端只有两级菜单，下面的代码还需要重构和优化
-
     $index1 = 0;
     foreach ($m1 as $menuItem1) {
 
