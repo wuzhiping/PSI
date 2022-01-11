@@ -67,7 +67,7 @@ Ext.define("PSI.Fid.FidField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "fid",
@@ -106,6 +106,7 @@ Ext.define("PSI.Fid.FidField", {
         border: 0,
         items: [{
           xtype: "form",
+          border: 0,
           layout: "form",
           bodyPadding: 5,
           items: [{
