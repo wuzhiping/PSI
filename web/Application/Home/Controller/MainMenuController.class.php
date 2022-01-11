@@ -270,6 +270,10 @@ class MainMenuController extends PSIBaseController
         // 码表设置
         redirect(__ROOT__ . "/Home/CodeTable/index");
         break;
+      case FIdConst::MAIN_MENU:
+        // 主菜单维护
+        redirect(__ROOT__ . "/Home/MainMenu/maintainIndex");
+        break;
       default:
         redirect(__ROOT__ . "/Home");
     }
