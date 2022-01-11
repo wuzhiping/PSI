@@ -288,7 +288,7 @@ class CodeTableDAO extends PSIBaseExDAO
     return $result;
   }
 
-  private function checkTableName($tableName)
+  private function checkTableName($tableName, $slnCode)
   {
     $tableName = strtolower($tableName);
 
@@ -315,8 +315,10 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 码表需要以t_ct开头
-    if (!(substr($tableName, 0, 5) == "t_ct_")) {
-      return $this->bad("数据库表名需要以 <span style='color:red'>t_ct_</span> 开头");
+    $sn = strtolower($slnCode);
+    $n = "t_{$sn}_ct_";
+    if (!(substr($tableName, 0, strlen($n)) == $n)) {
+      return $this->bad("数据库表名需要以 <span style='color:red'>{$n}</span> 开头");
     }
 
     // 表名正确
@@ -664,7 +666,7 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 检查表名是否正确
-    $rc = $this->checkTableName($tableName);
+    $rc = $this->checkTableName($tableName, $slnCode);
     if ($rc) {
       return $rc;
     }
