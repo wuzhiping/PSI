@@ -84,6 +84,12 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           xtype: "hidden",
           name: "categoryId"
         }, {
+          xtype: "displayfield",
+          fieldLabel: "解决方案",
+          vlaue: `<span class='PSI-field-note'>${me.getSlnName()}</span>`,
+          colspan: 2,
+          width: 510,
+        }, {
           id: "PSI_CodeTable_CodeTableEditForm_editCategory",
           xtype: "psi_codetablecategoryfield",
           fieldLabel: "分类",
