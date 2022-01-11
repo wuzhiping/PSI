@@ -200,7 +200,11 @@ Ext.define("PSI.CodeTable.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onCategoryGridSelect,
+          fn: me._onCategoryGridSelect,
+          scope: me
+        },
+        itemdblclick: {
+          fn: me._onEditCategory,
           scope: me
         }
       }
@@ -633,7 +637,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onCategoryGridSelect() {
+  _onCategoryGridSelect() {
     const me = this;
     me.refreshMainGrid();
   },
