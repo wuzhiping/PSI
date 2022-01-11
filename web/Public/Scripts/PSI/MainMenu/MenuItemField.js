@@ -67,7 +67,7 @@ Ext.define("PSI.MainMenu.MenuItemField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "菜单标题",
@@ -103,6 +103,7 @@ Ext.define("PSI.MainMenu.MenuItemField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          border: 0,
           items: [{
             id: "PSI_MainMenu_MenuItemField_editName",
             xtype: "textfield",
