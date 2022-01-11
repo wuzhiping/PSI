@@ -108,15 +108,15 @@ Ext.define("PSI.CodeTable.MainForm", {
       scope: me
     }, "-", {
       text: "新建码表",
-      handler: me.onAddCodeTable,
+      handler: me._onAddCodeTable,
       scope: me
     }, {
       text: "编辑码表",
-      handler: me.onEditCodeTable,
+      handler: me._onEditCodeTable,
       scope: me
     }, {
       text: "删除码表",
-      handler: me.onDeleteCodeTable,
+      handler: me._onDeleteCodeTable,
       scope: me
     }, "-", {
       text: "工具",
@@ -693,7 +693,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.ajax(r);
   },
 
-  onAddCodeTable() {
+  _onAddCodeTable() {
     const me = this;
 
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -711,7 +711,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
-  onEditCodeTable() {
+  _onEditCodeTable() {
     const me = this;
 
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -783,7 +783,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.ajax(r);
   },
 
-  onDeleteCodeTable() {
+  _onDeleteCodeTable() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
