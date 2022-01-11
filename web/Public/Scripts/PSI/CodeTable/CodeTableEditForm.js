@@ -98,6 +98,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           valueField: "id",
           displayField: "name",
+          slnCode: me.getSlnCode(),
           listeners: {
             specialkey: {
               fn: me.onEditSpecialKey,

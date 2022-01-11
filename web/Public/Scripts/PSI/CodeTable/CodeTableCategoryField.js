@@ -10,7 +10,8 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
   alias: "widget.psi_codetablecategoryfield",
 
   config: {
-    showModal: false
+    showModal: false,
+    slnCode: "",
   },
 
   initComponent() {
@@ -65,7 +66,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
     const lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
+      border: 1,
       store: store,
       columns: [{
         header: "编码",
@@ -104,6 +105,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
         items: [{
           xtype: "form",
           layout: "form",
+          border: 0,
           bodyPadding: 5,
           items: [{
             id: "PSI_CodeTable_CodeTableCategoryField_editCategory",
@@ -157,7 +159,8 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/CodeTable/queryDataForCategory",
         params: {
-          queryKey: editName.getValue()
+          queryKey: editName.getValue(),
+          slnCode: me.getSlnCode(),
         },
         method: "POST",
         callback(opt, success, response) {
