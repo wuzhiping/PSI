@@ -76,6 +76,10 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           name: "id",
           value: entity == null ? null : entity.get("id")
         }, {
+          xtype: "hidden",
+          name: "slnCode",
+          value: me.getSlnCode(),
+        }, {
           id: "PSI_CodeTable_CodeTableEditForm_editCategoryId",
           xtype: "hidden",
           name: "categoryId"
