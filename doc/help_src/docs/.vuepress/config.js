@@ -121,6 +121,9 @@ module.exports = {
           text: '解决方案',
           link: '/dev/lcap/08-05.html'
         }, {
+          text: '主菜单维护',
+          link: '/dev/lcap/08-01.html'
+        }, {
           text: '系统数据字典',
           link: '/dev/lcap/08-02.html'
         }]
