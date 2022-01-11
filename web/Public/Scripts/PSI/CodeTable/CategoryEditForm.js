@@ -83,7 +83,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
       }, {
         region: "center",
         border: 0,
-        id: "PSI_CodeBase_CategoryEditForm_editForm",
+        id: "PSI_CodeTable_CategoryEditForm_editForm",
         xtype: "form",
         layout: {
           type: "table",
@@ -144,7 +144,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_CodeBase_CategoryEditForm_editForm");
+    me.editForm = Ext.getCmp("PSI_CodeTable_CategoryEditForm_editForm");
 
     me.editCode = Ext.getCmp("PSI_CodeTable_CategoryEditForm_editCode");
     me.editName = Ext.getCmp("PSI_CodeTable_CategoryEditForm_editName");
