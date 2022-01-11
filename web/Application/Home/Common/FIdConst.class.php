@@ -1112,6 +1112,14 @@ class FIdConst
   const CODE_TABLE = "-7996";
 
   /**
+   * 主菜单维护
+   *
+   * @var string
+   */
+  const MAIN_MENU = "-7995";
+
+
+  /**
    * 系统数据字典
    *
    */
