@@ -49,7 +49,8 @@ Ext.define("PSI.MainMenu.MainForm", {
     }, "-", {
       text: "帮助",
       handler: function () {
-        var url = me.URL("Home/Help/index?t=mainMenuMaintain")
+        me.focus();
+        const url = me.URL("Home/Help/index?t=mainMenuMaintain")
         window.open(url);
       }
     }, "-", {

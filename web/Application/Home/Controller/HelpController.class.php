@@ -138,10 +138,10 @@ class HelpController extends PSIBaseController
         $bs->insertBizlog("访问实施指南页面：成品委托生产入库", "实施指南");
         redirect("/help/user/60-03.html");
         break;
-        // case "mainMenuMaintain":
-        //   $bs->insertBizlog("访问实施指南页面：主菜单维护", "实施指南");
-        //   redirect("/help/08-01.html");
-        //   break;
+      case "mainMenuMaintain":
+        $bs->insertBizlog("访问实施指南页面：主菜单维护", "实施指南");
+        redirect("/help/dev/lcap/08-01.html");
+        break;
       case "sysdict":
         $bs->insertBizlog("访问实施指南页面：系统数据字典", "实施指南");
         redirect("/help/dev/lcap/08-02.html");
