@@ -300,7 +300,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
 
     if (me.adding) {
       // 新建
-      me.editTableName.setValue("t_ct_");
+      me.editTableName.setValue(`t_${me.getSlnCode()}_ct_`.toLocaleLowerCase());
     } else {
       // 编辑
       const el = me.getEl();
