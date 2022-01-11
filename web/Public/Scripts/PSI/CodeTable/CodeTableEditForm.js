@@ -6,12 +6,12 @@
  * @license GPL v3
  */
 Ext.define("PSI.CodeTable.CodeTableEditForm", {
-  extend: "Ext.window.Window",
-
-  mixins: ["PSI.AFX.Mix.Common"],
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
-    category: null
+    category: null,
+    slnCode: "",
+    slnName: "",
   },
 
   initComponent() {
