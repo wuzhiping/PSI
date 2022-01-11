@@ -347,6 +347,26 @@ class MainMenuController extends PSIBaseController
   }
 
   /**
+   * 主菜单维护 - 主界面
+   * 
+   * web\Application\Home\View\MainMenu\maintainIndex.html
+   */
+  public function maintainIndex()
+  {
+    $us = new UserService();
+
+    if ($us->hasPermission(FIdConst::MAIN_MENU)) {
+      $this->initVar();
+
+      $this->assign("title", "主菜单维护");
+
+      $this->display();
+    } else {
+      $this->gotoLoginPage("/Home/MainMenu/maintainIndex");
+    }
+  }
+
+  /**
    * 主菜单维护 - 新增或编辑菜单项
    */
   public function editMenuItem()
