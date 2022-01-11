@@ -104,7 +104,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       scope: me
     }, {
       text: "删除码表分类",
-      handler: me.onDeleteCategory,
+      handler: me._onDeleteCategory,
       scope: me
     }, "-", {
       text: "新建码表",
@@ -579,7 +579,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
-  onDeleteCategory() {
+  _onDeleteCategory() {
     const me = this;
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
 
