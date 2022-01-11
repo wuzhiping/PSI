@@ -264,11 +264,13 @@ class CodeTableDAO extends PSIBaseExDAO
     $db = $this->db;
 
     $queryKey = $params["queryKey"] ?? "";
+    $slnCode = $params["slnCode"];
 
     $sql = "select id, code, name
             from t_code_table_category
-            where code like '%s' or name like '%s' ";
+            where (sln_code = '%s') and (code like '%s' or name like '%s') ";
     $queryParams = [];
+    $queryParams[] = $slnCode;
     $queryParams[] = "%{$queryKey}%";
     $queryParams[] = "%{$queryKey}%";
 

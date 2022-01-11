@@ -190,7 +190,8 @@ class CodeTableController extends PSIBaseController
       }
 
       $params = [
-        "queryKey" => I("post.queryKey")
+        "queryKey" => I("post.queryKey"),
+        "slnCode" => I("post.slnCode"),
       ];
 
       $service = new CodeTableService();
