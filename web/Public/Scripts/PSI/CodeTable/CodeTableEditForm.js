@@ -26,7 +26,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK(false);
       },
       scope: me
     }, {
@@ -101,7 +101,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           slnCode: me.getSlnCode(),
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -111,7 +111,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           name: "code",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -124,7 +124,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           name: "name",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -137,7 +137,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           name: "moduleName",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -150,7 +150,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           name: "tableName",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -184,7 +184,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           value: entity == null ? 1 : entity.get("editColCnt"),
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -217,7 +217,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           value: entity == null ? 0 : entity.get("autoCodeLength"),
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -229,7 +229,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
             .get("handlerClassName"),
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -254,11 +254,11 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
       }],
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       }
@@ -293,10 +293,10 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
     }
   },
 
-  onWndShow() {
+  _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.adding) {
       // 新建
@@ -337,7 +337,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
     me.setFocusAndCursorPosToLast(me.editCode);
   },
 
-  onOK() {
+  _onOK() {
     const me = this;
 
     me.editCategoryId.setValue(me.editCategory.getIdValue());
@@ -364,44 +364,26 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
     });
   },
 
-  onEditSpecialKey(field, e) {
-    const me = this;
-
-    if (e.getKey() === e.ENTER) {
-      const id = field.getId();
-      for (let i = 0; i < me.__editorList.length; i++) {
-        const edit = me.__editorList[i];
-        if (id == edit.getId()) {
-          const editNext = me.__editorList[i + 1];
-          me.setFocusAndCursorPosToLast(editNext);
-        }
-      }
-    }
-  },
-
-  onEditLastSpecialKey(field, e) {
+  _onEditLastSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
       const f = me.editForm;
       if (f.getForm().isValid()) {
-        me.onOK();
+        me._onOK();
       }
     }
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().refreshMainGrid(me.__lastId);
+      const parentForm = me.getParentForm();
+      if (parentForm) {
+        parentForm.refreshMainGrid.apply(parentForm, [me.__lastId]);
       }
     }
   }
