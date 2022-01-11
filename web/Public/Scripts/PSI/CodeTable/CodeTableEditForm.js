@@ -351,7 +351,6 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
       success(form, action) {
         el && el.unmask();
         PSI.MsgBox.tip("数据保存成功");
-        me.focus();
         me.__lastId = action.result.id;
         me.close();
       },
