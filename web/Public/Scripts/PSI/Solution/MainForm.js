@@ -34,20 +34,23 @@ Ext.define("PSI.Solution.MainForm", {
         handler() {
           me.focus();
           window.open(me.URL("Home/Help/index?t=solution"));
-          }
+        }
       }, "-", {
         text: "关闭",
         handler() {
           me.closeWindow();
         }
       }],
-      items: {
+      items: [{
+        region: "north", height: 2,
+        border: 0,
+      }, {
         region: "center",
         xtype: "panel",
         layout: "fit",
         border: 0,
         items: [me.getMainGrid()]
-      }
+      }]
     });
 
     me.callParent(arguments);
@@ -71,7 +74,6 @@ Ext.define("PSI.Solution.MainForm", {
 
     me.__mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
-      border: 0,
       viewConfig: {
         enableTextSelection: true
       },
