@@ -12,15 +12,15 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
 
     me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
 
-    var btn = {
+    let btn = {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
@@ -31,7 +31,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     };
     buttons.push(btn);
 
-    var btn = {
+    btn = {
       text: entity == null ? "关闭" : "取消",
       handler() {
         me.close();
@@ -40,7 +40,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新增菜单项" : "编辑菜单项";
+    const t = entity == null ? "新增菜单项" : "编辑菜单项";
     const logoHtml = me.genLogoHtml(entity, t);
     Ext.apply(me, {
       header: {
@@ -157,7 +157,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
             }
           }
         }],
-        buttons: buttons
+        buttons
       }]
     });
 
@@ -178,15 +178,15 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
    * 保存
    */
   _onOK() {
-    var me = this;
+    const me = this;
 
     me.hiddenFid.setValue(me.editFid.getIdValue());
     me.hiddenParentMenuId.setValue(me.editParentMenu.getIdValue());
 
-    var f = me.editForm;
-    var el = f.getEl();
+    const f = me.editForm;
+    const el = f.getEl();
     el.mask(PSI.Const.SAVING);
-    var sf = {
+    const sf = {
       url: me.URL("Home/MainMenu/editMenuItem"),
       method: "POST",
       success(form, action) {
@@ -194,13 +194,12 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
 
         el.unmask();
 
-        PSI.MsgBox.tip("数据保存成功");
-        me.focus();
+        me.tip("数据保存成功");
         me.close();
       },
       failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, () => {
+        me.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
@@ -209,10 +208,10 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
   },
 
   _onLastEditSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me._onOK();
       }
@@ -220,41 +219,41 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
   },
 
   _onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().refreshMainGrid(me.__lastId);
+      const parentForm = me.getParentForm();
+      if (parentForm) {
+        parentForm.refreshMainGrid.apply(parentForm, [me.__lastId]);
       }
     }
   },
 
   _onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     me.editFid.focus();
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
     if (entity === null) {
       return;
     }
 
-    var el = me.getEl();
+    const el = me.getEl();
     el && el.mask("数据加载中...");
-    var r = {
+    const r = {
       url: me.URL("Home/MainMenu/menuItemInfo"),
-      method: "POST",
       params: {
         id: entity.get("id")
       },
       callback(options, success, response) {
         el && el.unmask();
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           me.editFid.setIdValue(data.fid);
           me.editFid.setValue(data.fidName);
           me.editCaption.setValue(data.caption);
@@ -270,7 +269,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
 
   // 自定义字段psi_fidfield回调本方法
   _fidCallbackFunc(data, scope) {
-    var me = scope;
+    const me = scope;
 
     if (!me.editCaption.getValue()) {
       me.editCaption.setValue(data.get("name"));
