@@ -146,7 +146,6 @@ class MainMenuDAO extends PSIBaseExDAO
     $sql = "select id, caption, parent_id
             from t_menu_item
             where (fid is null) and (py like '%s' or caption like '%s')
-              and (fid is null or fid = '') 
             order by id";
     $queryParams = [];
     $queryParams[] = "%{$queryKey}%";
