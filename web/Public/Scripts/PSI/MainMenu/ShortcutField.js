@@ -13,7 +13,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
     showModal: true
   },
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     me.__idValue = null;
@@ -49,7 +49,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
     });
   },
 
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     var me = this;
     var modelName = "PSIMenuShortcutField";
     Ext.define(modelName, {
@@ -224,7 +224,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
   },
 
   // private
-  onOK: function () {
+  onOK() {
     var me = this;
     var grid = me.lookupGrid;
     var item = grid.getSelectionModel().getSelection();
