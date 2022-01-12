@@ -12,7 +12,7 @@ Ext.define("PSI.MainMenu.MainForm", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
@@ -32,7 +32,7 @@ Ext.define("PSI.MainMenu.MainForm", {
   },
 
   getToolbarCmp() {
-    var me = this;
+    const me = this;
 
     return [{
       text: "新增菜单",
@@ -64,19 +64,19 @@ Ext.define("PSI.MainMenu.MainForm", {
   },
 
   getMainGrid() {
-    var me = this;
+    const me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSIMainMenu";
+    const modelName = "PSIMainMenu";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "caption", "fid", "showOrder",
         "sysItem", "leaf", "children"]
     });
 
-    var store = Ext.create("Ext.data.TreeStore", {
+    const store = Ext.create("Ext.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -146,36 +146,36 @@ Ext.define("PSI.MainMenu.MainForm", {
   },
 
   onMainGridSelect(rowModel, record) {
-    var sysItem = parseInt(record.get("sysItem")) == 1;
+    const sysItem = parseInt(record.get("sysItem")) == 1;
     Ext.getCmp("buttonEdit").setDisabled(sysItem);
     Ext.getCmp("buttonDelete").setDisabled(sysItem);
   },
 
   onAddMenu() {
-    var me = this;
+    const me = this;
 
-    var form = Ext.create("PSI.MainMenu.MenuItemEditForm", {
+    const form = Ext.create("PSI.MainMenu.MenuItemEditForm", {
       parentForm: me
     });
     form.show();
   },
 
   onEditMenu() {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的菜单项");
       return;
     }
 
-    var menuItem = item[0];
+    const menuItem = item[0];
 
     if (parseInt(menuItem.get("sysItem")) == 1) {
       me.showInfo("不能编辑系统菜单项");
       return;
     }
 
-    var form = Ext.create("PSI.MainMenu.MenuItemEditForm", {
+    const form = Ext.create("PSI.MainMenu.MenuItemEditForm", {
       entity: menuItem,
       parentForm: me
     });
@@ -183,28 +183,27 @@ Ext.define("PSI.MainMenu.MainForm", {
   },
 
   onDeleteMenu() {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的菜单项");
       return;
     }
 
-    var menuItem = item[0];
+    const menuItem = item[0];
 
     if (parseInt(menuItem.get("sysItem")) == 1) {
       me.showInfo("不能删除系统菜单项");
       return;
     }
 
-    var info = "请确认是否删除菜单项: <span style='color:red'>"
-      + menuItem.get("caption") + "</span>";
+    const info = `请确认是否删除菜单项: <span style='color:red'>${menuItem.get("caption")}</span> ?`;
 
-    var confirmFunc = () => {
-      var el = Ext.getBody();
+    const confirmFunc = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/MainMenu/deleteMenuItem"),
         params: {
           id: menuItem.get("id")
@@ -213,7 +212,7 @@ Ext.define("PSI.MainMenu.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
               me.refreshMainGrid();
@@ -230,7 +229,7 @@ Ext.define("PSI.MainMenu.MainForm", {
   },
 
   refreshMainGrid() {
-    var me = this;
+    const me = this;
     me.getMainGrid().getStore().load();
   }
 });
