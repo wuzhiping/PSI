@@ -6,8 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.MainMenu.MainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
-  border: 0,
+  extend: "PSI.AFX.Form.MainForm",
 
   /**
    * 初始化组件
@@ -19,6 +18,9 @@ Ext.define("PSI.MainMenu.MainForm", {
       tbar: me.getToolbarCmp(),
       layout: "border",
       items: [{
+        region: "north", height: 2,
+        border: 0,
+      }, {
         region: "center",
         layout: "fit",
         border: 0,
