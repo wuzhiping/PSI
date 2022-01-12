@@ -11,7 +11,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     var entity = me.getEntity();
@@ -24,7 +24,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
@@ -33,7 +33,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
 
     var btn = {
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
@@ -178,22 +178,17 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     me.editForm = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editForm");
 
     me.editFid = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editFid");
-    me.editCaption = Ext
-      .getCmp("PSI_MainMenu_MenuItemEditForm_editCaption");
-    me.editParentMenu = Ext
-      .getCmp("PSI_MainMenu_MenuItemEditForm_editParentMenu");
-    me.editShowOrder = Ext
-      .getCmp("PSI_MainMenu_MenuItemEditForm_editShowOrder");
-
+    me.editCaption = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editCaption");
+    me.editParentMenu = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editParentMenu");
+    me.editShowOrder = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editShowOrder");
     me.hiddenFid = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_hiddenFid");
-    me.hiddenParentMenuId = Ext
-      .getCmp("PSI_MainMenu_MenuItemEditForm_hiddenParentMenuId");
+    me.hiddenParentMenuId = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_hiddenParentMenuId");
   },
 
   /**
    * 保存
    */
-  onOK: function () {
+  onOK() {
     var me = this;
 
     me.hiddenFid.setValue(me.editFid.getIdValue());
@@ -205,7 +200,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     var sf = {
       url: me.URL("Home/MainMenu/editMenuItem"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         me.__lastId = action.result.id;
 
         el.unmask();
@@ -214,9 +209,9 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
         me.focus();
         me.close();
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        PSI.MsgBox.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
@@ -224,7 +219,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     f.submit(sf);
   },
 
-  onEditFidSpecialKey: function (field, e) {
+  onEditFidSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -233,7 +228,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     }
   },
 
-  onEditCaptionSpecialKey: function (field, e) {
+  onEditCaptionSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -242,7 +237,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     }
   },
 
-  onEditParentMenuSpecialKey: function (field, e) {
+  onEditParentMenuSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -251,7 +246,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     }
   },
 
-  onEditShowOrderSpecialKey: function (field, e) {
+  onEditShowOrderSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -262,11 +257,11 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
@@ -278,7 +273,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     }
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
@@ -298,7 +293,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
       params: {
         id: entity.get("id")
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         el && el.unmask();
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
@@ -316,7 +311,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
   },
 
   // 自定义字段psi_fidfield回调本方法
-  __fidCallbackFunc: function (data, scope) {
+  __fidCallbackFunc(data, scope) {
     var me = scope;
 
     if (!me.editCaption.getValue()) {
