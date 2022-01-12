@@ -51,6 +51,11 @@ class MainMenuController extends PSIBaseController
       redirect(__ROOT__ . "/Home");
     }
 
+    if (substr($fid, 0, 2) == "ct") {
+      // 码表
+      redirect(__ROOT__ . "/Home/CodeTable/run?fid={$fid}");
+    }
+
     switch ($fid) {
       case FIdConst::ABOUT:
         // 修改我的密码
