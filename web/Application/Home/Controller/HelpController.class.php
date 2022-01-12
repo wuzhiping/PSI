@@ -158,6 +158,11 @@ class HelpController extends PSIBaseController
         $bs->insertBizlog("访问实施指南页面：解决方案", "实施指南");
         redirect("/help/dev/lcap/08-05.html");
         break;
+      case "fromShortcut":
+        // 快捷访问
+        $bs->insertBizlog("通过快捷访问进入实施指南页面", "快捷访问");
+        redirect("/help/index.html");
+        break;
       default:
         $bs->insertBizlog("通过主菜单进入实施指南页面", "实施指南");
         redirect("/help/index.html");
