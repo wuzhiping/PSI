@@ -36,17 +36,17 @@ Ext.define("PSI.MainMenu.MainForm", {
 
     return [{
       text: "新增菜单",
-      handler: me.onAddMenu,
+      handler: me._onAddMenu,
       scope: me
     }, {
       text: "编辑菜单",
       id: "buttonEdit",
-      handler: me.onEditMenu,
+      handler: me._onEditMenu,
       scope: me
     }, {
       text: "删除菜单",
       id: "buttonDelete",
-      handler: me.onDeleteMenu,
+      handler: me._onDeleteMenu,
       scope: me
     }, "-", {
       text: "帮助",
@@ -136,7 +136,7 @@ Ext.define("PSI.MainMenu.MainForm", {
       },
       listeners: {
         select: {
-          fn: me.onMainGridSelect,
+          fn: me._onMainGridSelect,
           scope: me
         }
       }
@@ -145,13 +145,13 @@ Ext.define("PSI.MainMenu.MainForm", {
     return me.__mainGrid;
   },
 
-  onMainGridSelect(rowModel, record) {
+  _onMainGridSelect(rowModel, record) {
     const sysItem = parseInt(record.get("sysItem")) == 1;
     Ext.getCmp("buttonEdit").setDisabled(sysItem);
     Ext.getCmp("buttonDelete").setDisabled(sysItem);
   },
 
-  onAddMenu() {
+  _onAddMenu() {
     const me = this;
 
     const form = Ext.create("PSI.MainMenu.MenuItemEditForm", {
@@ -160,7 +160,7 @@ Ext.define("PSI.MainMenu.MainForm", {
     form.show();
   },
 
-  onEditMenu() {
+  _onEditMenu() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -182,7 +182,7 @@ Ext.define("PSI.MainMenu.MainForm", {
     form.show();
   },
 
-  onDeleteMenu() {
+  _onDeleteMenu() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
