@@ -254,7 +254,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
       callback(options, success, response) {
         el && el.unmask();
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = me.decodeJSON(response.responseText);
           me.editFid.setIdValue(data.fid);
           me.editFid.setValue(data.fidName);
           me.editCaption.setValue(data.caption);
