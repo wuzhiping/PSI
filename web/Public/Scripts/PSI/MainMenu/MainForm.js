@@ -11,7 +11,7 @@ Ext.define("PSI.MainMenu.MainForm", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
@@ -31,7 +31,7 @@ Ext.define("PSI.MainMenu.MainForm", {
     me.callParent(arguments);
   },
 
-  getToolbarCmp: function () {
+  getToolbarCmp() {
     var me = this;
 
     return [{
@@ -50,20 +50,20 @@ Ext.define("PSI.MainMenu.MainForm", {
       scope: me
     }, "-", {
       text: "帮助",
-      handler: function () {
+      handler() {
         me.focus();
         const url = me.URL("Home/Help/index?t=mainMenuMaintain")
         window.open(url);
       }
     }, "-", {
       text: "关闭",
-      handler: function () {
+      handler() {
         me.closeWindow();
       }
     }];
   },
 
-  getMainGrid: function () {
+  getMainGrid() {
     var me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
@@ -125,7 +125,7 @@ Ext.define("PSI.MainMenu.MainForm", {
           text: "性质",
           dataIndex: "sysItem",
           width: 120,
-          renderer: function (value) {
+          renderer(value) {
             if (parseInt(value) == 1) {
               return "系统模块";
             } else {
@@ -145,13 +145,13 @@ Ext.define("PSI.MainMenu.MainForm", {
     return me.__mainGrid;
   },
 
-  onMainGridSelect: function (rowModel, record) {
+  onMainGridSelect(rowModel, record) {
     var sysItem = parseInt(record.get("sysItem")) == 1;
     Ext.getCmp("buttonEdit").setDisabled(sysItem);
     Ext.getCmp("buttonDelete").setDisabled(sysItem);
   },
 
-  onAddMenu: function () {
+  onAddMenu() {
     var me = this;
 
     var form = Ext.create("PSI.MainMenu.MenuItemEditForm", {
@@ -160,7 +160,7 @@ Ext.define("PSI.MainMenu.MainForm", {
     form.show();
   },
 
-  onEditMenu: function () {
+  onEditMenu() {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -182,7 +182,7 @@ Ext.define("PSI.MainMenu.MainForm", {
     form.show();
   },
 
-  onDeleteMenu: function () {
+  onDeleteMenu() {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -200,7 +200,7 @@ Ext.define("PSI.MainMenu.MainForm", {
     var info = "请确认是否删除菜单项: <span style='color:red'>"
       + menuItem.get("caption") + "</span>";
 
-    var confirmFunc = function () {
+    var confirmFunc = () => {
       var el = Ext.getBody();
       el.mask("正在删除中...");
 
@@ -209,7 +209,7 @@ Ext.define("PSI.MainMenu.MainForm", {
         params: {
           id: menuItem.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
@@ -229,7 +229,7 @@ Ext.define("PSI.MainMenu.MainForm", {
     me.confirm(info, confirmFunc);
   },
 
-  refreshMainGrid: function () {
+  refreshMainGrid() {
     var me = this;
     me.getMainGrid().getStore().load();
   }
