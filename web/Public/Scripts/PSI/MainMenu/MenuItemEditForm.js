@@ -52,11 +52,11 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
       layout: "border",
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       },
@@ -88,8 +88,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
         items: [{
           xtype: "hidden",
           name: "id",
-          value: entity == null ? null : entity
-            .get("id")
+          value: entity == null ? null : entity.get("id")
         }, {
           id: "PSI_MainMenu_MenuItemEditForm_editFid",
           fieldLabel: "fid",
@@ -100,11 +99,11 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           listeners: {
             specialkey: {
-              fn: me.onEditFidSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
-          callbackFunc: me.__fidCallbackFunc,
+          callbackFunc: me._fidCallbackFunc,
           callbackScope: me
         }, {
           id: "PSI_MainMenu_MenuItemEditForm_hiddenFid",
@@ -119,7 +118,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
           name: "caption",
           listeners: {
             specialkey: {
-              fn: me.onEditCaptionSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -133,7 +132,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           listeners: {
             specialkey: {
-              fn: me.onEditParentMenuSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -153,7 +152,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
           name: "showOrder",
           listeners: {
             specialkey: {
-              fn: me.onEditShowOrderSpecialKey,
+              fn: me._onEditShowOrderSpecialKey,
               scope: me
             }
           }
@@ -172,12 +171,13 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     me.editShowOrder = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editShowOrder");
     me.hiddenFid = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_hiddenFid");
     me.hiddenParentMenuId = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_hiddenParentMenuId");
+    me.__editorList = [me.editFid, me.editCaption, me.editParentMenu, me.editShowOrder];
   },
 
   /**
    * 保存
    */
-  onOK() {
+  _onOK() {
     var me = this;
 
     me.hiddenFid.setValue(me.editFid.getIdValue());
@@ -208,34 +208,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     f.submit(sf);
   },
 
-  onEditFidSpecialKey(field, e) {
-    var me = this;
-
-    if (e.getKey() == e.ENTER) {
-      me.editCaption.focus();
-      me.editCaption.setValue(me.editCaption.getValue());
-    }
-  },
-
-  onEditCaptionSpecialKey(field, e) {
-    var me = this;
-
-    if (e.getKey() == e.ENTER) {
-      me.editParentMenu.focus();
-      me.editParentMenu.setValue(me.editParentMenu.getValue());
-    }
-  },
-
-  onEditParentMenuSpecialKey(field, e) {
-    var me = this;
-
-    if (e.getKey() == e.ENTER) {
-      me.editShowOrder.focus();
-      me.editShowOrder.setValue(me.editShowOrder.getValue());
-    }
-  },
-
-  onEditShowOrderSpecialKey(field, e) {
+  _onLastEditSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -246,14 +219,10 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     }
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  _onWndClose() {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -262,10 +231,10 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     }
   },
 
-  onWndShow() {
+  _onWndShow() {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     me.editFid.focus();
 
@@ -300,7 +269,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
   },
 
   // 自定义字段psi_fidfield回调本方法
-  __fidCallbackFunc(data, scope) {
+  _fidCallbackFunc(data, scope) {
     var me = scope;
 
     if (!me.editCaption.getValue()) {
