@@ -152,7 +152,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
           name: "showOrder",
           listeners: {
             specialkey: {
-              fn: me._onEditShowOrderSpecialKey,
+              fn: me._onLastEditSpecialKey,
               scope: me
             }
           }
