@@ -138,6 +138,10 @@ Ext.define("PSI.MainMenu.MainForm", {
         select: {
           fn: me._onMainGridSelect,
           scope: me
+        },
+        itemdblclick: {
+          fn: me._onEditMenu,
+          scope: me
         }
       }
     });
@@ -171,7 +175,6 @@ Ext.define("PSI.MainMenu.MainForm", {
     const menuItem = item[0];
 
     if (parseInt(menuItem.get("sysItem")) == 1) {
-      me.showInfo("不能编辑系统菜单项");
       return;
     }
 
