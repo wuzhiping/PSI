@@ -569,7 +569,7 @@ class CodeTableDAO extends PSIBaseExDAO
       "fieldLength" => 11,
       "fieldDecimal" => 0,
       "valueFrom" => 2,
-      "valueFromTableName" => "t_sysdict_record_status",
+      "valueFromTableName" => "t_sysdict_ct_record_status",
       "valueFromColName" => "code_int",
       "valueFromColNameDisplay" => "name",
       "mustInput" => 2,
@@ -2059,7 +2059,7 @@ class CodeTableDAO extends PSIBaseExDAO
       }
     }
 
-    $sql .= " from %s cr, t_user u, t_sysdict_record_status r ";
+    $sql .= " from %s cr, t_user u, t_sysdict_ct_record_status r ";
     $queryParams = [];
     $queryParams[] = $tableName;
 
@@ -2171,7 +2171,7 @@ class CodeTableDAO extends PSIBaseExDAO
       }
     }
 
-    $sql .= " from %s cr, t_user u, t_sysdict_record_status r ";
+    $sql .= " from %s cr, t_user u, t_sysdict_ct_record_status r ";
     $queryParams = [];
     $queryParams[] = $tableName;
 
@@ -2232,7 +2232,7 @@ class CodeTableDAO extends PSIBaseExDAO
       }
     }
 
-    $sql .= " from %s cr, t_user u, t_sysdict_record_status r ";
+    $sql .= " from %s cr, t_user u, t_sysdict_ct_record_status r ";
     $queryParams = [];
     $queryParams[] = $tableName;
 
@@ -2688,7 +2688,7 @@ class CodeTableDAO extends PSIBaseExDAO
 
     $result = [];
 
-    $sql = "select name, memo from t_sysdict_editor_xtype order by code";
+    $sql = "select name, memo from t_sysdict_ct_editor_xtype order by code";
     $data = $db->query($sql);
     $xtype = [];
     foreach ($data as $v) {
