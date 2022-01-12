@@ -25,7 +25,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK(false);
       },
       scope: me
     };
@@ -214,7 +214,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     if (e.getKey() == e.ENTER) {
       var f = me.editForm;
       if (f.getForm().isValid()) {
-        me.onOK();
+        me._onOK();
       }
     }
   },
