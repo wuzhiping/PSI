@@ -14,7 +14,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
   },
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     me.__idValue = null;
 
@@ -50,19 +50,19 @@ Ext.define("PSI.MainMenu.ShortcutField", {
   },
 
   onTriggerClick(e) {
-    var me = this;
-    var modelName = "PSIMenuShortcutField";
+    const me = this;
+    const modelName = "PSIMenuShortcutField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "fid", "caption", "py"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    const lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -82,7 +82,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 菜单",
       modal: me.getShowModal(),
       header: false,
@@ -150,9 +150,9 @@ Ext.define("PSI.MainMenu.ShortcutField", {
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("PSI_MainMenu_ShortcutField_editName");
+    const editName = Ext.getCmp("PSI_MainMenu_ShortcutField_editName");
     editName.on("change", () => {
-      var store = me.lookupGrid.getStore();
+      const store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/MainMenu/queryDataForShortcut",
         params: {
@@ -162,7 +162,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
         callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            const data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -172,7 +172,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
             PSI.MsgBox.showInfo("网络错误");
           }
         },
-        scope: this
+        scope: me
       });
 
     }, me);
@@ -181,10 +181,10 @@ Ext.define("PSI.MainMenu.ShortcutField", {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -197,10 +197,10 @@ Ext.define("PSI.MainMenu.ShortcutField", {
         e.preventDefault();
         editName.focus();
       } else if (e.getKey() == e.DOWN) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -224,19 +224,19 @@ Ext.define("PSI.MainMenu.ShortcutField", {
 
   // private
   onOK() {
-    var me = this;
-    var grid = me.lookupGrid;
-    var item = grid.getSelectionModel().getSelection();
+    const me = this;
+    const grid = me.lookupGrid;
+    const item = grid.getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var menuItem = item[0];
+    const menuItem = item[0];
 
     me.wnd.close();
 
-    var fid = menuItem.get("fid");
-    var url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid + "/t/2";
+    const fid = menuItem.get("fid");
+    const url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid + "/t/2";
     if (fid == "-9995") {
       url = PSI.Const.BASE_URL + "Home/Help/index" + "/t/2";
     }
