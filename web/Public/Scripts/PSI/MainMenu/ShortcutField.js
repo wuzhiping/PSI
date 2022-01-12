@@ -236,7 +236,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
     me.wnd.close();
 
     const fid = menuItem.get("fid");
-    const url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid + "/t/2";
+    let url = PSI.Const.BASE_URL + "Home/MainMenu/navigateTo/fid/" + fid + "/t/2";
     if (fid == "-9995") {
       url = PSI.Const.BASE_URL + "Home/Help/index" + "/t/2";
     }
