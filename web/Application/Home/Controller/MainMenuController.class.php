@@ -327,6 +327,8 @@ class MainMenuController extends PSIBaseController
 
   /**
    * 菜单项自定义字段 - 查询数据
+   * 
+   * JS: web\Public\Scripts\PSI\MainMenu\MenuItemField.js
    */
   public function queryDataForMenuItem()
   {
