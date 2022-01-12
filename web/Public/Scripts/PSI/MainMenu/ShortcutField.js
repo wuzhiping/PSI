@@ -22,7 +22,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (me.readOnly) {
         return;
       }
@@ -40,8 +40,8 @@ Ext.define("PSI.MainMenu.ShortcutField", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -137,21 +137,21 @@ Ext.define("PSI.MainMenu.ShortcutField", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
 
     if (!me.getShowModal()) {
-      wnd.on("deactivate", function () {
+      wnd.on("deactivate", () => {
         wnd.close();
       });
     }
     me.wnd = wnd;
 
     var editName = Ext.getCmp("PSI_MainMenu_ShortcutField_editName");
-    editName.on("change", function () {
+    editName.on("change", () => {
       var store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/MainMenu/queryDataForShortcut",
@@ -159,11 +159,10 @@ Ext.define("PSI.MainMenu.ShortcutField", {
           queryKey: editName.getValue()
         },
         method: "POST",
-        callback: function (opt, success, response) {
+        callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -178,7 +177,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
 
     }, me);
 
-    editName.on("specialkey", function (field, e) {
+    editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
@@ -216,7 +215,7 @@ Ext.define("PSI.MainMenu.ShortcutField", {
       }
     }, me);
 
-    me.wnd.on("show", function () {
+    me.wnd.on("show", () => {
       editName.focus();
       editName.fireEvent("change");
     }, me);
