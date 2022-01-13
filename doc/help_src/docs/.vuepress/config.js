@@ -124,6 +124,9 @@ module.exports = {
           text: '主菜单维护',
           link: '/dev/lcap/08-01.html'
         }, {
+          text: '码表设置',
+          link: '/dev/lcap/08-03.html'
+        }, {
           text: '系统数据字典',
           link: '/dev/lcap/08-02.html'
         }]
