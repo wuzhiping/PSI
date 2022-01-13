@@ -12,7 +12,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     metaData: null
   },
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     var md = me.getMetaData();
@@ -26,7 +26,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
       var btn = {
         text: "保存并继续新增",
         formBind: true,
-        handler: function () {
+        handler() {
           me.onOK(true);
         },
         scope: me
@@ -39,7 +39,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
@@ -48,7 +48,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
 
     var btn = {
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
@@ -126,7 +126,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     me.editForm = Ext.getCmp("PSI_CodeTable_RuntimeEditForm_editForm");
   },
 
-  getEditItems: function () {
+  getEditItems() {
     var me = this;
 
     var entity = me.getEntity();
@@ -256,7 +256,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
   /**
    * 保存
    */
-  onOK: function (thenAdd) {
+  onOK(thenAdd) {
     var me = this;
 
     var md = me.getMetaData();
@@ -282,7 +282,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     var sf = {
       url: me.URL("Home/CodeTable/editCodeTableRecord"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         me.__lastId = action.result.id;
 
         el && el.unmask();
@@ -295,9 +295,9 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
           me.close();
         }
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        PSI.MsgBox.showInfo(action.result.msg, () => {
           me.focusOnFirstEdit();
         });
       }
@@ -305,7 +305,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     f.submit(sf);
   },
 
-  clearEdit: function () {
+  clearEdit() {
     var me = this;
     var md = me.getMetaData();
     var autoCodeLength = parseInt(md.autoCodeLength);
@@ -333,11 +333,11 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     me.focusOnFirstEdit();
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
@@ -349,7 +349,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     }
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
     var md = me.getMetaData();
 
@@ -364,7 +364,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
         fid: md.fid
       },
       method: "POST",
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
           me.setDataForEdit(data);
@@ -375,7 +375,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     });
   },
 
-  setDataForEdit: function (data) {
+  setDataForEdit(data) {
     var me = this;
 
     if (me.adding) {
@@ -419,7 +419,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     me.focusOnFirstEdit();
   },
 
-  focusOnFirstEdit: function () {
+  focusOnFirstEdit() {
     var me = this;
     var md = me.getMetaData();
     var autoCodeLength = parseInt(md.autoCodeLength);
@@ -449,13 +449,13 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     }
   },
 
-  buildEditId: function (fieldName) {
+  buildEditId(fieldName) {
     var me = this;
     var md = me.getMetaData();
     return "PSI_CodeTable_RuntimeEditForm_edit_" + md.fid + "_" + fieldName;
   },
 
-  onEditSpecialKey: function (field, e) {
+  onEditSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() === e.ENTER) {
