@@ -146,10 +146,10 @@ class HelpController extends PSIBaseController
         $bs->insertBizlog("访问实施指南页面：系统数据字典", "实施指南");
         redirect("/help/dev/lcap/08-02.html");
         break;
-        // case "codetable":
-        //   $bs->insertBizlog("访问实施指南页面：码表设置", "实施指南");
-        //   redirect("/help/08-03.html");
-        //   break;
+      case "codetable":
+        $bs->insertBizlog("访问实施指南页面：码表设置", "实施指南");
+        redirect("/help/dev/lcap/08-03.html");
+        break;
         // case "formview":
         //   $bs->insertBizlog("访问实施指南页面：视图开发助手", "实施指南");
         //   redirect("/help/08-04.html");
