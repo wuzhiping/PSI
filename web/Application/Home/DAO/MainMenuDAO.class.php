@@ -246,7 +246,6 @@ class MainMenuDAO extends PSIBaseExDAO
     $caption = $params["caption"];
     $parentMenuId = $params["parentMenuId"];
     $showOrder = intval($params["showOrder"]);
-    $isDemo = $params["isDemo"];
     $py = $params["py"];
 
     // 检查fid
@@ -270,13 +269,6 @@ class MainMenuDAO extends PSIBaseExDAO
     $cnt = $data[0]["cnt"];
     if ($cnt != 1) {
       return $this->bad("上级菜单不存在");
-    }
-
-    if ($isDemo) {
-      // 在演示环境中，菜单只能挂在【LowCode演示】下
-      if ($parentMenuId != "13") {
-        return $this->bad("在演示环境中，自定义菜单只能设置在[LowCode演示]菜单项下");
-      }
     }
 
     // 检查该菜单项是否已经设置过了
@@ -393,7 +385,6 @@ class MainMenuDAO extends PSIBaseExDAO
     $caption = $params["caption"];
     $parentMenuId = $params["parentMenuId"];
     $showOrder = intval($params["showOrder"]);
-    $isDemo = $params["isDemo"];
     $py = $params["py"];
 
     // 检查fid
@@ -417,13 +408,6 @@ class MainMenuDAO extends PSIBaseExDAO
     $cnt = $data[0]["cnt"];
     if ($cnt != 1) {
       return $this->bad("上级菜单不存在");
-    }
-
-    if ($isDemo) {
-      // 在演示环境中，菜单只能挂在【LowCode演示】下
-      if ($parentMenuId != "13") {
-        return $this->bad("在演示环境中，自定义菜单只能设置在[LowCode演示]菜单项下");
-      }
     }
 
     $sql = "update t_menu_item_plus

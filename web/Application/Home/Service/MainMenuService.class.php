@@ -196,7 +196,11 @@ class MainMenuService extends PSIBaseExService
       return $this->notOnlineError();
     }
 
-    $params["isDemo"] = $this->isDemo();
+    $id = $params["id"];
+    if ($this->isDemo()) {
+      $n = $id ? "编辑" : "新建";
+      return $this->bad("演示环境下，不能{$n}主菜单");
+    }
 
     $pyService = new PinyinService();
 
@@ -204,7 +208,6 @@ class MainMenuService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $id = $params["id"];
     $caption = $params["caption"];
     $py = $pyService->toPY($caption);
     $params["py"] = $py;
@@ -248,6 +251,10 @@ class MainMenuService extends PSIBaseExService
   {
     if ($this->isNotOnline()) {
       return $this->notOnlineError();
+    }
+
+    if ($this->isDemo()) {
+      return $this->bad("演示环境下，不能删除主菜单");
     }
 
     $db = $this->db();
