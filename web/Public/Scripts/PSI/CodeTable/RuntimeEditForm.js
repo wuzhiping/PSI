@@ -286,6 +286,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
         el && el.unmask();
 
         me.tip("数据保存成功");
+        me.focus();
         if (thenAdd) {
           me.clearEdit();
         } else {
