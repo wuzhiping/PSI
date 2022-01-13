@@ -1616,6 +1616,91 @@ CREATE TABLE IF NOT EXISTS `t_code_table_buttons` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `t_form_category`;
+CREATE TABLE IF NOT EXISTS `t_form_category` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `parent_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_form`;
+CREATE TABLE IF NOT EXISTS `t_form` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `name` varchar(1000) NOT NULL,
+  `category_id` varchar(255) NOT NULL,
+  `sys_form` int(11) NOT NULL DEFAULT 0,
+  `md_version` int(11) NOT NULL DEFAULT 1,
+  `memo` varchar(1000) DEFAULT NULL,
+  `table_name` varchar(255) NOT NULL,
+  `fid` varchar(255) DEFAULT NULL,
+  `module_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_form_cols`;
+CREATE TABLE IF NOT EXISTS `t_form_cols` (
+  `id` varchar(255) NOT NULL,
+  `form_id` varchar(255) NOT NULL,
+  `caption` varchar(255) NOT NULL,
+  `db_field_name` varchar(255) NOT NULL,
+  `db_field_type` varchar(255) NOT NULL,
+  `db_field_length` int(11) NOT NULL,
+  `db_field_decimal` int(11) NOT NULL,
+  `show_order` int(11) NOT NULL,
+  `col_span` int(11) NOT NULL,
+  `value_from` int(11) DEFAULT NULL,
+  `value_from_table_name` varchar(255) DEFAULT NULL,
+  `value_from_col_name` varchar(255) DEFAULT NULL,
+  `value_from_col_name_display` varchar(255) DEFAULT NULL,
+  `must_input` int(11) DEFAULT 1,
+  `sys_col` int(11) DEFAULT 1,
+  `is_visible` int(11) DEFAULT 1,
+  `note` varchar(1000) DEFAULT NULL,
+  `editor_xtype` varchar(255) NOT NULL DEFAULT 'textfield',
+  `data_index` varchar(255) DEFAULT NULL,
+  `width_in_view` int(11) NOT NULL DEFAULT 120,
+  `show_order_in_view` int(11) NOT NULL DEFAULT -1,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_form_detail`;
+CREATE TABLE IF NOT EXISTS `t_form_detail` (
+  `id` varchar(255) NOT NULL,
+  `form_id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `table_name` varchar(255) NOT NULL,
+  `fk_name` varchar(255) NOT NULL,
+  `show_order` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_form_detail_cols`;
+CREATE TABLE IF NOT EXISTS `t_form_detail_cols` (
+  `id` varchar(255) NOT NULL,
+  `detail_id` varchar(255) NOT NULL,
+  `caption` varchar(255) NOT NULL,
+  `db_field_name` varchar(255) NOT NULL,
+  `db_field_type` varchar(255) NOT NULL,
+  `db_field_length` int(11) NOT NULL,
+  `db_field_decimal` int(11) NOT NULL,
+  `show_order` int(11) NOT NULL,
+  `width_in_view` int(11) NOT NULL,
+  `value_from` int(11) DEFAULT NULL,
+  `value_from_table_name` varchar(255) DEFAULT NULL,
+  `value_from_col_name` varchar(255) DEFAULT NULL,
+  `value_from_col_name_display` varchar(255) DEFAULT NULL,
+  `must_input` int(11) DEFAULT 1,
+  `sys_col` int(11) DEFAULT 1,
+  `is_visible` int(11) DEFAULT 1,
+  `note` varchar(1000) DEFAULT NULL,
+  `editor_xtype` varchar(255) NOT NULL DEFAULT 'textfield',
+  `data_index` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
