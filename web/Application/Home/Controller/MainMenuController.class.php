@@ -287,6 +287,8 @@ class MainMenuController extends PSIBaseController
   /**
    * 返回生成主菜单的JSON数据
    * 目前只能处理到生成三级菜单的情况
+   * 
+   * JS: web\Public\Scripts\PSI\App.js
    */
   public function mainMenuItems()
   {
