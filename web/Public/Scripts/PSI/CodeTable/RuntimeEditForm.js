@@ -13,29 +13,27 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
   },
 
   initComponent() {
-    var me = this;
+    const me = this;
 
-    var md = me.getMetaData();
+    const md = me.getMetaData();
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
 
     me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
     if (!entity) {
-      var btn = {
+      buttons.push({
         text: "保存并继续新增",
         formBind: true,
         handler() {
           me.onOK(true);
         },
         scope: me
-      };
-
-      buttons.push(btn);
+      });
     }
 
-    var btn = {
+    buttons.push({
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
@@ -43,36 +41,33 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
         me.onOK(false);
       },
       scope: me
-    };
-    buttons.push(btn);
+    });
 
-    var btn = {
+    buttons.push(btn = {
       text: entity == null ? "关闭" : "取消",
       handler() {
         me.close();
       },
       scope: me
-    };
-    buttons.push(btn);
+    });
 
     // 计算Form的高度
-    var sumColSpan = 0;
-    var md = me.getMetaData();
-    for (var i = 0; i < md.cols.length; i++) {
-      var colMd = md.cols[i];
+    let sumColSpan = 0;
+    for (let i = 0; i < md.cols.length; i++) {
+      const colMd = md.cols[i];
       if (colMd.isVisible) {
         sumColSpan += parseInt(colMd.colSpan);
       }
     }
-    var rowCount = Math.ceil(sumColSpan / md.editColCnt);
-    var formHeight = 190 + rowCount * 30;
+    const rowCount = Math.ceil(sumColSpan / md.editColCnt);
+    const formHeight = 190 + rowCount * 30;
 
     // 每个字段的编辑器宽度
-    var fieldWidth = 370;
-    var formWidth = fieldWidth * md.editColCnt + 50;
+    const fieldWidth = 370;
+    const formWidth = fieldWidth * md.editColCnt + 50;
 
-    var t = entity == null ? "新增" + md.name : "编辑" + md.name;
-    var logoHtml = me.genLogoHtml(entity, t);
+    const t = entity == null ? "新增" + md.name : "编辑" + md.name;
+    const logoHtml = me.genLogoHtml(entity, t);
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -127,19 +122,19 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
   },
 
   getEditItems() {
-    var me = this;
+    const me = this;
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
 
-    var md = me.getMetaData();
+    const md = me.getMetaData();
     if (!md) {
       return [];
     }
 
     // 自动编码长度
-    var autoCodeLength = parseInt(md.autoCodeLength);
+    const autoCodeLength = parseInt(md.autoCodeLength);
 
-    var result = [{
+    const result = [{
       xtype: "hidden",
       name: "id",
       value: entity == null ? null : entity.get("id")
@@ -149,13 +144,13 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
       value: md.fid
     }];
 
-    var colsMd = md.cols;
-    var colsCount = colsMd.length;
-    for (var i = 0; i < colsCount; i++) {
-      var colMd = colsMd[i];
+    const colsMd = md.cols;
+    const colsCount = colsMd.length;
+    for (let i = 0; i < colsCount; i++) {
+      const colMd = colsMd[i];
 
       if (colMd.isVisible) {
-        var item = {
+        const item = {
           fieldLabel: colMd.caption,
           xtype: colMd.editorXtype,
           name: colMd.fieldName,
@@ -183,7 +178,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
 
         if (md.treeView && colMd.fieldName == "parent_id") {
           // hiddenParentId用来在提交Form的时候向后台传递上级id
-          var hiddenParentId = Ext.create("Ext.form.field.Hidden", {
+          const hiddenParentId = Ext.create("Ext.form.field.Hidden", {
             id: me.buildEditId("parent_id"),
             name: "parent_id"
           });
@@ -200,7 +195,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
         if (parseInt(colMd.valueFrom) == 2) {
           // 引用系统数据字典
           // TODO 当前是用combo来展示数据，当字典数据量大的时候是不合适的，需要进一步优化
-          var store = Ext.create("Ext.data.ArrayStore", {
+          const store = Ext.create("Ext.data.ArrayStore", {
             fields: [colMd.valueFromColName, "name"],
             data: []
           });
@@ -217,7 +212,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
         } else if (parseInt(colMd.valueFrom) == 3) {
           // 引用其他码表
           // hiddenId用来在提交Form的时候向后台传递码表id
-          var hiddenId = Ext.create("Ext.form.field.Hidden", {
+          const hiddenId = Ext.create("Ext.form.field.Hidden", {
             id: me.buildEditId(colMd.fieldName + "_hidden_id"),
             name: colMd.fieldName
           });
@@ -257,29 +252,29 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
    * 保存
    */
   onOK(thenAdd) {
-    var me = this;
+    const me = this;
 
-    var md = me.getMetaData();
-    var colsMd = md.cols;
-    var colsCount = colsMd.length;
-    for (var i = 0; i < colsCount; i++) {
-      var colMd = colsMd[i];
+    const md = me.getMetaData();
+    const colsMd = md.cols;
+    const colsCount = colsMd.length;
+    for (let i = 0; i < colsCount; i++) {
+      const colMd = colsMd[i];
       if (parseInt(colMd.valueFrom) == 3) {
         // 当前字段是引用其他码表，需要赋值id给对应的hidden
-        var fieldName = colMd.fieldName;
-        var hidden = Ext.getCmp(me.buildEditId(fieldName + "_hidden_id"));
-        var editor = Ext.getCmp(me.buildEditId(fieldName));
+        const fieldName = colMd.fieldName;
+        const hidden = Ext.getCmp(me.buildEditId(fieldName + "_hidden_id"));
+        const editor = Ext.getCmp(me.buildEditId(fieldName));
         hidden.setValue(editor.getIdValue());
       }
     }
 
-    var f = me.editForm;
+    const f = me.editForm;
     if (!f.isValid()) {
       return;
     }
-    var el = f.getEl();
+    const el = f.getEl();
     el && el.mask(PSI.Const.SAVING);
-    var sf = {
+    const sf = {
       url: me.URL("Home/CodeTable/editCodeTableRecord"),
       method: "POST",
       success(form, action) {
@@ -305,19 +300,19 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
   },
 
   clearEdit() {
-    var me = this;
-    var md = me.getMetaData();
-    var autoCodeLength = parseInt(md.autoCodeLength);
+    const me = this;
+    const md = me.getMetaData();
+    const autoCodeLength = parseInt(md.autoCodeLength);
 
-    for (var i = 0; i < md.cols.length; i++) {
-      var colMd = md.cols[i];
+    for (let i = 0; i < md.cols.length; i++) {
+      const colMd = md.cols[i];
       if (colMd.fieldName == "code" && autoCodeLength > 0) {
         continue;
       }
 
       if (colMd.isVisible) {
-        var id = me.buildEditId(colMd.fieldName);
-        var edit = Ext.getCmp(id);
+        const id = me.buildEditId(colMd.fieldName);
+        const edit = Ext.getCmp(id);
         if (edit) {
           if (parseInt(colMd.valueFrom) == 2) {
             edit.setValue(edit.getStore().getAt(0));
@@ -333,24 +328,25 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().refreshMainGrid(me.__lastId);
+      const parentForm = me.getParentForm();
+      if (parentForm) {
+        parentForm.refreshMainGrid.apply(parentForm, [me.__lastId]);
       }
     }
   },
 
   onWndShow() {
-    var me = this;
-    var md = me.getMetaData();
+    const me = this;
+    const md = me.getMetaData();
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
-    var el = me.getEl();
+    const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/CodeTable/recordInfo"),
@@ -360,7 +356,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
       },
       callback(options, success, response) {
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           me.setDataForEdit(data);
         }
 
@@ -370,7 +366,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
   },
 
   setDataForEdit(data) {
-    var me = this;
+    const me = this;
 
     if (me.adding) {
       me.focusOnFirstEdit();
@@ -381,14 +377,14 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
       return;
     }
 
-    var md = me.getMetaData();
-    for (var i = 0; i < md.cols.length; i++) {
-      var colMd = md.cols[i];
+    const md = me.getMetaData();
+    for (let i = 0; i < md.cols.length; i++) {
+      const colMd = md.cols[i];
       if (colMd.isVisible) {
-        var fieldName = colMd.fieldName;
-        var id = me.buildEditId(fieldName);
+        const fieldName = colMd.fieldName;
+        let id = me.buildEditId(fieldName);
 
-        var edit = Ext.getCmp(id);
+        let edit = Ext.getCmp(id);
         if (edit) {
           if (fieldName == "parent_id") {
             id = me.buildEditId("parent_id_value");
@@ -414,13 +410,13 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
   },
 
   focusOnFirstEdit() {
-    var me = this;
-    var md = me.getMetaData();
-    var autoCodeLength = parseInt(md.autoCodeLength);
+    const me = this;
+    const md = me.getMetaData();
+    const autoCodeLength = parseInt(md.autoCodeLength);
     if (autoCodeLength > 0) {
       // 自动编码的时候，把焦点设置在name字段上
-      var id = me.buildEditId("name");
-      var edit = Ext.getCmp(id);
+      const id = me.buildEditId("name");
+      const edit = Ext.getCmp(id);
       if (edit) {
         edit.focus();
       }
@@ -429,11 +425,11 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     }
 
     // 把输入焦点设置为第一个可见的输入框
-    for (var i = 0; i < md.cols.length; i++) {
-      var colMd = md.cols[i];
+    for (let i = 0; i < md.cols.length; i++) {
+      const colMd = md.cols[i];
       if (colMd.isVisible) {
-        var id = me.buildEditId(colMd.fieldName);
-        var edit = Ext.getCmp(id);
+        const id = me.buildEditId(colMd.fieldName);
+        const edit = Ext.getCmp(id);
         if (edit) {
           edit.focus();
         }
@@ -444,21 +440,21 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
   },
 
   buildEditId(fieldName) {
-    var me = this;
-    var md = me.getMetaData();
+    const me = this;
+    const md = me.getMetaData();
     return "PSI_CodeTable_RuntimeEditForm_edit_" + md.fid + "_" + fieldName;
   },
 
   onEditSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() === e.ENTER) {
-      var id = field.getId();
+      const id = field.getId();
 
-      var md = me.getMetaData();
-      var currentEditIndex = -1;
-      for (var i = 0; i < md.cols.length; i++) {
-        var colMd = md.cols[i];
+      const md = me.getMetaData();
+      let currentEditIndex = -1;
+      for (let i = 0; i < md.cols.length; i++) {
+        const colMd = md.cols[i];
         if (id == me.buildEditId(colMd.fieldName)) {
           currentEditIndex = i;
 
@@ -472,8 +468,8 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
         }
 
         if (currentEditIndex > -1) {
-          var nextEditId = me.buildEditId(colMd.fieldName);
-          var edit = Ext.getCmp(nextEditId);
+          const nextEditId = me.buildEditId(colMd.fieldName);
+          const edit = Ext.getCmp(nextEditId);
           if (edit) {
             me.setFocusAndCursorPosToLast(edit);
             return;
