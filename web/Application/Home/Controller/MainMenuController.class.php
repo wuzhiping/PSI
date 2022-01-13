@@ -301,6 +301,8 @@ class MainMenuController extends PSIBaseController
 
   /**
    * 常用功能
+   * 
+   * JS: web\Public\Scripts\PSI\App.js
    */
   public function recentFid()
   {
@@ -314,6 +316,8 @@ class MainMenuController extends PSIBaseController
 
   /**
    * Fid自定义字段 - 查询数据
+   * 
+   * JS: web\Public\Scripts\PSI\Fid\FidField.js
    */
   public function queryDataForFid()
   {
@@ -346,6 +350,8 @@ class MainMenuController extends PSIBaseController
 
   /**
    * 菜单项快捷访问自定义字段 - 查询数据
+   * 
+   * JS: web\Public\Scripts\PSI\MainMenu\ShortcutField.js
    */
   public function queryDataForShortcut()
   {
@@ -381,6 +387,8 @@ class MainMenuController extends PSIBaseController
 
   /**
    * 查询所有的主菜单项 - 主菜单维护模块中使用
+   * 
+   * JS: web\Public\Scripts\PSI\MainMenu\MainForm.js
    */
   public function allMenuItemsForMaintain()
   {
@@ -398,6 +406,8 @@ class MainMenuController extends PSIBaseController
 
   /**
    * 主菜单维护 - 新增或编辑菜单项
+   * 
+   * JS: web\Public\Scripts\PSI\MainMenu\MenuItemEditForm.js
    */
   public function editMenuItem()
   {
@@ -417,6 +427,8 @@ class MainMenuController extends PSIBaseController
 
   /**
    * 删除菜单项
+   * 
+   * JS: web\Public\Scripts\PSI\MainMenu\MainForm.js
    */
   public function deleteMenuItem()
   {
@@ -432,6 +444,8 @@ class MainMenuController extends PSIBaseController
 
   /**
    * 某个菜单项的详情信息
+   * 
+   * JS: web\Public\Scripts\PSI\MainMenu\MenuItemEditForm.js
    */
   public function menuItemInfo()
   {
