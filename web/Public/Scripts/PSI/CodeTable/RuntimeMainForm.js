@@ -6,8 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.CodeTable.RuntimeMainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
-  border: 0,
+  extend: "PSI.AFX.Form.MainForm",
 
   config: {
     fid: null,
