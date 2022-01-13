@@ -15,7 +15,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: {
@@ -45,8 +45,8 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   fetchMeatData() {
-    var me = this;
-    var el = me.getEl();
+    const me = this;
+    const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/CodeTable/getMetaDataForRuntime"),
@@ -55,7 +55,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
       },
       callback(options, success, response) {
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
 
           me.__md = data;
 
@@ -68,14 +68,14 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   initUI() {
-    var me = this;
+    const me = this;
 
-    var md = me.getMetaData();
+    const md = me.getMetaData();
     if (!md) {
       return;
     }
 
-    var name = md.name;
+    const name = md.name;
     if (!name) {
       return;
     }
@@ -85,10 +85,11 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     me.__panelMain.add(me.__mainGrid);
 
     // 按钮
-    var toolBar = me.__toolBar;
-    var buttons = md.buttons;
-    for (var i = 0; i < buttons.length; i++) {
-      var btn = buttons[i];
+    const toolBar = me.__toolBar;
+    const buttons = md.buttons;
+    // TODO 可以用forEach
+    for (let i = 0; i < buttons.length; i++) {
+      const btn = buttons[i];
       if (btn.caption == "-") {
         toolBar.add("-");
       } else {
@@ -101,7 +102,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     }
 
     if (md.viewPaging == "1") {
-      var store = me.getMainGrid().getStore();
+      const store = me.getMainGrid().getStore();
 
       toolBar.add(["-", {
         cls: "PSI-toolbox",
@@ -164,17 +165,18 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   createMainGrid(md) {
-    var me = this;
-    var modelName = "PSICodeTableRuntime_" + md.tableName;
+    const me = this;
+    const modelName = "PSICodeTableRuntime_" + md.tableName;
 
-    var fields = ["id", "record_status_code_int"];
-    var cols = [];
-    var colsLength = md.colsForView.length;
-    for (var i = 0; i < colsLength; i++) {
-      var mdCol = md.colsForView[i];
+    const fields = ["id", "record_status_code_int"];
+    const cols = [];
+    const colsLength = md.colsForView.length;
+    // TODO 可以用forEach
+    for (let i = 0; i < colsLength; i++) {
+      const mdCol = md.colsForView[i];
 
       fields.push(mdCol.fieldName);
-      var col = {
+      const col = {
         header: mdCol.caption,
         dataIndex: mdCol.fieldName,
         width: parseInt(mdCol.widthInView),
@@ -212,7 +214,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
       fields: fields
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -251,9 +253,9 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   getQueryParam() {
-    var me = this;
+    const me = this;
 
-    var result = {
+    const result = {
       fid: me.getMetaData().fid
     };
 
@@ -261,12 +263,12 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   gotoMainGridRecord(id) {
-    var me = this;
-    var grid = me.getMainGrid();
+    const me = this;
+    const grid = me.getMainGrid();
     grid.getSelectionModel().deselectAll();
-    var store = grid.getStore();
+    const store = grid.getStore();
     if (id) {
-      var r = store.findExact("id", id);
+      const r = store.findExact("id", id);
       if (r != -1) {
         grid.getSelectionModel().select(r);
       } else {
@@ -279,14 +281,15 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
 
 
   createMainTreeGrid(md) {
-    var me = this;
-    var modelName = "PSICodeTableRuntime_" + md.tableName;
+    const me = this;
+    const modelName = "PSICodeTableRuntime_" + md.tableName;
 
-    var fields = ["id", "leaf", "children"];
-    var cols = [];
-    var colsLength = md.colsForView.length;
-    for (var i = 0; i < colsLength; i++) {
-      var mdCol = md.colsForView[i];
+    const fields = ["id", "leaf", "children"];
+    const cols = [];
+    const colsLength = md.colsForView.length;
+    // TODO 改为forEach
+    for (let i = 0; i < colsLength; i++) {
+      const mdCol = md.colsForView[i];
 
       fields.push(mdCol.fieldName);
 
@@ -315,7 +318,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
       fields: fields
     });
 
-    var store = new Ext.data.TreeStore({
+    const store = new Ext.data.TreeStore({
       model: modelName,
       autoLoad: false,
       root: {
@@ -354,25 +357,25 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   onTreeStoreLoad() {
-    var me = this;
-    var md = me.getMetaData();
+    const me = this;
+    const md = me.getMetaData();
     if (!md.treeView) {
       return;
     }
 
-    var id = me.__lastRecordId;
-    var grid = me.getMainGrid();
+    const id = me.__lastRecordId;
+    const grid = me.getMainGrid();
     if (id) {
       // 编辑后刷新记录，然后定位到该记录
-      var node = grid.getStore().getNodeById(id);
+      const node = grid.getStore().getNodeById(id);
       if (node) {
         grid.getSelectionModel().select(node);
       }
     } else {
       // 首次进入模块
-      var root = grid.getRootNode();
+      const root = grid.getRootNode();
       if (root) {
-        var node = root.firstChild;
+        const node = root.firstChild;
         if (node) {
           grid.getSelectionModel().select(node);
         }
@@ -384,9 +387,9 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   // onAddCodeTableRecord这个是固定的名称
   // 和表t_code_table_buttons的on_click_frontend对应
   onAddCodeTableRecord() {
-    var me = this;
+    const me = this;
 
-    var form = Ext.create("PSI.CodeTable.RuntimeEditForm", {
+    const form = Ext.create("PSI.CodeTable.RuntimeEditForm", {
       parentForm: me,
       metaData: me.getMetaData()
     });
@@ -396,17 +399,17 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
 
   // 编辑码表记录
   onEditCodeTableRecord() {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的码表记录");
       return;
     }
 
-    var entity = item[0];
-    var form = Ext.create("PSI.CodeTable.RuntimeEditForm", {
+    const entity = item[0];
+    const form = Ext.create("PSI.CodeTable.RuntimeEditForm", {
       parentForm: me,
-      entity: entity,
+      entity,
       metaData: me.getMetaData()
     });
 
@@ -415,18 +418,18 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
 
   // 根据当前id查找之前的id，用于删除后定位
   getPreIndexById(id) {
-    var me = this;
-    var md = me.getMetaData();
+    const me = this;
+    const md = me.getMetaData();
     if (md.treeView) {
-      var store = me.getMainGrid().getStore();
-      var currentNode = store.getNodeById(id);
+      const store = me.getMainGrid().getStore();
+      const currentNode = store.getNodeById(id);
       if (currentNode) {
-        var preNode = currentNode.previousSibling;
+        const preNode = currentNode.previousSibling;
         if (preNode) {
           return preNode.data.id;
         } else {
           // 没有同级node，就找上级
-          var parentNode = currentNode.parentNode;
+          const parentNode = currentNode.parentNode;
           if (parentNode) {
             return parentNode.data.id;
           } else {
@@ -436,11 +439,11 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
         }
       }
     } else {
-      var store = me.getMainGrid().getStore();
-      var index = store.findExact("id", id) - 1;
+      const store = me.getMainGrid().getStore();
+      const index = store.findExact("id", id) - 1;
 
-      var result = null;
-      var preEntity = store.getAt(index);
+      let result = null;
+      const preEntity = store.getAt(index);
       if (preEntity) {
         result = preEntity.get("id");
       }
@@ -454,35 +457,33 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
 
   // 删除码表记录
   onDeleteCodeTableRecord() {
-    var me = this;
-    var md = me.getMetaData();
-    var name = md.name;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const md = me.getMetaData();
+    const name = md.name;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的" + name);
       return;
     }
 
-    var entity = item[0];
-    var info = "请确认是否删除" + name + " <span style='color:red'>" + entity.get("name")
-      + "</span> ?";
+    const entity = item[0];
+    const info = `请确认是否删除${name} <span style='color:red'>${entity.get("name")}</span> ?`;
 
-    var preIndex = me.getPreIndexById(entity.get("id"));
+    const preIndex = me.getPreIndexById(entity.get("id"));
 
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el && el.mask(PSI.Const.LOADING);
-      var r = {
+      const r = {
         url: me.URL("Home/CodeTable/deleteCodeTableRecord"),
         params: {
           id: entity.get("id"),
           fid: md.fid
         },
-        method: "POST",
         callback(options, success, response) {
           el && el.unmask();
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
               me.refreshMainGrid(preIndex);
@@ -502,13 +503,13 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   onRefreshCodeTableRecord() {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
-    var id = null;
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
+    let id = null;
     if (item == null || item.length != 1) {
       id = me.__lastRecrodId;
     } else {
-      var entity = item[0];
+      const entity = item[0];
       id = entity.get("id");
     }
 
@@ -520,52 +521,52 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   refreshMainGrid(id) {
-    var me = this;
+    const me = this;
     me.__lastId = id;
 
-    var md = me.getMetaData();
+    const md = me.getMetaData();
     if (md.treeView) {
-      var store = me.getMainGrid().getStore();
+      const store = me.getMainGrid().getStore();
       store.reload();
       store.setRootNode({
         expanded: true
       });
     } else {
-      var store = me.getMainGrid().getStore();
+      const store = me.getMainGrid().getStore();
       store.reload();
     }
   },
 
   // 保存列视图布局
   onSaveViewLayout() {
-    var me = this;
-    var md = me.getMetaData();
+    const me = this;
+    const md = me.getMetaData();
 
-    var grid = me.getMainGrid();
-    var cols = grid.columnManager.columns;
-    var layout = [];
-    for (var i = 0; i < cols.length; i++) {
-      var c = cols[i];
+    const grid = me.getMainGrid();
+    const cols = grid.columnManager.columns;
+    const layout = [];
+    // TODO 改为forEach
+    for (let i = 0; i < cols.length; i++) {
+      const c = cols[i];
       layout.push({ dataIndex: c.dataIndex, width: c.width });
     }
-    var json = Ext.JSON.encode(layout);
+    const json = me.encodeJSON(layout);
 
-    var info = "请确认是否保存视图布局?";
+    const info = "请确认是否保存视图布局?";
 
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el && el.mask(PSI.Const.LOADING);
-      var r = {
+      const r = {
         url: me.URL("Home/CodeTable/saveColViewLayout"),
         params: {
           fid: md.fid,
           json: json
         },
-        method: "POST",
         callback(options, success, response) {
           el && el.unmask();
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成操作");
             } else {
