@@ -38,6 +38,11 @@ class CodeTableService extends PSIBaseExService
     }
 
     $id = $params["id"];
+    if ($this->isDemo()) {
+      $n = $id ? "编辑" : "新建";
+      return $this->bad("演示环境下，不能{$n}码表分类");
+    }
+
     $name = $params["name"];
 
     $db = $this->db();
@@ -82,6 +87,10 @@ class CodeTableService extends PSIBaseExService
   {
     if ($this->isNotOnline()) {
       return $this->notOnlineError();
+    }
+
+    if ($this->isDemo()) {
+      return $this->bad("演示环境下，不能删除码表分类");
     }
 
     $db = $this->db();
