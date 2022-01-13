@@ -16,7 +16,7 @@
 
 - 吃自己的狗食（eat your own dog food，是一种比喻的说法。对于软件开发公司而言，意思就是自己要尽量多用自己开发的软件），PSI的新的业务模块也使用低代码应用平台来构建。
 
-<span style='color:red'><strong>PSI低代码应用平台特别强调数据库的建模，错误的数据库建模到会导致开发越快偏差越远</strong></span>
+<span style='color:red'><strong>PSI低代码应用平台特别强调数据库的建模，错误的数据库建模到会导致开发越快偏差越远。</strong></span>
 
 <span style='color:red'><strong>低代码应用平台不能替你做业务分析和建模，请在业务分析和建模这些方面付出更多的时间和精力。</strong></span>
 
