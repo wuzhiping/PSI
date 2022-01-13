@@ -12,6 +12,9 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     metaData: null
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -78,11 +81,11 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
       layout: "border",
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       },
@@ -157,7 +160,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
           id: me.buildEditId(colMd.fieldName),
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me._onEditSpecialKey,
               scope: me
             }
           },
@@ -327,7 +330,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     me.focusOnFirstEdit();
   },
 
-  onWndClose() {
+  _onWndClose() {
     const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
@@ -340,7 +343,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     }
   },
 
-  onWndShow() {
+  _onWndShow() {
     const me = this;
     const md = me.getMetaData();
 
@@ -409,6 +412,11 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     me.focusOnFirstEdit();
   },
 
+  /**
+   * 把录入焦点设置到第一个input
+   * 
+   * @private
+   */
   focusOnFirstEdit() {
     const me = this;
     const md = me.getMetaData();
@@ -445,7 +453,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     return "PSI_CodeTable_RuntimeEditForm_edit_" + md.fid + "_" + fieldName;
   },
 
-  onEditSpecialKey(field, e) {
+  _onEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
