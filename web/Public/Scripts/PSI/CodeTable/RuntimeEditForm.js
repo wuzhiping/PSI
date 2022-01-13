@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.CodeTable.RuntimeEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     metaData: null
@@ -287,8 +287,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
 
         el && el.unmask();
 
-        PSI.MsgBox.tip("数据保存成功");
-        me.focus();
+        me.tip("数据保存成功");
         if (thenAdd) {
           me.clearEdit();
         } else {
@@ -297,7 +296,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
       },
       failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, () => {
+        me.showInfo(action.result.msg, () => {
           me.focusOnFirstEdit();
         });
       }
@@ -333,14 +332,10 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     me.focusOnFirstEdit();
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
   onWndClose() {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -353,17 +348,16 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
     var me = this;
     var md = me.getMetaData();
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     var el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    me.ajax({
       url: me.URL("Home/CodeTable/recordInfo"),
       params: {
         id: me.adding ? null : me.getEntity().get("id"),
         fid: md.fid
       },
-      method: "POST",
       callback(options, success, response) {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
@@ -481,8 +475,7 @@ Ext.define("PSI.CodeTable.RuntimeEditForm", {
           var nextEditId = me.buildEditId(colMd.fieldName);
           var edit = Ext.getCmp(nextEditId);
           if (edit) {
-            edit.focus();
-            edit.setValue(edit.getValue());
+            me.setFocusAndCursorPosToLast(edit);
             return;
           }
         }
