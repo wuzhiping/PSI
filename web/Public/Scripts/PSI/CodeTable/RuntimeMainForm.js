@@ -13,6 +13,9 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     pDesignTool: null
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -341,7 +344,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
       },
       listeners: {
         load: {
-          fn: me.onTreeStoreLoad,
+          fn: me._onTreeStoreLoad,
           scope: me
         }
       }
@@ -367,7 +370,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     });
   },
 
-  onTreeStoreLoad() {
+  _onTreeStoreLoad() {
     const me = this;
     const md = me.getMetaData();
     if (!md.treeView) {
@@ -412,7 +415,13 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     form.show();
   },
 
-  // 编辑码表记录
+  /**
+   * 编辑码表记录
+   * _onEditCodeTableRecord这个是固定的名称
+   * 和表t_code_table_buttons的on_click_frontend对应
+   * 
+   * @private
+   */
   _onEditCodeTableRecord() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -470,7 +479,13 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     return null;
   },
 
-  // 删除码表记录
+  /**
+   * 删除码表记录
+   * _onDeleteCodeTableRecord这个是固定的名称
+   * 和表t_code_table_buttons的on_click_frontend对应
+   * 
+   * @private
+   */
   _onDeleteCodeTableRecord() {
     const me = this;
     const md = me.getMetaData();
@@ -517,6 +532,13 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * 刷新记录
+   * _onRefreshCodeTableRecord这个是固定的名称
+   * 和表t_code_table_buttons的on_click_frontend对应
+   * 
+   * @private
+   */
   _onRefreshCodeTableRecord() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -552,7 +574,10 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     }
   },
 
-  // 保存列视图布局
+  /**保存列视图布局
+   * 
+   * @private
+   */
   _onSaveViewLayout() {
     const me = this;
     const md = me.getMetaData();
