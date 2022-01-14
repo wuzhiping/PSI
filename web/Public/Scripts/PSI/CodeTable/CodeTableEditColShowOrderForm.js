@@ -6,9 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
-  extend: "Ext.window.Window",
-
-  mixins: ["PSI.AFX.Mix.Common"],
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     codeTable: null
