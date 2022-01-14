@@ -1272,21 +1272,21 @@ class CodeTableDAO extends PSIBaseExDAO
       "caption" => "新增{$name}",
       "showOrder" => 1,
       "fid" => "{$fid}-add",
-      "onClick" => "onAddCodeTableRecord",
+      "onClick" => "_onAddCodeTableRecord",
     ];
     // 编辑
     $result[] = [
       "caption" => "编辑{$name}",
       "showOrder" => 2,
       "fid" => "{$fid}-update",
-      "onClick" => "onEditCodeTableRecord",
+      "onClick" => "_onEditCodeTableRecord",
     ];
     //删除
     $result[] = [
       "caption" => "删除{$name}",
       "showOrder" => 3,
       "fid" => "{$fid}-delete",
-      "onClick" => "onDeleteCodeTableRecord",
+      "onClick" => "_onDeleteCodeTableRecord",
     ];
 
     // 分隔符
@@ -1302,7 +1302,7 @@ class CodeTableDAO extends PSIBaseExDAO
       "caption" => "刷新",
       "showOrder" => 5,
       "fid" => $fid,
-      "onClick" => "onRefreshCodeTableRecord",
+      "onClick" => "_onRefreshCodeTableRecord",
     ];
 
     return $result;
