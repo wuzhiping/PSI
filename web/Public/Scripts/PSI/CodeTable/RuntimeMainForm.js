@@ -147,7 +147,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
         menu: [{
           text: "保存列视图布局",
           scope: me,
-          handler: me.onSaveViewLayout
+          handler: me._onSaveViewLayout
         }
         ]
       }]);
@@ -247,7 +247,13 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
       columnLines: true,
       border: 0,
       columns: cols,
-      store: store
+      store: store,
+      listeners: {
+        itemdblclick: {
+          fn: me._onEditCodeTableRecord,
+          scope: me
+        }
+      }
     });
   },
 
@@ -351,7 +357,13 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
       columnLines: true,
       border: 0,
       columns: cols,
-      store: store
+      store: store,
+      listeners: {
+        itemdblclick: {
+          fn: me._onEditCodeTableRecord,
+          scope: me
+        }
+      }
     });
   },
 
@@ -383,9 +395,9 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   // 新增码表记录
-  // onAddCodeTableRecord这个是固定的名称
+  // _onAddCodeTableRecord这个是固定的名称
   // 和表t_code_table_buttons的on_click_frontend对应
-  onAddCodeTableRecord() {
+  _onAddCodeTableRecord() {
     const me = this;
 
     const form = Ext.create("PSI.CodeTable.RuntimeEditForm", {
@@ -397,7 +409,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   // 编辑码表记录
-  onEditCodeTableRecord() {
+  _onEditCodeTableRecord() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -455,7 +467,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   // 删除码表记录
-  onDeleteCodeTableRecord() {
+  _onDeleteCodeTableRecord() {
     const me = this;
     const md = me.getMetaData();
     const name = md.name;
@@ -501,7 +513,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onRefreshCodeTableRecord() {
+  _onRefreshCodeTableRecord() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     let id = null;
@@ -537,7 +549,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   // 保存列视图布局
-  onSaveViewLayout() {
+  _onSaveViewLayout() {
     const me = this;
     const md = me.getMetaData();
 
