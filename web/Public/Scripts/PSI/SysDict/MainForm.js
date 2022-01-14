@@ -179,7 +179,7 @@ Ext.define("PSI.SysDict.MainForm", {
         }, {
           header: "备注",
           dataIndex: "memo",
-          width: 300,
+          width: 400,
         }]
       },
       store: Ext.create("Ext.data.Store", {
@@ -243,7 +243,7 @@ Ext.define("PSI.SysDict.MainForm", {
         }, {
           header: "备注",
           dataIndex: "memo",
-          width: 200
+          width: 400
         }]
       },
       store: Ext.create("Ext.data.Store", {
