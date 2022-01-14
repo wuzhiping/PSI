@@ -14,6 +14,8 @@ Ext.define("PSI.User.UserEditForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;

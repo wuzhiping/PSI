@@ -9,6 +9,9 @@ Ext.define("PSI.User.OrgField", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.psi_orgfield",
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 

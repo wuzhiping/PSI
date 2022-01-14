@@ -19,6 +19,8 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;

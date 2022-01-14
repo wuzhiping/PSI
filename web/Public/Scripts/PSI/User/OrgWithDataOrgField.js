@@ -9,6 +9,9 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.psi_orgwithdataorgfield",
 
+  /**
+   * @override
+   */
   initComponent() {
     var me = this;
 

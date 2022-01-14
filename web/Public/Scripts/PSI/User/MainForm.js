@@ -53,6 +53,8 @@ Ext.define("PSI.User.MainForm", {
   /// 该设计模式也形象地称为【三明治模式】，具体见方法内的注释
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     /// 把this用me局部变量保存，然后后续的代码中都使用me，而不使用this
