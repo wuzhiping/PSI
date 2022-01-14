@@ -394,9 +394,13 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     }
   },
 
-  // 新增码表记录
-  // _onAddCodeTableRecord这个是固定的名称
-  // 和表t_code_table_buttons的on_click_frontend对应
+  /**
+   * 新增码表记录
+   * _onAddCodeTableRecord这个是固定的名称
+   * 和表t_code_table_buttons的on_click_frontend对应
+   * 
+   * @private
+   */
   _onAddCodeTableRecord() {
     const me = this;
 
