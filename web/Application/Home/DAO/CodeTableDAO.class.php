@@ -2159,7 +2159,8 @@ class CodeTableDAO extends PSIBaseExDAO
   {
     $tableName = $md["tableName"];
 
-    $sql = "select cr.id, cr.code, cr.name, cr.full_name, u.name as create_user_name, r.name as record_status";
+    $sql = "select cr.id, cr.code, cr.name, cr.full_name, u.name as create_user_name, 
+              r.name as record_status, cr.data_org";
 
     foreach ($md["cols"] as $colMd) {
       if ($colMd["isSysCol"]) {
@@ -2220,7 +2221,8 @@ class CodeTableDAO extends PSIBaseExDAO
 
     $tableName = $md["tableName"];
 
-    $sql = "select cr.id, cr.code, cr.name, cr.full_name, u.name as create_user_name, r.name as record_status";
+    $sql = "select cr.id, cr.code, cr.name, cr.full_name, u.name as create_user_name, 
+              r.name as record_status, cr.data_org";
 
     foreach ($md["cols"] as $colMd) {
       if ($colMd["isSysCol"]) {
