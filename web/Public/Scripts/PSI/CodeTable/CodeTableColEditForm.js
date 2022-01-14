@@ -6,9 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.CodeTable.CodeTableColEditForm", {
-  extend: "Ext.window.Window",
-
-  mixins: ["PSI.AFX.Mix.Common"],
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     codeTable: null
@@ -33,13 +31,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       text: entity == null ? "关闭" : "取消",
       handler() {
         me.close();
-      },
-      scope: me
-    }, {
-      text: "帮助",
-      handler() {
-        me.showInfo("TODO")
-        // window.open(me.URL("Home/Help/index?t=codetable")); 
       },
       scope: me
     });
