@@ -262,7 +262,11 @@ Ext.define("PSI.App", {
     });
   },
 
-  // 创建主菜单
+  /**
+   * 创建主菜单
+   * 
+   * @private 
+   */
   createMainMenu(root) {
     const me = this;
 
@@ -290,7 +294,7 @@ Ext.define("PSI.App", {
     };
 
     const mainMenu = [];
-    // TODO 这里的for循环可以改为array.forEach()的写法
+
     root.forEach((m1) => {
       const menuItem = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
       m1.children.forEach((m2) => {
