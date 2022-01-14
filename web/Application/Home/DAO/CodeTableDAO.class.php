@@ -696,10 +696,10 @@ class CodeTableDAO extends PSIBaseExDAO
 
     $sql = "insert into t_code_table_md (id, category_id, code, name, table_name, py, memo, fid,
               enable_parent_id, handler_class_name, module_name, edit_col_cnt, view_paging,
-              auto_code_length)
+              auto_code_length, sln_code)
             values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s',
               %d, '%s', '%s', %d, %d,
-              %d)";
+              %d, '%s')";
     $rc = $db->execute(
       $sql,
       $id,
@@ -715,7 +715,8 @@ class CodeTableDAO extends PSIBaseExDAO
       $moduleName,
       $editColCnt,
       $viewPaging,
-      $autoCodeLength
+      $autoCodeLength,
+      $slnCode
     );
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);
