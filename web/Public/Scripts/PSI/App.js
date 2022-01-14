@@ -369,6 +369,10 @@ Ext.define("PSI.App", {
   // 这个方法最初是给View中公开调用的
   // 现在已经在构造函数里面自动调用了，所以可以视为是私有方法了
   // 不再推荐在View中调用
+  /**
+   * 
+   * @private
+   */
   setAppHeader(header) {
     if (!header) {
       return;
