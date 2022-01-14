@@ -7,7 +7,11 @@
  */
 Ext.define("PSI.MsgBox", {
   statics: {
-    // 显示提示信息
+    /**
+     * 显示提示信息
+     * @param {string} info 提示信息
+     * @param {Function} func 单击确定按钮后的回调函数
+     */
     showInfo(info, func) {
       Ext.Msg.show({
         title: "提示",
@@ -24,7 +28,12 @@ Ext.define("PSI.MsgBox", {
       });
     },
 
-    // 显示确认信息
+    /**
+     * 显示确认信息
+     * 
+     * @param {string} confirmInfo 显示给用户的确认信息
+     * @param {Function} funcOnYes 选择YES按钮后的回调函数 
+     */
     confirm(confirmInfo, funcOnYes) {
       Ext.Msg.show({
         title: "提示",
@@ -42,7 +51,11 @@ Ext.define("PSI.MsgBox", {
       });
     },
 
-    // 显示提示信息，提示信息会自动关闭
+    /**
+     * 显示提示信息，提示信息会在两秒后自动关闭
+     * 
+     * @param {string} info 提示信息
+     */
     tip(info) {
       const wnd = Ext.create("Ext.window.Window", {
         modal: false,
