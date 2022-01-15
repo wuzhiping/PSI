@@ -8,6 +8,9 @@
 Ext.define("PSI.SysDict.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -59,6 +62,9 @@ Ext.define("PSI.SysDict.MainForm", {
     me.refreshCategoryGrid();
   },
 
+  /**
+   * @private
+   */
   getToolbarCmp() {
     const me = this;
 
@@ -76,6 +82,9 @@ Ext.define("PSI.SysDict.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   getCategoryGrid() {
     const me = this;
 
@@ -126,7 +135,7 @@ Ext.define("PSI.SysDict.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onCategoryGridSelect,
+          fn: me._onCategoryGridSelect,
           scope: me
         }
       }
@@ -135,6 +144,9 @@ Ext.define("PSI.SysDict.MainForm", {
     return me.__categoryGrid;
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     const me = this;
 
@@ -189,7 +201,7 @@ Ext.define("PSI.SysDict.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onMainGridSelect,
+          fn: me._onMainGridSelect,
           scope: me
         }
       }
@@ -198,6 +210,9 @@ Ext.define("PSI.SysDict.MainForm", {
     return me.__mainGrid;
   },
 
+  /**
+   * @private
+   */
   getDictDataGrid() {
     const me = this;
 
@@ -256,6 +271,9 @@ Ext.define("PSI.SysDict.MainForm", {
     return me.__dataGrid;
   },
 
+  /**
+   * @private
+   */
   refreshCategoryGrid(id) {
     const me = this;
     const grid = me.getCategoryGrid();
@@ -291,11 +309,17 @@ Ext.define("PSI.SysDict.MainForm", {
     me.ajax(r);
   },
 
-  onCategoryGridSelect() {
+  /**
+   * @private
+   */
+  _onCategoryGridSelect() {
     const me = this;
     me.refreshMainGrid();
   },
 
+  /**
+   * @private
+   */
   refreshMainGrid(id) {
     const me = this;
     me.getDictDataGrid().getStore().removeAll();
@@ -346,12 +370,18 @@ Ext.define("PSI.SysDict.MainForm", {
     me.ajax(r);
   },
 
-  onMainGridSelect() {
+  /**
+   * @private
+   */
+  _onMainGridSelect() {
     const me = this;
     me.refreshDictDataGrid();
   },
 
-  refreshDictDataGrid(id) {
+  /**
+   * @private
+   */
+   refreshDictDataGrid(id) {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
