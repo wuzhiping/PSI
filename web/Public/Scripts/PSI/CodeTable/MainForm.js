@@ -812,9 +812,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       preIndex = preItem.get("id");
     }
 
-    const info = "请确认是否删除码表: <span style='color:red'>"
-      + codeTable.get("name")
-      + "</span><br /><br />当前操作只删除码表元数据，数据库实际表不会删除";
+    const info = `请确认是否删除码表: <span style='color:red'>${codeTable.get("name")}</span> ?<br /><br />当前操作只删除码表元数据，数据库实际表不会删除`;
 
     const funcConfirm = () => {
       const el = Ext.getBody();
