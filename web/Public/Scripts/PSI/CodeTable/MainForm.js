@@ -427,7 +427,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         }, {
           header: "值来源表",
           dataIndex: "valueFromTableName",
-          width: 150
+          width: 200
         }, {
           header: "值来源字段(关联用)",
           dataIndex: "valueFromColName",
