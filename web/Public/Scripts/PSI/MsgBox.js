@@ -13,7 +13,10 @@ Ext.define("PSI.MsgBox", {
      * @param {Function} func 单击确定按钮后的回调函数
      */
     showInfo(info, func) {
-      const width = info.length * 22;
+      let width = info.length * 22;
+      if (isNaN(width) || width < 300) {
+        width = 300;
+      }
 
       Ext.Msg.show({
         msg: `<h2 style='color:#1890ff'>${info}</h2>`,
@@ -37,7 +40,11 @@ Ext.define("PSI.MsgBox", {
      * @param {Function} funcOnYes 选择YES按钮后的回调函数 
      */
     confirm(confirmInfo, funcOnYes) {
-      const width = confirmInfo.length * 22;
+      let width = confirmInfo.length * 22;
+      if (isNaN(width) || width < 300) {
+        width = 300;
+      }
+
       Ext.Msg.show({
         msg: `<h2 style='color:#1890ff'>${confirmInfo}</h2>`,
         buttons: Ext.Msg.YESNO,
