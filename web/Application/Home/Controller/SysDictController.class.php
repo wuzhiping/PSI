@@ -18,6 +18,8 @@ class SysDictController extends PSIBaseController
 
   /**
    * 系统数据字典 - 主页面
+   * 
+   * web\Application\Home\View\SysDict\index.html
    */
   public function index()
   {
