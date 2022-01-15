@@ -10,6 +10,8 @@ Ext.define("PSI.Solution.EditForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;
@@ -122,12 +124,18 @@ Ext.define("PSI.Solution.EditForm", {
     me.__editorList = [me.editCode, me.editName];
   },
 
+  /**
+   * @private
+   */
   _onWndClose() {
     const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
+  /**
+   * @private
+   */
   _onWndShow() {
     const me = this;
 
@@ -158,6 +166,9 @@ Ext.define("PSI.Solution.EditForm", {
     });
   },
 
+  /**
+   * @private
+   */
   _onOK() {
     const me = this;
     const f = me.editForm;
@@ -181,6 +192,9 @@ Ext.define("PSI.Solution.EditForm", {
     });
   },
 
+  /**
+   * @private
+   */
   _onLastEditSpecialKey(field, e) {
     const me = this;
     if (e.getKey() == e.ENTER) {
