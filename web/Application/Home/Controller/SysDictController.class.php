@@ -38,6 +38,8 @@ class SysDictController extends PSIBaseController
 
   /**
    * 数据字典分类列表
+   * 
+   * JS: web\Public\Scripts\PSI\SysDict\MainForm.js
    */
   public function categoryList()
   {
@@ -56,6 +58,8 @@ class SysDictController extends PSIBaseController
 
   /**
    * 某个分类下的数据字典
+   * 
+   * JS: web\Public\Scripts\PSI\SysDict\MainForm.js
    */
   public function sysDictList()
   {
@@ -76,6 +80,8 @@ class SysDictController extends PSIBaseController
 
   /**
    * 查询某个码表的数据
+   * 
+   * JS: web\Public\Scripts\PSI\SysDict\MainForm.js
    */
   public function dictDataList()
   {
