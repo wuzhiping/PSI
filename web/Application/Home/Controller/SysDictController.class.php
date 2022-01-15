@@ -49,10 +49,8 @@ class SysDictController extends PSIBaseController
         die("没有权限");
       }
 
-      $params = [];
-
       $service = new SysDictService();
-      $this->ajaxReturn($service->categoryList($params));
+      $this->ajaxReturn($service->categoryList());
     }
   }
 

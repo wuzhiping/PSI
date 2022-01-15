@@ -17,14 +17,14 @@ class SysDictService extends PSIBaseExService
   /**
    * 系统数据字段分类列表
    */
-  public function categoryList($params)
+  public function categoryList()
   {
     if ($this->isNotOnline()) {
       return $this->emptyResult();
     }
 
     $dao = new SysDictDAO($this->db());
-    return $dao->categoryList($params);
+    return $dao->categoryList();
   }
 
   /**

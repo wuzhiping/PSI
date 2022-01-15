@@ -15,7 +15,7 @@ class SysDictDAO extends PSIBaseExDAO
   /**
    * 系统数据字典分类列表
    */
-  public function categoryList($params)
+  public function categoryList()
   {
     $db = $this->db;
 
