@@ -1041,6 +1041,12 @@ Ext.define("PSI.CodeTable.MainForm", {
   // 解决方案combo选中项改变的时候的时间处理函数
   _onComboSolutionSelect() {
     const me = this;
+
+    me.getMainGrid().setTitle(me.formatGridHeaderTitle("码表"));
+    me.getMainGrid().getStore().removeAll();
+    me.getColsGrid().setTitle(me.formatGridHeaderTitle("码表列"));
+    me.getColsGrid().getStore().removeAll();
+
     me.refreshCategoryGrid();
   },
 
