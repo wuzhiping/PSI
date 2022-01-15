@@ -13,13 +13,15 @@ Ext.define("PSI.MsgBox", {
      * @param {Function} func 单击确定按钮后的回调函数
      */
     showInfo(info, func) {
+      const width = info.length * 22;
+
       Ext.Msg.show({
-        title: "提示",
-        msg: info,
-        icon: Ext.Msg.INFO,
+        msg: `<h2 style='color:#1890ff'>${info}</h2>`,
         buttons: Ext.Msg.OK,
         modal: true,
         closable: false,
+        width,
+        height: 130,
         fn() {
           if (func) {
             func();
@@ -35,14 +37,15 @@ Ext.define("PSI.MsgBox", {
      * @param {Function} funcOnYes 选择YES按钮后的回调函数 
      */
     confirm(confirmInfo, funcOnYes) {
+      const width = confirmInfo.length * 22;
       Ext.Msg.show({
-        title: "提示",
-        msg: confirmInfo,
-        icon: Ext.Msg.QUESTION,
+        msg: `<h2 style='color:#1890ff'>${confirmInfo}</h2>`,
         buttons: Ext.Msg.YESNO,
         modal: true,
         defaultFocus: "no",
         closable: false,
+        width,
+        height: 130,
         fn(id) {
           if (id === "yes" && funcOnYes) {
             funcOnYes();
