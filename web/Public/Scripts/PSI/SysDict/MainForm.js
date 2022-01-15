@@ -381,7 +381,7 @@ Ext.define("PSI.SysDict.MainForm", {
   /**
    * @private
    */
-   refreshDictDataGrid(id) {
+  refreshDictDataGrid(id) {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
