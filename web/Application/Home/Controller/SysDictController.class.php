@@ -91,6 +91,7 @@ class SysDictController extends PSIBaseController
       }
 
       $params = [
+        // 数据字典元数据id
         "id" => I("post.id")
       ];
 
