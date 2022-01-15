@@ -278,7 +278,7 @@ Ext.define("PSI.App", {
         window.open(me.URL("Home/Help/index"));
       } else if (fid === "-9999") {
         // 重新登录
-        PSI.MsgBox.confirm("请确认是否重新登录", function () {
+        PSI.MsgBox.confirm(`请确认是否重新登录${PSI.Const.PROD_NAME} ?`, function () {
           location.replace(me.URL("Home/MainMenu/navigateTo/fid/-9999"));
         });
       } else {
