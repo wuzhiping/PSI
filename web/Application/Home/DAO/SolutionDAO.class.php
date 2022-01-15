@@ -156,6 +156,7 @@ class SolutionDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
+    // 解决方案id
     $id = $params["id"];
 
     $solution = $this->getSolutionById($id);
