@@ -43,6 +43,7 @@ class SysDictDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
+    // 数据字典分类id
     $categoryId = $params["categoryId"];
 
     $sql = "select id, code, name, table_name, memo

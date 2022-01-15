@@ -68,6 +68,7 @@ class SysDictController extends PSIBaseController
       }
 
       $params = [
+        // 数据字典分类id
         "categoryId" => I("post.categoryId")
       ];
 
