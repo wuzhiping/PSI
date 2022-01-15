@@ -83,7 +83,11 @@ Ext.define("PSI.Solution.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [{
+        items: [Ext.create("Ext.grid.RowNumberer", {
+          text: "#",
+          align: "center",
+          width: 60
+        }), {
           header: "编码",
           dataIndex: "code",
           width: 140,
