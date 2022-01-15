@@ -12,6 +12,8 @@ Ext.define("PSI.Solution.MainForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;
@@ -58,6 +60,9 @@ Ext.define("PSI.Solution.MainForm", {
     me.refreshMainGrid();
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     const me = this;
 
@@ -115,6 +120,8 @@ Ext.define("PSI.Solution.MainForm", {
 
   /**
    * 新建解决方案
+   * 
+   * @private
    */
   _onAdd() {
     const me = this;
@@ -127,6 +134,8 @@ Ext.define("PSI.Solution.MainForm", {
 
   /**
    * 编辑解决方案
+   * 
+   * @private
    */
   _onEdit() {
     const me = this;
@@ -148,6 +157,8 @@ Ext.define("PSI.Solution.MainForm", {
 
   /**
    * 删除解决方案
+   * 
+   * @private
    */
   _onDelete() {
     const me = this;
@@ -198,7 +209,10 @@ Ext.define("PSI.Solution.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  refreshMainGrid(id) {
+  /**
+   * @private
+   */
+   refreshMainGrid(id) {
     const me = this;
 
     const grid = me.getMainGrid();
