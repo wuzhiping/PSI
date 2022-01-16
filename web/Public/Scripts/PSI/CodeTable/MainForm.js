@@ -65,6 +65,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.querySolutionList();
   },
 
+  /**
+   * @private
+   */
   getToolbarCmp() {
     const me = this;
 
@@ -324,7 +327,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onMainGridSelect,
+          fn: me._onMainGridSelect,
           scope: me
         },
         itemdblclick: {
@@ -337,6 +340,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     return me.__mainGrid;
   },
 
+  /**
+   * @private
+   */
   getColsGrid() {
     const me = this;
 
@@ -485,6 +491,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     return me.__colsGrid;
   },
 
+  /**
+   * @private
+   */
   _onAddCategory() {
     const me = this;
 
@@ -504,6 +513,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
+  /**
+   * @private
+   */
   refreshCategoryGrid(id) {
     const me = this;
     const grid = me.getCategoryGrid();
@@ -545,6 +557,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   _onEditCategory() {
     const me = this;
     const slnCode = me.comboSolution.getValue();
@@ -577,6 +592,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
+  /**
+   * @private
+   */
   _onDeleteCategory() {
     const me = this;
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -635,11 +653,17 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * @private
+   */
   _onCategoryGridSelect() {
     const me = this;
     me.refreshMainGrid();
   },
 
+  /**
+   * @private
+   */
   refreshMainGrid(id) {
     const me = this;
     me.getColsGrid().setTitle(me.formatGridHeaderTitle("码表列"));
@@ -691,6 +715,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   _onAddCodeTable() {
     const me = this;
 
@@ -719,6 +746,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
+  /**
+   * @private
+   */
   _onEditCodeTable() {
     const me = this;
 
@@ -737,11 +767,17 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
-  onMainGridSelect() {
+  /**
+   * @private
+   */
+  _onMainGridSelect() {
     const me = this;
     me.refreshColsGrid();
   },
 
+  /**
+   * @private
+   */
   refreshColsGrid(id) {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -791,6 +827,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   _onDeleteCodeTable() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -844,6 +883,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * @private
+   */
   _onAddCol() {
     const me = this;
 
@@ -862,6 +904,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
+  /**
+   * @private
+   */
   _onEditCol() {
     const me = this;
 
@@ -888,7 +933,11 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
-  // 删除码表列
+  /**
+   * 删除码表列
+   * 
+   * @private
+   */
   _onDeleteCol() {
     const me = this;
     let item = me.getMainGrid().getSelectionModel().getSelection();
@@ -951,6 +1000,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * @private
+   */
   _onConvertToSys() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -998,7 +1050,11 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  // 调整编辑界面字段显示次序
+  /**
+   * 调整编辑界面字段显示次序
+   * 
+   * @private
+   */
   _onChangeEditShowOrder() {
     const me = this;
 
@@ -1017,7 +1073,11 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
-  // 生成SQL语句
+  /**
+   * 生成SQL语句
+   * 
+   * @private
+   */
   _onGenSQL() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -1034,7 +1094,10 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
-  // 解决方案combo选中项改变的时候的时间处理函数
+  /**
+   * 解决方案combo选中项改变的时候的事件处理函数
+   * @private
+   */
   _onComboSolutionSelect() {
     const me = this;
 
@@ -1046,6 +1109,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.refreshCategoryGrid();
   },
 
+  /**
+   * @private
+   */
   querySolutionList() {
     const me = this;
     const el = Ext.getBody();
