@@ -17,7 +17,7 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
     var entity = me.getEntity();
 
     var buttons = [{
-      text: "数据域的使用帮助",
+      text: "数据域应用详解",
       iconCls: "PSI-help",
       handler: function () {
         var url = me.URL("Home/Help/index?t=dataOrg")
