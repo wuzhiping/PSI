@@ -678,8 +678,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     const category = item[0];
 
     const grid = me.getMainGrid();
-    grid.setTitle(me.formatGridHeaderTitle("属于分类["
-      + category.get("name") + "]的码表"));
+    grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${category.get("name")}</span> - 码表`));
     const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
@@ -790,8 +789,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     const codeTable = item[0];
 
     const grid = me.getColsGrid();
-    grid.setTitle(me.formatGridHeaderTitle("属于码表["
-      + codeTable.get("name") + "]的列"));
+    grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${codeTable.get("name")}</span> - 列`));
     const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
