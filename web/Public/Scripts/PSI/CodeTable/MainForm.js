@@ -123,11 +123,11 @@ Ext.define("PSI.CodeTable.MainForm", {
       menu: [{
         text: "把码表转化为系统固有码表",
         scope: me,
-        handler: me.onConvertToSys
+        handler: me._onConvertToSys
       }, "-", {
         text: "生成SQL语句",
         scope: me,
-        handler: me.onGenSQL
+        handler: me._onGenSQL
       }]
     }, "-", {
       text: "指南",
@@ -376,19 +376,19 @@ Ext.define("PSI.CodeTable.MainForm", {
       },
       tbar: [{
         text: "新建列",
-        handler: me.onAddCol,
+        handler: me._onAddCol,
         scope: me
       }, "-", {
         text: "编辑列",
-        handler: me.onEditCol,
+        handler: me._onEditCol,
         scope: me
       }, "-", {
         text: "删除列",
-        handler: me.onDeleteCol,
+        handler: me._onDeleteCol,
         scope: me
       }, "-", {
         text: "调整编辑界面字段顺序",
-        handler: me.onChangeEditShowOrder,
+        handler: me._onChangeEditShowOrder,
         scope: me
       }],
       columnLines: true,
@@ -846,7 +846,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onAddCol() {
+  _onAddCol() {
     const me = this;
 
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -864,7 +864,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     form.show();
   },
 
-  onEditCol() {
+  _onEditCol() {
     const me = this;
 
     let item = me.getMainGrid().getSelectionModel().getSelection();
@@ -891,7 +891,7 @@ Ext.define("PSI.CodeTable.MainForm", {
   },
 
   // 删除码表列
-  onDeleteCol() {
+  _onDeleteCol() {
     const me = this;
     let item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -953,7 +953,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onConvertToSys() {
+  _onConvertToSys() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -1001,7 +1001,7 @@ Ext.define("PSI.CodeTable.MainForm", {
   },
 
   // 调整编辑界面字段显示次序
-  onChangeEditShowOrder() {
+  _onChangeEditShowOrder() {
     const me = this;
 
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -1020,7 +1020,7 @@ Ext.define("PSI.CodeTable.MainForm", {
   },
 
   // 生成SQL语句
-  onGenSQL() {
+  _onGenSQL() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
