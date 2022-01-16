@@ -347,6 +347,10 @@ Ext.define("PSI.CodeTable.MainForm", {
         select: {
           fn: me.onMainGridSelect,
           scope: me
+        },
+        itemdblclick: {
+          fn: me._onEditCodeTable,
+          scope: me
         }
       }
     });
