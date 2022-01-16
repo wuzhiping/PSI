@@ -8,6 +8,9 @@
 Ext.define("PSI.CodeTable.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -143,6 +146,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   getCategoryGrid() {
     const me = this;
 
@@ -213,6 +219,9 @@ Ext.define("PSI.CodeTable.MainForm", {
     return me.__categoryGrid;
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     const me = this;
 
