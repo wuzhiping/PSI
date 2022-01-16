@@ -179,26 +179,25 @@ Ext.define("PSI.CodeTable.MainForm", {
         }
       }],
       columnLines: true,
-      columns: [{
-        header: "分类编码",
-        dataIndex: "code",
-        width: 80,
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "码表分类",
-        dataIndex: "name",
-        width: 200,
-        menuDisabled: true,
-        sortable: false
-      }, {
-        header: "系统固有",
-        dataIndex: "isSystemCaption",
-        menuDisabled: true,
-        width: 80,
-        align: "center",
-        sortable: false
-      }],
+      columns: {
+        defaults: {
+          menuDisabled: true,
+          sortable: false
+        }, items: [{
+          header: "分类编码",
+          dataIndex: "code",
+          width: 80,
+        }, {
+          header: "码表分类",
+          dataIndex: "name",
+          width: 200,
+        }, {
+          header: "系统固有",
+          dataIndex: "isSystemCaption",
+          width: 80,
+          align: "center",
+        }]
+      },
       store: Ext.create("Ext.data.Store", {
         model: modelName,
         autoLoad: false,
