@@ -494,7 +494,13 @@ Ext.define("PSI.CodeTable.MainForm", {
         model: modelName,
         autoLoad: false,
         data: []
-      })
+      }),
+      listeners: {
+        itemdblclick: {
+          fn: me._onEditCol,
+          scope: me
+        }
+      }
     });
 
     return me.__colsGrid;
