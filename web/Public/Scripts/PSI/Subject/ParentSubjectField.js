@@ -16,9 +16,9 @@ Ext.define("PSI.Subject.ParentSubjectField", {
     companyId: null
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
     me.__idValue = null;
@@ -54,9 +54,9 @@ Ext.define("PSI.Subject.ParentSubjectField", {
     });
   },
 
-	/**
-	 * 单击下拉按钮
-	 */
+  /**
+   * 单击下拉按钮
+   */
   onTriggerClick: function (e) {
     var me = this;
     var modelName = "PSIWarehouseField";
@@ -73,7 +73,6 @@ Ext.define("PSI.Subject.ParentSubjectField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
       store: store,
       columns: [{
         header: "科目码",
@@ -112,6 +111,7 @@ Ext.define("PSI.Subject.ParentSubjectField", {
         items: [{
           xtype: "form",
           layout: "form",
+          border: 0,
           bodyPadding: 5,
           items: [{
             id: "PSI_Subject_ParentSubjectField_editCode",
