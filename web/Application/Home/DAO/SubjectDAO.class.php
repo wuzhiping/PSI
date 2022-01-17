@@ -14,6 +14,30 @@ use Home\Service\PinyinService;
 class SubjectDAO extends PSIBaseExDAO
 {
 
+  /**
+   * 根据科目类型获得其图标的css class
+   */
+  private function subjectIconCls($category)
+  {
+    // 1：资产、2：负债、4：所有者权益、5：成本、6：损益
+    switch ($category) {
+      case 1:
+        return "PSI-Subject-1";
+      case 2:
+        return "PSI-Subject-2";
+      case 3:
+        return "PSI-Subject-3";
+      case 4:
+        return "PSI-Subject-4";
+      case 5:
+        return "PSI-Subject-5";
+      case 6:
+        return "PSI-Subject-6";
+      default:
+        return "PSI-Subject";
+    }
+  }
+
   private function subjectListInternal($parentId, $companyId)
   {
     $db = $this->db;
@@ -35,7 +59,7 @@ class SubjectDAO extends PSIBaseExDAO
         "isLeaf" => $v["is_leaf"] == 1 ? "末级科目" : null,
         "children" => $children,
         "leaf" => count($children) == 0,
-        "iconCls" => "PSI-Subject",
+        "iconCls" => $this->subjectIconCls($v["category"]),
         "expanded" => true
       ];
     }
@@ -81,7 +105,7 @@ class SubjectDAO extends PSIBaseExDAO
         "isLeaf" => $v["is_leaf"] == 1 ? "末级科目" : null,
         "children" => $children,
         "leaf" => count($children) == 0,
-        "iconCls" => "PSI-Subject",
+        "iconCls" => $this->subjectIconCls($v["category"]),
         "expanded" => true
       ];
     }
