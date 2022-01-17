@@ -40,7 +40,16 @@ Ext.define("PSI.MsgBox", {
      * 
      * @param {string} info 提示信息
      */
-    tip(info) {
+    tip(info, showCloseButton) {
+      const buttons = [];
+      if (showCloseButton) {
+        buttons.push({
+          text: "关闭",
+          handler() {
+            wnd.close();
+          }
+        });
+      }
       const wnd = Ext.create("Ext.window.Window", {
         modal: false,
         onEsc: Ext.emptyFn,
@@ -59,12 +68,7 @@ Ext.define("PSI.MsgBox", {
               </h1>`
           }
         ],
-        buttons: [{
-          text: "关闭",
-          handler() {
-            wnd.close();
-          }
-        }]
+        buttons
       });
 
       wnd.showAt(document.body.clientWidth - 420, 20);

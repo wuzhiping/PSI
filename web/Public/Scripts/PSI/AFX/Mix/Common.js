@@ -11,8 +11,8 @@ Ext.define("PSI.AFX.Mix.Common", {
   },
 
   // 显示提示信息
-  tip(info) {
-    PSI.MsgBox.tip(info);
+  tip(info, showCloseButton) {
+    PSI.MsgBox.tip(info, showCloseButton);
   },
 
   // 显示需要用户确认的信息
