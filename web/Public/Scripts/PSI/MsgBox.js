@@ -36,7 +36,7 @@ Ext.define("PSI.MsgBox", {
     },
 
     /**
-     * 显示提示信息，提示信息会在3秒后自动关闭
+     * 显示提示信息，提示信息会在3.5秒后自动关闭
      * 
      * @param {string} info 提示信息
      */
@@ -76,7 +76,7 @@ Ext.define("PSI.MsgBox", {
       Ext.Function.defer(() => {
         wnd.hide();
         wnd.close();
-      }, 3000);
+      }, 3500);
     }
   }
 });
