@@ -176,7 +176,11 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     const modelName = "PSICodeTableRuntime_" + md.tableName;
 
     const fields = ["id", "record_status_code_int"];
-    const cols = [];
+    const cols = [Ext.create("Ext.grid.RowNumberer", {
+      text: "#",
+      align: "center",
+      width: 60
+    })];
     md.colsForView.forEach(mdCol => {
       fields.push(mdCol.fieldName);
       const col = {
