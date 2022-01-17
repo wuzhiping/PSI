@@ -691,7 +691,7 @@ Ext.define("PSI.Factory.MainForm", {
     var me = this;
 
     if (me.getCategoryGrid().getStore().getCount() == 0) {
-      me.showInfo("没有工厂分类，请先新增工厂分类");
+      me.showInfo("没有工厂分类，请先新建工厂分类");
       return;
     }
 
