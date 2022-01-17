@@ -14,7 +14,7 @@ Ext.define("PSI.Subject.MainForm", {
    * @override
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
@@ -71,7 +71,7 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   getToolbarCmp() {
-    var me = this;
+    const me = this;
     return [{
       text: "初始化国家标准科目",
       handler: me.onInit,
@@ -97,7 +97,7 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   getFmtToolbarCmp() {
-    var me = this;
+    const me = this;
     return [{
       text: "初始化科目的标准账样",
       handler: me.onInitFmt,
@@ -130,17 +130,17 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   refreshCompanyGrid() {
-    var me = this;
-    var el = Ext.getBody();
+    const me = this;
+    const el = Ext.getBody();
     var store = me.getCompanyGrid().getStore();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/Subject/companyList"),
       callback(options, success, response) {
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
           if (store.getCount() > 0) {
             me.getCompanyGrid().getSelectionModel().select(0);
@@ -154,12 +154,12 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   getCompanyGrid() {
-    var me = this;
+    const me = this;
     if (me.__companyGrid) {
       return me.__companyGrid;
     }
 
-    var modelName = "PSI_Subject_Company";
+    const modelName = "PSI_Subject_Company";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -209,37 +209,37 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   onCompanyGridSelect() {
-    var me = this;
+    const me = this;
     me.getFmtPropGrid().setTitle("账样属性");
     me.getFmtPropGrid().getStore().removeAll();
     me.getFmtColsGrid().setTitle("账样字段");
     me.getFmtColsGrid().getStore().removeAll();
 
     me.getMainGrid().setTitle(me.formatGridHeaderTitle("会计科目"));
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var company = item[0];
-    var title = Ext.String.format("<span class='PSI-title-keyword'>{0}</span> - 会计科目", company.get("name"));
+    const company = item[0];
+    const title = Ext.String.format("<span class='PSI-title-keyword'>{0}</span> - 会计科目", company.get("name"));
     me.getMainGrid().setTitle(me.formatGridHeaderTitle(title));
 
-    var store = me.getMainGrid().getStore();
+    const store = me.getMainGrid().getStore();
     store.load();
   },
 
   onAddSubject() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var form = Ext.create("PSI.Subject.EditForm", {
+    const form = Ext.create("PSI.Subject.EditForm", {
       parentForm: me,
       company: company
     });
