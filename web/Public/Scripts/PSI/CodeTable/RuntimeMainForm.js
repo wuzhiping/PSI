@@ -192,7 +192,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
             if (parseInt(record.get("record_status_code_int")) == 1000) {
               return value;
             } else {
-              return "<span style='color:gray;text-decoration:line-through;'>" + value + "</span>";
+              return `<span style='color:gray;text-decoration:line-through;'>${value}</span>`;
             }
           }
         });
@@ -203,7 +203,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
             if (parseInt(record.get("record_status_code_int")) == 1000) {
               return value;
             } else {
-              return "<span style='color:red'>" + value + "</span>";
+              return `<span style='color:red'>${value}</span>`;
             }
           }
         });
