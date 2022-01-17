@@ -13,24 +13,12 @@ Ext.define("PSI.MsgBox", {
      * @param {Function} func 单击确定按钮后的回调函数
      */
     showInfo(info, func) {
-      let width = info.length * 22;
-      if (isNaN(width) || width < 300) {
-        width = 300;
-      }
 
-      Ext.Msg.show({
-        msg: `<h2 style='color:#1890ff'>${info}</h2>`,
-        buttons: Ext.Msg.OK,
-        modal: true,
-        closable: false,
-        width,
-        height: 130,
-        fn() {
-          if (func) {
-            func();
-          }
-        }
+      const form = Ext.create("PSI.AFX.MessageBox.ShowInfoForm", {
+        msg: info,
+        fn: func
       });
+      form.show();
     },
 
     /**
