@@ -23,11 +23,14 @@ Ext.define("PSI.Subject.MainForm", {
         border: 0,
         height: 2,
       }, {
+        id: "companyPanel",
         region: "west",
         width: 300,
         layout: "fit",
         border: 0,
         split: true,
+        header: false,
+        collapsible: true,
         items: [me.getCompanyGrid()]
       }, {
         region: "center",
@@ -172,6 +175,12 @@ Ext.define("PSI.Subject.MainForm", {
         height: 30,
         title: me.formatGridHeaderTitle("独立核算组织机构")
       },
+      tools: [{
+        type: "close",
+        handler() {
+          Ext.getCmp("companyPanel").collapse();
+        }
+      }],
       forceFit: true,
       columnLines: true,
       columns: [{
