@@ -49,7 +49,7 @@ Ext.define("PSI.MainMenu.MainForm", {
       handler: me._onDeleteMenu,
       scope: me
     }, "-", {
-      text: "帮助",
+      text: "指南",
       handler() {
         me.focus();
         const url = me.URL("Home/Help/index?t=mainMenuMaintain")
