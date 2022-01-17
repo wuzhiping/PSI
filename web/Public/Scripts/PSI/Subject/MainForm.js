@@ -247,28 +247,28 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   onEditSubject() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要编辑的科目");
       return;
     }
 
-    var subject = item[0];
+    const subject = item[0];
     if (!subject.get("id")) {
       me.showInfo("没有获得科目id，请刷新界面");
       return;
     }
 
-    var form = Ext.create("PSI.Subject.EditForm", {
+    const form = Ext.create("PSI.Subject.EditForm", {
       parentForm: me,
       company: company,
       entity: subject
@@ -277,28 +277,28 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   onDeleteSubject() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要删除的科目");
       return;
     }
 
-    var subject = item[0];
+    const subject = item[0];
     if (!subject.get("id")) {
       me.showInfo("没有获得科目id，请刷新界面");
       return;
     }
 
-    var code = subject.get("code");
+    const code = subject.get("code");
     if (!code) {
       me.showInfo("没有获得科目码，请刷新界面");
       return;
@@ -308,11 +308,11 @@ Ext.define("PSI.Subject.MainForm", {
       return;
     }
 
-    var info = "请确认是否删除科目: <span style='color:red'>" + code + "</span>?";
+    const info = "请确认是否删除科目: <span style='color:red'>" + code + "</span>?";
     const funcConfirm = () => {
-      var el = Ext.getBody();
+      const el = Ext.getBody();
       el.mask("正在删除中...");
-      var r = {
+      const r = {
         url: me.URL("Home/Subject/deleteSubject"),
         params: {
           id: subject.get("id")
@@ -321,7 +321,7 @@ Ext.define("PSI.Subject.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
               me.onCompanyGridSelect();
@@ -340,19 +340,19 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   getMainGrid() {
-    var me = this;
+    const me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSISubject";
+    const modelName = "PSISubject";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "code", "name", "category", "leaf",
         "children", "isLeaf"]
     });
 
-    var store = Ext.create("Ext.data.TreeStore", {
+    const store = Ext.create("Ext.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -364,8 +364,7 @@ Ext.define("PSI.Subject.MainForm", {
       listeners: {
         beforeload: {
           fn() {
-            store.proxy.extraParams = me
-              .getQueryParamForSubject();
+            store.proxy.extraParams = me.getQueryParamForSubject();
           },
           scope: me
         }
@@ -438,15 +437,15 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   getQueryParamForSubject() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return {};
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var result = {
+    const result = {
       companyId: company.get("id")
     };
 
