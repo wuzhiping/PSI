@@ -14,9 +14,12 @@ Ext.define("PSI.AFX.MessageBox.ShowInfoForm", {
 
   modal: true,
   closable: false,
-  width: 700,
+  width: 600,
   layout: "fit",
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -27,12 +30,10 @@ Ext.define("PSI.AFX.MessageBox.ShowInfoForm", {
         height: 40
       },
       height: 200,
-      bodyCls: "PSI-About-body",
       items: [{
         border: 0,
         xtype: "container",
-        margin: "0 0 0 10",
-        cls: "PSI-about",
+        margin: "0 0 0 5",
         html: `
               <h1 style='color:#1890ff'>${me.getMsg()}</h1>
               `
