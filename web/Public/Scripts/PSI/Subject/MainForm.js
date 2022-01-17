@@ -6,10 +6,12 @@
  * @license GPL v3
  */
 Ext.define("PSI.Subject.MainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
+  extend: "PSI.AFX.Form.MainForm",
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     var me = this;
