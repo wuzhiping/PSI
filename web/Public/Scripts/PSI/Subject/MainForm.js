@@ -453,19 +453,19 @@ Ext.define("PSI.Subject.MainForm", {
   },
 
   onInit() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要初始化科目的公司");
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
     const confirmFunc = () => {
-      var el = Ext.getBody();
+      const el = Ext.getBody();
       el.mask("正在操作中...");
-      var r = {
+      const r = {
         url: me.URL("Home/Subject/init"),
         params: {
           id: company.get("id")
@@ -474,7 +474,7 @@ Ext.define("PSI.Subject.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            const data = Ext.JSON.decode(response.responseText);
             if (data.success) {
               me.tip("成功完成初始化操作");
               me.onCompanyGridSelect();
@@ -490,9 +490,7 @@ Ext.define("PSI.Subject.MainForm", {
       me.ajax(r);
     };
 
-    var info = Ext.String.format(
-      "请确认是否初始化<span style='color:red'>{0}</span>的科目", company
-        .get("name"));
+    const info = `请确认是否初始化<span style='color:red'>${company.get("name")}</span>的科目`;
     me.confirm(info, confirmFunc);
   },
 
