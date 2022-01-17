@@ -392,6 +392,7 @@ Ext.define("PSI.Subject.MainForm", {
       viewConfig: {
         loadMask: true
       },
+      columnLines: true,
       columns: {
         defaults: {
           sortable: false,
