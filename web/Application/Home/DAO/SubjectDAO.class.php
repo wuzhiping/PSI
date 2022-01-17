@@ -25,8 +25,6 @@ class SubjectDAO extends PSIBaseExDAO
         return "PSI-Subject-1";
       case 2:
         return "PSI-Subject-2";
-      case 3:
-        return "PSI-Subject-3";
       case 4:
         return "PSI-Subject-4";
       case 5:
