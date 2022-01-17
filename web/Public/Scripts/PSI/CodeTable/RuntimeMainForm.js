@@ -166,17 +166,18 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     me.refreshMainGrid();
   },
 
+  /**
+   * 创建非层级码表的Grid
+   * 
+   * @private
+   */
   createMainGrid(md) {
     const me = this;
     const modelName = "PSICodeTableRuntime_" + md.tableName;
 
     const fields = ["id", "record_status_code_int"];
     const cols = [];
-    const colsLength = md.colsForView.length;
-    // TODO 可以用forEach
-    for (let i = 0; i < colsLength; i++) {
-      const mdCol = md.colsForView[i];
-
+    md.colsForView.forEach(mdCol => {
       fields.push(mdCol.fieldName);
       const col = {
         header: mdCol.caption,
@@ -209,7 +210,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
       }
 
       cols.push(col);
-    }
+    });// end of forEach
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
