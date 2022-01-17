@@ -36,7 +36,7 @@ Ext.define("PSI.MsgBox", {
     },
 
     /**
-     * 显示提示信息，提示信息会在两秒后自动关闭
+     * 显示提示信息，提示信息会在2.5秒后自动关闭
      * 
      * @param {string} info 提示信息
      */
@@ -44,7 +44,7 @@ Ext.define("PSI.MsgBox", {
       const wnd = Ext.create("Ext.window.Window", {
         modal: false,
         onEsc: Ext.emptyFn,
-        width: 300,
+        width: 400,
         height: 100,
         header: false,
         laytout: "fit",
@@ -61,12 +61,12 @@ Ext.define("PSI.MsgBox", {
         ]
       });
 
-      wnd.showAt(document.body.clientWidth - 320, 20);
+      wnd.showAt(document.body.clientWidth - 420, 20);
 
       Ext.Function.defer(() => {
         wnd.hide();
         wnd.close();
-      }, 2000);
+      }, 2500);
     }
   }
 });
