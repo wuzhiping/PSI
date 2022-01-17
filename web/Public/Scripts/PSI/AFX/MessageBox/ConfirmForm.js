@@ -35,7 +35,7 @@ Ext.define("PSI.AFX.MessageBox.ConfirmForm", {
         xtype: "container",
         margin: "0 0 0 5",
         html: `
-              <h1 style='color:#1890ff'>${me.getMsg()}</h1>
+              <h2 style='color:#1890ff'>${me.getMsg()}</h2>
               `
       }],
       buttons: [{

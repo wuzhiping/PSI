@@ -29,13 +29,13 @@ Ext.define("PSI.AFX.MessageBox.ShowInfoForm", {
         iconCls: "PSI-fid-9994",
         height: 40
       },
-      height: 200,
+      height: 160,
       items: [{
         border: 0,
         xtype: "container",
         margin: "0 0 0 5",
         html: `
-              <h1 style='color:#1890ff'>${me.getMsg()}</h1>
+              <h2 style='color:#1890ff'>${me.getMsg()}</h2>
               `
       }],
       buttons: [{
