@@ -1,0 +1,92 @@
+/**
+ * confirm窗体
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
+Ext.define("PSI.AFX.MessageBox.ConfirmForm", {
+  extend: 'Ext.window.Window',
+  config: {
+    fn: null,
+    msg: "",
+  },
+
+  modal: true,
+  closable: false,
+  width: 600,
+  layout: "fit",
+
+  /**
+   * @override
+   */
+  initComponent() {
+    const me = this;
+
+    Ext.apply(me, {
+      header: {
+        title: `<span style='font-size:160%'>提示 - ${PSI.Const.PROD_NAME}</span>`,
+        iconCls: "PSI-fid-9994",
+        height: 40
+      },
+      height: 200,
+      items: [{
+        border: 0,
+        xtype: "container",
+        margin: "0 0 0 5",
+        html: `
+              <h1 style='color:#1890ff'>${me.getMsg()}</h1>
+              `
+      }],
+      buttons: [{
+        id: "PSI_AFX_MessageBox_ConfirmForm_buttonOK",
+        text: "是",
+        handler: me._onOK,
+        scope: me,
+        iconCls: "PSI-button-ok"
+      }, {
+        id: "PSI_AFX_MessageBox_ConfirmForm_buttonCancel",
+        text: "否",
+        handler: me._onCancel,
+        scope: me,
+      }],
+      listeners: {
+        show: {
+          fn: me._onWndShow,
+          scope: me
+        }
+      }
+    });
+
+    me.callParent(arguments);
+  },
+
+  /**
+   * @private
+   */
+  _onWndShow() {
+    Ext.getCmp("PSI_AFX_MessageBox_ConfirmForm_buttonCancel").focus();
+  },
+
+  /**
+   * @private
+   */
+  _onOK() {
+    const me = this;
+
+    me.close();
+
+    const fn = me.getFn();
+    if (fn) {
+      fn();
+    }
+  },
+
+  /**
+   * @private
+   */
+  _onCancel() {
+    const me = this;
+    me.close();
+  }
+});

@@ -28,25 +28,11 @@ Ext.define("PSI.MsgBox", {
      * @param {Function} funcOnYes 选择YES按钮后的回调函数 
      */
     confirm(confirmInfo, funcOnYes) {
-      let width = confirmInfo.length * 22;
-      if (isNaN(width) || width < 300) {
-        width = 300;
-      }
-
-      Ext.Msg.show({
-        msg: `<h2 style='color:#1890ff'>${confirmInfo}</h2>`,
-        buttons: Ext.Msg.YESNO,
-        modal: true,
-        defaultFocus: "no",
-        closable: false,
-        width,
-        height: 130,
-        fn(id) {
-          if (id === "yes" && funcOnYes) {
-            funcOnYes();
-          }
-        }
+      const form = Ext.create("PSI.AFX.MessageBox.ConfirmForm", {
+        msg: confirmInfo,
+        fn: funcOnYes
       });
+      form.show();
     },
 
     /**
