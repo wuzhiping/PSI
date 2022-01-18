@@ -100,7 +100,7 @@ Ext.define("PSI.Form.MainForm", {
     var me = this;
 
     return [{
-      text: "新增表单分类",
+      text: "新建表单分类",
       handler: me.onAddCategory,
       scope: me
     }, {
@@ -112,7 +112,7 @@ Ext.define("PSI.Form.MainForm", {
       handler: me.onDeleteCategory,
       scope: me
     }, "-", {
-      text: "新增表单",
+      text: "新建表单",
       handler: me.onAddForm,
       scope: me
     }, {
@@ -124,7 +124,7 @@ Ext.define("PSI.Form.MainForm", {
       handler: me.onDeleteForm,
       scope: me
     }, "-", {
-      text: "帮助",
+      text: "指南",
       handler: function () {
         me.showInfo("TODO");
       }
