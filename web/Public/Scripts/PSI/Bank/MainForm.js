@@ -113,7 +113,7 @@ Ext.define("PSI.Bank.MainForm", {
     }
 
     const company = item[0];
-    const title = `${company.get("name")} - 银行账户`;
+    const title = `<span class='PSI-title-keyword'>${company.get("name")}</span> - 银行账户`;
     me.getMainGrid().setTitle(me.formatGridHeaderTitle(title));
 
     const el = me.getMainGrid().getEl();
