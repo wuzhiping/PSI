@@ -182,7 +182,7 @@ Ext.define("PSI.Bank.EditForm", {
     const sf = {
       url: me.URL("Home/Bank/editBank"),
       success(form, action) {
-        me.__lastId = action.result.id;
+        me._lastId = action.result.id;
 
         el.unmask();
 
@@ -247,9 +247,9 @@ Ext.define("PSI.Bank.EditForm", {
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
-    if (me.__lastId) {
+    if (me._lastId) {
       if (me.getParentForm()) {
-        me.getParentForm().refreshMainGrid(me.__lastId);
+        me.getParentForm().refreshMainGrid(me._lastId);
       }
     }
   },
