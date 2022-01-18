@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.GLPeriod.MainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
+  extend: "PSI.AFX.Form.MainForm",
 
   initComponent: function () {
     var me = this;
