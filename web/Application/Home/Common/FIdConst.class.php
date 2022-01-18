@@ -1119,6 +1119,13 @@ class FIdConst
   const MAIN_MENU = "-7995";
 
   /**
+   * 视图开发助手
+   *
+   * @var string
+   */
+  const FORM_VIEW_SYSTEM_DEV = "-7997";
+
+  /**
    * 自定义表单
    */
   const FORM_SYSTEM = "-7999";
