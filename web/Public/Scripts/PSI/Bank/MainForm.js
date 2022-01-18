@@ -51,15 +51,15 @@ Ext.define("PSI.Bank.MainForm", {
     const me = this;
     return [{
       text: "新建银行账户",
-      handler: me.onAddBank,
+      handler: me._onAddBank,
       scope: me
     }, "-", {
       text: "编辑银行账户",
-      handler: me.onEditBank,
+      handler: me._onEditBank,
       scope: me
     }, "-", {
       text: "删除银行账户",
-      handler: me.onDeleteBank,
+      handler: me._onDeleteBank,
       scope: me
     }, "-", {
       text: "关闭",
@@ -193,7 +193,7 @@ Ext.define("PSI.Bank.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onCompanyGridSelect,
+          fn: me._onCompanyGridSelect,
           scope: me
         }
       }
@@ -265,7 +265,7 @@ Ext.define("PSI.Bank.MainForm", {
    * 
    * @private
    */
-  onCompanyGridSelect() {
+  _onCompanyGridSelect() {
     const me = this;
 
     me.refreshMainGrid();
@@ -276,7 +276,7 @@ Ext.define("PSI.Bank.MainForm", {
    * 
    * @private
    */
-  onAddBank() {
+  _onAddBank() {
     const me = this;
 
     const item = me.getCompanyGrid().getSelectionModel().getSelection();
@@ -299,7 +299,7 @@ Ext.define("PSI.Bank.MainForm", {
    * 
    * @private
    */
-  onEditBank() {
+  _onEditBank() {
     const me = this;
     let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -329,7 +329,7 @@ Ext.define("PSI.Bank.MainForm", {
    * 
    * @private
    */
-  onDeleteBank() {
+  _onDeleteBank() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
