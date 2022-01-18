@@ -52,8 +52,11 @@ class MainMenuController extends PSIBaseController
     }
 
     if (substr($fid, 0, 2) == "ct") {
-      // 码表
+      // 码表 - 运行期
       redirect(__ROOT__ . "/Home/CodeTable/run?fid={$fid}");
+    } else if (substr($fid, 0, 2) == "fm") {
+      // 自定义表单 - 运行期
+      redirect(__ROOT__ . "/Home/Form/run?fid={$fid}");
     }
 
     switch ($fid) {
@@ -279,6 +282,11 @@ class MainMenuController extends PSIBaseController
         // 主菜单维护
         redirect(__ROOT__ . "/Home/MainMenu/maintainIndex");
         break;
+      case FIdConst::FORM_SYSTEM:
+        // 自定义表单
+        redirect(__ROOT__ . "/Home/Form/index");
+        break;
+
       default:
         redirect(__ROOT__ . "/Home");
     }
