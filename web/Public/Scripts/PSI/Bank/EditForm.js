@@ -113,7 +113,7 @@ Ext.define("PSI.Bank.EditForm", {
         }, {
           fieldLabel: "组织机构",
           xtype: "displayfield",
-          value: me.getCompany().get("name")
+          value: `<span class='PSI-field-note'>${me.getCompany().get("name")}</span>`
         }, {
           id: "PSI_Bank_EditForm_editBankName",
           fieldLabel: "银行",
