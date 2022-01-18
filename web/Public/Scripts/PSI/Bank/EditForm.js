@@ -14,6 +14,8 @@ Ext.define("PSI.Bank.EditForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;
@@ -28,7 +30,7 @@ Ext.define("PSI.Bank.EditForm", {
         text: "保存并继续新建",
         formBind: true,
         handler() {
-          me.onOK(true);
+          me._onOK(true);
         },
         scope: me
       };
@@ -41,7 +43,7 @@ Ext.define("PSI.Bank.EditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK(false);
       },
       scope: me
     });
@@ -67,11 +69,11 @@ Ext.define("PSI.Bank.EditForm", {
       layout: "border",
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       },
@@ -147,7 +149,7 @@ Ext.define("PSI.Bank.EditForm", {
           value: entity == null ? null : entity.get("memo"),
           listeners: {
             specialkey: {
-              fn: me.onLastEditSpecialKey,
+              fn: me._onLastEditSpecialKey,
               scope: me
             }
           }
@@ -169,8 +171,10 @@ Ext.define("PSI.Bank.EditForm", {
 
   /**
    * 保存
+   * 
+   * @private
    */
-  onOK(thenAdd) {
+  _onOK(thenAdd) {
     const me = this;
     const f = me.editForm;
     const el = f.getEl();
@@ -203,20 +207,24 @@ Ext.define("PSI.Bank.EditForm", {
   /**
    * 最后一个input回车的时候，提交Form
    * 注：其他input的回车处理函数在父类中实现了
+   * 
+   * @private
    */
-  onLastEditSpecialKey(field, e) {
+  _onLastEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() == e.ENTER) {
       const f = me.editForm;
       if (f.getForm().isValid()) {
-        me.onOK(me.adding);
+        me._onOK(me.adding);
       }
     }
   },
 
   /**
    * 当保存并继续新建的时候，清除之前input里面录入的数据
+   * 
+   * @private
    */
   clearEdit() {
     const me = this;
@@ -231,8 +239,10 @@ Ext.define("PSI.Bank.EditForm", {
 
   /**
    * Form关闭时候的事件处理函数
+   * 
+   * @private
    */
-  onWndClose() {
+  _onWndClose() {
     const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
@@ -246,8 +256,10 @@ Ext.define("PSI.Bank.EditForm", {
 
   /**
    * Form显示时候的事件处理函数
+   * 
+   * @private
    */
-  onWndShow() {
+  _onWndShow() {
     const me = this;
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
