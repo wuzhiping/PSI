@@ -64,6 +64,9 @@ Ext.define("PSI.GLPeriod.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   refreshCompanyGrid() {
     const me = this;
     const el = Ext.getBody();
@@ -88,6 +91,9 @@ Ext.define("PSI.GLPeriod.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   getCompanyGrid() {
     const me = this;
     if (me.__companyGrid) {
@@ -135,7 +141,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onCompanyGridSelect,
+          fn: me._onCompanyGridSelect,
           scope: me
         }
       }
@@ -143,7 +149,10 @@ Ext.define("PSI.GLPeriod.MainForm", {
     return me.__companyGrid;
   },
 
-  onCompanyGridSelect() {
+  /**
+   * @private
+   */
+  _onCompanyGridSelect() {
     const me = this;
 
     me.getMainGrid().setTitle(me.formatGridHeaderTitle("会计期间"));
@@ -182,6 +191,9 @@ Ext.define("PSI.GLPeriod.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     const me = this;
     if (me.__mainGrid) {
@@ -302,7 +314,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成初始化操作", true);
-              me.onCompanyGridSelect();
+              me._onCompanyGridSelect();
             } else {
               me.showInfo(data.msg);
             }
