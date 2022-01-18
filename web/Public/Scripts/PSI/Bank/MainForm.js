@@ -24,7 +24,7 @@ Ext.define("PSI.Bank.MainForm", {
         height: 2,
       }, {
         region: "west",
-        width: 300,
+        width: 350,
         layout: "fit",
         border: 0,
         split: true,
@@ -181,9 +181,9 @@ Ext.define("PSI.Bank.MainForm", {
           sortable: false,
         },
         items: [{
-          header: "编码",
+          header: "组织机构编码",
           dataIndex: "code",
-          width: 70
+          width: 100
         }, {
           header: "组织机构名称",
           dataIndex: "name",
