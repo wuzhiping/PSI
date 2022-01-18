@@ -252,7 +252,7 @@ Ext.define("PSI.Bank.MainForm", {
       }),
       listeners: {
         itemdblclick: {
-          fn: me.onEditBank,
+          fn: me._onEditBank,
           scope: me
         }
       }
