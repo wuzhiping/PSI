@@ -54,7 +54,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
     const me = this;
     return [{
       text: "初始化本年度会计期间",
-      handler: me.onInitPeriod,
+      handler: me._onInitPeriod,
       scope: me
     }, "-", {
       text: "关闭",
@@ -195,6 +195,12 @@ Ext.define("PSI.GLPeriod.MainForm", {
         "detailKept", "detailClosed", "periodClosed", "yearForward"]
     });
 
+    const defaultColsProp = {
+      menuDisabled: true,
+      sortable: false,
+      draggable: false
+    };
+
     me.__mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
@@ -203,11 +209,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
       },
       columnLines: true,
       columns: {
-        defaults: {
-          menuDisabled: true,
-          sortable: false,
-          draggable: false
-        },
+        defaults: defaultColsProp,
         items: [{
           header: "年",
           dataIndex: "year",
@@ -225,17 +227,13 @@ Ext.define("PSI.GLPeriod.MainForm", {
             dataIndex: "glKept",
             width: 90,
             align: "center",
-            menuDisabled: true,
-            sortable: false,
-            draggable: false
+            ...defaultColsProp
           }, {
             header: "已结账",
             dataIndex: "glClosed",
             width: 90,
             align: "center",
-            menuDisabled: true,
-            sortable: false,
-            draggable: false
+            ...defaultColsProp
           }]
         }, {
           header: "明细账",
@@ -244,17 +242,13 @@ Ext.define("PSI.GLPeriod.MainForm", {
             dataIndex: "detailKept",
             width: 100,
             align: "center",
-            menuDisabled: true,
-            sortable: false,
-            draggable: false
+            ...defaultColsProp
           }, {
             header: "已结账",
             dataIndex: "detailClosed",
             width: 100,
             align: "center",
-            menuDisabled: true,
-            sortable: false,
-            draggable: false
+            ...defaultColsProp
           }]
         }, {
           header: "本期间已结账",
@@ -278,7 +272,12 @@ Ext.define("PSI.GLPeriod.MainForm", {
     return me.__mainGrid;
   },
 
-  onInitPeriod() {
+  /**
+   * 初始化本年度会计期间
+   * 
+   * @private
+   */
+  _onInitPeriod() {
     const me = this;
     const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
