@@ -1,6 +1,10 @@
-//
-// 表单分类自定义字段
-//
+/**
+ * 表单分类自定义字段
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.Form.FormCategoryField", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.psi_formcategoryfield",
