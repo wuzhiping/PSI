@@ -10,6 +10,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;
@@ -42,6 +44,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 工具栏
+   * 
+   * @private
    */
   getToolbarCmp() {
     const me = this;
@@ -67,6 +71,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 刷新组织机构Grid
+   * 
+   * @private
    */
   refreshCompanyGrid() {
     const me = this;
@@ -94,6 +100,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 刷新银行账户Grid
+   * 
+   * @private
    */
   refreshMainGrid() {
     const me = this;
@@ -135,6 +143,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 组织机构Grid
+   * 
+   * @private
    */
   getCompanyGrid() {
     const me = this;
@@ -193,6 +203,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 银行账户Grid
+   * 
+   * @private
    */
   getMainGrid() {
     const me = this;
@@ -250,6 +262,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 组织机构Grid中某条记录被选中后的事件处理函数
+   * 
+   * @private
    */
   onCompanyGridSelect() {
     const me = this;
@@ -259,6 +273,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 新建银行账户
+   * 
+   * @private
    */
   onAddBank() {
     const me = this;
@@ -280,6 +296,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 编辑银行账户
+   * 
+   * @private
    */
   onEditBank() {
     const me = this;
@@ -308,6 +326,8 @@ Ext.define("PSI.Bank.MainForm", {
 
   /**
    * 删除银行账户
+   * 
+   * @private
    */
   onDeleteBank() {
     const me = this;
