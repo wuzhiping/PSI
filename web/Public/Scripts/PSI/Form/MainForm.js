@@ -733,7 +733,7 @@ Ext.define("PSI.Form.MainForm", {
       },
       border: 0,
       tbar: [{
-        text: "新增主表列",
+        text: "新建主表列",
         handler: me.onAddCol,
         scope: me
       }, "-", {
@@ -868,7 +868,7 @@ Ext.define("PSI.Form.MainForm", {
         title: me.formatGridHeaderTitle("明细表")
       },
       tbar: [{
-        text: "新增明细表",
+        text: "新建明细表",
         handler: me.onAddFormDetail,
         scope: me
       }, "-", {
@@ -958,7 +958,7 @@ Ext.define("PSI.Form.MainForm", {
         title: me.formatGridHeaderTitle("明细表列")
       },
       tbar: [{
-        text: "新增列",
+        text: "新建列",
         handler: me.onAddDetailCol,
         scope: me
       }, "-", {
@@ -1168,7 +1168,7 @@ Ext.define("PSI.Form.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  // 新增明细表
+  // 新建明细表
   onAddFormDetail: function () {
     var me = this;
     me.showInfo("TODO");
@@ -1184,7 +1184,7 @@ Ext.define("PSI.Form.MainForm", {
     me.showInfo("TODO");
   },
 
-  // 新增明细表的列
+  // 新建明细表的列
   onAddDetailCol: function () {
     var me = this;
 
