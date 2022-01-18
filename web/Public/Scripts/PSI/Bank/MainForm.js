@@ -360,6 +360,14 @@ Ext.define("PSI.Bank.MainForm", {
     const bankNumber = bank.get("bankNumber");
     const info = `请确认是否删除银行账户<br/><br/> <span style='color:red'>${companyName}: ${bankName}-${bankNumber}</span> ?`;
 
+    const store = me.getMainGrid().getStore();
+    const index = store.findExact("id", bank.get("id")) - 1;
+    let preId = null;
+    const preEntity = store.getAt(index);
+    if (preEntity) {
+      preId = preEntity.get("id");
+    }
+
     const funcConfirm = () => {
       const el = Ext.getBody();
       el.mask(PSI.Const.LOADING);
@@ -374,7 +382,7 @@ Ext.define("PSI.Bank.MainForm", {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
-              me.refreshMainGrid();
+              me.refreshMainGrid(preId);
             } else {
               me.showInfo(data.msg);
             }
