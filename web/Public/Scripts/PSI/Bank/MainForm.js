@@ -103,7 +103,7 @@ Ext.define("PSI.Bank.MainForm", {
    * 
    * @private
    */
-  refreshMainGrid() {
+  refreshMainGrid(id) {
     const me = this;
 
     me.getMainGrid().setTitle(me.formatGridHeaderTitle("银行账户"));
@@ -131,7 +131,15 @@ Ext.define("PSI.Bank.MainForm", {
           const data = me.decodeJSON(response.responseText);
           store.add(data);
           if (store.getCount() > 0) {
-            me.getMainGrid().getSelectionModel().select(0);
+            const grid = me.getMainGrid();
+            if (id) {
+              const r = store.findExact("id", id);
+              if (r != -1) {
+                grid.getSelectionModel().select(r);
+              }
+            } else {
+              grid.getSelectionModel().select(0);
+            }
           }
         }
 
