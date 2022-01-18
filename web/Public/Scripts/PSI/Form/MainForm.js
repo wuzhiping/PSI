@@ -40,6 +40,7 @@ Ext.define("PSI.Form.MainForm", {
             split: true,
             items: [{
               xtype: "tabpanel",
+              border: 0,
               items: [{
                 title: "主表列",
                 layout: "fit",
