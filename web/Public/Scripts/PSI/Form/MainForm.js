@@ -19,6 +19,10 @@ Ext.define("PSI.Form.MainForm", {
         layout: "border",
         border: 0,
         items: [{
+          region: "north",
+          height: 2,
+          border: 0,
+        }, {
           region: "center",
           xtype: "panel",
           layout: "border",
