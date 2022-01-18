@@ -8,8 +8,11 @@
 Ext.define("PSI.GLPeriod.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
+  /**
+   * @override
+   */
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
@@ -44,8 +47,11 @@ Ext.define("PSI.GLPeriod.MainForm", {
     me.refreshCompanyGrid();
   },
 
+  /**
+   * @private
+   */
   getToolbarCmp() {
-    var me = this;
+    const me = this;
     return [{
       text: "初始化本年度会计期间",
       handler: me.onInitPeriod,
@@ -59,17 +65,17 @@ Ext.define("PSI.GLPeriod.MainForm", {
   },
 
   refreshCompanyGrid() {
-    var me = this;
-    var el = Ext.getBody();
-    var store = me.getCompanyGrid().getStore();
+    const me = this;
+    const el = Ext.getBody();
+    const store = me.getCompanyGrid().getStore();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/GLPeriod/companyList"),
       callback(options, success, response) {
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
           if (store.getCount() > 0) {
             me.getCompanyGrid().getSelectionModel().select(0);
@@ -83,12 +89,12 @@ Ext.define("PSI.GLPeriod.MainForm", {
   },
 
   getCompanyGrid() {
-    var me = this;
+    const me = this;
     if (me.__companyGrid) {
       return me.__companyGrid;
     }
 
-    var modelName = "PSI_GLPeriod_Company";
+    const modelName = "PSI_GLPeriod_Company";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -138,35 +144,35 @@ Ext.define("PSI.GLPeriod.MainForm", {
   },
 
   onCompanyGridSelect() {
-    var me = this;
+    const me = this;
 
     me.getMainGrid().setTitle(me.formatGridHeaderTitle("会计期间"));
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var title = Ext.String.format("{0} - 会计期间", company.get("name"));
+    const title = `${company.get("name")} - 会计期间`;
     me.getMainGrid().setTitle(me.formatGridHeaderTitle(title));
 
-    var grid = me.getMainGrid();
-    var el = grid.getEl();
+    const grid = me.getMainGrid();
+    const el = grid.getEl();
     el && el.mask(PSI.Const.LOADING);
 
-    var r = {
+    const r = {
       url: me.URL("Home/GLPeriod/periodList"),
       params: {
         companyId: company.get("id")
       },
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
         }
 
@@ -177,12 +183,12 @@ Ext.define("PSI.GLPeriod.MainForm", {
   },
 
   getMainGrid() {
-    var me = this;
+    const me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSIFMTProp";
+    const modelName = "PSIFMTProp";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "year", "month", "glKept", "glClosed",
@@ -273,19 +279,19 @@ Ext.define("PSI.GLPeriod.MainForm", {
   },
 
   onInitPeriod() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var info = "请确认是否初始化[" + company.get("name") + "]的本年度会计期间?";
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const info = `请确认是否初始化[${company.get("name")}]的本年度会计期间?`;
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在操作中...");
-      var r = {
+      const r = {
         url: me.URL("Home/GLPeriod/initPeriod"),
         params: {
           companyId: company.get("id")
@@ -294,7 +300,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成初始化操作", true);
               me.onCompanyGridSelect();
