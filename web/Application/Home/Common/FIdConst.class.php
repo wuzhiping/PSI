@@ -1118,6 +1118,10 @@ class FIdConst
    */
   const MAIN_MENU = "-7995";
 
+  /**
+   * 自定义表单
+   */
+  const FORM_SYSTEM = "-7999";
 
   /**
    * 系统数据字典
