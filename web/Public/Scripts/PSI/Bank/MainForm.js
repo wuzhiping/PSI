@@ -339,7 +339,16 @@ Ext.define("PSI.Bank.MainForm", {
    */
   _onDeleteBank() {
     const me = this;
-    const item = me.getMainGrid().getSelectionModel().getSelection();
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
+    if (item == null || item.length != 1) {
+      me.showInfo("没有选择组织机构");
+      return;
+    }
+
+    const company = item[0];
+    const companyName = company.get("name");
+
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要删除的银行账户");
       return;
@@ -349,7 +358,7 @@ Ext.define("PSI.Bank.MainForm", {
 
     const bankName = bank.get("bankName");
     const bankNumber = bank.get("bankNumber");
-    const info = `请确认是否删除银行账户 <span style='color:red'>${bankName}-${bankNumber}</span> ?`;
+    const info = `请确认是否删除银行账户<br/><br/> <span style='color:red'>${companyName}: ${bankName}-${bankNumber}</span> ?`;
 
     const funcConfirm = () => {
       const el = Ext.getBody();
