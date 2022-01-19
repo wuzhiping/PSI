@@ -155,8 +155,8 @@ Ext.define("PSI.CodeTable.MainForm", {
   getCategoryGrid() {
     const me = this;
 
-    if (me.__categoryGrid) {
-      return me.__categoryGrid;
+    if (me._categoryGrid) {
+      return me._categoryGrid;
     }
 
     const modelName = "PSICodeTableCategory";
@@ -166,7 +166,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       fields: ["id", "code", "name", "isSystem", "isSystemCaption"]
     });
 
-    me.__categoryGrid = Ext.create("Ext.grid.Panel", {
+    me._categoryGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -218,7 +218,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       }
     });
 
-    return me.__categoryGrid;
+    return me._categoryGrid;
   },
 
   /**
