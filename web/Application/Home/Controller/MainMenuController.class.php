@@ -288,7 +288,10 @@ class MainMenuController extends PSIBaseController
           // 自定义表单
           redirect(__ROOT__ . "/Home/Form/index");
           break;
-
+        case FIdConst::FORM_VIEW_SYSTEM_DEV:
+          // 视图开发助手
+          redirect(__ROOT__ . "/Home/FormView/index");
+          break;
         default:
           redirect(__ROOT__ . "/Home");
       }
