@@ -1,6 +1,10 @@
-//
-// 视图运行- 主界面
-//
+/**
+ * 视图运行- 主界面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.FormView.RuntimeMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
   border: 0,

@@ -1,6 +1,10 @@
-//
-// 视图分类 - 新增或编辑界面
-//
+/**
+ * 视图分类 - 新增或编辑界面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.FormView.CategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
@@ -132,9 +136,9 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     me.editName = Ext.getCmp("PSI_FormView_CategoryEditForm_editName");
   },
 
-	/**
-	 * 保存
-	 */
+  /**
+   * 保存
+   */
   onOK: function (thenAdd) {
     var me = this;
     var f = me.editForm;

@@ -1,6 +1,10 @@
-//
-// 视图列 - 新建或编辑界面
-//
+/**
+ * 视图列 - 新建或编辑界面
+ * 
+ * @author 艾格林门信息服务（大连）有限公司
+ * @copyright 2015 - present
+ * @license GPL v3
+ */
 Ext.define("PSI.FormView.FvColEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
