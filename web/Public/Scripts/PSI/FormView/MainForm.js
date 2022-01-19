@@ -56,7 +56,7 @@ Ext.define("PSI.FormView.MainForm", {
   getToolbarCmp: function () {
     var me = this;
     return [{
-      text: "新增视图分类",
+      text: "新建视图分类",
       handler: me.onAddCategory,
       scope: me
     }, {
@@ -68,7 +68,7 @@ Ext.define("PSI.FormView.MainForm", {
       handler: me.onDeleteCategory,
       scope: me
     }, "-", {
-      text: "新增视图",
+      text: "新建视图",
       handler: me.onAddFv,
       scope: me
     }, {
@@ -80,8 +80,9 @@ Ext.define("PSI.FormView.MainForm", {
       handler: me.onDeleteFv,
       scope: me
     }, "-", {
-      text: "帮助",
+      text: "指南",
       handler: function () {
+        me.focus();
         window.open(me.URL("Home/Help/index?t=formview"));
       }
     }, "-", {
@@ -181,7 +182,7 @@ Ext.define("PSI.FormView.MainForm", {
       },
       title: "列",
       tbar: [{
-        text: "新增列",
+        text: "新建列",
         handler: me.onAddCol,
         scope: me
       }, "-", {
@@ -256,7 +257,7 @@ Ext.define("PSI.FormView.MainForm", {
       },
       title: "业务按钮",
       tbar: [{
-        text: "新增按钮",
+        text: "新建按钮",
         handler: me.onAddButton,
         scope: me
       }, "-", {
@@ -311,7 +312,7 @@ Ext.define("PSI.FormView.MainForm", {
       },
       title: "查询条件",
       tbar: [{
-        text: "新增查询条件",
+        text: "新建查询条件",
         handler: me.onAddQc,
         scope: me
       }, "-", {
@@ -391,7 +392,7 @@ Ext.define("PSI.FormView.MainForm", {
     me.refreshMainGrid();
   },
 
-  // 新增分类
+  // 新建分类
   onAddCategory: function () {
     var me = this;
 
@@ -674,7 +675,7 @@ Ext.define("PSI.FormView.MainForm", {
     me.ajax(r);
   },
 
-  // 新增视图
+  // 新建视图
   onAddFv: function () {
     var me = this;
 
@@ -758,13 +759,13 @@ Ext.define("PSI.FormView.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  // 新增列
+  // 新建列
   onAddCol: function () {
     var me = this;
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("请选择要新增列的视图");
+      me.showInfo("请选择要新建列的视图");
       return;
     }
 
@@ -878,7 +879,7 @@ Ext.define("PSI.FormView.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  // 新增按钮
+  // 新建按钮
   onAddButton: function () {
     var me = this;
     me.showInfo("TODO")
@@ -896,7 +897,7 @@ Ext.define("PSI.FormView.MainForm", {
     me.showInfo("TODO")
   },
 
-  // 新增查询条件
+  // 新建查询条件
   onAddQc: function () {
     var me = this;
     me.showInfo("TODO")
