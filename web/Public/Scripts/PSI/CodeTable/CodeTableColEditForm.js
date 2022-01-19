@@ -523,7 +523,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       method: "POST",
       success(form, action) {
         el && el.unmask();
-        me.tip("数据保存成功");
+        me.tip("数据保存成功", true);
         me.focus();
         me.__lastId = action.result.id;
         me.close();
