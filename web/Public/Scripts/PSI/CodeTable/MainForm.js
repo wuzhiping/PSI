@@ -346,8 +346,8 @@ Ext.define("PSI.CodeTable.MainForm", {
   getColsGrid() {
     const me = this;
 
-    if (me.__colsGrid) {
-      return me.__colsGrid;
+    if (me._colsGrid) {
+      return me._colsGrid;
     }
 
     const modelName = "PSICodeTableCols";
@@ -363,7 +363,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         "colSpan"]
     });
 
-    me.__colsGrid = Ext.create("Ext.grid.Panel", {
+    me._colsGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -488,7 +488,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       }
     });
 
-    return me.__colsGrid;
+    return me._colsGrid;
   },
 
   /**
