@@ -126,7 +126,8 @@ Ext.define("PSI.Form.MainForm", {
     }, "-", {
       text: "指南",
       handler: function () {
-        me.showInfo("TODO");
+        me.focus();
+        window.open(me.URL("Home/Help/index?t=form"));
       }
     }, "-", {
       text: "关闭",

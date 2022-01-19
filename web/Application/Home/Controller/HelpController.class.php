@@ -150,6 +150,10 @@ class HelpController extends PSIBaseController
         $bs->insertBizlog("访问实施指南页面：码表设置", "实施指南");
         redirect("/help/dev/lcap/08-03.html");
         break;
+      case "form":
+        $bs->insertBizlog("访问实施指南页面：自定义表单", "实施指南");
+        redirect("/help/dev/lcap/08-06.html");
+        break;
       case "formview":
         $bs->insertBizlog("访问实施指南页面：视图开发助手", "实施指南");
         redirect("/help/dev/lcap/08-04.html");
