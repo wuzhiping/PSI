@@ -636,7 +636,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshCategoryGrid(preIndex);
             } else {
               me.showInfo(data.msg);
@@ -864,7 +864,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshMainGrid(preIndex);
             } else {
               me.showInfo(data.msg);
@@ -981,7 +981,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshColsGrid(preIndex);
             } else {
               me.showInfo(data.msg);
