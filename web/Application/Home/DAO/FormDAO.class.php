@@ -307,16 +307,14 @@ class FormDAO extends PSIBaseExDAO
       return $this->bad("数据库表名长度不能小于6");
     }
 
-    $c = ord($tableName{
-      0});
+    $c = ord($tableName[0]);
     $isABC = ord('a') <= $c && ord('z') >= $c;
     if (!$isABC) {
       return $this->bad("数据库表名需要以字符开头");
     }
 
     for ($i = 1; $i < $len; $i++) {
-      $c = ord($tableName{
-        $i});
+      $c = ord($tableName[$i]);
       $isABC = ord('a') <= $c && ord('z') >= $c;
       $isNumber = ord('0') <= $c && ord('9') >= $c;
       $isOK = $isABC || $isNumber || ord('_') == $c;
@@ -1398,8 +1396,7 @@ class FormDAO extends PSIBaseExDAO
    */
   private function checkFieldName($fieldName)
   {
-    $c = ord($fieldName{
-      0});
+    $c = ord($fieldName[0]);
     $isABC = ord('a') <= $c && ord('z') >= $c;
     if (!$isABC) {
       return $this->bad("数据库字段名需要以字符开头");
@@ -1407,8 +1404,7 @@ class FormDAO extends PSIBaseExDAO
 
     $len = strlen($fieldName);
     for ($i = 1; $i < $len; $i++) {
-      $c = ord($fieldName{
-        $i});
+      $c = ord($fieldName[$i]);
       $isABC = ord('a') <= $c && ord('z') >= $c;
       $isNumber = ord('0') <= $c && ord('9') >= $c;
       $isOK = $isABC || $isNumber || ord('_') == $c;
