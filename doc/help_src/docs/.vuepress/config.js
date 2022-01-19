@@ -126,6 +126,9 @@ module.exports = {
         }, {
           text: '码表设置',
           link: '/dev/lcap/08-03.html'
+        },{
+          text: '视图开发助手',
+          link: '/dev/lcap/08-04.html'
         }, {
           text: '系统数据字典',
           link: '/dev/lcap/08-02.html'
