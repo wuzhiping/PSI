@@ -227,8 +227,8 @@ Ext.define("PSI.CodeTable.MainForm", {
   getMainGrid() {
     const me = this;
 
-    if (me.__mainGrid) {
-      return me.__mainGrid;
+    if (me._mainGrid) {
+      return me._mainGrid;
     }
 
     const modelName = "PSICodeTable";
@@ -240,7 +240,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         "handlerClassName", "editColCnt", "viewPaging", "autoCodeLength"]
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -337,7 +337,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       }
     });
 
-    return me.__mainGrid;
+    return me._mainGrid;
   },
 
   /**
