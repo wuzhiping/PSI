@@ -8,7 +8,7 @@
 Ext.define("PSI.FormView.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
@@ -53,7 +53,7 @@ Ext.define("PSI.FormView.MainForm", {
     me.refreshCategoryGrid();
   },
 
-  getToolbarCmp: function () {
+  getToolbarCmp() {
     var me = this;
     return [{
       text: "新建视图分类",
@@ -81,20 +81,20 @@ Ext.define("PSI.FormView.MainForm", {
       scope: me
     }, "-", {
       text: "指南",
-      handler: function () {
+      handler() {
         me.focus();
         window.open(me.URL("Home/Help/index?t=formview"));
       }
     }, "-", {
       text: "关闭",
-      handler: function () {
+      handler() {
         me.closeWindow();
       },
       scope: me
     }];
   },
 
-  getCategoryGrid: function () {
+  getCategoryGrid() {
     var me = this;
 
     if (me.__categoryGrid) {
@@ -119,7 +119,7 @@ Ext.define("PSI.FormView.MainForm", {
       },
       tools: [{
         type: "close",
-        handler: function () {
+        handler() {
           Ext.getCmp("panelCategory").collapse();
         }
       }],
@@ -160,7 +160,7 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__categoryGrid;
   },
 
-  getColsGrid: function () {
+  getColsGrid() {
     var me = this;
 
     if (me.__colsGrid) {
@@ -236,7 +236,7 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__colsGrid;
   },
 
-  getButtonGrid: function () {
+  getButtonGrid() {
     var me = this;
 
     if (me.__buttonGrid) {
@@ -291,7 +291,7 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__buttonGrid;
   },
 
-  getQcGrid: function () {
+  getQcGrid() {
     var me = this;
 
     if (me.__qcGrid) {
@@ -346,14 +346,14 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__qcGrid;
   },
 
-  refreshCategoryGrid: function (id) {
+  refreshCategoryGrid(id) {
     var me = this;
     var grid = me.getCategoryGrid();
     var el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     var r = {
       url: me.URL("Home/FormView/categoryList"),
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         var store = grid.getStore();
 
         store.removeAll();
@@ -381,19 +381,19 @@ Ext.define("PSI.FormView.MainForm", {
     me.ajax(r);
   },
 
-  refreshMainGrid: function (id) {
+  refreshMainGrid(id) {
     var me = this;
 
     me.getMainGrid().getStore().reload();
   },
 
-  onCategoryGridSelect: function () {
+  onCategoryGridSelect() {
     var me = this;
     me.refreshMainGrid();
   },
 
   // 新建分类
-  onAddCategory: function () {
+  onAddCategory() {
     var me = this;
 
     var form = Ext.create("PSI.FormView.CategoryEditForm", {
@@ -404,7 +404,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   // 编辑分类
-  onEditCategory: function () {
+  onEditCategory() {
     var me = this;
 
     var item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -429,7 +429,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   // 删除分类
-  onDeleteCategory: function () {
+  onDeleteCategory() {
     var me = this;
     var item = me.getCategoryGrid().getSelectionModel()
       .getSelection();
@@ -456,7 +456,7 @@ Ext.define("PSI.FormView.MainForm", {
     var info = Ext.String.format("请确认是否删除视图分类: <span style='color:red'>{0}</span> ?",
       category.get("name"));
 
-    var funcConfirm = function () {
+    var funcConfirm = () => {
       var el = Ext.getBody();
       el.mask("正在删除中...");
 
@@ -465,7 +465,7 @@ Ext.define("PSI.FormView.MainForm", {
         params: {
           id: category.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
@@ -488,7 +488,7 @@ Ext.define("PSI.FormView.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  getMainGrid: function () {
+  getMainGrid() {
     var me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
@@ -514,7 +514,7 @@ Ext.define("PSI.FormView.MainForm", {
       },
       listeners: {
         beforeload: {
-          fn: function () {
+          fn() {
             store.proxy.extraParams = me.getQueryParamForMainGrid();
           },
           scope: me
@@ -604,7 +604,7 @@ Ext.define("PSI.FormView.MainForm", {
       },
       listeners: {
         select: {
-          fn: function (rowModel, record) {
+          fn(rowModel, record) {
             me.onMainGridNodeSelect(record);
           },
           scope: me
@@ -615,7 +615,7 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__mainGrid;
   },
 
-  getQueryParamForMainGrid: function () {
+  getQueryParamForMainGrid() {
     var me = this;
     var item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -627,7 +627,7 @@ Ext.define("PSI.FormView.MainForm", {
     return { categoryId: category.get("id") };
   },
 
-  onMainGridNodeSelect: function (record) {
+  onMainGridNodeSelect(record) {
     var me = this;
 
     var fvId = record.get('id');
@@ -635,7 +635,7 @@ Ext.define("PSI.FormView.MainForm", {
     me.refreshColsGrid(fvId);
   },
 
-  refreshColsGrid: function (fvId, colId) {
+  refreshColsGrid(fvId, colId) {
     var me = this;
 
     var grid = me.getColsGrid();
@@ -646,7 +646,7 @@ Ext.define("PSI.FormView.MainForm", {
       params: {
         fvId: fvId
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         var store = grid.getStore();
 
         store.removeAll();
@@ -676,7 +676,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   // 新建视图
-  onAddFv: function () {
+  onAddFv() {
     var me = this;
 
     var item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -695,7 +695,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   // 编辑视图
-  onEditFv: function () {
+  onEditFv() {
     var me = this;
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
@@ -714,7 +714,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   // 删除视图
-  onDeleteFv: function () {
+  onDeleteFv() {
     var me = this;
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
@@ -727,7 +727,7 @@ Ext.define("PSI.FormView.MainForm", {
     var info = Ext.String.format("请确认是否删除视图: <span style='color:red'>{0}</span> ？",
       view.get("text"));
 
-    var funcConfirm = function () {
+    var funcConfirm = () => {
       var el = Ext.getBody();
       el.mask("正在删除中...");
 
@@ -736,7 +736,7 @@ Ext.define("PSI.FormView.MainForm", {
         params: {
           id: view.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
@@ -760,7 +760,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   // 新建列
-  onAddCol: function () {
+  onAddCol() {
     var me = this;
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
@@ -790,7 +790,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   // 编辑列
-  onEditCol: function () {
+  onEditCol() {
     var me = this;
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
@@ -817,7 +817,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   // 删除列
-  onDeleteCol: function () {
+  onDeleteCol() {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -846,7 +846,7 @@ Ext.define("PSI.FormView.MainForm", {
       + col.get("caption")
       + "</span><br /><br />当前操作只删除视图列的元数据，数据库表的字段不会删除";
 
-    var funcConfirm = function () {
+    var funcConfirm = () => {
       var el = Ext.getBody();
       el.mask("正在删除中...");
 
@@ -856,7 +856,7 @@ Ext.define("PSI.FormView.MainForm", {
           fvId: fv.get("id"),
           id: col.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
@@ -880,37 +880,37 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   // 新建按钮
-  onAddButton: function () {
+  onAddButton() {
     var me = this;
     me.showInfo("TODO")
   },
 
   // 编辑按钮
-  onEditButton: function () {
+  onEditButton() {
     var me = this;
     me.showInfo("TODO")
   },
 
   // 删除按钮
-  onDeleteButton: function () {
+  onDeleteButton() {
     var me = this;
     me.showInfo("TODO")
   },
 
   // 新建查询条件
-  onAddQc: function () {
+  onAddQc() {
     var me = this;
     me.showInfo("TODO")
   },
 
   // 编辑查询条件
-  onEditQc: function () {
+  onEditQc() {
     var me = this;
     me.showInfo("TODO")
   },
 
   // 删除查询条件
-  onDeleteQc: function () {
+  onDeleteQc() {
     var me = this;
     me.showInfo("TODO")
   }
