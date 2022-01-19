@@ -17,7 +17,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
   initComponent() {
     const me = this;
 
-    me.__idValue = null;
+    me._idValue = null;
 
     me.enableKeyEvents = true;
 
@@ -246,15 +246,15 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
   },
 
   setIdValue(id) {
-    this.__idValue = id;
+    this._idValue = id;
   },
 
   getIdValue() {
-    return this.__idValue;
+    return this._idValue;
   },
 
   clearIdValue() {
     this.setValue(null);
-    this.__idValue = null;
+    this._idValue = null;
   }
 });
