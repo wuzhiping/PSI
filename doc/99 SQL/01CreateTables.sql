@@ -1701,6 +1701,73 @@ CREATE TABLE IF NOT EXISTS `t_form_detail_cols` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `t_fv_category`;
+CREATE TABLE IF NOT EXISTS `t_fv_category` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `parent_id` varchar(255) DEFAULT NULL,
+  `is_system` int(11) NOT NULL DEFAULT 2,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_fv`;
+CREATE TABLE IF NOT EXISTS `t_fv` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `category_id` varchar(255) NOT NULL,
+  `memo` varchar(1000) DEFAULT NULL,
+  `py` varchar(255) DEFAULT NULL,
+  `fid` varchar(255) DEFAULT NULL,
+  `md_version` int(11) NOT NULL DEFAULT 1,
+  `is_fixed` int(11) NOT NULL DEFAULT 2,
+  `parent_id` varchar(255) DEFAULT NULL,
+  `module_name` varchar(255) DEFAULT NULL,
+  `xtype` varchar(255) NOT NULL,
+  `region` varchar(255) DEFAULT NULL,
+  `width_or_height` varchar(255) DEFAULT NULL,
+  `layout_type` int(11) NOT NULL DEFAULT 1,
+  `data_source_type` int(11) NOT NULL DEFAULT 1,
+  `data_source_table_name` varchar(255) DEFAULT NULL,
+  `handler_class_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_fv_cols`;
+CREATE TABLE IF NOT EXISTS `t_fv_cols` (
+  `id` varchar(255) NOT NULL,
+  `fv_id` varchar(255) NOT NULL,
+  `caption` varchar(255) NOT NULL,
+  `show_order` int(11) NOT NULL,
+  `width` int(11) NOT NULL,
+  `value_from_table_name` varchar(255) DEFAULT NULL,
+  `value_from_col_name` varchar(255) DEFAULT NULL,
+  `value_type` int(11) NOT NULL DEFAULT 1,
+  `value_sql` varchar(255) DEFAULT NULL,
+  `value_php_class_name` varchar(255) DEFAULT NULL,
+  `display_format` int(11) NOT NULL DEFAULT 1,
+  `display_format_ext` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_fv_qc`;
+CREATE TABLE IF NOT EXISTS `t_fv_qc` (
+  `id` varchar(255) NOT NULL,
+  `fv_id` varchar(255) NOT NULL,
+  `caption` varchar(255) NOT NULL,
+  `show_order` int(11) NOT NULL,
+  `qc_type` int(11) NOT NULL,
+  `value_from_fv_id` varchar(255) DEFAULT NULL,
+  `value_from_col_name` varchar(255) DEFAULT NULL,
+  `xtype` varchar(255) DEFAULT NULL,
+  `qc_php_class_name` varchar(255) DEFAULT NULL,
+  `op` int(11) NOT NULL DEFAULT 1,
+  `op_group` int(11) NOT NULL DEFAULT 1,
+  `parent_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
