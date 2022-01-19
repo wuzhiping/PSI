@@ -8,7 +8,7 @@
 Ext.define("PSI.Form.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
@@ -96,7 +96,7 @@ Ext.define("PSI.Form.MainForm", {
     me.refreshCategoryGrid();
   },
 
-  getToolbarCmp: function () {
+  getToolbarCmp() {
     var me = this;
 
     return [{
@@ -125,19 +125,19 @@ Ext.define("PSI.Form.MainForm", {
       scope: me
     }, "-", {
       text: "指南",
-      handler: function () {
+      handler() {
         me.focus();
         window.open(me.URL("Home/Help/index?t=form"));
       }
     }, "-", {
       text: "关闭",
-      handler: function () {
+      handler() {
         me.closeWindow();
       }
     }];
   },
 
-  getCategoryGrid: function () {
+  getCategoryGrid() {
     var me = this;
 
     if (me.__categoryGrid) {
@@ -162,7 +162,7 @@ Ext.define("PSI.Form.MainForm", {
       },
       tools: [{
         type: "close",
-        handler: function () {
+        handler() {
           Ext.getCmp("panelCategory").collapse();
         }
       }],
@@ -196,7 +196,7 @@ Ext.define("PSI.Form.MainForm", {
     return me.__categoryGrid;
   },
 
-  onAddCategory: function () {
+  onAddCategory() {
     var me = this;
 
     var form = Ext.create("PSI.Form.CategoryEditForm", {
@@ -206,7 +206,7 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
-  onEditCategory: function () {
+  onEditCategory() {
     var me = this;
 
     var item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -225,7 +225,7 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
-  onDeleteCategory: function () {
+  onDeleteCategory() {
     var me = this;
     var item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -247,7 +247,7 @@ Ext.define("PSI.Form.MainForm", {
     var info = "请确认是否删除表单分类: <span style='color:red'>"
       + category.get("name") + "</span>";
 
-    var funcConfirm = function () {
+    var funcConfirm = () => {
       var el = Ext.getBody();
       el.mask("正在删除中...");
 
@@ -256,7 +256,7 @@ Ext.define("PSI.Form.MainForm", {
         params: {
           id: category.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
@@ -279,13 +279,13 @@ Ext.define("PSI.Form.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onCategoryGridSelect: function () {
+  onCategoryGridSelect() {
     var me = this;
 
     me.refreshMainGrid();
   },
 
-  getMainGrid: function () {
+  getMainGrid() {
     var me = this;
 
     if (me.__mainGrid) {
@@ -358,7 +358,7 @@ Ext.define("PSI.Form.MainForm", {
         width: 80,
         menuDisabled: true,
         sortable: false,
-        renderer: function (value) {
+        renderer(value) {
           return parseInt(value) == 1 ? "是" : "否";
         }
       }],
@@ -378,14 +378,14 @@ Ext.define("PSI.Form.MainForm", {
     return me.__mainGrid;
   },
 
-  onMainGridSelect: function () {
+  onMainGridSelect() {
     var me = this;
 
     me.refreshColsGrid();
     me.refreshDetailGrid();
   },
 
-  refreshMainGrid: function (id) {
+  refreshMainGrid(id) {
     var me = this;
 
     me.getColsGrid().getStore().removeAll();
@@ -409,7 +409,7 @@ Ext.define("PSI.Form.MainForm", {
       params: {
         categoryId: category.get("id")
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         var store = grid.getStore();
 
         store.removeAll();
@@ -437,7 +437,7 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
-  refreshColsGrid: function (id) {
+  refreshColsGrid(id) {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -454,7 +454,7 @@ Ext.define("PSI.Form.MainForm", {
       params: {
         id: form.get("id")
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         var store = grid.getStore();
 
         store.removeAll();
@@ -482,7 +482,7 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
-  refreshDetailGrid: function (id) {
+  refreshDetailGrid(id) {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -499,7 +499,7 @@ Ext.define("PSI.Form.MainForm", {
       params: {
         id: form.get("id")
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         var store = grid.getStore();
 
         store.removeAll();
@@ -527,7 +527,7 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
-  refreshDetailColsGrid: function (id) {
+  refreshDetailColsGrid(id) {
     var me = this;
     var item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -544,7 +544,7 @@ Ext.define("PSI.Form.MainForm", {
       params: {
         id: formDetail.get("id")
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         var store = grid.getStore();
 
         store.removeAll();
@@ -572,7 +572,7 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
-  onAddForm: function () {
+  onAddForm() {
     var me = this;
 
     var item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -590,7 +590,7 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
-  onEditForm: function () {
+  onEditForm() {
     var me = this;
 
     var item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -618,7 +618,7 @@ Ext.define("PSI.Form.MainForm", {
   },
 
   // 删除表单元数据
-  onDeleteForm: function () {
+  onDeleteForm() {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -641,7 +641,7 @@ Ext.define("PSI.Form.MainForm", {
       + form.get("name")
       + "</span><br /><br />当前操作只删除表单元数据，<br />数据库实际表不会删除";
 
-    var funcConfirm = function () {
+    var funcConfirm = () => {
       var el = Ext.getBody();
       el.mask("正在删除中...");
 
@@ -650,7 +650,7 @@ Ext.define("PSI.Form.MainForm", {
         params: {
           id: form.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
@@ -673,14 +673,14 @@ Ext.define("PSI.Form.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  refreshCategoryGrid: function (id) {
+  refreshCategoryGrid(id) {
     var me = this;
     var grid = me.getCategoryGrid();
     var el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     var r = {
       url: me.URL("Home/Form/categoryList"),
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         var store = grid.getStore();
 
         store.removeAll();
@@ -708,7 +708,7 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
-  getColsGrid: function () {
+  getColsGrid() {
     var me = this;
 
     if (me.__colsGrid) {
@@ -845,7 +845,7 @@ Ext.define("PSI.Form.MainForm", {
     return me.__colsGrid;
   },
 
-  getDetailGrid: function () {
+  getDetailGrid() {
     var me = this;
 
     if (me.__detailGrid) {
@@ -924,13 +924,13 @@ Ext.define("PSI.Form.MainForm", {
     return me.__detailGrid;
   },
 
-  onDetailGridSelect: function () {
+  onDetailGridSelect() {
     var me = this;
 
     me.refreshDetailColsGrid();
   },
 
-  getDetailColsGrid: function () {
+  getDetailColsGrid() {
     var me = this;
 
     if (me.__detailColsGrid) {
@@ -1061,7 +1061,7 @@ Ext.define("PSI.Form.MainForm", {
     return me.__detailColsGrid;
   },
 
-  onAddCol: function () {
+  onAddCol() {
     var me = this;
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
@@ -1079,7 +1079,7 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
-  onEditCol: function () {
+  onEditCol() {
     var me = this;
 
     var item = me.getMainGrid().getSelectionModel().getSelection();
@@ -1105,7 +1105,7 @@ Ext.define("PSI.Form.MainForm", {
   },
 
   // 删除主表列
-  onDeleteCol: function () {
+  onDeleteCol() {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -1136,7 +1136,7 @@ Ext.define("PSI.Form.MainForm", {
       + col.get("caption")
       + "</span>?<br /><br />当前操作只删除主表列元数据，<br />数据库表的字段不会删除";
 
-    var funcConfirm = function () {
+    var funcConfirm = () => {
       var el = Ext.getBody();
       el.mask("正在删除中...");
 
@@ -1146,7 +1146,7 @@ Ext.define("PSI.Form.MainForm", {
           id: col.get("id"),
           formId: form.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
@@ -1170,23 +1170,23 @@ Ext.define("PSI.Form.MainForm", {
   },
 
   // 新建明细表
-  onAddFormDetail: function () {
+  onAddFormDetail() {
     var me = this;
     me.showInfo("TODO");
   },
 
-  onEditFormDetail: function () {
+  onEditFormDetail() {
     var me = this;
     me.showInfo("TODO");
   },
 
-  onDeleteFormDetail: function () {
+  onDeleteFormDetail() {
     var me = this;
     me.showInfo("TODO");
   },
 
   // 新建明细表的列
-  onAddDetailCol: function () {
+  onAddDetailCol() {
     var me = this;
 
     var item = me.getDetailGrid().getSelectionModel().getSelection();
@@ -1205,7 +1205,7 @@ Ext.define("PSI.Form.MainForm", {
   },
 
   // 编辑明细表的列
-  onEditDetailCol: function () {
+  onEditDetailCol() {
     var me = this;
     var item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -1231,7 +1231,7 @@ Ext.define("PSI.Form.MainForm", {
   },
 
   // 删除明细表列
-  onDeleteDetailCol: function () {
+  onDeleteDetailCol() {
     var me = this;
     var item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -1262,7 +1262,7 @@ Ext.define("PSI.Form.MainForm", {
       + col.get("caption")
       + "</span>?<br /><br />当前操作只删除明细表列元数据，<br />数据库表的字段不会删除";
 
-    var funcConfirm = function () {
+    var funcConfirm = () => {
       var el = Ext.getBody();
       el.mask("正在删除中...");
 
@@ -1272,7 +1272,7 @@ Ext.define("PSI.Form.MainForm", {
           id: col.get("id"),
           formId: form.get("id")
         },
-        callback: function (options, success, response) {
+        callback(options, success, response) {
           el.unmask();
 
           if (success) {
