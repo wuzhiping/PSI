@@ -879,7 +879,7 @@ Ext.define("PSI.FormView.MainForm", {
   onEditCol() {
     const me = this;
 
-    const item = me.getMainGrid().getSelectionModel().getSelection();
+    let item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑列的视图");
       return;
@@ -887,7 +887,7 @@ Ext.define("PSI.FormView.MainForm", {
 
     const fv = item[0];
 
-    const item = me.getColsGrid().getSelectionModel().getSelection();
+    item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的列");
       return;
@@ -909,14 +909,14 @@ Ext.define("PSI.FormView.MainForm", {
    */
   onDeleteCol() {
     const me = this;
-    const item = me.getMainGrid().getSelectionModel().getSelection();
+    let item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择视图");
       return;
     }
     const fv = item[0];
 
-    const item = me.getColsGrid().getSelectionModel().getSelection();
+    item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的列");
       return;
