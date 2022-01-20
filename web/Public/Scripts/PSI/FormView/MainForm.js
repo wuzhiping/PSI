@@ -741,63 +741,75 @@ Ext.define("PSI.FormView.MainForm", {
     me.ajax(r);
   },
 
-  // 新建视图
+  /**
+   * 新建视图
+   * 
+   * @private
+   */
   onAddFv() {
-    var me = this;
+    const me = this;
 
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择一个的视图分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
-    var form = Ext.create("PSI.FormView.FvEditForm", {
+    const form = Ext.create("PSI.FormView.FvEditForm", {
       parentForm: me,
       category: category
     });
     form.show();
   },
 
-  // 编辑视图
+  /**
+   * 编辑视图
+   * 
+   * @private
+   */
   onEditFv() {
-    var me = this;
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的视图");
       return;
     }
 
-    var view = item[0];
+    const view = item[0];
 
-    var form = Ext.create("PSI.FormView.FvEditForm", {
+    const form = Ext.create("PSI.FormView.FvEditForm", {
       parentForm: me,
       entity: view
     });
     form.show();
   },
 
-  // 删除视图
+  /**
+   * 删除视图
+   * 
+   * @private
+   */
   onDeleteFv() {
-    var me = this;
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的视图");
       return;
     }
 
-    var view = item[0];
-    var info = Ext.String.format("请确认是否删除视图: <span style='color:red'>{0}</span> ？",
+    const view = item[0];
+    const info = Ext.String.format("请确认是否删除视图: <span style='color:red'>{0}</span> ？",
       view.get("text"));
 
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/FormView/deleteFv"),
         params: {
           id: view.get("id")
@@ -806,7 +818,7 @@ Ext.define("PSI.FormView.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
               me.refreshMainGrid();
@@ -825,56 +837,64 @@ Ext.define("PSI.FormView.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  // 新建列
+  /**
+   * 新建列
+   * 
+   * @private
+   */
   onAddCol() {
-    var me = this;
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要新建列的视图");
       return;
     }
 
-    var fv = item[0];
+    const fv = item[0];
 
-    var dsName = fv.get("dataSourceType");
+    const dsName = fv.get("dataSourceType");
     if (!(dsName == "码表" || dsName == "自定义表单")) {
       me.showInfo("只有码表和自定义表单才能定义视图列");
       return;
     }
-    var dsTableName = fv.get("dataSourceTableName");
+    const dsTableName = fv.get("dataSourceTableName");
     if (!dsTableName) {
       me.showInfo("只有设置了数据源表名的视图才能定义视图列");
       return;
     }
 
-    var form = Ext.create("PSI.FormView.FvColEditForm", {
+    const form = Ext.create("PSI.FormView.FvColEditForm", {
       fv: fv,
       parentForm: me
     });
     form.show();
   },
 
-  // 编辑列
+  /**
+   * 编辑列
+   * 
+   * @private 
+   */
   onEditCol() {
-    var me = this;
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑列的视图");
       return;
     }
 
-    var fv = item[0];
+    const fv = item[0];
 
-    var item = me.getColsGrid().getSelectionModel().getSelection();
+    const item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的列");
       return;
     }
-    var col = item[0];
+    const col = item[0];
 
-    var form = Ext.create("PSI.FormView.FvColEditForm", {
+    const form = Ext.create("PSI.FormView.FvColEditForm", {
       fv: fv,
       entity: col,
       parentForm: me
@@ -882,41 +902,45 @@ Ext.define("PSI.FormView.MainForm", {
     form.show();
   },
 
-  // 删除列
+  /**
+   * 删除列
+   * 
+   * @private
+   */
   onDeleteCol() {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择视图");
       return;
     }
-    var fv = item[0];
+    const fv = item[0];
 
-    var item = me.getColsGrid().getSelectionModel().getSelection();
+    const item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的列");
       return;
     }
-    var col = item[0];
+    const col = item[0];
 
-    var store = me.getColsGrid().getStore();
-    var index = store.findExact("id", col.get("id"));
+    const store = me.getColsGrid().getStore();
+    let index = store.findExact("id", col.get("id"));
     index--;
-    var preIndex = null;
-    var preItem = store.getAt(index);
+    let preIndex = null;
+    const preItem = store.getAt(index);
     if (preItem) {
       preIndex = preItem.get("id");
     }
 
-    var info = "请确认是否删除视图列: <span style='color:red'>"
+    const info = "请确认是否删除视图列: <span style='color:red'>"
       + col.get("caption")
       + "</span><br /><br />当前操作只删除视图列的元数据，数据库表的字段不会删除";
 
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/FormView/deleteFvCol"),
         params: {
           fvId: fv.get("id"),
@@ -926,7 +950,7 @@ Ext.define("PSI.FormView.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
               me.refreshColsGrid(fv.get("id"), preIndex);
