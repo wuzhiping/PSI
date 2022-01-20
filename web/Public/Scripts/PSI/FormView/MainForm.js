@@ -969,39 +969,63 @@ Ext.define("PSI.FormView.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  // 新建按钮
+  /**
+   * 新建按钮
+   * 
+   * @private
+   */
   onAddButton() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO")
   },
 
-  // 编辑按钮
+  /**
+   * 编辑按钮
+   * 
+   * @private
+   */
   onEditButton() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO")
   },
 
-  // 删除按钮
+  /**
+   * 删除按钮
+   * 
+   * @private
+   */
   onDeleteButton() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO")
   },
 
-  // 新建查询条件
+  /**
+   * 新建查询条件
+   * 
+   * @private
+   */
   onAddQc() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO")
   },
 
-  // 编辑查询条件
+  /**
+   * 编辑查询条件
+   * 
+   * @private
+   */
   onEditQc() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO")
   },
 
-  // 删除查询条件
+  /**
+   * 删除查询条件
+   * 
+   * @private
+   */
   onDeleteQc() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO")
   }
 });
