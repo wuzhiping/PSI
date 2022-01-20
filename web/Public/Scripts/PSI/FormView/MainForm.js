@@ -447,24 +447,28 @@ Ext.define("PSI.FormView.MainForm", {
     form.show();
   },
 
-  // 编辑分类
+  /**
+   * 编辑分类
+   * 
+   * @private
+   */
   onEditCategory() {
-    var me = this;
+    const me = this;
 
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的视图分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
     if (category.get("isSystem") == 1) {
       me.showInfo("不能编辑系统分类");
       return;
     }
 
-    var form = Ext.create("PSI.FormView.CategoryEditForm", {
+    const form = Ext.create("PSI.FormView.CategoryEditForm", {
       parentForm: me,
       entity: category
     });
@@ -472,39 +476,43 @@ Ext.define("PSI.FormView.MainForm", {
     form.show();
   },
 
-  // 删除分类
+  /**
+   * 删除分类
+   * 
+   * @private
+   */
   onDeleteCategory() {
-    var me = this;
-    var item = me.getCategoryGrid().getSelectionModel()
+    const me = this;
+    const item = me.getCategoryGrid().getSelectionModel()
       .getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的视图分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
     if (category.get("isSystem") == 1) {
       me.showInfo("不能删除系统分类");
       return;
     }
 
-    var store = me.getCategoryGrid().getStore();
-    var index = store.findExact("id", category.get("id"));
+    const store = me.getCategoryGrid().getStore();
+    let index = store.findExact("id", category.get("id"));
     index--;
-    var preIndex = null;
-    var preItem = store.getAt(index);
+    let preIndex = null;
+    const preItem = store.getAt(index);
     if (preItem) {
       preIndex = preItem.get("id");
     }
 
-    var info = Ext.String.format("请确认是否删除视图分类: <span style='color:red'>{0}</span> ?",
+    const info = Ext.String.format("请确认是否删除视图分类: <span style='color:red'>{0}</span> ?",
       category.get("name"));
 
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/FormView/deleteViewCategory"),
         params: {
           id: category.get("id")
@@ -513,7 +521,7 @@ Ext.define("PSI.FormView.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
               me.refreshCategoryGrid(preIndex);
@@ -532,13 +540,18 @@ Ext.define("PSI.FormView.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * 视图Grid
+   * 
+   * @private
+   */
   getMainGrid() {
-    var me = this;
+    const me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSIGoodsCategory";
+    const modelName = "PSIGoodsCategory";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "text", "code", "fid", "memo", "mdVersion", "isFixed",
@@ -547,7 +560,7 @@ Ext.define("PSI.FormView.MainForm", {
         "handlerClassName"]
     });
 
-    var store = Ext.create("Ext.data.TreeStore", {
+    const store = Ext.create("Ext.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -659,14 +672,17 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__mainGrid;
   },
 
+  /**
+   * @private
+   */
   getQueryParamForMainGrid() {
-    var me = this;
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return { categoryId: "" };
     }
 
-    var category = item[0];
+    const category = item[0];
 
     return { categoryId: category.get("id") };
   },
