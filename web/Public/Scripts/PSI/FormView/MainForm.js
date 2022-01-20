@@ -56,6 +56,9 @@ Ext.define("PSI.FormView.MainForm", {
     me.refreshCategoryGrid();
   },
 
+  /**
+   * @private
+   */
   getToolbarCmp() {
     const me = this;
     return [{
@@ -97,6 +100,11 @@ Ext.define("PSI.FormView.MainForm", {
     }];
   },
 
+  /**
+   * 视图分类Grid
+   * 
+   * @private
+   */
   getCategoryGrid() {
     const me = this;
 
@@ -104,7 +112,7 @@ Ext.define("PSI.FormView.MainForm", {
       return me.__categoryGrid;
     }
 
-    var modelName = "PSIFvCategory";
+    const modelName = "PSIFvCategory";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -163,14 +171,19 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__categoryGrid;
   },
 
+  /**
+   * 视图列Grid
+   * 
+   * @private
+   */
   getColsGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__colsGrid) {
       return me.__colsGrid;
     }
 
-    var modelName = "PSIFvCols";
+    const modelName = "PSIFvCols";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -239,14 +252,19 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__colsGrid;
   },
 
+  /**
+   * 视图按钮Grid
+   * 
+   * @private
+   */
   getButtonGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__buttonGrid) {
       return me.__buttonGrid;
     }
 
-    var modelName = "PSIFvButtons";
+    const modelName = "PSIFvButtons";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -294,14 +312,19 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__buttonGrid;
   },
 
+  /**
+   * 查询条件Grid
+   * 
+   * @private
+   */
   getQcGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__qcGrid) {
       return me.__qcGrid;
     }
 
-    var modelName = "PSIFvQueryCondition";
+    const modelName = "PSIFvQueryCondition";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -349,25 +372,32 @@ Ext.define("PSI.FormView.MainForm", {
     return me.__qcGrid;
   },
 
+  /**
+   * 刷新分类Grid中的数据
+   * 
+   * @param {string} id 如果id不为空，则在数据刷新后，在Grid选中的该id对应的分类
+   * 
+   * @private
+   */
   refreshCategoryGrid(id) {
-    var me = this;
-    var grid = me.getCategoryGrid();
-    var el = grid.getEl() || Ext.getBody();
+    const me = this;
+    const grid = me.getCategoryGrid();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/FormView/categoryList"),
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
@@ -384,22 +414,33 @@ Ext.define("PSI.FormView.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * 刷新视图Grid中的数据
+   * 
+   * @param {string} id
+   * 
+   * @private 
+   */
   refreshMainGrid(id) {
-    var me = this;
+    const me = this;
 
     me.getMainGrid().getStore().reload();
   },
 
   onCategoryGridSelect() {
-    var me = this;
+    const me = this;
     me.refreshMainGrid();
   },
 
-  // 新建分类
+  /**
+   * 新建分类
+   * 
+   * @private
+   */
   onAddCategory() {
-    var me = this;
+    const me = this;
 
-    var form = Ext.create("PSI.FormView.CategoryEditForm", {
+    const form = Ext.create("PSI.FormView.CategoryEditForm", {
       parentForm: me
     });
 
