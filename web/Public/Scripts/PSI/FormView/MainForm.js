@@ -8,8 +8,11 @@
 Ext.define("PSI.FormView.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
+  /**
+   * @override
+   */
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
@@ -54,7 +57,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   getToolbarCmp() {
-    var me = this;
+    const me = this;
     return [{
       text: "新建视图分类",
       handler: me.onAddCategory,
@@ -95,7 +98,7 @@ Ext.define("PSI.FormView.MainForm", {
   },
 
   getCategoryGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__categoryGrid) {
       return me.__categoryGrid;
