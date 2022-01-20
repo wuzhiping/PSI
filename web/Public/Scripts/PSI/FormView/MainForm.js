@@ -687,37 +687,43 @@ Ext.define("PSI.FormView.MainForm", {
     return { categoryId: category.get("id") };
   },
 
+  /**
+   * @private
+   */
   onMainGridNodeSelect(record) {
-    var me = this;
+    const me = this;
 
-    var fvId = record.get('id');
+    const fvId = record.get('id');
 
     me.refreshColsGrid(fvId);
   },
 
+  /**
+   * @private
+   */
   refreshColsGrid(fvId, colId) {
-    var me = this;
+    const me = this;
 
-    var grid = me.getColsGrid();
-    var el = grid.getEl() || Ext.getBody();
+    const grid = me.getColsGrid();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/FormView/colList"),
       params: {
         fvId: fvId
       },
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (colId) {
-              var r = store.findExact("id", colId);
+              const r = store.findExact("id", colId);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
