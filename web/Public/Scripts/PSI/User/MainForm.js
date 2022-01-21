@@ -163,6 +163,9 @@ Ext.define("PSI.User.MainForm", {
     me.__editorList = [Ext.getCmp("editQueryLoginName"), Ext.getCmp("editQueryName"), Ext.getCmp("editQueryEnabled")];
   },
 
+  /**
+   * @private
+   */
   getQueryCmp() {
     const me = this;
     return [{
@@ -248,6 +251,9 @@ Ext.define("PSI.User.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   getOrgGrid() {
     const me = this;
     if (me._orgGrid) {
@@ -343,6 +349,9 @@ Ext.define("PSI.User.MainForm", {
     return me._orgGrid;
   },
 
+  /**
+   * @private
+   */
   getUserGrid() {
     const me = this;
 
@@ -508,12 +517,18 @@ Ext.define("PSI.User.MainForm", {
     return me._userGrid;
   },
 
+  // TODO 本函数似乎没有了，需要清除掉
+  /**
+   * @private
+   */
   getGrid() {
     return this.grid;
   },
 
   /**
    * 新增组织机构
+   * 
+   * @private
    */
   _onAddOrg() {
     const me = this;
@@ -530,6 +545,8 @@ Ext.define("PSI.User.MainForm", {
 
   /**
    * 编辑组织机构
+   * 
+   * @private
    */
   _onEditOrg() {
     const me = this;
@@ -555,6 +572,8 @@ Ext.define("PSI.User.MainForm", {
 
   /**
    * 删除组织机构
+   * 
+   * @private
    */
   _onDeleteOrg() {
     const me = this;
@@ -596,12 +615,18 @@ Ext.define("PSI.User.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * @private
+   */
   freshOrgGrid() {
     const me = this;
 
     me.getOrgGrid().getStore().reload();
   },
 
+  /**
+   * @private
+   */
   freshUserGrid() {
     const me = this;
 
@@ -616,6 +641,8 @@ Ext.define("PSI.User.MainForm", {
 
   /**
    * 新增用户
+   * 
+   * @private
    */
   _onAddUser() {
     const me = this;
@@ -636,6 +663,8 @@ Ext.define("PSI.User.MainForm", {
 
   /**
    * 编辑用户
+   * 
+   * @private
    */
   _onEditUser() {
     const me = this;
@@ -669,6 +698,8 @@ Ext.define("PSI.User.MainForm", {
 
   /**
    * 修改用户密码
+   * 
+   * @private
    */
   _onEditUserPassword() {
     const me = this;
@@ -688,6 +719,8 @@ Ext.define("PSI.User.MainForm", {
 
   /**
    * 删除用户
+   * 
+   * @private
    */
   _onDeleteUser() {
     const me = this;
@@ -727,6 +760,9 @@ Ext.define("PSI.User.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * @private
+   */
   _onOrgTreeNodeSelect(rec) {
     if (!rec) {
       return;
@@ -745,6 +781,9 @@ Ext.define("PSI.User.MainForm", {
     Ext.getCmp("pagingToolbar").doRefresh();
   },
 
+  /**
+   * @private
+   */
   _onOrgStoreLoad() {
     const me = this;
 
@@ -758,6 +797,9 @@ Ext.define("PSI.User.MainForm", {
     }
   },
 
+  /**
+   * @private
+   */
   getUserParam() {
     const me = this;
     const item = me.getOrgGrid().getSelectionModel().getSelection();
@@ -795,6 +837,9 @@ Ext.define("PSI.User.MainForm", {
     }
   },
 
+  /**
+   * @private
+   */
   _onClearQuery() {
     const me = this;
 
@@ -805,6 +850,9 @@ Ext.define("PSI.User.MainForm", {
     me._onQuery();
   },
 
+  /**
+   * @private
+   */
   _onQuery() {
     const me = this;
 
@@ -813,6 +861,9 @@ Ext.define("PSI.User.MainForm", {
     me.freshOrgGrid();
   },
 
+  /**
+   * @private
+   */
   getQueryParamForCategory() {
     let queryLoginName = null;
     const editLoginName = Ext.getCmp("editQueryLoginName");
