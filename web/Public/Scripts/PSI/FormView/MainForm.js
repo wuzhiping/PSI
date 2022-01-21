@@ -279,15 +279,15 @@ Ext.define("PSI.FormView.MainForm", {
       title: "业务按钮",
       tbar: [{
         text: "新建按钮",
-        handler: me.onAddButton,
+        handler: me._onAddButton,
         scope: me
       }, "-", {
         text: "编辑按钮",
-        handler: me.onEditButton,
+        handler: me._onEditButton,
         scope: me
       }, "-", {
         text: "删除按钮",
-        handler: me.onDeleteButton,
+        handler: me._onDeleteButton,
         scope: me
       }],
       columnLines: true,
@@ -339,15 +339,15 @@ Ext.define("PSI.FormView.MainForm", {
       title: "查询条件",
       tbar: [{
         text: "新建查询条件",
-        handler: me.onAddQc,
+        handler: me._onAddQc,
         scope: me
       }, "-", {
         text: "编辑查询条件",
-        handler: me.onEditQc,
+        handler: me._onEditQc,
         scope: me
       }, "-", {
         text: "删除查询条件",
-        handler: me.onDeleteQc,
+        handler: me._onDeleteQc,
         scope: me
       }],
       columnLines: true,
@@ -969,7 +969,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onAddButton() {
+  _onAddButton() {
     const me = this;
     me.showInfo("TODO")
   },
@@ -979,7 +979,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onEditButton() {
+  _onEditButton() {
     const me = this;
     me.showInfo("TODO")
   },
@@ -989,7 +989,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onDeleteButton() {
+  _onDeleteButton() {
     const me = this;
     me.showInfo("TODO")
   },
@@ -999,7 +999,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onAddQc() {
+  _onAddQc() {
     const me = this;
     me.showInfo("TODO")
   },
@@ -1009,7 +1009,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onEditQc() {
+  _onEditQc() {
     const me = this;
     me.showInfo("TODO")
   },
@@ -1019,7 +1019,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onDeleteQc() {
+  _onDeleteQc() {
     const me = this;
     me.showInfo("TODO")
   }
