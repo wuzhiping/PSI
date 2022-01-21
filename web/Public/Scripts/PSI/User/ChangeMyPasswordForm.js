@@ -137,6 +137,8 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
 
   /**
    * 修改密码
+   * 
+   * @private
    */
   _onOK() {
     const me = this;
@@ -173,6 +175,9 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
     });
   },
 
+  /**
+   * @private
+   */
   _onEditOldPasswordSpecialKey(field, e) {
     const me = this;
 
@@ -181,6 +186,9 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
     }
   },
 
+  /**
+   * @private
+   */
   _onEditNewPasswordSpecialKey(field, e) {
     const me = this;
 
@@ -189,6 +197,9 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
     }
   },
 
+  /**
+   * @private
+   */
   _onEditConfirmPasswordSpecialKey(field, e) {
     const me = this;
 
@@ -197,6 +208,9 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
     }
   },
 
+  /**
+   * @private
+   */
   closeWindow() {
     if (PSI.Const.MOT == "0") {
       window.location.replace(PSI.Const.BASE_URL);
