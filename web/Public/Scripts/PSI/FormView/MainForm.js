@@ -320,8 +320,8 @@ Ext.define("PSI.FormView.MainForm", {
   getQcGrid() {
     const me = this;
 
-    if (me.__qcGrid) {
-      return me.__qcGrid;
+    if (me._qcGrid) {
+      return me._qcGrid;
     }
 
     const modelName = "PSIFvQueryCondition";
@@ -331,7 +331,7 @@ Ext.define("PSI.FormView.MainForm", {
       fields: ["id", "caption"]
     });
 
-    me.__qcGrid = Ext.create("Ext.grid.Panel", {
+    me._qcGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -369,7 +369,7 @@ Ext.define("PSI.FormView.MainForm", {
       })
     });
 
-    return me.__qcGrid;
+    return me._qcGrid;
   },
 
   /**
