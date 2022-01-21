@@ -36,7 +36,7 @@ Ext.define("PSI.User.MainForm", {
   /// 用配置项，也能实现在ExtJS class之间传递参数
   /// 在PSI中最常用的模式是：在MainForm中创建其他的Form的时候，把MainForm自身作为parentForm传递给
   /// 其他Form，以便其他Form回调MainForm中的方法
-  /// 具体例子参见：本class的onAddOrg方法  
+  /// 具体例子参见：本class的_onAddOrg方法  
   config: {
     pAddOrg: null,
     pEditOrg: null,
@@ -69,22 +69,22 @@ Ext.define("PSI.User.MainForm", {
         tbar: [{
           text: "新建组织机构",
           disabled: me.getPAddOrg() == "0",
-          handler: me.onAddOrg,
+          handler: me._onAddOrg,
           /// 特别知识点：scope
           /// 在给组件绑定事件的时候，
           /// 通常把scope也赋值为me
           /// 这是进入避免JS this上下文绑定带来的莫名惊喜
-          /// 这样确保me.onAddOrg中的this是me
+          /// 这样确保me._onAddOrg中的this是me
           scope: me
         }, {
           text: "编辑组织机构",
           disabled: me.getPEditOrg() == "0",
-          handler: me.onEditOrg,
+          handler: me._onEditOrg,
           scope: me
         }, {
           text: "删除组织机构",
           disabled: me.getPDeleteOrg() == "0",
-          handler: me.onDeleteOrg,
+          handler: me._onDeleteOrg,
           scope: me
         }, "-", {
           text: "新建用户",
@@ -334,7 +334,7 @@ Ext.define("PSI.User.MainForm", {
       me.onOrgTreeNodeSelect(record);
     }, me);
 
-    orgTree.on("itemdblclick", me.onEditOrg, me);
+    orgTree.on("itemdblclick", me._onEditOrg, me);
 
     me.__orgGrid = orgTree;
 
@@ -513,7 +513,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 新增组织机构
    */
-  onAddOrg() {
+  _onAddOrg() {
     const me = this;
 
     /// 知识点5：用Ext.create创建ExtJS class，不要是new创建ExtJS class
@@ -529,7 +529,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 编辑组织机构
    */
-  onEditOrg() {
+  _onEditOrg() {
     const me = this;
     if (me.getPEditOrg() == "0") {
       return;
@@ -554,7 +554,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 删除组织机构
    */
-  onDeleteOrg() {
+  _onDeleteOrg() {
     const me = this;
     const tree = me.getOrgGrid();
     const item = tree.getSelectionModel().getSelection();
