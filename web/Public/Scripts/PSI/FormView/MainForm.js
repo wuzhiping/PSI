@@ -63,27 +63,27 @@ Ext.define("PSI.FormView.MainForm", {
     const me = this;
     return [{
       text: "新建视图分类",
-      handler: me.onAddCategory,
+      handler: me._onAddCategory,
       scope: me
     }, {
       text: "编辑视图分类",
-      handler: me.onEditCategory,
+      handler: me._onEditCategory,
       scope: me
     }, {
       text: "删除视图分类",
-      handler: me.onDeleteCategory,
+      handler: me._onDeleteCategory,
       scope: me
     }, "-", {
       text: "新建视图",
-      handler: me.onAddFv,
+      handler: me._onAddFv,
       scope: me
     }, {
       text: "编辑视图",
-      handler: me.onEditFv,
+      handler: me._onEditFv,
       scope: me
     }, {
       text: "删除视图",
-      handler: me.onDeleteFv,
+      handler: me._onDeleteFv,
       scope: me
     }, "-", {
       text: "指南",
@@ -437,7 +437,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onAddCategory() {
+  _onAddCategory() {
     const me = this;
 
     const form = Ext.create("PSI.FormView.CategoryEditForm", {
@@ -452,7 +452,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onEditCategory() {
+  _onEditCategory() {
     const me = this;
 
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -481,7 +481,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onDeleteCategory() {
+  _onDeleteCategory() {
     const me = this;
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -744,7 +744,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onAddFv() {
+  _onAddFv() {
     const me = this;
 
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -767,7 +767,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onEditFv() {
+  _onEditFv() {
     const me = this;
 
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -790,7 +790,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onDeleteFv() {
+  _onDeleteFv() {
     const me = this;
 
     const item = me.getMainGrid().getSelectionModel().getSelection();
