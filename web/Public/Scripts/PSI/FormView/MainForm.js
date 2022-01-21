@@ -483,8 +483,7 @@ Ext.define("PSI.FormView.MainForm", {
    */
   onDeleteCategory() {
     const me = this;
-    const item = me.getCategoryGrid().getSelectionModel()
-      .getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的视图分类");
       return;
@@ -505,8 +504,7 @@ Ext.define("PSI.FormView.MainForm", {
       preIndex = preItem.get("id");
     }
 
-    const info = Ext.String.format("请确认是否删除视图分类: <span style='color:red'>{0}</span> ?",
-      category.get("name"));
+    const info = `请确认是否删除视图分类: <span style='color:red'>${category.get("name")}</span> ?`;
 
     const funcConfirm = () => {
       const el = Ext.getBody();
@@ -523,7 +521,7 @@ Ext.define("PSI.FormView.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshCategoryGrid(preIndex);
             } else {
               me.showInfo(data.msg);
