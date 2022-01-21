@@ -153,7 +153,7 @@ Ext.define("PSI.App", {
 
     const year = new Date().getFullYear();
 
-    me.vp = Ext.create("Ext.container.Viewport", {
+    me._vp = Ext.create("Ext.container.Viewport", {
       layout: "fit",
       items: [{
         id: "_PSITopPanel",
@@ -287,7 +287,7 @@ Ext.define("PSI.App", {
       const fid = item.fid;
 
       if (fid == "-9995") {
-        me.vp.focus();
+        me._vp.focus();
         window.open(me.URL("Home/Help/index"));
       } else if (fid === "-9999") {
         // 重新登录
@@ -295,7 +295,7 @@ Ext.define("PSI.App", {
           location.replace(me.URL("Home/MainMenu/navigateTo/fid/-9999"));
         });
       } else {
-        me.vp.focus();
+        me._vp.focus();
 
         const url = me.URL(`Home/MainMenu/navigateTo/fid/${fid}`);
         if (PSI.Const.MOT == "0") {
@@ -356,7 +356,7 @@ Ext.define("PSI.App", {
     });
     mainToolbar.add(mainMenu);
 
-    const theCmp = me.vp.getComponent(0);
+    const theCmp = me._vp.getComponent(0);
     theCmp.addTool(mainToolbar);
     const spacers = [];
     for (let i = 0; i < 10; i++) {
