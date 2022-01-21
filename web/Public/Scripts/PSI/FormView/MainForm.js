@@ -199,15 +199,15 @@ Ext.define("PSI.FormView.MainForm", {
       title: "列",
       tbar: [{
         text: "新建列",
-        handler: me.onAddCol,
+        handler: me._onAddCol,
         scope: me
       }, "-", {
         text: "编辑列",
-        handler: me.onEditCol,
+        handler: me._onEditCol,
         scope: me
       }, "-", {
         text: "删除列",
-        handler: me.onDeleteCol,
+        handler: me._onDeleteCol,
         scope: me
       }],
       columnLines: true,
@@ -839,7 +839,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onAddCol() {
+  _onAddCol() {
     const me = this;
 
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -873,7 +873,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private 
    */
-  onEditCol() {
+  _onEditCol() {
     const me = this;
 
     let item = me.getMainGrid().getSelectionModel().getSelection();
@@ -904,7 +904,7 @@ Ext.define("PSI.FormView.MainForm", {
    * 
    * @private
    */
-  onDeleteCol() {
+  _onDeleteCol() {
     const me = this;
     let item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
