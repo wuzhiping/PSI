@@ -156,7 +156,7 @@ Ext.define("PSI.App", {
     me.vp = Ext.create("Ext.container.Viewport", {
       layout: "fit",
       items: [{
-        id: "__PSITopPanel",
+        id: "_PSITopPanel",
         xtype: "panel",
         border: 0,
         layout: "border",
@@ -248,7 +248,11 @@ Ext.define("PSI.App", {
     });
   },
 
-  // 刷新常用功能Grid中的数据
+  /**
+   * 刷新常用功能Grid中的数据
+   * 
+   * @private
+   */
   refreshRectFidGrid() {
     const me = this;
 
@@ -374,11 +378,14 @@ Ext.define("PSI.App", {
     });
   },
 
+  // ===================================================
   // 设置模块的标题
   // 这个方法最初是给View中公开调用的
   // 现在已经在构造函数里面自动调用了，所以可以视为是私有方法了
   // 不再推荐在View中调用
+  // ===================================================
   /**
+   * 设置模块的标题
    * 
    * @private
    */
@@ -387,7 +394,7 @@ Ext.define("PSI.App", {
       return;
     }
     const me = this;
-    const panel = Ext.getCmp("__PSITopPanel");
+    const panel = Ext.getCmp("_PSITopPanel");
     const title = `
       <span style='font-size:140%;color:#c7c6c6;font-weight:bold;'>
         ${header.title} - ${me.getProductionName()}
