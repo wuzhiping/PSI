@@ -124,7 +124,7 @@ Ext.define("PSI.User.OrgEditForm", {
           width: 370,
           listeners: {
             specialkey: {
-              fn: me.onLastEditSpecialKey,
+              fn: me._onLastEditSpecialKey,
               scope: me
             }
           }
@@ -137,7 +137,7 @@ Ext.define("PSI.User.OrgEditForm", {
           text: "确定",
           formBind: true,
           iconCls: "PSI-button-ok",
-          handler: me.onOK,
+          handler: me._onOK,
           scope: me
         }, {
           text: "取消",
@@ -151,11 +151,11 @@ Ext.define("PSI.User.OrgEditForm", {
       }],
       listeners: {
         show: {
-          fn: me.onEditFormShow,
+          fn: me._onEditFormShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       }
@@ -174,13 +174,19 @@ Ext.define("PSI.User.OrgEditForm", {
     me.__editorList = [me.editName, me.editParentOrg, me.editOrgCode, me.editOrgType];
   },
 
-  onWndClose() {
+  /**
+   * @private
+   */
+  _onWndClose() {
     const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
-  onEditFormShow() {
+  /**
+   * @private
+   */
+  _onEditFormShow() {
     const me = this;
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
@@ -217,13 +223,21 @@ Ext.define("PSI.User.OrgEditForm", {
     });
   },
 
+  /**
+   * PSI_parent_org_editor字段在选则组织机构后，回调本方法
+   * 
+   * @private
+   */
   setParentOrg(data) {
     const me = this;
     me.editParentOrg.setValue(data.fullName);
     me.editParentOrgId.setValue(data.id);
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
     const f = me.editForm;
     const el = f.getEl();
@@ -245,11 +259,14 @@ Ext.define("PSI.User.OrgEditForm", {
     });
   },
 
-  onLastEditSpecialKey(field, e) {
+  /**
+   * @private
+   */
+  _onLastEditSpecialKey(field, e) {
     const me = this;
     if (e.getKey() == e.ENTER) {
       if (me.editForm.getForm().isValid()) {
-        me.onOK();
+        me._onOK();
       }
     }
   }
