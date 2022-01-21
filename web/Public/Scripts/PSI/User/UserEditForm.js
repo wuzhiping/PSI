@@ -391,7 +391,7 @@ Ext.define("PSI.User.UserEditForm", {
         el.unmask();
         me.close();
         me.getParentForm().freshUserGrid();
-        me.tip("数据保存成功");
+        me.tip("数据保存成功", true);
       },
       failure(form, action) {
         el.unmask();

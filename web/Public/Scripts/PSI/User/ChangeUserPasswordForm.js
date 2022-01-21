@@ -168,7 +168,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
       method: "POST",
       success(form, action) {
         el.unmask();
-        me.tip("成功修改密码");
+        me.tip("成功修改密码", true);
         me.close();
       },
       failure(form, action) {

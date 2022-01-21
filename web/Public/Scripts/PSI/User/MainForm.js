@@ -745,7 +745,7 @@ Ext.define("PSI.User.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.freshUserGrid();
             } else {
               me.showInfo(data.msg);
