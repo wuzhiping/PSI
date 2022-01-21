@@ -248,8 +248,8 @@ Ext.define("PSI.User.MainForm", {
 
   getOrgGrid() {
     const me = this;
-    if (me.__orgGrid) {
-      return me.__orgGrid;
+    if (me._orgGrid) {
+      return me._orgGrid;
     }
 
     const modelName = "PSIOrgModel";
@@ -336,16 +336,16 @@ Ext.define("PSI.User.MainForm", {
 
     orgTree.on("itemdblclick", me._onEditOrg, me);
 
-    me.__orgGrid = orgTree;
+    me._orgGrid = orgTree;
 
-    return me.__orgGrid;
+    return me._orgGrid;
   },
 
   getUserGrid() {
     const me = this;
 
-    if (me.__userGrid) {
-      return me.__userGrid;
+    if (me._userGrid) {
+      return me._userGrid;
     }
 
     const modelName = "PSIUser";
@@ -376,7 +376,7 @@ Ext.define("PSI.User.MainForm", {
       storeGrid.proxy.extraParams = me.getUserParam();
     });
 
-    me.__userGrid = Ext.create("Ext.grid.Panel", {
+    me._userGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -503,7 +503,7 @@ Ext.define("PSI.User.MainForm", {
         }]
     });
 
-    return me.__userGrid;
+    return me._userGrid;
   },
 
   getGrid() {
