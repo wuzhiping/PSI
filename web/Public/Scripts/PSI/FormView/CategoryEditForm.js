@@ -8,7 +8,7 @@
 Ext.define("PSI.FormView.CategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     var entity = me.getEntity();
@@ -20,7 +20,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
       var btn = {
         text: "保存并继续新增",
         formBind: true,
-        handler: function () {
+        handler() {
           me.onOK(true);
         },
         scope: me
@@ -33,7 +33,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
@@ -42,14 +42,14 @@ Ext.define("PSI.FormView.CategoryEditForm", {
 
     var btn = {
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新增视图分类" : "编辑视图分类";
+    var t = entity == null ? "新建视图分类" : "编辑视图分类";
     var logoHtml = me.genLogoHtml(entity, t);
     Ext.apply(me, {
       header: {
@@ -139,7 +139,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
   /**
    * 保存
    */
-  onOK: function (thenAdd) {
+  onOK(thenAdd) {
     var me = this;
     var f = me.editForm;
     var el = f.getEl();
@@ -147,7 +147,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     var sf = {
       url: me.URL("Home/FormView/editViewCategory"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         me.__lastId = action.result.id;
         el.unmask();
 
@@ -159,9 +159,9 @@ Ext.define("PSI.FormView.CategoryEditForm", {
           me.close();
         }
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        PSI.MsgBox.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
@@ -169,7 +169,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     f.submit(sf);
   },
 
-  onEditCodeSpecialKey: function (field, e) {
+  onEditCodeSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -179,7 +179,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     }
   },
 
-  onEditNameSpecialKey: function (field, e) {
+  onEditNameSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -190,7 +190,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     }
   },
 
-  clearEdit: function () {
+  clearEdit() {
     var me = this;
     me.editCode.focus();
 
@@ -202,11 +202,11 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
@@ -218,7 +218,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     }
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
