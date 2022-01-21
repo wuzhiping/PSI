@@ -179,8 +179,8 @@ Ext.define("PSI.FormView.MainForm", {
   getColsGrid() {
     const me = this;
 
-    if (me.__colsGrid) {
-      return me.__colsGrid;
+    if (me._colsGrid) {
+      return me._colsGrid;
     }
 
     const modelName = "PSIFvCols";
@@ -191,7 +191,7 @@ Ext.define("PSI.FormView.MainForm", {
         "displayFormat"]
     });
 
-    me.__colsGrid = Ext.create("Ext.grid.Panel", {
+    me._colsGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -249,7 +249,7 @@ Ext.define("PSI.FormView.MainForm", {
       })
     });
 
-    return me.__colsGrid;
+    return me._colsGrid;
   },
 
   /**
@@ -260,8 +260,8 @@ Ext.define("PSI.FormView.MainForm", {
   getButtonGrid() {
     const me = this;
 
-    if (me.__buttonGrid) {
-      return me.__buttonGrid;
+    if (me._buttonGrid) {
+      return me._buttonGrid;
     }
 
     const modelName = "PSIFvButtons";
@@ -271,7 +271,7 @@ Ext.define("PSI.FormView.MainForm", {
       fields: ["id", "caption"]
     });
 
-    me.__buttonGrid = Ext.create("Ext.grid.Panel", {
+    me._buttonGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -309,7 +309,7 @@ Ext.define("PSI.FormView.MainForm", {
       })
     });
 
-    return me.__buttonGrid;
+    return me._buttonGrid;
   },
 
   /**
