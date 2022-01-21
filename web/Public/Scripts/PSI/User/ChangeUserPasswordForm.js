@@ -132,6 +132,9 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
     me.__editorList = [me.editPassword, me.editConfirmPassword];
   },
 
+  /**
+   * @private
+   */
   _onEditFormShow() {
     const me = this;
     me.setFocusAndCursorPosToLast(me.editPassword);
@@ -139,6 +142,9 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
   },
 
+  /**
+   * @private
+   */
   _onWndClose() {
     const me = this;
 
@@ -147,6 +153,8 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
 
   /**
    * 修改密码
+   * 
+   * @private
    */
   _onOK() {
     const me = this;
@@ -180,6 +188,9 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
     });
   },
 
+  /**
+   * @private
+   */
   _onLastEditSpecialKey(field, e) {
     const me = this;
 
