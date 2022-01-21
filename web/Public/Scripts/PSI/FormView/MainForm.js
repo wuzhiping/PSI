@@ -800,8 +800,7 @@ Ext.define("PSI.FormView.MainForm", {
     }
 
     const view = item[0];
-    const info = Ext.String.format("请确认是否删除视图: <span style='color:red'>{0}</span> ？",
-      view.get("text"));
+    const info = `请确认是否删除视图: <span style='color:red'>${view.get("text")}</span> ？`;
 
     const funcConfirm = () => {
       const el = Ext.getBody();
@@ -818,7 +817,7 @@ Ext.define("PSI.FormView.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshMainGrid();
             } else {
               me.showInfo(data.msg);
@@ -930,9 +929,7 @@ Ext.define("PSI.FormView.MainForm", {
       preIndex = preItem.get("id");
     }
 
-    const info = "请确认是否删除视图列: <span style='color:red'>"
-      + col.get("caption")
-      + "</span><br /><br />当前操作只删除视图列的元数据，数据库表的字段不会删除";
+    const info = `请确认是否删除视图列: <span style='color:red'>${col.get("caption")}</span><br /><br />当前操作只删除视图列的元数据，数据库表的字段不会删除`;
 
     const funcConfirm = () => {
       const el = Ext.getBody();
@@ -950,7 +947,7 @@ Ext.define("PSI.FormView.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshColsGrid(fv.get("id"), preIndex);
             } else {
               me.showInfo(data.msg);
