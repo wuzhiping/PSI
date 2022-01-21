@@ -162,7 +162,7 @@ Ext.define("PSI.FormView.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onCategoryGridSelect,
+          fn: me._onCategoryGridSelect,
           scope: me
         }
       }
@@ -427,7 +427,7 @@ Ext.define("PSI.FormView.MainForm", {
     me.getMainGrid().getStore().reload();
   },
 
-  onCategoryGridSelect() {
+  _onCategoryGridSelect() {
     const me = this;
     me.refreshMainGrid();
   },
@@ -660,7 +660,7 @@ Ext.define("PSI.FormView.MainForm", {
       listeners: {
         select: {
           fn(rowModel, record) {
-            me.onMainGridNodeSelect(record);
+            me._onMainGridNodeSelect(record);
           },
           scope: me
         }
@@ -688,7 +688,7 @@ Ext.define("PSI.FormView.MainForm", {
   /**
    * @private
    */
-  onMainGridNodeSelect(record) {
+  _onMainGridNodeSelect(record) {
     const me = this;
 
     const fvId = record.get('id');
