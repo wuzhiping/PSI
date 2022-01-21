@@ -13,6 +13,9 @@ Ext.define("PSI.App", {
     showRecent: false
   },
 
+  /**
+   * 构造函数
+   */
   constructor(config) {
     const me = this;
 
@@ -25,17 +28,23 @@ Ext.define("PSI.App", {
     }
   },
 
-  // 构建URL的助手函数
+  /**
+   * 构建URL的助手函数
+   */
   URL(url) {
     return PSI.Const.BASE_URL + url;
   },
 
-  // 创建UI：主菜单、常用功能、状态栏、模块主容器
+  /**
+   * 创建UI：主菜单、常用功能、状态栏、模块主容器
+   * 
+   * @private
+   */
   createMainUI() {
     const me = this;
 
     // mainPanel中放置各个具体模块的UI
-    me.mainPanel = Ext.create("Ext.panel.Panel", {
+    me._mainPanel = Ext.create("Ext.panel.Panel", {
       border: 0,
       layout: "fit"
     });
@@ -161,7 +170,7 @@ Ext.define("PSI.App", {
           border: 0,
           layout: "fit",
           xtype: "panel",
-          items: [me.mainPanel]
+          items: [me._mainPanel]
         }, {
           id: "PSI_Main_RecentPanel",
           xtype: "panel",
@@ -389,6 +398,6 @@ Ext.define("PSI.App", {
   },
 
   add(comp) {
-    this.mainPanel.add(comp);
+    this._mainPanel.add(comp);
   }
 });
