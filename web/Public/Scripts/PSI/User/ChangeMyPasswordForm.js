@@ -63,11 +63,11 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
           }, {
             fieldLabel: "登录名",
             xtype: "displayfield",
-            value: user.loginName
+            value: `<span class='PSI-field-note'>${user.loginName}</span>`
           }, {
             fieldLabel: "用户名",
             xtype: "displayfield",
-            value: user.name
+            value: `<span class='PSI-field-note'>${user.name}</span>`
           }, {
             id: "PSI_User_ChangeMyPasswordForm_editOldPassword",
             fieldLabel: "旧密码",
