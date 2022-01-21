@@ -37,8 +37,10 @@ Ext.define("PSI.MsgBox", {
 
     /**
      * 显示提示信息，提示信息会在3.5秒后自动关闭
+     * 如果显示了关闭按钮，用户可以随时单击关闭按钮关闭掉提示信息窗口
      * 
      * @param {string} info 提示信息
+     * @param {boolean} showCloseButton 是否显示关闭按钮
      */
     tip(info, showCloseButton) {
       const buttons = [];
