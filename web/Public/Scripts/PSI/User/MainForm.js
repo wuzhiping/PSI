@@ -89,22 +89,22 @@ Ext.define("PSI.User.MainForm", {
         }, "-", {
           text: "新建用户",
           disabled: me.getPAddUser() == "0",
-          handler: me.onAddUser,
+          handler: me._onAddUser,
           scope: me
         }, {
           text: "编辑用户",
           disabled: me.getPEditUser() == "0",
-          handler: me.onEditUser,
+          handler: me._onEditUser,
           scope: me
         }, {
           text: "删除用户",
           disabled: me.getPDeleteUser() == "0",
-          handler: me.onDeleteUser,
+          handler: me._onDeleteUser,
           scope: me
         }, "-", {
           text: "修改用户密码",
           disabled: me.getPChangePassword() == "0",
-          handler: me.onEditUserPassword,
+          handler: me._onEditUserPassword,
           scope: me
         }, "-", {
           text: "指南",
@@ -221,7 +221,7 @@ Ext.define("PSI.User.MainForm", {
         width: 100,
         height: 26,
         margin: "5, 0, 0, 20",
-        handler: me.onQuery,
+        handler: me._onQuery,
         scope: me
       }, {
         xtype: "button",
@@ -229,7 +229,7 @@ Ext.define("PSI.User.MainForm", {
         width: 100,
         height: 26,
         margin: "5, 0, 0, 5",
-        handler: me.onClearQuery,
+        handler: me._onClearQuery,
         scope: me
       }, {
         xtype: "button",
@@ -278,7 +278,7 @@ Ext.define("PSI.User.MainForm", {
       }
     });
 
-    orgStore.on("load", me.onOrgStoreLoad, me);
+    orgStore.on("load", me._onOrgStoreLoad, me);
 
     const orgTree = Ext.create("Ext.tree.Panel", {
       cls: "PSI",
@@ -331,7 +331,7 @@ Ext.define("PSI.User.MainForm", {
     });
 
     orgTree.on("select", (rowModel, record) => {
-      me.onOrgTreeNodeSelect(record);
+      me._onOrgTreeNodeSelect(record);
     }, me);
 
     orgTree.on("itemdblclick", me._onEditOrg, me);
@@ -464,7 +464,7 @@ Ext.define("PSI.User.MainForm", {
       store: storeGrid,
       listeners: {
         itemdblclick: {
-          fn: me.onEditUser,
+          fn: me._onEditUser,
           scope: me
         }
       },
@@ -609,13 +609,13 @@ Ext.define("PSI.User.MainForm", {
       return;
     }
 
-    me.onOrgTreeNodeSelect(item[0]);
+    me._onOrgTreeNodeSelect(item[0]);
   },
 
   /**
    * 新增用户
    */
-  onAddUser() {
+  _onAddUser() {
     const me = this;
 
     const tree = me.getOrgGrid();
@@ -635,7 +635,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 编辑用户
    */
-  onEditUser() {
+  _onEditUser() {
     const me = this;
     if (me.getPEditUser() == "0") {
       return;
@@ -668,7 +668,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 修改用户密码
    */
-  onEditUserPassword() {
+  _onEditUserPassword() {
     const me = this;
 
     const item = me.getUserGrid().getSelectionModel().getSelection();
@@ -687,7 +687,7 @@ Ext.define("PSI.User.MainForm", {
   /**
    * 删除用户
    */
-  onDeleteUser() {
+  _onDeleteUser() {
     const me = this;
     const item = me.getUserGrid().getSelectionModel().getSelection();
     if (item === null || item.length !== 1) {
@@ -725,7 +725,7 @@ Ext.define("PSI.User.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onOrgTreeNodeSelect(rec) {
+  _onOrgTreeNodeSelect(rec) {
     if (!rec) {
       return;
     }
@@ -743,7 +743,7 @@ Ext.define("PSI.User.MainForm", {
     Ext.getCmp("pagingToolbar").doRefresh();
   },
 
-  onOrgStoreLoad() {
+  _onOrgStoreLoad() {
     const me = this;
 
     const tree = me.getOrgGrid();
@@ -793,17 +793,17 @@ Ext.define("PSI.User.MainForm", {
     }
   },
 
-  onClearQuery() {
+  _onClearQuery() {
     const me = this;
 
     Ext.getCmp("editQueryLoginName").setValue(null);
     Ext.getCmp("editQueryName").setValue(null);
     Ext.getCmp("editQueryEnabled").setValue(-1);
 
-    me.onQuery();
+    me._onQuery();
   },
 
-  onQuery() {
+  _onQuery() {
     const me = this;
 
     me.getUserGrid().getStore().removeAll();
