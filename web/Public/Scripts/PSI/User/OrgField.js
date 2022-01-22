@@ -15,7 +15,7 @@ Ext.define("PSI.User.OrgField", {
   initComponent() {
     const me = this;
 
-    me.__idValue = null;
+    me._idValue = null;
 
     me.enableKeyEvents = true;
 
@@ -30,21 +30,24 @@ Ext.define("PSI.User.OrgField", {
       }
 
       if (e.getKey() !== e.ENTER) {
-        this.onTriggerClick(e);
+        me._onTriggerClick(e);
       }
     });
 
     me.on({
       render(p) {
         p.getEl().on("dblclick", () => {
-          me.onTriggerClick();
+          me._onTriggerClick();
         });
       },
       single: true
     });
   },
 
-  onTriggerClick(e) {
+  /**
+   * @private
+   */
+  _onTriggerClick(e) {
     const me = this;
 
     if (me.readOnly) {
@@ -98,7 +101,7 @@ Ext.define("PSI.User.OrgField", {
         }]
       }
     });
-    orgTree.on("itemdblclick", me.onOK, me);
+    orgTree.on("itemdblclick", me._onOK, me);
     me.tree = orgTree;
 
     const wnd = Ext.create("Ext.window.Window", {
@@ -110,7 +113,7 @@ Ext.define("PSI.User.OrgField", {
       items: [orgTree],
       buttons: [{
         text: "确定",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me
       }, {
         text: "取消",
@@ -123,8 +126,10 @@ Ext.define("PSI.User.OrgField", {
     wnd.showBy(me);
   },
 
-  // private
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
 
     const tree = me.tree;
@@ -144,11 +149,17 @@ Ext.define("PSI.User.OrgField", {
     me.focus();
   },
 
+  /**
+   * @public
+   */
   setIdValue(id) {
-    this.__idValue = id;
+    this._idValue = id;
   },
 
+  /**
+   * @public
+   */
   getIdValue() {
-    return this.__idValue;
+    return this._idValue;
   }
 });
