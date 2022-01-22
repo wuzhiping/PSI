@@ -14,8 +14,16 @@ Ext.define("PSI.AFX.Form.MainForm", {
 
   layout: "border",
 
-  // 保存查询条件里面的input列表，用于在回车的时候跳转
+  /**
+   * 保存查询条件里面的input列表，用于在回车的时候跳转
+   * 
+   * @protected
+   */
   __editorList: [],
+
+  /**
+   * @protected
+   */
   __onEditSpecialKey(field, e) {
     const me = this;
 
@@ -31,7 +39,11 @@ Ext.define("PSI.AFX.Form.MainForm", {
     }
   },
 
-  // 最后一个查询input回车后，触发onQuery方法查询数据
+  /**
+   * 最后一个查询input回车后，触发 _onQuery 方法查询数据
+   * 
+   * @protected
+   */
   __onLastEditSpecialKey(field, e) {
     const me = this;
 
@@ -47,5 +59,4 @@ Ext.define("PSI.AFX.Form.MainForm", {
       }
     }
   }
-
 });
