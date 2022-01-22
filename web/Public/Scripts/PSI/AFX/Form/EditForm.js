@@ -24,12 +24,23 @@ Ext.define("PSI.AFX.Form.EditForm", {
   resizable: false,
   onEsc: Ext.emptyFn,
 
+  /**
+   * 
+   * @protected
+   */
   __onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  // 保存input列表，用于在回车的时候跳转
+  /**
+   * 保存input列表，用于在回车的时候跳转
+   * @protected
+   */
   __editorList: [],
+
+  /**
+   * @protected
+   */
   __onEditSpecialKey(field, e) {
     const me = this;
 
