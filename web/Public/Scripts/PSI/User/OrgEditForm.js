@@ -142,7 +142,8 @@ Ext.define("PSI.User.OrgEditForm", {
         }, {
           text: "取消",
           handler() {
-            me.confirm("请确认是否取消操作?", () => {
+            const info = !me.getEntity() ? "新建组织机构" : "编辑组织机构";
+            me.confirm(`请确认是否取消：${info} ?`, () => {
               me.close();
             });
           },
