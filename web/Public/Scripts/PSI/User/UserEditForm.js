@@ -265,7 +265,8 @@ Ext.define("PSI.User.UserEditForm", {
         }, {
           text: "取消",
           handler() {
-            PSI.MsgBox.confirm("请确认是否取消操作?",
+            const info = !me.getEntity() ? "新建用户" : "编辑用户";
+            me.confirm(`请确认是否取消： ${info} ?`,
               () => {
                 me.close();
               });
