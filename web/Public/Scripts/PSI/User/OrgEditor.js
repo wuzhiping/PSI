@@ -26,18 +26,21 @@ Ext.define("PSI.User.OrgEditor", {
       }
 
       if (e.getKey() !== e.ENTER) {
-        me.onTriggerClick(e);
+        me._onTriggerClick(e);
       }
     });
 
     me.on("render", (p) => {
       p.getEl().on("dblclick", () => {
-        me.onTriggerClick();
+        me._onTriggerClick();
       });
     });
   },
 
-  onTriggerClick(e) {
+  /**
+   * @private
+   */
+  _onTriggerClick(e) {
     const me = this;
 
     Ext.define("PSIOrgModel_PSI_org_editor", {
@@ -86,7 +89,7 @@ Ext.define("PSI.User.OrgEditor", {
         }]
       }
     });
-    orgTree.on("itemdblclick", me.onOK, me);
+    orgTree.on("itemdblclick", me._onOK, me);
     me.tree = orgTree;
 
     const wnd = Ext.create("Ext.window.Window", {
@@ -98,7 +101,7 @@ Ext.define("PSI.User.OrgEditor", {
       items: [orgTree],
       buttons: [{
         text: "确定",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me
       }, {
         text: "取消",
@@ -111,7 +114,10 @@ Ext.define("PSI.User.OrgEditor", {
     wnd.show();
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
 
     const tree = me.tree;
