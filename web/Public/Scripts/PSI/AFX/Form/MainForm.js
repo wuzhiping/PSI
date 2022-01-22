@@ -42,8 +42,8 @@ Ext.define("PSI.AFX.Form.MainForm", {
         return;
       }
 
-      if (me.onQuery) {
-        me.onQuery.apply(me);
+      if (me._onQuery) {
+        me._onQuery.apply(me);
       }
     }
   }
