@@ -49,3 +49,15 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 > 及时回复和处理Issue，是我们运营PSI社区的日常工作
 
 > Issue不是论坛，Issue是一事一议，请把握这个原则后使用。不要在和自己无关的话题下发布新的话题。
+
+# PSI NG (PSI New Generation - 下一代的PSI)
+
+基于[PSI技术战略](https://gitee.com/crm8000/PSI/wikis/PSI%E6%8A%80%E6%9C%AF%E6%88%98%E7%95%A5)，PSI NG是面向未来的技术预研体系，包括：
+
+- 新一代的Web UI组件库：https://gitee.com/crm8000/PCL
+
+PCL最终要替代ExtJS GPL4.2.1版本，在其完成后PSI总体开源许可改为Apache开源许可。
+
+- 新一代的PHP Web框架：https://gitee.com/crm8000/PSI/tree/master/web/ThinkPHP
+
+采用修改ThinkPHP 3.2现有的代码，通过修正、裁剪、代码注释等一系列的工作完成
