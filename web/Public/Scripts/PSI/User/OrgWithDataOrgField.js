@@ -13,9 +13,9 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
    * @override
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
-    me.__idValue = null;
+    me._idValue = null;
 
     me.enableKeyEvents = true;
 
@@ -44,25 +44,25 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
   },
 
   onTriggerClick(e) {
-    var me = this;
+    const me = this;
 
     if (me.readOnly) {
       return;
     }
 
-    var modelName = "PSIOrgModel_OrgWithDataOrgField";
+    const modelName = "PSIOrgModel_OrgWithDataOrgField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "fullName"]
     });
 
-    var orgStore = Ext.create("Ext.data.Store", {
+    const orgStore = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    var orgTree = Ext.create("Ext.grid.Panel", {
+    const orgTree = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       store: orgStore,
       columns: [{
@@ -73,10 +73,10 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
         sortable: false
       }]
     });
-    orgTree.on("itemdblclick", this.onOK, this);
-    this.tree = orgTree;
+    orgTree.on("itemdblclick", me.onOK, me);
+    me.tree = orgTree;
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择组织机构",
       border: 0,
       header: false,
@@ -86,8 +86,8 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
       items: [orgTree],
       buttons: [{
         text: "确定",
-        handler: this.onOK,
-        scope: this
+        handler: me.onOK,
+        scope: me
       }, {
         text: "取消",
         handler() {
@@ -95,7 +95,7 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
         }
       }]
     });
-    this.wnd = wnd;
+    me.wnd = wnd;
 
     wnd.on("deactivate", () => {
       wnd.close();
@@ -107,21 +107,21 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
   },
 
   refreshGrid() {
-    var me = this;
-    var grid = me.tree;
+    const me = this;
+    const grid = me.tree;
 
-    var el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     Ext.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/User/orgWithDataOrg",
       method: "POST",
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          const data = Ext.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -131,10 +131,10 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
   },
 
   onOK() {
-    var me = this;
+    const me = this;
 
-    var tree = me.tree;
-    var item = tree.getSelectionModel().getSelection();
+    const tree = me.tree;
+    const item = tree.getSelectionModel().getSelection();
 
     if (item === null || item.length !== 1) {
       PSI.MsgBox.showInfo("没有选择组织机构");
@@ -142,7 +142,7 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
       return;
     }
 
-    var data = item[0];
+    const data = item[0];
 
     me.setIdValue(data.get("id"));
     me.setValue(data.get("fullName"));
@@ -151,10 +151,10 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
   },
 
   setIdValue(id) {
-    this.__idValue = id;
+    this._idValue = id;
   },
 
   getIdValue() {
-    return this.__idValue;
+    return this._idValue;
   }
 });
