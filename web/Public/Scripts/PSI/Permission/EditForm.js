@@ -279,11 +279,11 @@ Ext.define("PSI.Permission.EditForm", {
       }],
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       }
@@ -297,12 +297,18 @@ Ext.define("PSI.Permission.EditForm", {
     me.__editorList = [me.editName, me.editCode];
   },
 
-  onWndClose() {
+  /**
+   * @private
+   */
+  _onWndClose() {
     const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
+  /**
+   * @private
+   */
   loadDataForCopy() {
     const me = this;
     const roleCopy = me.getRoleCopy();
@@ -357,7 +363,10 @@ Ext.define("PSI.Permission.EditForm", {
 
   },
 
-  onWndShow() {
+  /**
+   * @private
+   */
+  _onWndShow() {
     const me = this;
 
     me.setFocusAndCursorPosToLast(me.editName);
