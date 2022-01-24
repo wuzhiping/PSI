@@ -319,8 +319,8 @@ Ext.define("PSI.Permission.MainForm", {
         }]
       },
       listeners: {
-        itemclick: {
-          fn: me._onPermissionGridItemClick,
+        select: {
+          fn: me._onPermissionGridSelect,
           scope: me
         }
       }
@@ -658,7 +658,7 @@ Ext.define("PSI.Permission.MainForm", {
   /**
    * @private
    */
-  _onPermissionGridItemClick() {
+  _onPermissionGridSelect() {
     const me = this;
     const roleGrid = me.getRoleGrid();
     let items = roleGrid.getSelectionModel().getSelection();
