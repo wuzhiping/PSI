@@ -207,8 +207,8 @@ Ext.define("PSI.Permission.MainForm", {
    */
   getRoleGrid() {
     const me = this;
-    if (me.__roleGrid) {
-      return me.__roleGrid;
+    if (me._roleGrid) {
+      return me._roleGrid;
     }
 
     const modelName = "PSIRole";
@@ -223,7 +223,7 @@ Ext.define("PSI.Permission.MainForm", {
       data: []
     });
 
-    const roleGrid = Ext.create("Ext.grid.Panel", {
+    me._roleGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -252,14 +252,15 @@ Ext.define("PSI.Permission.MainForm", {
         itemdblclick: {
           fn: me._onEditRole,
           scope: me
+        },
+        itemclick: {
+          fn: me._onRoleGridItemClick,
+          scope: me
         }
-      },
+      }
     });
 
-    roleGrid.on("itemclick", me._onRoleGridItemClick, me);
-
-    me.__roleGrid = roleGrid;
-    return me.__roleGrid;
+    return me._roleGrid;
   },
 
   /**
