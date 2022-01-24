@@ -6,11 +6,17 @@
  * @license GPL v3
  */
 Ext.define("PSI.Permission.SelectDataOrgForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
+    // 出现parentForm和editForm
+    // 是因为本窗体用在了PSI.Permission.EditForm和PSI.Permission.SelectPermissionForm中
+    // 这两处，各自都需要回调，所以用了两个config
+    // 这是很糟糕的设计
     parentForm: null,
-    // PSI.Permission.EditForm
+    /**
+     * editForm: PSI.Permission.EditForm
+     */
     editForm: null
   },
 
@@ -19,8 +25,8 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
   modal: true,
   layout: "fit",
 
-  initComponent: function () {
-    var me = this;
+  initComponent() {
+    const me = this;
 
     Ext.apply(me, {
       header: {
@@ -40,7 +46,7 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           me.close();
         },
         scope: me
@@ -56,21 +62,20 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
     me.callParent(arguments);
   },
 
-  onWndShow: function () {
-    var me = this;
-    var store = me.getMainGrid().getStore();
+  onWndShow() {
+    const me = this;
+    const store = me.getMainGrid().getStore();
 
-    var el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || Ext.getBody();
     el.mask("数据加载中...");
     Ext.Ajax.request({
       url: PSI.Const.BASE_URL
         + "Home/Permission/selectDataOrg",
       params: {},
       method: "POST",
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         if (success) {
-          var data = Ext.JSON
-            .decode(response.responseText);
+          const data = Ext.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -79,21 +84,21 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
     });
   },
 
-  onOK: function () {
-    var me = this;
-    var grid = me.getMainGrid();
+  onOK() {
+    const me = this;
+    const grid = me.getMainGrid();
 
-    var items = grid.getSelectionModel().getSelection();
+    const items = grid.getSelectionModel().getSelection();
     if (items == null || items.length == 0) {
       PSI.MsgBox.showInfo("没有选择数据域");
 
       return;
     }
 
-    var fullNameList = [];
-    var dataOrgList = [];
-    for (var i = 0; i < items.length; i++) {
-      var it = items[i];
+    const fullNameList = [];
+    const dataOrgList = [];
+    for (let i = 0; i < items.length; i++) {
+      const it = items[i];
       fullNameList.push(it.get("fullName"));
       dataOrgList.push(it.get("dataOrg"));
     }
@@ -111,19 +116,19 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
     me.close();
   },
 
-  getMainGrid: function () {
-    var me = this;
+  getMainGrid() {
+    const me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSIDataOrg_SelectForm";
+    const modelName = "PSIDataOrg_SelectForm";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "fullName", "dataOrg"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
@@ -154,8 +159,8 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
     return me.__mainGrid;
   },
 
-  onSetSelf: function () {
-    var me = this;
+  onSetSelf() {
+    const me = this;
     if (me.getParentForm()) {
       me.getParentForm().setDataOrgList("[本人数据]", "#");
     }
