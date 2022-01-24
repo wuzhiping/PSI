@@ -69,17 +69,17 @@ Ext.define("PSI.Permission.EditForm", {
       }],
       tbar: [{
         text: "添加权限",
-        handler: me.onAddPermission,
+        handler: me._onAddPermission,
         scope: me,
         iconCls: "PSI-button-add"
       }, "-", {
         text: "移除权限",
-        handler: me.onRemovePermission,
+        handler: me._onRemovePermission,
         scope: me,
         iconCls: "PSI-button-delete"
       }, "-", {
         text: "编辑数据域",
-        handler: me.onEditDataOrg,
+        handler: me._onEditDataOrg,
         scope: me,
         iconCls: "PSI-button-edit"
       }]
@@ -141,12 +141,12 @@ Ext.define("PSI.Permission.EditForm", {
       tbar: [{
         text: "添加用户",
         iconCls: "PSI-button-add",
-        handler: me.onAddUser,
+        handler: me._onAddUser,
         scope: me
       }, "-", {
         text: "移除用户",
         iconCls: "PSI-button-delete",
-        handler: me.onRemoveUser,
+        handler: me._onRemoveUser,
         scope: me
       }]
     });
@@ -263,7 +263,7 @@ Ext.define("PSI.Permission.EditForm", {
         handler() {
           var me = this;
           me.confirm("请确认是否保存数据?", () => {
-            me.onOK();
+            me._onOK();
           });
         },
         scope: me
@@ -458,7 +458,10 @@ Ext.define("PSI.Permission.EditForm", {
     }
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
     const editName = Ext.getCmp("editName");
 
@@ -515,7 +518,7 @@ Ext.define("PSI.Permission.EditForm", {
         el.unmask();
         me.close();
         me.getParentForm().refreshRoleGrid(action.result.id);
-        me.tip("数据保存成功");
+        me.tip("数据保存成功", true);
       },
       failure(form, action) {
         el.unmask();
@@ -526,7 +529,10 @@ Ext.define("PSI.Permission.EditForm", {
     });
   },
 
-  onAddPermission() {
+  /**
+   * @private
+   */
+  _onAddPermission() {
     const me = this;
 
     const store = me.permissionGrid.getStore();
@@ -544,7 +550,10 @@ Ext.define("PSI.Permission.EditForm", {
     form.show();
   },
 
-  onRemovePermission() {
+  /**
+   * @private
+   */
+  _onRemovePermission() {
     const me = this;
 
     const grid = me.permissionGrid;
@@ -558,7 +567,10 @@ Ext.define("PSI.Permission.EditForm", {
     grid.getStore().remove(items);
   },
 
-  onAddUser() {
+  /**
+   * @private
+   */
+  _onAddUser() {
     const me = this;
 
     const store = me.userGrid.getStore();
@@ -577,7 +589,10 @@ Ext.define("PSI.Permission.EditForm", {
     form.show();
   },
 
-  onRemoveUser() {
+  /**
+   * @private
+   */
+  _onRemoveUser() {
     const me = this;
 
     const grid = me.userGrid;
@@ -591,6 +606,9 @@ Ext.define("PSI.Permission.EditForm", {
     grid.getStore().remove(items);
   },
 
+  /**
+   * @private
+   */
   getDataOrgGrid() {
     const me = this;
     if (me.__dataOrgGrid) {
@@ -631,7 +649,10 @@ Ext.define("PSI.Permission.EditForm", {
     return me.__dataOrgGrid;
   },
 
-  onEditDataOrg() {
+  /**
+   * @private
+   */
+  _onEditDataOrg() {
     const me = this;
 
     const grid = me.permissionGrid;
@@ -650,6 +671,8 @@ Ext.define("PSI.Permission.EditForm", {
 
   /**
    * PSI.Permission.SelectDataOrgForm中回调本方法
+   * 
+   * @public
    */
   onEditDataOrgCallback(dataOrg) {
     const me = this;
