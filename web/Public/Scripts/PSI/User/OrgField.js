@@ -30,14 +30,14 @@ Ext.define("PSI.User.OrgField", {
       }
 
       if (e.getKey() !== e.ENTER) {
-        me._onTriggerClick(e);
+        me.onTriggerClick(e);
       }
     });
 
     me.on({
       render(p) {
         p.getEl().on("dblclick", () => {
-          me._onTriggerClick();
+          me.onTriggerClick();
         });
       },
       single: true
@@ -45,9 +45,9 @@ Ext.define("PSI.User.OrgField", {
   },
 
   /**
-   * @private
+   * @override
    */
-  _onTriggerClick(e) {
+  onTriggerClick(e) {
     const me = this;
 
     if (me.readOnly) {

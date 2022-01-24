@@ -30,20 +30,23 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
       }
 
       if (e.getKey() !== e.ENTER) {
-        me._onTriggerClick(e);
+        me.onTriggerClick(e);
       }
     });
     me.on({
       render(p) {
         p.getEl().on("dblclick", () => {
-          me._onTriggerClick();
+          me.onTriggerClick();
         });
       },
       single: true
     });
   },
 
-  _onTriggerClick(e) {
+  /**
+   * @override
+   */
+  onTriggerClick(e) {
     const me = this;
 
     if (me.readOnly) {
@@ -106,6 +109,9 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
     me.refreshGrid();
   },
 
+  /**
+   * @private
+   */
   refreshGrid() {
     const me = this;
     const grid = me.tree;
@@ -130,6 +136,9 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
     });
   },
 
+  /**
+   * @private
+   */
   _onOK() {
     const me = this;
 
@@ -150,10 +159,16 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
     me.focus();
   },
 
+  /**
+   * @public
+   */
   setIdValue(id) {
     this._idValue = id;
   },
 
+  /**
+   * @public
+   */
   getIdValue() {
     return this._idValue;
   }
