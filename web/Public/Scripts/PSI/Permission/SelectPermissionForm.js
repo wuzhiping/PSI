@@ -17,7 +17,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   height: 600,
   layout: "border",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
@@ -40,8 +40,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
           margin: 5,
           header: {
             height: 30,
-            title: me
-              .formatGridHeaderTitle("所有可以选择的权限")
+            title: me.formatGridHeaderTitle("所有可以选择的权限")
           },
           items: [{
             region: "west",
@@ -116,9 +115,8 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
           xtype: "button",
           margin: "5 5 5 20",
           iconCls: "PSI-help",
-          handler: function () {
-            var url = me
-              .URL("/Home/Help/index?t=dataOrg")
+          handler() {
+            var url = me.URL("/Home/Help/index?t=dataOrg")
             window.open(url);
           }
         }]
@@ -131,7 +129,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           me.close();
         },
         scope: me
@@ -145,13 +143,13 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
 
     me.editQuery = Ext.getCmp("PSI_Permission_SelectPermissionForm_editQuery");
 
-    me.editQuery.on("change", function () {
+    me.editQuery.on("change", () => {
       me.refreshCategoryGrid();
     });
 
   },
 
-  refreshCategoryGrid: function () {
+  refreshCategoryGrid() {
     var me = this;
     var idList = me.getIdList();
     var store = me.getCategoryGrid().getStore();
@@ -163,7 +161,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
       params: {
         queryKey: me.editQuery.getValue(),
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         store.removeAll();
 
         if (success) {
@@ -184,12 +182,12 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     me.ajax(r);
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
     me.refreshCategoryGrid();
   },
 
-  onOK: function () {
+  onOK() {
     var me = this;
     var grid = me.getSelectedGrid();
 
@@ -223,7 +221,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     me.close();
   },
 
-  onSelectDataOrg: function () {
+  onSelectDataOrg() {
     var me = this;
     var form = Ext.create("PSI.Permission.SelectDataOrgForm", {
       parentForm: me
@@ -231,7 +229,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     form.show();
   },
 
-  setDataOrgList: function (fullNameList, dataOrgList) {
+  setDataOrgList(fullNameList, dataOrgList) {
     Ext.getCmp("editDataOrg").setValue(fullNameList);
     Ext.getCmp("editDataOrgIdList").setValue(dataOrgList);
   },
@@ -239,7 +237,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   /**
    * 所有可以选择的权限的Grid
    */
-  getPermissionGrid: function () {
+  getPermissionGrid() {
     var me = this;
     if (me.__permissionGrid) {
       return me.__permissionGrid;
@@ -296,7 +294,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     return me.__permissionGrid;
   },
 
-  onAddPermission: function (grid, row) {
+  onAddPermission(grid, row) {
     var item = grid.getStore().getAt(row);
     var me = this;
     var store = me.getSelectedGrid().getStore();
@@ -311,7 +309,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   /**
    * 最终用户选择权限的Grid
    */
-  getSelectedGrid: function () {
+  getSelectedGrid() {
     var me = this;
     if (me.__selectedGrid) {
       return me.__selectedGrid;
@@ -352,7 +350,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
         items: [{
           icon: PSI.Const.BASE_URL
             + "Public/Images/icons/delete.png",
-          handler: function (grid, row) {
+          handler(grid, row) {
             grid.getStore().removeAt(row);
           },
           scope: me
@@ -366,7 +364,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   /**
    * 权限分类Grid
    */
-  getCategoryGrid: function () {
+  getCategoryGrid() {
     var me = this;
     if (me.__categoryGrid) {
       return me.__categoryGrid;
@@ -405,7 +403,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
 
   },
 
-  onCategoryGridSelect: function () {
+  onCategoryGridSelect() {
     var me = this;
     var item = me.getCategoryGrid().getSelectionModel().getSelection();
 
@@ -424,7 +422,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
       params: {
         category: category
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         store.removeAll();
 
         if (success) {
@@ -437,7 +435,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     });
   },
 
-  addAllPermission: function () {
+  addAllPermission() {
     var me = this;
     var store = me.getPermissionGrid().getStore();
 
