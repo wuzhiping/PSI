@@ -581,7 +581,7 @@ Ext.define("PSI.Permission.MainForm", {
             const data = Ext.JSON.decode(response.responseText);
             if (data.success) {
               me.refreshRoleGrid();
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
             } else {
               me.showInfo(data.msg);
             }
