@@ -24,7 +24,7 @@ Ext.define("PSI.App", {
     me.createMainUI();
 
     if (config.appHeaderInfo) {
-      me.setAppHeader(config.appHeaderInfo);
+      me._setAppHeader(config.appHeaderInfo);
     }
   },
 
@@ -383,13 +383,15 @@ Ext.define("PSI.App", {
   // 这个方法最初是给View中公开调用的
   // 现在已经在构造函数里面自动调用了，所以可以视为是私有方法了
   // 不再推荐在View中调用
+  //
+  // 方法名称由setAppHeader改为_setAppHeader
   // ===================================================
   /**
    * 设置模块的标题
    * 
    * @private
    */
-  setAppHeader(header) {
+  _setAppHeader(header) {
     if (!header) {
       return;
     }
@@ -404,6 +406,9 @@ Ext.define("PSI.App", {
     panel.setTitle(title);
   },
 
+  /**
+   * @public
+   */
   add(comp) {
     this._mainPanel.add(comp);
   }
