@@ -204,7 +204,13 @@ Ext.define("PSI.Permission.EditForm", {
             name: "name",
             value: entity == null
               ? null
-              : entity.name
+              : entity.name,
+            listeners: {
+              specialkey: {
+                fn: me.__onEditSpecialKey,
+                scope: me
+              }
+            }
           }, {
             id: "editCode",
             fieldLabel: "角色编码",
@@ -287,6 +293,8 @@ Ext.define("PSI.Permission.EditForm", {
 
     me.editName = Ext.getCmp("editName");
     me.editCode = Ext.getCmp("editCode");
+
+    me.__editorList = [me.editName, me.editCode];
   },
 
   onWndClose() {
@@ -352,7 +360,7 @@ Ext.define("PSI.Permission.EditForm", {
   onWndShow() {
     const me = this;
 
-    me.editName.focus();
+    me.setFocusAndCursorPosToLast(me.editName);
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
@@ -366,8 +374,6 @@ Ext.define("PSI.Permission.EditForm", {
 
       return;
     }
-
-    me.editName.setValue(me.editName.getValue());
 
     const store = me.permissionGrid.getStore();
     const el = me.getEl() || Ext.getBody();
