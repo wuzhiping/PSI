@@ -18,7 +18,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   layout: "border",
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       header: {
@@ -111,12 +111,12 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
           handler: me.onSelectDataOrg,
           scope: me
         }, {
-          text: "数据域的使用帮助",
+          text: "数据域应用详解",
           xtype: "button",
           margin: "5 5 5 20",
           iconCls: "PSI-help",
           handler() {
-            var url = me.URL("/Home/Help/index?t=dataOrg")
+            const url = me.URL("/Home/Help/index?t=dataOrg")
             window.open(url);
           }
         }]
@@ -146,17 +146,16 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     me.editQuery.on("change", () => {
       me.refreshCategoryGrid();
     });
-
   },
 
   refreshCategoryGrid() {
-    var me = this;
-    var idList = me.getIdList();
-    var store = me.getCategoryGrid().getStore();
+    const me = this;
+    const idList = me.getIdList();
+    const store = me.getCategoryGrid().getStore();
 
-    var el = me.getCategoryGrid().getEl() || Ext.getBody();
+    const el = me.getCategoryGrid().getEl() || Ext.getBody();
     el.mask("数据加载中...");
-    var r = {
+    const r = {
       url: me.URL("Home/Permission/permissionCategory"),
       params: {
         queryKey: me.editQuery.getValue(),
@@ -165,7 +164,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
 
           store.add(data);
 
@@ -183,13 +182,13 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   },
 
   onWndShow() {
-    var me = this;
+    const me = this;
     me.refreshCategoryGrid();
   },
 
   onOK() {
-    var me = this;
-    var grid = me.getSelectedGrid();
+    const me = this;
+    const grid = me.getSelectedGrid();
 
     if (grid.getStore().getCount() == 0) {
       PSI.MsgBox.showInfo("没有选择权限");
@@ -197,33 +196,32 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
       return;
     }
 
-    var items = [];
-    for (var i = 0; i < grid.getStore().getCount(); i++) {
-      var item = grid.getStore().getAt(i);
+    const items = [];
+    for (let i = 0; i < grid.getStore().getCount(); i++) {
+      const item = grid.getStore().getAt(i);
       items.push({
         id: item.get("id"),
         name: item.get("name")
       });
     }
 
-    var dataOrgList = Ext.getCmp("editDataOrgIdList").getValue();
+    const dataOrgList = Ext.getCmp("editDataOrgIdList").getValue();
     if (!dataOrgList) {
       PSI.MsgBox.showInfo("没有选择数据域");
       return;
     }
 
     if (me.getParentForm()) {
-      var fullNameList = Ext.getCmp("editDataOrg").getValue();
-      me.getParentForm().setSelectedPermission(items, dataOrgList,
-        fullNameList);
+      const fullNameList = Ext.getCmp("editDataOrg").getValue();
+      me.getParentForm().setSelectedPermission(items, dataOrgList, fullNameList);
     }
 
     me.close();
   },
 
   onSelectDataOrg() {
-    var me = this;
-    var form = Ext.create("PSI.Permission.SelectDataOrgForm", {
+    const me = this;
+    const form = Ext.create("PSI.Permission.SelectDataOrgForm", {
       parentForm: me
     });
     form.show();
@@ -238,18 +236,18 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
    * 所有可以选择的权限的Grid
    */
   getPermissionGrid() {
-    var me = this;
+    const me = this;
     if (me.__permissionGrid) {
       return me.__permissionGrid;
     }
 
-    var modelName = "PSIPermission_SelectPermissionForm";
+    const modelName = "PSIPermission_SelectPermissionForm";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name", "note"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
@@ -295,9 +293,9 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   },
 
   onAddPermission(grid, row) {
-    var item = grid.getStore().getAt(row);
-    var me = this;
-    var store = me.getSelectedGrid().getStore();
+    const item = grid.getStore().getAt(row);
+    const me = this;
+    const store = me.getSelectedGrid().getStore();
     if (store.findExact("id", item.get("id")) == -1) {
       store.add({
         id: item.get("id"),
@@ -310,18 +308,18 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
    * 最终用户选择权限的Grid
    */
   getSelectedGrid() {
-    var me = this;
+    const me = this;
     if (me.__selectedGrid) {
       return me.__selectedGrid;
     }
 
-    var modelName = "PSISelectedPermission_SelectPermissionForm";
+    const modelName = "PSISelectedPermission_SelectPermissionForm";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
@@ -365,18 +363,18 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
    * 权限分类Grid
    */
   getCategoryGrid() {
-    var me = this;
+    const me = this;
     if (me.__categoryGrid) {
       return me.__categoryGrid;
     }
 
-    var modelName = "PSIPermissionCategory_SelectPermissionForm";
+    const modelName = "PSIPermissionCategory_SelectPermissionForm";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
@@ -404,17 +402,17 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   },
 
   onCategoryGridSelect() {
-    var me = this;
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
 
     if (item == null || item.length != 1) {
       return;
     }
 
-    var category = item[0].get("name");
-    var grid = me.getPermissionGrid();
-    var store = grid.getStore();
-    var el = grid.getEl() || Ext.getBody();
+    const category = item[0].get("name");
+    const grid = me.getPermissionGrid();
+    const store = grid.getStore();
+    const el = grid.getEl() || Ext.getBody();
 
     el.mask("数据加载中...");
     me.ajax({
@@ -426,7 +424,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
         }
 
@@ -436,17 +434,17 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   },
 
   addAllPermission() {
-    var me = this;
-    var store = me.getPermissionGrid().getStore();
+    const me = this;
+    const store = me.getPermissionGrid().getStore();
 
-    var selectStore = me.getSelectedGrid().getStore();
+    const selectStore = me.getSelectedGrid().getStore();
 
-    var cnt = store.getCount();
+    const cnt = store.getCount();
 
-    var d = [];
+    const d = [];
 
-    for (var i = 0; i < cnt; i++) {
-      var item = store.getAt(i);
+    for (let i = 0; i < cnt; i++) {
+      const item = store.getAt(i);
 
       if (selectStore.findExact("id", item.get("id")) == -1) {
         d.push({
