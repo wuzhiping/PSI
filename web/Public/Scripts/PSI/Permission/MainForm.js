@@ -58,7 +58,7 @@ Ext.define("PSI.Permission.MainForm", {
             }, {
               region: "east",
               layout: "fit",
-              width: "40%",
+              width: "20%",
               border: 0,
               split: true,
               items: [me.getDataOrgGrid()]
@@ -267,8 +267,8 @@ Ext.define("PSI.Permission.MainForm", {
    */
   getPermissionGrid() {
     const me = this;
-    if (me.__permissionGrid) {
-      return me.__permissionGrid;
+    if (me._permissionGrid) {
+      return me._permissionGrid;
     }
 
     const modelName = "PSIPermission";
@@ -283,7 +283,7 @@ Ext.define("PSI.Permission.MainForm", {
       data: []
     });
 
-    me.__permissionGrid = Ext.create("Ext.grid.Panel", {
+    me._permissionGrid = Ext.create("Ext.grid.Panel", {
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("权限")
@@ -299,7 +299,11 @@ Ext.define("PSI.Permission.MainForm", {
           sortable: false,
           menuDisabled: true,
         },
-        items: [{
+        items: [Ext.create("Ext.grid.RowNumberer", {
+          text: "#",
+          align: "center",
+          width: 60
+        }), {
           header: "权限名称",
           dataIndex: "name",
           width: 200,
@@ -321,7 +325,7 @@ Ext.define("PSI.Permission.MainForm", {
       }
     });
 
-    return me.__permissionGrid;
+    return me._permissionGrid;
   },
 
   /**
@@ -361,7 +365,11 @@ Ext.define("PSI.Permission.MainForm", {
           sortable: false,
           menuDisabled: true,
         },
-        items: [{
+        items: [Ext.create("Ext.grid.RowNumberer", {
+          text: "#",
+          align: "center",
+          width: 60
+        }), {
           header: "用户姓名",
           dataIndex: "name",
           flex: 1
