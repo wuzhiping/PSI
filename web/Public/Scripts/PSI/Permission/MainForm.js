@@ -253,8 +253,8 @@ Ext.define("PSI.Permission.MainForm", {
           fn: me._onEditRole,
           scope: me
         },
-        itemclick: {
-          fn: me._onRoleGridItemClick,
+        select: {
+          fn: me._onRoleGridSelect,
           scope: me
         }
       }
@@ -422,7 +422,7 @@ Ext.define("PSI.Permission.MainForm", {
             } else {
               grid.getSelectionModel().select(0);
             }
-            me._onRoleGridItemClick();
+            me._onRoleGridSelect();
           }
         }
 
@@ -434,7 +434,7 @@ Ext.define("PSI.Permission.MainForm", {
   /**
    * @private
    */
-  _onRoleGridItemClick() {
+  _onRoleGridSelect() {
     const me = this;
     me.getDataOrgGrid().getStore().removeAll();
     me.getDataOrgGrid().setTitle(me.formatGridHeaderTitle("数据域"));
