@@ -156,9 +156,6 @@ Ext.define("PSI.User.MainForm", {
     /// 三明治模式第三层：使用创建的组件
     me.orgTree = me.getOrgGrid();
 
-    // TODO me.grid 是无用的代码，需要清除掉
-    me.grid = me.getUserGrid();
-
     // 查询控件input List
     me.__editorList = [Ext.getCmp("editQueryLoginName"), Ext.getCmp("editQueryName"), Ext.getCmp("editQueryEnabled")];
   },
@@ -515,14 +512,6 @@ Ext.define("PSI.User.MainForm", {
     });
 
     return me._userGrid;
-  },
-
-  // TODO 本函数似乎没有了，需要清除掉
-  /**
-   * @private
-   */
-  getGrid() {
-    return this.grid;
   },
 
   /**
