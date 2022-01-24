@@ -566,8 +566,7 @@ Ext.define("PSI.Permission.MainForm", {
 
     const role = items[0].data;
 
-    const info = "请确认是否删除角色 <span style='color:red'>" + role.name
-      + "</span> ?";
+    const info = `请确认是否删除角色 <span style='color:red'>${role.name}</span> ?`;
     const funcConfirm = () => {
       Ext.getBody().mask("正在删除中...");
       const r = {
