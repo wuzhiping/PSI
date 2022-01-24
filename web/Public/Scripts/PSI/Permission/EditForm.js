@@ -59,8 +59,7 @@ Ext.define("PSI.Permission.EditForm", {
         width: 50,
         xtype: "actioncolumn",
         items: [{
-          icon: PSI.Const.BASE_URL
-            + "Public/Images/icons/delete.png",
+          icon: me.URL("Public/Images/icons/delete.png"),
           handler(grid, row) {
             var store = grid.getStore();
             store.remove(store.getAt(row));
@@ -131,7 +130,7 @@ Ext.define("PSI.Permission.EditForm", {
         width: 50,
         xtype: "actioncolumn",
         items: [{
-          icon: PSI.Const.BASE_URL + "Public/Images/icons/delete.png",
+          icon: me.URL("Public/Images/icons/delete.png"),
           handler(grid, row) {
             var store = grid.getStore();
             store.remove(store.getAt(row));
@@ -290,14 +289,10 @@ Ext.define("PSI.Permission.EditForm", {
     me.editCode = Ext.getCmp("editCode");
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
   onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
   loadDataForCopy() {
@@ -359,7 +354,7 @@ Ext.define("PSI.Permission.EditForm", {
 
     me.editName.focus();
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const entity = me.getEntity();
     if (!entity) {
