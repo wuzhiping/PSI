@@ -61,7 +61,7 @@ Ext.define("PSI.Permission.EditForm", {
         items: [{
           icon: me.URL("Public/Images/icons/delete.png"),
           handler(grid, row) {
-            var store = grid.getStore();
+            const store = grid.getStore();
             store.remove(store.getAt(row));
           },
           scope: this
@@ -132,7 +132,7 @@ Ext.define("PSI.Permission.EditForm", {
         items: [{
           icon: me.URL("Public/Images/icons/delete.png"),
           handler(grid, row) {
-            var store = grid.getStore();
+            const store = grid.getStore();
             store.remove(store.getAt(row));
           },
           scope: me
@@ -261,7 +261,7 @@ Ext.define("PSI.Permission.EditForm", {
         formBind: true,
         iconCls: "PSI-button-ok",
         handler() {
-          var me = this;
+          const me = this;
           me.confirm("请确认是否保存数据?", () => {
             me._onOK();
           });
@@ -270,7 +270,7 @@ Ext.define("PSI.Permission.EditForm", {
       }, "-", {
         text: "取消",
         handler() {
-          var me = this;
+          const me = this;
           me.confirm("请确认是否取消操作?", () => {
             me.close();
           });
@@ -353,7 +353,7 @@ Ext.define("PSI.Permission.EditForm", {
         userStore.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           userStore.add(data);
         }
 
@@ -419,7 +419,7 @@ Ext.define("PSI.Permission.EditForm", {
         userStore.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           userStore.add(data);
         }
 
