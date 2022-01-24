@@ -209,7 +209,7 @@ Ext.define("PSI.User.OrgEditForm", {
         el.unmask();
         if (success) {
           const { parentOrgName, parentOrgId, name, orgCode, orgType }
-            = Ext.JSON.decode(response.responseText);
+            = me.decodeJSON(response.responseText);
           me.editParentOrg.setValue(parentOrgName);
           me.editParentOrgId.setValue(parentOrgId);
           me.editName.setValue(name);
@@ -249,7 +249,8 @@ Ext.define("PSI.User.OrgEditForm", {
       success(form, action) {
         el.unmask();
         me.close();
-        me.getParentForm().freshOrgGrid();
+        const parentForm = me.getParentForm();
+        parentForm && parentForm.freshOrgGrid.apply(parentForm);
       },
       failure(form, action) {
         el.unmask();
