@@ -333,8 +333,8 @@ Ext.define("PSI.Permission.MainForm", {
    */
   getUserGrid() {
     const me = this;
-    if (me.__userGrid) {
-      return me.__userGrid;
+    if (me._userGrid) {
+      return me._userGrid;
     }
 
     const modelName = "PSIUser";
@@ -350,7 +350,7 @@ Ext.define("PSI.Permission.MainForm", {
       data: []
     });
 
-    me.__userGrid = Ext.create("Ext.grid.Panel", {
+    me._userGrid = Ext.create("Ext.grid.Panel", {
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("用户")
@@ -384,7 +384,7 @@ Ext.define("PSI.Permission.MainForm", {
         }]
       }
     });
-    return me.__userGrid;
+    return me._userGrid;
   },
 
   /**
