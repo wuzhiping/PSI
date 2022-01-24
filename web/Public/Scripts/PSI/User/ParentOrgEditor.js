@@ -26,18 +26,21 @@ Ext.define("PSI.User.ParentOrgEditor", {
       }
 
       if (e.getKey() !== e.ENTER) {
-        me.onTriggerClick(e);
+        me._onTriggerClick(e);
       }
     });
 
     me.on("render", (p) => {
       p.getEl().on("dblclick", () => {
-        me.onTriggerClick();
+        me._onTriggerClick();
       });
     });
   },
 
-  onTriggerClick(e) {
+  /**
+   * @private
+   */
+  _onTriggerClick(e) {
     const me = this;
     Ext.define("PSIOrgModel_ParentOrgEditor", {
       extend: "Ext.data.Model",
@@ -85,7 +88,7 @@ Ext.define("PSI.User.ParentOrgEditor", {
         }]
       }
     });
-    orgTree.on("itemdblclick", me.onOK, me);
+    orgTree.on("itemdblclick", me._onOK, me);
     me.tree = orgTree;
 
     const wnd = Ext.create("Ext.window.Window", {
@@ -97,11 +100,11 @@ Ext.define("PSI.User.ParentOrgEditor", {
       items: [orgTree],
       buttons: [{
         text: "没有上级组织",
-        handler: me.onNone,
+        handler: me._onNone,
         scope: me
       }, {
         text: "确定",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me
       }, {
         text: "取消",
@@ -114,7 +117,10 @@ Ext.define("PSI.User.ParentOrgEditor", {
     wnd.show();
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
     const tree = me.tree;
     const item = tree.getSelectionModel().getSelection();
@@ -133,7 +139,10 @@ Ext.define("PSI.User.ParentOrgEditor", {
     me.focus();
   },
 
-  onNone() {
+  /**
+   * @private
+   */
+  _onNone() {
     const me = this;
     const parentItem = me.initialConfig.parentItem;
     parentItem.setParentOrg({
