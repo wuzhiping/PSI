@@ -141,13 +141,12 @@ Ext.define("PSI.Permission.SelectUserForm", {
 
     const el = me.getEl() || Ext.getBody();
     el.mask("数据加载中...");
-    Ext.Ajax.request({
+    me.ajax({
       url: me.URL("Home/Permission/selectUsers"),
       params: {
         idList: idList.join(),
         name: me.editName.getValue()
       },
-      method: "POST",
       callback(options, success, response) {
         if (success) {
           const data = Ext.JSON.decode(response.responseText);
