@@ -18,7 +18,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
   modal: true,
   layout: "border",
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
     Ext.define("PSIUser_SelectUserForm", {
       extend: "Ext.data.Model",
@@ -113,7 +113,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           me.close();
         },
         scope: me
@@ -129,7 +129,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
     me.callParent(arguments);
 
     me.editName = Ext.getCmp("PSI_Permission_SelectUserForm_editUser");
-    me.editName.on("change", function () {
+    me.editName.on("change", () => {
       me.refreshMainGrid();
     });
   },
@@ -148,7 +148,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
         name: me.editName.getValue()
       },
       method: "POST",
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
           userStore.removeAll();
@@ -161,14 +161,14 @@ Ext.define("PSI.Permission.SelectUserForm", {
 
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
     me.editName.focus();
 
     me.refreshMainGrid();
   },
 
-  onOK: function () {
+  onOK() {
     var grid = this.__grid;
 
     var items = grid.getSelectionModel().getSelection();
