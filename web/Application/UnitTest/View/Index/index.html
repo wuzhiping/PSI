@@ -6,13 +6,12 @@
 	Ext.onReady(function() {
 		var app = Ext.create("PSI.App", {
 			userName : "{$loginUserName}",
-			productionName : "{$productionName}"
+			productionName : "{$productionName}",
+      appHeaderInfo: {
+        title: "{$title}",
+      }
 		});
 
 		app.add(Ext.create("PSI.UnitTest.MainForm"));
-		app.setAppHeader({
-			title : "{$title}",
-			iconCls : "PSI-fid-9997"
-		});
 	});
 </script>
