@@ -429,6 +429,10 @@ Ext.define("PSI.Permission.EditForm", {
 
   },
 
+  /**
+   * web\Public\Scripts\PSI\Permission\SelectPermissionForm.js中回调本方法
+   * @private
+   */
   setSelectedPermission(data, dataOrgList, fullNameList) {
     const me = this;
 
@@ -451,6 +455,11 @@ Ext.define("PSI.Permission.EditForm", {
     store.add(d);
   },
 
+  /**
+   * web\Public\Scripts\PSI\Permission\SelectUserForm.js中回调本方法
+   * 
+   * @private
+   */
   setSelectedUsers(data) {
     const me = this;
 
