@@ -19,19 +19,19 @@ Ext.define("PSI.Permission.SelectUserForm", {
   layout: "border",
 
   initComponent() {
-    var me = this;
+    const me = this;
     Ext.define("PSIUser_SelectUserForm", {
       extend: "Ext.data.Model",
       fields: ["id", "loginName", "code", "name", "orgFullName"]
     });
 
-    var userStore = Ext.create("Ext.data.Store", {
+    const userStore = Ext.create("Ext.data.Store", {
       model: "PSIUser_SelectUserForm",
       autoLoad: false,
       data: []
     });
 
-    var grid = Ext.create("Ext.grid.Panel", {
+    const grid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -135,11 +135,11 @@ Ext.define("PSI.Permission.SelectUserForm", {
   },
 
   refreshMainGrid() {
-    var me = this;
-    var idList = me.getIdList();
-    var userStore = me.__grid.getStore();
+    const me = this;
+    const idList = me.getIdList();
+    const userStore = me.__grid.getStore();
 
-    var el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || Ext.getBody();
     el.mask("数据加载中...");
     Ext.Ajax.request({
       url: me.URL("Home/Permission/selectUsers"),
@@ -150,7 +150,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
       method: "POST",
       callback(options, success, response) {
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          const data = Ext.JSON.decode(response.responseText);
           userStore.removeAll();
           userStore.add(data);
         }
@@ -162,26 +162,27 @@ Ext.define("PSI.Permission.SelectUserForm", {
   },
 
   onWndShow() {
-    var me = this;
+    const me = this;
     me.editName.focus();
 
     me.refreshMainGrid();
   },
 
   onOK() {
-    var grid = this.__grid;
+    const me = this;
+    const grid = me.__grid;
 
-    var items = grid.getSelectionModel().getSelection();
+    const items = grid.getSelectionModel().getSelection();
     if (items == null || items.length == 0) {
-      PSI.MsgBox.showInfo("没有选择用户");
+      me.showInfo("没有选择用户");
 
       return;
     }
 
-    if (this.getParentForm()) {
-      this.getParentForm().setSelectedUsers(items);
+    if (me.getParentForm()) {
+      me.getParentForm().setSelectedUsers(items);
     }
 
-    this.close();
+    me.close();
   }
 });
