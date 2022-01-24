@@ -6,12 +6,15 @@
  * @license GPL v3
  */
 Ext.define("PSI.Permission.EditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     roleCopy: null
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
     const entity = me.getEntity();
