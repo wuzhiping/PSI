@@ -30,20 +30,20 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
       }
 
       if (e.getKey() !== e.ENTER) {
-        this.onTriggerClick(e);
+        me._onTriggerClick(e);
       }
     });
     me.on({
       render(p) {
         p.getEl().on("dblclick", () => {
-          me.onTriggerClick();
+          me._onTriggerClick();
         });
       },
       single: true
     });
   },
 
-  onTriggerClick(e) {
+  _onTriggerClick(e) {
     const me = this;
 
     if (me.readOnly) {
@@ -73,7 +73,7 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
         sortable: false
       }]
     });
-    orgTree.on("itemdblclick", me.onOK, me);
+    orgTree.on("itemdblclick", me._onOK, me);
     me.tree = orgTree;
 
     const wnd = Ext.create("Ext.window.Window", {
@@ -86,7 +86,7 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
       items: [orgTree],
       buttons: [{
         text: "确定",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me
       }, {
         text: "取消",
@@ -130,7 +130,7 @@ Ext.define("PSI.User.OrgWithDataOrgField", {
     });
   },
 
-  onOK() {
+  _onOK() {
     const me = this;
 
     const tree = me.tree;
