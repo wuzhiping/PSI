@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.Permission.SelectUserForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     idList: null, // idList是数组
