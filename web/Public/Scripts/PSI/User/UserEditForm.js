@@ -201,7 +201,7 @@ Ext.define("PSI.User.UserEditForm", {
             : entity.address,
           listeners: {
             specialkey: {
-              fn: me.onLastEditSpecialKey,
+              fn: me._onLastEditSpecialKey,
               scope: me
             }
           },
@@ -260,7 +260,7 @@ Ext.define("PSI.User.UserEditForm", {
           text: "确定",
           formBind: true,
           iconCls: "PSI-button-ok",
-          handler: me.onOK,
+          handler: me._onOK,
           scope: me
         }, {
           text: "取消",
@@ -380,7 +380,10 @@ Ext.define("PSI.User.UserEditForm", {
     editOrgId.setValue(data.id);
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
     const f = Ext.getCmp("editForm");
     const el = f.getEl();
@@ -403,13 +406,16 @@ Ext.define("PSI.User.UserEditForm", {
     });
   },
 
-  onLastEditSpecialKey(field, e) {
+  /**
+   * @private
+   */
+  _onLastEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
       const f = Ext.getCmp("editForm");
       if (f.getForm().isValid()) {
-        me.onOK();
+        me._onOK();
       }
     }
   }
