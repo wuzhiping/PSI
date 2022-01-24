@@ -71,7 +71,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
       }]
     });
 
-    me.__grid = grid;
+    me._mainGrid = grid;
 
     Ext.apply(me, {
       header: {
@@ -137,7 +137,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
   refreshMainGrid() {
     const me = this;
     const idList = me.getIdList();
-    const userStore = me.__grid.getStore();
+    const userStore = me._mainGrid.getStore();
 
     const el = me.getEl() || Ext.getBody();
     el.mask("数据加载中...");
@@ -169,7 +169,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
 
   onOK() {
     const me = this;
-    const grid = me.__grid;
+    const grid = me._mainGrid;
 
     const items = grid.getSelectionModel().getSelection();
     if (items == null || items.length == 0) {
