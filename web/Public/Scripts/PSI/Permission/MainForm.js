@@ -609,8 +609,8 @@ Ext.define("PSI.Permission.MainForm", {
    */
   getDataOrgGrid() {
     const me = this;
-    if (me.__dataOrgGrid) {
-      return me.__dataOrgGrid;
+    if (me._dataOrgGrid) {
+      return me._dataOrgGrid;
     }
 
     const modelName = "PSIPermissionDataOrg_MainForm";
@@ -625,7 +625,7 @@ Ext.define("PSI.Permission.MainForm", {
       data: []
     });
 
-    me.__dataOrgGrid = Ext.create("Ext.grid.Panel", {
+    me._dataOrgGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -652,7 +652,7 @@ Ext.define("PSI.Permission.MainForm", {
       }
     });
 
-    return me.__dataOrgGrid;
+    return me._dataOrgGrid;
   },
 
   /**
