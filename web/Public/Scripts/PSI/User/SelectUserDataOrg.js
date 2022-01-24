@@ -47,6 +47,9 @@ Ext.define("PSI.User.SelectUserDataOrg", {
     });
   },
 
+  /**
+   * @override
+   */
   onTriggerClick(e) {
     const me = this;
     const modelName = "PSISelectUserDataOrgField";
@@ -77,7 +80,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
       }]
     });
     me.lookupGrid = lookupGrid;
-    me.lookupGrid.on("itemdblclick", me.onOK, me);
+    me.lookupGrid.on("itemdblclick", me._onOK, me);
 
     const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 数据域",
@@ -114,7 +117,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
       }],
       buttons: [{
         text: "确定",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me
       }, {
         text: "取消",
@@ -158,7 +161,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
 
     editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
-        me.onOK();
+        me._onOK();
       } else if (e.getKey() == e.UP) {
         const m = me.lookupGrid.getSelectionModel();
         const store = me.lookupGrid.getStore();
@@ -201,7 +204,10 @@ Ext.define("PSI.User.SelectUserDataOrg", {
     wnd.show();
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
     const grid = me.lookupGrid;
     const item = grid.getSelectionModel().getSelection();
