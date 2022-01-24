@@ -1622,6 +1622,7 @@ CREATE TABLE IF NOT EXISTS `t_form_category` (
   `code` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `parent_id` varchar(255) DEFAULT NULL,
+  `sln_code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1637,6 +1638,7 @@ CREATE TABLE IF NOT EXISTS `t_form` (
   `table_name` varchar(255) NOT NULL,
   `fid` varchar(255) DEFAULT NULL,
   `module_name` varchar(255) DEFAULT NULL,
+  `sln_code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
