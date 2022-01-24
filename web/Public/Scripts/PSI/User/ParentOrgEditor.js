@@ -26,21 +26,21 @@ Ext.define("PSI.User.ParentOrgEditor", {
       }
 
       if (e.getKey() !== e.ENTER) {
-        me._onTriggerClick(e);
+        me.onTriggerClick(e);
       }
     });
 
     me.on("render", (p) => {
       p.getEl().on("dblclick", () => {
-        me._onTriggerClick();
+        me.onTriggerClick();
       });
     });
   },
 
   /**
-   * @private
+   * @override
    */
-  _onTriggerClick(e) {
+  onTriggerClick(e) {
     const me = this;
     Ext.define("PSIOrgModel_ParentOrgEditor", {
       extend: "Ext.data.Model",
