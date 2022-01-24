@@ -148,13 +148,13 @@ Ext.define("PSI.Permission.SelectUserForm", {
         name: me.editName.getValue()
       },
       callback(options, success, response) {
+        el.unmask();
+        userStore.removeAll();
+
         if (success) {
-          const data = Ext.JSON.decode(response.responseText);
-          userStore.removeAll();
+          const data = me.decodeJSON(response.responseText);
           userStore.add(data);
         }
-
-        el.unmask();
       }
     });
 
@@ -178,8 +178,9 @@ Ext.define("PSI.Permission.SelectUserForm", {
       return;
     }
 
-    if (me.getParentForm()) {
-      me.getParentForm().setSelectedUsers(items);
+    const parentForm = me.getParentForm();
+    if (parentForm) {
+      parentForm.setSelectedUsers.apply(parentForm, [items]);
     }
 
     me.close();
