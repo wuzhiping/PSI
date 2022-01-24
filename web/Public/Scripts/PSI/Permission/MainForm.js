@@ -16,6 +16,8 @@ Ext.define("PSI.Permission.MainForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;
@@ -52,16 +54,14 @@ Ext.define("PSI.Permission.MainForm", {
               region: "center",
               layout: "fit",
               border: 0,
-              items: [me
-                .getPermissionGrid()]
+              items: [me.getPermissionGrid()]
             }, {
               region: "east",
               layout: "fit",
               width: "40%",
               border: 0,
               split: true,
-              items: [me
-                .getDataOrgGrid()]
+              items: [me.getDataOrgGrid()]
             }]
           }, {
             xtype: "panel",
@@ -93,6 +93,9 @@ Ext.define("PSI.Permission.MainForm", {
     me.__editorList = [Ext.getCmp("editQueryLoginName"), Ext.getCmp("editQueryName")];
   },
 
+  /**
+   * @private
+   */
   getQueryCmp() {
     const me = this;
     return [{
@@ -131,7 +134,7 @@ Ext.define("PSI.Permission.MainForm", {
         width: 100,
         height: 26,
         margin: "5, 0, 0, 20",
-        handler: me.onQuery,
+        handler: me._onQuery,
         scope: me
       }, {
         xtype: "button",
@@ -139,7 +142,7 @@ Ext.define("PSI.Permission.MainForm", {
         width: 100,
         height: 26,
         margin: "5, 0, 0, 5",
-        handler: me.onClearQuery,
+        handler: me._onClearQuery,
         scope: me
       }, {
         xtype: "button",
@@ -662,16 +665,16 @@ Ext.define("PSI.Permission.MainForm", {
     });
   },
 
-  onClearQuery() {
+  _onClearQuery() {
     const me = this;
 
     Ext.getCmp("editQueryLoginName").setValue(null);
     Ext.getCmp("editQueryName").setValue(null);
 
-    me.onQuery();
+    me._onQuery();
   },
 
-  onQuery() {
+  _onQuery() {
     const me = this;
 
     me.getPermissionGrid().getStore().removeAll();
