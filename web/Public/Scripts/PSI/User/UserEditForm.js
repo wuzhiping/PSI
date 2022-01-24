@@ -276,11 +276,11 @@ Ext.define("PSI.User.UserEditForm", {
       }],
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       }
@@ -315,13 +315,19 @@ Ext.define("PSI.User.UserEditForm", {
       me.editTel02, me.editAddress];
   },
 
-  onWndClose() {
+  /**
+   * @private
+   */
+  _onWndClose() {
     const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
-  onWndShow() {
+  /**
+   * @private
+   */
+  _onWndShow() {
     const me = this;
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
