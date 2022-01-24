@@ -159,21 +159,24 @@ Ext.define("PSI.Permission.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   getToolbarCmp() {
     const me = this;
     return [{
       text: "新建角色",
-      handler: me.onAddRole,
+      handler: me._onAddRole,
       scope: me,
       disabled: me.getPAdd() == "0"
     }, {
       text: "编辑角色",
-      handler: me.onEditRole,
+      handler: me._onEditRole,
       scope: me,
       disabled: me.getPEdit() == "0"
     }, {
       text: "删除角色",
-      handler: me.onDeleteRole,
+      handler: me._onDeleteRole,
       scope: me,
       disabled: me.getPDelete() == "0"
     }, "-", {
@@ -181,7 +184,7 @@ Ext.define("PSI.Permission.MainForm", {
       text: "工具",
       menu: [{
         text: "以复制当前角色的方式新建角色",
-        handler: me.onCopyRole,
+        handler: me._onCopyRole,
         scope: me,
         disabled: me.getPAdd() == "0"
       }]
@@ -199,6 +202,9 @@ Ext.define("PSI.Permission.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   getRoleGrid() {
     const me = this;
     if (me.__roleGrid) {
@@ -244,18 +250,21 @@ Ext.define("PSI.Permission.MainForm", {
       },
       listeners: {
         itemdblclick: {
-          fn: me.onEditRole,
+          fn: me._onEditRole,
           scope: me
         }
       },
     });
 
-    roleGrid.on("itemclick", me.onRoleGridItemClick, me);
+    roleGrid.on("itemclick", me._onRoleGridItemClick, me);
 
     me.__roleGrid = roleGrid;
     return me.__roleGrid;
   },
 
+  /**
+   * @private
+   */
   getPermissionGrid() {
     const me = this;
     if (me.__permissionGrid) {
@@ -306,7 +315,7 @@ Ext.define("PSI.Permission.MainForm", {
       },
       listeners: {
         itemclick: {
-          fn: me.onPermissionGridItemClick,
+          fn: me._onPermissionGridItemClick,
           scope: me
         }
       }
@@ -315,6 +324,9 @@ Ext.define("PSI.Permission.MainForm", {
     return me.__permissionGrid;
   },
 
+  /**
+   * @private
+   */
   getUserGrid() {
     const me = this;
     if (me.__userGrid) {
@@ -369,6 +381,8 @@ Ext.define("PSI.Permission.MainForm", {
 
   /**
    * 刷新角色Grid
+   * 
+   * @private
    */
   refreshRoleGrid(id) {
     const me = this;
@@ -399,7 +413,7 @@ Ext.define("PSI.Permission.MainForm", {
             } else {
               grid.getSelectionModel().select(0);
             }
-            me.onRoleGridItemClick();
+            me._onRoleGridItemClick();
           }
         }
 
@@ -408,7 +422,10 @@ Ext.define("PSI.Permission.MainForm", {
     });
   },
 
-  onRoleGridItemClick() {
+  /**
+   * @private
+   */
+  _onRoleGridItemClick() {
     const me = this;
     me.getDataOrgGrid().getStore().removeAll();
     me.getDataOrgGrid().setTitle(me.formatGridHeaderTitle("数据域"));
@@ -469,8 +486,10 @@ Ext.define("PSI.Permission.MainForm", {
 
   /**
    * 新增角色
+   * 
+   * @private
    */
-  onAddRole() {
+  _onAddRole() {
     const me = this;
     const form = Ext.create("PSI.Permission.EditForm", {
       parentForm: me
@@ -481,8 +500,10 @@ Ext.define("PSI.Permission.MainForm", {
 
   /**
    * 以复制方式新建角色
+   * 
+   * @private
    */
-  onCopyRole() {
+  _onCopyRole() {
     const me = this;
     const grid = me.getRoleGrid();
     const items = grid.getSelectionModel().getSelection();
@@ -504,8 +525,10 @@ Ext.define("PSI.Permission.MainForm", {
 
   /**
    * 编辑角色
+   * 
+   * @private
    */
-  onEditRole() {
+  _onEditRole() {
     const me = this;
 
     const grid = me.getRoleGrid();
@@ -528,8 +551,10 @@ Ext.define("PSI.Permission.MainForm", {
 
   /**
    * 删除角色
+   * 
+   * @private
    */
-  onDeleteRole() {
+  _onDeleteRole() {
     const me = this;
     const grid = me.getRoleGrid();
     const items = grid.getSelectionModel().getSelection();
@@ -571,6 +596,9 @@ Ext.define("PSI.Permission.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * @private
+   */
   getDataOrgGrid() {
     const me = this;
     if (me.__dataOrgGrid) {
@@ -619,7 +647,10 @@ Ext.define("PSI.Permission.MainForm", {
     return me.__dataOrgGrid;
   },
 
-  onPermissionGridItemClick() {
+  /**
+   * @private
+   */
+  _onPermissionGridItemClick() {
     const me = this;
     const roleGrid = me.getRoleGrid();
     let items = roleGrid.getSelectionModel().getSelection();
@@ -665,6 +696,9 @@ Ext.define("PSI.Permission.MainForm", {
     });
   },
 
+  /**
+   * @private
+   */
   _onClearQuery() {
     const me = this;
 
@@ -674,6 +708,9 @@ Ext.define("PSI.Permission.MainForm", {
     me._onQuery();
   },
 
+  /**
+   * @private
+   */
   _onQuery() {
     const me = this;
 
