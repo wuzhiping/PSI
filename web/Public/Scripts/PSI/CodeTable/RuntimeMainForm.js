@@ -36,14 +36,14 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
 
     me.callParent(arguments);
 
-    me.__toolBar = Ext.getCmp("PSI_CodeTable_RuntimeMainForm_toolBar");
-    me.__panelMain = Ext.getCmp("PSI_CodeTable_RuntimeMainForm_panelMain");
+    me._toolBar = Ext.getCmp("PSI_CodeTable_RuntimeMainForm_toolBar");
+    me._panelMain = Ext.getCmp("PSI_CodeTable_RuntimeMainForm_panelMain");
 
     me.fetchMeatData();
   },
 
   getMetaData() {
-    return this.__md;
+    return this._md;
   },
 
   fetchMeatData() {
@@ -59,7 +59,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
         if (success) {
           const data = me.decodeJSON(response.responseText);
 
-          me.__md = data;
+          me._md = data;
 
           me.initUI();
         }
@@ -83,11 +83,11 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     }
 
     // MainGrid
-    me.__mainGrid = md.treeView ? me.createMainTreeGrid(md) : me.createMainGrid(md);
-    me.__panelMain.add(me.__mainGrid);
+    me._mainGrid = md.treeView ? me.createMainTreeGrid(md) : me.createMainGrid(md);
+    me._panelMain.add(me._mainGrid);
 
     // 按钮
-    const toolBar = me.__toolBar;
+    const toolBar = me._toolBar;
     const buttons = md.buttons;
     // TODO 可以用forEach
     for (let i = 0; i < buttons.length; i++) {
@@ -243,7 +243,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     });
     store.on("load", (e, records, successful) => {
       if (successful) {
-        me.gotoMainGridRecord(me.__lastId);
+        me.gotoMainGridRecord(me._lastId);
       }
     });
 
@@ -559,12 +559,12 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   },
 
   getMainGrid() {
-    return this.__mainGrid;
+    return this._mainGrid;
   },
 
   refreshMainGrid(id) {
     const me = this;
-    me.__lastId = id;
+    me._lastId = id;
 
     const md = me.getMetaData();
     if (md.treeView) {
