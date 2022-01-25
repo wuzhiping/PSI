@@ -99,7 +99,37 @@ Ext.define("PSI.Form.MainForm", {
   getToolbarCmp() {
     var me = this;
 
+    const modelName = "PSI_Form_MainForm_PSISolution";
+    Ext.define(modelName, {
+      extend: "Ext.data.Model",
+      fields: ["code", "name"]
+    });
+
+
     return [{
+      xtype: "displayfield",
+      value: "解决方案"
+    }, {
+      cls: "PSI-toolbox",
+      xtype: "combobox",
+      id: "comboSolution",
+      queryMode: "local",
+      editable: false,
+      valueField: "code",
+      displayField: "name",
+      store: Ext.create("Ext.data.Store", {
+        model: modelName,
+        autoLoad: false,
+        data: []
+      }),
+      width: 400,
+      listeners: {
+        select: {
+          fn: me._onComboSolutionSelect,
+          scope: me
+        }
+      }
+    }, {
       text: "新建表单分类",
       handler: me.onAddCategory,
       scope: me
