@@ -105,7 +105,6 @@ Ext.define("PSI.Form.MainForm", {
       fields: ["code", "name"]
     });
 
-
     return [{
       xtype: "displayfield",
       value: "解决方案"
@@ -1323,5 +1322,11 @@ Ext.define("PSI.Form.MainForm", {
     };
 
     me.confirm(info, funcConfirm);
-  }
+  },
+
+  /**
+   * 解决方案Combo选择项变动的时候的事件处理函数
+   * @private
+   */
+  _onComboSolutionSelect() { }
 });
