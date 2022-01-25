@@ -1,6 +1,6 @@
 # 关于PSI
 
-PSI是由`艾格林门信息服务（大连）有限公司`发起的商业项目。
+PSI是由`艾格林门信息服务（大连）有限公司`发起的商业项目，详见：[PSI商业战略](https://gitee.com/crm8000/PSI/wikis/PSI%E5%95%86%E4%B8%9A%E6%88%98%E7%95%A5)。
 
 PSI - **P**artner, **S**olution, **I**nfrastructure
 
