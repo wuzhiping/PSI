@@ -442,42 +442,45 @@ Ext.define("PSI.Form.MainForm", {
     me.refreshDetailGrid();
   },
 
+  /**
+   * @private
+   */
   refreshMainGrid(id) {
-    var me = this;
+    const me = this;
 
     me.getColsGrid().getStore().removeAll();
     me.getDetailGrid().getStore().removeAll();
     me.getDetailColsGrid().getStore().removeAll();
 
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.getMainGrid().setTitle(me.formatGridHeaderTitle("表单"));
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
-    var grid = me.getMainGrid();
-    grid.setTitle(me.formatGridHeaderTitle("属于分类[" + category.get("name") + "]的表单"));
-    var el = grid.getEl() || Ext.getBody();
+    const grid = me.getMainGrid();
+    grid.setTitle(me.formatGridHeaderTitle(`属于分类[${category.get("name")}]的表单`));
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/Form/formList"),
       params: {
         categoryId: category.get("id")
       },
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
