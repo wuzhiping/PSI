@@ -497,35 +497,38 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   refreshColsGrid(id) {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var form = item[0];
+    const form = item[0];
 
-    var grid = me.getColsGrid();
-    var el = grid.getEl() || Ext.getBody();
+    const grid = me.getColsGrid();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/form/formColList"),
       params: {
         id: form.get("id")
       },
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
@@ -542,35 +545,38 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   refreshDetailGrid(id) {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var form = item[0];
+    const form = item[0];
 
-    var grid = me.getDetailGrid();
-    var el = grid.getEl() || Ext.getBody();
+    const grid = me.getDetailGrid();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/form/formDetailList"),
       params: {
         id: form.get("id")
       },
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
@@ -587,35 +593,38 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   refreshDetailColsGrid(id) {
-    var me = this;
-    var item = me.getDetailGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var formDetail = item[0];
+    const formDetail = item[0];
 
-    var grid = me.getDetailColsGrid();
-    var el = grid.getEl() || Ext.getBody();
+    const grid = me.getDetailColsGrid();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/form/formDetailColList"),
       params: {
         id: formDetail.get("id")
       },
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
@@ -632,18 +641,21 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   onAddForm() {
-    var me = this;
+    const me = this;
 
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择一个的表单分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
-    var form = Ext.create("PSI.Form.FormEditForm", {
+    const form = Ext.create("PSI.Form.FormEditForm", {
       parentForm: me,
       category: category
     });
