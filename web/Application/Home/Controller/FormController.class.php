@@ -87,6 +87,8 @@ class FormController extends PSIBaseController
 
   /**
    * 表单分类列表
+   * 
+   * JS: web\Public\Scripts\PSI\Form\MainForm.js
    */
   public function categoryList()
   {
@@ -96,8 +98,12 @@ class FormController extends PSIBaseController
         die("没有权限");
       }
 
+      $params = [
+        "slnCode" => I("post.slnCode"),
+      ];
+
       $service = new FormService();
-      $this->ajaxReturn($service->categoryList());
+      $this->ajaxReturn($service->categoryList($params));
     }
   }
 

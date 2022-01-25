@@ -17,17 +17,13 @@ class FormService extends PSIBaseExService
   private $LOG_CATEGORY = "自定义表单";
 
   /**
-   * 自定义表单列表
+   * 表单分类列表
    */
-  public function categoryList()
+  public function categoryList($params)
   {
     if ($this->isNotOnline()) {
       return $this->emptyResult();
     }
-
-    $params = [
-      "loginUserId" => $this->getLoginUserId()
-    ];
 
     $dao = new FormDAO($this->db());
 

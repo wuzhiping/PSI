@@ -19,10 +19,13 @@ class FormDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
+    $slnCode = $params["slnCode"];
+
     $sql = "select id, code, name
             from t_form_category
+            where sln_code = '%s'
             order by code";
-    $data = $db->query($sql);
+    $data = $db->query($sql, $slnCode);
 
     $result = [];
     foreach ($data as $v) {
