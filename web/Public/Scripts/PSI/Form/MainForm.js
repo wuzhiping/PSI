@@ -668,7 +668,7 @@ Ext.define("PSI.Form.MainForm", {
   onEditForm() {
     const me = this;
 
-    const item = me.getCategoryGrid().getSelectionModel().getSelection();
+    let item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择一个的表单分类");
       return;
@@ -676,7 +676,7 @@ Ext.define("PSI.Form.MainForm", {
 
     const category = item[0];
 
-    const item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的表单");
       return;
@@ -1186,14 +1186,14 @@ Ext.define("PSI.Form.MainForm", {
   onEditCol() {
     const me = this;
 
-    const item = me.getMainGrid().getSelectionModel().getSelection();
+    let item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请先选择表单");
       return;
     }
     const fm = item[0];
 
-    const item = me.getColsGrid().getSelectionModel().getSelection();
+    item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的表单主表列");
       return;
@@ -1215,7 +1215,7 @@ Ext.define("PSI.Form.MainForm", {
    */
   onDeleteCol() {
     const me = this;
-    const item = me.getMainGrid().getSelectionModel().getSelection();
+    let item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择表单");
       return;
@@ -1223,7 +1223,7 @@ Ext.define("PSI.Form.MainForm", {
 
     const form = item[0];
 
-    const item = me.getColsGrid().getSelectionModel().getSelection();
+    item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的表单主表列");
       return;
@@ -1331,7 +1331,7 @@ Ext.define("PSI.Form.MainForm", {
    */
   onEditDetailCol() {
     const me = this;
-    const item = me.getDetailGrid().getSelectionModel().getSelection();
+    let item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请先选择明细表");
       return;
@@ -1339,7 +1339,7 @@ Ext.define("PSI.Form.MainForm", {
 
     const fm = item[0];
 
-    const item = me.getDetailColsGrid().getSelectionModel().getSelection();
+    item = me.getDetailColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的明细表列");
       return;
@@ -1361,7 +1361,7 @@ Ext.define("PSI.Form.MainForm", {
    */
   onDeleteDetailCol() {
     const me = this;
-    const item = me.getDetailGrid().getSelectionModel().getSelection();
+    let item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择明细表");
       return;
@@ -1369,7 +1369,7 @@ Ext.define("PSI.Form.MainForm", {
 
     const form = item[0];
 
-    const item = me.getDetailColsGrid().getSelectionModel().getSelection();
+    item = me.getDetailColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的明细表列");
       return;
