@@ -466,4 +466,22 @@ class FormController extends PSIBaseController
       $this->ajaxReturn($service->deleteFormDetailCol($params));
     }
   }
+
+  /**
+   * 查询解决方案列表
+   * 
+   * JS: web\Public\Scripts\PSI\Form\MainForm.js
+   */
+  public function querySolutionList()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::FORM_SYSTEM)) {
+        die("没有权限");
+      }
+
+      $service = new FormService();
+      $this->ajaxReturn($service->querySolutionList());
+    }
+  }
 }

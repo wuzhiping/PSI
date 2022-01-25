@@ -2188,4 +2188,25 @@ class FormDAO extends PSIBaseExDAO
     $params["log"] = $log;
     return null;
   }
+
+  /**
+   * 查询解决方案列表
+   */
+  public function querySolutionList()
+  {
+    $db = $this->db;
+
+    $sql = "select code, name from t_solution order by code";
+    $data = $db->query($sql);
+
+    $result = [];
+    foreach ($data as $v) {
+      $result[] = [
+        "code" => $v["code"],
+        "name" => $v["code"] . " - " . $v["name"],
+      ];
+    }
+
+    return $result;
+  }
 }
