@@ -707,10 +707,16 @@ Ext.define("PSI.Form.MainForm", {
   refreshCategoryGrid(id) {
     var me = this;
     var grid = me.getCategoryGrid();
+
+    const slnCode = me.comboSolution.getValue();
+
     var el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     var r = {
       url: me.URL("Home/Form/categoryList"),
+      params: {
+        slnCode
+      },
       callback(options, success, response) {
         var store = grid.getStore();
 
