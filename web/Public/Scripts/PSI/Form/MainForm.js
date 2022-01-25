@@ -8,8 +8,11 @@
 Ext.define("PSI.Form.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
+  /**
+   * @overrides
+   */
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: me.getToolbarCmp(),
@@ -98,8 +101,11 @@ Ext.define("PSI.Form.MainForm", {
     me.querySolutionList();
   },
 
+  /**
+   * @private
+   */
   getToolbarCmp() {
-    var me = this;
+    const me = this;
 
     const modelName = "PSI_Form_MainForm_PSISolution";
     Ext.define(modelName, {
@@ -168,14 +174,17 @@ Ext.define("PSI.Form.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   getCategoryGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__categoryGrid) {
       return me.__categoryGrid;
     }
 
-    var modelName = "PSIFormCategory";
+    const modelName = "PSIFormCategory";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -227,10 +236,13 @@ Ext.define("PSI.Form.MainForm", {
     return me.__categoryGrid;
   },
 
+  /**
+   * @private
+   */
   onAddCategory() {
-    var me = this;
+    const me = this;
 
-    var form = Ext.create("PSI.Form.CategoryEditForm", {
+    const form = Ext.create("PSI.Form.CategoryEditForm", {
       parentForm: me
     });
 
