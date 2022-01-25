@@ -662,26 +662,29 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
+  /**
+   * @private
+   */
   onEditForm() {
-    var me = this;
+    const me = this;
 
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择一个的表单分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的表单");
       return;
     }
 
-    var fm = item[0];
+    const fm = item[0];
 
-    var form = Ext.create("PSI.Form.FormEditForm", {
+    const form = Ext.create("PSI.Form.FormEditForm", {
       parentForm: me,
       entity: fm,
       category: category
@@ -689,35 +692,37 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
-  // 删除表单元数据
+  /**
+   * 删除表单元数据
+   * 
+   * @private
+   */
   onDeleteForm() {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的表单");
       return;
     }
 
-    var form = item[0];
+    const form = item[0];
 
-    var store = me.getMainGrid().getStore();
-    var index = store.findExact("id", form.get("id"));
+    const store = me.getMainGrid().getStore();
+    let index = store.findExact("id", form.get("id"));
     index--;
-    var preIndex = null;
-    var preItem = store.getAt(index);
+    let preIndex = null;
+    const preItem = store.getAt(index);
     if (preItem) {
       preIndex = preItem.get("id");
     }
 
-    var info = "请确认是否删除表单: <span style='color:red'>"
-      + form.get("name")
-      + "</span><br /><br />当前操作只删除表单元数据，<br />数据库实际表不会删除";
+    const info = `请确认是否删除表单: <span style='color:red'>${form.get("name")}</span> ？<br /><br />当前操作只删除表单元数据，<br />数据库实际表不会删除`;
 
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/Form/deleteForm"),
         params: {
           id: form.get("id")
@@ -726,9 +731,9 @@ Ext.define("PSI.Form.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshMainGrid(preIndex);
             } else {
               me.showInfo(data.msg);
@@ -745,31 +750,34 @@ Ext.define("PSI.Form.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * @private
+   */
   refreshCategoryGrid(id) {
-    var me = this;
-    var grid = me.getCategoryGrid();
+    const me = this;
+    const grid = me.getCategoryGrid();
 
     const slnCode = me.comboSolution.getValue();
 
-    var el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/Form/categoryList"),
       params: {
         slnCode
       },
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
             if (id) {
-              var r = store.findExact("id", id);
+              const r = store.findExact("id", id);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
@@ -786,14 +794,17 @@ Ext.define("PSI.Form.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   getColsGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__colsGrid) {
       return me.__colsGrid;
     }
 
-    var modelName = "PSIFormCols";
+    const modelName = "PSIFormCols";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -923,14 +934,17 @@ Ext.define("PSI.Form.MainForm", {
     return me.__colsGrid;
   },
 
+  /**
+   * @private
+   */
   getDetailGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__detailGrid) {
       return me.__detailGrid;
     }
 
-    var modelName = "PSIFormDetail";
+    const modelName = "PSIFormDetail";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -1002,20 +1016,26 @@ Ext.define("PSI.Form.MainForm", {
     return me.__detailGrid;
   },
 
+  /**
+   * @private
+   */
   onDetailGridSelect() {
-    var me = this;
+    const me = this;
 
     me.refreshDetailColsGrid();
   },
 
+  /**
+   * @private
+   */
   getDetailColsGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__detailColsGrid) {
       return me.__detailColsGrid;
     }
 
-    var modelName = "PSIFormDetailCols";
+    const modelName = "PSIFormDetailCols";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -1139,42 +1159,48 @@ Ext.define("PSI.Form.MainForm", {
     return me.__detailColsGrid;
   },
 
+  /**
+   * @private
+   */
   onAddCol() {
-    var me = this;
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请先选择表单");
       return;
     }
 
-    var fm = item[0];
+    const fm = item[0];
 
-    var form = Ext.create("PSI.Form.FormColEditForm", {
+    const form = Ext.create("PSI.Form.FormColEditForm", {
       parentForm: me,
       form: fm
     });
     form.show();
   },
 
+  /**
+   * @private
+   */
   onEditCol() {
-    var me = this;
+    const me = this;
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请先选择表单");
       return;
     }
-    var fm = item[0];
+    const fm = item[0];
 
-    var item = me.getColsGrid().getSelectionModel().getSelection();
+    const item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的表单主表列");
       return;
     }
-    var col = item[0];
+    const col = item[0];
 
-    var form = Ext.create("PSI.Form.FormColEditForm", {
+    const form = Ext.create("PSI.Form.FormColEditForm", {
       parentForm: me,
       form: fm,
       entity: col
@@ -1182,43 +1208,45 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
-  // 删除主表列
+  /**
+   * 删除主表列
+   * 
+   * @private
+   */
   onDeleteCol() {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择表单");
       return;
     }
 
-    var form = item[0];
+    const form = item[0];
 
-    var item = me.getColsGrid().getSelectionModel().getSelection();
+    const item = me.getColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的表单主表列");
       return;
     }
 
-    var col = item[0];
+    const col = item[0];
 
-    var store = me.getColsGrid().getStore();
-    var index = store.findExact("id", col.get("id"));
+    const store = me.getColsGrid().getStore();
+    let index = store.findExact("id", col.get("id"));
     index--;
-    var preIndex = null;
-    var preItem = store.getAt(index);
+    let preIndex = null;
+    const preItem = store.getAt(index);
     if (preItem) {
       preIndex = preItem.get("id");
     }
 
-    var info = "请确认是否删除表单主表列: <span style='color:red'>"
-      + col.get("caption")
-      + "</span>?<br /><br />当前操作只删除主表列元数据，<br />数据库表的字段不会删除";
+    const info = `请确认是否删除表单主表列: <span style='color:red'>${col.get("caption")}</span>?<br /><br />当前操作只删除主表列元数据，<br />数据库表的字段不会删除`;
 
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/Form/deleteFormCol"),
         params: {
           id: col.get("id"),
@@ -1228,9 +1256,9 @@ Ext.define("PSI.Form.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshColsGrid(preIndex);
             } else {
               me.showInfo(data.msg);
@@ -1247,60 +1275,78 @@ Ext.define("PSI.Form.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  // 新建明细表
+  /**
+   * 新建明细表
+   * 
+   * @private
+   */
   onAddFormDetail() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO");
   },
 
+  /**
+   * @private
+   */
   onEditFormDetail() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO");
   },
 
+  /**
+   * @private
+   */
   onDeleteFormDetail() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO");
   },
 
-  // 新建明细表的列
+  /**
+   * 新建明细表的列
+   * 
+   * @private
+   */
   onAddDetailCol() {
-    var me = this;
+    const me = this;
 
-    var item = me.getDetailGrid().getSelectionModel().getSelection();
+    const item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请先选择明细表");
       return;
     }
 
-    var fm = item[0];
+    const fm = item[0];
 
-    var form = Ext.create("PSI.Form.FormDetailColEditForm", {
+    const form = Ext.create("PSI.Form.FormDetailColEditForm", {
       parentForm: me,
       form: fm
     });
     form.show();
   },
 
-  // 编辑明细表的列
+  /**
+   * 编辑明细表的列
+   * 
+   * @private
+   */
   onEditDetailCol() {
-    var me = this;
-    var item = me.getDetailGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请先选择明细表");
       return;
     }
 
-    var fm = item[0];
+    const fm = item[0];
 
-    var item = me.getDetailColsGrid().getSelectionModel().getSelection();
+    const item = me.getDetailColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的明细表列");
       return;
     }
-    var col = item[0];
+    const col = item[0];
 
-    var form = Ext.create("PSI.Form.FormDetailColEditForm", {
+    const form = Ext.create("PSI.Form.FormDetailColEditForm", {
       parentForm: me,
       form: fm,
       entity: col
@@ -1308,43 +1354,45 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
-  // 删除明细表列
+  /**
+   * 删除明细表列
+   * 
+   * @private
+   */
   onDeleteDetailCol() {
-    var me = this;
-    var item = me.getDetailGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择明细表");
       return;
     }
 
-    var form = item[0];
+    const form = item[0];
 
-    var item = me.getDetailColsGrid().getSelectionModel().getSelection();
+    const item = me.getDetailColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的明细表列");
       return;
     }
 
-    var col = item[0];
+    const col = item[0];
 
-    var store = me.getDetailColsGrid().getStore();
-    var index = store.findExact("id", col.get("id"));
+    const store = me.getDetailColsGrid().getStore();
+    let index = store.findExact("id", col.get("id"));
     index--;
-    var preIndex = null;
-    var preItem = store.getAt(index);
+    let preIndex = null;
+    const preItem = store.getAt(index);
     if (preItem) {
       preIndex = preItem.get("id");
     }
 
-    var info = "请确认是否删除明细表列: <span style='color:red'>"
-      + col.get("caption")
-      + "</span>?<br /><br />当前操作只删除明细表列元数据，<br />数据库表的字段不会删除";
+    const info = `请确认是否删除明细表列: <span style='color:red'>${col.get("caption")}</span>?<br /><br />当前操作只删除明细表列元数据，<br />数据库表的字段不会删除`;
 
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/Form/deleteFormDetailCol"),
         params: {
           id: col.get("id"),
@@ -1354,9 +1402,9 @@ Ext.define("PSI.Form.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshDetailColsGrid(preIndex);
             } else {
               me.showInfo(data.msg);
@@ -1407,5 +1455,4 @@ Ext.define("PSI.Form.MainForm", {
     };
     me.ajax(r);
   },
-
 });
