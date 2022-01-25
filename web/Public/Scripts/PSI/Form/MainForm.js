@@ -249,18 +249,21 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
+  /**
+   * @private
+   */
   onEditCategory() {
-    var me = this;
+    const me = this;
 
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要编辑的表单分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
-    var form = Ext.create("PSI.Form.CategoryEditForm", {
+    const form = Ext.create("PSI.Form.CategoryEditForm", {
       parentForm: me,
       entity: category
     });
@@ -268,33 +271,35 @@ Ext.define("PSI.Form.MainForm", {
     form.show();
   },
 
+  /**
+   * @private
+   */
   onDeleteCategory() {
-    var me = this;
-    var item = me.getCategoryGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择要删除的表单分类");
       return;
     }
 
-    var category = item[0];
+    const category = item[0];
 
-    var store = me.getCategoryGrid().getStore();
-    var index = store.findExact("id", category.get("id"));
+    const store = me.getCategoryGrid().getStore();
+    let index = store.findExact("id", category.get("id"));
     index--;
-    var preIndex = null;
-    var preItem = store.getAt(index);
+    let preIndex = null;
+    const preItem = store.getAt(index);
     if (preItem) {
       preIndex = preItem.get("id");
     }
 
-    var info = "请确认是否删除表单分类: <span style='color:red'>"
-      + category.get("name") + "</span>";
+    const info = `请确认是否删除表单分类: <span style='color:red'>${category.get("name")}</span> ？`;
 
-    var funcConfirm = () => {
-      var el = Ext.getBody();
+    const funcConfirm = () => {
+      const el = Ext.getBody();
       el.mask("正在删除中...");
 
-      var r = {
+      const r = {
         url: me.URL("Home/Form/deleteFormCategory"),
         params: {
           id: category.get("id")
@@ -303,9 +308,9 @@ Ext.define("PSI.Form.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshCategoryGrid(preIndex);
             } else {
               me.showInfo(data.msg);
@@ -322,20 +327,26 @@ Ext.define("PSI.Form.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * @private
+   */
   onCategoryGridSelect() {
-    var me = this;
+    const me = this;
 
     me.refreshMainGrid();
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
-    var me = this;
+    const me = this;
 
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSIForm";
+    const modelName = "PSIForm";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -421,8 +432,11 @@ Ext.define("PSI.Form.MainForm", {
     return me.__mainGrid;
   },
 
+  /**
+   * @private
+   */
   onMainGridSelect() {
-    var me = this;
+    const me = this;
 
     me.refreshColsGrid();
     me.refreshDetailGrid();
