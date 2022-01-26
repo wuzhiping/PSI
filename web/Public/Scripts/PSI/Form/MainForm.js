@@ -150,15 +150,15 @@ Ext.define("PSI.Form.MainForm", {
       scope: me
     }, "-", {
       text: "新建表单",
-      handler: me.onAddForm,
+      handler: me._onAddForm,
       scope: me
     }, {
       text: "编辑表单",
-      handler: me.onEditForm,
+      handler: me._onEditForm,
       scope: me
     }, {
       text: "删除表单",
-      handler: me.onDeleteForm,
+      handler: me._onDeleteForm,
       scope: me
     }, "-", {
       text: "指南",
@@ -644,7 +644,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onAddForm() {
+  _onAddForm() {
     const me = this;
 
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -665,7 +665,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onEditForm() {
+  _onEditForm() {
     const me = this;
 
     let item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -697,7 +697,7 @@ Ext.define("PSI.Form.MainForm", {
    * 
    * @private
    */
-  onDeleteForm() {
+  _onDeleteForm() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
