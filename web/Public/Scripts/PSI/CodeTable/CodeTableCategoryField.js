@@ -80,7 +80,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
       }]
     });
     me.lookupGrid = lookupGrid;
-    me.lookupGrid.on("itemdblclick", me.onOK, me);
+    me.lookupGrid.on("itemdblclick", me._onOK, me);
 
     const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 码表分类",
@@ -133,7 +133,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
       }],
       buttons: [{
         text: "确定",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me
       }, {
         text: "取消",
@@ -183,7 +183,7 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
 
     editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
-        me.onOK();
+        me._onOK();
       } else if (e.getKey() == e.UP) {
         const m = me.lookupGrid.getSelectionModel();
         const store = me.lookupGrid.getStore();
@@ -226,8 +226,10 @@ Ext.define("PSI.CodeTable.CodeTableCategoryField", {
     wnd.showBy(me);
   },
 
-  // private
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
     const grid = me.lookupGrid;
     const item = grid.getSelectionModel().getSelection();
