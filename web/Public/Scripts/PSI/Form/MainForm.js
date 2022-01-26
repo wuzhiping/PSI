@@ -242,8 +242,19 @@ Ext.define("PSI.Form.MainForm", {
   _onAddCategory() {
     const me = this;
 
+    const slnCode = me.comboSolution.getValue();
+    const sln = me.comboSolution.findRecordByValue(slnCode);
+    if (!sln) {
+      me.showInfo("没有选择解决方案");
+      return;
+    }
+    const slnName = sln.get("name");
+
+
     const form = Ext.create("PSI.Form.CategoryEditForm", {
-      parentForm: me
+      parentForm: me,
+      slnCode,
+      slnName,
     });
 
     form.show();
