@@ -1436,7 +1436,11 @@ Ext.define("PSI.Form.MainForm", {
    * 解决方案Combo选择项变动的时候的事件处理函数
    * @private
    */
-  _onComboSolutionSelect() { },
+  _onComboSolutionSelect() {
+    const me = this;
+
+    me.refreshCategoryGrid();
+  },
 
   /**
  * @private
