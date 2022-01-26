@@ -6,10 +6,12 @@
  * @license GPL v3
  */
 Ext.define("PSI.Form.CategoryEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;
@@ -24,7 +26,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
         text: "保存并继续新增",
         formBind: true,
         handler() {
-          me.onOK(true);
+          me._onOK(true);
         },
         scope: me
       };
@@ -37,7 +39,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK(false);
       },
       scope: me
     };
@@ -53,18 +55,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
     buttons.push(btn);
 
     const t = entity == null ? "新建表单分类" : "编辑表单分类";
-    const f = entity == null
-      ? "edit-form-create.png"
-      : "edit-form-update.png";
-    const logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
-      + PSI.Const.BASE_URL
-      + "Public/Images/"
-      + f
-      + "'></img>"
-      + "<h2 style='color:#196d83'>"
-      + t
-      + "</h2>"
-      + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";
+    const logoHtml = me.genLogoHtml(entity, t);
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -148,12 +139,16 @@ Ext.define("PSI.Form.CategoryEditForm", {
 
     me.editCode = Ext.getCmp("PSI_Form_CategoryEditForm_editCode");
     me.editName = Ext.getCmp("PSI_Form_CategoryEditForm_editName");
+
+    me.__editorList = [me.editCode, me.editName];
   },
 
   /**
    * 保存
+   * 
+   * @private
    */
-  onOK(thenAdd) {
+  _onOK(thenAdd) {
     const me = this;
     const f = me.editForm;
     const el = f.getEl();
@@ -165,7 +160,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
         me.__lastId = action.result.id;
         el.unmask();
 
-        PSI.MsgBox.tip("数据保存成功");
+        me.tip("数据保存成功", !thenAdd);
         me.focus();
         if (thenAdd) {
           me.clearEdit();
@@ -175,7 +170,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
       },
       failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, () => {
+        me.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
@@ -199,7 +194,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
     if (e.getKey() == e.ENTER) {
       const f = me.editForm;
       if (f.getForm().isValid()) {
-        me.onOK(me.adding);
+        me._onOK(me.adding);
       }
     }
   },
