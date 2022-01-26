@@ -49,6 +49,16 @@ class FormDAO extends PSIBaseExDAO
     $code = $params["code"] ?? "";
     $code = strtoupper($code);
     $name = $params["name"];
+    $slnCode = $params["slnCode"];
+
+    // 检查解决方案是否存在
+    $sql = "select count(*) as cnt from t_solution where code = '%s' ";
+    $data = $db->query($sql, $slnCode);
+    $cnt = $data[0]["cnt"];
+    if ($cnt != 1) {
+      return $this->bad("解决方案不存在");
+    }
+
 
     // 检查编码是否存在
     if ($code) {
@@ -71,10 +81,10 @@ class FormDAO extends PSIBaseExDAO
     }
 
     $id = $this->newId();
-    $sql = "insert into t_form_category (id, code, name, parent_id)
-            values ('%s', '%s', '%s', null)";
+    $sql = "insert into t_form_category (id, code, name, parent_id, sln_code)
+            values ('%s', '%s', '%s', null, '%s')";
 
-    $rc = $db->execute($sql, $id, $code, $name);
+    $rc = $db->execute($sql, $id, $code, $name, $slnCode);
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);
     }

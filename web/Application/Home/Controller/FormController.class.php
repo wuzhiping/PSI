@@ -109,6 +109,8 @@ class FormController extends PSIBaseController
 
   /**
    * 新增或编辑表单分类
+   * 
+   * JS: web\Public\Scripts\PSI\Form\CategoryEditForm.js
    */
   public function editFormCategory()
   {
@@ -121,7 +123,8 @@ class FormController extends PSIBaseController
       $params = [
         "id" => I("post.id"),
         "code" => I("post.code"),
-        "name" => I("post.name")
+        "name" => I("post.name"),
+        "slnCode" => I("post.slnCode"),
       ];
 
       $service = new FormService();
