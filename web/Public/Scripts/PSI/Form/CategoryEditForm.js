@@ -8,6 +8,11 @@
 Ext.define("PSI.Form.CategoryEditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
+  config: {
+    slnCode: "",
+    slnName: "",
+  },
+
   /**
    * 初始化组件
    * 
@@ -62,7 +67,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
         height: 40
       },
       width: 400,
-      height: 240,
+      height: 290,
       layout: "border",
       listeners: {
         show: {
@@ -103,6 +108,14 @@ Ext.define("PSI.Form.CategoryEditForm", {
           xtype: "hidden",
           name: "id",
           value: entity == null ? null : entity.get("id")
+        }, {
+          xtype: "hidden",
+          name: "slnCode",
+          value: me.getSlnCode()
+        }, {
+          xtype: "displayfield",
+          fieldLabel: "解决方案",
+          value: `<span class='PSI-field-note'>${me.getSlnName()}</span>`
         }, {
           id: "PSI_Form_CategoryEditForm_editCode",
           fieldLabel: "分类编码",
