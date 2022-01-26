@@ -12,15 +12,15 @@ Ext.define("PSI.Form.CategoryEditForm", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
 
     me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
     if (!entity) {
-      var btn = {
+      const btn = {
         text: "保存并继续新增",
         formBind: true,
         handler() {
@@ -32,7 +32,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
       buttons.push(btn);
     }
 
-    var btn = {
+    let btn = {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
@@ -43,7 +43,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
     };
     buttons.push(btn);
 
-    var btn = {
+    btn = {
       text: entity == null ? "关闭" : "取消",
       handler() {
         me.close();
@@ -52,11 +52,11 @@ Ext.define("PSI.Form.CategoryEditForm", {
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新建表单分类" : "编辑表单分类";
-    var f = entity == null
+    const t = entity == null ? "新建表单分类" : "编辑表单分类";
+    const f = entity == null
       ? "edit-form-create.png"
       : "edit-form-update.png";
-    var logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
+    const logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
       + PSI.Const.BASE_URL
       + "Public/Images/"
       + f
@@ -154,11 +154,11 @@ Ext.define("PSI.Form.CategoryEditForm", {
    * 保存
    */
   onOK(thenAdd) {
-    var me = this;
-    var f = me.editForm;
-    var el = f.getEl();
+    const me = this;
+    const f = me.editForm;
+    const el = f.getEl();
     el.mask(PSI.Const.SAVING);
-    var sf = {
+    const sf = {
       url: me.URL("Home/Form/editFormCategory"),
       method: "POST",
       success(form, action) {
@@ -184,20 +184,20 @@ Ext.define("PSI.Form.CategoryEditForm", {
   },
 
   onEditCodeSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var editName = me.editName;
+      const editName = me.editName;
       editName.focus();
       editName.setValue(editName.getValue());
     }
   },
 
   onEditNameSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK(me.adding);
       }
@@ -205,12 +205,12 @@ Ext.define("PSI.Form.CategoryEditForm", {
   },
 
   clearEdit() {
-    var me = this;
+    const me = this;
     me.editCode.focus();
 
-    var editors = [me.editCode, me.editName];
-    for (var i = 0; i < editors.length; i++) {
-      var edit = editors[i];
+    const editors = [me.editCode, me.editName];
+    for (let i = 0; i < editors.length; i++) {
+      const edit = editors[i];
       edit.setValue(null);
       edit.clearInvalid();
     }
@@ -221,7 +221,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
@@ -233,11 +233,11 @@ Ext.define("PSI.Form.CategoryEditForm", {
   },
 
   onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var editCode = me.editCode;
+    const editCode = me.editCode;
     editCode.focus();
     editCode.setValue(editCode.getValue());
   }
