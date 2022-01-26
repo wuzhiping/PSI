@@ -824,15 +824,15 @@ Ext.define("PSI.Form.MainForm", {
       border: 0,
       tbar: [{
         text: "新建主表列",
-        handler: me.onAddCol,
+        handler: me._onAddCol,
         scope: me
       }, "-", {
         text: "编辑主表列",
-        handler: me.onEditCol,
+        handler: me._onEditCol,
         scope: me
       }, "-", {
         text: "删除主表列",
-        handler: me.onDeleteCol,
+        handler: me._onDeleteCol,
         scope: me
       }],
       columnLines: true,
@@ -962,15 +962,15 @@ Ext.define("PSI.Form.MainForm", {
       },
       tbar: [{
         text: "新建明细表",
-        handler: me.onAddFormDetail,
+        handler: me._onAddFormDetail,
         scope: me
       }, "-", {
         text: "编辑明细表",
-        handler: me.onEditFormDetail,
+        handler: me._onEditFormDetail,
         scope: me
       }, "-", {
         text: "删除明细表",
-        handler: me.onDeleteFormDetail,
+        handler: me._onDeleteFormDetail,
         scope: me
       }],
       columnLines: true,
@@ -1007,7 +1007,7 @@ Ext.define("PSI.Form.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onDetailGridSelect,
+          fn: me._onDetailGridSelect,
           scope: me
         }
       }
@@ -1019,7 +1019,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onDetailGridSelect() {
+  _onDetailGridSelect() {
     const me = this;
 
     me.refreshDetailColsGrid();
@@ -1058,15 +1058,15 @@ Ext.define("PSI.Form.MainForm", {
       },
       tbar: [{
         text: "新建列",
-        handler: me.onAddDetailCol,
+        handler: me._onAddDetailCol,
         scope: me
       }, "-", {
         text: "编辑列",
-        handler: me.onEditDetailCol,
+        handler: me._onEditDetailCol,
         scope: me
       }, "-", {
         text: "删除列",
-        handler: me.onDeleteDetailCol,
+        handler: me._onDeleteDetailCol,
         scope: me
       }],
       columnLines: true,
@@ -1162,7 +1162,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onAddCol() {
+  _onAddCol() {
     const me = this;
 
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -1183,7 +1183,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onEditCol() {
+  _onEditCol() {
     const me = this;
 
     let item = me.getMainGrid().getSelectionModel().getSelection();
@@ -1213,7 +1213,7 @@ Ext.define("PSI.Form.MainForm", {
    * 
    * @private
    */
-  onDeleteCol() {
+  _onDeleteCol() {
     const me = this;
     let item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -1280,7 +1280,7 @@ Ext.define("PSI.Form.MainForm", {
    * 
    * @private
    */
-  onAddFormDetail() {
+  _onAddFormDetail() {
     const me = this;
     me.showInfo("TODO");
   },
@@ -1288,7 +1288,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onEditFormDetail() {
+  _onEditFormDetail() {
     const me = this;
     me.showInfo("TODO");
   },
@@ -1296,7 +1296,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onDeleteFormDetail() {
+  _onDeleteFormDetail() {
     const me = this;
     me.showInfo("TODO");
   },
@@ -1306,7 +1306,7 @@ Ext.define("PSI.Form.MainForm", {
    * 
    * @private
    */
-  onAddDetailCol() {
+  _onAddDetailCol() {
     const me = this;
 
     const item = me.getDetailGrid().getSelectionModel().getSelection();
@@ -1329,7 +1329,7 @@ Ext.define("PSI.Form.MainForm", {
    * 
    * @private
    */
-  onEditDetailCol() {
+  _onEditDetailCol() {
     const me = this;
     let item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -1359,7 +1359,7 @@ Ext.define("PSI.Form.MainForm", {
    * 
    * @private
    */
-  onDeleteDetailCol() {
+  _onDeleteDetailCol() {
     const me = this;
     let item = me.getDetailGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
