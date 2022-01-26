@@ -42,10 +42,18 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     me.fetchMeatData();
   },
 
+  /**
+   * @private
+   */
   getMetaData() {
     return this._md;
   },
 
+  /**
+   * 获得元数据
+   * 
+   * @private
+   */
   fetchMeatData() {
     const me = this;
     const el = me.getEl();
@@ -69,6 +77,11 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     });
   },
 
+  /**
+   * 创建UI
+   * 
+   * @private
+   */
   initUI() {
     const me = this;
 
@@ -265,6 +278,9 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     });
   },
 
+  /**
+   * @private
+   */
   getQueryParam() {
     const me = this;
 
@@ -275,6 +291,9 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     return result;
   },
 
+  /**
+   * @private
+   */
   gotoMainGridRecord(id) {
     const me = this;
     const grid = me.getMainGrid();
@@ -292,7 +311,9 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     }
   },
 
-
+  /**
+   * @private
+   */
   createMainTreeGrid(md) {
     const me = this;
     const modelName = "PSICodeTableRuntime_" + md.tableName;
@@ -375,6 +396,9 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     });
   },
 
+  /**
+   * @private
+   */
   _onTreeStoreLoad() {
     const me = this;
     const md = me.getMetaData();
@@ -445,7 +469,11 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     form.show();
   },
 
-  // 根据当前id查找之前的id，用于删除后定位
+  /**
+   * 根据当前id查找之前的id，用于删除后定位
+   * 
+   * @private
+   */
   getPreIndexById(id) {
     const me = this;
     const md = me.getMetaData();
@@ -558,11 +586,17 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     me.refreshMainGrid(id);
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     return this._mainGrid;
   },
 
-  refreshMainGrid(id) {
+  /**
+   * @private
+   */
+   refreshMainGrid(id) {
     const me = this;
     me._lastId = id;
 
