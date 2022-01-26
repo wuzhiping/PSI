@@ -123,7 +123,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
           value: entity == null ? null : entity.get("code"),
           listeners: {
             specialkey: {
-              fn: me.onEditCodeSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -137,7 +137,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
           value: entity == null ? null : entity.get("name"),
           listeners: {
             specialkey: {
-              fn: me.onEditNameSpecialKey,
+              fn: me._onLastEditSpecialKey,
               scope: me
             }
           }
@@ -170,7 +170,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
       url: me.URL("Home/Form/editFormCategory"),
       method: "POST",
       success(form, action) {
-        me.__lastId = action.result.id;
+        me._lastId = action.result.id;
         el.unmask();
 
         me.tip("数据保存成功", !thenAdd);
@@ -191,17 +191,10 @@ Ext.define("PSI.Form.CategoryEditForm", {
     f.submit(sf);
   },
 
-  onEditCodeSpecialKey(field, e) {
-    const me = this;
-
-    if (e.getKey() == e.ENTER) {
-      const editName = me.editName;
-      editName.focus();
-      editName.setValue(editName.getValue());
-    }
-  },
-
-  onEditNameSpecialKey(field, e) {
+  /**
+   * @private
+   */
+  _onLastEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -212,6 +205,9 @@ Ext.define("PSI.Form.CategoryEditForm", {
     }
   },
 
+  /**
+   * @private
+   */
   clearEdit() {
     const me = this;
     me.editCode.focus();
@@ -224,29 +220,30 @@ Ext.define("PSI.Form.CategoryEditForm", {
     }
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  /**
+   * @private
+   */
+  _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
-    if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().refreshCategoryGrid(me.__lastId);
+    if (me._lastId) {
+      const parentForm = me.getParentForm();
+      if (parentForm) {
+        parentForm.refreshCategoryGrid.apply(parentForm, [me._lastId]);
       }
     }
   },
 
-  onWndShow() {
+  /**
+   * @private
+   */
+  _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
-    const editCode = me.editCode;
-    editCode.focus();
-    editCode.setValue(editCode.getValue());
+    me.setFocusAndCursorPosToLast(me.editCode);
   }
 });
