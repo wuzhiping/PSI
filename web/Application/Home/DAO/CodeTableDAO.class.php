@@ -97,7 +97,7 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 操作成功
-    $log = "新建解决方案[{$slnCode}-{$slnName}]的码表分类[{$name}]";
+    $log = "解决方案[{$slnCode}-{$slnName}] - 新建码表分类[{$name}]";
     $params["log"] = $log;
     $params["id"] = $id;
     return null;
@@ -108,7 +108,7 @@ class CodeTableDAO extends PSIBaseExDAO
    *
    * @param array $params
    */
-  public function updateCodeTableCategory($params)
+  public function updateCodeTableCategory(&$params)
   {
     $db = $this->db;
 
@@ -126,6 +126,14 @@ class CodeTableDAO extends PSIBaseExDAO
       $n = $category["name"];
       return $this->bad("分类[{$n}]是系统固有分类，不能编辑");
     }
+    $slnCode = $category["slnCode"];
+
+    $sql = "select name from t_solution where code = '%s' ";
+    $data = $db->query($sql, $slnCode);
+    if (!$data) {
+      return $this->bad("解决方案不存在");
+    }
+    $slnName = $data[0]["name"];
 
     // 检查编码是否存在
     if ($code) {
@@ -159,6 +167,8 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 操作成功
+    $log = "解决方案[{$slnCode}-{$slnName}] - 编辑码表分类[{$name}]";
+    $params["log"] = $log;
     return null;
   }
 
@@ -166,13 +176,14 @@ class CodeTableDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
-    $sql = "select code, name, is_system from t_code_table_category where id = '%s' ";
+    $sql = "select code, name, is_system, sln_code from t_code_table_category where id = '%s' ";
     $data = $db->query($sql, $id);
     if ($data) {
       return [
         "code" => $data[0]["code"],
         "name" => $data[0]["name"],
         "isSystem" => $data[0]["is_system"],
+        "slnCode" => $data[0]["sln_code"],
       ];
     } else {
       return null;
