@@ -208,6 +208,14 @@ class CodeTableDAO extends PSIBaseExDAO
     if ($isSystem == 1) {
       return $this->bad("分类[{$name}]是系统固有分类，不能删除");
     }
+    $slnCode = $category["slnCode"];
+
+    $sql = "select name from t_solution where code = '%s' ";
+    $data = $db->query($sql, $slnCode);
+    if (!$data) {
+      return $this->bad("解决方案不存在");
+    }
+    $slnName = $data[0]["name"];
 
     // 查询该分类是否被使用了
     $sql = "select count(*) as cnt from t_code_table_md
@@ -225,7 +233,8 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 操作成功
-    $params["name"] = $name;
+    $log = "解决方案[{$slnCode}-{$slnName}] - 删除码表分类[{$name}]";
+    $params["log"] = $log;
     return null;
   }
 

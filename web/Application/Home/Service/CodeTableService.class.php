@@ -98,10 +98,8 @@ class CodeTableService extends PSIBaseExService
       return $rc;
     }
 
-    $name = $params["name"];
-    $log = "删除码表分类：{$name}";
-
     // 记录业务日志
+    $log = $params["log"];
     $bs = new BizlogService($db);
     $bs->insertBizlog($log, $this->LOG_CATEGORY);
 
