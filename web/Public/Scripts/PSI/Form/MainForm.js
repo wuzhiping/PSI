@@ -138,15 +138,15 @@ Ext.define("PSI.Form.MainForm", {
       }
     }, {
       text: "新建表单分类",
-      handler: me.onAddCategory,
+      handler: me._onAddCategory,
       scope: me
     }, {
       text: "编辑表单分类",
-      handler: me.onEditCategory,
+      handler: me._onEditCategory,
       scope: me
     }, {
       text: "删除表单分类",
-      handler: me.onDeleteCategory,
+      handler: me._onDeleteCategory,
       scope: me
     }, "-", {
       text: "新建表单",
@@ -227,7 +227,7 @@ Ext.define("PSI.Form.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onCategoryGridSelect,
+          fn: me._onCategoryGridSelect,
           scope: me
         }
       }
@@ -239,7 +239,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onAddCategory() {
+  _onAddCategory() {
     const me = this;
 
     const form = Ext.create("PSI.Form.CategoryEditForm", {
@@ -252,7 +252,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onEditCategory() {
+  _onEditCategory() {
     const me = this;
 
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
@@ -274,7 +274,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onDeleteCategory() {
+  _onDeleteCategory() {
     const me = this;
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -330,7 +330,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onCategoryGridSelect() {
+  _onCategoryGridSelect() {
     const me = this;
 
     me.refreshMainGrid();
