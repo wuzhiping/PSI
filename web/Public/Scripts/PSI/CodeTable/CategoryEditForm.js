@@ -201,11 +201,10 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     me.editCode.focus();
 
     const editors = [me.editCode, me.editName];
-    for (let i = 0; i < editors.length; i++) {
-      const edit = editors[i];
+    editors.forEach(edit => {
       edit.setValue(null);
       edit.clearInvalid();
-    }
+    })
   },
 
   _onWndClose() {
