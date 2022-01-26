@@ -60,12 +60,12 @@ class CodeTableDAO extends PSIBaseExDAO
     $slnCode = $params["slnCode"];
 
     // 检查解决方案是否存在
-    $sql = "select count(*) as cnt from t_solution where code = '%s' ";
+    $sql = "select name from t_solution where code = '%s' ";
     $data = $db->query($sql, $slnCode);
-    $cnt = $data[0]["cnt"];
-    if ($cnt != 1) {
+    if (!$data) {
       return $this->bad("解决方案不存在");
     }
+    $slnName = $data[0]["name"];
 
     // 检查编码是否存在
     if ($code) {
@@ -97,6 +97,8 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 操作成功
+    $log = "新建解决方案[{$slnCode}-{$slnName}]的码表分类[{$name}]";
+    $params["log"] = $log;
     $params["id"] = $id;
     return null;
   }

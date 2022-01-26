@@ -68,7 +68,7 @@ class CodeTableService extends PSIBaseExService
       }
 
       $id = $params["id"];
-      $log = "新增码表分类：{$name}";
+      $log = $params["log"];
     }
 
     // 记录业务日志
