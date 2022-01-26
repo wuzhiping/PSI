@@ -8,10 +8,10 @@
 Ext.define("PSI.Form.CategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
-	/**
-	 * 初始化组件
-	 */
-  initComponent: function () {
+  /**
+   * 初始化组件
+   */
+  initComponent() {
     var me = this;
 
     var entity = me.getEntity();
@@ -23,7 +23,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
       var btn = {
         text: "保存并继续新增",
         formBind: true,
-        handler: function () {
+        handler() {
           me.onOK(true);
         },
         scope: me
@@ -36,7 +36,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
@@ -45,14 +45,14 @@ Ext.define("PSI.Form.CategoryEditForm", {
 
     var btn = {
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新增表单分类" : "编辑表单分类";
+    var t = entity == null ? "新建表单分类" : "编辑表单分类";
     var f = entity == null
       ? "edit-form-create.png"
       : "edit-form-update.png";
@@ -150,10 +150,10 @@ Ext.define("PSI.Form.CategoryEditForm", {
     me.editName = Ext.getCmp("PSI_Form_CategoryEditForm_editName");
   },
 
-	/**
-	 * 保存
-	 */
-  onOK: function (thenAdd) {
+  /**
+   * 保存
+   */
+  onOK(thenAdd) {
     var me = this;
     var f = me.editForm;
     var el = f.getEl();
@@ -161,7 +161,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
     var sf = {
       url: me.URL("Home/Form/editFormCategory"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         me.__lastId = action.result.id;
         el.unmask();
 
@@ -173,9 +173,9 @@ Ext.define("PSI.Form.CategoryEditForm", {
           me.close();
         }
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        PSI.MsgBox.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
@@ -183,7 +183,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
     f.submit(sf);
   },
 
-  onEditCodeSpecialKey: function (field, e) {
+  onEditCodeSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -193,7 +193,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
     }
   },
 
-  onEditNameSpecialKey: function (field, e) {
+  onEditNameSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -204,7 +204,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
     }
   },
 
-  clearEdit: function () {
+  clearEdit() {
     var me = this;
     me.editCode.focus();
 
@@ -216,11 +216,11 @@ Ext.define("PSI.Form.CategoryEditForm", {
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
@@ -232,7 +232,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
     }
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
