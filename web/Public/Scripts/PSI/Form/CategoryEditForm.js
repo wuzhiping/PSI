@@ -71,11 +71,11 @@ Ext.define("PSI.Form.CategoryEditForm", {
       layout: "border",
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       },
