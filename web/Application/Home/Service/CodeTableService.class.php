@@ -43,12 +43,9 @@ class CodeTableService extends PSIBaseExService
       return $this->bad("演示环境下，不能{$n}码表分类");
     }
 
-    $name = $params["name"];
-
     $db = $this->db();
     $db->startTrans();
 
-    $log = null;
     $dao = new CodeTableDAO($db);
     if ($id) {
       // 编辑
@@ -57,8 +54,6 @@ class CodeTableService extends PSIBaseExService
         $db->rollback();
         return $rc;
       }
-
-      $log = "编辑码表分类：{$name}";
     } else {
       // 新增
       $rc = $dao->addCodeTableCategory($params);
@@ -68,10 +63,10 @@ class CodeTableService extends PSIBaseExService
       }
 
       $id = $params["id"];
-      $log = $params["log"];
     }
 
     // 记录业务日志
+    $log = $params["log"];
     $bs = new BizlogService($db);
     $bs->insertBizlog($log, $this->LOG_CATEGORY);
 
