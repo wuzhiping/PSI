@@ -13,6 +13,9 @@ Ext.define("PSI.Bizlog.MainForm", {
     unitTest: "0"
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -52,9 +55,12 @@ Ext.define("PSI.Bizlog.MainForm", {
 
     me.fetchLogCategory();
 
-    me.onQuery();
+    me._onQuery();
   },
 
+  /**
+   * @private
+   */
   fetchLogCategory() {
     const me = this;
 
@@ -79,6 +85,9 @@ Ext.define("PSI.Bizlog.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   getToolbarCmp() {
     const me = this;
 
@@ -134,13 +143,13 @@ Ext.define("PSI.Bizlog.MainForm", {
       text: "一键升级数据库",
       iconCls: "PSI-button-database",
       scope: me,
-      handler: me.onUpdateDatabase
+      handler: me._onUpdateDatabase
     }];
 
     if (me.getUnitTest() == "1") {
       buttons.push("-", {
         text: "单元测试",
-        handler: me.onUnitTest,
+        handler: me._onUnitTest,
         scope: me
       });
     }
@@ -148,6 +157,9 @@ Ext.define("PSI.Bizlog.MainForm", {
     return buttons;
   },
 
+  /**
+   * @private
+   */
   getQueryCmp() {
     const me = this;
 
@@ -259,7 +271,7 @@ Ext.define("PSI.Bizlog.MainForm", {
         width: 100,
         height: 26,
         margin: "5 0 0 10",
-        handler: me.onQuery,
+        handler: me._onQuery,
         scope: me
       }, {
         xtype: "button",
@@ -267,7 +279,7 @@ Ext.define("PSI.Bizlog.MainForm", {
         width: 100,
         height: 26,
         margin: "5, 0, 0, 10",
-        handler: me.onClearQuery,
+        handler: me._onClearQuery,
         scope: me
       }]
     }, {
@@ -287,10 +299,13 @@ Ext.define("PSI.Bizlog.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     const me = this;
-    if (me.__mainGrid) {
-      return me.__mainGrid;
+    if (me._mainGrid) {
+      return me._mainGrid;
     }
 
     const modelName = "PSI_Bizlog_MainForm_PSILog";
@@ -325,7 +340,7 @@ Ext.define("PSI.Bizlog.MainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -376,15 +391,18 @@ Ext.define("PSI.Bizlog.MainForm", {
       store: store,
       listeners: {
         celldblclick: {
-          fn: me.onCellDbclick,
+          fn: me._onCellDbclick,
           scope: me
         }
       }
     });
 
-    return me.__mainGrid;
+    return me._mainGrid;
   },
 
+  /**
+   * @private
+   */
   gotoMainGridRecord(id) {
     const me = this;
     const grid = me.getMainGrid();
@@ -402,22 +420,26 @@ Ext.define("PSI.Bizlog.MainForm", {
     }
   },
 
-
-  onCellDbclick(ths, td, cellIndex, record, tr, rowIndex, e, eOpts) {
+  /**
+   * @private
+   */
+  _onCellDbclick(ths, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     const me = this;
     if (cellIndex == 1) {
       Ext.getCmp("editQueryLoginName").setValue(record.get("loginName"));
-      me.onQuery();
+      me._onQuery();
     } else if (cellIndex == 3) {
       Ext.getCmp("editQueryIP").setValue(record.get("ip"));
-      me.onQuery();
+      me._onQuery();
     }
   },
 
   /**
    * 刷新
+   * 
+   * @private
    */
-  onQuery() {
+  _onQuery() {
     const me = this;
 
     me.getMainGrid().getStore().currentPage = 1;
@@ -426,8 +448,10 @@ Ext.define("PSI.Bizlog.MainForm", {
 
   /**
    * 升级数据库
+   * 
+   * @private
    */
-  onUpdateDatabase() {
+  _onUpdateDatabase() {
     const me = this;
 
     me.confirm("请确认是否升级数据库？", () => {
@@ -445,7 +469,7 @@ Ext.define("PSI.Bizlog.MainForm", {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功升级数据库");
-              me.onQuery();
+              me._onQuery();
             } else {
               me.showInfo(data.msg);
             }
@@ -457,11 +481,17 @@ Ext.define("PSI.Bizlog.MainForm", {
     });
   },
 
-  onUnitTest() {
+  /**
+   * @private
+   */
+  _onUnitTest() {
     const url = PSI.Const.BASE_URL + "UnitTest";
     window.open(url);
   },
 
+  /**
+   * @private
+   */
   getQueryParam() {
     const result = {
       loginName: Ext.getCmp("editQueryLoginName").getValue(),
@@ -483,7 +513,10 @@ Ext.define("PSI.Bizlog.MainForm", {
     return result;
   },
 
-  onClearQuery() {
+  /**
+   * @private
+   */
+  _onClearQuery() {
     const me = this;
 
     Ext.getCmp("editQueryLoginName").setValue(null);
@@ -499,6 +532,6 @@ Ext.define("PSI.Bizlog.MainForm", {
 
     me.getMainGrid().getStore().currentPage = 1;
 
-    me.onQuery();
+    me._onQuery();
   }
 });
