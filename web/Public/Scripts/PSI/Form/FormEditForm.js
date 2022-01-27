@@ -9,7 +9,9 @@ Ext.define("PSI.Form.FormEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   config: {
-    category: null
+    category: null,
+    slnCode: "",
+    slnName: "",
   },
 
   initComponent: function () {
@@ -81,6 +83,7 @@ Ext.define("PSI.Form.FormEditForm", {
         }, {
           id: "PSI_Form_FormEditForm_editCategory",
           xtype: "psi_formcategoryfield",
+          slnCode: me.getSlnCode(),
           fieldLabel: "分类",
           allowBlank: false,
           blankText: "没有输入表单分类",

@@ -254,7 +254,6 @@ Ext.define("PSI.Form.MainForm", {
     }
     const slnName = sln.get("name");
 
-
     const form = Ext.create("PSI.Form.CategoryEditForm", {
       parentForm: me,
       slnCode,
@@ -662,6 +661,14 @@ Ext.define("PSI.Form.MainForm", {
   _onAddForm() {
     const me = this;
 
+    const slnCode = me.comboSolution.getValue();
+    const sln = me.comboSolution.findRecordByValue(slnCode);
+    if (!sln) {
+      me.showInfo("没有选择解决方案");
+      return;
+    }
+    const slnName = sln.get("name");
+
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("请选择一个的表单分类");
@@ -672,7 +679,9 @@ Ext.define("PSI.Form.MainForm", {
 
     const form = Ext.create("PSI.Form.FormEditForm", {
       parentForm: me,
-      category: category
+      category: category,
+      slnCode,
+      slnName,
     });
     form.show();
   },
@@ -682,6 +691,14 @@ Ext.define("PSI.Form.MainForm", {
    */
   _onEditForm() {
     const me = this;
+
+    const slnCode = me.comboSolution.getValue();
+    const sln = me.comboSolution.findRecordByValue(slnCode);
+    if (!sln) {
+      me.showInfo("没有选择解决方案");
+      return;
+    }
+    const slnName = sln.get("name");
 
     let item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -702,7 +719,9 @@ Ext.define("PSI.Form.MainForm", {
     const form = Ext.create("PSI.Form.FormEditForm", {
       parentForm: me,
       entity: fm,
-      category: category
+      category: category,
+      slnCode,
+      slnName,
     });
     form.show();
   },
