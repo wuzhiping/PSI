@@ -131,6 +131,7 @@ class FormService extends PSIBaseExService
     }
 
     $id = $params["id"];
+    $isModify = $id;
     $name = $params["name"];
 
     $pyService = new PinyinService();
@@ -169,7 +170,11 @@ class FormService extends PSIBaseExService
     $bs = new BizlogService($db);
     $bs->insertBizlog($log, $this->LOG_CATEGORY);
 
-    $db->commit();
+    if ($isModify) {
+      // 因为新建表单的时候，MySQL的DDL语句是自动提交事务
+      // 所以只有在编辑的时候，才需要提交事务
+      $db->commit();
+    }
 
     return $this->ok($id);
   }
