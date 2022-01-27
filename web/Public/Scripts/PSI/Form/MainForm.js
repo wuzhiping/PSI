@@ -528,8 +528,8 @@ Ext.define("PSI.Form.MainForm", {
     const form = item[0];
 
     const grid = me.getColsGrid();
-    const el = grid.getEl() || Ext.getBody();
-    el.mask(PSI.Const.LOADING);
+    const el = grid.getEl();
+    el && el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/form/formColList"),
       params: {
@@ -556,7 +556,7 @@ Ext.define("PSI.Form.MainForm", {
           }
         }
 
-        el.unmask();
+        el && el.unmask();
       }
     };
 
@@ -576,8 +576,8 @@ Ext.define("PSI.Form.MainForm", {
     const form = item[0];
 
     const grid = me.getDetailGrid();
-    const el = grid.getEl() || Ext.getBody();
-    el.mask(PSI.Const.LOADING);
+    const el = grid.getEl();
+    el && el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/form/formDetailList"),
       params: {
@@ -604,7 +604,7 @@ Ext.define("PSI.Form.MainForm", {
           }
         }
 
-        el.unmask();
+        el && el.unmask();
       }
     };
 
