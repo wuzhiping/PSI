@@ -291,6 +291,9 @@ Ext.define("PSI.Form.FormEditForm", {
     });
   },
 
+  /**
+   * @private
+   */
   _onLastEditSpecialKey(field, e) {
     const me = this;
 
@@ -302,6 +305,9 @@ Ext.define("PSI.Form.FormEditForm", {
     }
   },
 
+  /**
+   * @private
+   */
   _onWndClose() {
     const me = this;
 
