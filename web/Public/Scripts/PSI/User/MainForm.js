@@ -667,16 +667,7 @@ Ext.define("PSI.User.MainForm", {
       return;
     }
 
-    const user = item[0].data;
-
-    const tree = me.getOrgGrid();
-    const node = tree.getSelectionModel().getSelection();
-    if (node && node.length === 1) {
-      const org = node[0].data;
-
-      user.orgId = org.id;
-      user.orgName = org.fullName;
-    }
+    const user = item[0];
 
     const form = Ext.create("PSI.User.UserEditForm", {
       parentForm: me,

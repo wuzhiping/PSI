@@ -62,7 +62,7 @@ Ext.define("PSI.User.UserEditForm", {
         items: [{
           xtype: "hidden",
           name: "id",
-          value: entity === null ? null : entity.id
+          value: entity === null ? null : entity.get("id")
         }, {
           id: "editLoginName",
           fieldLabel: "登录名",
@@ -70,9 +70,6 @@ Ext.define("PSI.User.UserEditForm", {
           blankText: "没有输入登录名",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "loginName",
-          value: entity === null
-            ? null
-            : entity.loginName,
           colspan: 2,
           width: 430,
           listeners: {
@@ -88,9 +85,6 @@ Ext.define("PSI.User.UserEditForm", {
           blankText: "没有输入姓名",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "name",
-          value: entity === null
-            ? null
-            : entity.name,
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
@@ -104,9 +98,6 @@ Ext.define("PSI.User.UserEditForm", {
           blankText: "没有输入编码",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "orgCode",
-          value: entity === null
-            ? null
-            : entity.orgCode,
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
@@ -122,9 +113,6 @@ Ext.define("PSI.User.UserEditForm", {
           blankText: "没有选择组织机构",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           parentItem: me,
-          value: entity === null
-            ? null
-            : entity.orgName,
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
@@ -137,18 +125,12 @@ Ext.define("PSI.User.UserEditForm", {
           id: "editOrgId",
           xtype: "hidden",
           name: "orgId",
-          value: entity === null
-            ? null
-            : entity.orgId
         }, {
           id: "editBirthday",
           fieldLabel: "生日",
           xtype: "datefield",
           format: "Y-m-d",
           name: "birthday",
-          value: entity === null
-            ? null
-            : entity.birthday,
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
@@ -159,9 +141,6 @@ Ext.define("PSI.User.UserEditForm", {
           id: "editIdCardNumber",
           fieldLabel: "身份证号",
           name: "idCardNumber",
-          value: entity === null
-            ? null
-            : entity.idCardNumber,
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
@@ -172,7 +151,6 @@ Ext.define("PSI.User.UserEditForm", {
           id: "editTel",
           fieldLabel: "联系电话",
           name: "tel",
-          value: entity === null ? null : entity.tel,
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
@@ -183,9 +161,6 @@ Ext.define("PSI.User.UserEditForm", {
           id: "editTel02",
           fieldLabel: "备用电话",
           name: "tel02",
-          value: entity === null
-            ? null
-            : entity.tel02,
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
@@ -196,9 +171,6 @@ Ext.define("PSI.User.UserEditForm", {
           id: "editAddress",
           fieldLabel: "家庭住址",
           name: "address",
-          value: entity === null
-            ? null
-            : entity.address,
           listeners: {
             specialkey: {
               fn: me._onLastEditSpecialKey,
@@ -216,16 +188,12 @@ Ext.define("PSI.User.UserEditForm", {
             boxLabel: "男 ",
             name: "gender",
             inputValue: "男",
-            checked: entity === null
-              ? true
-              : entity.gender == "男"
+            checked: true
           }, {
             boxLabel: "女 ",
             name: "gender",
             inputValue: "女",
-            checked: entity === null
-              ? false
-              : entity.gender == "女"
+            checked: false
           }],
           width: 200
         }, {
@@ -237,16 +205,12 @@ Ext.define("PSI.User.UserEditForm", {
             boxLabel: "允许登录",
             name: "enabled",
             inputValue: true,
-            checked: entity === null
-              ? true
-              : entity.enabled == 1
+            checked: true
           }, {
             boxLabel: "<span style='color:red'>禁止登录</span>",
             name: "enabled",
             inputValue: false,
-            checked: entity === null
-              ? false
-              : entity.enabled != 1
+            checked: false
           }],
           width: 240
         }, {
@@ -344,7 +308,7 @@ Ext.define("PSI.User.UserEditForm", {
     me.ajax({
       url: me.URL("Home/User/userInfo"),
       params: {
-        id: me.getEntity().id
+        id: me.getEntity().get("id")
       },
       callback(options, success, response) {
         el.unmask();
