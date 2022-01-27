@@ -46,7 +46,7 @@ Ext.define("PSI.Form.FormEditForm", {
         height: 40
       },
       width: 550,
-      height: 310,
+      height: 350,
       layout: "border",
       items: [{
         region: "north",
@@ -95,6 +95,7 @@ Ext.define("PSI.Form.FormEditForm", {
           xtype: "psi_formcategoryfield",
           slnCode: me.getSlnCode(),
           fieldLabel: "分类",
+          width: 290,
           allowBlank: false,
           blankText: "没有输入表单分类",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -109,6 +110,7 @@ Ext.define("PSI.Form.FormEditForm", {
         }, {
           id: "PSI_Form_FormEditForm_editCode",
           fieldLabel: "编码",
+          labelWidth: 60,
           name: "code",
           listeners: {
             specialkey: {
