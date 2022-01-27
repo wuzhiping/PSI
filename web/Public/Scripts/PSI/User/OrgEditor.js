@@ -142,7 +142,7 @@ Ext.define("PSI.User.OrgEditor", {
       };
 
       // 回调
-      parentItem.setOrg.apply(parentItem, org);
+      parentItem.setOrg.apply(parentItem, [org]);
     }
     me.wnd.close();
     me.focus();
