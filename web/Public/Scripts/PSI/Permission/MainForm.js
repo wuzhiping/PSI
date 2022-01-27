@@ -446,7 +446,7 @@ Ext.define("PSI.Permission.MainForm", {
       return;
     }
 
-    const role = item[0].data;
+    const role = item[0];
     const store = grid.getStore();
     grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${role.name}</span> - 权限列表`));
 
@@ -456,7 +456,7 @@ Ext.define("PSI.Permission.MainForm", {
     me.ajax({
       url: me.URL("Home/Permission/permissionList"),
       params: {
-        roleId: role.id
+        roleId: role.get("id")
       },
       callback(options, success, response) {
         store.removeAll();
@@ -478,7 +478,7 @@ Ext.define("PSI.Permission.MainForm", {
     me.ajax({
       url: me.URL("Home/Permission/userList"),
       params: {
-        roleId: role.id
+        roleId: role.get("id")
       },
       callback(options, success, response) {
         userStore.removeAll();
