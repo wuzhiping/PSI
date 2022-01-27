@@ -194,6 +194,7 @@ class FormController extends PSIBaseController
         "tableName" => I("post.tableName"),
         "moduleName" => I("post.moduleName"),
         "memo" => I("post.memo"),
+        "slnCode" => I("post.slnCode"),
       ];
 
       $service = new FormService();

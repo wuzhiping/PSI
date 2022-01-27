@@ -59,7 +59,6 @@ class FormDAO extends PSIBaseExDAO
       return $this->bad("解决方案不存在");
     }
 
-
     // 检查编码是否存在
     if ($code) {
       $sql = "select count(*) as cnt from t_form_category where code = '%s' ";
@@ -314,7 +313,7 @@ class FormDAO extends PSIBaseExDAO
     return $result;
   }
 
-  private function checkTableName($tableName)
+  private function checkTableName($tableName, $slnCode)
   {
     $tableName = strtolower($tableName);
 
@@ -340,9 +339,11 @@ class FormDAO extends PSIBaseExDAO
       }
     }
 
-    // 表单需要以t_开头
-    if (!(substr($tableName, 0, 2) == "t_")) {
-      return $this->bad("数据库表名需要以 <span style='color:red'>t_</span> 开头");
+    // 表单需要以t_slnCode开头
+    $slnCode = strtolower($slnCode);
+    $pre = "t_{$slnCode}_";
+    if (!(substr($tableName, 0, strlen($pre)) == $pre)) {
+      return $this->bad("数据库表名需要以 <span style='color:red'>{$pre}</span> 开头");
     }
 
     // 表名正确
@@ -786,6 +787,16 @@ class FormDAO extends PSIBaseExDAO
       return $this->badParam("categoryId");
     }
 
+    $slnCode = $params["slnCode"];
+
+    // 检查解决方案是否存在
+    $sql = "select count(*) as cnt from t_solution where code = '%s' ";
+    $data = $db->query($sql, $slnCode);
+    $cnt = $data[0]["cnt"];
+    if ($cnt != 1) {
+      return $this->bad("解决方案不存在");
+    }
+
     $code = $params["code"];
     $name = $params["name"];
     $tableName = strtolower($params["tableName"]);
@@ -795,7 +806,7 @@ class FormDAO extends PSIBaseExDAO
     $pyModuleName = $params["pyModuleName"];
 
     // 1. 检查数据库表名是否正确
-    $rc = $this->checkTableName($tableName);
+    $rc = $this->checkTableName($tableName, $slnCode);
     if ($rc) {
       return $rc;
     }
@@ -841,10 +852,10 @@ class FormDAO extends PSIBaseExDAO
     $id = $this->newId();
     $fid = "fm" . date("YmdHis");
     $sql = "insert into t_form (id, code, name, category_id, sys_form, md_version, memo, table_name, fid,
-              module_name)
+              module_name, sln_code)
             values ('%s', '%s', '%s', '%s', 0, 1, '%s', '%s', '%s',
-              '%s') ";
-    $rc = $db->execute($sql, $id, $code, $name, $categoryId, $memo, $tableName, $fid, $moduleName);
+              '%s', '%s') ";
+    $rc = $db->execute($sql, $id, $code, $name, $categoryId, $memo, $tableName, $fid, $moduleName, $slnCode);
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);
     }
