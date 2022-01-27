@@ -10,7 +10,8 @@ Ext.define("PSI.Form.FormCategoryField", {
   alias: "widget.psi_formcategoryfield",
 
   config: {
-    showModal: false
+    showModal: false,
+    slnCode: "",
   },
 
   /**
@@ -163,7 +164,8 @@ Ext.define("PSI.Form.FormCategoryField", {
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/Form/queryDataForCategory",
         params: {
-          queryKey: editName.getValue()
+          queryKey: editName.getValue(),
+          slnCode: me.getSlnCode(),
         },
         method: "POST",
         callback(opt, success, response) {
