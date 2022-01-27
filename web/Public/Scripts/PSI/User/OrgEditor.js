@@ -9,6 +9,10 @@ Ext.define("PSI.User.OrgEditor", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.PSI_org_editor",
 
+  config: {
+    parentItem: null,
+  },
+
   /**
    * @override
    */
@@ -129,10 +133,16 @@ Ext.define("PSI.User.OrgEditor", {
       return;
     }
 
-    const data = item[0].data;
-    const parentItem = this.initialConfig.parentItem;
+    const data = item[0];
+    const parentItem = me.getParentItem();
     if (parentItem && parentItem.setOrg) {
-      parentItem.setOrg(data);
+      const org = {
+        id: data.get("id"), fullName:
+          data.get("fullName")
+      };
+
+      // 回调
+      parentItem.setOrg.apply(parentItem, org);
     }
     me.wnd.close();
     me.focus();

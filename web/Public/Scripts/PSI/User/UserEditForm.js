@@ -121,7 +121,7 @@ Ext.define("PSI.User.UserEditForm", {
           allowBlank: false,
           blankText: "没有选择组织机构",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          parentItem: this,
+          parentItem: me,
           value: entity === null
             ? null
             : entity.orgName,
