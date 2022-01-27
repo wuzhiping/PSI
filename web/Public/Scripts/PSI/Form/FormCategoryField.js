@@ -20,7 +20,7 @@ Ext.define("PSI.Form.FormCategoryField", {
   initComponent() {
     const me = this;
 
-    me.__idValue = null;
+    me._idValue = null;
 
     me.enableKeyEvents = true;
 
@@ -85,7 +85,7 @@ Ext.define("PSI.Form.FormCategoryField", {
       }]
     });
     me.lookupGrid = lookupGrid;
-    me.lookupGrid.on("itemdblclick", me.onOK, me);
+    me.lookupGrid.on("itemdblclick", me._onOK, me);
 
     const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 表单分类",
@@ -138,7 +138,7 @@ Ext.define("PSI.Form.FormCategoryField", {
       }],
       buttons: [{
         text: "确定",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me
       }, {
         text: "取消",
@@ -188,7 +188,7 @@ Ext.define("PSI.Form.FormCategoryField", {
 
     editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
-        me.onOK();
+        me._onOK();
       } else if (e.getKey() == e.UP) {
         const m = me.lookupGrid.getSelectionModel();
         const store = me.lookupGrid.getStore();
@@ -234,7 +234,7 @@ Ext.define("PSI.Form.FormCategoryField", {
   /**
    * @private
    */
-  onOK() {
+  _onOK() {
     const me = this;
     const grid = me.lookupGrid;
     const item = grid.getSelectionModel().getSelection();
@@ -254,14 +254,14 @@ Ext.define("PSI.Form.FormCategoryField", {
    * @public
    */
   setIdValue(id) {
-    this.__idValue = id;
+    this._idValue = id;
   },
 
   /**
    * @public
    */
   getIdValue() {
-    return this.__idValue;
+    return this._idValue;
   },
 
   /**
@@ -269,6 +269,6 @@ Ext.define("PSI.Form.FormCategoryField", {
    */
   clearIdValue() {
     this.setValue(null);
-    this.__idValue = null;
+    this._idValue = null;
   }
 });
