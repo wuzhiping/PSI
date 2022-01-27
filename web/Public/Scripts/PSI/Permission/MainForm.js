@@ -448,7 +448,7 @@ Ext.define("PSI.Permission.MainForm", {
 
     const role = item[0];
     const store = grid.getStore();
-    grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${role.name}</span> - 权限列表`));
+    grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${role.get("name")}</span> - 权限列表`));
 
     const el = grid.getEl() || Ext.getBody();
 
@@ -473,7 +473,7 @@ Ext.define("PSI.Permission.MainForm", {
     const userGrid = me.getUserGrid();
     const userStore = userGrid.getStore();
     const userEl = userGrid.getEl() || Ext.getBody();
-    userGrid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${role.name}</span> - 人员列表`));
+    userGrid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${role.get("name")}</span> - 人员列表`));
     userEl.mask("数据加载中...");
     me.ajax({
       url: me.URL("Home/Permission/userList"),
