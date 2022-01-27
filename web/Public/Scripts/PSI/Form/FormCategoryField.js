@@ -65,7 +65,6 @@ Ext.define("PSI.Form.FormCategoryField", {
     var lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      border: 0,
       store: store,
       columns: [{
         header: "编码",
@@ -105,6 +104,7 @@ Ext.define("PSI.Form.FormCategoryField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          border: 0,
           items: [{
             id: "PSI_Form_FormCategoryField_editCategory",
             xtype: "textfield",
