@@ -439,6 +439,10 @@ Ext.define("PSI.Form.MainForm", {
         select: {
           fn: me.onMainGridSelect,
           scope: me
+        },
+        itemdblclick: {
+          fn: me._onEditForm,
+          scope: me
         }
       }
     });
