@@ -13,7 +13,10 @@ Ext.define("PSI.Form.FormCategoryField", {
     showModal: false
   },
 
-  initComponent: function () {
+  /**
+   * @override
+   */
+  initComponent() {
     var me = this;
 
     me.__idValue = null;
@@ -22,7 +25,7 @@ Ext.define("PSI.Form.FormCategoryField", {
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (me.readOnly) {
         return;
       }
@@ -40,8 +43,8 @@ Ext.define("PSI.Form.FormCategoryField", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -49,7 +52,10 @@ Ext.define("PSI.Form.FormCategoryField", {
     });
   },
 
-  onTriggerClick: function (e) {
+  /**
+   * @override
+   */
+  onTriggerClick(e) {
     var me = this;
     var modelName = "PSIFormCategoryField";
     Ext.define(modelName, {
@@ -135,24 +141,24 @@ Ext.define("PSI.Form.FormCategoryField", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
 
-    wnd.on("close", function () {
+    wnd.on("close", () => {
       me.focus();
     });
     if (!me.getShowModal()) {
-      wnd.on("deactivate", function () {
+      wnd.on("deactivate", () => {
         wnd.close();
       });
     }
     me.wnd = wnd;
 
     var editName = Ext.getCmp("PSI_Form_FormCategoryField_editCategory");
-    editName.on("change", function () {
+    editName.on("change", () => {
       var store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/Form/queryDataForCategory",
@@ -160,7 +166,7 @@ Ext.define("PSI.Form.FormCategoryField", {
           queryKey: editName.getValue()
         },
         method: "POST",
-        callback: function (opt, success, response) {
+        callback(opt, success, response) {
           store.removeAll();
           if (success) {
             var data = Ext.JSON.decode(response.responseText);
@@ -173,12 +179,12 @@ Ext.define("PSI.Form.FormCategoryField", {
             PSI.MsgBox.showInfo("网络错误");
           }
         },
-        scope: this
+        scope: me
       });
 
     }, me);
 
-    editName.on("specialkey", function (field, e) {
+    editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
@@ -216,15 +222,17 @@ Ext.define("PSI.Form.FormCategoryField", {
       }
     }, me);
 
-    me.wnd.on("show", function () {
+    me.wnd.on("show", () => {
       editName.focus();
       editName.fireEvent("change");
     }, me);
     wnd.showBy(me);
   },
 
-  // private
-  onOK: function () {
+  /**
+   * @private
+   */
+  onOK() {
     var me = this;
     var grid = me.lookupGrid;
     var item = grid.getSelectionModel().getSelection();
@@ -242,15 +250,24 @@ Ext.define("PSI.Form.FormCategoryField", {
     me.setIdValue(data.get("id"));
   },
 
-  setIdValue: function (id) {
+  /**
+   * @public
+   */
+  setIdValue(id) {
     this.__idValue = id;
   },
 
-  getIdValue: function () {
+  /**
+   * @public
+   */
+  getIdValue() {
     return this.__idValue;
   },
 
-  clearIdValue: function () {
+  /**
+   * @public
+   */
+  clearIdValue() {
     this.setValue(null);
     this.__idValue = null;
   }
