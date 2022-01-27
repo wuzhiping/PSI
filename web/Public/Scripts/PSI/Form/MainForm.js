@@ -437,7 +437,7 @@ Ext.define("PSI.Form.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onMainGridSelect,
+          fn: me._onMainGridSelect,
           scope: me
         },
         itemdblclick: {
@@ -453,7 +453,7 @@ Ext.define("PSI.Form.MainForm", {
   /**
    * @private
    */
-  onMainGridSelect() {
+  _onMainGridSelect() {
     const me = this;
 
     me.refreshColsGrid();
