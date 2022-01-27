@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.Form.FormEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     category: null,
@@ -51,7 +51,7 @@ Ext.define("PSI.Form.FormEditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 90,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
@@ -76,6 +76,16 @@ Ext.define("PSI.Form.FormEditForm", {
           name: "id",
           value: entity == null ? null : entity
             .get("id")
+        }, {
+          xtype: "hidden",
+          name: "slnCode",
+          value: me.getSlnCode()
+        }, {
+          xtype: "displayfield",
+          colspan: 2,
+          width: 510,
+          fieldLabel: "解决方案",
+          value: `<span class='PSI-field-note'>${me.getSlnName()}</span>`
         }, {
           id: "PSI_Form_FormEditForm_editCategoryId",
           xtype: "hidden",
