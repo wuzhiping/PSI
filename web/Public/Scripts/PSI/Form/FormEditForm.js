@@ -14,12 +14,15 @@ Ext.define("PSI.Form.FormEditForm", {
     slnName: "",
   },
 
+  /**
+   * @override
+   */
   initComponent() {
-    var me = this;
-    var entity = me.getEntity();
-    this.adding = entity == null;
+    const me = this;
+    const entity = me.getEntity();
+    me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
 
     buttons.push({
       text: "保存",
@@ -37,8 +40,8 @@ Ext.define("PSI.Form.FormEditForm", {
       scope: me
     });
 
-    var t = entity == null ? "新增表单" : "编辑表单";
-    var logoHtml = me.genLogoHtml(entity, t);
+    const t = entity == null ? "新增表单" : "编辑表单";
+    const logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
       header: {
@@ -74,8 +77,7 @@ Ext.define("PSI.Form.FormEditForm", {
         items: [{
           xtype: "hidden",
           name: "id",
-          value: entity == null ? null : entity
-            .get("id")
+          value: entity == null ? null : entity.get("id")
         }, {
           xtype: "hidden",
           name: "slnCode",
@@ -208,15 +210,18 @@ Ext.define("PSI.Form.FormEditForm", {
       me.editCategory, me.editCode, me.editName,
       me.editTableName, me.editModuleName, me.editMemo];
 
-    var c = me.getCategory();
+    const c = me.getCategory();
     if (c) {
       me.editCategory.setIdValue(c.get("id"));
       me.editCategory.setValue(c.get("name"));
     }
   },
 
+  /**
+   * @private
+   */
   onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
@@ -225,7 +230,7 @@ Ext.define("PSI.Form.FormEditForm", {
       me.editTableName.setValue("t_");
     } else {
       // 编辑
-      var el = me.getEl();
+      const el = me.getEl();
       el && el.mask(PSI.Const.LOADING);
       Ext.Ajax.request({
         url: me.URL("Home/Form/formInfo"),
@@ -235,7 +240,7 @@ Ext.define("PSI.Form.FormEditForm", {
         method: "POST",
         callback(options, success, response) {
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             me.editCategory.setIdValue(data.categoryId);
             me.editCategory.setValue(data.categoryName);
             me.editCode.setValue(data.code);
@@ -255,13 +260,16 @@ Ext.define("PSI.Form.FormEditForm", {
     me.editCode.setValue(me.editCode.getValue());
   },
 
+  /**
+   * @private
+   */
   onOK() {
-    var me = this;
+    const me = this;
 
     me.editCategoryId.setValue(me.editCategory.getIdValue());
 
-    var f = me.editForm;
-    var el = f.getEl();
+    const f = me.editForm;
+    const el = f.getEl();
     el && el.mask(PSI.Const.SAVING);
     f.submit({
       url: me.URL("Home/Form/editForm"),
@@ -283,14 +291,14 @@ Ext.define("PSI.Form.FormEditForm", {
   },
 
   onEditSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() === e.ENTER) {
-      var id = field.getId();
-      for (var i = 0; i < me.__editorList.length; i++) {
-        var edit = me.__editorList[i];
+      const id = field.getId();
+      for (let i = 0; i < me.__editorList.length; i++) {
+        let edit = me.__editorList[i];
         if (id == edit.getId()) {
-          var edit = me.__editorList[i + 1];
+          edit = me.__editorList[i + 1];
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -299,10 +307,10 @@ Ext.define("PSI.Form.FormEditForm", {
   },
 
   onEditLastSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() === e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK();
       }
@@ -314,13 +322,14 @@ Ext.define("PSI.Form.FormEditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().refreshMainGrid(me.__lastId);
+      const parentForm = me.getParentForm();
+      if (parentForm) {
+        parentForm.refreshMainGrid.apply(parentForm, [me.__lastId]);
       }
     }
   }
