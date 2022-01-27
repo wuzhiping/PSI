@@ -154,6 +154,8 @@ class FormController extends PSIBaseController
 
   /**
    * 表单分类自定义字段 - 查询数据
+   * 
+   * JS：web\Public\Scripts\PSI\Form\FormCategoryField.js
    */
   public function queryDataForCategory()
   {
@@ -164,7 +166,8 @@ class FormController extends PSIBaseController
       }
 
       $params = [
-        "queryKey" => I("post.queryKey")
+        "queryKey" => I("post.queryKey"),
+        "slnCode" => I("post.slnCode"),
       ];
 
       $service = new FormService();
