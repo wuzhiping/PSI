@@ -29,7 +29,7 @@ Ext.define("PSI.Form.FormEditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK(false);
       },
       scope: me
     }, {
@@ -105,7 +105,7 @@ Ext.define("PSI.Form.FormEditForm", {
           displayField: "name",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -116,7 +116,7 @@ Ext.define("PSI.Form.FormEditForm", {
           name: "code",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -129,7 +129,7 @@ Ext.define("PSI.Form.FormEditForm", {
           name: "name",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -144,7 +144,7 @@ Ext.define("PSI.Form.FormEditForm", {
           name: "tableName",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -159,7 +159,7 @@ Ext.define("PSI.Form.FormEditForm", {
           name: "moduleName",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -173,7 +173,7 @@ Ext.define("PSI.Form.FormEditForm", {
             .get("note"),
           listeners: {
             specialkey: {
-              fn: me.onEditLastSpecialKey,
+              fn: me._onLastEditSpecialKey,
               scope: me
             }
           },
@@ -184,11 +184,11 @@ Ext.define("PSI.Form.FormEditForm", {
       }],
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       }
@@ -220,14 +220,15 @@ Ext.define("PSI.Form.FormEditForm", {
   /**
    * @private
    */
-  onWndShow() {
+  _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.adding) {
       // 新建
-      me.editTableName.setValue("t_");
+      const slnCode = me.getSlnCode().toLowerCase();
+      me.editTableName.setValue(`t_${slnCode}_`);
     } else {
       // 编辑
       const el = me.getEl();
@@ -263,7 +264,7 @@ Ext.define("PSI.Form.FormEditForm", {
   /**
    * @private
    */
-  onOK() {
+  _onOK() {
     const me = this;
 
     me.editCategoryId.setValue(me.editCategory.getIdValue());
@@ -278,7 +279,7 @@ Ext.define("PSI.Form.FormEditForm", {
         el && el.unmask();
         me.tip("数据保存成功", true);
         me.focus();
-        me.__lastId = action.result.id;
+        me._lastId = action.result.id;
         me.close();
       },
       failure(form, action) {
@@ -290,46 +291,26 @@ Ext.define("PSI.Form.FormEditForm", {
     });
   },
 
-  onEditSpecialKey(field, e) {
-    const me = this;
-
-    if (e.getKey() === e.ENTER) {
-      const id = field.getId();
-      for (let i = 0; i < me.__editorList.length; i++) {
-        let edit = me.__editorList[i];
-        if (id == edit.getId()) {
-          edit = me.__editorList[i + 1];
-          edit.focus();
-          edit.setValue(edit.getValue());
-        }
-      }
-    }
-  },
-
-  onEditLastSpecialKey(field, e) {
+  _onLastEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
       const f = me.editForm;
       if (f.getForm().isValid()) {
-        me.onOK();
+        me._onOK();
       }
     }
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
-    if (me.__lastId) {
+    if (me._lastId) {
       const parentForm = me.getParentForm();
       if (parentForm) {
-        parentForm.refreshMainGrid.apply(parentForm, [me.__lastId]);
+        parentForm.refreshMainGrid.apply(parentForm, [me._lastId]);
       }
     }
   }
