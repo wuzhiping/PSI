@@ -998,6 +998,7 @@ Ext.define("PSI.Form.MainForm", {
       viewConfig: {
         enableTextSelection: true
       },
+      border: 0,
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("明细表")
@@ -1094,6 +1095,7 @@ Ext.define("PSI.Form.MainForm", {
       viewConfig: {
         enableTextSelection: true
       },
+      border: 0,
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("明细表列")
@@ -1117,7 +1119,11 @@ Ext.define("PSI.Form.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [{
+        items: [Ext.create("Ext.grid.RowNumberer", {
+          text: "#",
+          align: "center",
+          width: 60
+        }), {
           header: "列标题",
           dataIndex: "caption",
           width: 150,
