@@ -12,7 +12,7 @@ Ext.define("PSI.Form.FormColEditForm", {
     form: null
   },
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
     var entity = me.getEntity();
     this.adding = entity == null;
@@ -23,13 +23,13 @@ Ext.define("PSI.Form.FormColEditForm", {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
     }, {
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
@@ -403,21 +403,21 @@ Ext.define("PSI.Form.FormColEditForm", {
     ];
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     var el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    me.ajaxs({
       url: me.URL("Home/Form/formColInfo"),
       params: {
         id: me.adding ? null : me.getEntity().get("id"),
         formId: me.getForm().get("id")
       },
       method: "POST",
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         if (success) {
           el && el.unmask();
 
@@ -463,7 +463,7 @@ Ext.define("PSI.Form.FormColEditForm", {
     });
   },
 
-  onOK: function () {
+  onOK() {
     var me = this;
 
     var f = me.editForm;
@@ -472,9 +472,9 @@ Ext.define("PSI.Form.FormColEditForm", {
     f.submit({
       url: me.URL("Home/Form/editFormCol"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         el && el.unmask();
-        PSI.MsgBox.tip("数据保存成功");
+        me.tip("数据保存成功", true);
         me.focus();
         me.__lastId = action.result.id;
         me.close();
@@ -483,15 +483,14 @@ Ext.define("PSI.Form.FormColEditForm", {
           parentForm.refreshColsGrid(me.__lastId);
         }
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el && el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
-        });
+        me.showInfo(action.result.msg);
       }
     });
   },
 
-  onEditSpecialKey: function (field, e) {
+  onEditSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() === e.ENTER) {
@@ -507,7 +506,7 @@ Ext.define("PSI.Form.FormColEditForm", {
     }
   },
 
-  onEditLastSpecialKey: function (field, e) {
+  onEditLastSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() === e.ENTER) {
@@ -518,11 +517,11 @@ Ext.define("PSI.Form.FormColEditForm", {
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
@@ -534,7 +533,7 @@ Ext.define("PSI.Form.FormColEditForm", {
     }
   },
 
-  onFieldTypeChange: function () {
+  onFieldTypeChange() {
     var me = this;
     var v = me.editFieldType.getValue();
     if (v == "varchar") {
@@ -555,7 +554,7 @@ Ext.define("PSI.Form.FormColEditForm", {
     }
   },
 
-  onValueFromChange: function () {
+  onValueFromChange() {
     var me = this;
     var v = me.editValueFrom.getValue();
     if (v == 1) {
