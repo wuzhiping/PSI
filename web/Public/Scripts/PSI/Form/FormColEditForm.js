@@ -13,11 +13,11 @@ Ext.define("PSI.Form.FormColEditForm", {
   },
 
   initComponent() {
-    var me = this;
-    var entity = me.getEntity();
-    this.adding = entity == null;
+    const me = this;
+    const entity = me.getEntity();
+    me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
 
     buttons.push({
       text: "保存",
@@ -35,11 +35,11 @@ Ext.define("PSI.Form.FormColEditForm", {
       scope: me
     });
 
-    var t = entity == null ? "新增表单主表列" : "编辑表单主表列";
-    var logoHtml = me.genLogoHtml(entity, t);
+    const t = entity == null ? "新增表单主表列" : "编辑表单主表列";
+    const logoHtml = me.genLogoHtml(entity, t);
 
-    var col2Width = 550;
-    var col3Width = 820;
+    const col2Width = 550;
+    const col3Width = 820;
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -404,11 +404,11 @@ Ext.define("PSI.Form.FormColEditForm", {
   },
 
   onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var el = me.getEl();
+    const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/Form/formColInfo"),
@@ -420,16 +420,16 @@ Ext.define("PSI.Form.FormColEditForm", {
         if (success) {
           el && el.unmask();
 
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           if (data.editorXtype) {
-            var store = me.editEditorXtype.getStore();
+            const store = me.editEditorXtype.getStore();
             store.removeAll();
             store.add(data.editorXtype);
           }
 
           if (me.adding) {
             // 新建
-            var store = me.editEditorXtype.getStore();
+            const store = me.editEditorXtype.getStore();
             me.editEditorXtype.setValue(store.getAt(0));
           } else {
             // 编辑
@@ -463,10 +463,10 @@ Ext.define("PSI.Form.FormColEditForm", {
   },
 
   onOK() {
-    var me = this;
+    const me = this;
 
-    var f = me.editForm;
-    var el = f.getEl();
+    const f = me.editForm;
+    const el = f.getEl();
     el && el.mask(PSI.Const.SAVING);
     f.submit({
       url: me.URL("Home/Form/editFormCol"),
@@ -474,12 +474,11 @@ Ext.define("PSI.Form.FormColEditForm", {
       success(form, action) {
         el && el.unmask();
         me.tip("数据保存成功", true);
-        me.focus();
         me.__lastId = action.result.id;
         me.close();
-        var parentForm = me.getParentForm();
+        const parentForm = me.getParentForm();
         if (parentForm) {
-          parentForm.refreshColsGrid(me.__lastId);
+          parentForm.refreshColsGrid.apply(parentForm, [me.__lastId]);
         }
       },
       failure(form, action) {
@@ -490,14 +489,14 @@ Ext.define("PSI.Form.FormColEditForm", {
   },
 
   onEditSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() === e.ENTER) {
-      var id = field.getId();
-      for (var i = 0; i < me.__editorList.length; i++) {
-        var edit = me.__editorList[i];
+      const id = field.getId();
+      for (let i = 0; i < me.__editorList.length; i++) {
+        let edit = me.__editorList[i];
         if (id == edit.getId()) {
-          var edit = me.__editorList[i + 1];
+          edit = me.__editorList[i + 1];
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -506,10 +505,10 @@ Ext.define("PSI.Form.FormColEditForm", {
   },
 
   onEditLastSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() === e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK();
       }
@@ -521,7 +520,7 @@ Ext.define("PSI.Form.FormColEditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
@@ -533,8 +532,8 @@ Ext.define("PSI.Form.FormColEditForm", {
   },
 
   onFieldTypeChange() {
-    var me = this;
-    var v = me.editFieldType.getValue();
+    const me = this;
+    const v = me.editFieldType.getValue();
     if (v == "varchar") {
       me.editFieldLength.setValue(255);
       me.editFieldLength.setDisabled(false);
@@ -554,8 +553,8 @@ Ext.define("PSI.Form.FormColEditForm", {
   },
 
   onValueFromChange() {
-    var me = this;
-    var v = me.editValueFrom.getValue();
+    const me = this;
+    const v = me.editValueFrom.getValue();
     if (v == 1) {
       me.editValueFromTableName.setDisabled(true);
       me.editValueFromColName.setDisabled(true);
