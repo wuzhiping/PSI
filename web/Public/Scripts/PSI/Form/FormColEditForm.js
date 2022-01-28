@@ -64,360 +64,361 @@ Ext.define("PSI.Form.FormColEditForm", {
           {
             xtype: "tabpanel",
             border: 0,
-            items: [
+            items: [{
+              title: "数据库结构",
+              border: 0,
+              layout: "fit",
+              items:
               {
-                title: "数据库结构",
                 border: 0,
-                layout: "fit",
-                items:
-                {
-                  border: 0,
-                  xtype: "form",
-                  layout: {
-                    type: "table",
-                    columns: 3
+                xtype: "form",
+                layout: {
+                  type: "table",
+                  columns: 3
+                },
+                bodyStyle: "margin-top:30px",
+                defaultType: 'textfield',
+                fieldDefaults: {
+                  labelWidth: 90,
+                  labelAlign: "right",
+                  labelSeparator: "",
+                  msgTarget: 'side'
+                },
+                items: [{
+                  xtype: "hidden",
+                  name: "id",
+                  value: entity == null ? null : entity.get("id")
+                }, {
+                  xtype: "hidden",
+                  name: "formId",
+                  value: me.getForm().get("id")
+                }, {
+                  id: "PSI_Form_FormColEditForm_editName",
+                  fieldLabel: "表单名称",
+                  readOnly: true,
+                  value: me.getForm().get("name")
+                }, {
+                  id: "PSI_Form_FormColEditForm_editTableName",
+                  fieldLabel: "数据库表名",
+                  readOnly: true,
+                  colspan: 2,
+                  width: col2Width,
+                  value: me.getForm().get("tableName")
+                }, {
+                  id: "PSI_Form_FormColEditForm_editCaption",
+                  fieldLabel: "列标题",
+                  allowBlank: false,
+                  blankText: "没有输入列标题",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  listeners: {
+                    specialkey: {
+                      fn: me._onEditSpecialKey,
+                      scope: me
+                    }
                   },
-                  bodyStyle: "margin-top:30px",
-                  defaultType: 'textfield',
-                  fieldDefaults: {
-                    labelWidth: 120,
-                    labelAlign: "right",
-                    labelSeparator: "",
-                    msgTarget: 'side'
+                  name: "caption"
+                }, {
+                  id: "PSI_Form_FormColEditForm_editFieldName",
+                  fieldLabel: "列数据库名",
+                  allowBlank: false,
+                  blankText: "没有输入列数据库名",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  listeners: {
+                    specialkey: {
+                      fn: me._onEditSpecialKey,
+                      scope: me
+                    }
                   },
-                  items: [{
-                    xtype: "hidden",
-                    name: "id",
-                    value: entity == null ? null : entity.get("id")
-                  }, {
-                    xtype: "hidden",
-                    name: "formId",
-                    value: me.getForm().get("id")
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editName",
-                    fieldLabel: "表单名称",
-                    readOnly: true,
-                    value: me.getForm().get("name")
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editTableName",
-                    fieldLabel: "数据库表名",
-                    readOnly: true,
-                    colspan: 2,
-                    width: col2Width,
-                    value: me.getForm().get("tableName")
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editCaption",
-                    fieldLabel: "列标题",
-                    allowBlank: false,
-                    blankText: "没有输入列标题",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    listeners: {
-                      specialkey: {
-                        fn: me._onEditSpecialKey,
-                        scope: me
-                      }
-                    },
-                    name: "caption"
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editFieldName",
-                    fieldLabel: "列数据库名",
-                    allowBlank: false,
-                    blankText: "没有输入列数据库名",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    listeners: {
-                      specialkey: {
-                        fn: me._onEditSpecialKey,
-                        scope: me
-                      }
-                    },
-                    colspan: 2,
-                    width: col2Width,
-                    name: "fieldName"
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editFieldType",
-                    xtype: "combo",
-                    queryMode: "local",
-                    editable: false,
-                    valueField: "id",
-                    labelAlign: "right",
-                    labelSeparator: "",
-                    fieldLabel: "列数据类型",
-                    allowBlank: false,
-                    blankText: "没有输入列数据类型",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    store: Ext.create("Ext.data.ArrayStore", {
-                      fields: ["id", "text"],
-                      data: [["varchar", "varchar"],
-                      ["int", "int"],
-                      ["decimal", "decimal"]]
-                    }),
-                    value: "varchar",
-                    name: "fieldType",
-                    listeners: {
-                      change: {
-                        fn: me._onFieldTypeChange,
-                        scope: me
-                      }
+                  colspan: 2,
+                  width: col2Width,
+                  name: "fieldName"
+                }, {
+                  id: "PSI_Form_FormColEditForm_editFieldType",
+                  xtype: "combo",
+                  queryMode: "local",
+                  editable: false,
+                  valueField: "id",
+                  labelAlign: "right",
+                  labelSeparator: "",
+                  fieldLabel: "列数据类型",
+                  allowBlank: false,
+                  blankText: "没有输入列数据类型",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  store: Ext.create("Ext.data.ArrayStore", {
+                    fields: ["id", "text"],
+                    data: [["varchar", "varchar"],
+                    ["int", "int"],
+                    ["decimal", "decimal"]]
+                  }),
+                  value: "varchar",
+                  name: "fieldType",
+                  listeners: {
+                    change: {
+                      fn: me._onFieldTypeChange,
+                      scope: me
                     }
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editFieldLength",
-                    fieldLabel: "列数据长度",
-                    listeners: {
-                      specialkey: {
-                        fn: me._onEditSpecialKey,
-                        scope: me
-                      }
-                    },
-                    xtype: "numberfield",
-                    hideTrigger: true,
-                    allowDecimal: false,
-                    minValue: 0,
-                    value: 255,
-                    name: "fieldLength"
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editFieldDec",
-                    fieldLabel: "列小数位数",
-                    listeners: {
-                      specialkey: {
-                        fn: me._onEditSpecialKey,
-                        scope: me
-                      }
-                    },
-                    xtype: "numberfield",
-                    hideTrigger: true,
-                    allowDecimal: false,
-                    minValue: 0,
-                    value: 0,
-                    name: "fieldDecimal",
-                    disabled: true
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editIsVisible",
-                    xtype: "combo",
-                    queryMode: "local",
-                    editable: false,
-                    valueField: "id",
-                    labelAlign: "right",
-                    labelSeparator: "",
-                    fieldLabel: "对用户可见",
-                    allowBlank: false,
-                    blankText: "没有输入对用户可见",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    store: Ext.create("Ext.data.ArrayStore", {
-                      fields: ["id", "text"],
-                      data: [[1, "对用户可见"],
-                      [2, "对用户不可见"]]
-                    }),
-                    value: 1,
-                    name: "isVisible"
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editMustInput",
-                    xtype: "combo",
-                    queryMode: "local",
-                    editable: false,
-                    valueField: "id",
-                    labelAlign: "right",
-                    labelSeparator: "",
-                    fieldLabel: "必须录入",
-                    allowBlank: false,
-                    blankText: "没有输入必须录入",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    store: Ext.create("Ext.data.ArrayStore", {
-                      fields: ["id", "text"],
-                      data: [[1, "非必须录入项"],
-                      [2, "必须录入"]]
-                    }),
-                    value: 1,
-                    name: "mustInput"
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editShowOrder",
-                    fieldLabel: "编辑界面显示次序",
-                    allowBlank: false,
-                    blankText: "没有输入编辑界面显示次序",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    xtype: "numberfield",
-                    hideTrigger: true,
-                    allowDecimal: false,
-                    name: "showOrder",
-                    listeners: {
-                      specialkey: {
-                        fn: me._onEditSpecialKey,
-                        scope: me
-                      }
+                  }
+                }, {
+                  id: "PSI_Form_FormColEditForm_editFieldLength",
+                  fieldLabel: "列数据长度",
+                  listeners: {
+                    specialkey: {
+                      fn: me._onEditSpecialKey,
+                      scope: me
                     }
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editEditorXtype",
-                    xtype: "combo",
-                    queryMode: "local",
-                    editable: false,
-                    valueField: "id",
-                    labelAlign: "right",
-                    labelSeparator: "",
-                    fieldLabel: "编辑器类型",
-                    allowBlank: false,
-                    blankText: "没有输入编辑器类型",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    store: Ext.create("Ext.data.ArrayStore", {
-                      fields: ["id", "text"],
-                      data: []
-                    }),
-                    value: "textfield",
-                    name: "editorXtype",
-                    colspan: 2,
-                    width: col2Width
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editColSpan",
-                    fieldLabel: "编辑器列占位",
-                    allowBlank: false,
-                    blankText: "没有输入编辑器列占位",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    xtype: "numberfield",
-                    hideTrigger: true,
-                    allowDecimal: false,
-                    value: 1,
-                    name: "colSpan",
-                    listeners: {
-                      specialkey: {
-                        fn: me._onEditSpecialKey,
-                        scope: me
-                      }
+                  },
+                  xtype: "numberfield",
+                  hideTrigger: true,
+                  allowDecimal: false,
+                  minValue: 0,
+                  value: 255,
+                  name: "fieldLength"
+                }, {
+                  id: "PSI_Form_FormColEditForm_editFieldDec",
+                  fieldLabel: "列小数位数",
+                  listeners: {
+                    specialkey: {
+                      fn: me._onEditSpecialKey,
+                      scope: me
                     }
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editMemo",
-                    fieldLabel: "备注",
-                    name: "memo",
-                    value: entity == null ? null : entity.get("note"),
-                    listeners: {
-                      specialkey: {
-                        fn: me._onEditLastSpecialKey,
-                        scope: me
-                      }
-                    },
-                    width: col3Width,
-                    colspan: 3
-                  }]
-                }
-              }, {
-                title: "取值",
-                layout: "fit",
+                  },
+                  xtype: "numberfield",
+                  hideTrigger: true,
+                  allowDecimal: false,
+                  minValue: 0,
+                  value: 0,
+                  name: "fieldDecimal",
+                  disabled: true
+                }, {
+                  id: "PSI_Form_FormColEditForm_editIsVisible",
+                  xtype: "combo",
+                  queryMode: "local",
+                  editable: false,
+                  valueField: "id",
+                  labelAlign: "right",
+                  labelSeparator: "",
+                  fieldLabel: "对用户可见",
+                  allowBlank: false,
+                  blankText: "没有输入对用户可见",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  store: Ext.create("Ext.data.ArrayStore", {
+                    fields: ["id", "text"],
+                    data: [[1, "对用户可见"],
+                    [2, "对用户不可见"]]
+                  }),
+                  value: 1,
+                  name: "isVisible"
+                }, {
+                  id: "PSI_Form_FormColEditForm_editMustInput",
+                  xtype: "combo",
+                  queryMode: "local",
+                  editable: false,
+                  valueField: "id",
+                  labelAlign: "right",
+                  labelSeparator: "",
+                  fieldLabel: "必须录入",
+                  allowBlank: false,
+                  blankText: "没有输入必须录入",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  store: Ext.create("Ext.data.ArrayStore", {
+                    fields: ["id", "text"],
+                    data: [[1, "非必须录入项"],
+                    [2, "必须录入"]]
+                  }),
+                  value: 1,
+                  name: "mustInput"
+                }, {
+                  id: "PSI_Form_FormColEditForm_editShowOrder",
+                  fieldLabel: "编辑界面显示次序",
+                  allowBlank: false,
+                  blankText: "没有输入编辑界面显示次序",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  xtype: "numberfield",
+                  hideTrigger: true,
+                  allowDecimal: false,
+                  name: "showOrder",
+                  listeners: {
+                    specialkey: {
+                      fn: me._onEditSpecialKey,
+                      scope: me
+                    }
+                  }
+                }, {
+                  id: "PSI_Form_FormColEditForm_editEditorXtype",
+                  xtype: "combo",
+                  queryMode: "local",
+                  editable: false,
+                  valueField: "id",
+                  labelAlign: "right",
+                  labelSeparator: "",
+                  fieldLabel: "编辑器类型",
+                  allowBlank: false,
+                  blankText: "没有输入编辑器类型",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  store: Ext.create("Ext.data.ArrayStore", {
+                    fields: ["id", "text"],
+                    data: []
+                  }),
+                  value: "textfield",
+                  name: "editorXtype",
+                  colspan: 2,
+                  width: col2Width
+                }, {
+                  id: "PSI_Form_FormColEditForm_editColSpan",
+                  fieldLabel: "编辑器列占位",
+                  allowBlank: false,
+                  blankText: "没有输入编辑器列占位",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  xtype: "numberfield",
+                  hideTrigger: true,
+                  allowDecimal: false,
+                  value: 1,
+                  name: "colSpan",
+                  listeners: {
+                    specialkey: {
+                      fn: me._onEditSpecialKey,
+                      scope: me
+                    }
+                  }
+                }, {
+                  id: "PSI_Form_FormColEditForm_editMemo",
+                  fieldLabel: "备注",
+                  name: "memo",
+                  value: entity == null ? null : entity.get("note"),
+                  listeners: {
+                    specialkey: {
+                      fn: me._onEditLastSpecialKey,
+                      scope: me
+                    }
+                  },
+                  width: col3Width,
+                  colspan: 3
+                }]
+              }
+            }, {
+              title: "取值",
+              layout: "fit",
+              border: 0,
+              items: {
                 border: 0,
-                items: {
-                  border: 0,
-                  xtype: "form",
-                  layout: {
-                    type: "table",
-                    columns: 3
+                xtype: "form",
+                layout: {
+                  type: "table",
+                  columns: 3
+                },
+                bodyStyle: "margin-top:30px",
+                defaultType: 'textfield',
+                fieldDefaults: {
+                  labelWidth: 60,
+                  labelAlign: "right",
+                  labelSeparator: "",
+                  msgTarget: 'side'
+                },
+                items: [{
+                  id: "PSI_Form_FormColEditForm_editValueFrom",
+                  xtype: "combo",
+                  queryMode: "local",
+                  editable: false,
+                  valueField: "id",
+                  labelAlign: "right",
+                  labelSeparator: "",
+                  fieldLabel: "值来源",
+                  allowBlank: false,
+                  blankText: "没有输入值来源",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  store: Ext.create("Ext.data.ArrayStore", {
+                    fields: ["id", "text"],
+                    data: [[1, "直接录入"],
+                    [2, "引用系统数据字典"],
+                    [3, "引用码表"],
+                    [5, "程序生成"]]
+                  }),
+                  value: 1,
+                  name: "valueFrom",
+                  listeners: {
+                    change: {
+                      fn: me._onValueFromChange,
+                      scope: me
+                    }
                   },
-                  bodyStyle: "margin-top:30px",
-                  defaultType: 'textfield',
-                  fieldDefaults: {
-                    labelWidth: 120,
-                    labelAlign: "right",
-                    labelSeparator: "",
-                    msgTarget: 'side'
-                  },
-                  items: [{
-                    id: "PSI_Form_FormColEditForm_editValueFrom",
-                    xtype: "combo",
-                    queryMode: "local",
-                    editable: false,
-                    valueField: "id",
-                    labelAlign: "right",
-                    labelSeparator: "",
-                    fieldLabel: "值来源",
-                    allowBlank: false,
-                    blankText: "没有输入值来源",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    store: Ext.create("Ext.data.ArrayStore", {
-                      fields: ["id", "text"],
-                      data: [[1, "直接录入"],
-                      [2, "引用系统数据字典"],
-                      [3, "引用码表"],
-                      [5, "程序生成"]]
-                    }),
-                    value: 1,
-                    name: "valueFrom",
-                    listeners: {
-                      change: {
-                        fn: me._onValueFromChange,
-                        scope: me
-                      }
-                    },
-                    colspan: 3
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editValueFromTableName",
-                    fieldLabel: "引用表名",
-                    disabled: true,
-                    name: "valueFromTableName"
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editValueFromColName",
-                    fieldLabel: "引用列名(关联用)",
-                    disabled: true,
-                    name: "valueFromColName"
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editValueFromColNameDisplay",
-                    fieldLabel: "引用列名(显示用)",
-                    disabled: true,
-                    name: "valueFromColNameDisplay"
-                  }]
-                }
-              },
-              {
-                title: "显示",
+                  colspan: 3
+                }, {
+                  id: "PSI_Form_FormColEditForm_editValueFromTableName",
+                  fieldLabel: "引用表名",
+                  disabled: true,
+                  name: "valueFromTableName"
+                }, {
+                  id: "PSI_Form_FormColEditForm_editValueFromColName",
+                  fieldLabel: "引用列名(关联用)",
+                  disabled: true,
+                  name: "valueFromColName"
+                }, {
+                  id: "PSI_Form_FormColEditForm_editValueFromColNameDisplay",
+                  fieldLabel: "引用列名(显示用)",
+                  disabled: true,
+                  name: "valueFromColNameDisplay"
+                }]
+              }
+            },
+            {
+              title: "显示",
+              border: 0,
+              layout: "fit",
+              items: {
                 border: 0,
-                layout: "fit",
-                items: {
-                  border: 0,
-                  xtype: "form",
-                  layout: {
-                    type: "table",
-                    columns: 3
-                  },
-                  bodyStyle: "margin-top:30px",
-                  defaultType: 'textfield',
-                  fieldDefaults: {
-                    labelWidth: 120,
-                    labelAlign: "right",
-                    labelSeparator: "",
-                    msgTarget: 'side'
-                  },
-                  items: [{
-                    id: "PSI_Form_FormColEditForm_editWidthInView",
-                    fieldLabel: "列宽度",
-                    allowBlank: false,
-                    blankText: "没有输入列宽度",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    xtype: "numberfield",
-                    hideTrigger: true,
-                    allowDecimal: false,
-                    name: "widthInView",
-                    value: entity == null ? 120 : entity.get("widthInView"),
-                    listeners: {
-                      specialkey: {
-                        fn: me._onEditSpecialKey,
-                        scope: me
-                      }
+                xtype: "form",
+                layout: {
+                  type: "table",
+                  columns: 3
+                },
+                bodyStyle: "margin-top:30px",
+                defaultType: 'textfield',
+                fieldDefaults: {
+                  labelWidth: 100,
+                  labelAlign: "right",
+                  labelSeparator: "",
+                  msgTarget: 'side'
+                },
+                items: [{
+                  id: "PSI_Form_FormColEditForm_editWidthInView",
+                  fieldLabel: "列宽度",
+                  labelWidth: 60,
+                  allowBlank: false,
+                  blankText: "没有输入列宽度",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  xtype: "numberfield",
+                  hideTrigger: true,
+                  allowDecimal: false,
+                  name: "widthInView",
+                  value: entity == null ? 120 : entity.get("widthInView"),
+                  listeners: {
+                    specialkey: {
+                      fn: me._onEditSpecialKey,
+                      scope: me
                     }
-                  }, {
-                    id: "PSI_Form_FormColEditForm_editShowOrderInView",
-                    fieldLabel: "视图界面显示次序",
-                    allowBlank: false,
-                    blankText: "没有输入视图界面显示次序",
-                    beforeLabelTextTpl: PSI.Const.REQUIRED,
-                    xtype: "numberfield",
-                    hideTrigger: true,
-                    allowDecimal: false,
-                    name: "showOrderInView",
-                    value: entity == null ? 10 : entity.get("showOrderInView"),
-                    colspan: 2,
-                    listeners: {
-                      specialkey: {
-                        fn: me._onEditSpecialKey,
-                        scope: me
-                      }
+                  }
+                }, {
+                  id: "PSI_Form_FormColEditForm_editShowOrderInView",
+                  fieldLabel: "视图界面显示次序",
+                  labelWidth: 120,
+                  allowBlank: false,
+                  blankText: "没有输入视图界面显示次序",
+                  beforeLabelTextTpl: PSI.Const.REQUIRED,
+                  xtype: "numberfield",
+                  hideTrigger: true,
+                  allowDecimal: false,
+                  name: "showOrderInView",
+                  value: entity == null ? 10 : entity.get("showOrderInView"),
+                  colspan: 2,
+                  listeners: {
+                    specialkey: {
+                      fn: me._onEditSpecialKey,
+                      scope: me
                     }
-                  }]
-                }
-              }]
+                  }
+                }]
+              }
+            }]
           }
         ]
       }],
