@@ -416,7 +416,6 @@ Ext.define("PSI.Form.FormColEditForm", {
         id: me.adding ? null : me.getEntity().get("id"),
         formId: me.getForm().get("id")
       },
-      method: "POST",
       callback(options, success, response) {
         if (success) {
           el && el.unmask();
