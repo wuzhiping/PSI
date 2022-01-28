@@ -12,6 +12,9 @@ Ext.define("PSI.Form.FormColEditForm", {
     form: null
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
     const entity = me.getEntity();
@@ -24,7 +27,7 @@ Ext.define("PSI.Form.FormColEditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK(false);
       },
       scope: me
     }, {
@@ -99,7 +102,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me._onEditSpecialKey,
               scope: me
             }
           },
@@ -112,7 +115,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me._onEditSpecialKey,
               scope: me
             }
           },
@@ -141,7 +144,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           name: "fieldType",
           listeners: {
             change: {
-              fn: me.onFieldTypeChange,
+              fn: me._onFieldTypeChange,
               scope: me
             }
           }
@@ -150,7 +153,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           fieldLabel: "列数据长度",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me._onEditSpecialKey,
               scope: me
             }
           },
@@ -165,7 +168,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           fieldLabel: "列小数位数",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me._onEditSpecialKey,
               scope: me
             }
           },
@@ -199,7 +202,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           name: "valueFrom",
           listeners: {
             change: {
-              fn: me.onValueFromChange,
+              fn: me._onValueFromChange,
               scope: me
             }
           },
@@ -269,7 +272,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           name: "showOrder",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me._onEditSpecialKey,
               scope: me
             }
           }
@@ -306,7 +309,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           name: "colSpan",
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me._onEditSpecialKey,
               scope: me
             }
           }
@@ -323,7 +326,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           value: entity == null ? 120 : entity.get("widthInView"),
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me._onEditSpecialKey,
               scope: me
             }
           }
@@ -341,7 +344,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           colspan: 2,
           listeners: {
             specialkey: {
-              fn: me.onEditSpecialKey,
+              fn: me._onEditSpecialKey,
               scope: me
             }
           }
@@ -352,7 +355,7 @@ Ext.define("PSI.Form.FormColEditForm", {
           value: entity == null ? null : entity.get("note"),
           listeners: {
             specialkey: {
-              fn: me.onEditLastSpecialKey,
+              fn: me._onEditLastSpecialKey,
               scope: me
             }
           },
@@ -363,11 +366,11 @@ Ext.define("PSI.Form.FormColEditForm", {
       }],
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       }
@@ -403,10 +406,13 @@ Ext.define("PSI.Form.FormColEditForm", {
     ];
   },
 
-  onWndShow() {
+  /**
+   * @private
+   */
+  _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
@@ -462,7 +468,10 @@ Ext.define("PSI.Form.FormColEditForm", {
     });
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
 
     const f = me.editForm;
@@ -488,7 +497,10 @@ Ext.define("PSI.Form.FormColEditForm", {
     });
   },
 
-  onEditSpecialKey(field, e) {
+  /**
+   * @private
+   */
+  _onEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
@@ -504,34 +516,40 @@ Ext.define("PSI.Form.FormColEditForm", {
     }
   },
 
-  onEditLastSpecialKey(field, e) {
+  /**
+   * @private
+   */
+  _onEditLastSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
       const f = me.editForm;
       if (f.getForm().isValid()) {
-        me.onOK();
+        me._onOK();
       }
     }
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  /**
+   * @private
+   */
+  _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().refreshColsGrid(me.__lastId);
+      const parentForm = me.getParentForm();
+      if (parentForm) {
+        parentForm.refreshColsGrid.apply(parentForm, [me.__lastId]);
       }
     }
   },
 
-  onFieldTypeChange() {
+  /**
+   * @private
+   */
+  _onFieldTypeChange() {
     const me = this;
     const v = me.editFieldType.getValue();
     if (v == "varchar") {
@@ -552,7 +570,10 @@ Ext.define("PSI.Form.FormColEditForm", {
     }
   },
 
-  onValueFromChange() {
+  /**
+   * @private
+   */
+  _onValueFromChange() {
     const me = this;
     const v = me.editValueFrom.getValue();
     if (v == 1) {
