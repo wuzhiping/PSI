@@ -395,7 +395,11 @@ Ext.define("PSI.CodeTable.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [{
+        items: [Ext.create("Ext.grid.RowNumberer", {
+          text: "#",
+          align: "center",
+          width: 60
+        }), {
           header: "列标题",
           dataIndex: "caption",
           width: 150,
