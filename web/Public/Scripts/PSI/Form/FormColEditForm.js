@@ -410,7 +410,7 @@ Ext.define("PSI.Form.FormColEditForm", {
 
     var el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
-    me.ajaxs({
+    me.ajax({
       url: me.URL("Home/Form/formColInfo"),
       params: {
         id: me.adding ? null : me.getEntity().get("id"),
