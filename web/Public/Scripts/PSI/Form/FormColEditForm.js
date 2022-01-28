@@ -95,15 +95,15 @@ Ext.define("PSI.Form.FormColEditForm", {
                 }, {
                   id: "PSI_Form_FormColEditForm_editName",
                   fieldLabel: "表单名称",
-                  readOnly: true,
-                  value: me.getForm().get("name")
+                  xtype: "displayfield",
+                  value: `<span class='PSI-field-note'>${me.getForm().get("name")}</span>`
                 }, {
                   id: "PSI_Form_FormColEditForm_editTableName",
                   fieldLabel: "数据库表名",
-                  readOnly: true,
+                  xtype: "displayfield",
                   colspan: 2,
                   width: col2Width,
-                  value: me.getForm().get("tableName")
+                  value: `<span class='PSI-field-note'>${me.getForm().get("tableName")}</span>`
                 }, {
                   id: "PSI_Form_FormColEditForm_editCaption",
                   fieldLabel: "列标题",
