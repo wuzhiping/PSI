@@ -54,7 +54,7 @@ Ext.define("PSI.Form.FormColEditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 90,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
