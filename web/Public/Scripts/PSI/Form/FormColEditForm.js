@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.Form.FormColEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     form: null
