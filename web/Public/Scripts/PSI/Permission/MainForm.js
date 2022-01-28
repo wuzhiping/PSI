@@ -83,10 +83,6 @@ Ext.define("PSI.Permission.MainForm", {
 
     me.callParent(arguments);
 
-    me.roleGrid = me.getRoleGrid();
-    me.permissionGrid = me.getPermissionGrid();
-    me.userGrid = me.getUserGrid();
-
     me.refreshRoleGrid();
 
     // 查询控件input List
