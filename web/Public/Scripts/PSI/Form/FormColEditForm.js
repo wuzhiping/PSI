@@ -66,12 +66,9 @@ Ext.define("PSI.Form.FormColEditForm", {
             border: 0,
             items: [
               {
-                title: "通用",
-                layout: {
-                  type: "table",
-                  columns: 3
-                },
+                title: "数据库结构",
                 border: 0,
+                layout: "fit",
                 items:
                 {
                   border: 0,
@@ -80,8 +77,7 @@ Ext.define("PSI.Form.FormColEditForm", {
                     type: "table",
                     columns: 3
                   },
-                  height: "100%",
-                  bodyPadding: 5,
+                  bodyStyle: "margin-top:30px",
                   defaultType: 'textfield',
                   fieldDefaults: {
                     labelWidth: 120,
@@ -302,11 +298,8 @@ Ext.define("PSI.Form.FormColEditForm", {
                 }
               }, {
                 title: "取值",
+                layout: "fit",
                 border: 0,
-                layout: {
-                  type: "table",
-                  columns: 3
-                },
                 items: {
                   border: 0,
                   xtype: "form",
@@ -314,8 +307,7 @@ Ext.define("PSI.Form.FormColEditForm", {
                     type: "table",
                     columns: 3
                   },
-                  height: "100%",
-                  bodyPadding: 5,
+                  bodyStyle: "margin-top:30px",
                   defaultType: 'textfield',
                   fieldDefaults: {
                     labelWidth: 120,
@@ -372,10 +364,7 @@ Ext.define("PSI.Form.FormColEditForm", {
               {
                 title: "显示",
                 border: 0,
-                layout: {
-                  type: "table",
-                  columns: 3
-                },
+                layout: "fit",
                 items: {
                   border: 0,
                   xtype: "form",
@@ -383,8 +372,7 @@ Ext.define("PSI.Form.FormColEditForm", {
                     type: "table",
                     columns: 3
                   },
-                  height: "100%",
-                  bodyPadding: 5,
+                  bodyStyle: "margin-top:30px",
                   defaultType: 'textfield',
                   fieldDefaults: {
                     labelWidth: 120,
