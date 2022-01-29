@@ -12,13 +12,11 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
-    var entity = me.getEntity();
+    const buttons = [];
 
-    var buttons = [];
-
-    var btn = {
+    let btn = {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
@@ -29,7 +27,7 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
     };
     buttons.push(btn);
 
-    var btn = {
+    btn = {
       text: "取消",
       handler() {
         me.close();
@@ -38,9 +36,9 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
     };
     buttons.push(btn);
 
-    var t = "设置字段显示次序";
-    var f = "edit-form-update.png";
-    var logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
+    const t = "设置字段显示次序";
+    const f = "edit-form-update.png";
+    const logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
       + PSI.Const.BASE_URL
       + "Public/Images/"
       + f
@@ -88,22 +86,22 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
    * 保存
    */
   onOK(thenAdd) {
-    var me = this;
+    const me = this;
 
-    var columns = me.getMainGrid().columnManager.columns;
+    const columns = me.getMainGrid().columnManager.columns;
 
-    var data = [];
-    for (var i = 0; i < columns.length; i++) {
-      var col = columns[i];
+    const data = [];
+    for (let i = 0; i < columns.length; i++) {
+      const col = columns[i];
 
       data.push(col.dataIndex);
     }
 
-    var showOrder = data.join(",");
+    const showOrder = data.join(",");
 
-    var el = Ext.getBody();
+    const el = Ext.getBody();
     el.mask("正在操作中...");
-    var r = {
+    const r = {
       url: me.URL("Home/Subject/editFmtColShowOrder"),
       params: {
         id: me.getEntity().get("id"), // 科目id
@@ -113,7 +111,7 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
         el.unmask();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           if (data.success) {
             me.tip("成功修改字段显示次序", true);
             me.close();
@@ -139,7 +137,7 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
@@ -151,12 +149,12 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
   },
 
   getMainGrid() {
-    var me = this;
+    const me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSIEditFMTColsShowOrder";
+    const modelName = "PSIEditFMTColsShowOrder";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id"]
@@ -187,24 +185,24 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
   },
 
   onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var id = me.getEntity().get("id");
+    const id = me.getEntity().get("id");
 
-    var el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/Subject/fmtGridColsList"),
       params: {
-        id: id
+        id
       },
       callback(options, success, response) {
         el.unmask();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           me.reconfigMainGrid(data);
         } else {
           me.showInfo("网络错误")
@@ -216,10 +214,10 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
   },
 
   reconfigMainGrid(data) {
-    var me = this;
-    var cols = [];
-    for (var i = 0; i < data.length; i++) {
-      var item = data[i];
+    const me = this;
+    const cols = [];
+    for (let i = 0; i < data.length; i++) {
+      const item = data[i];
       cols.push({
         text: item.caption,
         dataIndex: item.id
