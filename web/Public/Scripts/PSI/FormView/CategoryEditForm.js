@@ -60,7 +60,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
         height: 40
       },
       width: 400,
-      height: 240,
+      height: 260,
       layout: "border",
       listeners: {
         show: {
@@ -74,7 +74,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
       },
       items: [{
         region: "north",
-        height: 90,
+        height: 70,
         border: 0,
         html: logoHtml
       }, {
