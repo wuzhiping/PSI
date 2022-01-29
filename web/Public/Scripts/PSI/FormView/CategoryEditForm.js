@@ -24,7 +24,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
         text: "保存并继续新增",
         formBind: true,
         handler() {
-          me.onOK(true);
+          me._onOK(true);
         },
         scope: me
       };
@@ -37,7 +37,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK(false);
       },
       scope: me
     };
@@ -146,7 +146,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
    * 
    * @private
    */
-  onOK(thenAdd) {
+  _onOK(thenAdd) {
     const me = this;
     const f = me.editForm;
     const el = f.getEl();
@@ -185,7 +185,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     if (e.getKey() == e.ENTER) {
       const f = me.editForm;
       if (f.getForm().isValid()) {
-        me.onOK(me.adding);
+        me._onOK(me.adding);
       }
     }
   },
