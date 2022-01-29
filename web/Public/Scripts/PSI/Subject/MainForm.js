@@ -350,8 +350,8 @@ Ext.define("PSI.Subject.MainForm", {
 
   getMainGrid() {
     const me = this;
-    if (me.__mainGrid) {
-      return me.__mainGrid;
+    if (me._mainGrid) {
+      return me._mainGrid;
     }
 
     const modelName = "PSISubject";
@@ -380,7 +380,7 @@ Ext.define("PSI.Subject.MainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.tree.Panel", {
+    me._mainGrid = Ext.create("Ext.tree.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -443,7 +443,7 @@ Ext.define("PSI.Subject.MainForm", {
       }
     });
 
-    return me.__mainGrid;
+    return me._mainGrid;
   },
 
   getQueryParamForSubject() {
