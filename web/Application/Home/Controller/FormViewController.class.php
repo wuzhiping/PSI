@@ -68,7 +68,8 @@ class FormViewController extends PSIBaseController
       $params = [
         "id" => I("post.id"),
         "code" => I("post.code"),
-        "name" => I("post.name")
+        "name" => I("post.name"),
+        "slnCode" => I("post.slnCode"),
       ];
 
       $service = new FormViewService();
