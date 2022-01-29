@@ -6,8 +6,11 @@
  * @license GPL v3
  */
 Ext.define("PSI.FormView.CategoryEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
+  /**
+   * @override
+   */
   initComponent() {
     var me = this;
 
@@ -61,11 +64,11 @@ Ext.define("PSI.FormView.CategoryEditForm", {
       layout: "border",
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       },
@@ -105,7 +108,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
           value: entity == null ? null : entity.get("code"),
           listeners: {
             specialkey: {
-              fn: me.onEditCodeSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -119,7 +122,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
           value: entity == null ? null : entity.get("name"),
           listeners: {
             specialkey: {
-              fn: me.onEditNameSpecialKey,
+              fn: me._onLastEditSpecialKey,
               scope: me
             }
           }
@@ -134,10 +137,14 @@ Ext.define("PSI.FormView.CategoryEditForm", {
 
     me.editCode = Ext.getCmp("PSI_FormView_CategoryEditForm_editCode");
     me.editName = Ext.getCmp("PSI_FormView_CategoryEditForm_editName");
+
+    me.__editorList = [me.editCode, me.editName];
   },
 
   /**
    * 保存
+   * 
+   * @private
    */
   onOK(thenAdd) {
     var me = this;
@@ -148,10 +155,10 @@ Ext.define("PSI.FormView.CategoryEditForm", {
       url: me.URL("Home/FormView/editViewCategory"),
       method: "POST",
       success(form, action) {
-        me.__lastId = action.result.id;
+        me._lastId = action.result.id;
         el.unmask();
 
-        PSI.MsgBox.tip("数据保存成功");
+        me.tip("数据保存成功", true);
         me.focus();
         if (thenAdd) {
           me.clearEdit();
@@ -161,7 +168,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
       },
       failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, () => {
+        me.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
@@ -169,17 +176,10 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     f.submit(sf);
   },
 
-  onEditCodeSpecialKey(field, e) {
-    var me = this;
-
-    if (e.getKey() == e.ENTER) {
-      var editName = me.editName;
-      editName.focus();
-      editName.setValue(editName.getValue());
-    }
-  },
-
-  onEditNameSpecialKey(field, e) {
+  /**
+   * @private
+   */
+  _onLastEditSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -190,6 +190,9 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     }
   },
 
+  /**
+   * @private
+   */
   clearEdit() {
     var me = this;
     me.editCode.focus();
@@ -202,29 +205,30 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     }
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  /**
+   * @private
+   */
+  _onWndClose() {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
-    if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().refreshCategoryGrid(me.__lastId);
+    if (me._lastId) {
+      const parentForm = me.getParentForm();
+      if (parentForm) {
+        parentForm.refreshCategoryGrid.apply(parentForm, [me._lastId]);
       }
     }
   },
 
-  onWndShow() {
+  /**
+   * @private
+   */
+  _onWndShow() {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
-    var editCode = me.editCode;
-    editCode.focus();
-    editCode.setValue(editCode.getValue());
+    me.setFocusAndCursorPosToLast(me.editCode);
   }
 });
