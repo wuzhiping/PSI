@@ -13,7 +13,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     company: null
   },
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     var entity = me.getEntity();
@@ -192,7 +192,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
   },
 
   // 保存
-  onOK: function (thenAdd) {
+  onOK(thenAdd) {
     var me = this;
 
     var f = me.editForm;
@@ -214,9 +214,9 @@ Ext.define("PSI.Subject.FmtColEditForm", {
           me.close();
         }
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el && el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        PSI.MsgBox.showInfo(action.result.msg, () => {
           me.editCaption.focus();
         });
       }
@@ -224,7 +224,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     f.submit(sf);
   },
 
-  onEditCaptionSpecialKey: function (field, e) {
+  onEditCaptionSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -233,7 +233,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     }
   },
 
-  onEditNameSpecialKey: function (field, e) {
+  onEditNameSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -241,7 +241,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     }
   },
 
-  onEditTypeSpecialKey: function (field, e) {
+  onEditTypeSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -252,7 +252,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     }
   },
 
-  clearEdit: function () {
+  clearEdit() {
     var me = this;
     me.editCaption.focus();
 
@@ -264,11 +264,11 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
@@ -280,7 +280,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     }
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
@@ -297,7 +297,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
       params: {
         id: me.hiddenId.getValue()
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         el.unmask();
 
         if (success) {
