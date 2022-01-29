@@ -15,7 +15,7 @@ Ext.define("PSI.Subject.EditForm", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     var entity = me.getEntity();
@@ -27,7 +27,7 @@ Ext.define("PSI.Subject.EditForm", {
       var btn = {
         text: "保存并继续新建",
         formBind: true,
-        handler: function () {
+        handler() {
           me.onOK(true);
         },
         scope: me
@@ -40,7 +40,7 @@ Ext.define("PSI.Subject.EditForm", {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
@@ -49,7 +49,7 @@ Ext.define("PSI.Subject.EditForm", {
 
     var btn = {
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
@@ -187,8 +187,7 @@ Ext.define("PSI.Subject.EditForm", {
 
     me.hiddenId = Ext.getCmp("PSI_Subject_EditForm_hiddenId");
 
-    me.hiddenParentCode = Ext
-      .getCmp("PSI_Subject_EditForm_hiddenParentCode");
+    me.hiddenParentCode = Ext.getCmp("PSI_Subject_EditForm_hiddenParentCode");
     me.editParentCode = Ext.getCmp("PSI_Subject_EditForm_editParentCode");
     me.editCode = Ext.getCmp("PSI_Subject_EditForm_editCode");
     me.editName = Ext.getCmp("PSI_Subject_EditForm_editName");
@@ -198,7 +197,7 @@ Ext.define("PSI.Subject.EditForm", {
   /**
    * 保存
    */
-  onOK: function (thenAdd) {
+  onOK(thenAdd) {
     var me = this;
 
     me.hiddenParentCode.setValue(me.editParentCode.getIdValue());
@@ -209,7 +208,7 @@ Ext.define("PSI.Subject.EditForm", {
     var sf = {
       url: me.URL("Home/Subject/editSubject"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         me.__lastId = action.result.id;
 
         el.unmask();
@@ -222,9 +221,9 @@ Ext.define("PSI.Subject.EditForm", {
           me.close();
         }
       },
-      failure: function (form, action) {
+      failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, function () {
+        PSI.MsgBox.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
@@ -232,7 +231,7 @@ Ext.define("PSI.Subject.EditForm", {
     f.submit(sf);
   },
 
-  onEditParentCodeSpecialKey: function (field, e) {
+  onEditParentCodeSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -242,7 +241,7 @@ Ext.define("PSI.Subject.EditForm", {
     }
   },
 
-  onEditCodeSpecialKey: function (field, e) {
+  onEditCodeSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -252,7 +251,7 @@ Ext.define("PSI.Subject.EditForm", {
     }
   },
 
-  onEditNameSpecialKey: function (field, e) {
+  onEditNameSpecialKey(field, e) {
     var me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -263,7 +262,7 @@ Ext.define("PSI.Subject.EditForm", {
     }
   },
 
-  clearEdit: function () {
+  clearEdit() {
     var me = this;
     me.editParentCode.focus();
 
@@ -275,11 +274,11 @@ Ext.define("PSI.Subject.EditForm", {
     }
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
@@ -291,7 +290,7 @@ Ext.define("PSI.Subject.EditForm", {
     }
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
@@ -308,7 +307,7 @@ Ext.define("PSI.Subject.EditForm", {
       params: {
         id: me.hiddenId.getValue()
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         el.unmask();
 
         if (success) {
@@ -343,7 +342,7 @@ Ext.define("PSI.Subject.EditForm", {
     me.ajax(r);
   },
 
-  onParentCodeCallback: function (data) {
+  onParentCodeCallback(data) {
     var me = this;
     me.editCode.setValue(data.code);
     me.editName.setValue(data.name + " - ");
