@@ -96,8 +96,8 @@ Ext.define("PSI.GLPeriod.MainForm", {
    */
   getCompanyGrid() {
     const me = this;
-    if (me.__companyGrid) {
-      return me.__companyGrid;
+    if (me._companyGrid) {
+      return me._companyGrid;
     }
 
     const modelName = "PSI_GLPeriod_Company";
@@ -107,7 +107,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
       fields: ["id", "code", "name", "orgType"]
     });
 
-    me.__companyGrid = Ext.create("Ext.grid.Panel", {
+    me._companyGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -146,7 +146,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
         }
       }
     });
-    return me.__companyGrid;
+    return me._companyGrid;
   },
 
   /**
