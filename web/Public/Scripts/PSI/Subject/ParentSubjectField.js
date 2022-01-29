@@ -19,15 +19,15 @@ Ext.define("PSI.Subject.ParentSubjectField", {
   /**
    * 初始化组件
    */
-  initComponent: function () {
+  initComponent() {
     var me = this;
-    me.__idValue = null;
+    me._idValue = null;
 
     me.enableKeyEvents = true;
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (me.readOnly) {
         return;
       }
@@ -45,8 +45,8 @@ Ext.define("PSI.Subject.ParentSubjectField", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -56,8 +56,10 @@ Ext.define("PSI.Subject.ParentSubjectField", {
 
   /**
    * 单击下拉按钮
+   * 
+   * @override
    */
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     var me = this;
     var modelName = "PSIWarehouseField";
     Ext.define(modelName, {
@@ -129,38 +131,37 @@ Ext.define("PSI.Subject.ParentSubjectField", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
+          me.focus();
         }
       }]
     });
 
-    wnd.on("close", function () {
+    wnd.on("close", () => {
       me.focus();
     });
     if (!me.getShowModal()) {
-      wnd.on("deactivate", function () {
+      wnd.on("deactivate", () => {
         wnd.close();
       });
     }
     me.wnd = wnd;
 
     var editName = Ext.getCmp("PSI_Subject_ParentSubjectField_editCode");
-    editName.on("change", function () {
+    editName.on("change", () => {
       var store = me.lookupGrid.getStore();
       Ext.Ajax.request({
-        url: PSI.Const.BASE_URL
-          + "Home/Subject/queryDataForParentSubject",
+        url: PSI.Const.BASE_URL + "Home/Subject/queryDataForParentSubject",
         params: {
           queryKey: editName.getValue(),
           companyId: me.getCompanyId()
         },
         method: "POST",
-        callback: function (opt, success, response) {
+        callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -175,7 +176,7 @@ Ext.define("PSI.Subject.ParentSubjectField", {
 
     }, me);
 
-    editName.on("specialkey", function (field, e) {
+    editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
@@ -213,14 +214,14 @@ Ext.define("PSI.Subject.ParentSubjectField", {
       }
     }, me);
 
-    me.wnd.on("show", function () {
+    me.wnd.on("show", () => {
       editName.focus();
       editName.fireEvent("change");
     }, me);
     wnd.showBy(me);
   },
 
-  onOK: function () {
+  onOK() {
     var me = this;
     var grid = me.lookupGrid;
     var item = grid.getSelectionModel().getSelection();
@@ -243,16 +244,16 @@ Ext.define("PSI.Subject.ParentSubjectField", {
     me.focus();
   },
 
-  setIdValue: function (id) {
-    this.__idValue = id;
+  setIdValue(id) {
+    this._idValue = id;
   },
 
-  getIdValue: function () {
-    return this.__idValue;
+  getIdValue() {
+    return this._idValue;
   },
 
-  clearIdValue: function () {
+  clearIdValue() {
     this.setValue(null);
-    this.__idValue = null;
+    this._idValue = null;
   }
 });
