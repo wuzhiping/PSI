@@ -25,7 +25,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
       var btn = {
         text: "保存并继续新建",
         formBind: true,
-        handler: function () {
+        handler() {
           me.onOK(true);
         },
         scope: me
@@ -38,7 +38,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
@@ -47,7 +47,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
 
     var btn = {
       text: entity == null ? "关闭" : "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
@@ -201,7 +201,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     var sf = {
       url: me.URL("Home/Subject/editFmtCol"),
       method: "POST",
-      success: function (form, action) {
+      success(form, action) {
         me.__lastId = action.result.id;
 
         el.unmask();
