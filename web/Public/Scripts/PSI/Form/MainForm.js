@@ -1486,8 +1486,8 @@ Ext.define("PSI.Form.MainForm", {
   },
 
   /**
- * @private
- */
+   * @private
+   */
   querySolutionList() {
     const me = this;
     const el = Ext.getBody();

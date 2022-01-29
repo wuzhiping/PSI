@@ -1058,5 +1058,34 @@ Ext.define("PSI.FormView.MainForm", {
    *  解决方案combo选中项改变时候的事件处理函数
    * @private
    */
-  _onComboSolutionSelect() { }
+  _onComboSolutionSelect() { },
+
+  /**
+   * @private
+   */
+  querySolutionList() {
+    const me = this;
+    const el = Ext.getBody();
+    const comboCompany = me.comboSolution;
+    const store = comboCompany.getStore();
+    el.mask(PSI.Const.LOADING);
+    const r = {
+      url: me.URL("Home/FormView/querySolutionList"),
+      callback(options, success, response) {
+        el.unmask();
+        store.removeAll();
+
+        if (success) {
+          const data = me.decodeJSON(response.responseText);
+          store.add(data);
+          if (data.length > 0) {
+            comboCompany.setValue(data[0]["code"]);
+            me.refreshCategoryGrid();
+          }
+        }
+
+      }
+    };
+    me.ajax(r);
+  },
 });
