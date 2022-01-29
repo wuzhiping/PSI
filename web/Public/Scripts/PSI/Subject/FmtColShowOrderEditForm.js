@@ -8,10 +8,10 @@
 Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
-	/**
-	 * 初始化组件
-	 */
-  initComponent: function () {
+  /**
+   * 初始化组件
+   */
+  initComponent() {
     var me = this;
 
     var entity = me.getEntity();
@@ -22,7 +22,7 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
-      handler: function () {
+      handler() {
         me.onOK(false);
       },
       scope: me
@@ -31,7 +31,7 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
 
     var btn = {
       text: "取消",
-      handler: function () {
+      handler() {
         me.close();
       },
       scope: me
@@ -84,10 +84,10 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
     me.callParent(arguments);
   },
 
-	/**
-	 * 保存
-	 */
-  onOK: function (thenAdd) {
+  /**
+   * 保存
+   */
+  onOK(thenAdd) {
     var me = this;
 
     var columns = me.getMainGrid().columnManager.columns;
@@ -109,18 +109,20 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
         id: me.getEntity().get("id"), // 科目id
         idList: showOrder
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         el.unmask();
 
         if (success) {
           var data = me.decodeJSON(response.responseText);
           if (data.success) {
-            me.showInfo("成功修改字段显示次序", function () {
-              me.close();
-              if (me.getParentForm()) {
-                me.getParentForm().refreshFmtColsGrid();
-              }
-            });
+            me.tip("成功修改字段显示次序", true);
+            me.close();
+
+            // 回调
+            const parentForm = me.getParentForm();
+            if (parentForm) {
+              parentForm.refreshFmtColsGrid.apply(parentForm);
+            }
           } else {
             me.showInfo(data.msg);
           }
@@ -132,11 +134,11 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
     me.ajax(r);
   },
 
-  onWindowBeforeUnload: function (e) {
+  onWindowBeforeUnload(e) {
     return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
   },
 
-  onWndClose: function () {
+  onWndClose() {
     var me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
@@ -148,7 +150,7 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
     }
   },
 
-  getMainGrid: function () {
+  getMainGrid() {
     var me = this;
     if (me.__mainGrid) {
       return me.__mainGrid;
@@ -184,7 +186,7 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
     return me.__mainGrid;
   },
 
-  onWndShow: function () {
+  onWndShow() {
     var me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
@@ -198,7 +200,7 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
       params: {
         id: id
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         el.unmask();
 
         if (success) {
@@ -213,7 +215,7 @@ Ext.define("PSI.Subject.FmtColShowOrderEditForm", {
     me.ajax(r);
   },
 
-  reconfigMainGrid: function (data) {
+  reconfigMainGrid(data) {
     var me = this;
     var cols = [];
     for (var i = 0; i < data.length; i++) {
