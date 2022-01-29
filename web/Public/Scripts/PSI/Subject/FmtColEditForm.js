@@ -14,15 +14,15 @@ Ext.define("PSI.Subject.FmtColEditForm", {
   },
 
   initComponent() {
-    var me = this;
+    const me = this;
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
 
     me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
     if (!entity) {
-      var btn = {
+      const btn = {
         text: "保存并继续新建",
         formBind: true,
         handler() {
@@ -34,7 +34,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
       buttons.push(btn);
     }
 
-    var btn = {
+    let btn = {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
@@ -45,7 +45,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     };
     buttons.push(btn);
 
-    var btn = {
+    btn = {
       text: entity == null ? "关闭" : "取消",
       handler() {
         me.close();
@@ -54,11 +54,11 @@ Ext.define("PSI.Subject.FmtColEditForm", {
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新增账样字段" : "编辑账样字段";
-    var f = entity == null
+    const t = entity == null ? "新增账样字段" : "编辑账样字段";
+    const f = entity == null
       ? "edit-form-create.png"
       : "edit-form-update.png";
-    var logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
+    const logoHtml = "<img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='"
       + PSI.Const.BASE_URL
       + "Public/Images/"
       + f
@@ -193,12 +193,12 @@ Ext.define("PSI.Subject.FmtColEditForm", {
 
   // 保存
   onOK(thenAdd) {
-    var me = this;
+    const me = this;
 
-    var f = me.editForm;
-    var el = f.getEl();
+    const f = me.editForm;
+    const el = f.getEl();
     el && el.mask(PSI.Const.SAVING);
-    var sf = {
+    const sf = {
       url: me.URL("Home/Subject/editFmtCol"),
       method: "POST",
       success(form, action) {
@@ -225,7 +225,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
   },
 
   onEditCaptionSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
       me.editName.focus();
@@ -234,7 +234,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
   },
 
   onEditNameSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
       me.editType.focus();
@@ -242,10 +242,10 @@ Ext.define("PSI.Subject.FmtColEditForm", {
   },
 
   onEditTypeSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK(me.adding);
       }
@@ -253,12 +253,12 @@ Ext.define("PSI.Subject.FmtColEditForm", {
   },
 
   clearEdit() {
-    var me = this;
+    const me = this;
     me.editCaption.focus();
 
-    var editors = [me.editCaption, me.editName];
-    for (var i = 0; i < editors.length; i++) {
-      var edit = editors[i];
+    const editors = [me.editCaption, me.editName];
+    for (let i = 0; i < editors.length; i++) {
+      const edit = editors[i];
       edit.setValue(null);
       edit.clearInvalid();
     }
@@ -269,19 +269,20 @@ Ext.define("PSI.Subject.FmtColEditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().refreshFmtColsGrid();
+      const parentForm = me.getParentForm();
+      if (parentForm) {
+        parentForm.refreshFmtColsGrid.apply(parentForm);
       }
     }
   },
 
   onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
@@ -290,9 +291,9 @@ Ext.define("PSI.Subject.FmtColEditForm", {
       return;
     }
 
-    var el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/Subject/fmtColInfo"),
       params: {
         id: me.hiddenId.getValue()
@@ -301,7 +302,7 @@ Ext.define("PSI.Subject.FmtColEditForm", {
         el.unmask();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           me.editCaption.setValue(data.caption);
           me.editName.setValue(data.fieldName);
           me.editType.setValue(data.fieldType);
