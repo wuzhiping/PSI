@@ -61,7 +61,37 @@ Ext.define("PSI.FormView.MainForm", {
    */
   getToolbarCmp() {
     const me = this;
+
+    const modelName = "PSI_FormView_MainForm_PSISolution";
+    Ext.define(modelName, {
+      extend: "Ext.data.Model",
+      fields: ["code", "name"]
+    });
+
     return [{
+      xtype: "displayfield",
+      value: "解决方案"
+    }, {
+      cls: "PSI-toolbox",
+      xtype: "combobox",
+      id: "comboSolution",
+      queryMode: "local",
+      editable: false,
+      valueField: "code",
+      displayField: "name",
+      store: Ext.create("Ext.data.Store", {
+        model: modelName,
+        autoLoad: false,
+        data: []
+      }),
+      width: 400,
+      listeners: {
+        select: {
+          fn: me._onComboSolutionSelect,
+          scope: me
+        }
+      }
+    }, {
       text: "新建视图分类",
       handler: me._onAddCategory,
       scope: me
@@ -1022,5 +1052,11 @@ Ext.define("PSI.FormView.MainForm", {
   _onDeleteQc() {
     const me = this;
     me.showInfo("TODO")
-  }
+  },
+
+  /**
+   *  解决方案combo选中项改变时候的事件处理函数
+   * @private
+   */
+  _onComboSolutionSelect() { }
 });
