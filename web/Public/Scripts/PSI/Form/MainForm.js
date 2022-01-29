@@ -1440,7 +1440,7 @@ Ext.define("PSI.Form.MainForm", {
       preIndex = preItem.get("id");
     }
 
-    const info = `请确认是否删除明细表列: <span style='color:red'>${col.get("caption")}</span>?<br /><br />当前操作只删除明细表列元数据，<br />数据库表的字段不会删除`;
+    const info = `请确认是否删除明细表列: <span style='color:red'>${col.get("caption")}</span>?<br /><br />当前操作只删除明细表列元数据，数据库表的字段不会删除`;
 
     const funcConfirm = () => {
       const el = Ext.getBody();
