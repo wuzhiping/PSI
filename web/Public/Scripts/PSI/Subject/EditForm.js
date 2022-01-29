@@ -16,15 +16,15 @@ Ext.define("PSI.Subject.EditForm", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
 
     me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
     if (!entity) {
-      var btn = {
+      const btn = {
         text: "保存并继续新建",
         formBind: true,
         handler() {
@@ -36,7 +36,7 @@ Ext.define("PSI.Subject.EditForm", {
       buttons.push(btn);
     }
 
-    var btn = {
+    let btn = {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
@@ -47,7 +47,7 @@ Ext.define("PSI.Subject.EditForm", {
     };
     buttons.push(btn);
 
-    var btn = {
+    btn = {
       text: entity == null ? "关闭" : "取消",
       handler() {
         me.close();
@@ -56,8 +56,8 @@ Ext.define("PSI.Subject.EditForm", {
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新建科目" : "编辑科目";
-    var logoHtml = me.genLogoHtml(entity, t);
+    const t = entity == null ? "新建科目" : "编辑科目";
+    const logoHtml = me.genLogoHtml(entity, t);
 
     Ext.apply(me, {
       header: {
@@ -198,14 +198,14 @@ Ext.define("PSI.Subject.EditForm", {
    * 保存
    */
   onOK(thenAdd) {
-    var me = this;
+    const me = this;
 
     me.hiddenParentCode.setValue(me.editParentCode.getIdValue());
 
-    var f = me.editForm;
-    var el = f.getEl();
+    const f = me.editForm;
+    const el = f.getEl();
     el.mask(PSI.Const.SAVING);
-    var sf = {
+    const sf = {
       url: me.URL("Home/Subject/editSubject"),
       method: "POST",
       success(form, action) {
@@ -232,30 +232,30 @@ Ext.define("PSI.Subject.EditForm", {
   },
 
   onEditParentCodeSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var editName = me.editCode;
+      const editName = me.editCode;
       editName.focus();
       editName.setValue(editName.getValue());
     }
   },
 
   onEditCodeSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var editName = me.editName;
+      const editName = me.editName;
       editName.focus();
       editName.setValue(editName.getValue());
     }
   },
 
   onEditNameSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK(me.adding);
       }
@@ -263,12 +263,12 @@ Ext.define("PSI.Subject.EditForm", {
   },
 
   clearEdit() {
-    var me = this;
+    const me = this;
     me.editParentCode.focus();
 
-    var editors = [me.editParentCode, me.editCode, me.editName];
-    for (var i = 0; i < editors.length; i++) {
-      var edit = editors[i];
+    const editors = [me.editParentCode, me.editCode, me.editName];
+    for (let i = 0; i < editors.length; i++) {
+      const edit = editors[i];
       edit.setValue(null);
       edit.clearInvalid();
     }
@@ -279,7 +279,7 @@ Ext.define("PSI.Subject.EditForm", {
   },
 
   onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
@@ -291,7 +291,7 @@ Ext.define("PSI.Subject.EditForm", {
   },
 
   onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
@@ -300,9 +300,9 @@ Ext.define("PSI.Subject.EditForm", {
       return;
     }
 
-    var el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
-    var r = {
+    const r = {
       url: me.URL("Home/Subject/subjectInfo"),
       params: {
         id: me.hiddenId.getValue()
@@ -311,7 +311,7 @@ Ext.define("PSI.Subject.EditForm", {
         el.unmask();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
 
           me.editParentCode.setValue(data.parentCode);
           me.editParentCode.setReadOnly(true);
@@ -343,7 +343,7 @@ Ext.define("PSI.Subject.EditForm", {
   },
 
   onParentCodeCallback(data) {
-    var me = this;
+    const me = this;
     me.editCode.setValue(data.code);
     me.editName.setValue(data.name + " - ");
   }
