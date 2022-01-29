@@ -20,7 +20,7 @@ Ext.define("PSI.Subject.ParentSubjectField", {
    * 初始化组件
    */
   initComponent() {
-    var me = this;
+    const me = this;
     me._idValue = null;
 
     me.enableKeyEvents = true;
@@ -60,19 +60,19 @@ Ext.define("PSI.Subject.ParentSubjectField", {
    * @override
    */
   onTriggerClick(e) {
-    var me = this;
-    var modelName = "PSIWarehouseField";
+    const me = this;
+    const modelName = "PSIParentSubjectField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "code", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    const lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       store: store,
@@ -90,7 +90,7 @@ Ext.define("PSI.Subject.ParentSubjectField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 上级科目",
       modal: me.getShowModal(),
       width: 420,
@@ -148,9 +148,9 @@ Ext.define("PSI.Subject.ParentSubjectField", {
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("PSI_Subject_ParentSubjectField_editCode");
+    const editName = Ext.getCmp("PSI_Subject_ParentSubjectField_editCode");
     editName.on("change", () => {
-      var store = me.lookupGrid.getStore();
+      const store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/Subject/queryDataForParentSubject",
         params: {
@@ -161,7 +161,7 @@ Ext.define("PSI.Subject.ParentSubjectField", {
         callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            const data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -180,10 +180,10 @@ Ext.define("PSI.Subject.ParentSubjectField", {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -196,10 +196,10 @@ Ext.define("PSI.Subject.ParentSubjectField", {
         e.preventDefault();
         editName.focus();
       } else if (e.getKey() == e.DOWN) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -222,21 +222,21 @@ Ext.define("PSI.Subject.ParentSubjectField", {
   },
 
   onOK() {
-    var me = this;
-    var grid = me.lookupGrid;
-    var item = grid.getSelectionModel().getSelection();
+    const me = this;
+    const grid = me.lookupGrid;
+    const item = grid.getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var data = item[0].getData();
+    const data = item[0].getData();
 
     me.wnd.close();
     me.focus();
     me.setValue(data.code + " - " + data.name);
     me.setIdValue(data.code);
 
-    var func = me.getCallbackFunc();
+    const func = me.getCallbackFunc();
     if (func) {
       func.call(me.getCallbackScope() || me, data);
     }
