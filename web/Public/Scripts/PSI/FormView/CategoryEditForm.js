@@ -8,6 +8,11 @@
 Ext.define("PSI.FormView.CategoryEditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
+  config: {
+    slnCode: "",
+    slnName: "",
+  },
+
   /**
    * @override
    */
@@ -60,7 +65,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
         height: 40
       },
       width: 400,
-      height: 260,
+      height: 290,
       layout: "border",
       listeners: {
         show: {
@@ -101,6 +106,14 @@ Ext.define("PSI.FormView.CategoryEditForm", {
           xtype: "hidden",
           name: "id",
           value: entity == null ? null : entity.get("id")
+        }, {
+          xtype: "hidden",
+          name: "slnCode",
+          value: me.getSlnCode()
+        }, {
+          xtype: "displayfield",
+          fieldLabel: "解决方案",
+          value: `<span class='PSI-field-note'>${me.getSlnName()}</span>`
         }, {
           id: "PSI_FormView_CategoryEditForm_editCode",
           fieldLabel: "分类编码",
