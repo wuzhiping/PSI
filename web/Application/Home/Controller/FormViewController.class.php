@@ -341,4 +341,22 @@ class FormViewController extends PSIBaseController
       $this->ajaxReturn($service->deleteFvCol($params));
     }
   }
+
+  /**
+   * 查询解决方案列表
+   * 
+   * JS: web\Public\Scripts\PSI\FormView\MainForm.js
+   */
+  public function querySolutionList()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::FORM_VIEW_SYSTEM_DEV)) {
+        die("没有权限");
+      }
+
+      $service = new FormViewService();
+      $this->ajaxReturn($service->querySolutionList());
+    }
+  }
 }

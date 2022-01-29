@@ -350,4 +350,17 @@ class FormViewService extends PSIBaseExService
 
     return $this->ok();
   }
+
+  /**
+   * 查询解决方案列表
+   */
+  public function querySolutionList()
+  {
+    if ($this->isNotOnline()) {
+      return $this->emptyResult();
+    }
+
+    $dao = new FormViewDAO($this->db());
+    return $dao->querySolutionList();
+  }
 }
