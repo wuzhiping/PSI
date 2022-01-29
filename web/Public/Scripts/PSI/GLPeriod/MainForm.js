@@ -196,8 +196,8 @@ Ext.define("PSI.GLPeriod.MainForm", {
    */
   getMainGrid() {
     const me = this;
-    if (me.__mainGrid) {
-      return me.__mainGrid;
+    if (me._mainGrid) {
+      return me._mainGrid;
     }
 
     const modelName = "PSIFMTProp";
@@ -213,7 +213,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
       draggable: false
     };
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -281,7 +281,7 @@ Ext.define("PSI.GLPeriod.MainForm", {
       })
     });
 
-    return me.__mainGrid;
+    return me._mainGrid;
   },
 
   /**
