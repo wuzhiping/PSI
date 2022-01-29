@@ -478,8 +478,17 @@ Ext.define("PSI.FormView.MainForm", {
   _onAddCategory() {
     const me = this;
 
+    const slnCode = me.comboSolution.getValue();
+    const sln = me.comboSolution.findRecordByValue(slnCode);
+    if (!sln) {
+      me.showInfo("没有选择解决方案");
+      return;
+    }
+    const slnName = sln.get("name");
+
     const form = Ext.create("PSI.FormView.CategoryEditForm", {
-      parentForm: me
+      parentForm: me,
+      slnCode, slnName,
     });
 
     form.show();
@@ -492,6 +501,14 @@ Ext.define("PSI.FormView.MainForm", {
    */
   _onEditCategory() {
     const me = this;
+
+    const slnCode = me.comboSolution.getValue();
+    const sln = me.comboSolution.findRecordByValue(slnCode);
+    if (!sln) {
+      me.showInfo("没有选择解决方案");
+      return;
+    }
+    const slnName = sln.get("name");
 
     const item = me.getCategoryGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -508,7 +525,8 @@ Ext.define("PSI.FormView.MainForm", {
 
     const form = Ext.create("PSI.FormView.CategoryEditForm", {
       parentForm: me,
-      entity: category
+      entity: category,
+      slnCode, slnName,
     });
 
     form.show();
