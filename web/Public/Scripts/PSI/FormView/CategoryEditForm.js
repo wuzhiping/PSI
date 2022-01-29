@@ -12,15 +12,15 @@ Ext.define("PSI.FormView.CategoryEditForm", {
    * @override
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
-    var entity = me.getEntity();
+    const entity = me.getEntity();
 
     me.adding = entity == null;
 
-    var buttons = [];
+    const buttons = [];
     if (!entity) {
-      var btn = {
+      const btn = {
         text: "保存并继续新增",
         formBind: true,
         handler() {
@@ -32,7 +32,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
       buttons.push(btn);
     }
 
-    var btn = {
+    let btn = {
       text: "保存",
       formBind: true,
       iconCls: "PSI-button-ok",
@@ -43,7 +43,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     };
     buttons.push(btn);
 
-    var btn = {
+    btn = {
       text: entity == null ? "关闭" : "取消",
       handler() {
         me.close();
@@ -52,8 +52,8 @@ Ext.define("PSI.FormView.CategoryEditForm", {
     };
     buttons.push(btn);
 
-    var t = entity == null ? "新建视图分类" : "编辑视图分类";
-    var logoHtml = me.genLogoHtml(entity, t);
+    const t = entity == null ? "新建视图分类" : "编辑视图分类";
+    const logoHtml = me.genLogoHtml(entity, t);
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -147,18 +147,18 @@ Ext.define("PSI.FormView.CategoryEditForm", {
    * @private
    */
   onOK(thenAdd) {
-    var me = this;
-    var f = me.editForm;
-    var el = f.getEl();
+    const me = this;
+    const f = me.editForm;
+    const el = f.getEl();
     el.mask(PSI.Const.SAVING);
-    var sf = {
+    const sf = {
       url: me.URL("Home/FormView/editViewCategory"),
       method: "POST",
       success(form, action) {
         me._lastId = action.result.id;
         el.unmask();
 
-        me.tip("数据保存成功", true);
+        me.tip("数据保存成功", !thenAdd);
         me.focus();
         if (thenAdd) {
           me.clearEdit();
@@ -180,10 +180,10 @@ Ext.define("PSI.FormView.CategoryEditForm", {
    * @private
    */
   _onLastEditSpecialKey(field, e) {
-    var me = this;
+    const me = this;
 
     if (e.getKey() == e.ENTER) {
-      var f = me.editForm;
+      const f = me.editForm;
       if (f.getForm().isValid()) {
         me.onOK(me.adding);
       }
@@ -194,12 +194,12 @@ Ext.define("PSI.FormView.CategoryEditForm", {
    * @private
    */
   clearEdit() {
-    var me = this;
+    const me = this;
     me.editCode.focus();
 
-    var editors = [me.editCode, me.editName];
-    for (var i = 0; i < editors.length; i++) {
-      var edit = editors[i];
+    const editors = [me.editCode, me.editName];
+    for (let i = 0; i < editors.length; i++) {
+      const edit = editors[i];
       edit.setValue(null);
       edit.clearInvalid();
     }
@@ -209,7 +209,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
    * @private
    */
   _onWndClose() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
@@ -225,7 +225,7 @@ Ext.define("PSI.FormView.CategoryEditForm", {
    * @private
    */
   _onWndShow() {
-    var me = this;
+    const me = this;
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
