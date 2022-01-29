@@ -53,7 +53,9 @@ Ext.define("PSI.FormView.MainForm", {
 
     me.callParent();
 
-    me.refreshCategoryGrid();
+    me.comboSolution = Ext.getCmp("comboSolution");
+
+    me.querySolutionList();
   },
 
   /**
@@ -1058,7 +1060,11 @@ Ext.define("PSI.FormView.MainForm", {
    *  解决方案combo选中项改变时候的事件处理函数
    * @private
    */
-  _onComboSolutionSelect() { },
+  _onComboSolutionSelect() {
+    const me = this;
+
+    me.refreshCategoryGrid();
+  },
 
   /**
    * @private
