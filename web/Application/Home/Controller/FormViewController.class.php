@@ -45,7 +45,9 @@ class FormViewController extends PSIBaseController
         die("没有权限");
       }
 
-      $params = [];
+      $params = [
+        "slnCode" => I("post.slnCode"),
+      ];
 
       $service = new FormViewService();
       $this->ajaxReturn($service->categoryList($params));

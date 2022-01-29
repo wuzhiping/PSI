@@ -413,11 +413,17 @@ Ext.define("PSI.FormView.MainForm", {
    */
   refreshCategoryGrid(id) {
     const me = this;
+
+    const slnCode = me.comboSolution.getValue();
+
     const grid = me.getCategoryGrid();
     const el = grid.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/FormView/categoryList"),
+      params: {
+        slnCode
+      },
       callback(options, success, response) {
         const store = grid.getStore();
 
