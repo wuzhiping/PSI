@@ -55,14 +55,12 @@ Ext.define("PSI.Subject.MainForm", {
             layout: "fit",
             split: true,
             border: 0,
-            items: me
-              .getFmtPropGrid()
+            items: me.getFmtPropGrid()
           }, {
             region: "center",
             border: 0,
             layout: "fit",
-            items: me
-              .getFmtColsGrid()
+            items: me.getFmtColsGrid()
           }]
         }]
       }]
@@ -73,6 +71,9 @@ Ext.define("PSI.Subject.MainForm", {
     me.refreshCompanyGrid();
   },
 
+  /**
+   * @private
+   */
   getToolbarCmp() {
     const me = this;
     return [{
@@ -99,6 +100,9 @@ Ext.define("PSI.Subject.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   getFmtToolbarCmp() {
     const me = this;
     return [{
@@ -132,6 +136,9 @@ Ext.define("PSI.Subject.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   refreshCompanyGrid() {
     const me = this;
     const el = Ext.getBody();
@@ -156,10 +163,13 @@ Ext.define("PSI.Subject.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   getCompanyGrid() {
     const me = this;
-    if (me.__companyGrid) {
-      return me.__companyGrid;
+    if (me._companyGrid) {
+      return me._companyGrid;
     }
 
     const modelName = "PSI_Subject_Company";
@@ -169,7 +179,7 @@ Ext.define("PSI.Subject.MainForm", {
       fields: ["id", "code", "name", "orgType"]
     });
 
-    me.__companyGrid = Ext.create("Ext.grid.Panel", {
+    me._companyGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -214,7 +224,7 @@ Ext.define("PSI.Subject.MainForm", {
         }
       }
     });
-    return me.__companyGrid;
+    return me._companyGrid;
   },
 
   onCompanyGridSelect() {
