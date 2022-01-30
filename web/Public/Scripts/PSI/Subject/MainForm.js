@@ -920,39 +920,39 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   _onEditFmtCol() {
-    var me = this;
+    const me = this;
 
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
-    var company = item[0];
+    const company = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择科目");
       return;
     }
-    var subject = item[0];
+    const subject = item[0];
 
     if (me.getFmtPropGrid().getStore().getCount() == 0) {
       me.showInfo("还没有初始化标准账样");
       return;
     }
 
-    var item = me.getFmtColsGrid().getSelectionModel().getSelection();
+    item = me.getFmtColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要编辑的账样字段");
       return;
     }
-    var entity = item[0];
+    const entity = item[0];
 
-    var form = Ext.create("PSI.Subject.FmtColEditForm", {
+    const form = Ext.create("PSI.Subject.FmtColEditForm", {
       parentForm: me,
-      company: company,
-      subject: subject,
-      entity: entity
+      company,
+      subject,
+      entity,
     });
     form.show();
   },
@@ -961,21 +961,20 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   _onDeleteFmtCol() {
-    var me = this;
-    var item = me.getFmtColsGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getFmtColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要删除的账样字段");
       return;
     }
 
-    var fmtCol = item[0];
+    const fmtCol = item[0];
 
-    var info = "请确认是否删除账样字段: <span style='color:red'>"
-      + fmtCol.get("caption") + "</span>?";
+    const info = `请确认是否删除账样字段: <span style='color:red'>${fmtCol.get("caption")}</span> ?`;
     const funcConfirm = () => {
-      var el = Ext.getBody();
+      const el = Ext.getBody();
       el.mask("正在删除中...");
-      var r = {
+      const r = {
         url: me.URL("Home/Subject/deleteFmtCol"),
         params: {
           id: fmtCol.get("id")
@@ -984,9 +983,9 @@ Ext.define("PSI.Subject.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshFmtColsGrid();
             } else {
               me.showInfo(data.msg);
@@ -1006,27 +1005,27 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   _onEditFmtColShowOrder() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择科目");
       return;
     }
-    var subject = item[0];
+    const subject = item[0];
 
-    var store = me.getFmtPropGrid().getStore();
+    const store = me.getFmtPropGrid().getStore();
     if (store.getCount() == 0) {
       me.showInfo("还没有初始化标准账样");
       return;
     }
 
-    var form = Ext.create("PSI.Subject.FmtColShowOrderEditForm", {
+    const form = Ext.create("PSI.Subject.FmtColShowOrderEditForm", {
       parentForm: me,
       entity: subject
     });
