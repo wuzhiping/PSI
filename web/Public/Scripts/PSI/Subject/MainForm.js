@@ -115,19 +115,19 @@ Ext.define("PSI.Subject.MainForm", {
       scope: me
     }, "-", {
       text: "新建账样字段",
-      handler: me.onAddFmtCol,
+      handler: me._onAddFmtCol,
       scope: me
     }, "-", {
       text: "编辑账样字段",
-      handler: me.onEditFmtCol,
+      handler: me._onEditFmtCol,
       scope: me
     }, "-", {
       text: "删除账样字段",
-      handler: me.onDeleteFmtCol,
+      handler: me._onDeleteFmtCol,
       scope: me
     }, "-", {
       text: "设置字段显示次序",
-      handler: me.onEditFmtColShowOrder,
+      handler: me._onEditFmtColShowOrder,
       scope: me
     }, "-", {
       text: "启用账样",
@@ -883,7 +883,10 @@ Ext.define("PSI.Subject.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onAddFmtCol() {
+  /**
+   * @private
+   */
+  _onAddFmtCol() {
     var me = this;
 
     var item = me.getCompanyGrid().getSelectionModel().getSelection();
@@ -915,7 +918,10 @@ Ext.define("PSI.Subject.MainForm", {
     form.show();
   },
 
-  onEditFmtCol() {
+  /**
+   * @private
+   */
+  _onEditFmtCol() {
     var me = this;
 
     var item = me.getCompanyGrid().getSelectionModel().getSelection();
@@ -953,7 +959,10 @@ Ext.define("PSI.Subject.MainForm", {
     form.show();
   },
 
-  onDeleteFmtCol() {
+  /**
+   * @private
+   */
+  _onDeleteFmtCol() {
     var me = this;
     var item = me.getFmtColsGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -995,7 +1004,10 @@ Ext.define("PSI.Subject.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onEditFmtColShowOrder() {
+  /**
+   * @private
+   */
+  _onEditFmtColShowOrder() {
     var me = this;
     var item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
