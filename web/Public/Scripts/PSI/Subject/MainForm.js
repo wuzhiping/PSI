@@ -142,7 +142,7 @@ Ext.define("PSI.Subject.MainForm", {
   refreshCompanyGrid() {
     const me = this;
     const el = Ext.getBody();
-    var store = me.getCompanyGrid().getStore();
+    const store = me.getCompanyGrid().getStore();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/Subject/companyList"),
@@ -537,12 +537,12 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   getFmtPropGrid() {
-    var me = this;
+    const me = this;
     if (me._fmtPropGrid) {
       return me._fmtPropGrid;
     }
 
-    var modelName = "PSIFMTProp";
+    const modelName = "PSIFMTProp";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "propName", "propValue"]
@@ -586,29 +586,28 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   _onInitFmt() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要初始化账样的科目");
       return;
     }
 
-    var subject = item[0];
+    const subject = item[0];
 
-    var info = "请确认是否初始化科目: <span style='color:red'>" + subject.get("code")
-      + "</span>的账样?";
+    const info = `请确认是否初始化科目<span style='color:red'>${subject.get("code")}</span>的账样?`;
     const funcConfirm = () => {
-      var el = Ext.getBody();
+      const el = Ext.getBody();
       el.mask("正在初始化中...");
-      var r = {
+      const r = {
         url: me.URL("Home/Subject/initFmt"),
         params: {
           id: subject.get("id"),
@@ -618,9 +617,9 @@ Ext.define("PSI.Subject.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成操作");
+              me.tip("成功完成操作", true);
               me.refreshFmtPropGrid();
               me.refreshFmtColsGrid();
             } else {
@@ -643,8 +642,8 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   _onEnableFmt() {
-    var me = this;
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    const me = this;
+    const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要启用账样的科目");
       return;
@@ -657,12 +656,12 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   getFmtColsGrid() {
-    var me = this;
+    const me = this;
     if (me._fmtColsGrid) {
       return me._fmtColsGrid;
     }
 
-    var modelName = "PSIFMTCols";
+    const modelName = "PSIFMTCols";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "showOrder", "caption", "fieldName",
@@ -721,7 +720,7 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   _onMainGridItemSelect(record) {
-    var me = this;
+    const me = this;
 
     if (!record) {
       me.getFmtPropGrid().setTitle("账样属性");
@@ -729,11 +728,11 @@ Ext.define("PSI.Subject.MainForm", {
       return;
     }
 
-    var title = Ext.String.format("<span class='PSI-title-keyword'>{0} {1}</span> - 账样属性", record.get("code"),
-      record.get("name"));
+    const code = record.get("code");
+    const name = record.get("name");
+    let title = `<span class='PSI-title-keyword'>${code} ${name}</span> - 账样属性`;
     me.getFmtPropGrid().setTitle(title);
-    var title = Ext.String.format("<span class='PSI-title-keyword'>{0} {1}</span> - 账样字段", record.get("code"),
-      record.get("name"));
+    title = `<span class='PSI-title-keyword'>${code} ${name}</span> - 账样字段`;
     me.getFmtColsGrid().setTitle(title);
 
     me.refreshFmtPropGrid();
