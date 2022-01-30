@@ -111,7 +111,7 @@ Ext.define("PSI.Subject.MainForm", {
       scope: me
     }, "-", {
       text: "清空标准账样设置",
-      handler: me.onUndoInitFmt,
+      handler: me._onUndoInitFmt,
       scope: me
     }, "-", {
       text: "新建账样字段",
@@ -131,7 +131,7 @@ Ext.define("PSI.Subject.MainForm", {
       scope: me
     }, "-", {
       text: "启用账样",
-      handler: me.onEnableFmt,
+      handler: me._onEnableFmt,
       scope: me
     }];
   },
@@ -459,7 +459,7 @@ Ext.define("PSI.Subject.MainForm", {
       listeners: {
         select: {
           fn(rowModel, record) {
-            me.onMainGridItemSelect(record);
+            me._onMainGridItemSelect(record);
           },
           scope: me
         }
@@ -637,8 +637,12 @@ Ext.define("PSI.Subject.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
-  // 启用账样
-  onEnableFmt() {
+  /**
+   * 启用账样
+   * 
+   * @private
+   */
+  _onEnableFmt() {
     var me = this;
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -649,10 +653,13 @@ Ext.define("PSI.Subject.MainForm", {
     PSI.MsgBox.showInfo("TODO");
   },
 
+  /**
+   * @private
+   */
   getFmtColsGrid() {
     var me = this;
-    if (me.__fmtColsGrid) {
-      return me.__fmtColsGrid;
+    if (me._fmtColsGrid) {
+      return me._fmtColsGrid;
     }
 
     var modelName = "PSIFMTCols";
@@ -662,7 +669,7 @@ Ext.define("PSI.Subject.MainForm", {
         "fieldType", "fieldLength", "fieldDecimal"]
     });
 
-    me.__fmtColsGrid = Ext.create("Ext.grid.Panel", {
+    me._fmtColsGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -707,10 +714,13 @@ Ext.define("PSI.Subject.MainForm", {
       })
     });
 
-    return me.__fmtColsGrid;
+    return me._fmtColsGrid;
   },
 
-  onMainGridItemSelect(record) {
+  /**
+   * @private
+   */
+  _onMainGridItemSelect(record) {
     var me = this;
 
     if (!record) {
@@ -730,6 +740,9 @@ Ext.define("PSI.Subject.MainForm", {
     me.refreshFmtColsGrid();
   },
 
+  /**
+   * @private
+   */
   refreshFmtPropGrid() {
     var me = this;
     var item = me.getCompanyGrid().getSelectionModel().getSelection();
@@ -770,6 +783,9 @@ Ext.define("PSI.Subject.MainForm", {
     me.ajax(r);
   },
 
+  /**
+   * @private
+   */
   refreshFmtColsGrid() {
     var me = this;
     var item = me.getCompanyGrid().getSelectionModel().getSelection();
@@ -810,8 +826,12 @@ Ext.define("PSI.Subject.MainForm", {
     me.ajax(r);
   },
 
-  // 清空标准账样
-  onUndoInitFmt() {
+  /**
+   * 清空标准账样
+   * 
+   * @private
+   */
+  _onUndoInitFmt() {
     var me = this;
     var item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
