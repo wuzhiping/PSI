@@ -743,36 +743,36 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   refreshFmtPropGrid() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
-    var company = item[0];
+    const company = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
-    var subject = item[0];
+    const subject = item[0];
 
-    var grid = me.getFmtPropGrid();
-    var el = grid.getEl();
+    const grid = me.getFmtPropGrid();
+    const el = grid.getEl();
     el && el.mask(PSI.Const.LOADING);
 
-    var r = {
+    const r = {
       url: me.URL("Home/Subject/fmtPropList"),
       params: {
         id: subject.get("id"),
         companyId: company.get("id")
       },
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
         }
 
@@ -786,36 +786,36 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   refreshFmtColsGrid() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
-    var company = item[0];
+    const company = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
-    var subject = item[0];
+    const subject = item[0];
 
-    var grid = me.getFmtColsGrid();
-    var el = grid.getEl();
+    const grid = me.getFmtColsGrid();
+    const el = grid.getEl();
     el && el.mask(PSI.Const.LOADING);
 
-    var r = {
+    const r = {
       url: me.URL("Home/Subject/fmtColsList"),
       params: {
         id: subject.get("id"),
         companyId: company.get("id")
       },
       callback(options, success, response) {
-        var store = grid.getStore();
+        const store = grid.getStore();
 
         store.removeAll();
 
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
           store.add(data);
         }
 
@@ -831,29 +831,28 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   _onUndoInitFmt() {
-    var me = this;
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    const me = this;
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择要清空账样的科目");
       return;
     }
 
-    var subject = item[0];
+    const subject = item[0];
 
-    var info = "请确认是否清空科目: <span style='color:red'>" + subject.get("code")
-      + "</span> 的账样?";
+    const info = `请确认是否清空科目<span style='color:red'>${subject.get("code")}</span>的账样?`;
     const funcConfirm = () => {
-      var el = Ext.getBody();
+      const el = Ext.getBody();
       el.mask("正在操作中...");
-      var r = {
+      const r = {
         url: me.URL("Home/Subject/undoInitFmt"),
         params: {
           id: subject.get("id"),
@@ -863,9 +862,9 @@ Ext.define("PSI.Subject.MainForm", {
           el.unmask();
 
           if (success) {
-            var data = me.decodeJSON(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成操作");
+              me.tip("成功完成操作", true);
               me.refreshFmtPropGrid();
               me.refreshFmtColsGrid();
             } else {
@@ -886,30 +885,30 @@ Ext.define("PSI.Subject.MainForm", {
    * @private
    */
   _onAddFmtCol() {
-    var me = this;
+    const me = this;
 
-    var item = me.getCompanyGrid().getSelectionModel().getSelection();
+    let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
 
-    var company = item[0];
+    const company = item[0];
 
-    var item = me.getMainGrid().getSelectionModel().getSelection();
+    item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择科目");
       return;
     }
 
-    var subject = item[0];
+    const subject = item[0];
 
     if (me.getFmtPropGrid().getStore().getCount() == 0) {
       me.showInfo("还没有初始化标准账样");
       return;
     }
 
-    var form = Ext.create("PSI.Subject.FmtColEditForm", {
+    const form = Ext.create("PSI.Subject.FmtColEditForm", {
       parentForm: me,
       company: company,
       subject: subject
