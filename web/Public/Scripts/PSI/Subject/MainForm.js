@@ -78,19 +78,19 @@ Ext.define("PSI.Subject.MainForm", {
     const me = this;
     return [{
       text: "初始化国家标准科目",
-      handler: me.onInit,
+      handler: me._onInit,
       scope: me
     }, "-", {
       text: "新建科目",
-      handler: me.onAddSubject,
+      handler: me._onAddSubject,
       scope: me
     }, "-", {
       text: "编辑科目",
-      handler: me.onEditSubject,
+      handler: me._onEditSubject,
       scope: me
     }, "-", {
       text: "删除科目",
-      handler: me.onDeleteSubject,
+      handler: me._onDeleteSubject,
       scope: me
     }, "-", {
       text: "关闭",
@@ -107,7 +107,7 @@ Ext.define("PSI.Subject.MainForm", {
     const me = this;
     return [{
       text: "初始化科目的标准账样",
-      handler: me.onInitFmt,
+      handler: me._onInitFmt,
       scope: me
     }, "-", {
       text: "清空标准账样设置",
@@ -219,7 +219,7 @@ Ext.define("PSI.Subject.MainForm", {
       }),
       listeners: {
         select: {
-          fn: me.onCompanyGridSelect,
+          fn: me._onCompanyGridSelect,
           scope: me
         }
       }
@@ -227,7 +227,10 @@ Ext.define("PSI.Subject.MainForm", {
     return me._companyGrid;
   },
 
-  onCompanyGridSelect() {
+  /**
+   * @private
+   */
+  _onCompanyGridSelect() {
     const me = this;
     me.getFmtPropGrid().setTitle("账样属性");
     me.getFmtPropGrid().getStore().removeAll();
@@ -248,7 +251,10 @@ Ext.define("PSI.Subject.MainForm", {
     store.load();
   },
 
-  onAddSubject() {
+  /**
+   * @private
+   */
+  _onAddSubject() {
     const me = this;
     const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -265,7 +271,10 @@ Ext.define("PSI.Subject.MainForm", {
     form.show();
   },
 
-  onEditSubject() {
+  /**
+   * @private
+   */
+  _onEditSubject() {
     const me = this;
     let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -295,15 +304,16 @@ Ext.define("PSI.Subject.MainForm", {
     form.show();
   },
 
-  onDeleteSubject() {
+  /**
+   * @private
+   */
+  _onDeleteSubject() {
     const me = this;
     let item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       me.showInfo("没有选择公司");
       return;
     }
-
-    const company = item[0];
 
     item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -343,7 +353,7 @@ Ext.define("PSI.Subject.MainForm", {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
               me.tip("成功完成删除操作");
-              me.onCompanyGridSelect();
+              me._onCompanyGridSelect();
             } else {
               me.showInfo(data.msg);
             }
@@ -358,6 +368,9 @@ Ext.define("PSI.Subject.MainForm", {
     me.confirm(info, funcConfirm);
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     const me = this;
     if (me._mainGrid) {
@@ -456,6 +469,9 @@ Ext.define("PSI.Subject.MainForm", {
     return me._mainGrid;
   },
 
+  /**
+   * @private
+   */
   getQueryParamForSubject() {
     const me = this;
     const item = me.getCompanyGrid().getSelectionModel().getSelection();
@@ -472,7 +488,10 @@ Ext.define("PSI.Subject.MainForm", {
     return result;
   },
 
-  onInit() {
+  /**
+   * @private
+   */
+  _onInit() {
     const me = this;
     const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
@@ -497,7 +516,7 @@ Ext.define("PSI.Subject.MainForm", {
             const data = Ext.JSON.decode(response.responseText);
             if (data.success) {
               me.tip("成功完成初始化操作");
-              me.onCompanyGridSelect();
+              me._onCompanyGridSelect();
             } else {
               me.showInfo(data.msg);
             }
@@ -514,10 +533,13 @@ Ext.define("PSI.Subject.MainForm", {
     me.confirm(info, confirmFunc);
   },
 
+  /**
+   * @private
+   */
   getFmtPropGrid() {
     var me = this;
-    if (me.__fmtPropGrid) {
-      return me.__fmtPropGrid;
+    if (me._fmtPropGrid) {
+      return me._fmtPropGrid;
     }
 
     var modelName = "PSIFMTProp";
@@ -526,7 +548,7 @@ Ext.define("PSI.Subject.MainForm", {
       fields: ["id", "propName", "propValue"]
     });
 
-    me.__fmtPropGrid = Ext.create("Ext.grid.Panel", {
+    me._fmtPropGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -555,11 +577,15 @@ Ext.define("PSI.Subject.MainForm", {
       })
     });
 
-    return me.__fmtPropGrid;
+    return me._fmtPropGrid;
   },
 
-  // 初始化标准账样
-  onInitFmt() {
+  /**
+   * 初始化标准账样
+   * 
+   * @private
+   */
+  _onInitFmt() {
     var me = this;
     var item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
