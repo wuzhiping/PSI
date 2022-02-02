@@ -257,7 +257,7 @@ Ext.define("PSI.User.MainForm", {
       return me._orgGrid;
     }
 
-    const modelName = "PSIOrgModel";
+    const modelName = "PSIModel.PSI.User.OrgModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "text", "fullName", "orgCode", "dataOrg",
@@ -356,7 +356,7 @@ Ext.define("PSI.User.MainForm", {
       return me._userGrid;
     }
 
-    const modelName = "PSIUser";
+    const modelName = "PSIModel.PSI.User.UserModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "loginName", "name", "enabled", "orgCode",
