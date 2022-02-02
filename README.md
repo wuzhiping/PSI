@@ -8,7 +8,7 @@ PSI - **P**artner, **S**olution, **I**nfrastructure
 |  ----          | ----      | ----  |
 |P|**P**artner 合作伙伴|商业合作伙伴和[开放的社区合作伙伴](https://gitee.com/crm8000/PSI/wikis/%E6%8F%90%E4%BE%9B%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E7%9A%84%E5%90%84%E5%9C%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F)|
 |S|**S**olution 解决方案|咨询、研发、实施、运维、法务一体化的企业管理全面解决方案，包括：方法论、软件系统、咨询实施运维团队，即方法、工具和人才|
-|I|**I**nfrastructure 基础设施|100%开源的企业管理软件系统|
+|I|**I**nfrastructure 基础设施|100%开源的企业管理软件系统 - PSI低代码应用平台|
 
 > 详见具体的[PSI产品战略](https://gitee.com/crm8000/PSI/wikis/PSI%E4%BA%A7%E5%93%81%E6%88%98%E7%95%A5)和[PSI技术战略](https://gitee.com/crm8000/PSI/wikis/PSI%E6%8A%80%E6%9C%AF%E6%88%98%E7%95%A5)
 
