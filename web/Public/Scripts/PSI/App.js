@@ -49,7 +49,7 @@ Ext.define("PSI.App", {
       layout: "fit"
     });
 
-    const modelName = "PSI.App.Model.FId";
+    const modelName = "PSIModel.PSI.App.FId";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["fid", "name"]
