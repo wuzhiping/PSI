@@ -52,6 +52,13 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 > Issue不是论坛，Issue是一事一议，请把握这个原则后使用。不要在和自己无关的话题下发布新的话题。
 
+# PSI低代码应用平台范例
+
+- [PSI服装行业版](https://gitee.com/crm8000/PSI_GI)
+
+> `PSI服装行业版`既是展示PSI低代码应用平台能力的范例，又是我们商业化PSI的行业产品。
+> 同时，也免费提供给各个合作伙伴商业使用。
+
 # PSI NG (PSI New Generation - 下一代的PSI)
 
 基于[PSI技术战略](https://gitee.com/crm8000/PSI/wikis/PSI%E6%8A%80%E6%9C%AF%E6%88%98%E7%95%A5)，PSI NG是面向未来的技术预研体系，包括：
