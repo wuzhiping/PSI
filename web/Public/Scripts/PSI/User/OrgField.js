@@ -54,7 +54,7 @@ Ext.define("PSI.User.OrgField", {
       return;
     }
 
-    const modelName = "PSIOrgModel_OrgField";
+    const modelName = "PSIModel.PSI.User.orgField.OrgFieldModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "text", "fullName", "orgCode",

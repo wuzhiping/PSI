@@ -52,7 +52,7 @@ Ext.define("PSI.User.SelectUserDataOrg", {
    */
   onTriggerClick(e) {
     const me = this;
-    const modelName = "PSISelectUserDataOrgField";
+    const modelName = "PSIModel.PSI.User.SelectUserDataOrg.FieldModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "dataOrg", "name"]

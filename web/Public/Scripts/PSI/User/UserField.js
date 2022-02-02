@@ -62,7 +62,7 @@ Ext.define("PSI.User.UserField", {
       return;
     }
 
-    const modelName = "PSIUserField";
+    const modelName = "PSIModel.PSI.User.UserField.UserFieldModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "loginName", "name"]
