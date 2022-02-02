@@ -102,7 +102,7 @@ Ext.define("PSI.Home.MainForm", {
       return me.__saleGrid;
     }
 
-    var modelName = "PSIPortalSale";
+    var modelName = "PSIModel.PSI.Home.PortalSale";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["month", "saleMoney", "profit", "rate"]
@@ -160,7 +160,7 @@ Ext.define("PSI.Home.MainForm", {
       return me.__purchaseGrid;
     }
 
-    var modelName = "PSIPortalPurchase";
+    var modelName = "PSIModel.PSI.Home.PortalPurchase";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["month", "purchaseMoney"]
@@ -204,7 +204,7 @@ Ext.define("PSI.Home.MainForm", {
       return me.__inventoryGrid;
     }
 
-    var modelName = "PSIPortalInventory";
+    var modelName = "PSIModel.PSI.Home.PortalInventory";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["warehouseName", { name: "inventoryMoney", type: "float" },
@@ -290,7 +290,7 @@ Ext.define("PSI.Home.MainForm", {
       return me.__moneyGrid;
     }
 
-    var modelName = "PSIPortalMoney";
+    var modelName = "PSIModel.PSI.Home.PortalMoney";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["item", "balanceMoney", "money30", "money30to60",
@@ -592,7 +592,7 @@ Ext.define("PSI.Home.MainForm", {
       return me.__saleChart;
     }
 
-    var modelName = "saleChart";
+    var modelName = "PSIModel.PSI.Home.SaleChart";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["不含税销售额", "毛利", "month"]
@@ -677,7 +677,7 @@ Ext.define("PSI.Home.MainForm", {
       return me.__purchaseChart;
     }
 
-    var modelName = "purchaseChart";
+    var modelName = "PSIModel.PSI.Home.PurchaseChart";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["purchaseMoney", "month"]
