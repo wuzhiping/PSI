@@ -495,7 +495,7 @@ Ext.define("PSI.Subject.MainForm", {
     const me = this;
     const item = me.getCompanyGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("请选择要初始化科目的公司");
+      me.showInfo("请选择要初始化科目的组织机构");
       return;
     }
 
@@ -529,7 +529,7 @@ Ext.define("PSI.Subject.MainForm", {
       me.ajax(r);
     };
 
-    const info = `请确认是否初始化<span style='color:red'>${company.get("name")}</span>的科目`;
+    const info = `请确认是否初始化<span style='color:red'>${company.get("name")}</span>的标准会计科目?`;
     me.confirm(info, confirmFunc);
   },
 
