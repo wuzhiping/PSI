@@ -76,6 +76,13 @@ module.exports = {
           {
             text: '资金管理',
             link: '/user/50.html',
+          },
+          {
+            text: '财务总账',
+            link: '/user/70.html',
+            children:[
+              { text: '会计科目', link: '/user/70-01.html' },
+            ]
           }],
         },
       ],
