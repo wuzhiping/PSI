@@ -189,7 +189,7 @@ Ext.define("PSI.Subject.MainForm", {
       cls: "PSI",
       header: {
         height: 30,
-        title: me.formatGridHeaderTitle("独立核算组织机构")
+        title: me.formatGridHeaderTitle("独立核算的组织机构")
       },
       tools: [{
         type: "close",
