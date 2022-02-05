@@ -172,7 +172,7 @@ Ext.define("PSI.Subject.MainForm", {
       return me._companyGrid;
     }
 
-    const modelName = "PSI_Subject_Company";
+    const modelName = "PSIModel.PSI.Subject.MainForm.Company";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -377,7 +377,7 @@ Ext.define("PSI.Subject.MainForm", {
       return me._mainGrid;
     }
 
-    const modelName = "PSISubject";
+    const modelName = "PSIModel.PSI.Subject.MainForm.SubjectModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "code", "name", "category", "leaf",
@@ -542,7 +542,7 @@ Ext.define("PSI.Subject.MainForm", {
       return me._fmtPropGrid;
     }
 
-    const modelName = "PSIFMTProp";
+    const modelName = "PSIModel.PSI.Subject.MainForm.FMTProp";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "propName", "propValue"]
@@ -661,7 +661,7 @@ Ext.define("PSI.Subject.MainForm", {
       return me._fmtColsGrid;
     }
 
-    const modelName = "PSIFMTCols";
+    const modelName = "PSIModel.PSI.Subject.MainForm.FMTCols";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "showOrder", "caption", "fieldName",
