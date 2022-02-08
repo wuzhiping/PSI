@@ -19,13 +19,14 @@ Ext.define("PSI.Permission.EditForm", {
     const me = this;
     const entity = me.getEntity();
 
-    Ext.define("PSIPermission", {
+    let modelName = "PSIModel.PSI.Permission.EditForm.PermissionModel";
+    Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name", "dataOrg", "dataOrgFullName"]
     });
 
     const permissionStore = Ext.create("Ext.data.Store", {
-      model: "PSIPermission",
+      model: modelName,
       autoLoad: false,
       data: []
     });
@@ -87,14 +88,15 @@ Ext.define("PSI.Permission.EditForm", {
 
     me.permissionGrid = permissionGrid;
 
-    Ext.define("PSIUser", {
+    modelName = "PSIModel.PSI.Permission.EditForm.UserModel";
+    Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "loginName", "name", "orgFullName",
         "enabled"]
     });
 
     const userStore = Ext.create("Ext.data.Store", {
-      model: "PSIUser",
+      model: modelName,
       autoLoad: false,
       data: []
     });
