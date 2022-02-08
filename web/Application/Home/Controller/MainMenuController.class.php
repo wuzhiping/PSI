@@ -234,7 +234,7 @@ class MainMenuController extends PSIBaseController
           break;
         case FIdConst::GL_BANK_ACCOUNT:
           // 银行账户
-          redirect(__ROOT__ . "/Home/Bank/index");
+          redirect(__ROOT__ . "/SLN0002/Bank/index");
           break;
         case FIdConst::GL_PERIOD:
           // 会计期间

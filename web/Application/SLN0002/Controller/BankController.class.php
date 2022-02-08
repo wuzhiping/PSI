@@ -5,7 +5,7 @@ namespace SLN0002\Controller;
 use Home\Common\FIdConst;
 use Home\Controller\PSIBaseController;
 use Home\Service\UserService;
-use Home\Service\BankService;
+use SLN0002\Service\BankService;
 
 /**
  * 银行账户Controller
@@ -31,7 +31,7 @@ class BankController extends PSIBaseController
 
       $this->display();
     } else {
-      $this->gotoLoginPage("/Home/Bank/index");
+      $this->gotoLoginPage("/SLN0002/Bank/index");
     }
   }
 
