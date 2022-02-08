@@ -66,8 +66,8 @@ Ext.define("PSI.Solution.MainForm", {
   getMainGrid() {
     const me = this;
 
-    if (me.__mainGrid) {
-      return me.__mainGrid;
+    if (me._mainGrid) {
+      return me._mainGrid;
     }
 
     const modelName = "PSIModel.PSI.Solution.MainForm.SolutionModel";
@@ -77,7 +77,7 @@ Ext.define("PSI.Solution.MainForm", {
       fields: ["id", "code", "name"]
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -115,7 +115,7 @@ Ext.define("PSI.Solution.MainForm", {
       },
     });
 
-    return me.__mainGrid;
+    return me._mainGrid;
   },
 
   /**
