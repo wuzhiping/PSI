@@ -217,6 +217,7 @@ Ext.define("PSI.Permission.MainForm", {
         enableTextSelection: true
       },
       store: roleStore,
+      columnLines: true,
       columns: {
         defaults: {
           sortable: false,
@@ -292,14 +293,20 @@ Ext.define("PSI.Permission.MainForm", {
           header: "权限名称",
           dataIndex: "name",
           width: 200,
+          renderer(value) {
+            return `<div style='white-space:normal; word-break:break-all;word-wrap:break-word; '>${value}</div>`;
+          }
         }, {
           header: "说明",
           dataIndex: "note",
           flex: 1,
+          renderer(value) {
+            return `<div style='white-space:normal; word-break:break-all;word-wrap:break-word; '>${value}</div>`;
+          }
         }, {
           header: "数据域",
           dataIndex: "dataOrgWithName",
-          width: 120,
+          width: 300,
           renderer(value) {
             return `<div style='white-space:normal; word-break:break-all;word-wrap:break-word; '>${value}</div>`;
           }
@@ -342,6 +349,7 @@ Ext.define("PSI.Permission.MainForm", {
       },
       cls: "PSI",
       store: userStore,
+      columnLines: true,
       columns: {
         defaults: {
           sortable: false,
@@ -354,11 +362,11 @@ Ext.define("PSI.Permission.MainForm", {
         }), {
           header: "用户姓名",
           dataIndex: "name",
-          flex: 1
+          width: 160
         }, {
           header: "登录名",
           dataIndex: "loginName",
-          flex: 1
+          width: 200
         }, {
           header: "所属组织",
           dataIndex: "orgFullName",
