@@ -472,7 +472,7 @@ h1, h2, h3, p {
 
 .PSI .x-grid-row td, .x-grid-summary-row td {
 	line-height: 18px;
-	vertical-align: top;
+	vertical-align: middle;
 }
 
 .PSI-recent-fid .x-grid-row td, .x-grid-summary-row td {
