@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Bank.MainForm", {
+Ext.define("PSI.SLN0002.Bank.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   /**
@@ -80,7 +80,7 @@ Ext.define("PSI.Bank.MainForm", {
     const store = me.getCompanyGrid().getStore();
     el.mask(PSI.Const.LOADING);
     const r = {
-      url: me.URL("Home/Bank/companyList"),
+      url: me.URL("SLN0002/Bank/companyList"),
       callback(options, success, response) {
         store.removeAll();
 
@@ -123,7 +123,7 @@ Ext.define("PSI.Bank.MainForm", {
       params: {
         companyId: company.get("id")
       },
-      url: me.URL("Home/Bank/bankList"),
+      url: me.URL("SLN0002/Bank/bankList"),
       callback(options, success, response) {
         store.removeAll();
 
@@ -295,7 +295,7 @@ Ext.define("PSI.Bank.MainForm", {
 
     const company = item[0];
 
-    const form = Ext.create("PSI.Bank.EditForm", {
+    const form = Ext.create("PSI.SLN0002.Bank.EditForm", {
       parentForm: me,
       company: company
     });
@@ -324,7 +324,7 @@ Ext.define("PSI.Bank.MainForm", {
     }
 
     const bank = item[0];
-    const form = Ext.create("PSI.Bank.EditForm", {
+    const form = Ext.create("PSI.SLN0002.Bank.EditForm", {
       parentForm: me,
       company: company,
       entity: bank
@@ -372,7 +372,7 @@ Ext.define("PSI.Bank.MainForm", {
       const el = Ext.getBody();
       el.mask(PSI.Const.LOADING);
       const r = {
-        url: me.URL("Home/Bank/deleteBank"),
+        url: me.URL("SLN0002/Bank/deleteBank"),
         params: {
           id: bank.get("id")
         },

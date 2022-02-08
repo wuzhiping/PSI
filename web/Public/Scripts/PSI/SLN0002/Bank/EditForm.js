@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Bank.EditForm", {
+Ext.define("PSI.SLN0002.Bank.EditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -180,7 +180,7 @@ Ext.define("PSI.Bank.EditForm", {
     const el = f.getEl();
     el.mask(PSI.Const.SAVING);
     const sf = {
-      url: me.URL("Home/Bank/editBank"),
+      url: me.URL("SLN0002/Bank/editBank"),
       success(form, action) {
         me._lastId = action.result.id;
 
