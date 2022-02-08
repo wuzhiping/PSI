@@ -70,7 +70,7 @@ Ext.define("PSI.Solution.MainForm", {
       return me.__mainGrid;
     }
 
-    const modelName = "PSISolution";
+    const modelName = "PSIModel.PSI.Solution.MainForm.SolutionModel";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
