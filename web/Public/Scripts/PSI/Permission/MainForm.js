@@ -49,21 +49,8 @@ Ext.define("PSI.Permission.MainForm", {
             height: "50%",
             border: 0,
             split: true,
-            layout: "border",
-            items: [{
-              region: "center",
-              layout: "fit",
-              border: 0,
-              items: [me.getPermissionGrid()]
-            }, {
-              region: "east",
-              layout: "fit",
-              width: "20%",
-              border: 1,
-              split: true,
-              collapsible: true,
-              items: [me.getDataOrgGrid()]
-            }]
+            layout: "fit",
+            items: me.getPermissionGrid()
           }, {
             xtype: "panel",
             region: "center",
@@ -318,12 +305,6 @@ Ext.define("PSI.Permission.MainForm", {
           }
         }]
       },
-      listeners: {
-        select: {
-          fn: me._onPermissionGridSelect,
-          scope: me
-        }
-      }
     });
 
     return me._permissionGrid;
@@ -436,8 +417,6 @@ Ext.define("PSI.Permission.MainForm", {
    */
   _onRoleGridSelect() {
     const me = this;
-    me.getDataOrgGrid().getStore().removeAll();
-    me.getDataOrgGrid().setTitle(me.formatGridHeaderTitle("数据域"));
 
     const grid = me.getPermissionGrid();
 
@@ -607,107 +586,6 @@ Ext.define("PSI.Permission.MainForm", {
   /**
    * @private
    */
-  getDataOrgGrid() {
-    const me = this;
-    if (me._dataOrgGrid) {
-      return me._dataOrgGrid;
-    }
-
-    const modelName = "PSIPermissionDataOrg_MainForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
-      fields: ["dataOrg", "fullName"]
-    });
-
-    const store = Ext.create("Ext.data.Store", {
-      model: modelName,
-      autoLoad: false,
-      data: []
-    });
-
-    me._dataOrgGrid = Ext.create("Ext.grid.Panel", {
-      cls: "PSI",
-      border: 0,
-      header: {
-        height: 30,
-        title: me.formatGridHeaderTitle("数据域")
-      },
-      viewConfig: {
-        enableTextSelection: true
-      },
-      store: store,
-      columns: {
-        defaults: {
-          sortable: false,
-          menuDisabled: true,
-        },
-        items: [{
-          header: "数据域",
-          dataIndex: "dataOrg",
-          width: 120,
-        }, {
-          header: "组织机构/人",
-          dataIndex: "fullName",
-          flex: 1,
-        }]
-      }
-    });
-
-    return me._dataOrgGrid;
-  },
-
-  /**
-   * @private
-   */
-  _onPermissionGridSelect() {
-    const me = this;
-    const roleGrid = me.getRoleGrid();
-    let items = roleGrid.getSelectionModel().getSelection();
-
-    if (items == null || items.length != 1) {
-      return;
-    }
-
-    const role = items[0];
-
-    const permissionGrid = me.getPermissionGrid();
-    items = permissionGrid.getSelectionModel().getSelection();
-
-    if (items == null || items.length != 1) {
-      return;
-    }
-    const permission = items[0];
-
-    const grid = me.getDataOrgGrid();
-    const info = `<span class='PSI-title-keyword'>${role.get("name")}</span> -  <span class='PSI-title-keyword'>${permission.get("name")}</span>  - 数据域`
-    grid.setTitle(me.formatGridHeaderTitle(info));
-
-    const el = grid.getEl() || Ext.getBody();
-    const store = grid.getStore();
-
-    el.mask("数据加载中...");
-    me.ajax({
-      url: me.URL("Home/Permission/dataOrgList"),
-      params: {
-        roleId: role.get("id"),
-        permissionId: permission.get("id")
-      },
-      callback(options, success, response) {
-        store.removeAll();
-
-        if (success) {
-          const data = me.decodeJSON(response.responseText);
-          store.add(data);
-        }
-
-        el.unmask();
-      }
-    });
-  },
-
-  /**
-   * @private
-   */
   _onClearQuery() {
     const me = this;
 
@@ -727,8 +605,6 @@ Ext.define("PSI.Permission.MainForm", {
     me.getPermissionGrid().setTitle("权限列表");
     me.getUserGrid().getStore().removeAll();
     me.getUserGrid().setTitle("用户列表");
-    me.getDataOrgGrid().getStore().removeAll();
-    me.getDataOrgGrid().setTitle("数据域");
 
     me.refreshRoleGrid();
   }
