@@ -195,7 +195,7 @@ Ext.define("PSI.Permission.MainForm", {
       return me._roleGrid;
     }
 
-    const modelName = "PSIRole";
+    const modelName = "PSIModel.PSI.Permission.MainForm.RoleModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name", "code"]
@@ -257,7 +257,7 @@ Ext.define("PSI.Permission.MainForm", {
       return me._permissionGrid;
     }
 
-    const modelName = "PSIPermission";
+    const modelName = "PSIModel.PSI.Permission.MainForm.PermissionModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name", "dataOrg", "dataOrgWithName", "note"]
@@ -326,7 +326,7 @@ Ext.define("PSI.Permission.MainForm", {
       return me._userGrid;
     }
 
-    const modelName = "PSIUser";
+    const modelName = "PSIModel.PSI.Permission.MainForm.UserModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "loginName", "name", "orgFullName",
