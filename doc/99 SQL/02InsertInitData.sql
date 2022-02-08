@@ -480,8 +480,8 @@ INSERT INTO `t_role` (`id`, `name`, `data_org`, `company_id`, `code`) VALUES
 
 # 默认角色的权限项
 TRUNCATE TABLE `t_role_permission`;
-INSERT INTO `t_role_permission` (`role_id`, `permission_id`, `data_org`) 
-select 'A83F617E-A153-11E4-A9B8-782BCBD7746B' as role_id, fid as permission_id, '01010001' as data_org
+INSERT INTO `t_role_permission` (`role_id`, `permission_id`) 
+select 'A83F617E-A153-11E4-A9B8-782BCBD7746B' as role_id, fid as permission_id
 from t_permission;
 
 # 默认角色的数据域
