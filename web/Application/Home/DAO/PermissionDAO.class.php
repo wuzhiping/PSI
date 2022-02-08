@@ -109,10 +109,29 @@ class PermissionDAO extends PSIBaseExDAO
         $dataOrg = "";
         foreach ($od as $i => $itemDataOrg) {
           if ($i > 0) {
-            $dataOrg .= ";";
+            $dataOrg .= "; ";
           }
-          $dataOrg .= $itemDataOrg["data_org"];
+          $ido = $itemDataOrg["data_org"];
+          $idoName = "";
+          if ($ido == "*") {
+            // *表示全部数据域，已经废弃不用
+            // 这里只是个兼容处理
+            $idoName = "{$ido} - 全部数据";
+          } else if ($ido == "#") {
+            // 本人数据域
+            $idoName = "{$ido} - 本人数据";
+          } else {
+            // 查询组织机构
+            $sql = "select full_name from t_org where data_org = '%s' ";
+            $d = $db->query($sql, $ido);
+            if ($d) {
+              $fullName = $d[0]["full_name"];
+              $idoName = "{$ido} - {$fullName}";
+            }
+          }
+          $dataOrg .= $idoName;
         }
+
         $item["dataOrg"] = $dataOrg;
       } else {
         $item["dataOrg"] = "*";
