@@ -49,8 +49,12 @@ class UserService extends PSIBaseExService
     $userId = $this->getLoginUserId();
 
     if ($userId == DemoConst::ADMIN_USER_ID) {
-      // admin 用户是超级管理员
-      return true;
+      // 保证admin用户至少拥有权限管理的权限
+      // 在实际实施中，不推荐直接使用admin，但是要处理这样一种情形：
+      // 当别的用户误删权限后，得有一个用户能进入权限管理
+      if ($fid == FIdConst::PERMISSION_MANAGEMENT){
+        return true;
+      }
     }
 
     // 判断用户是否被禁用
