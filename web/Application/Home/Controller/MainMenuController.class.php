@@ -238,7 +238,7 @@ class MainMenuController extends PSIBaseController
           break;
         case FIdConst::GL_PERIOD:
           // 会计期间
-          redirect(__ROOT__ . "/Home/GLPeriod/index");
+          redirect(__ROOT__ . "/SLN0002/GLPeriod/index");
           break;
         case FIdConst::SALE_CONTRACT:
           // 销售合同
