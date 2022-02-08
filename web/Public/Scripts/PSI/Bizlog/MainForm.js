@@ -163,7 +163,8 @@ Ext.define("PSI.Bizlog.MainForm", {
   getQueryCmp() {
     const me = this;
 
-    Ext.define("PSILogCategory", {
+    const modelName = "PSIModel.PSI.Bizlog.MainForm.LogCategory";
+    Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name"]
     });
@@ -253,7 +254,7 @@ Ext.define("PSI.Bizlog.MainForm", {
       valueField: "id",
       displayField: "name",
       store: Ext.create("Ext.data.Store", {
-        model: "PSILogCategory",
+        model: modelName,
         autoLoad: false,
         data: []
       }),
@@ -308,7 +309,7 @@ Ext.define("PSI.Bizlog.MainForm", {
       return me._mainGrid;
     }
 
-    const modelName = "PSI_Bizlog_MainForm_PSILog";
+    const modelName = "PSIModel.PSI.Bizlog.MainForm.LogModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "loginName", "userName", "ip", "ipFrom",
