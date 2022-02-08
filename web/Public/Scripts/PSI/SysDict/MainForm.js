@@ -92,7 +92,7 @@ Ext.define("PSI.SysDict.MainForm", {
       return me.__categoryGrid;
     }
 
-    const modelName = "PSISysDictCategory";
+    const modelName = "PSIModel.PSI.SysDict.MainForm.SysDictCategory";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -154,7 +154,7 @@ Ext.define("PSI.SysDict.MainForm", {
       return me.__mainGrid;
     }
 
-    const modelName = "PSISysDict";
+    const modelName = "PSIModel.PSI.SysDict.MainForm.SysDictModel";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
@@ -220,7 +220,7 @@ Ext.define("PSI.SysDict.MainForm", {
       return me.__dataGrid;
     }
 
-    const modelName = "PSISysDictData";
+    const modelName = "PSIModel.PSI.SysDict.MainForm.SysDictData";
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
