@@ -59,8 +59,9 @@ Ext.define("PSI.Permission.MainForm", {
               region: "east",
               layout: "fit",
               width: "20%",
-              border: 0,
+              border: 1,
               split: true,
+              collapsible: true,
               items: [me.getDataOrgGrid()]
             }]
           }, {
@@ -312,7 +313,7 @@ Ext.define("PSI.Permission.MainForm", {
           header: "数据域",
           dataIndex: "dataOrg",
           width: 120,
-          renderer(value){
+          renderer(value) {
             return `<div style='white-space:normal; word-break:break-all;word-wrap:break-word; '>${value}</div>`;
           }
         }]
@@ -626,6 +627,7 @@ Ext.define("PSI.Permission.MainForm", {
 
     me._dataOrgGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
+      border: 0,
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("数据域")

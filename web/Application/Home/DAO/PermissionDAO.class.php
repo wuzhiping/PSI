@@ -107,9 +107,11 @@ class PermissionDAO extends PSIBaseExDAO
       $od = $db->query($sql, $roleId, $pid);
       if ($od) {
         $dataOrg = "";
+        $dataOrgWithName = "";
         foreach ($od as $i => $itemDataOrg) {
           if ($i > 0) {
-            $dataOrg .= "<br/>";
+            $dataOrg .= ";";
+            $dataOrgWithName .= "<br/>";
           }
           $ido = $itemDataOrg["data_org"];
           $idoName = "";
@@ -129,12 +131,15 @@ class PermissionDAO extends PSIBaseExDAO
               $idoName = "{$ido} - {$fullName}";
             }
           }
-          $dataOrg .= $idoName;
+          $dataOrg .= $ido;
+          $dataOrgWithName .= $idoName;
         }
 
         $item["dataOrg"] = $dataOrg;
+        $item["dataOrgWithName"] = $dataOrgWithName;
       } else {
         $item["dataOrg"] = "*";
+        $item["dataOrgWithName"] = "全部数据";
       }
 
       $result[] = $item;
