@@ -272,7 +272,7 @@ Ext.define("PSI.Permission.MainForm", {
     const modelName = "PSIPermission";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
-      fields: ["id", "name", "dataOrg", "note"]
+      fields: ["id", "name", "dataOrg", "dataOrgWithName", "note"]
     });
 
     const permissionStore = Ext.create("Ext.data.Store", {
@@ -311,7 +311,7 @@ Ext.define("PSI.Permission.MainForm", {
           flex: 1,
         }, {
           header: "数据域",
-          dataIndex: "dataOrg",
+          dataIndex: "dataOrgWithName",
           width: 120,
           renderer(value) {
             return `<div style='white-space:normal; word-break:break-all;word-wrap:break-word; '>${value}</div>`;
