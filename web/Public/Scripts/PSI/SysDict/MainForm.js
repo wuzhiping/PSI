@@ -88,8 +88,8 @@ Ext.define("PSI.SysDict.MainForm", {
   getCategoryGrid() {
     const me = this;
 
-    if (me.__categoryGrid) {
-      return me.__categoryGrid;
+    if (me._categoryGrid) {
+      return me._categoryGrid;
     }
 
     const modelName = "PSIModel.PSI.SysDict.MainForm.SysDictCategory";
@@ -99,7 +99,7 @@ Ext.define("PSI.SysDict.MainForm", {
       fields: ["id", "code", "name"]
     });
 
-    me.__categoryGrid = Ext.create("Ext.grid.Panel", {
+    me._categoryGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -141,7 +141,7 @@ Ext.define("PSI.SysDict.MainForm", {
       }
     });
 
-    return me.__categoryGrid;
+    return me._categoryGrid;
   },
 
   /**
@@ -150,8 +150,8 @@ Ext.define("PSI.SysDict.MainForm", {
   getMainGrid() {
     const me = this;
 
-    if (me.__mainGrid) {
-      return me.__mainGrid;
+    if (me._mainGrid) {
+      return me._mainGrid;
     }
 
     const modelName = "PSIModel.PSI.SysDict.MainForm.SysDictModel";
@@ -161,7 +161,7 @@ Ext.define("PSI.SysDict.MainForm", {
       fields: ["id", "code", "name", "tableName", "memo"]
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -207,7 +207,7 @@ Ext.define("PSI.SysDict.MainForm", {
       }
     });
 
-    return me.__mainGrid;
+    return me._mainGrid;
   },
 
   /**
@@ -216,8 +216,8 @@ Ext.define("PSI.SysDict.MainForm", {
   getDictDataGrid() {
     const me = this;
 
-    if (me.__dataGrid) {
-      return me.__dataGrid;
+    if (me._dataGrid) {
+      return me._dataGrid;
     }
 
     const modelName = "PSIModel.PSI.SysDict.MainForm.SysDictData";
@@ -227,7 +227,7 @@ Ext.define("PSI.SysDict.MainForm", {
       fields: ["id", "code", "codeInt", "name", "memo"]
     });
 
-    me.__dataGrid = Ext.create("Ext.grid.Panel", {
+    me._dataGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -268,7 +268,7 @@ Ext.define("PSI.SysDict.MainForm", {
       })
     });
 
-    return me.__dataGrid;
+    return me._dataGrid;
   },
 
   /**
