@@ -109,7 +109,7 @@ class PermissionDAO extends PSIBaseExDAO
         $dataOrg = "";
         foreach ($od as $i => $itemDataOrg) {
           if ($i > 0) {
-            $dataOrg .= "; ";
+            $dataOrg .= "<br/>";
           }
           $ido = $itemDataOrg["data_org"];
           $idoName = "";

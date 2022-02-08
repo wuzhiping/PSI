@@ -311,7 +311,10 @@ Ext.define("PSI.Permission.MainForm", {
         }, {
           header: "数据域",
           dataIndex: "dataOrg",
-          width: 100,
+          width: 120,
+          renderer(value){
+            return `<div style='white-space:normal; word-break:break-all;word-wrap:break-word; '>${value}</div>`;
+          }
         }]
       },
       listeners: {
