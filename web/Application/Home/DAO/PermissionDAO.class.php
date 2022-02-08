@@ -89,7 +89,7 @@ class PermissionDAO extends PSIBaseExDAO
             from t_role r, t_role_permission rp, 
               (select * from t_permission union select * from t_permission_plus) p
             where r.id = rp.role_id and r.id = '%s' and rp.permission_id = p.id
-            order by convert(p.name USING gbk) collate gbk_chinese_ci";
+            order by p.name";
     $data = $db->query($sql, $roleId);
 
     $result = [];
