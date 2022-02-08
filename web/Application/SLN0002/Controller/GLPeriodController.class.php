@@ -31,7 +31,7 @@ class GLPeriodController extends PSIBaseController
 
       $this->display();
     } else {
-      $this->gotoLoginPage("/Home/GLPeriod/index");
+      $this->gotoLoginPage("/SLN0002/GLPeriod/index");
     }
   }
 
