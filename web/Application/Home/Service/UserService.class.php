@@ -52,7 +52,11 @@ class UserService extends PSIBaseExService
       // 保证admin用户至少拥有权限管理的权限
       // 在实际实施中，不推荐直接使用admin，但是要处理这样一种情形：
       // 当别的用户误删权限后，得有一个用户能进入权限管理
-      if ($fid == FIdConst::PERMISSION_MANAGEMENT){
+      if (in_array($fid, [
+        FIdConst::PERMISSION_MANAGEMENT,
+        FIdConst::PERMISSION_MANAGEMENT_ADD,
+        FIdConst::PERMISSION_MANAGEMENT_EDIT
+      ])) {
         return true;
       }
     }
