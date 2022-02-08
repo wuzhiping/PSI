@@ -241,7 +241,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
       return me.__permissionGrid;
     }
 
-    const modelName = "PSIPermission_SelectPermissionForm";
+    const modelName = "PSIModel.PSI.Permission.SelectPermissionForm.PermissionModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name", "note"]
@@ -313,7 +313,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
       return me.__selectedGrid;
     }
 
-    const modelName = "PSISelectedPermission_SelectPermissionForm";
+    const modelName = "PSIModel.PSI.Permission.SelectPermissionForm.SelectedPermission";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name"]
@@ -368,7 +368,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
       return me.__categoryGrid;
     }
 
-    const modelName = "PSIPermissionCategory_SelectPermissionForm";
+    const modelName = "PSIModel.PSI.Permission.SelectPermissionForm.PermissionCategory";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["name"]

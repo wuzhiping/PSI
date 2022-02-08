@@ -632,7 +632,7 @@ Ext.define("PSI.Permission.EditForm", {
     if (me.__dataOrgGrid) {
       return me.__dataOrgGrid;
     }
-    const modelName = "PSIPermissionDataOrg_EditForm";
+    const modelName = "PSIModel.PSI.Permission.EditForm.PermissionDataOrg";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["dataOrg", "fullName"]

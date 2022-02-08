@@ -122,7 +122,7 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
       return me.__mainGrid;
     }
 
-    const modelName = "PSIDataOrg_SelectForm";
+    const modelName = "PSIModel.PSI.Permission.SelectDataOrgForm.DataOrgModel";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "fullName", "dataOrg"]
