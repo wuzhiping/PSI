@@ -81,6 +81,12 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2012', '2012', 2012, '/Home/Report/saleDayByGoods', '', '销售日报表(按商品汇总)', 22)
 ;
 
+# 实施指南导航
+TRUNCATE TABLE `t_sysdict_help_nav`;
+INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('login', 'login', 1, '/help/user/10.html', '', '', 1),
+('user', 'user', 2, '/help/admin/02-01.html', '', '访问实施指南页面：用户管理', 2)
+;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
