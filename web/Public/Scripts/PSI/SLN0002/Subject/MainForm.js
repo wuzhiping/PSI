@@ -151,7 +151,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
     const store = me.getCompanyGrid().getStore();
     el.mask(PSI.Const.LOADING);
     const r = {
-      url: me.URL("Home/Subject/companyList"),
+      url: me.URL("SLN0002/Subject/companyList"),
       callback(options, success, response) {
         store.removeAll();
 
@@ -348,7 +348,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
       const el = Ext.getBody();
       el.mask("正在删除中...");
       const r = {
-        url: me.URL("Home/Subject/deleteSubject"),
+        url: me.URL("SLN0002/Subject/deleteSubject"),
         params: {
           id: subject.get("id")
         },
@@ -397,7 +397,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
         actionMethods: {
           read: "POST"
         },
-        url: me.URL("Home/Subject/subjectList")
+        url: me.URL("SLN0002/Subject/subjectList")
       },
       listeners: {
         beforeload: {
@@ -511,7 +511,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
       const el = Ext.getBody();
       el.mask("正在操作中...");
       const r = {
-        url: me.URL("Home/Subject/init"),
+        url: me.URL("SLN0002/Subject/init"),
         params: {
           id: company.get("id")
         },
@@ -614,7 +614,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
       const el = Ext.getBody();
       el.mask("正在初始化中...");
       const r = {
-        url: me.URL("Home/Subject/initFmt"),
+        url: me.URL("SLN0002/Subject/initFmt"),
         params: {
           id: subject.get("id"),
           companyId: company.get("id")
@@ -767,7 +767,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
     el && el.mask(PSI.Const.LOADING);
 
     const r = {
-      url: me.URL("Home/Subject/fmtPropList"),
+      url: me.URL("SLN0002/Subject/fmtPropList"),
       params: {
         id: subject.get("id"),
         companyId: company.get("id")
@@ -810,7 +810,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
     el && el.mask(PSI.Const.LOADING);
 
     const r = {
-      url: me.URL("Home/Subject/fmtColsList"),
+      url: me.URL("SLN0002/Subject/fmtColsList"),
       params: {
         id: subject.get("id"),
         companyId: company.get("id")
@@ -859,7 +859,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
       const el = Ext.getBody();
       el.mask("正在操作中...");
       const r = {
-        url: me.URL("Home/Subject/undoInitFmt"),
+        url: me.URL("SLN0002/Subject/undoInitFmt"),
         params: {
           id: subject.get("id"),
           companyId: company.get("id")
@@ -981,7 +981,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
       const el = Ext.getBody();
       el.mask("正在删除中...");
       const r = {
-        url: me.URL("Home/Subject/deleteFmtCol"),
+        url: me.URL("SLN0002/Subject/deleteFmtCol"),
         params: {
           id: fmtCol.get("id")
         },

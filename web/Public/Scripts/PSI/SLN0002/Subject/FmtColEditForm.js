@@ -199,7 +199,7 @@ Ext.define("PSI.SLN0002.Subject.FmtColEditForm", {
     const el = f.getEl();
     el && el.mask(PSI.Const.SAVING);
     const sf = {
-      url: me.URL("Home/Subject/editFmtCol"),
+      url: me.URL("SLN0002/Subject/editFmtCol"),
       method: "POST",
       success(form, action) {
         me.__lastId = action.result.id;
@@ -294,7 +294,7 @@ Ext.define("PSI.SLN0002.Subject.FmtColEditForm", {
     const el = me.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
-      url: me.URL("Home/Subject/fmtColInfo"),
+      url: me.URL("SLN0002/Subject/fmtColInfo"),
       params: {
         id: me.hiddenId.getValue()
       },

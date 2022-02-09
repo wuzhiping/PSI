@@ -102,7 +102,7 @@ Ext.define("PSI.SLN0002.Subject.FmtColShowOrderEditForm", {
     const el = Ext.getBody();
     el.mask("正在操作中...");
     const r = {
-      url: me.URL("Home/Subject/editFmtColShowOrder"),
+      url: me.URL("SLN0002/Subject/editFmtColShowOrder"),
       params: {
         id: me.getEntity().get("id"), // 科目id
         idList: showOrder
@@ -194,7 +194,7 @@ Ext.define("PSI.SLN0002.Subject.FmtColShowOrderEditForm", {
     const el = me.getEl() || Ext.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
-      url: me.URL("Home/Subject/fmtGridColsList"),
+      url: me.URL("SLN0002/Subject/fmtGridColsList"),
       params: {
         id
       },

@@ -152,7 +152,7 @@ Ext.define("PSI.SLN0002.Subject.ParentSubjectField", {
     editName.on("change", () => {
       const store = me.lookupGrid.getStore();
       Ext.Ajax.request({
-        url: PSI.Const.BASE_URL + "Home/Subject/queryDataForParentSubject",
+        url: PSI.Const.BASE_URL + "SLN0002/Subject/queryDataForParentSubject",
         params: {
           queryKey: editName.getValue(),
           companyId: me.getCompanyId()
