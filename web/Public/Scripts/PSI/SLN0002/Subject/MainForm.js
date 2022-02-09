@@ -270,7 +270,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
 
     const company = item[0];
 
-    const form = Ext.create("PSI.Subject.EditForm", {
+    const form = Ext.create("PSI.SLN0002.Subject.EditForm", {
       parentForm: me,
       company: company
     });
@@ -302,7 +302,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.Subject.EditForm", {
+    const form = Ext.create("PSI.SLN0002.Subject.EditForm", {
       parentForm: me,
       company: company,
       entity: subject
@@ -914,7 +914,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.Subject.FmtColEditForm", {
+    const form = Ext.create("PSI.SLN0002.Subject.FmtColEditForm", {
       parentForm: me,
       company: company,
       subject: subject
@@ -954,7 +954,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
     }
     const entity = item[0];
 
-    const form = Ext.create("PSI.Subject.FmtColEditForm", {
+    const form = Ext.create("PSI.SLN0002.Subject.FmtColEditForm", {
       parentForm: me,
       company,
       subject,
@@ -1031,7 +1031,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.Subject.FmtColShowOrderEditForm", {
+    const form = Ext.create("PSI.SLN0002.Subject.FmtColShowOrderEditForm", {
       parentForm: me,
       entity: subject
     });
