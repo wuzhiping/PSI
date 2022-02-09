@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.SLN0002.Subject.FmtColEditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     subject: null,

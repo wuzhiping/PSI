@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 Ext.define("PSI.SLN0002.Subject.EditForm", {
-  extend: "PSI.AFX.BaseDialogForm",
+  extend: "PSI.AFX.Form.EditForm",
 
   config: {
     company: null
