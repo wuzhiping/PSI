@@ -85,7 +85,9 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 TRUNCATE TABLE `t_sysdict_help_nav`;
 INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('login', 'login', 1, '/help/user/10.html', '', '', 1),
-('user', 'user', 2, '/help/admin/02-01.html', '', '访问实施指南页面：用户管理', 2)
+('user', 'user', 2, '/help/admin/02-01.html', '', '访问实施指南页面：用户管理', 2),
+('priceSystem', 'priceSystem', 3, '/help/admin/02-04-03.html', '', '访问实施指南页面：价格体系', 3),
+('initInv', 'initInv', 4, '/help/admin/02-06.html', '', '访问实施指南页面：库存建账', 4)
 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
