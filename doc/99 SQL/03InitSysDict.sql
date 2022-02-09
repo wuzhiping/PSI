@@ -60,7 +60,9 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('-9996', '-9996', -9996, '/Home/User/changeMyPassword', '', '修改我的密码', 2),
 ('-8999', '-8999', -8999, '/Home/User', '', '用户管理', 3),
 ('-8996', '-8996', -8996, '/Home/Permission', '', '权限管理', 4),
-('-8997', '-8997', -8997, '/Home/Bizlog', '', '业务日志', 5)
+('-8997', '-8997', -8997, '/Home/Bizlog', '', '业务日志', 5),
+('1003', '1003', 1003, '/Home/Warehouse', '', '仓库', 6),
+('1004', '1004', 1004, '/Home/Supplier', '', '供应商档案', 7)
 ;
 
 
