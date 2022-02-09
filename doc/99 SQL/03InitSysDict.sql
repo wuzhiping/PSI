@@ -56,8 +56,8 @@ INSERT INTO `t_sysdict_fv_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`
 # 主菜单导航
 TRUNCATE TABLE `t_sysdict_mainmenu_nav`;
 INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
-('-9994', '-9994', 1, '关于', '', '', 1),
-('-9996', '-9996', 2, '修改我的密码', '', '', 2);
+('-9994', '-9994', -9994, '关于', '', '', 1),
+('-9996', '-9996', -9996, '修改我的密码', '', '', 2);
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
