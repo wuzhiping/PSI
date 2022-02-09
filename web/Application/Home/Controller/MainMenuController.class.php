@@ -230,7 +230,7 @@ class MainMenuController extends PSIBaseController
           break;
         case FIdConst::GL_SUBJECT:
           // 会计科目
-          redirect(__ROOT__ . "/Home/Subject/index");
+          redirect(__ROOT__ . "/SLN0002/Subject/index");
           break;
         case FIdConst::GL_BANK_ACCOUNT:
           // 银行账户
