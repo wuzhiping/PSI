@@ -56,13 +56,15 @@ INSERT INTO `t_sysdict_fv_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`
 # 主菜单导航
 TRUNCATE TABLE `t_sysdict_mainmenu_nav`;
 INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
-('-9994', '-9994', -9994, '/Home/About/index', '', '关于', 1),
-('-9996', '-9996', -9996, '/Home/User/changeMyPassword', '', '修改我的密码', 2),
+('-9996', '-9996', -9996, '/Home/User/changeMyPassword', '', '修改我的密码', 1),
+('-9994', '-9994', -9994, '/Home/About', '', '关于', 2),
 ('-8999', '-8999', -8999, '/Home/User', '', '用户管理', 3),
-('-8996', '-8996', -8996, '/Home/Permission', '', '权限管理', 4),
-('-8997', '-8997', -8997, '/Home/Bizlog', '', '业务日志', 5),
-('1003', '1003', 1003, '/Home/Warehouse', '', '仓库', 6),
-('1004', '1004', 1004, '/Home/Supplier', '', '供应商档案', 7)
+('-8997', '-8997', -8997, '/Home/Bizlog', '', '业务日志', 4),
+('-8996', '-8996', -8996, '/Home/Permission', '', '权限管理', 5),
+('1001', '1001', 1001, '/Home/Goods', '', '物料', 6),
+('1002', '1002', 1002, '/Home/Goods/unitIndex', '', '物料计量单位', 7),
+('1003', '1003', 1003, '/Home/Warehouse', '', '仓库', 8),
+('1004', '1004', 1004, '/Home/Supplier', '', '供应商档案', 9)
 ;
 
 
