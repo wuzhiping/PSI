@@ -24,7 +24,8 @@ INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`
 ('473D4804-60AF-11EC-A41B-E86A641ED142', 'SLN0000.01.01', '码表记录状态', 't_sysdict_ct_record_status', 'SLN0000.01', '码表记录的状态', 'MBJLZT'),
 ('53965D61-60AF-11EC-A41B-E86A641ED142', 'SLN0000.01.02', '码表字段编辑器类型', 't_sysdict_ct_editor_xtype', 'SLN0000.01', '码表字段编辑器的类型', 'MBZDBJQLX'),
 ('5DAC23B4-60AF-11EC-A41B-E86A641ED142', 'SLN0000.02.01', '表单字段编辑器类型', 't_sysdict_form_editor_xtype', 'SLN0000.02', '表单字段编辑器的类型', 'BDZDBJQLX'),
-('68BE0DF3-60AF-11EC-A41B-E86A641ED142', 'SLN0000.03.01', '视图xtype', 't_sysdict_fv_xtype', 'SLN0000.03', '视图的组件类型(xtype)', 'STXTYPE');
+('68BE0DF3-60AF-11EC-A41B-E86A641ED142', 'SLN0000.03.01', '视图xtype', 't_sysdict_fv_xtype', 'SLN0000.03', '视图的组件类型(xtype)', 'STXTYPE'),
+('6C5F4D19-8952-11EC-9791-E86A641ED142', 'SLN0000.05.01', '主菜单导航', 't_sysdict_mainmenu_nav', 'SLN0000.05', '主菜单导航', 'ZCDDH');
 
 TRUNCATE TABLE `t_sysdict_ct_record_status`;
 INSERT INTO `t_sysdict_ct_record_status` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
@@ -51,6 +52,13 @@ TRUNCATE TABLE `t_sysdict_fv_xtype`;
 INSERT INTO `t_sysdict_fv_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('7E444093-97CF-11EA-8BF1-E86A641ED142', '-1', -1, 'panel', 'panel', '占位容器', -1),
 ('882978F6-90CA-11EA-B303-E86A641ED142', '1', 1, 'psi_codetable_view_cmp', 'psi_codetable_view_cmp', '数据来自码表的视图', 1);
+
+# 主菜单导航
+TRUNCATE TABLE `t_sysdict_mainmenu_nav`;
+INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('-9994', '-9994', 1, '关于', '', '', 1),
+('-9996', '-9996', 2, '修改我的密码', '', '', 2);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

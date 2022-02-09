@@ -63,7 +63,7 @@ class MainMenuController extends PSIBaseController
 
       switch ($fid) {
         case FIdConst::ABOUT:
-          // 修改我的密码
+          // 关于
           redirect(__ROOT__ . "/Home/About/index");
           break;
         case FIdConst::RELOGIN:
