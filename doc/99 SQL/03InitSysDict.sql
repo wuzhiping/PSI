@@ -64,7 +64,9 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('1001', '1001', 1001, '/Home/Goods', '', '物料', 6),
 ('1002', '1002', 1002, '/Home/Goods/unitIndex', '', '物料计量单位', 7),
 ('1003', '1003', 1003, '/Home/Warehouse', '', '仓库', 8),
-('1004', '1004', 1004, '/Home/Supplier', '', '供应商档案', 9)
+('1004', '1004', 1004, '/Home/Supplier', '', '供应商档案', 9),
+('1007', '1007', 1007, '/Home/Customer', '', '客户资料', 10),
+('2000', '2000', 2000, '/Home/Inventory/initIndex', '', '库存建账', 11)
 ;
 
 
