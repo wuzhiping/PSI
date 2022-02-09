@@ -93,7 +93,9 @@ INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`
 ('warehouse', 'warehouse', 7, '/help/admin/02-05.html', '', '访问实施指南页面：仓库', 7),
 ('goods', 'goods', 8, '/help/admin/02-04.html', '', '访问实施指南页面：物料', 8),
 ('goodsBrand', 'goodsBrand', 9, '/help/admin/02-04-02.html', '', '访问实施指南页面：物料品牌', 9),
-('goodsUnit', 'goodsUnit', 10, '/help/admin/02-04-01.html', '', '访问实施指南页面：物料计量单位', 10)
+('goodsUnit', 'goodsUnit', 10, '/help/admin/02-04-01.html', '', '访问实施指南页面：物料计量单位', 10),
+('supplier', 'supplier', 11, '/help/admin/02-07.html', '', '访问实施指南页面：供应商档案', 11),
+('customer', 'customer', 12, '/help/admin/02-08.html', '', '访问实施指南页面：客户资料', 12)
 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
