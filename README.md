@@ -40,7 +40,7 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 > 上述应用场景，只是举例，不是全部。
 
-> 利用PSI的代码给您带来商业收益，这是对PSI最大的褒奖
+> **<span style='color:red'>利用PSI的代码给您带来商业收益，这是对PSI最大的褒奖</span>**
 
 # Wiki和Issue
 
