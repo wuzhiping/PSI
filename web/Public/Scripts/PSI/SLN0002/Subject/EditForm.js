@@ -284,8 +284,9 @@ Ext.define("PSI.SLN0002.Subject.EditForm", {
     Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().onCompanyGridSelect();
+      const parentForm = me.getParentForm();
+      if (parentForm) {
+        parentForm._onCompanyGridSelect.apply(parentForm, []);
       }
     }
   },
