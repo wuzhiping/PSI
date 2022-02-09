@@ -73,7 +73,10 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2004', '2004', 2004, '/Home/Funds/rvIndex', '', '应收账款管理', 15),
 ('2005', '2005', 2005, '/Home/Funds/payIndex', '', '应付账款管理', 16),
 ('2006', '2006', 2006, '/Home/SaleRej/srIndex', '', '销售退货入库', 17),
-('2008', '2008', 2008, '/Home/BizConfig', '', '业务设置', 18)
+('2007', '2007', 2007, '/Home/PurchaseRej', '', '采购退货出库', 18),
+('2008', '2008', 2008, '/Home/BizConfig', '', '业务设置', 19),
+('2009', '2009', 2009, '/Home/InvTransfer', '', '库间调拨', 20),
+('2010', '2010', 2010, '/Home/InvCheck', '', '库存盘点', 21)
 ;
 
 
