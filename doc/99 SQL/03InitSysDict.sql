@@ -99,7 +99,9 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2031', '2031', 2031, '/Home/Goods/psIndex', '', '价格体系', 40),
 ('2101', '2101', 2101, '/SLN0002/Subject/index', '', '会计科目', 41),
 ('2102', '2102', 2102, '/SLN0002/Bank/index', '', '银行账户', 42),
-('2103', '2103', 2103, '/SLN0002/GLPeriod/index', '', '会计期间', 43)
+('2103', '2103', 2103, '/SLN0002/GLPeriod/index', '', '会计期间', 43),
+('2032', '2032', 2032, '/Home/SaleContract/index', '', '销售合同', 44),
+('2033', '2033', 2033, '/Home/WSP/index', '', '销售合同', 45)
 ;
 
 # 实施指南导航
