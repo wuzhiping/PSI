@@ -112,7 +112,10 @@ INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`
 ('wspbill', 'wspbill', 26, '/help/user/60-01.html', '', '访问实施指南页面：存货拆分', 26),
 ('factory', 'factory', 27, '/help/admin/02-09.html', '', '访问实施指南页面：工厂', 27),
 ('dmobill', 'dmobill', 28, '/help/user/60-02.html', '', '访问实施指南页面：成品委托生产订单', 28),
-('dmwbill', 'dmwbill', 29, '/help/user/60-03.html', '', '访问实施指南页面：成品委托生产入库', 29)
+('dmwbill', 'dmwbill', 29, '/help/user/60-03.html', '', '访问实施指南页面：成品委托生产入库', 29),
+('mainMenuMaintain', 'mainMenuMaintain', 30, '/help/dev/lcap/08-01.html', '', '访问实施指南页面：主菜单维护', 30),
+('sysdict', 'sysdict', 31, '/help/dev/lcap/08-02.html', '', '访问实施指南页面：系统数据字典', 31),
+('codetable', 'codetable', 32, '/help/dev/lcap/08-03.html', '', '访问实施指南页面：码表设置', 32)
 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
