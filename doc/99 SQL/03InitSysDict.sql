@@ -90,7 +90,9 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2021', '2021', 2021, '/Home/Report/receivablesAge', '', '应收账款账龄分析表', 31),
 ('2022', '2022', 2022, '/Home/Report/payablesAge', '', '应付账款账龄分析表', 32),
 ('2023', '2023', 2023, '/Home/Report/inventoryUpper', '', '库存超上限明细表', 33),
-('2024', '2024', 2024, '/Home/Funds/cashIndex', '', '现金收支查询', 34)
+('2024', '2024', 2024, '/Home/Funds/cashIndex', '', '现金收支查询', 34),
+('2025', '2025', 2025, '/Home/Funds/prereceivingIndex', '', '预收款管理', 35),
+('2026', '2026', 2026, '/Home/Funds/prepaymentIndex', '', '预付款管理', 36)
 ;
 
 # 实施指南导航
