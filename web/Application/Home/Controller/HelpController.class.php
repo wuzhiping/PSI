@@ -38,7 +38,10 @@ class HelpController extends PSIBaseController
       redirect($url);
     } else {
       // 或许是bug、或许是用户通过浏览器乱输入的
-      // 最后的兜底处理
+      // 最后的兜底处理，都视为从主菜单访问指南
+
+      $bs = new BizlogService();
+      $bs->insertBizlog("从主菜单访问实施指南页面 ");
       redirect("/help/index.html");
     }
   }
