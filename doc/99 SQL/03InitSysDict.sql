@@ -104,7 +104,10 @@ INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`
 ('wsbill', 'wsbill', 18, '/help/user/30-02.html', '', '访问实施指南页面：销售出库', 18),
 ('srbill', 'srbill', 19, '/help/user/30-03.html', '', '访问实施指南页面：销售退货入库', 19),
 ('itbill', 'itbill', 20, '/help/user/40-01.html', '', '访问实施指南页面：库间调拨', 20),
-('icbill', 'icbill', 21, '/help/user/40-02.html', '', '访问实施指南页面：库存盘点', 21)
+('icbill', 'icbill', 21, '/help/user/40-02.html', '', '访问实施指南页面：库存盘点', 21),
+('dataOrg', 'dataOrg', 22, '/help/admin/05.html', '', '访问实施指南页面：数据域应用详解', 22),
+('commBill', 'commBill', 23, '/help/user/00.html', '', '访问实施指南页面：表单通用操作', 23),
+('scbill', 'scbill', 24, '/help/user/30-04.html', '', '访问实施指南页面：销售合同', 24)
 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
