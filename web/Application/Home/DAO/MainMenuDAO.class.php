@@ -422,4 +422,24 @@ class MainMenuDAO extends PSIBaseExDAO
     // 操作成功
     return null;
   }
+
+  /**
+   * 获得某个模块的导航项
+   */
+  public function getNav($params)
+  {
+    $db = $this->db;
+
+    $fid = $params["fid"];
+
+    $sql = "select name from t_sysdict_mainmenu_nav where code = '%s' ";
+    $data = $db->query($sql, $fid);
+    if ($data) {
+      return [
+        "url" => $data[0]["name"],
+      ];
+    } else {
+      return null;
+    }
+  }
 }

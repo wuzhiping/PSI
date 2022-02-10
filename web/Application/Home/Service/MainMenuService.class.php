@@ -291,4 +291,17 @@ class MainMenuService extends PSIBaseExService
     $dao = new MainMenuDAO($this->db());
     return $dao->menuItemInfo($params);
   }
+
+  /**
+   * 获得某个模块的导航项
+   */
+  public function getNav($params)
+  {
+    if ($this->isNotOnline()) {
+      return null;
+    }
+
+    $dao = new MainMenuDAO($this->db());
+    return $dao->getNav($params);
+  }
 }
