@@ -242,7 +242,11 @@ Ext.define("PSI.SysDict.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [{
+        items: [Ext.create("Ext.grid.RowNumberer", {
+          text: "#",
+          align: "center",
+          width: 60
+        }), {
           header: "编码(字符类型)",
           dataIndex: "code",
           width: 150
