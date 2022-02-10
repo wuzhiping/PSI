@@ -101,7 +101,10 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2102', '2102', 2102, '/SLN0002/Bank/index', '', '银行账户', 42),
 ('2103', '2103', 2103, '/SLN0002/GLPeriod/index', '', '会计期间', 43),
 ('2032', '2032', 2032, '/Home/SaleContract/index', '', '销售合同', 44),
-('2033', '2033', 2033, '/Home/WSP/index', '', '销售合同', 45)
+('2033', '2033', 2033, '/Home/WSP/index', '', '存货拆分', 45),
+('2034', '2034', 2034, '/Home/Factory/index', '', '工厂', 46),
+('2035', '2035', 2035, '/Home/DMO/dmobillIndex', '', '成品委托生产订单', 47),
+('2036', '2036', 2036, '/Home/DMW/dmwbillIndex', '', '成品委托生产入库', 48)
 ;
 
 # 实施指南导航
