@@ -108,7 +108,11 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2037', '2037', 2037, '/Home/Report/purchaseDetail', '', '采购入库明细表', 49),
 ('2038', '2038', 2038, '/Home/Report/saleDetail', '', '销售出库明细表', 50),
 ('-7994', '-7994', -7994, '/Home/SysDict/index', '', '系统数据字典', 51),
-('-6000', '-6000', -6000, '/Home/Solution/index', '', '解决方案', 52)
+('-6000', '-6000', -6000, '/Home/Solution/index', '', '解决方案', 52),
+('-7996', '-7996', -7996, '/Home/CodeTable/index', '', '码表设置', 53),
+('-7995', '-7995', -7995, '/Home/MainMenu/maintainIndex', '', '主菜单维护', 54),
+('-7999', '-7999', -7999, '/Home/Form/index', '', '自定义表单', 55),
+('-7997', '-7997', -7997, '/Home/FormView/index', '', '视图开发助手', 56)
 ;
 
 # 实施指南导航
