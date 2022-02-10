@@ -78,7 +78,9 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2008', '2008', 2008, '/Home/BizConfig', '', '业务设置', 19),
 ('2009', '2009', 2009, '/Home/InvTransfer', '', '库间调拨', 20),
 ('2010', '2010', 2010, '/Home/InvCheck', '', '库存盘点', 21),
-('2012', '2012', 2012, '/Home/Report/saleDayByGoods', '', '销售日报表(按商品汇总)', 22)
+('2012', '2012', 2012, '/Home/Report/saleDayByGoods', '', '销售日报表(按商品汇总)', 22),
+('2013', '2013', 2013, '/Home/Report/saleDayByCustomer', '', '销售日报表(按客户汇总)', 23),
+('2014', '2014', 2014, '/Home/Report/saleDayByWarehouse', '', '销售日报表(按仓库汇总)', 24)
 ;
 
 # 实施指南导航
