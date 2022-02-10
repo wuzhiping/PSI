@@ -97,7 +97,9 @@ INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`
 ('supplier', 'supplier', 11, '/help/admin/02-07.html', '', '访问实施指南页面：供应商档案', 11),
 ('customer', 'customer', 12, '/help/admin/02-08.html', '', '访问实施指南页面：客户资料', 12),
 ('bizconfig', 'bizconfig', 13, '/help/admin/02-03.html', '', '访问实施指南页面：业务设置', 13),
-('pobill', 'pobill', 14, '/help/user/20-01.html', '', '访问实施指南页面：采购订单', 14)
+('pobill', 'pobill', 14, '/help/user/20-01.html', '', '访问实施指南页面：采购订单', 14),
+('pwbill', 'pwbill', 15, '/help/user/20-02.html', '', '访问实施指南页面：采购入库', 15),
+('prbill', 'prbill', 16, '/help/user/20-03.html', '', '访问实施指南页面：采购退货出库', 16)
 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
