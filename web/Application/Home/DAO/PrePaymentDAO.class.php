@@ -374,7 +374,7 @@ class PrePaymentDAO extends PSIBaseExDAO
               and d.company_id = '%s'
             ";
 
-    $data = $db->query($sql, $supplerId, $companyId, $dtFrom, $dtTo);
+    $data = $db->query($sql, $supplerId, $dtFrom, $dtTo, $companyId);
     $cnt = $data[0]["cnt"];
 
     return [
