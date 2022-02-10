@@ -33,9 +33,9 @@ class HelpController extends PSIBaseController
         $bs = new BizlogService();
         $logCategory = $code == "fromShortcut" ? "快捷访问" : "实施指南";
         $bs->insertBizlog($log, $logCategory);
-
-        redirect($url);
       }
+
+      redirect($url);
     } else {
       // 或许是bug、或许是用户通过浏览器乱输入的
       // 最后的兜底处理
