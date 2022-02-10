@@ -80,7 +80,10 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2010', '2010', 2010, '/Home/InvCheck', '', '库存盘点', 21),
 ('2012', '2012', 2012, '/Home/Report/saleDayByGoods', '', '销售日报表(按商品汇总)', 22),
 ('2013', '2013', 2013, '/Home/Report/saleDayByCustomer', '', '销售日报表(按客户汇总)', 23),
-('2014', '2014', 2014, '/Home/Report/saleDayByWarehouse', '', '销售日报表(按仓库汇总)', 24)
+('2014', '2014', 2014, '/Home/Report/saleDayByWarehouse', '', '销售日报表(按仓库汇总)', 24),
+('2015', '2015', 2015, '/Home/Report/saleDayByBizuser', '', '销售日报表(按业务员汇总)', 25),
+('2016', '2016', 2016, '/Home/Report/saleMonthByGoods', '', '销售月报表(按商品汇总)', 26),
+('2017', '2017', 2017, '/Home/Report/saleMonthByCustomer', '', '销售月报表(按客户汇总)', 27)
 ;
 
 # 实施指南导航
