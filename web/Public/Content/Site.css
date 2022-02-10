@@ -611,3 +611,10 @@ input:focus{
   background-color: #006d75;
   color: white;
 }
+
+/* Grid单元格文字自动换行 */
+.PSI-grid-cell-autoWrap {
+  white-space: normal; 
+  word-break: break-all;
+  word-wrap: break-word;
+}

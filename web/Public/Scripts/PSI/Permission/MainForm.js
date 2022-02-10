@@ -294,21 +294,21 @@ Ext.define("PSI.Permission.MainForm", {
           dataIndex: "name",
           width: 200,
           renderer(value) {
-            return `<div style='white-space:normal; word-break:break-all;word-wrap:break-word; '>${value}</div>`;
+            return `<div class='PSI-grid-cell-autoWrap'>${value}</div>`;
           }
         }, {
           header: "说明",
           dataIndex: "note",
           flex: 1,
           renderer(value) {
-            return `<div style='white-space:normal; word-break:break-all;word-wrap:break-word; '>${value}</div>`;
+            return `<div class='PSI-grid-cell-autoWrap'>${value}</div>`;
           }
         }, {
           header: "数据域",
           dataIndex: "dataOrgWithName",
           width: 300,
           renderer(value) {
-            return `<div style='white-space:normal; word-break:break-all;word-wrap:break-word; '>${value}</div>`;
+            return `<div class='PSI-grid-cell-autoWrap'>${value}</div>`;
           }
         }]
       },
