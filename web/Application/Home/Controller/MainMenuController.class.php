@@ -58,19 +58,25 @@ class MainMenuController extends PSIBaseController
       // 自定义表单 - 运行期
       redirect(__ROOT__ . "/Home/Form/run?fid={$fid}");
     } else {
-
       // 以下是系统固有模块
-      $ms = new MainMenuService();
-      $params = [
-        "fid" => $fid
-      ];
-      $nav = $ms->getNav($params);
-      if ($nav) {
-        $url = $nav["url"];
-        redirect(__ROOT__ . $url);
-      } else {
-        // 最后的异常处理，都跳转到首页
+      if ($fid == FIdConst::RELOGIN) {
+        // 重新登录
+        $us = new UserService();
+        $us->clearLoginUserInSession();
         redirect(__ROOT__ . "/Home");
+      } else {
+        $ms = new MainMenuService();
+        $params = [
+          "fid" => $fid
+        ];
+        $nav = $ms->getNav($params);
+        if ($nav) {
+          $url = $nav["url"];
+          redirect(__ROOT__ . $url);
+        } else {
+          // 最后的异常处理，都跳转到首页
+          redirect(__ROOT__ . "/Home");
+        }
       }
     }
   }
