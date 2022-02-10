@@ -85,7 +85,9 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2016', '2016', 2016, '/Home/Report/saleMonthByGoods', '', '销售月报表(按商品汇总)', 26),
 ('2017', '2017', 2017, '/Home/Report/saleMonthByCustomer', '', '销售月报表(按客户汇总)', 27),
 ('2018', '2018', 2018, '/Home/Report/saleMonthByWarehouse', '', '销售月报表(按仓库汇总)', 28),
-('2019', '2019', 2019, '/Home/Report/saleMonthByBizuser', '', '销售月报表(按业务员汇总)', 29)
+('2019', '2019', 2019, '/Home/Report/saleMonthByBizuser', '', '销售月报表(按业务员汇总)', 29),
+('2020', '2020', 2020, '/Home/Report/safetyInventory', '', '安全库存明细表', 30),
+('2021', '2021', 2021, '/Home/Report/receivablesAge', '', '应收账款账龄分析表', 31)
 ;
 
 # 实施指南导航
