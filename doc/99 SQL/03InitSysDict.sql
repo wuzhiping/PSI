@@ -106,7 +106,9 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('2035', '2035', 2035, '/Home/DMO/dmobillIndex', '', '成品委托生产订单', 47),
 ('2036', '2036', 2036, '/Home/DMW/dmwbillIndex', '', '成品委托生产入库', 48),
 ('2037', '2037', 2037, '/Home/Report/purchaseDetail', '', '采购入库明细表', 49),
-('2038', '2038', 2038, '/Home/Report/saleDetail', '', '销售出库明细表', 50)
+('2038', '2038', 2038, '/Home/Report/saleDetail', '', '销售出库明细表', 50),
+('-7994', '-7994', -7994, '/Home/SysDict/index', '', '系统数据字典', 51),
+('-6000', '-6000', -6000, '/Home/Solution/index', '', '解决方案', 52)
 ;
 
 # 实施指南导航
