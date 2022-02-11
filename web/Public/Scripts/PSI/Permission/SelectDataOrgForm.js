@@ -108,9 +108,9 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
         dataOrgList.join(";"));
     }
 
-    if (me.getEditForm()) {
-      me.getEditForm().onEditDataOrgCallback(dataOrgList
-        .join(";"));
+    const editForm = me.getEditForm();
+    if (editForm) {
+      editForm.onEditDataOrgCallback.apply(editForm, [dataOrgList.join(";")]);
     }
 
     me.close();

@@ -704,8 +704,13 @@ Ext.define("PSI.Permission.EditForm", {
       return;
     }
 
-    for (let i = 0; i < items.length; i++) {
-      items[i].set("dataOrg", dataOrg);
-    }
+    items.forEach(it => {
+      it.set("dataOrg", dataOrg);
+    })
+    // const len = items.length;
+    // for (let i = 0; i < len; i++) {
+    //   const it = items[i];
+    //   it.set("dataOrg", dataOrg);
+    // }
   }
 });
