@@ -70,6 +70,24 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ('-6000', '-6000', -6000, '/Home/Solution', '', '解决方案', 11)
 ;
 
+# 实施指南导航
+TRUNCATE TABLE `t_sysdict_help_nav`;
+INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('login', 'login', 1, '/help/user/10.html', '', '', 1),
+('user', 'user', 2, '/help/admin/02-01.html', '', '访问实施指南页面：用户管理', 2),
+('permission', 'permission', 5, '/help/admin/02-02.html', '', '访问实施指南页面：权限管理', 5),
+('bizlog', 'bizlog', 6, '/help/admin/03.html', '', '访问实施指南页面：业务日志', 6),
+('dataOrg', 'dataOrg', 22, '/help/admin/05.html', '', '访问实施指南页面：数据域应用详解', 22),
+('commBill', 'commBill', 23, '/help/user/00.html', '', '访问实施指南页面：表单通用操作', 23),
+('mainMenuMaintain', 'mainMenuMaintain', 30, '/help/dev/lcap/08-01.html', '', '访问实施指南页面：主菜单维护', 30),
+('sysdict', 'sysdict', 31, '/help/dev/lcap/08-02.html', '', '访问实施指南页面：系统数据字典', 31),
+('codetable', 'codetable', 32, '/help/dev/lcap/08-03.html', '', '访问实施指南页面：码表设置', 32),
+('form', 'form', 33, '/help/dev/lcap/08-06.html', '', '访问实施指南页面：自定义表单', 33),
+('formview', 'formview', 34, '/help/dev/lcap/08-04.html', '', '访问实施指南页面：视图开发助手', 34),
+('solution', 'solution', 35, '/help/dev/lcap/08-05.html', '', '访问实施指南页面：解决方案', 35),
+('fromShortcut', 'fromShortcut', 36, '/help/index.html', '', '通过快捷访问进入实施指南页面', 36)
+;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
