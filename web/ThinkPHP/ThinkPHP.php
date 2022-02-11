@@ -64,12 +64,21 @@ defined('CONF_PARSE')   or define('CONF_PARSE',     '');    // 配置文件解�
 defined('ADDON_PATH')   or define('ADDON_PATH',     APP_PATH.'Addon');
 
 // 系统信息
+/*
+ThinkPHP 原代码 - begin
 if(version_compare(PHP_VERSION,'5.4.0','<')) {
     ini_set('magic_quotes_runtime',0);
     define('MAGIC_QUOTES_GPC',get_magic_quotes_gpc()? true : false);
 }else{
     define('MAGIC_QUOTES_GPC',false);
 }
+ThinkPHP 原代码 - end
+升级到PHP8.1后，注释掉上述代码
+*/
+// PSI，2022/2/11新增代码 - begin
+define('MAGIC_QUOTES_GPC',false);
+// PSI，2022/2/11新增代码 - end
+
 define('IS_CGI',(0 === strpos(PHP_SAPI,'cgi') || false !== strpos(PHP_SAPI,'fcgi')) ? 1 : 0 );
 define('IS_WIN',strstr(PHP_OS, 'WIN') ? 1 : 0 );
 define('IS_CLI',PHP_SAPI=='cli'? 1   :   0);
