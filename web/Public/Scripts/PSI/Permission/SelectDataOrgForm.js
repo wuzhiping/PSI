@@ -110,8 +110,10 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
 
     const editForm = me.getEditForm();
     if (editForm) {
+      editForm.getEl().mask("数据域更改中...");
       Ext.Function.defer(() => {
         editForm.onEditDataOrgCallback.apply(editForm, [dataOrgList.join(";")]);
+        editForm.getEl().unmask();
       }, 100);
     }
 
