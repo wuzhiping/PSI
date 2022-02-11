@@ -78,15 +78,22 @@ INSERT INTO `t_permission` (`id`, `fid`, `name`, `note`, `category`, `py`, `show
 ('-8999-08', '-8999-08', '用户管理-删除用户', '按钮权限：用户管理模块[删除用户]按钮权限', '用户管理', 'YHGL_SCYH', 206),
 ('-8999-09', '-8999-09', '用户管理-修改用户密码', '按钮权限：用户管理模块[修改用户密码]按钮权限', '用户管理', 'YHGL_XGYHMM', 207);
 
+# 默认角色 - 系统管理
 TRUNCATE TABLE `t_role`;
 INSERT INTO `t_role` (`id`, `name`, `data_org`, `company_id`, `code`) VALUES
 ('A83F617E-A153-11E4-A9B8-782BCBD7746B', '系统管理', '01010001', '4D74E1E4-A129-11E4-9B6A-782BCBD7746B', '01');
 
-# TRUNCATE TABLE `t_role_permission`;
-# INSERT INTO `t_role_permission` (`role_id`, `permission_id`) VALUES
-# ('A83F617E-A153-11E4-A9B8-782BCBD7746B', '-8999'),
-# ('A83F617E-A153-11E4-A9B8-782BCBD7746B', '-8997'),
-# ('A83F617E-A153-11E4-A9B8-782BCBD7746B', '-8996');
+# 默认角色的权限项
+TRUNCATE TABLE `t_role_permission`;
+INSERT INTO `t_role_permission` (`role_id`, `permission_id`) 
+select 'A83F617E-A153-11E4-A9B8-782BCBD7746B' as role_id, fid as permission_id
+from t_permission;
+
+# 默认角色的数据域
+TRUNCATE TABLE `t_role_permission_dataorg`;
+INSERT INTO `t_role_permission_dataorg` (`role_id`, `permission_id`, `data_org`) 
+select 'A83F617E-A153-11E4-A9B8-782BCBD7746B' as role_id, fid as permission_id, '01' as data_org
+from t_permission;
 
 TRUNCATE TABLE `t_role_user`;
 INSERT INTO `t_role_user` (`role_id`, `user_id`) VALUES
@@ -104,7 +111,7 @@ update t_config set company_id = '4D74E1E4-A129-11E4-9B6A-782BCBD7746B' ;
 
 TRUNCATE TABLE `t_psi_db_version`;
 INSERT INTO `t_psi_db_version` (`db_version`, `update_dt`) VALUES
-('20220201-01', now());
+('20220211-01', now());
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
