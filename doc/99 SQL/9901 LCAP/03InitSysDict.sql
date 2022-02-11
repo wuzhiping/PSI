@@ -54,6 +54,22 @@ INSERT INTO `t_sysdict_fv_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`
 ('7E444093-97CF-11EA-8BF1-E86A641ED142', '-1', -1, 'panel', 'panel', '占位容器', -1),
 ('882978F6-90CA-11EA-B303-E86A641ED142', '1', 1, 'psi_codetable_view_cmp', 'psi_codetable_view_cmp', '数据来自码表的视图', 1);
 
+# 主菜单导航
+TRUNCATE TABLE `t_sysdict_mainmenu_nav`;
+INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('-9996', '-9996', -9996, '/Home/User/changeMyPassword', '', '修改我的密码', 1),
+('-9994', '-9994', -9994, '/Home/About', '', '关于', 2),
+('-8999', '-8999', -8999, '/Home/User', '', '用户管理', 3),
+('-8997', '-8997', -8997, '/Home/Bizlog', '', '业务日志', 4),
+('-8996', '-8996', -8996, '/Home/Permission', '', '权限管理', 5),
+('-7999', '-7999', -7999, '/Home/Form', '', '自定义表单', 6),
+('-7997', '-7997', -7997, '/Home/FormView', '', '视图开发助手', 7),
+('-7996', '-7996', -7996, '/Home/CodeTable', '', '码表设置', 8),
+('-7995', '-7995', -7995, '/Home/MainMenu/maintainIndex', '', '主菜单维护', 9),
+('-7994', '-7994', -7994, '/Home/SysDict', '', '系统数据字典', 10),
+('-6000', '-6000', -6000, '/Home/Solution', '', '解决方案', 11)
+;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
