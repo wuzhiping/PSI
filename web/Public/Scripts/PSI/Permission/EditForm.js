@@ -43,31 +43,36 @@ Ext.define("PSI.Permission.EditForm", {
       },
       selType: "checkboxmodel",
       store: permissionStore,
-      columns: [{
-        header: "权限名称",
-        dataIndex: "name",
-        flex: 2,
-        menuDisabled: true
-      }, {
-        header: "数据域",
-        dataIndex: "dataOrg",
-        flex: 1,
-        menuDisabled: true
-      }, {
-        header: "操作",
-        align: "center",
-        menuDisabled: true,
-        width: 50,
-        xtype: "actioncolumn",
-        items: [{
-          icon: me.URL("Public/Images/icons/delete.png"),
-          handler(grid, row) {
-            const store = grid.getStore();
-            store.remove(store.getAt(row));
-          },
-          scope: this
+      columns: {
+        defaults: {
+          sortable: false,
+          menuDisabled: true,
+        }, items: [{
+          header: "权限名称",
+          dataIndex: "name",
+          flex: 2,
+          menuDisabled: true
+        }, {
+          header: "数据域",
+          dataIndex: "dataOrg",
+          flex: 1,
+          menuDisabled: true
+        }, {
+          header: "操作",
+          align: "center",
+          menuDisabled: true,
+          width: 50,
+          xtype: "actioncolumn",
+          items: [{
+            icon: me.URL("Public/Images/icons/delete.png"),
+            handler(grid, row) {
+              const store = grid.getStore();
+              store.remove(store.getAt(row));
+            },
+            scope: this
+          }]
         }]
-      }],
+      },
       tbar: [{
         text: "添加权限",
         handler: me._onAddPermission,
@@ -113,33 +118,38 @@ Ext.define("PSI.Permission.EditForm", {
       },
       selType: "checkboxmodel",
       store: userStore,
-      columns: [{
-        header: "用户姓名",
-        dataIndex: "name",
-        flex: 1
-      }, {
-        header: "登录名",
-        dataIndex: "loginName",
-        flex: 1
-      }, {
-        header: "所属组织",
-        dataIndex: "orgFullName",
-        flex: 1
-      }, {
-        header: "操作",
-        align: "center",
-        menuDisabled: true,
-        width: 50,
-        xtype: "actioncolumn",
-        items: [{
-          icon: me.URL("Public/Images/icons/delete.png"),
-          handler(grid, row) {
-            const store = grid.getStore();
-            store.remove(store.getAt(row));
-          },
-          scope: me
+      columns: {
+        defaults: {
+          sortable: false,
+          menuDisabled: true,
+        }, items: [{
+          header: "用户姓名",
+          dataIndex: "name",
+          flex: 1
+        }, {
+          header: "登录名",
+          dataIndex: "loginName",
+          flex: 1
+        }, {
+          header: "所属组织",
+          dataIndex: "orgFullName",
+          flex: 1
+        }, {
+          header: "操作",
+          align: "center",
+          menuDisabled: true,
+          width: 50,
+          xtype: "actioncolumn",
+          items: [{
+            icon: me.URL("Public/Images/icons/delete.png"),
+            handler(grid, row) {
+              const store = grid.getStore();
+              store.remove(store.getAt(row));
+            },
+            scope: me
+          }]
         }]
-      }],
+      },
       tbar: [{
         text: "添加用户",
         iconCls: "PSI-button-add",
@@ -628,6 +638,8 @@ Ext.define("PSI.Permission.EditForm", {
 
   /**
    * @private
+   * 
+   * TODO 本函数没有用途，可以清理掉
    */
   getDataOrgGrid() {
     const me = this;
