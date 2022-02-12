@@ -228,8 +228,7 @@ class CodeTableService extends PSIBaseExService
       return $rc;
     }
 
-    $name = $params["name"];
-    $log = "删除码表[{$name}]的元数据";
+    $log = $params["log"];
 
     // 记录业务日志
     $bs = new BizlogService($db);

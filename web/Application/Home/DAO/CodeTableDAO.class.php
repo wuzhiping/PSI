@@ -1226,6 +1226,14 @@ class CodeTableDAO extends PSIBaseExDAO
       return $this->bad("码表[$name]是系统固有码表，不能删除");
     }
     $tableName = $codeTable["tableName"];
+    $slnCode = $codeTable["slnCode"];
+    // 检查解决方案是否存在
+    $sql = "select name from t_solution where code = '%s' ";
+    $data = $db->query($sql, $slnCode);
+    if (!$data) {
+      return $this->bad("解决方案不存在");
+    }
+    $slnName = $data[0]["name"];
 
     // 检查fid是否在菜单中使用了
     $sql = "select count(*) as cnt from t_menu_item where fid = '%s' ";
@@ -1293,7 +1301,8 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 操作成功
-    $params["name"] = $name;
+    $log = "解决方案[{$slnCode}-{$slnName}] - 删除码表[{$name}]的元数据";
+    $params["log"] = $log;
     return null;
   }
 
