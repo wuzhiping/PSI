@@ -47,14 +47,15 @@ Ext.define("PSI.User.OrgEditor", {
   onTriggerClick(e) {
     const me = this;
 
-    Ext.define("PSIOrgModel_PSI_org_editor", {
+    const modelName = "PSIModel.PSI.User.OrgEditor.OrgModel";
+    Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "text", "fullName", "orgCode",
         "leaf", "children"]
     });
 
     const orgStore = Ext.create("Ext.data.TreeStore", {
-      model: "PSIOrgModel_PSI_org_editor",
+      model: modelName,
       proxy: {
         type: "ajax",
         actionMethods: {
