@@ -48,7 +48,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           xtype: "panel",
           region: "west",
           layout: "fit",
-          width: 370,
+          width: 390,
           split: true,
           collapsible: true,
           header: false,
@@ -189,7 +189,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         }, items: [{
           header: "分类编码",
           dataIndex: "code",
-          width: 80,
+          width: 100,
         }, {
           header: "码表分类",
           dataIndex: "name",
