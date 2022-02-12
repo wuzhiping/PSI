@@ -57,11 +57,6 @@ class UserController extends PSIBaseController
    */
   public function login()
   {
-    // 2022-1-6 PHP版本升级到PHP8.1.1
-    if (version_compare(PHP_VERSION, '8.1.1') < 0) {
-      die("PSI 2022 PHP版本要求：PHP8.1.1+");
-    }
-
     if (session("loginUserId")) {
       // 已经登录了，就返回首页
       redirect(__ROOT__);
