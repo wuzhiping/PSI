@@ -159,7 +159,6 @@ class CodeTableService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $log = null;
     $dao = new CodeTableDAO($db);
     if ($isModify) {
       // 编辑
@@ -168,8 +167,6 @@ class CodeTableService extends PSIBaseExService
         $db->rollback();
         return $rc;
       }
-
-      $log = "编辑码表[{$name}]的元数据";
     } else {
       // 新增
       $rc = $dao->addCodeTable($params);
@@ -179,10 +176,10 @@ class CodeTableService extends PSIBaseExService
       }
 
       $id = $params["id"];
-      $log = "新增码表：{$name}";
     }
 
     // 记录业务日志
+    $log = $params["log"];
     $bs = new BizlogService($db);
     $bs->insertBizlog($log, $this->LOG_CATEGORY);
 

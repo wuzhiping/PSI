@@ -618,12 +618,12 @@ class CodeTableDAO extends PSIBaseExDAO
 
     $slnCode = $params["slnCode"];
     // 检查解决方案是否存在
-    $sql = "select count(*) as cnt from t_solution where code = '%s' ";
+    $sql = "select name from t_solution where code = '%s' ";
     $data = $db->query($sql, $slnCode);
-    $cnt = $data[0]["cnt"];
-    if ($cnt != 1) {
+    if (!$data) {
       return $this->bad("解决方案不存在");
     }
+    $slnName = $data[0]["name"];
 
     $categoryId = $params["categoryId"];
     if (!$this->getCodeTableCategoryById($categoryId)) {
@@ -927,6 +927,8 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 操作成功
+    $log = "解决方案[{$slnCode}-{$slnName}] - 新建码表[{$name}]";
+    $params["log"] = $log;
     $params["id"] = $id;
     return null;
   }
@@ -989,6 +991,15 @@ class CodeTableDAO extends PSIBaseExDAO
         return $this->bad("层级数据视图不能分页");
       }
     }
+
+    $slnCode = $codeTable["slnCode"];
+    // 检查解决方案是否存在
+    $sql = "select name from t_solution where code = '%s' ";
+    $data = $db->query($sql, $slnCode);
+    if (!$data) {
+      return $this->bad("解决方案不存在");
+    }
+    $slnName = $data[0]["name"];
 
     if ($handlerClassName) {
       // 判断后台业务处理类是否已经存在
@@ -1100,6 +1111,8 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 操作成功
+    $log = "解决方案[{$slnCode}-{$slnName}] - 编辑码表[{$name}]的元数据";
+    $params["log"] = $log;
     return null;
   }
 
@@ -1174,7 +1187,7 @@ class CodeTableDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
-    $sql = "select code, name, fid, is_fixed, table_name, enable_parent_id 
+    $sql = "select code, name, fid, is_fixed, table_name, enable_parent_id, sln_code 
             from t_code_table_md where id = '%s' ";
     $data = $db->query($sql, $id);
     if ($data) {
@@ -1185,6 +1198,7 @@ class CodeTableDAO extends PSIBaseExDAO
         "isFixed" => $data[0]["is_fixed"],
         "tableName" => $data[0]["table_name"],
         "enableParentId" => $data[0]["enable_parent_id"],
+        "slnCode" => $data[0]["sln_code"],
       ];
     } else {
       return null;
