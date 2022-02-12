@@ -15,6 +15,8 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;
