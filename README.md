@@ -54,9 +54,9 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 # PSI低代码应用平台范例
 
-- [PSI服装行业版 - https://gitee.com/crm8000/PSI_GI](https://gitee.com/crm8000/PSI_GI)
+- [PSI服装ERP - https://gitee.com/crm8000/PSI_GI](https://gitee.com/crm8000/PSI_GI)
 
-> `PSI服装行业版`既是展示PSI低代码应用平台能力的范例，又是我们商业化PSI的行业产品。
+> `PSI服装ERP`既是展示PSI低代码应用平台能力的范例，又是我们商业化PSI的行业产品。
 > 同时，也免费提供给各个合作伙伴商业使用。
 
 > 吃自己的狗食（eat your own dog food，是一种比喻的说法。对于软件开发公司而言，意思就是自己要尽量多用自己开发的软件）
