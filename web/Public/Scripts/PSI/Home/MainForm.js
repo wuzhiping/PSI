@@ -582,7 +582,7 @@ Ext.define("PSI.Home.MainForm", {
     var me = this;
     return {
       border: 0,
-      html: "<h1>欢迎使用" + me.getProductionName() + "</h1>"
+      html: "<h1 style='color:#0050b3'>欢迎使用" + me.getProductionName() + "</h1>"
     }
   },
 
