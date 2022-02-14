@@ -3254,7 +3254,10 @@ class CodeTableDAO extends PSIBaseExDAO
     $result = $lineSep;
     $result .= "# 清空码表分类\n";
     $result .= $lineSep;
-    $result .= "delete from t_code_table_category where sln_code = '{$slnCode}';\n";
+    $result .= "delete from t_code_table_category where sln_code = '{$slnCode}';\n\n";
+    $result .= $lineSep;
+    $result .= "# 码表分类\n";
+    $result .= $lineSep;
     foreach ($dataCategory as $category) {
       $categoryId = $category["id"];
       $categoryName = $category["Name"];
