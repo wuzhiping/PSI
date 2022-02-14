@@ -3236,11 +3236,30 @@ class CodeTableDAO extends PSIBaseExDAO
     // 检查解决方案是否存在
     $sql = "select name from t_solution where code = '%s' ";
     $data = $db->query($sql, $slnCode);
-    if (!$data){
+    if (!$data) {
       return $this->bad("解决方案不存在");
     }
 
-    $result = "TODO";
+    // 码表分类
+    $sql = "select id, code, name, is_system 
+            from t_code_table_category
+            where sln_code = '%s' 
+            order by code";
+    $dataCategory = $db->query($sql, $slnCode);
+    if (!$dataCategory) {
+      return $this->bad("解决方案下还没有码表");
+    }
+
+    $lineSep = "# --------------------------------------------------------------------------------\n";
+    $result = $lineSep;
+    $result .= "# 清空码表分类\n";
+    $result .= $lineSep;
+    $result .= "delete from t_code_table_category where sln_code = '{$slnCode}';\n";
+    foreach ($dataCategory as $category) {
+      $categoryId = $category["id"];
+      $categoryName = $category["Name"];
+    }
+
     return ["sql" => $result, "success" => true];
   }
 
