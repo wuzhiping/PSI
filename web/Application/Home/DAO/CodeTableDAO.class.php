@@ -3267,6 +3267,25 @@ class CodeTableDAO extends PSIBaseExDAO
       $result .= "values ('{$categoryId}', '{$categoryCode}', '{$categoryName}', NULL, {$categoryIsSystem}, '$slnCode');\n";
     }
 
+    foreach ($dataCategory as $category) {
+      $categoryId = $category["id"];
+
+      // 码表分类下的码表
+      $sql = "select id, code, name, table_name
+              from t_code_table_md
+              where category_id = '%s'
+              order by code ";
+      $dataCodeTable = $db->query($sql, $categoryId);
+      foreach ($dataCodeTable as $codeTable) {
+        $result .= "\n";
+
+        $codeTableName = $codeTable["name"];
+        $result .= $lineSep;
+        $result .= "# 码表：{$codeTableName}\n";
+        $result .= $lineSep;
+      }
+    }
+
     return ["sql" => $result, "success" => true];
   }
 
