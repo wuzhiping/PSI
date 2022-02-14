@@ -10,11 +10,15 @@ Ext.define("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
 
   mixins: ["PSI.AFX.Mix.Common"],
 
+  config: {
+    slnCode: "",
+  },
+
   initComponent() {
     const me = this;
 
     Ext.apply(me, {
-      title: "导出SQL",
+      title: "解决方案全部码表导出SQL",
       width: 800,
       height: 420,
       layout: "fit",
@@ -64,6 +68,9 @@ Ext.define("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
     el && el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/CodeTable/codeTableSolutionGenSQL"),
+      params: {
+        id: me.getSlnCode(),
+      },
       callback(options, success, response) {
         if (success) {
           const data = me.decodeJSON(response.responseText);
