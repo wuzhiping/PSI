@@ -69,7 +69,7 @@ Ext.define("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
     const r = {
       url: me.URL("Home/CodeTable/codeTableSolutionGenSQL"),
       params: {
-        id: me.getSlnCode(),
+        slnCode: me.getSlnCode(),
       },
       callback(options, success, response) {
         if (success) {

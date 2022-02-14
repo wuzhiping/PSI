@@ -666,7 +666,10 @@ class CodeTableController extends PSIBaseController
         die("没有权限");
       }
 
-      $params = [];
+      $params = [
+        // 解决方案编码
+        "slnCode" => I("post.slnCode"),
+      ];
 
       $service = new CodeTableService();
       $this->ajaxReturn($service->codeTableSolutionGenSQL($params));
