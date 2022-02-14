@@ -913,7 +913,9 @@ class CodeTableDAO extends PSIBaseExDAO
 
       $sql .= "`{$fieldName}` {$type} ";
       if ($mustInput == 1) {
-        $sql .= " NOT NULL";
+        // 必录项是逻辑控制，后台数据库都可以是NULL
+        // 这里的处理原则是，尽量少使用数据库的约束，就像不使用外键这个原则一样
+        $sql .= " DEFAULT NULL";
       } else {
         $sql .= " DEFAULT NULL";
       }
