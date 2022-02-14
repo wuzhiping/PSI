@@ -38,41 +38,6 @@ class CodeTableController extends PSIBaseController
   }
 
   /**
-   * 码表运行 - 主页面
-   * 
-   * web\Application\Home\View\CodeTable\run.html
-   */
-  public function run()
-  {
-    $fid = I("get.fid");
-
-    $us = new UserService();
-    if ($us->hasPermission($fid)) {
-      $this->initVar();
-
-      // 按钮权限：设计工具下的各个按钮权限
-      $this->assign("pDesignTool", $us->hasPermission(FIdConst::CODE_TABLE) ? "1" : "0");
-
-
-      $service = new CodeTableService();
-      $md = $service->getMetaDataByFid($fid);
-
-      if ($md) {
-        $this->assign("title", $md["title"]);
-        $this->assign("fid", $fid);
-
-        $this->display();
-      } else {
-
-        // 错误的fid，跳转到首页
-        $this->gotoLoginPage("/Home");
-      }
-    } else {
-      $this->gotoLoginPage("/Home");
-    }
-  }
-
-  /**
    * 查询解决方案列表
    * 
    * JS: web\Public\Scripts\PSI\CodeTable\MainForm.js
