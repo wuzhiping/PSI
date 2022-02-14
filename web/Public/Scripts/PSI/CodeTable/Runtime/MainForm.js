@@ -59,7 +59,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
     const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
     me.ajax({
-      url: me.URL("Home/CodeTable/getMetaDataForRuntime"),
+      url: me.URL("Home/CodeTableRuntime/getMetaDataForRuntime"),
       params: {
         fid: me.getFid()
       },
@@ -244,7 +244,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
         actionMethods: {
           read: "POST"
         },
-        url: me.URL("Home/CodeTable/codeTableRecordList"),
+        url: me.URL("Home/CodeTableRuntime/codeTableRecordList"),
         reader: {
           root: 'dataList',
           totalProperty: 'totalCount'
@@ -363,7 +363,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
         actionMethods: {
           read: "POST"
         },
-        url: me.URL("Home/CodeTable/codeTableRecordListForTreeView"),
+        url: me.URL("Home/CodeTableRuntime/codeTableRecordListForTreeView"),
         extraParams: {
           fid: me.getFid()
         }
@@ -538,7 +538,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
       const el = Ext.getBody();
       el && el.mask(PSI.Const.LOADING);
       const r = {
-        url: me.URL("Home/CodeTable/deleteCodeTableRecord"),
+        url: me.URL("Home/CodeTableRuntime/deleteCodeTableRecord"),
         params: {
           id: entity.get("id"),
           fid: md.fid
@@ -637,7 +637,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
       const el = Ext.getBody();
       el && el.mask(PSI.Const.LOADING);
       const r = {
-        url: me.URL("Home/CodeTable/saveColViewLayout"),
+        url: me.URL("Home/CodeTableRuntime/saveColViewLayout"),
         params: {
           fid: md.fid,
           json: json
