@@ -18,31 +18,11 @@ class CodeTableRuntimeController extends PSIBaseController
 {
 
   /**
-   * 码表设置 - 主页面
-   * 
-   * web\Application\Home\View\CodeTable\index.html
-   */
-  public function index()
-  {
-    $us = new UserService();
-
-    if ($us->hasPermission(FIdConst::CODE_TABLE)) {
-      $this->initVar();
-
-      $this->assign("title", "码表设置");
-
-      $this->display();
-    } else {
-      $this->gotoLoginPage("/Home/CodeTable/index");
-    }
-  }
-
-  /**
    * 码表运行 - 主页面
    * 
-   * web\Application\Home\View\CodeTable\run.html
+   * web\Application\Home\View\CodeTableRuntime\index.html
    */
-  public function run()
+  public function index()
   {
     $fid = I("get.fid");
 
