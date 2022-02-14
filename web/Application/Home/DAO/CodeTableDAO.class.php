@@ -3328,6 +3328,14 @@ class CodeTableDAO extends PSIBaseExDAO
         } else {
           $result .= $md["msg"] . "\n";
         }
+
+        $result .= "\n";
+        $ddl = $this->genCreateTableSQL($codeTableId);
+        if ($ddl["success"]) {
+          $result .= $ddl["sql"];
+        } else {
+          $result .= $ddl["msg"] . "\n";
+        }
       }
     }
 
