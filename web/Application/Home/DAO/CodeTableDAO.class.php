@@ -892,6 +892,21 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 创建数据库表
+    $sql = $this->genCreateDDL($tableName, $cols);
+    $rc = $db->execute($sql);
+    if ($rc === false) {
+      return $this->sqlError(__METHOD__, __LINE__);
+    }
+
+    // 操作成功
+    $log = "解决方案[{$slnCode}-{$slnName}] - 新建码表[{$name}]";
+    $params["log"] = $log;
+    $params["id"] = $id;
+    return null;
+  }
+
+  private function genCreateDDL($tableName, $cols)
+  {
     $sql = "CREATE TABLE IF NOT EXISTS `{$tableName}` (";
     foreach ($cols as $v) {
       $fieldName = $v["fieldName"];
@@ -922,16 +937,8 @@ class CodeTableDAO extends PSIBaseExDAO
     }
     $sql .= "PRIMARY KEY (`id`)
 				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-    $rc = $db->execute($sql);
-    if ($rc === false) {
-      return $this->sqlError(__METHOD__, __LINE__);
-    }
 
-    // 操作成功
-    $log = "解决方案[{$slnCode}-{$slnName}] - 新建码表[{$name}]";
-    $params["log"] = $log;
-    $params["id"] = $id;
-    return null;
+    return $sql;
   }
 
   /**
