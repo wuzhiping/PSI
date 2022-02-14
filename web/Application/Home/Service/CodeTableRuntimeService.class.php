@@ -2,7 +2,7 @@
 
 namespace Home\Service;
 
-use Home\DAO\CodeTableDAO;
+use Home\DAO\CodeTableRuntimeDAO;
 
 /**
  * 码表运行时Service
@@ -24,7 +24,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->categoryList($params);
   }
 
@@ -46,7 +46,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     if ($id) {
       // 编辑
       $rc = $dao->updateCodeTableCategory($params);
@@ -91,7 +91,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     $rc = $dao->deleteCodeTableCategory($params);
     if ($rc) {
       $db->rollback();
@@ -117,7 +117,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->codeTableList($params);
   }
 
@@ -130,7 +130,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->queryDataForCategory($params);
   }
 
@@ -159,7 +159,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     if ($isModify) {
       // 编辑
       $rc = $dao->updateCodeTable($params);
@@ -201,7 +201,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->codeTableColsList($params);
   }
 
@@ -221,7 +221,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     $rc = $dao->deleteCodeTable($params);
     if ($rc) {
       $db->rollback();
@@ -248,7 +248,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->codeTableInfo($params);
   }
 
@@ -264,7 +264,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->getMetaDataByFid($fid);
   }
 
@@ -280,7 +280,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $params["loginUserId"] = $this->getLoginUserId();
     $params["userService"] = new UserService();
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->getMetaDataForRuntime($params);
   }
 
@@ -303,7 +303,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     if ($id) {
       // 编辑
       $rc = $dao->updateRecord($params, new PinyinService());
@@ -345,7 +345,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $params["loginUserId"] = $this->getLoginUserId();
     $params["userService"] = new UserService();
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->codeTableRecordList($params);
   }
 
@@ -360,7 +360,7 @@ class CodeTableRuntimeService extends PSIBaseExService
 
     $params["loginUserId"] = $this->getLoginUserId();
     $params["userService"] = new UserService();
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->codeTableRecordListForTreeView($params);
   }
 
@@ -390,7 +390,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db->startTrans();
 
     $log = null;
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     if ($isModify) {
       // 编辑
       $rc = $dao->updateCodeTableCol($params);
@@ -434,7 +434,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $params["loginUserId"] = $this->getLoginUserId();
     $params["userService"] = new UserService();
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->recordInfo($params);
   }
 
@@ -454,7 +454,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     $rc = $dao->deleteRecord($params);
     if ($rc) {
       $db->rollback();
@@ -482,7 +482,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->codeTableColInfo($params);
   }
 
@@ -502,7 +502,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     $rc = $dao->deleteCodeTableCol($params);
     if ($rc) {
       $db->rollback();
@@ -531,7 +531,7 @@ class CodeTableRuntimeService extends PSIBaseExService
 
     $params["loginUserId"] = $this->getLoginUserId();
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->queryDataForRecordRef($params);
   }
 
@@ -552,7 +552,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     $rc = $dao->convertCodeTable($params);
     if ($rc) {
       $db->rollback();
@@ -583,7 +583,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     $rc = $dao->saveColViewLayout($params);
     if ($rc) {
       $db->rollback();
@@ -611,7 +611,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->queryCodeTableEditColShowOrder($params);
   }
 
@@ -627,7 +627,7 @@ class CodeTableRuntimeService extends PSIBaseExService
     $db = $this->db();
     $db->startTrans();
 
-    $dao = new CodeTableDAO($db);
+    $dao = new CodeTableRuntimeDAO($db);
     $rc = $dao->saveColEditShowOrder($params);
     if ($rc) {
       $db->rollback();
@@ -655,7 +655,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->codeTableGenSQL($params);
   }
 
@@ -668,7 +668,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->codeTableSolutionGenSQL($params);
   }
 
@@ -681,7 +681,7 @@ class CodeTableRuntimeService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new CodeTableDAO($this->db());
+    $dao = new CodeTableRuntimeDAO($this->db());
     return $dao->querySolutionList();
   }
 }
