@@ -891,7 +891,6 @@ class CodeTableDAO extends PSIBaseExDAO
       return $this->sqlError(__METHOD__, __LINE__);
     }
 
-
     // 创建数据库表
     $sql = "CREATE TABLE IF NOT EXISTS `{$tableName}` (";
     foreach ($cols as $v) {
