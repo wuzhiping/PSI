@@ -131,9 +131,13 @@ Ext.define("PSI.CodeTable.MainForm", {
         scope: me,
         handler: me._onConvertToSys
       }, "-", {
-        text: "生成SQL语句",
+        text: "单个码表生成SQL语句",
         scope: me,
         handler: me._onGenSQL
+      }, "-", {
+        text: "整个解决方案的码表生成SQL语句",
+        scope: me,
+        handler: me._onSolutionGenSQL
       }]
     }, "-", {
       text: "指南",
@@ -1149,4 +1153,15 @@ Ext.define("PSI.CodeTable.MainForm", {
     };
     me.ajax(r);
   },
+
+  /**
+   * 整个解决方案的码表生成SQL语句
+   * 
+   * @private
+   */
+  _onSolutionGenSQL() {
+    const me = this;
+
+    me.showInfo("TODO")
+  }
 });
