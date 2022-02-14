@@ -3271,7 +3271,24 @@ class CodeTableDAO extends PSIBaseExDAO
     $result .= "# 码表：{$name}\n";
     $result .= "# CREATE DDL\n";
     $result .= $lineSep;
-    $result .= "CREATE TABLE {$tableName}";
+
+    $sql = "select db_field_name, db_field_type, db_field_length,
+              db_field_decimal, must_input
+            from t_code_table_cols_md
+            where table_id = '%s'
+            order by show_order";
+    $dataCols = $db->query($sql, $id);
+    $cols = [];
+    foreach ($dataCols as $v) {
+      $cols[] = [
+        "fieldName" => $v["db_field_name"],
+        "fieldType" => $v["db_field_type"],
+        "fieldLength" => $v["db_field_length"],
+        "fieldDecimal" => $v["db_field_decimal"],
+        "mustInput" => $v["must_input"],
+      ];
+    }
+    $result .= $this->genCreateDDL($tableName, $cols);
 
     return ["sql" => $result, "success" => true];
   }
