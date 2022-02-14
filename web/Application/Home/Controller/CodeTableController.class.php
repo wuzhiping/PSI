@@ -654,4 +654,22 @@ class CodeTableController extends PSIBaseController
       $this->ajaxReturn($service->codeTableGenSQL($params));
     }
   }
+
+  /**
+   * 解决方案的全部码表生成SQL
+   */
+  public function codeTableSolutionGenSQL()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::CODE_TABLE)) {
+        die("没有权限");
+      }
+
+      $params = [];
+
+      $service = new CodeTableService();
+      $this->ajaxReturn($service->codeTableSolutionGenSQL($params));
+    }
+  }
 }

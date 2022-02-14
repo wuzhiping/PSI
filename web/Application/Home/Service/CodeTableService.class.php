@@ -660,6 +660,19 @@ class CodeTableService extends PSIBaseExService
   }
 
   /**
+   * 解决方案的全部码表生成SQL
+   */
+  public function codeTableSolutionGenSQL($params)
+  {
+    if ($this->isNotOnline()) {
+      return $this->emptyResult();
+    }
+
+    $dao = new CodeTableDAO($this->db());
+    return $dao->codeTableSolutionGenSQL($params);
+  }
+
+  /**
    * 查询解决方案列表
    */
   public function querySolutionList()

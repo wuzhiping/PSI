@@ -3226,6 +3226,15 @@ class CodeTableDAO extends PSIBaseExDAO
   }
 
   /**
+   * 解决方案的全部码表生成SQL
+   */
+  public function codeTableSolutionGenSQL($params)
+  {
+    $result = "TODO";
+    return ["sql" => $result, "success" => true];
+  }
+
+  /**
    * 查询解决方案列表
    */
   public function querySolutionList()
