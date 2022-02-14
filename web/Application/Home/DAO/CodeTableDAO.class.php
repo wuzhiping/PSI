@@ -3263,6 +3263,7 @@ class CodeTableDAO extends PSIBaseExDAO
     $result .= "# 码表：{$name}\n";
     $result .= "# CREATE DDL\n";
     $result .= $lineSep;
+    $result .= "CREATE TABLE {$tableName}";
 
     return ["sql" => $result, "success" => true];
   }
