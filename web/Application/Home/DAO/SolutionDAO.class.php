@@ -168,6 +168,16 @@ class SolutionDAO extends PSIBaseExDAO
     $name = $solution["name"];
     $log = "删除解决方案：名称：{$name}，编码：{$code}";
 
+    // 检查码表分类中是否使用了该解决方案
+    $sql = "select count(*) as cnt from t_code_table_category where sln_code = '%s' ";
+    $data = $db->query($sql, $code);
+    $cnt = $data[0]["cnt"];
+    if ($cnt > 0) {
+      return $this->bad("不能删除解决方案[{$name}]，因为本解决方案其下还有码表分类");
+    }
+
+    // TODO : 还需要判断自定义表单等模块中的使用情况
+
     // 删除操作
     $sql = "delete from t_solution where id = '%s' ";
     $rc = $db->execute($sql, $id);
