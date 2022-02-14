@@ -3230,6 +3230,16 @@ class CodeTableDAO extends PSIBaseExDAO
    */
   public function codeTableSolutionGenSQL($params)
   {
+    $db = $this->db;
+    $slnCode = $params["slnCode"];
+
+    // 检查解决方案是否存在
+    $sql = "select name from t_solution where code = '%s' ";
+    $data = $db->query($sql, $slnCode);
+    if (!$data){
+      return $this->bad("解决方案不存在");
+    }
+
     $result = "TODO";
     return ["sql" => $result, "success" => true];
   }
