@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.RuntimeMainForm", {
+Ext.define("PSI.CodeTable.Runtime.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   config: {
@@ -436,7 +436,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
   _onAddCodeTableRecord() {
     const me = this;
 
-    const form = Ext.create("PSI.CodeTable.RuntimeEditForm", {
+    const form = Ext.create("PSI.CodeTable.Runtime.EditForm", {
       parentForm: me,
       metaData: me.getMetaData()
     });
@@ -460,7 +460,7 @@ Ext.define("PSI.CodeTable.RuntimeMainForm", {
     }
 
     const entity = item[0];
-    const form = Ext.create("PSI.CodeTable.RuntimeEditForm", {
+    const form = Ext.create("PSI.CodeTable.Runtime.EditForm", {
       parentForm: me,
       entity,
       metaData: me.getMetaData()

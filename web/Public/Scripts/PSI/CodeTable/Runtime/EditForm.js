@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.RuntimeEditForm", {
+Ext.define("PSI.CodeTable.Runtime.EditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {

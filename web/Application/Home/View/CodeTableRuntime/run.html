@@ -5,9 +5,9 @@
 */}
 <layout name="layout" />
 
-<script src="{$uri}Public/Scripts/PSI/CodeTable/RuntimeMainForm.js?dt={$dtFlag}" type="text/javascript"></script>
+<script src="{$uri}Public/Scripts/PSI/CodeTable/Runtime/MainForm.js?dt={$dtFlag}" type="text/javascript"></script>
 
-<script src="{$uri}Public/Scripts/PSI/CodeTable/RuntimeEditForm.js?dt={$dtFlag}" type="text/javascript"></script>
+<script src="{$uri}Public/Scripts/PSI/CodeTable/Runtime/EditForm.js?dt={$dtFlag}" type="text/javascript"></script>
 <!--
   上级字段
     TODO：因为不是每个码表都是层级结构，所以这个地方需要优化一下JS的冗余引用
@@ -33,7 +33,7 @@
       }
     });
 
-    app.add(Ext.create("PSI.CodeTable.RuntimeMainForm", {
+    app.add(Ext.create("PSI.CodeTable.Runtime.MainForm", {
       fid: "{$fid}",
       pDesignTool: "{$pDesignTool}"
     }));
