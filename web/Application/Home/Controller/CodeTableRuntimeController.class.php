@@ -4,7 +4,7 @@ namespace Home\Controller;
 
 use Home\Common\FIdConst;
 use Home\Service\UserService;
-use Home\Service\CodeTableService;
+use Home\Service\CodeTableRuntimeService;
 use Home\Service\PinyinService;
 
 /**
@@ -54,7 +54,7 @@ class CodeTableRuntimeController extends PSIBaseController
       $this->assign("pDesignTool", $us->hasPermission(FIdConst::CODE_TABLE) ? "1" : "0");
 
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $md = $service->getMetaDataByFid($fid);
 
       if ($md) {
@@ -85,7 +85,7 @@ class CodeTableRuntimeController extends PSIBaseController
         die("没有权限");
       }
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->querySolutionList());
     }
   }
@@ -108,7 +108,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "slnCode" => I("post.slnCode")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->categoryList($params));
     }
   }
@@ -133,7 +133,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "slnCode" => I("post.slnCode"),
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->editCodeTableCategory($params));
     }
   }
@@ -153,7 +153,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "id" => I("post.id")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->deleteCodeTableCategory($params));
     }
   }
@@ -173,7 +173,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "categoryId" => I("post.categoryId")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->codeTableList($params));
     }
   }
@@ -194,7 +194,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "slnCode" => I("post.slnCode"),
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->queryDataForCategory($params));
     }
   }
@@ -229,7 +229,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "autoCodeLength" => I("post.autoCodeLength"),
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->editCodeTable($params));
     }
   }
@@ -248,7 +248,7 @@ class CodeTableRuntimeController extends PSIBaseController
       $params = [
         "id" => I("post.id")
       ];
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->codeTableColsList($params));
     }
   }
@@ -286,7 +286,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "colSpan" => I("post.colSpan"),
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->editCodeTableCol($params));
     }
   }
@@ -307,7 +307,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "id" => I("post.id")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->deleteCodeTableCol($params));
     }
   }
@@ -327,7 +327,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "id" => I("post.id")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->deleteCodeTable($params));
     }
   }
@@ -347,7 +347,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "id" => I("post.id")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->codeTableInfo($params));
     }
   }
@@ -369,7 +369,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "fid" => $fid
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->getMetaDataForRuntime($params));
     }
   }
@@ -399,7 +399,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "fid" => $fid
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
 
       $md = $service->getMetaDataForRuntime($params);
 
@@ -436,7 +436,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "fid" => $fid
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->deleteCodeTableRecord($params));
     }
   }
@@ -460,11 +460,10 @@ class CodeTableRuntimeController extends PSIBaseController
         "limit" => I("post.limit"),
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->codeTableRecordList($params));
     }
   }
-
 
   /**
    * 码表记录 - 树状结构
@@ -483,7 +482,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "fid" => $fid
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->codeTableRecordListForTreeView($params));
     }
   }
@@ -506,7 +505,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "fid" => $fid
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->recordInfo($params));
     }
   }
@@ -527,7 +526,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "id" => I("post.id")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->codeTableColInfo($params));
     }
   }
@@ -550,7 +549,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "fid" => $fid
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->queryDataForRecordRef($params));
     }
   }
@@ -570,7 +569,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "id" => I("post.id")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->convertCodeTable($params));
     }
   }
@@ -591,7 +590,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "json" => I("post.json")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->saveColViewLayout($params));
     }
   }
@@ -609,7 +608,7 @@ class CodeTableRuntimeController extends PSIBaseController
 
       $params = ["id" => I("post.tableId")];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->queryCodeTableEditColShowOrder($params));
     }
   }
@@ -630,7 +629,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "json" => I("post.json")
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->saveColEditShowOrder($params));
     }
   }
@@ -650,7 +649,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "id" => I("post.id"),
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->codeTableGenSQL($params));
     }
   }
@@ -671,7 +670,7 @@ class CodeTableRuntimeController extends PSIBaseController
         "slnCode" => I("post.slnCode"),
       ];
 
-      $service = new CodeTableService();
+      $service = new CodeTableRuntimeService();
       $this->ajaxReturn($service->codeTableSolutionGenSQL($params));
     }
   }
