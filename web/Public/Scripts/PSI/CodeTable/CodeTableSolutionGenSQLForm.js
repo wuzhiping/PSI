@@ -1,5 +1,5 @@
 /**
- * 导出SQL
+ * 解接方案的全部码表导出SQL
  * 
  * @author 艾格林门信息服务（大连）有限公司
  * @copyright 2015 - present
@@ -9,10 +9,6 @@ Ext.define("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
   extend: "Ext.window.Window",
 
   mixins: ["PSI.AFX.Mix.Common"],
-
-  config: {
-    codeTable: null
-  },
 
   initComponent() {
     const me = this;
@@ -68,9 +64,6 @@ Ext.define("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
     el && el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/CodeTable/codeTableSolutionGenSQL"),
-      params: {
-        id: me.getCodeTable().get("id")
-      },
       callback(options, success, response) {
         if (success) {
           const data = me.decodeJSON(response.responseText);
