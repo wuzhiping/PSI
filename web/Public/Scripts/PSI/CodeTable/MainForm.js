@@ -136,6 +136,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         handler: me._onGenSQL
       }, "-", {
         text: "整个解决方案的码表生成SQL语句",
+        iconCls: "PSI-sql",
         scope: me,
         handler: me._onSolutionGenSQL
       }]
