@@ -181,7 +181,7 @@ Ext.define("PSI.Solution.EditForm", {
         el.unmask();
         me.close();
         me.getParentForm().refreshMainGrid(action.result.id);
-        me.tip("操作保存");
+        me.tip("操作成功", true);
       },
       failure(form, action) {
         el.unmask();

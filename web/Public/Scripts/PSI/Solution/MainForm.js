@@ -193,7 +193,7 @@ Ext.define("PSI.Solution.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshMainGrid(preId);
             } else {
               me.showInfo(data.msg);
@@ -212,7 +212,7 @@ Ext.define("PSI.Solution.MainForm", {
   /**
    * @private
    */
-   refreshMainGrid(id) {
+  refreshMainGrid(id) {
     const me = this;
 
     const grid = me.getMainGrid();
