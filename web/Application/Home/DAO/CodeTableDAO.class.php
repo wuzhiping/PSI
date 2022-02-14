@@ -3260,7 +3260,11 @@ class CodeTableDAO extends PSIBaseExDAO
     $result .= $lineSep;
     foreach ($dataCategory as $category) {
       $categoryId = $category["id"];
-      $categoryName = $category["Name"];
+      $categoryCode = $category["code"];
+      $categoryIsSystem = $category["is_system"];
+      $categoryName = $category["name"];
+      $result .= "insert into t_code_table_category(id, code, name, parent_id, is_system, sln_code)\n";
+      $result .= "values ('{$categoryId}', '{$categoryCode}', '{$categoryName}', NULL, {$categoryIsSystem}, '$slnCode');\n";
     }
 
     return ["sql" => $result, "success" => true];
