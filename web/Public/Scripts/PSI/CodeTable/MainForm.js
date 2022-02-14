@@ -1106,7 +1106,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     const codeTable = item[0];
 
     const form = Ext.create("PSI.CodeTable.CodeTableGenSQLForm", {
-      codeTable: codeTable
+      codeTable
     });
     form.show();
   },
@@ -1163,6 +1163,16 @@ Ext.define("PSI.CodeTable.MainForm", {
   _onSolutionGenSQL() {
     const me = this;
 
-    me.showInfo("TODO")
+    const slnCode = me.comboSolution.getValue();
+    const sln = me.comboSolution.findRecordByValue(slnCode);
+    if (!sln) {
+      me.showInfo("没有选择解决方案");
+      return;
+    }
+
+    const form = Ext.create("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
+      slnCode
+    });
+    form.show();
   }
 });
