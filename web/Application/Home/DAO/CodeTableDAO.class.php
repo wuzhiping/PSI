@@ -3241,6 +3241,33 @@ class CodeTableDAO extends PSIBaseExDAO
   }
 
   /**
+   * 生成一个码表的CREATE 语句
+   * 
+   * @param $id 码表id
+   */
+  private function genCreateTableSQL($id)
+  {
+    $db = $this->db;
+    $sql = "select table_name, name
+            from t_code_table_md 
+            where id = '%s' ";
+    $data = $db->query($sql, $id);
+    if (!$data) {
+      return $this->bad("码表不存在");
+    }
+    $name = $data[0]["name"];
+    $tableName = $data[0]["table_name"];
+
+    $lineSep = "# --------------------------------------------------------------------------------\n";
+    $result = $lineSep;
+    $result .= "# 码表：{$name}\n";
+    $result .= "# CREATE DDL\n";
+    $result .= $lineSep;
+
+    return ["sql" => $result, "success" => true];
+  }
+
+  /**
    * 解决方案的全部码表生成SQL
    */
   public function codeTableSolutionGenSQL($params)
