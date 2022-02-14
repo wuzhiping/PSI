@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.CodeTableRecordRefField", {
+Ext.define("PSI.CodeTable.Runtime.CodeTableRecordRefField", {
   extend: "Ext.form.field.Trigger",
   alias: "widget.psi_codetable_recordreffield",
 
