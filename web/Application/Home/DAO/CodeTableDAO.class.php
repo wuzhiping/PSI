@@ -3286,7 +3286,7 @@ class CodeTableDAO extends PSIBaseExDAO
       $categoryId = $category["id"];
 
       // 码表分类下的码表
-      $sql = "select id, code, name, table_name
+      $sql = "select id
               from t_code_table_md
               where category_id = '%s'
               order by code ";
@@ -3294,10 +3294,13 @@ class CodeTableDAO extends PSIBaseExDAO
       foreach ($dataCodeTable as $codeTable) {
         $result .= "\n";
 
-        $codeTableName = $codeTable["name"];
-        $result .= $lineSep;
-        $result .= "# 码表：{$codeTableName}\n";
-        $result .= $lineSep;
+        $codeTableId = $codeTable["id"];
+        $md = $this->genMetaDataSQL($codeTableId);
+        if ($md["success"]) {
+          $result .= $md["sql"];
+        } else {
+          $result .= $md["msg"] . "\n";
+        }
       }
     }
 
