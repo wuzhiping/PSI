@@ -892,7 +892,7 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 创建数据库表
-    $sql = $this->genCreateDDL($tableName, $cols);
+    $sql = $this->buildCreateDDL($tableName, $cols);
     $rc = $db->execute($sql);
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);
@@ -905,7 +905,7 @@ class CodeTableDAO extends PSIBaseExDAO
     return null;
   }
 
-  private function genCreateDDL($tableName, $cols)
+  private function buildCreateDDL($tableName, $cols)
   {
     $sql = "CREATE TABLE IF NOT EXISTS `{$tableName}` (\n";
     foreach ($cols as $v) {
@@ -3285,7 +3285,7 @@ class CodeTableDAO extends PSIBaseExDAO
         "mustInput" => $v["must_input"],
       ];
     }
-    $result .= $this->genCreateDDL($tableName, $cols);
+    $result .= $this->buildCreateDDL($tableName, $cols);
 
     return ["sql" => $result, "success" => true];
   }
