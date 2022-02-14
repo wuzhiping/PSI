@@ -3064,8 +3064,19 @@ class CodeTableDAO extends PSIBaseExDAO
    */
   public function codeTableGenSQL($params)
   {
-    $db = $this->db;
     $id = $params["id"];
+
+    return $this->genMetaDataSQL($id);
+  }
+
+  /**
+   * 生成一个码表的元数据的SQL
+   * 
+   * @param $id 码表id
+   */
+  private function genMetaDataSQL($id)
+  {
+    $db = $this->db;
     $sql = "select code, name, table_name, category_id, memo,
               py, fid, md_version, is_fixed, enable_parent_id, handler_class_name,
               module_name, edit_col_cnt, view_paging
@@ -3092,7 +3103,11 @@ class CodeTableDAO extends PSIBaseExDAO
     $moduleName = $v["module_name"];
     $editColCnt = $v["edit_col_cnt"];
     $viewPaging = $v["view_paging"];
-    $result = "# 码表：{$name}\n";
+    $lineSep = "# --------------------------------------------------------------------------------\n";
+    $result = $lineSep;
+    $result .= "# 码表：{$name}\n";
+    $result .= "# 元数据\n";
+    $result .= $lineSep;
     $result .= "DELETE FROM `t_code_table_md` where `id` = '{$id}';\n";
     $result .= "INSERT INTO `t_code_table_md` (`id`, `code`, `name`, `table_name`, `category_id`, `memo`,";
     $result .= " `py`, `fid`, `md_version`, `is_fixed`, `enable_parent_id`, `handler_class_name`,";
