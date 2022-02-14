@@ -66,7 +66,7 @@ Ext.define("PSI.CodeTable.Runtime.CodeTableParentIdField", {
         actionMethods: {
           read: "POST"
         },
-        url: PSI.Const.BASE_URL + "Home/CodeTable/codeTableRecordListForTreeView"
+        url: PSI.Const.BASE_URL + "Home/CodeTableRuntime/codeTableRecordListForTreeView"
       }
     });
 
