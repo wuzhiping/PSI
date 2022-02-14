@@ -131,7 +131,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         scope: me,
         handler: me._onConvertToSys
       }, "-", {
-        text: "单个码表生成SQL语句",
+        text: "单个码表的元数据生成SQL语句",
         scope: me,
         handler: me._onGenSQL
       }, "-", {
