@@ -116,6 +116,7 @@ class SolutionDAO extends PSIBaseExDAO
     if (!$solution) {
       return $this->bad("要编辑的解决方案不存在");
     }
+    $oldCode = $solution["code"];
 
     $db = $this->db;
     $code = strtoupper(trim($params["code"]));
@@ -134,6 +135,20 @@ class SolutionDAO extends PSIBaseExDAO
     $cnt = $data[0]["cnt"];
     if ($cnt > 0) {
       return $this->bad("解决方案[{$name}]已经存在");
+    }
+
+    if ($oldCode != $code) {
+      // 解接方案的编码在应用后就不能修改，因为其他模块中存储的都是解决方案的编码
+
+      // 检查码表分类中的应用情况
+      $sql = "select count(*) as cnt from t_code_table_category where sln_code = '%s' ";
+      $data = $db->query($sql, $oldCode);
+      $cnt = $data[0]["cnt"];
+      if ($cnt > 0) {
+        return $this->bad("本解决方案的原编码[{$oldCode}]已经在码表中应用了，就不能再修改其编码了");
+      }
+
+      // TODO 还需要检查自定义表单等模块中的应用情况
     }
 
     // 执行更新操作
