@@ -907,7 +907,7 @@ class CodeTableDAO extends PSIBaseExDAO
 
   private function genCreateDDL($tableName, $cols)
   {
-    $sql = "CREATE TABLE IF NOT EXISTS `{$tableName}` (";
+    $sql = "CREATE TABLE IF NOT EXISTS `{$tableName}` (\n";
     foreach ($cols as $v) {
       $fieldName = $v["fieldName"];
       $fieldType = $v["fieldType"];
@@ -925,18 +925,15 @@ class CodeTableDAO extends PSIBaseExDAO
         $type .= "(11)";
       }
 
-      $sql .= "`{$fieldName}` {$type} ";
+      $sql .= "  `{$fieldName}` {$type} ";
       if ($mustInput == 1) {
-        // 必录项是逻辑控制，后台数据库都可以是NULL
-        // 这里的处理原则是，尽量少使用数据库的约束，就像不使用外键这个原则一样
-        $sql .= " DEFAULT NULL";
+        $sql .= " NOT NULL";
       } else {
         $sql .= " DEFAULT NULL";
       }
-      $sql .= ",";
+      $sql .= ",\n";
     }
-    $sql .= "PRIMARY KEY (`id`)
-				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+    $sql .= "  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8;\n";
 
     return $sql;
   }
