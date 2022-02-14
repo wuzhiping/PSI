@@ -3254,7 +3254,7 @@ class CodeTableDAO extends PSIBaseExDAO
     $result = $lineSep;
     $result .= "# 清空码表分类\n";
     $result .= $lineSep;
-    $result .= "delete from t_code_table_category where sln_code = '{$slnCode}';\n\n";
+    $result .= "DELETE FROM t_code_table_category WHERE sln_code = '{$slnCode}';\n\n";
     $result .= $lineSep;
     $result .= "# 码表分类\n";
     $result .= $lineSep;
@@ -3263,8 +3263,8 @@ class CodeTableDAO extends PSIBaseExDAO
       $categoryCode = $category["code"];
       $categoryIsSystem = $category["is_system"];
       $categoryName = $category["name"];
-      $result .= "insert into t_code_table_category(id, code, name, parent_id, is_system, sln_code)\n";
-      $result .= "values ('{$categoryId}', '{$categoryCode}', '{$categoryName}', NULL, {$categoryIsSystem}, '$slnCode');\n";
+      $result .= "INSERT INTO t_code_table_category(id, code, name, parent_id, is_system, sln_code)\n";
+      $result .= "VALUES ('{$categoryId}', '{$categoryCode}', '{$categoryName}', NULL, {$categoryIsSystem}, '$slnCode');\n";
     }
 
     foreach ($dataCategory as $category) {
