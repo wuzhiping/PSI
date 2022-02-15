@@ -383,6 +383,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 查询码表编辑界面字段的显示次序
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\CodeTableEditColShowOrderForm.js
    */
   public function queryCodeTableEditColShowOrder()
   {
