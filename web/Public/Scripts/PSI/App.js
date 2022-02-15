@@ -86,7 +86,18 @@ Ext.define("PSI.App", {
         width: 16,
         renderer(value, metaData, record) {
           const fid = record.get("fid");
-          const fileName = `Public/Images/fid/fid${fid}.png`;
+          const getFileName = (fid) => {
+            const isCodeTable = fid.substring(0, 2) == "ct";
+            if (isCodeTable) {
+              return "Public/Images/fid/fid_todo.png";
+            }
+
+            // TODO 还需要处理LCAP的其他模块
+
+            return `Public/Images/fid/fid${fid}.png`;
+          }
+
+          const fileName = getFileName(fid);
           const url = me.URL(fileName);
 
           return `
