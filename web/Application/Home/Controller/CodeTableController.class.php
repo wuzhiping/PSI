@@ -173,6 +173,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 新增或编辑码表
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\CodeTableEditForm.js
    */
   public function editCodeTable()
   {
@@ -208,6 +210,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 某个码表的列
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\MainForm.js
    */
   public function codeTableColsList()
   {
@@ -227,6 +231,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 新增或编辑码表列
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\CodeTableColEditForm.js
    */
   public function editCodeTableCol()
   {
