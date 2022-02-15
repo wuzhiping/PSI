@@ -54,6 +54,8 @@ class CodeTableRuntimeController extends PSIBaseController
 
   /**
    * 查询码表元数据 - 运行界面用
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\Runtime\MainForm.js
    */
   public function getMetaDataForRuntime()
   {
@@ -76,6 +78,8 @@ class CodeTableRuntimeController extends PSIBaseController
 
   /**
    * 新增或编辑码表记录
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\Runtime\EditForm.js
    */
   public function editCodeTableRecord()
   {
@@ -120,6 +124,8 @@ class CodeTableRuntimeController extends PSIBaseController
 
   /**
    * 删除码表记录
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\Runtime\MainForm.js
    */
   public function deleteCodeTableRecord()
   {
@@ -143,6 +149,8 @@ class CodeTableRuntimeController extends PSIBaseController
 
   /**
    * 码表记录列表
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\Runtime\MainForm.js
    */
   public function codeTableRecordList()
   {
@@ -167,6 +175,9 @@ class CodeTableRuntimeController extends PSIBaseController
 
   /**
    * 码表记录 - 树状结构
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\Runtime\MainForm.js
+   *     web\Public\Scripts\PSI\CodeTable\Runtime\CodeTableParentIdField.js
    */
   public function codeTableRecordListForTreeView()
   {
@@ -189,6 +200,8 @@ class CodeTableRuntimeController extends PSIBaseController
 
   /**
    * 查询码表记录的详情
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\Runtime\EditForm.js
    */
   public function recordInfo()
   {
@@ -212,6 +225,8 @@ class CodeTableRuntimeController extends PSIBaseController
 
   /**
    * 码表记录引用字段 - 查询数据
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\Runtime\CodeTableRecordRefField.js
    */
   public function queryDataForRecordRef()
   {
@@ -235,6 +250,8 @@ class CodeTableRuntimeController extends PSIBaseController
 
   /**
    * 保存列视图布局
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\Runtime\MainForm.js
    */
   public function saveColViewLayout()
   {
