@@ -338,6 +338,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 码表某列的详细信息
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\CodeTableColEditForm.js
    */
   public function codeTableColInfo()
   {
