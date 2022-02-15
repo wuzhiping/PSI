@@ -294,6 +294,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 删除码表
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\MainForm.js
    */
   public function deleteCodeTable()
   {
@@ -314,6 +316,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 查询码表主表元数据
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\CodeTableEditForm.js
    */
   public function codeTableInfo()
   {
@@ -329,165 +333,6 @@ class CodeTableController extends PSIBaseController
 
       $service = new CodeTableService();
       $this->ajaxReturn($service->codeTableInfo($params));
-    }
-  }
-
-  /**
-   * 查询码表元数据 - 运行界面用
-   */
-  public function getMetaDataForRuntime()
-  {
-    if (IS_POST) {
-      $fid = I("post.fid");
-
-      $us = new UserService();
-      if (!$us->hasPermission($fid)) {
-        die("没有权限");
-      }
-
-      $params = [
-        "fid" => $fid
-      ];
-
-      $service = new CodeTableService();
-      $this->ajaxReturn($service->getMetaDataForRuntime($params));
-    }
-  }
-
-  /**
-   * 新增或编辑码表记录
-   */
-  public function editCodeTableRecord()
-  {
-    if (IS_POST) {
-      $fid = I("post.fid");
-
-      $us = new UserService();
-      if (I("post.id")) {
-        // 编辑
-        if (!$us->hasPermission("{$fid}-update")) {
-          die("没有权限");
-        }
-      } else {
-        // 新增
-        if (!$us->hasPermission("{$fid}-add")) {
-          die("没有权限");
-        }
-      }
-
-      $params = [
-        "fid" => $fid
-      ];
-
-      $service = new CodeTableService();
-
-      $md = $service->getMetaDataForRuntime($params);
-
-      $params["id"] = I("post.id");
-
-      foreach ($md["cols"] as $colMd) {
-        if ($colMd["isVisible"]) {
-          $fieldName = $colMd["fieldName"];
-          $params[$fieldName] = I("post.{$fieldName}");
-        }
-      }
-
-      $params["code"] = strtoupper($params["code"]);
-
-      $this->ajaxReturn($service->editCodeTableRecord($params));
-    }
-  }
-
-  /**
-   * 删除码表记录
-   */
-  public function deleteCodeTableRecord()
-  {
-    if (IS_POST) {
-      $fid = I("post.fid");
-
-      $us = new UserService();
-      if (!$us->hasPermission("{$fid}-delete")) {
-        die("没有权限");
-      }
-
-      $params = [
-        "id" => I("post.id"),
-        "fid" => $fid
-      ];
-
-      $service = new CodeTableService();
-      $this->ajaxReturn($service->deleteCodeTableRecord($params));
-    }
-  }
-
-  /**
-   * 码表记录列表
-   */
-  public function codeTableRecordList()
-  {
-    if (IS_POST) {
-      $fid = I("post.fid");
-
-      $us = new UserService();
-      if (!$us->hasPermission($fid)) {
-        die("没有权限");
-      }
-
-      $params = [
-        "fid" => $fid,
-        "start" => I("post.start"),
-        "limit" => I("post.limit"),
-      ];
-
-      $service = new CodeTableService();
-      $this->ajaxReturn($service->codeTableRecordList($params));
-    }
-  }
-
-
-  /**
-   * 码表记录 - 树状结构
-   */
-  public function codeTableRecordListForTreeView()
-  {
-    if (IS_POST) {
-      $fid = I("post.fid");
-
-      $us = new UserService();
-      if (!$us->hasPermission($fid)) {
-        die("没有权限");
-      }
-
-      $params = [
-        "fid" => $fid
-      ];
-
-      $service = new CodeTableService();
-      $this->ajaxReturn($service->codeTableRecordListForTreeView($params));
-    }
-  }
-
-  /**
-   * 查询码表记录的详情
-   */
-  public function recordInfo()
-  {
-    if (IS_POST) {
-      $fid = I("post.fid");
-
-      $us = new UserService();
-      if (!$us->hasPermission($fid)) {
-        die("没有权限");
-      }
-
-      $params = [
-        "id" => I("post.id"),
-        "fid" => $fid
-      ];
-
-      $service = new CodeTableService();
-      $this->ajaxReturn($service->recordInfo($params));
     }
   }
 
