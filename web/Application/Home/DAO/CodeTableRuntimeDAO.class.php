@@ -15,13 +15,19 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
 {
   /**
    * 根据fid获得码表的元数据
+   * 该元数据是模块级别的精简数据
    *
    * @param string $fid
    * @return array|NULL
    */
-  public function getMetaDataByFid($fid)
+  public function getModuleMetaDataByFid($fid)
   {
     $db = $this->db;
+
+    // TODO 这里有个疑问，取模块title，为什么是从菜单中取得？
+    // 菜单标题和码表元数据中的标题，的确应该是一样的
+    // 但是也有可能是误操作，被人为弄成不一样了
+    // 如何选择？
 
     $sql = "select caption from t_menu_item_plus where fid = '%s' ";
     $data = $db->query($sql, $fid);

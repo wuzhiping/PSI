@@ -34,7 +34,7 @@ class CodeTableRuntimeController extends PSIBaseController
 
 
       $service = new CodeTableRuntimeService();
-      $md = $service->getMetaDataByFid($fid);
+      $md = $service->getModuleMetaDataByFid($fid);
 
       if ($md) {
         $this->assign("title", $md["title"]);
@@ -42,8 +42,7 @@ class CodeTableRuntimeController extends PSIBaseController
 
         $this->display();
       } else {
-
-        // 错误的fid，跳转到首页
+        // 错误的fid，跳转到首页(或许是需要重新登录)
         $this->gotoLoginPage("/Home");
       }
     } else {

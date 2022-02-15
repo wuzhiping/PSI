@@ -17,18 +17,19 @@ class CodeTableRuntimeService extends PSIBaseExService
 
   /**
    * 根据fid获得码表的元数据
+   * 该元数据是模块级别的精简数据
    *
    * @param string $fid
    * @return array
    */
-  public function getMetaDataByFid($fid)
+  public function getModuleMetaDataByFid($fid)
   {
     if ($this->isNotOnline()) {
       return $this->emptyResult();
     }
 
     $dao = new CodeTableRuntimeDAO($this->db());
-    return $dao->getMetaDataByFid($fid);
+    return $dao->getModuleMetaDataByFid($fid);
   }
 
   /**
