@@ -271,6 +271,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 删除码表列
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\MainForm.js
    */
   public function deleteCodeTableCol()
   {
