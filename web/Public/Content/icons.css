@@ -382,6 +382,10 @@
   background-image:url(../Images/fid/fid3102.png) !important;
 }
 
+.PSI-fid_todo {
+  background-image:url(../Images/fid/fid_todo.png) !important;
+}
+
 .PSI-login {
     background-image:url(../Images/login.png) !important;
 }
