@@ -8,7 +8,7 @@ use Home\Service\CodeTableService;
 use Home\Service\PinyinService;
 
 /**
- * 码表Controller
+ * 码表设置Controller
  *
  * @author 艾格林门信息服务（大连）有限公司
  * @copyright 2015 - present
@@ -105,6 +105,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 删除码表分类
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\MainForm.js
    */
   public function deleteCodeTableCategory()
   {
@@ -115,6 +117,7 @@ class CodeTableController extends PSIBaseController
       }
 
       $params = [
+        // 码表分类id
         "id" => I("post.id")
       ];
 
@@ -125,6 +128,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 码表列表
+   * 
+   * JS：web\Public\Scripts\PSI\CodeTable\MainForm.js
    */
   public function codeTableList()
   {
@@ -145,6 +150,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 码表分类自定义字段 - 查询数据
+   * 
+   * JS：web\Public\Scripts\PSI\CodeTable\CodeTableCategoryField.js
    */
   public function queryDataForCategory()
   {
