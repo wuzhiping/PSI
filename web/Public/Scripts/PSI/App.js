@@ -319,6 +319,17 @@ Ext.define("PSI.App", {
 
     const mainMenu = [];
 
+    const getIconCls = (fid)=>{
+      const isCodeTable = fid.substring(0, 2)=="ct";
+      if (isCodeTable){
+        return "PSI-fid_todo";
+      }
+      
+      // TODO 还需要处理LCAP其他模块
+
+      return `PSI-fid${fid}`;
+    };
+
     root.forEach((m1) => {
       const menuItem = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
       m1.children.forEach((m2) => {
@@ -329,7 +340,7 @@ Ext.define("PSI.App", {
               text: m2.caption,
               fid: m2.fid,
               handler: menuItemClick,
-              iconCls: "PSI-fid" + m2.fid
+              iconCls: getIconCls(m2.fid)
             });
           }
         } else {
@@ -346,7 +357,7 @@ Ext.define("PSI.App", {
               text: m3.caption,
               fid: m3.fid,
               handler: menuItemClick,
-              iconCls: "PSI-fid" + m3.fid
+              iconCls: getIconCls(m3.fid)
             });
           });
         }
