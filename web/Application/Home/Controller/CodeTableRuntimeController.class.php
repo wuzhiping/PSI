@@ -5,7 +5,6 @@ namespace Home\Controller;
 use Home\Common\FIdConst;
 use Home\Service\UserService;
 use Home\Service\CodeTableRuntimeService;
-use Home\Service\PinyinService;
 
 /**
  * 码表运行时Controller
