@@ -360,30 +360,9 @@ class CodeTableController extends PSIBaseController
   }
 
   /**
-   * 码表记录引用字段 - 查询数据
-   */
-  public function queryDataForRecordRef()
-  {
-    if (IS_POST) {
-      $fid = I("post.fid");
-
-      $us = new UserService();
-      if (!$us->hasPermission($fid . "-dataorg")) {
-        die("没有权限");
-      }
-
-      $params = [
-        "queryKey" => I("post.queryKey"),
-        "fid" => $fid
-      ];
-
-      $service = new CodeTableService();
-      $this->ajaxReturn($service->queryDataForRecordRef($params));
-    }
-  }
-
-  /**
    * 把码表转化为系统固有码表
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\MainForm.js
    */
   public function convertCodeTable()
   {
@@ -399,27 +378,6 @@ class CodeTableController extends PSIBaseController
 
       $service = new CodeTableService();
       $this->ajaxReturn($service->convertCodeTable($params));
-    }
-  }
-
-  /**
-   * 保存列视图布局
-   */
-  public function saveColViewLayout()
-  {
-    if (IS_POST) {
-      $us = new UserService();
-      if (!$us->hasPermission(FIdConst::CODE_TABLE)) {
-        die("没有权限");
-      }
-
-      $params = [
-        "fid" => I("post.fid"),
-        "json" => I("post.json")
-      ];
-
-      $service = new CodeTableService();
-      $this->ajaxReturn($service->saveColViewLayout($params));
     }
   }
 
