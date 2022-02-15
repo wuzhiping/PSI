@@ -213,6 +213,9 @@ class UserDAO extends PSIBaseExDAO
         }
         $roleName .= $r["name"];
       }
+      if (!$roleName) {
+        $roleName = "<span style='color:#d4380d'>[没有任何角色]</span>";
+      }
 
       $item = [
         "id" => $v["id"],
