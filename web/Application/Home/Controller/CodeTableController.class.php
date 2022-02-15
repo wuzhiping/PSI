@@ -403,6 +403,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 保存编辑界面字段显示次序
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\CodeTableEditColShowOrderForm.js
    */
   public function saveColEditShowOrder()
   {
@@ -424,6 +426,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 码表生成SQL
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\CodeTableGenSQLForm.js
    */
   public function codeTableGenSQL()
   {
@@ -444,6 +448,8 @@ class CodeTableController extends PSIBaseController
 
   /**
    * 解决方案的全部码表生成SQL
+   * 
+   * JS: web\Public\Scripts\PSI\CodeTable\CodeTableSolutionGenSQLForm.js
    */
   public function codeTableSolutionGenSQL()
   {
