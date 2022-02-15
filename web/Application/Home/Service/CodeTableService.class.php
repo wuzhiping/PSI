@@ -374,21 +374,6 @@ class CodeTableService extends PSIBaseExService
   }
 
   /**
-   * 码表记录引用字段 - 查询数据
-   */
-  public function queryDataForRecordRef($params)
-  {
-    if ($this->isNotOnline()) {
-      return $this->emptyResult();
-    }
-
-    $params["loginUserId"] = $this->getLoginUserId();
-
-    $dao = new CodeTableDAO($this->db());
-    return $dao->queryDataForRecordRef($params);
-  }
-
-  /**
    * 把码表转化为系统固有码表
    */
   public function convertCodeTable($params)
@@ -414,37 +399,6 @@ class CodeTableService extends PSIBaseExService
 
     $name = $params["name"];
     $log = "把码表[{$name}]转化为系统固有码表";
-
-    // 记录业务日志
-    $bs = new BizlogService($db);
-    $bs->insertBizlog($log, $this->LOG_CATEGORY);
-
-    $db->commit();
-
-    return $this->ok();
-  }
-
-  /**
-   * 保存列视图布局
-   */
-  public function saveColViewLayout($params)
-  {
-    if ($this->isNotOnline()) {
-      return $this->notOnlineError();
-    }
-
-    $db = $this->db();
-    $db->startTrans();
-
-    $dao = new CodeTableDAO($db);
-    $rc = $dao->saveColViewLayout($params);
-    if ($rc) {
-      $db->rollback();
-      return $rc;
-    }
-
-    $name = $params["name"];
-    $log = "保存码表[{$name}]列视图布局";
 
     // 记录业务日志
     $bs = new BizlogService($db);
