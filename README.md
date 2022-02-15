@@ -2,7 +2,7 @@
 
 PSI是由`艾格林门信息服务（大连）有限公司`发起的商业项目，详见：[PSI商业战略](https://gitee.com/crm8000/PSI/wikis/PSI%E5%95%86%E4%B8%9A%E6%88%98%E7%95%A5)。
 
-PSI - **P**artner, **S**olution, **I**nfrastructure
+PSI - **P**artner, **S**olution, **I**nfrastructure 专注于ERP领域的低代码应用平台
 
 |  构成       | 含义  | 说明  |
 |  ----          | ----      | ----  |
