@@ -48,7 +48,7 @@ class CodeTableRuntimeController extends PSIBaseController
         $this->gotoLoginPage("/Home");
       }
     } else {
-      $this->gotoLoginPage("/Home");
+      $this->gotoLoginPage("/Home/CodeTableRuntime/?fid={$fid}");
     }
   }
 
