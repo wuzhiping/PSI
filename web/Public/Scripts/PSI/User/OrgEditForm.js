@@ -25,7 +25,7 @@ Ext.define("PSI.User.OrgEditForm", {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 400,
+      width: 430,
       height: 360,
       layout: "border",
       items: [{
@@ -43,7 +43,7 @@ Ext.define("PSI.User.OrgEditForm", {
           columns: 1,
           tableAttrs: {
             style: {
-              borderSpacing: "4px 4px",
+              borderSpacing: "8px 8px",
             }
           }
         },

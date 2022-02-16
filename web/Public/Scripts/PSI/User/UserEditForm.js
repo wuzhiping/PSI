@@ -35,7 +35,7 @@ Ext.define("PSI.User.UserEditForm", {
       },
       modal: true,
       onEsc: Ext.emptyFn,
-      width: 470,
+      width: 500,
       height: me.adding ? 450 : 420,
       layout: "border",
       items: [{
@@ -53,7 +53,7 @@ Ext.define("PSI.User.UserEditForm", {
           columns: 2,
           tableAttrs: {
             style: {
-              borderSpacing: "4px 4px",
+              borderSpacing: "8px 8px",
             }
           }
         },
