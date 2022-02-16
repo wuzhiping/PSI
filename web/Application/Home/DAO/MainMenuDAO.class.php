@@ -452,7 +452,7 @@ class MainMenuDAO extends PSIBaseExDAO
 
     // 主菜单数据存在两个表中：t_menu_item和t_menu_item_plus
 
-    $lineSep = "# " . str_repeat("-", 78);
+    $lineSep = "# " . str_repeat("-", 78) . "\n";
     $result = $lineSep;
 
     return ["sql" => $result, "success" => true];
