@@ -20,14 +20,14 @@ Ext.define("PSI.Solution.EditForm", {
     const t = entity == null ? "新建解决方案" : "编辑解决方案";
 
     const logoHtml = me.genLogoHtml(entity, t);
-    const width1 = 600;
+    const width1 = 300;
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
       width: 650,
-      height: 270,
+      height: 240,
       layout: "border",
       items: [{
         region: "north",
@@ -41,7 +41,7 @@ Ext.define("PSI.Solution.EditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 1,
+          columns: 2,
           tableAttrs: {
             style: {
               borderSpacing: "5px 10px",
