@@ -53,7 +53,7 @@ Ext.define("PSI.User.UserEditForm", {
           columns: 2,
           tableAttrs: {
             style: {
-              borderSpacing: "5px 10px",
+              borderSpacing: "5px 8px",
             }
           }
         },
