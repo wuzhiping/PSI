@@ -448,6 +448,13 @@ class MainMenuDAO extends PSIBaseExDAO
    */
   public function genSQL()
   {
-    return $this->todo();
+    $db = $this->db;
+
+    // 主菜单数据存在两个表中：t_menu_item和t_menu_item_plus
+
+    $lineSep = "# " . str_repeat("-", 78);
+    $result = $lineSep;
+
+    return ["sql" => $result, "success" => true];
   }
 }
