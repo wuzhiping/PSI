@@ -20,13 +20,14 @@ Ext.define("PSI.Solution.EditForm", {
     const t = entity == null ? "新建解决方案" : "编辑解决方案";
 
     const logoHtml = me.genLogoHtml(entity, t);
+    const width1 = 600;
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 400,
-      height: 230,
+      width: 650,
+      height: 270,
       layout: "border",
       items: [{
         region: "north",
@@ -40,16 +41,22 @@ Ext.define("PSI.Solution.EditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 1
+          columns: 1,
+          tableAttrs: {
+            style: {
+              borderSpacing: "5px 10px",
+            }
+          }
         },
         height: "100%",
         bodyPadding: 5,
         defaultType: 'textfield',
         fieldDefaults: {
-          labelWidth: 60,
+          labelWidth: 40,
           labelAlign: "right",
           labelSeparator: "",
-          msgTarget: 'side'
+          msgTarget: 'side',
+          width: width1,
         },
         items: [{
           xtype: "hidden",
@@ -69,7 +76,6 @@ Ext.define("PSI.Solution.EditForm", {
               scope: me
             }
           },
-          width: 370
         }, {
           id: "PSI_Solution_EditForm_editName",
           fieldLabel: "名称",
@@ -84,7 +90,6 @@ Ext.define("PSI.Solution.EditForm", {
               scope: me
             }
           },
-          width: 370
         }],
         buttons: [{
           text: "确定",
