@@ -2015,7 +2015,7 @@ class CodeTableDAO extends PSIBaseExDAO
     $moduleName = $v["module_name"];
     $editColCnt = $v["edit_col_cnt"];
     $viewPaging = $v["view_paging"];
-    $lineSep = "# " . str_repeat("-", 78);
+    $lineSep = "# " . str_repeat("-", 78) . "\n";
     $result = $lineSep;
     $result .= "# 码表：{$name}\n";
     $result .= "# 元数据\n";
@@ -2170,7 +2170,7 @@ class CodeTableDAO extends PSIBaseExDAO
     $name = $data[0]["name"];
     $tableName = $data[0]["table_name"];
 
-    $lineSep = "# " . str_repeat("-", 78);
+    $lineSep = "# " . str_repeat("-", 78) . "\n";
     $result = $lineSep;
     $result .= "# 码表：{$name}\n";
     $result .= "# CREATE DDL\n";
@@ -2222,7 +2222,7 @@ class CodeTableDAO extends PSIBaseExDAO
       return $this->bad("解决方案下还没有码表");
     }
 
-    $lineSep = "# " . str_repeat("-", 78);
+    $lineSep = "# " . str_repeat("-", 78) . "\n";
     $result = $lineSep;
     $result .= "# 清空码表分类\n";
     $result .= $lineSep;
