@@ -32,7 +32,7 @@ Ext.define("PSI.Solution.EditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 70,
+        height: 55,
         html: logoHtml
       }, {
         region: "center",
