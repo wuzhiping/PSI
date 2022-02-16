@@ -453,7 +453,20 @@ class MainMenuDAO extends PSIBaseExDAO
     // 主菜单数据存在两个表中：t_menu_item和t_menu_item_plus
 
     $lineSep = "# " . str_repeat("-", 78) . "\n";
-    $result = $lineSep;
+    $result = "";
+
+    // t_menu_item
+    $result .= $lineSep;
+    $result .= "# t_menu_item\n";
+    $result .= $lineSep;
+    $result .= "DELETE FROM t_menu_item;\n";
+
+    // t_menu_item_plus
+    $result .= "\n";
+    $result .= $lineSep;
+    $result .= "# t_menu_item_plus\n";
+    $result .= $lineSep;
+    $result .= "DELETE FROM t_menu_item_plus;\n";
 
     return ["sql" => $result, "success" => true];
   }
