@@ -26,7 +26,7 @@ Ext.define("PSI.User.OrgEditForm", {
         height: 40
       },
       width: 400,
-      height: 330,
+      height: 360,
       layout: "border",
       items: [{
         region: "north",
@@ -40,7 +40,12 @@ Ext.define("PSI.User.OrgEditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 1
+          columns: 1,
+          tableAttrs: {
+            style: {
+              borderSpacing: "4px 4px",
+            }
+          }
         },
         height: "100%",
         bodyPadding: 5,

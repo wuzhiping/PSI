@@ -26,6 +26,8 @@ Ext.define("PSI.User.UserEditForm", {
     const t = entity == null ? "新建用户" : "编辑用户";
     const logoHtml = me.genLogoHtml(entity, t);
 
+    const width1 = 435;
+
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -34,7 +36,7 @@ Ext.define("PSI.User.UserEditForm", {
       modal: true,
       onEsc: Ext.emptyFn,
       width: 470,
-      height: me.adding ? 410 : 380,
+      height: me.adding ? 450 : 420,
       layout: "border",
       items: [{
         region: "north",
@@ -48,7 +50,12 @@ Ext.define("PSI.User.UserEditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 2
+          columns: 2,
+          tableAttrs: {
+            style: {
+              borderSpacing: "4px 4px",
+            }
+          }
         },
         height: "100%",
         bodyPadding: 5,
@@ -71,7 +78,7 @@ Ext.define("PSI.User.UserEditForm", {
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "loginName",
           colspan: 2,
-          width: 430,
+          width: width1,
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
@@ -120,7 +127,7 @@ Ext.define("PSI.User.UserEditForm", {
             }
           },
           colspan: 2,
-          width: 430
+          width: width1
         }, {
           id: "editOrgId",
           xtype: "hidden",
@@ -178,7 +185,7 @@ Ext.define("PSI.User.UserEditForm", {
             }
           },
           colspan: 2,
-          width: 430
+          width: width1
         }, {
           xtype: "radiogroup",
           fieldLabel: "性别",
