@@ -54,6 +54,14 @@ Ext.define("PSI.MainMenu.MainForm", {
       handler: me._onDeleteMenu,
       scope: me
     }, "-", {
+      text: "工具",
+      menu: [{
+        text: "主菜单数据生成SQL语句",
+        iconCls: "PSI-sql",
+        scope: me,
+        handler: me._onGenSQL
+      }]
+    }, "-", {
       text: "指南",
       handler() {
         me.focus();
@@ -257,5 +265,15 @@ Ext.define("PSI.MainMenu.MainForm", {
   refreshMainGrid() {
     const me = this;
     me.getMainGrid().getStore().load();
-  }
+  },
+
+  /**
+   * 主菜单数据生成SQL
+   * 
+   * @private
+   */
+  _onGenSQL() {
+    const me = this;
+    me.showInfo("TODO")
+  },
 });
