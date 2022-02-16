@@ -10,6 +10,8 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;
@@ -103,7 +105,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
               scope: me
             }
           },
-          callbackFunc: me._fidCallbackFunc,
+          callbackFunc: me.fidCallbackFunc,
           callbackScope: me
         }, {
           id: "PSI_MainMenu_MenuItemEditForm_hiddenFid",
@@ -176,6 +178,8 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
 
   /**
    * 保存
+   * 
+   * @private
    */
   _onOK() {
     const me = this;
@@ -194,7 +198,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
 
         el.unmask();
 
-        me.tip("数据保存成功");
+        me.tip("数据保存成功", true);
         me.close();
       },
       failure(form, action) {
@@ -207,6 +211,9 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     f.submit(sf);
   },
 
+  /**
+   * @private
+   */
   _onLastEditSpecialKey(field, e) {
     const me = this;
 
@@ -218,7 +225,10 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     }
   },
 
-  _onWndClose() {
+  /**
+   * @private
+   */
+   _onWndClose() {
     const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
@@ -231,7 +241,10 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     }
   },
 
-  _onWndShow() {
+  /**
+   * @private
+   */
+   _onWndShow() {
     const me = this;
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
@@ -267,8 +280,12 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     me.ajax(r);
   },
 
-  // 自定义字段psi_fidfield回调本方法
-  _fidCallbackFunc(data, scope) {
+  /**
+   * 自定义字段psi_fidfield(web\Public\Scripts\PSI\Fid\FidField.js)回调本方法
+   * 
+   * @public
+   */
+   fidCallbackFunc(data, scope) {
     const me = scope;
 
     if (!me.editCaption.getValue()) {
