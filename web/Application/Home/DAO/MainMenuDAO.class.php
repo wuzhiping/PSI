@@ -442,4 +442,12 @@ class MainMenuDAO extends PSIBaseExDAO
       return null;
     }
   }
+
+  /**
+   * 主菜单数据导出SQL
+   */
+  public function genSQL()
+  {
+    return $this->todo();
+  }
 }

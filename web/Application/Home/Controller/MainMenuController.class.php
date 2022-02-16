@@ -209,6 +209,11 @@ class MainMenuController extends PSIBaseController
   public function editMenuItem()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::MAIN_MENU)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id"),
         "fid" => I("post.fid"),
@@ -230,6 +235,11 @@ class MainMenuController extends PSIBaseController
   public function deleteMenuItem()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::MAIN_MENU)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
@@ -247,12 +257,35 @@ class MainMenuController extends PSIBaseController
   public function menuItemInfo()
   {
     if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::MAIN_MENU)) {
+        die("没有权限");
+      }
+
       $params = [
         "id" => I("post.id")
       ];
 
       $service = new MainMenuService();
       $this->ajaxReturn($service->menuItemInfo($params));
+    }
+  }
+
+  /**
+   * 主菜单数据导出SQL
+   * 
+   * JS： web\Public\Scripts\PSI\MainMenu\GenSQLForm.js
+   */
+  public function genSQL()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::MAIN_MENU)) {
+        die("没有权限");
+      }
+
+      $service = new MainMenuService();
+      $this->ajaxReturn($service->genSQL());
     }
   }
 }

@@ -304,4 +304,17 @@ class MainMenuService extends PSIBaseExService
     $dao = new MainMenuDAO($this->db());
     return $dao->getNav($params);
   }
+
+  /**
+   * 主菜单数据导出SQL
+   */
+  public function genSQL()
+  {
+    if ($this->isNotOnline()) {
+      return $this->emptyResult();
+    }
+
+    $dao = new MainMenuDAO($this->db());
+    return $dao->genSQL();
+  }
 }
