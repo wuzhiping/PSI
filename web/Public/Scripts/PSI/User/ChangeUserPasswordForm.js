@@ -25,12 +25,14 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
       <h2 style='color:#196d83;margin-top:0px;'>${t}</h2>
       <p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>`;
 
+    const width1 = 600;
+    const width2 = 295;
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 400,
+      width: 650,
       height: 300,
       layout: "border",
       items: [{
@@ -45,7 +47,12 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 1
+          columns: 2,
+          tableAttrs: {
+            style: {
+              borderSpacing: "5px 10px",
+            }
+          }
         },
         height: "100%",
         bodyPadding: 5,
@@ -55,7 +62,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
           labelAlign: "right",
           labelSeparator: "",
           msgTarget: 'side',
-          width: 370
+          width: width2,
         },
         items: [{
           xtype: "hidden",
@@ -63,11 +70,11 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
           value: entity.id
         }, {
           fieldLabel: "登录名",
-          value: entity.loginName,
+          value: `<span class='PSI-field-note'>${entity.loginName}</span>`,
           xtype: "displayfield"
         }, {
           fieldLabel: "姓名",
-          value: entity.name,
+          value: `<span class='PSI-field-note'>${entity.name}</span>`,
           xtype: "displayfield"
         }, {
           id: "PSI_User_ChangeUserPasswordForm_editPassword",
@@ -82,7 +89,9 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
               fn: me.__onEditSpecialKey,
               scope: me
             }
-          }
+          },
+          colspan: 2,
+          width: width1,
         }, {
           id: "PSI_User_ChangeUserPasswordForm_editConfirmPassword",
           fieldLabel: "确认密码",
@@ -95,7 +104,9 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
               fn: me._onLastEditSpecialKey,
               scope: me
             }
-          }
+          },
+          colspan: 2,
+          width: width1,
         }],
         buttons: [{
           text: "确定",
