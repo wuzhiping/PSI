@@ -335,7 +335,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     store.on("beforeload", () => {
       store.proxy.extraParams = me.getQueryParam();
     });
-    store.on("load", function (e, records, successful) {
+    store.on("load", (e, records, successful) => {
       if (successful) {
         me.gotoMainGridRecord(null);
       }
@@ -359,7 +359,7 @@ Ext.define("PSI.Bizlog.MainForm", {
         }), {
           text: "登录名",
           dataIndex: "loginName",
-          width: 60
+          width: 160
         }, {
           text: "姓名",
           dataIndex: "userName",
