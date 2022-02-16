@@ -274,6 +274,8 @@ Ext.define("PSI.MainMenu.MainForm", {
    */
   _onGenSQL() {
     const me = this;
-    me.showInfo("TODO")
+
+    const form = Ext.create("PSI.MainMenu.GenSQLForm");
+    form.show();
   },
 });
