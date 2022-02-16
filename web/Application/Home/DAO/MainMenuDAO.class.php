@@ -461,12 +461,68 @@ class MainMenuDAO extends PSIBaseExDAO
     $result .= $lineSep;
     $result .= "DELETE FROM t_menu_item;\n";
 
+    $sql = "select id, caption, fid, parent_id, show_order,
+              py, memo, sys_category 
+            from t_menu_item
+            order by id";
+    $data = $db->query($sql);
+    foreach ($data as $v) {
+      $id = $v["id"];
+      $caption = $v["caption"];
+      $fid = $v["fid"];
+      if (!$fid) {
+        $fid = "NULL";
+      } else {
+        $fid = "'{$fid}'";
+      }
+      $parentId = $v["parent_id"];
+      if (!$parentId) {
+        $parentId = "NULL";
+      } else {
+        $parentId = "'{$parentId}'";
+      }
+      $showOrder = $v["show_order"];
+      $py = $v["py"];
+      $memo = $v["memo"];
+      $sysCategory = $v["sys_category"];
+      $result .= "INSERT INTO t_menu_item(id, caption, fid, parent_id, show_order, py, memo, sys_category)\n";
+      $result .= "VALUES ('{$id}', '{$caption}', {$fid}, {$parentId}, {$showOrder}, '{$py}', '{$memo}', {$sysCategory});\n";
+    }
+
     // t_menu_item_plus
     $result .= "\n";
     $result .= $lineSep;
     $result .= "# t_menu_item_plus\n";
     $result .= $lineSep;
     $result .= "DELETE FROM t_menu_item_plus;\n";
+
+    $sql = "select id, caption, fid, parent_id, show_order,
+              py, memo, sys_category 
+            from t_menu_item_plus
+            order by id";
+    $data = $db->query($sql);
+    foreach ($data as $v) {
+      $id = $v["id"];
+      $caption = $v["caption"];
+      $fid = $v["fid"];
+      if (!$fid) {
+        $fid = "NULL";
+      } else {
+        $fid = "'{$fid}'";
+      }
+      $parentId = $v["parent_id"];
+      if (!$parentId) {
+        $parentId = "NULL";
+      } else {
+        $parentId = "'{$parentId}'";
+      }
+      $showOrder = $v["show_order"];
+      $py = $v["py"];
+      $memo = $v["memo"];
+      $sysCategory = $v["sys_category"];
+      $result .= "INSERT INTO t_menu_item_plus(id, caption, fid, parent_id, show_order, py, memo, sys_category)\n";
+      $result .= "VALUES ('{$id}', '{$caption}', {$fid}, {$parentId}, {$showOrder}, '{$py}', '{$memo}', {$sysCategory});\n";
+    }
 
     return ["sql" => $result, "success" => true];
   }
