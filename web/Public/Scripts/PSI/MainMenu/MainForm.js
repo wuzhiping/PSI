@@ -10,6 +10,8 @@ Ext.define("PSI.MainMenu.MainForm", {
 
   /**
    * 初始化组件
+   * 
+   * @override
    */
   initComponent() {
     const me = this;
@@ -31,6 +33,9 @@ Ext.define("PSI.MainMenu.MainForm", {
     me.callParent(arguments);
   },
 
+  /**
+   * @private
+   */
   getToolbarCmp() {
     const me = this;
 
@@ -63,10 +68,13 @@ Ext.define("PSI.MainMenu.MainForm", {
     }];
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     const me = this;
-    if (me.__mainGrid) {
-      return me.__mainGrid;
+    if (me._mainGrid) {
+      return me._mainGrid;
     }
 
     const modelName = "PSIMainMenu";
@@ -89,7 +97,7 @@ Ext.define("PSI.MainMenu.MainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.tree.Panel", {
+    me._mainGrid = Ext.create("Ext.tree.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -146,15 +154,21 @@ Ext.define("PSI.MainMenu.MainForm", {
       }
     });
 
-    return me.__mainGrid;
+    return me._mainGrid;
   },
 
+  /**
+   * @private
+   */
   _onMainGridSelect(rowModel, record) {
     const sysItem = parseInt(record.get("sysItem")) == 1;
     Ext.getCmp("buttonEdit").setDisabled(sysItem);
     Ext.getCmp("buttonDelete").setDisabled(sysItem);
   },
 
+  /**
+   * @private
+   */
   _onAddMenu() {
     const me = this;
 
@@ -164,6 +178,9 @@ Ext.define("PSI.MainMenu.MainForm", {
     form.show();
   },
 
+  /**
+   * @private
+   */
   _onEditMenu() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -185,6 +202,9 @@ Ext.define("PSI.MainMenu.MainForm", {
     form.show();
   },
 
+  /**
+   * @private
+   */
   _onDeleteMenu() {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
@@ -217,7 +237,7 @@ Ext.define("PSI.MainMenu.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成删除操作");
+              me.tip("成功完成删除操作", true);
               me.refreshMainGrid();
             } else {
               me.showInfo(data.msg);
@@ -231,6 +251,9 @@ Ext.define("PSI.MainMenu.MainForm", {
     me.confirm(info, confirmFunc);
   },
 
+  /**
+   * @private
+   */
   refreshMainGrid() {
     const me = this;
     me.getMainGrid().getStore().load();
