@@ -100,7 +100,9 @@ Ext.define("PSI.Solution.EditForm", {
         }, {
           text: "取消",
           handler() {
-            me.confirm("请确认是否取消操作?", () => {
+            const info = entity == null ? "新建解决方案" : "编辑解决方案";
+
+            me.confirm(`请确认是否取消：${info}?`, () => {
               me.close();
             });
           },
