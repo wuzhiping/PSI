@@ -26,8 +26,8 @@ Ext.define("PSI.User.UserEditForm", {
     const t = entity == null ? "新建用户" : "编辑用户";
     const logoHtml = me.genLogoHtml(entity, t);
 
-    const width1 = 435;
-
+    const width1 = 600;
+    const width2 = 300;
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -35,8 +35,8 @@ Ext.define("PSI.User.UserEditForm", {
       },
       modal: true,
       onEsc: Ext.emptyFn,
-      width: 500,
-      height: me.adding ? 450 : 420,
+      width: 650,
+      height: me.adding ? 480 : 450,
       layout: "border",
       items: [{
         region: "north",
@@ -53,7 +53,7 @@ Ext.define("PSI.User.UserEditForm", {
           columns: 2,
           tableAttrs: {
             style: {
-              borderSpacing: "8px 8px",
+              borderSpacing: "5px 10px",
             }
           }
         },
@@ -88,6 +88,7 @@ Ext.define("PSI.User.UserEditForm", {
         }, {
           id: "editName",
           fieldLabel: "姓名",
+          width: width2,
           allowBlank: false,
           blankText: "没有输入姓名",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -101,6 +102,7 @@ Ext.define("PSI.User.UserEditForm", {
         }, {
           id: "editOrgCode",
           fieldLabel: "编码",
+          width: width2,
           allowBlank: false,
           blankText: "没有输入编码",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -135,6 +137,7 @@ Ext.define("PSI.User.UserEditForm", {
         }, {
           id: "editBirthday",
           fieldLabel: "生日",
+          width: width2,
           xtype: "datefield",
           format: "Y-m-d",
           name: "birthday",
@@ -147,6 +150,7 @@ Ext.define("PSI.User.UserEditForm", {
         }, {
           id: "editIdCardNumber",
           fieldLabel: "身份证号",
+          width: width2,
           name: "idCardNumber",
           listeners: {
             specialkey: {
@@ -157,6 +161,7 @@ Ext.define("PSI.User.UserEditForm", {
         }, {
           id: "editTel",
           fieldLabel: "联系电话",
+          width: width2,
           name: "tel",
           listeners: {
             specialkey: {
@@ -167,6 +172,7 @@ Ext.define("PSI.User.UserEditForm", {
         }, {
           id: "editTel02",
           fieldLabel: "备用电话",
+          width: width2,
           name: "tel02",
           listeners: {
             specialkey: {
@@ -202,7 +208,7 @@ Ext.define("PSI.User.UserEditForm", {
             inputValue: "女",
             checked: false
           }],
-          width: 200
+          width: width2,
         }, {
           xtype: "radiogroup",
           fieldLabel: "能否登录",
@@ -219,7 +225,7 @@ Ext.define("PSI.User.UserEditForm", {
             inputValue: false,
             checked: false
           }],
-          width: 240
+          width: width2,
         }, {
           xtype: "displayfield",
           fieldLabel: "说明",
