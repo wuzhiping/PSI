@@ -34,9 +34,13 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
     buttons.push(btn);
 
     btn = {
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler() {
-        me.close();
+        const info = !me.getEntity() ? "新建菜单项" : "编辑菜单项";
+        me.confirm(`请确认是否取消： ${info} ?`,
+          () => {
+            me.close();
+          });
       },
       scope: me
     };
@@ -49,8 +53,8 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 400,
-      height: 310,
+      width: 650,
+      height: 260,
       layout: "border",
       listeners: {
         show: {
@@ -64,7 +68,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
       },
       items: [{
         region: "north",
-        height: 90,
+        height: 55,
         border: 0,
         html: logoHtml
       }, {
@@ -74,7 +78,12 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 1
+          columns: 2,
+          tableAttrs: {
+            style: {
+              borderSpacing: "5px 10px",
+            }
+          }
         },
         height: "100%",
         bodyPadding: 5,
@@ -84,7 +93,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
           labelAlign: "right",
           labelSeparator: "",
           msgTarget: 'side',
-          width: 370,
+          width: 290,
           margin: "5"
         },
         items: [{
@@ -228,7 +237,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
   /**
    * @private
    */
-   _onWndClose() {
+  _onWndClose() {
     const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
@@ -244,7 +253,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
   /**
    * @private
    */
-   _onWndShow() {
+  _onWndShow() {
     const me = this;
 
     Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
@@ -285,7 +294,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
    * 
    * @public
    */
-   fidCallbackFunc(data, scope) {
+  fidCallbackFunc(data, scope) {
     const me = scope;
 
     if (!me.editCaption.getValue()) {
