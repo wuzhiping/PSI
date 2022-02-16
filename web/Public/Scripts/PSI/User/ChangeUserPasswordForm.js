@@ -38,7 +38,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 70,
+        height: 55,
         html: logoHtml
       }, {
         region: "center",
