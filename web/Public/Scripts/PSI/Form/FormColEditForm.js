@@ -31,9 +31,13 @@ Ext.define("PSI.Form.FormColEditForm", {
       },
       scope: me
     }, {
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler() {
-        me.close();
+        const info = entity == null ? "新建表单主表列" : "编辑表单主表列";
+
+        me.confirm(`请确认是否取消：${info}?`, () => {
+          me.close();
+        });
       },
       scope: me
     });
