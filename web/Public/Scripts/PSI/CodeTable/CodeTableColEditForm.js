@@ -674,11 +674,27 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
   _onOK() {
     const me = this;
 
-    me.showInfo("TODO")
-    return;
-
+    const entity = me.getEntity();
     const params = {
-      id: me.edit
+      id: entity == null ? null : entity.get("id"),
+      codeTableId: me.getCodeTable().get("id"),
+      caption: me.editCaption.getValue(),
+      fieldName: me.editFieldName.getValue(),
+      fieldType: me.editFieldType.getValue(),
+      fieldLength: me.editFieldLength.getValue(),
+      fieldDecimal: me.editFieldDec.getValue(),
+      valueFrom: me.editValueFrom.getValue(),
+      valueFromTableName: me.editValueFromTableName.getValue(),
+      valueFromColName: me.editValueFromColName.getValue(),
+      valueFromColNameDisplay: me.editValueFromColNameDisplay.getValue(),
+      mustInput: me.editMustInput.getValue(),
+      widthInView: me.editWidthInView.getValue(),
+      showOrder: me.editShowOrder.getValue(),
+      showOrderInView: me.editShowOrderInView.getValue(),
+      isVisible: me.editIsVisible.getValue(),
+      editorXtype: me.editEditorXtype.getValue(),
+      memo: me.editMemo.getValue(),
+      colSpan: me.editColSpan.getValue(),
     };
     const el = me.getEl();
     el && el.mask(PSI.Const.SAVING);
@@ -693,7 +709,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
           const data = me.decodeJSON(response.responseText);
           if (data.success) {
             me.tip("数据保存成功", true);
-            me.__lastId = action.result.id;
+            me.__lastId = data.id;
             me.close();
             const parentForm = me.getParentForm();
             if (parentForm) {
