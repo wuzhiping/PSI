@@ -353,10 +353,9 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
             me.editCode.setValue(data.code);
             me.editName.setValue(data.name);
             me.editModuleName.setValue(data.moduleName);
-            me.editTableName.setValue(data.tableName);
-            me.editEnableParentId.setValue(parseInt(data.enableParentId));
-            me.editEnableParentId.setReadOnly(true);
-            me.editTableName.setReadOnly(true);
+            me.editTableName.setValue(`<span class='PSI-field-note'>${data.tableName}</span>`);
+            // 当编辑的时候，me.editEnableParentId是个displayfield
+            me.editEnableParentId.setValue(`<span class='PSI-field-note'>${data.enableParentName}</span>`);
             me.editEditColCnt.setValue(data.editColCnt);
             me.editAutoCodeLength.setValue(data.autoCodeLength);
             me.editHandlerClassName.setValue(data.handlerClassName);

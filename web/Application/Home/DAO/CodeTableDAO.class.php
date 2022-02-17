@@ -1359,6 +1359,18 @@ class CodeTableDAO extends PSIBaseExDAO
     return $result;
   }
 
+  private function enableParentCodeToName($code)
+  {
+    switch ($code) {
+      case 0:
+        return "否";
+      case 1:
+        return "是";
+      default:
+        return "否";
+    }
+  }
+
   /**
    * 查询码表主表元数据
    */
@@ -1366,6 +1378,7 @@ class CodeTableDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
+    // 码表id
     $id = $params["id"];
 
     $sql = "select c.name as category_name, d.code, d.name,
@@ -1385,6 +1398,7 @@ class CodeTableDAO extends PSIBaseExDAO
         "categoryId" => $v["category_id"],
         "categoryName" => $v["category_name"],
         "enableParentId" => $v["enable_parent_id"],
+        "enableParentName" => $this->enableParentCodeToName($v["enable_parent_id"]),
         "handlerClassName" => $v["handler_class_name"],
         "memo" => $v["memo"],
         "editColCnt" => $v["edit_col_cnt"],
