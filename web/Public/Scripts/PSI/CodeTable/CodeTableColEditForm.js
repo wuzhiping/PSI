@@ -58,15 +58,15 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editName",
       fieldLabel: "码表名称",
-      readOnly: true,
-      value: me.getCodeTable().get("name")
+      xtype: "displayfield",
+      value: `<span class='PSI-field-note'>${me.getCodeTable().get("name")}</span>`
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editTableName",
       fieldLabel: "数据库表名",
-      readOnly: true,
+      xtype: "displayfield",
       colspan: 2,
       width: col2Width,
-      value: me.getCodeTable().get("tableName")
+      value: `<span class='PSI-field-note'>${me.getCodeTable().get("tableName")}</span>`
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editCaption",
       fieldLabel: "列标题",
