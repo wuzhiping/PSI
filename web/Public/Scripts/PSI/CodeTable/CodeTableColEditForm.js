@@ -45,8 +45,9 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     const col2Width = 550;
     const col3Width = 830;
 
-    const cols = [];
-    cols.push({
+    // 数据库结构相关的列
+    const cols1 = [];
+    cols1.push({
       xtype: "hidden",
       name: "id",
       value: entity == null ? null : entity.get("id")
@@ -346,6 +347,12 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       colspan: 3
     });
 
+    // 取值相关的列
+    const cols2 =[];
+
+    // 显示相关的列
+    const cols3 =[];
+
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -357,30 +364,82 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 55,
+        height: 60,
         html: logoHtml
       }, {
         region: "center",
         border: 0,
-        id: "PSI_CodeTable_CodeTableColEditForm_editForm",
-        xtype: "form",
-        layout: {
-          type: "table",
-          columns: 3,
-          tableAttrs: PSI.Const.TABLE_LAYOUT,
-        },
-        height: "100%",
-        bodyPadding: 5,
-        defaultType: 'textfield',
-        fieldDefaults: {
-          labelWidth: 120,
-          labelAlign: "right",
-          labelSeparator: "",
-          msgTarget: 'side'
-        },
-        items: cols,
-        buttons: buttons
+        layout: "fit",
+        items: {
+          xtype: "tabpanel",
+          border: 0,
+          items: [{
+            title: "数据库结构",
+            border: 0,
+            layout: "fit",
+            items: {
+              border: 0,
+              xtype: "form",
+              layout: {
+                type: "table",
+                columns: 3,
+                tableAttrs: PSI.Const.TABLE_LAYOUT,
+              },
+              defaultType: 'textfield',
+              fieldDefaults: {
+                labelWidth: 90,
+                labelAlign: "right",
+                labelSeparator: "",
+                msgTarget: 'side'
+              },
+              items: cols1
+            }
+          }, {
+            title: "取值",
+            border: 0,
+            layout: "fit",
+            items: {
+              border: 0,
+              xtype: "form",
+              layout: {
+                type: "table",
+                columns: 3,
+                tableAttrs: PSI.Const.TABLE_LAYOUT,
+              },
+              defaultType: 'textfield',
+              fieldDefaults: {
+                labelWidth: 90,
+                labelAlign: "right",
+                labelSeparator: "",
+                msgTarget: 'side'
+              },
+              items: cols2
+            }
+          }, {
+            title: "显示",
+            border: 0,
+            layout: "fit",
+            items: {
+              border: 0,
+              xtype: "form",
+              layout: {
+                type: "table",
+                columns: 3,
+                tableAttrs: PSI.Const.TABLE_LAYOUT,
+              },
+              defaultType: 'textfield',
+              fieldDefaults: {
+                labelWidth: 90,
+                labelAlign: "right",
+                labelSeparator: "",
+                msgTarget: 'side'
+              },
+              items: cols3
+            }
+          }]
+        }
       }],
+      buttons,
       listeners: {
         show: {
           fn: me.onWndShow,
