@@ -48,61 +48,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     const col2Width = 550;
     const col3Width = 830;
 
-    // 显示相关的列
-    const cols3 = [{
-      id: "PSI_CodeTable_CodeTableColEditForm_editWidthInView",
-      fieldLabel: "列视图宽度(px)",
-      labelWidth: 100,
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      minValue: 10,
-      value: 120,
-      allowBlank: false,
-      blankText: "没有输入列视图宽度",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      name: "widthInView",
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      }
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editShowOrderInView",
-      fieldLabel: "视图界面显示次序",
-      allowBlank: false,
-      blankText: "没有输入视图界面显示次序",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      name: "showOrderInView",
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      },
-      colspan: 1
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editShowOrder",
-      fieldLabel: "编辑界面显示次序",
-      allowBlank: false,
-      blankText: "没有输入编辑界面显示次序",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      name: "showOrder",
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      }
-    }];
-
     // 编辑相关的列
     const cols4 = [{
       id: "PSI_CodeTable_CodeTableColEditForm_editColSpan",
@@ -266,7 +211,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
                 labelSeparator: "",
                 msgTarget: 'side'
               },
-              items: cols3
+              items: me.getDisplayCols()
             }
           }, {
             title: "编辑",
@@ -535,6 +480,71 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       fieldLabel: "引用列名(显示用)",
       disabled: true,
       name: "valueFromColNameDisplay"
+    }];
+
+    return list;
+  },
+
+  /**
+   * @private
+   * 
+   * 显示相关的列
+   */
+  getDisplayCols() {
+    const me = this;
+
+    const list = [{
+      id: "PSI_CodeTable_CodeTableColEditForm_editWidthInView",
+      fieldLabel: "列视图宽度(px)",
+      labelWidth: 100,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      minValue: 10,
+      value: 120,
+      allowBlank: false,
+      blankText: "没有输入列视图宽度",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      name: "widthInView",
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      }
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editShowOrderInView",
+      fieldLabel: "视图界面显示次序",
+      allowBlank: false,
+      blankText: "没有输入视图界面显示次序",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      name: "showOrderInView",
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      },
+      colspan: 1
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editShowOrder",
+      fieldLabel: "编辑界面显示次序",
+      allowBlank: false,
+      blankText: "没有输入编辑界面显示次序",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      name: "showOrder",
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      }
     }];
 
     return list;
