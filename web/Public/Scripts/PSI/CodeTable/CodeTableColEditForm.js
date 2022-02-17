@@ -468,6 +468,11 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     return list;
   },
 
+  /**
+   * @private
+   * 
+   * 编辑相关的列
+   */
   getEditCols() {
     const me = this;
     const col2Width = 550;
