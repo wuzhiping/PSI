@@ -48,60 +48,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     const col2Width = 550;
     const col3Width = 830;
 
-    // 取值相关的列
-    const cols2 = [{
-      id: "PSI_CodeTable_CodeTableColEditForm_editValueFrom",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
-      fieldLabel: "值来源",
-      labelWidth: 60,
-      allowBlank: false,
-      blankText: "没有输入值来源",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [[1, "直接录入"],
-        [2, "引用系统数据字典"],
-        [3, "引用其他码表"],
-        [4, "引用自身数据"]]
-      }),
-      value: 1,
-      name: "valueFrom",
-      listeners: {
-        change: {
-          fn: me._onValueFromChange,
-          scope: me
-        }
-      },
-      colspan: 1
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_buttonRefCol",
-      xtype: "button",
-      text: "选择值来源的引用列",
-      disabled: true,
-      handler: me._onRefCol,
-      scope: me,
-      colspan: 2
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editValueFromTableName",
-      fieldLabel: "引用表名",
-      labelWidth: 60,
-      disabled: true,
-      name: "valueFromTableName"
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editValueFromColName",
-      fieldLabel: "引用列名(关联用)",
-      disabled: true,
-      name: "valueFromColName"
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editValueFromColNameDisplay",
-      fieldLabel: "引用列名(显示用)",
-      disabled: true,
-      name: "valueFromColNameDisplay"
-    }];
-
     // 显示相关的列
     const cols3 = [{
       id: "PSI_CodeTable_CodeTableColEditForm_editWidthInView",
@@ -298,7 +244,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
                 labelSeparator: "",
                 msgTarget: 'side'
               },
-              items: cols2
+              items: me.getFetchValueCols()
             }
           }, {
             title: "显示",
@@ -526,6 +472,70 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       width: col3Width,
       colspan: 3
     });
+
+    return list;
+  },
+
+  /**
+   * @private
+   * 
+   * 和取值相关的列
+   */
+  getFetchValueCols() {
+    const me = this;
+
+    const list = [{
+      id: "PSI_CodeTable_CodeTableColEditForm_editValueFrom",
+      xtype: "combo",
+      queryMode: "local",
+      editable: false,
+      valueField: "id",
+      fieldLabel: "值来源",
+      labelWidth: 60,
+      allowBlank: false,
+      blankText: "没有输入值来源",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      store: Ext.create("Ext.data.ArrayStore", {
+        fields: ["id", "text"],
+        data: [[1, "直接录入"],
+        [2, "引用系统数据字典"],
+        [3, "引用其他码表"],
+        [4, "引用自身数据"]]
+      }),
+      value: 1,
+      name: "valueFrom",
+      listeners: {
+        change: {
+          fn: me._onValueFromChange,
+          scope: me
+        }
+      },
+      colspan: 1
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_buttonRefCol",
+      xtype: "button",
+      text: "选择值来源的引用列",
+      disabled: true,
+      handler: me._onRefCol,
+      scope: me,
+      colspan: 2
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editValueFromTableName",
+      fieldLabel: "引用表名",
+      labelWidth: 60,
+      disabled: true,
+      name: "valueFromTableName"
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editValueFromColName",
+      fieldLabel: "引用列名(关联用)",
+      disabled: true,
+      name: "valueFromColName"
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editValueFromColNameDisplay",
+      fieldLabel: "引用列名(显示用)",
+      disabled: true,
+      name: "valueFromColNameDisplay"
+    }];
 
     return list;
   },
