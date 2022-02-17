@@ -606,6 +606,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
               me.editCaption.setValue(col.caption);
               me.editFieldName.setValue(`<span class='PSI-field-note'>${col.fieldName}</span>`);
               me.editFieldType.setValue(`<span class='PSI-field-note'>${col.fieldType}</span>`);
+              me.editFieldLength.setValue(`<span class='PSI-field-note'>${col.fieldLength}</span>`);
               me.editFieldDec.setValue(`<span class='PSI-field-note'>${col.fieldDecimal}</span>`);
               const valueFrom = parseInt(col.valueFrom);
               me.editValueFrom.setValue(valueFrom);
