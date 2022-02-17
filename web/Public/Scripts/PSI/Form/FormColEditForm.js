@@ -38,7 +38,7 @@ Ext.define("PSI.Form.FormColEditForm", {
       scope: me
     });
 
-    const t = entity == null ? "新增表单主表列" : "编辑表单主表列";
+    const t = entity == null ? "新建表单主表列" : "编辑表单主表列";
     const logoHtml = me.genLogoHtml(entity, t);
 
     const col2Width = 550;
