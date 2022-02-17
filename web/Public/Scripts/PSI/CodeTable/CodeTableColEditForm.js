@@ -474,11 +474,11 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       buttons,
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       }
@@ -516,10 +516,10 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     me.buttonRefCol = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
   },
 
-  onWndShow() {
+  _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
@@ -669,14 +669,10 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
