@@ -27,7 +27,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler: function () {
-        me.onOK(false);
+        me._onOK(false);
       },
       scope: me
     }, {
@@ -121,7 +121,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       name: "fieldType",
       listeners: {
         change: {
-          fn: me.onFieldTypeChange,
+          fn: me._onFieldTypeChange,
           scope: me
         }
       }
@@ -195,7 +195,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       name: "valueFrom",
       listeners: {
         change: {
-          fn: me.onValueFromChange,
+          fn: me._onValueFromChange,
           scope: me
         }
       },
@@ -205,7 +205,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       xtype: "button",
       text: "选择值来源的引用列",
       disabled: true,
-      handler: me.onRefCol,
+      handler: me._onRefCol,
       scope: me,
       colspan: 2
     }, {
@@ -516,6 +516,9 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     me.buttonRefCol = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
   },
 
+  /**
+   * @private
+   */
   _onWndShow() {
     const me = this;
 
@@ -612,7 +615,10 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     });
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
 
     me.showInfo("TODO")
@@ -659,16 +665,19 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
   },
 
   onEditLastSpecialKey(field, e) {
-    const me = this;
+    // const me = this;
 
-    if (e.getKey() === e.ENTER) {
-      const f = me.editForm;
-      if (f.getForm().isValid()) {
-        me.onOK();
-      }
-    }
+    // if (e.getKey() === e.ENTER) {
+    //   const f = me.editForm;
+    //   if (f.getForm().isValid()) {
+    //     me.onOK();
+    //   }
+    // }
   },
 
+  /**
+   * @private
+   */
   _onWndClose() {
     const me = this;
 
@@ -681,7 +690,10 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }
   },
 
-  onFieldTypeChange() {
+  /**
+   * @private
+   */
+  _onFieldTypeChange() {
     const me = this;
     const v = me.editFieldType.getValue();
     if (v == "varchar") {
@@ -707,7 +719,10 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }
   },
 
-  onValueFromChange() {
+  /**
+   * @private
+   */
+  _onValueFromChange() {
     const me = this;
     const v = me.editValueFrom.getValue();
     if (v == 1) {
@@ -733,7 +748,10 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }
   },
 
-  onRefCol() {
+  /**
+   * @private
+   */
+  _onRefCol() {
     const me = this;
     me.showInfo("TODO")
   }
