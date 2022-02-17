@@ -54,9 +54,12 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 # PSI低代码应用平台范例
 
+**吃自己的狗食（eat your own dog food，是一种比喻的说法。对于软件开发公司而言，意思就是自己要尽量多用自己开发的软件）**
+
+
 - [PSI标准进销存 - https://gitee.com/crm8000/PSI_SLN0001](https://gitee.com/crm8000/PSI_SLN0001)
 
-> TODO
+> TODO 逐步把现在手工编程的进销存模块用PSI低代码应用平台重新实现一遍
 
 - [PSI财务总账](https://gitee.com/crm8000/PSI/tree/master/web/Application/SLN0002)
 
@@ -64,14 +67,13 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 - [PSI人力资源 - https://gitee.com/crm8000/PSI_SLN0003](https://gitee.com/crm8000/PSI_SLN0003)
 
-> TODO
+> TODO 新解决方案，待开发
 
 - [PSI服装ERP - https://gitee.com/crm8000/PSI_SLN0010](https://gitee.com/crm8000/PSI_SLN0010)
 
 > `PSI服装ERP`既是展示PSI低代码应用平台能力的范例，又是我们商业化PSI的行业产品。
 > 同时，也免费提供给各个合作伙伴商业使用。
 
-> 吃自己的狗食（eat your own dog food，是一种比喻的说法。对于软件开发公司而言，意思就是自己要尽量多用自己开发的软件）
 
 # PSI NG (PSI New Generation - 下一代的PSI)
 
