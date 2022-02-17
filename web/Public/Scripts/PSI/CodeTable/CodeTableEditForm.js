@@ -155,6 +155,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editTableName",
           fieldLabel: "数据库表名",
+          xtype: me.adding ? "textfield" : "displayfield",
           allowBlank: false,
           blankText: "没有输入数据库表名",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -169,11 +170,11 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           width: width1
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editEnableParentId",
-          xtype: "combo",
           queryMode: "local",
           editable: false,
           valueField: "id",
           fieldLabel: "层级数据",
+          xtype: me.adding ? "combo" : "displayfield",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           store: Ext.create("Ext.data.ArrayStore", {
             fields: ["id", "text"],
@@ -182,6 +183,12 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           value: 0,
           name: "enableParentId",
           width: width2,
+          listeners: {
+            specialkey: {
+              fn: me.__onEditSpecialKey,
+              scope: me
+            }
+          },
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editEditColCnt",
           fieldLabel: "编辑布局列数",
@@ -216,6 +223,12 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           value: 2,
           name: "viewPaging",
           width: width2,
+          listeners: {
+            specialkey: {
+              fn: me.__onEditSpecialKey,
+              scope: me
+            }
+          },
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editAutoCodeLength",
           fieldLabel: "自动编码长度",
@@ -257,7 +270,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           value: entity == null ? null : entity.get("note"),
           listeners: {
             specialkey: {
-              fn: me.onEditLastSpecialKey,
+              fn: me._onEditLastSpecialKey,
               scope: me
             }
           },
@@ -295,10 +308,18 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
     me.editMemo = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editMemo");
     me.editViewPaging = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editViewPaging");
 
-    me.__editorList = [
-      me.editCategory, me.editCode, me.editName, me.editModuleName,
-      me.editTableName, me.editEditColCnt, me.editAutoCodeLength,
-      me.editHandlerClassName, me.editMemo];
+    const list = [me.editCategory, me.editCode, me.editName, me.editModuleName];
+    if (me.adding) {
+      list.push(me.editTableName);
+      list.push(me.editEnableParentId);
+    }
+    list.push(me.editEditColCnt);
+    if (me.adding) {
+      list.push(me.editViewPaging);
+    }
+    list.push(me.editAutoCodeLength, me.editHandlerClassName, me.editMemo);
+
+    me.__editorList = list;
 
     const c = me.getCategory();
     if (c) {
