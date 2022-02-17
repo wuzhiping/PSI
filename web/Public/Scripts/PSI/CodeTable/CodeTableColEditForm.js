@@ -48,130 +48,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     const col2Width = 550;
     const col3Width = 830;
 
-    // 数据库结构相关的列
-    const cols1 = [];
-    cols1.push({
-      xtype: "hidden",
-      name: "id",
-      value: entity == null ? null : entity.get("id")
-    }, {
-      xtype: "hidden",
-      name: "codeTableId",
-      value: me.getCodeTable().get("id")
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editName",
-      fieldLabel: "码表名称",
-      xtype: "displayfield",
-      value: `<span class='PSI-field-note'>${me.getCodeTable().get("name")}</span>`
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editTableName",
-      fieldLabel: "数据库表名",
-      xtype: "displayfield",
-      colspan: 2,
-      width: col2Width,
-      value: `<span class='PSI-field-note'>${me.getCodeTable().get("tableName")}</span>`
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editCaption",
-      fieldLabel: "列标题",
-      allowBlank: false,
-      blankText: "没有输入列标题",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      },
-      name: "caption"
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editFieldName",
-      fieldLabel: "列数据库名",
-      allowBlank: false,
-      blankText: "没有输入列数据库名",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      },
-      colspan: 2,
-      width: col2Width,
-      name: "fieldName"
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editFieldType",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
-      labelAlign: "right",
-      labelSeparator: "",
-      fieldLabel: "列数据类型",
-      allowBlank: false,
-      blankText: "没有输入列数据类型",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [["varchar", "varchar"],
-        ["int", "int"],
-        ["decimal", "decimal"],
-        ["datetime", "datetime"]]
-      }),
-      value: "varchar",
-      name: "fieldType",
-      listeners: {
-        change: {
-          fn: me._onFieldTypeChange,
-          scope: me
-        }
-      }
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editFieldLength",
-      fieldLabel: "列数据长度",
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      },
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      minValue: 1,
-      value: 255,
-      name: "fieldLength"
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editFieldDec",
-      fieldLabel: "列小数位数",
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      },
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      minValue: 0,
-      value: 0,
-      name: "fieldDecimal",
-      disabled: true
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editMemo",
-      fieldLabel: "备注",
-      name: "memo",
-      value: entity == null ? null : entity
-        .get("note"),
-      listeners: {
-        specialkey: {
-          fn: me.onEditLastSpecialKey,
-          scope: me
-        }
-      },
-      width: col3Width,
-      colspan: 3
-    });
-
     // 取值相关的列
     const cols2 = [{
       id: "PSI_CodeTable_CodeTableColEditForm_editValueFrom",
@@ -400,7 +276,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
                 labelSeparator: "",
                 msgTarget: 'side'
               },
-              items: cols1
+              items: me.getDbStructCols()
             }
           }, {
             title: "取值",
@@ -514,6 +390,144 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     ];
 
     me.buttonRefCol = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
+  },
+
+  /**
+   * @private
+   * 
+   * 和数据库结构相关的列
+   */
+  getDbStructCols() {
+    const me = this;
+    const entity = me.getEntity();
+    const col2Width = 550;
+    const col3Width = 830;
+
+    const list = [];
+
+    list.push({
+      xtype: "hidden",
+      name: "id",
+      value: entity == null ? null : entity.get("id")
+    }, {
+      xtype: "hidden",
+      name: "codeTableId",
+      value: me.getCodeTable().get("id")
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editName",
+      fieldLabel: "码表名称",
+      xtype: "displayfield",
+      value: `<span class='PSI-field-note'>${me.getCodeTable().get("name")}</span>`
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editTableName",
+      fieldLabel: "数据库表名",
+      xtype: "displayfield",
+      colspan: 2,
+      width: col2Width,
+      value: `<span class='PSI-field-note'>${me.getCodeTable().get("tableName")}</span>`
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editCaption",
+      fieldLabel: "列标题",
+      allowBlank: false,
+      blankText: "没有输入列标题",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      },
+      name: "caption"
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editFieldName",
+      fieldLabel: "列数据库名",
+      allowBlank: false,
+      blankText: "没有输入列数据库名",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      },
+      colspan: 2,
+      width: col2Width,
+      name: "fieldName"
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editFieldType",
+      xtype: "combo",
+      queryMode: "local",
+      editable: false,
+      valueField: "id",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "列数据类型",
+      allowBlank: false,
+      blankText: "没有输入列数据类型",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      store: Ext.create("Ext.data.ArrayStore", {
+        fields: ["id", "text"],
+        data: [["varchar", "varchar"],
+        ["int", "int"],
+        ["decimal", "decimal"],
+        ["datetime", "datetime"]]
+      }),
+      value: "varchar",
+      name: "fieldType",
+      listeners: {
+        change: {
+          fn: me._onFieldTypeChange,
+          scope: me
+        }
+      }
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editFieldLength",
+      fieldLabel: "列数据长度",
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      },
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      minValue: 1,
+      value: 255,
+      name: "fieldLength"
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editFieldDec",
+      fieldLabel: "列小数位数",
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      },
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      minValue: 0,
+      value: 0,
+      name: "fieldDecimal",
+      disabled: true
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editMemo",
+      fieldLabel: "备注",
+      name: "memo",
+      value: entity == null ? null : entity
+        .get("note"),
+      listeners: {
+        specialkey: {
+          fn: me.onEditLastSpecialKey,
+          scope: me
+        }
+      },
+      width: col3Width,
+      colspan: 3
+    });
+
+    return list;
   },
 
   /**
