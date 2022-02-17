@@ -368,7 +368,7 @@ Ext.define("PSI.Bizlog.MainForm", {
           text: "IP",
           dataIndex: "ip",
           width: 120,
-          renderer(value, md, record) {
+          renderer(value) {
             return `<a href='http://www.baidu.com/s?wd=${encodeURIComponent(value)}' target='_blank'>${value}</a>`;
           }
         }, {
@@ -382,7 +382,10 @@ Ext.define("PSI.Bizlog.MainForm", {
         }, {
           text: "日志内容",
           dataIndex: "content",
-          flex: 1
+          flex: 1,
+          renderer(value) {
+            return `<div class='PSI-grid-cell-autoWrap'>${value}</div>`;
+          }
         }, {
           text: "日志记录时间",
           dataIndex: "dt",
