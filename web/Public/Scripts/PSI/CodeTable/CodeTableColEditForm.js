@@ -604,9 +604,9 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
             const col = data.col;
             if (col) {
               me.editCaption.setValue(col.caption);
-              me.editFieldName.setValue(col.fieldName);
-              me.editFieldType.setValue(col.fieldType);
-              me.editFieldDec.setValue(col.fieldDecimal);
+              me.editFieldName.setValue(`<span class='PSI-field-note'>${col.fieldName}</span>`);
+              me.editFieldType.setValue(`<span class='PSI-field-note'>${col.fieldType}</span>`);
+              me.editFieldDec.setValue(`<span class='PSI-field-note'>${col.fieldDecimal}</span>`);
               const valueFrom = parseInt(col.valueFrom);
               me.editValueFrom.setValue(valueFrom);
               me.editValueFromTableName.setValue(col.valueFromTableName);
