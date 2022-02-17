@@ -54,6 +54,10 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 # PSI低代码应用平台范例
 
+- [PSI财务总账](https://gitee.com/crm8000/PSI/tree/master/web/Application/SLN0002)
+
+> 因为财务总账是ERP系统的核心模块，所以集成在PSI低代码应用平台中了
+
 - [PSI服装ERP - https://gitee.com/crm8000/PSI_SLN0010](https://gitee.com/crm8000/PSI_SLN0010)
 
 > `PSI服装ERP`既是展示PSI低代码应用平台能力的范例，又是我们商业化PSI的行业产品。
