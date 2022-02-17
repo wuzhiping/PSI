@@ -1050,7 +1050,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成操作");
+              me.tip("成功完成操作", true);
               me.refreshMainGrid(id);
             } else {
               me.showInfo(data.msg);
