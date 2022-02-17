@@ -387,6 +387,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
             items: {
               border: 0,
               xtype: "form",
+              bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
                 columns: 3,
@@ -408,6 +409,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
             items: {
               border: 0,
               xtype: "form",
+              bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
                 columns: 3,
@@ -429,6 +431,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
             items: {
               border: 0,
               xtype: "form",
+              bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
                 columns: 3,
@@ -450,6 +453,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
             items: {
               border: 0,
               xtype: "form",
+              bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
                 columns: 3,
