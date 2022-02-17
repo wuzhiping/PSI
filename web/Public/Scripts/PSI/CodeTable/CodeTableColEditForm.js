@@ -209,6 +209,8 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
   getDbStructCols() {
     const me = this;
     const entity = me.getEntity();
+    const isSysCol = (entity != null) && (parseInt(entity.get("sysColRawValue")) == 1);
+    debugger;
     const col2Width = 550;
     const col3Width = 830;
 
@@ -237,6 +239,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editCaption",
       fieldLabel: "列标题",
+      xtype: me.adding ? "textfield" : (isSysCol ? "displayfield" : "textfield"),
       allowBlank: false,
       blankText: "没有输入列标题",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -590,6 +593,8 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
             // 新建
             const store = me.editEditorXtype.getStore();
             me.editEditorXtype.setValue(store.getAt(0));
+
+            me.editCaption.focus();
           } else {
             // 编辑
             me.editTableName.setReadOnly(true);
@@ -634,6 +639,8 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
 
               if (col.sysCol == 1) {
                 // 系统列的时候，进一步限制字段的修改
+                me.editCaption.setValue(`<span class='PSI-field-note'>${col.caption}</span>`);
+
                 me.editValueFrom.setReadOnly(true);
                 me.editIsVisible.setReadOnly(true);
                 me.editMustInput.setReadOnly(true);
@@ -650,10 +657,14 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
                 // 可见的字段，也能设置在视图中的宽度
                 me.editWidthInView.setReadOnly(false);
               }
+              if (col.sysCol == 1) {
+                // 系统列的时候
+                me.editMemo.focus();
+              } else {
+                me.editCaption.focus();
+              }
             }
           }
-
-          me.editCaption.focus();
         }
       }
     });

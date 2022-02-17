@@ -363,7 +363,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         "fieldType", "fieldLength", "fieldDecimal",
         "valueFrom", "valueFromTableName",
         "valueFromColName", "valueFromColNameDisplay", "mustInput",
-        "showOrder", "sysCol", "sysColRowValue", "isVisible",
+        "showOrder", "sysCol", "sysColRawValue", "isVisible",
         "widthInView", "note", "showOrderInView", "editorXtype",
         "colSpan"]
     });
