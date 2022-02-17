@@ -45,88 +45,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     const t = entity == null ? "新建码表列" : "编辑码表列";
     const logoHtml = me.genLogoHtml(entity, t);
 
-    const col2Width = 550;
-    const col3Width = 830;
-
-    // 编辑相关的列
-    const cols4 = [{
-      id: "PSI_CodeTable_CodeTableColEditForm_editColSpan",
-      fieldLabel: "编辑器列占位",
-      allowBlank: false,
-      blankText: "没有输入编辑器列占位",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      minValue: 1,
-      name: "colSpan",
-      value: 1,
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      }
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editEditorXtype",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
-      labelAlign: "right",
-      labelSeparator: "",
-      fieldLabel: "编辑器类型",
-      allowBlank: false,
-      blankText: "没有输入编辑器类型",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: []
-      }),
-      value: "textfield",
-      name: "editorXtype",
-      colspan: 3,
-      width: col2Width
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editIsVisible",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
-      labelAlign: "right",
-      labelSeparator: "",
-      fieldLabel: "对用户可见",
-      allowBlank: false,
-      blankText: "没有输入对用户可见",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [[1, "对用户可见"],
-        [2, "对用户不可见"]]
-      }),
-      value: 1,
-      name: "isVisible"
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editMustInput",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
-      labelAlign: "right",
-      labelSeparator: "",
-      fieldLabel: "必须录入",
-      allowBlank: false,
-      blankText: "没有输入必须录入",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [[1, "非必须录入项"],
-        [2, "必须录入"]]
-      }),
-      value: 1,
-      name: "mustInput"
-    }];
-
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -233,7 +151,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
                 labelSeparator: "",
                 msgTarget: 'side'
               },
-              items: cols4
+              items: me.getEditCols()
             }
           }]
         }
@@ -545,6 +463,91 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
           scope: me
         }
       }
+    }];
+
+    return list;
+  },
+
+  getEditCols() {
+    const me = this;
+    const col2Width = 550;
+
+    const list = [{
+      id: "PSI_CodeTable_CodeTableColEditForm_editColSpan",
+      fieldLabel: "编辑器列占位",
+      allowBlank: false,
+      blankText: "没有输入编辑器列占位",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      minValue: 1,
+      name: "colSpan",
+      value: 1,
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      }
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editEditorXtype",
+      xtype: "combo",
+      queryMode: "local",
+      editable: false,
+      valueField: "id",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "编辑器类型",
+      allowBlank: false,
+      blankText: "没有输入编辑器类型",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      store: Ext.create("Ext.data.ArrayStore", {
+        fields: ["id", "text"],
+        data: []
+      }),
+      value: "textfield",
+      name: "editorXtype",
+      colspan: 3,
+      width: col2Width
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editIsVisible",
+      xtype: "combo",
+      queryMode: "local",
+      editable: false,
+      valueField: "id",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "对用户可见",
+      allowBlank: false,
+      blankText: "没有输入对用户可见",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      store: Ext.create("Ext.data.ArrayStore", {
+        fields: ["id", "text"],
+        data: [[1, "对用户可见"],
+        [2, "对用户不可见"]]
+      }),
+      value: 1,
+      name: "isVisible"
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editMustInput",
+      xtype: "combo",
+      queryMode: "local",
+      editable: false,
+      valueField: "id",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "必须录入",
+      allowBlank: false,
+      blankText: "没有输入必须录入",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      store: Ext.create("Ext.data.ArrayStore", {
+        fields: ["id", "text"],
+        data: [[1, "非必须录入项"],
+        [2, "必须录入"]]
+      }),
+      value: 1,
+      name: "mustInput"
     }];
 
     return list;
