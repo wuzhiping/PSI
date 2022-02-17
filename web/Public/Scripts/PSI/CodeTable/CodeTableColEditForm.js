@@ -261,22 +261,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
         }
       }
     }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editShowOrder",
-      fieldLabel: "编辑界面显示次序",
-      allowBlank: false,
-      blankText: "没有输入编辑界面显示次序",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      name: "showOrder",
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      }
-    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editColSpan",
       fieldLabel: "编辑器列占位",
       allowBlank: false,
@@ -294,23 +278,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
           scope: me
         }
       }
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editShowOrderInView",
-      fieldLabel: "视图界面显示次序",
-      allowBlank: false,
-      blankText: "没有输入视图界面显示次序",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      name: "showOrderInView",
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      },
-      colspan: 1
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editEditorXtype",
       xtype: "combo",
@@ -348,10 +315,43 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     });
 
     // 取值相关的列
-    const cols2 =[];
+    const cols2 = [];
 
     // 显示相关的列
-    const cols3 =[];
+    const cols3 = [{
+      id: "PSI_CodeTable_CodeTableColEditForm_editShowOrderInView",
+      fieldLabel: "视图界面显示次序",
+      allowBlank: false,
+      blankText: "没有输入视图界面显示次序",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      name: "showOrderInView",
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      },
+      colspan: 1
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editShowOrder",
+      fieldLabel: "编辑界面显示次序",
+      allowBlank: false,
+      blankText: "没有输入编辑界面显示次序",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      name: "showOrder",
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      }
+    }];
 
     Ext.apply(me, {
       header: {
