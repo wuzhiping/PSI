@@ -1176,6 +1176,7 @@ class CodeTableDAO extends PSIBaseExDAO
         "valueFromColNameDisplay" => $v["value_from_col_name_display"],
         "mustInput" => $v["must_input"] == 2 ? "必录项" : "",
         "sysCol" => $v["sys_col"] == 1 ? "系统列" : "",
+        "sysColRowValue" => $v["sys_col"],
         "isVisible" => $isVisible ? "可见" : "不可见",
         "widthInView" => $isVisible ? ($v["width_in_view"] ?? 100) : null,
         "note" => $v["note"],
