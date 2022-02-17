@@ -43,10 +43,11 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
           xtype: "form",
           layout: {
             type: "table",
-            columns: 1
+            columns: 1,
+            tableAttrs: PSI.Const.TABLE_LAYOUT,
           },
-          height: 170,
-          width: 300,
+          height: 250,
+          width: 320,
           defaultType: 'textfield',
           border: 0,
           fieldDefaults: {
