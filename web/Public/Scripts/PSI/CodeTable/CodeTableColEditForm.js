@@ -249,6 +249,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       name: "caption"
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editFieldName",
+      xtype: me.adding ? "textfield" : "displayfield",
       fieldLabel: "列数据库名",
       allowBlank: false,
       blankText: "没有输入列数据库名",
@@ -264,7 +265,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       name: "fieldName"
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editFieldType",
-      xtype: "combo",
+      xtype: me.adding ? "combo" : "displayfield",
       queryMode: "local",
       editable: false,
       valueField: "id",
@@ -298,7 +299,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
           scope: me
         }
       },
-      xtype: "numberfield",
+      xtype: me.adding ? "numberfield" : "displayfield",
       hideTrigger: true,
       allowDecimal: false,
       minValue: 1,
@@ -313,7 +314,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
           scope: me
         }
       },
-      xtype: "numberfield",
+      xtype: me.adding ? "numberfield" : "displayfield",
       hideTrigger: true,
       allowDecimal: false,
       minValue: 0,
