@@ -28,14 +28,18 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       },
       scope: me
     }, {
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler() {
-        me.close();
+        const info = entity == null ? "新建码表列" : "编辑码表列";
+
+        me.confirm(`请确认是否取消：${info}?`, () => {
+          me.close();
+        });
       },
       scope: me
     });
 
-    const t = entity == null ? "新增码表列" : "编辑码表列";
+    const t = entity == null ? "新建码表列" : "编辑码表列";
     const logoHtml = me.genLogoHtml(entity, t);
 
     const col2Width = 550;
@@ -46,12 +50,12 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
         height: 40
       },
       width: 890,
-      height: 430,
+      height: 460,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 90,
+        height: 55,
         html: logoHtml
       }, {
         region: "center",
@@ -60,7 +64,8 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 3
+          columns: 3,
+          tableAttrs: PSI.Const.TABLE_LAYOUT,
         },
         height: "100%",
         bodyPadding: 5,
