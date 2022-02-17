@@ -67,7 +67,7 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 - [PSI人力资源 - https://gitee.com/crm8000/PSI_SLN0003](https://gitee.com/crm8000/PSI_SLN0003)
 
-> TODO 新解决方案，待开发
+> TODO 全新的解决方案，待用PSI低代码应用平台实现
 
 - [PSI服装ERP - https://gitee.com/crm8000/PSI_SLN0010](https://gitee.com/crm8000/PSI_SLN0010)
 
