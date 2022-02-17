@@ -214,44 +214,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
         }
       }
     }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editColSpan",
-      fieldLabel: "编辑器列占位",
-      allowBlank: false,
-      blankText: "没有输入编辑器列占位",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      minValue: 1,
-      name: "colSpan",
-      value: 1,
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      }
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editEditorXtype",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
-      labelAlign: "right",
-      labelSeparator: "",
-      fieldLabel: "编辑器类型",
-      allowBlank: false,
-      blankText: "没有输入编辑器类型",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: []
-      }),
-      value: "textfield",
-      name: "editorXtype",
-      colspan: 3,
-      width: col2Width
-    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editMemo",
       fieldLabel: "备注",
       name: "memo",
@@ -358,7 +320,45 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }];
 
     // 编辑相关的列
-    const cols4 =[];
+    const cols4 = [{
+      id: "PSI_CodeTable_CodeTableColEditForm_editColSpan",
+      fieldLabel: "编辑器列占位",
+      allowBlank: false,
+      blankText: "没有输入编辑器列占位",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      minValue: 1,
+      name: "colSpan",
+      value: 1,
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      }
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editEditorXtype",
+      xtype: "combo",
+      queryMode: "local",
+      editable: false,
+      valueField: "id",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "编辑器类型",
+      allowBlank: false,
+      blankText: "没有输入编辑器类型",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      store: Ext.create("Ext.data.ArrayStore", {
+        fields: ["id", "text"],
+        data: []
+      }),
+      value: "textfield",
+      name: "editorXtype",
+      colspan: 3,
+      width: col2Width
+    }];
 
     Ext.apply(me, {
       header: {
