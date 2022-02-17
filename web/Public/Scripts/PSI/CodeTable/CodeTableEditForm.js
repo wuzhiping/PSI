@@ -30,9 +30,13 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
       },
       scope: me
     }, {
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler() {
-        me.close();
+        const info = entity == null ? "新建码表" : "编辑码表";
+
+        me.confirm(`请确认是否取消：${info}?`, () => {
+          me.close();
+        });
       },
       scope: me
     });
@@ -40,18 +44,20 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
     const t = entity == null ? "新建码表" : "编辑码表";
     const logoHtml = me.genLogoHtml(entity, t);
 
+    const width1 = 600;
+    const width2 = 300;
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 550,
-      height: 380,
+      width: 650,
+      height: 450,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 70,
+        height: 55,
         html: logoHtml
       }, {
         region: "center",
@@ -60,13 +66,14 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 2
+          columns: 2,
+          tableAttrs: PSI.Const.TABLE_LAYOUT,
         },
         height: "100%",
         bodyPadding: 5,
         defaultType: 'textfield',
         fieldDefaults: {
-          labelWidth: 100,
+          labelWidth: 85,
           labelAlign: "right",
           labelSeparator: "",
           msgTarget: 'side'
@@ -88,7 +95,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           fieldLabel: "解决方案",
           value: `<span class='PSI-field-note'>${me.getSlnName()}</span>`,
           colspan: 2,
-          width: 510,
+          width: width1,
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editCategory",
           xtype: "psi_codetablecategoryfield",
@@ -104,7 +111,8 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
               fn: me.__onEditSpecialKey,
               scope: me
             }
-          }
+          },
+          width: width2,
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editCode",
           fieldLabel: "编码",
@@ -114,7 +122,8 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
               fn: me.__onEditSpecialKey,
               scope: me
             }
-          }
+          },
+          width: width2,
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editName",
           fieldLabel: "码表名称",
@@ -127,7 +136,8 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
               fn: me.__onEditSpecialKey,
               scope: me
             }
-          }
+          },
+          width: width2,
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editModuleName",
           fieldLabel: "模块名称",
@@ -140,7 +150,8 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
               fn: me.__onEditSpecialKey,
               scope: me
             }
-          }
+          },
+          width: width2,
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editTableName",
           fieldLabel: "数据库表名",
@@ -155,7 +166,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
             }
           },
           colspan: 2,
-          width: 510
+          width: width1
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editEnableParentId",
           xtype: "combo",
@@ -169,7 +180,8 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
             data: [[0, "否"], [1, "是"]]
           }),
           value: 0,
-          name: "enableParentId"
+          name: "enableParentId",
+          width: width2,
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editEditColCnt",
           fieldLabel: "编辑布局列数",
@@ -187,7 +199,8 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
               fn: me.__onEditSpecialKey,
               scope: me
             }
-          }
+          },
+          width: width2,
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editViewPaging",
           xtype: "combo",
@@ -201,7 +214,8 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
             data: [[1, "分页"], [2, "不分页"]]
           }),
           value: 2,
-          name: "viewPaging"
+          name: "viewPaging",
+          width: width2,
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editAutoCodeLength",
           fieldLabel: "自动编码长度",
@@ -220,7 +234,8 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
               fn: me.__onEditSpecialKey,
               scope: me
             }
-          }
+          },
+          width: width2,
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editHandlerClassName",
           fieldLabel: "业务逻辑类名",
@@ -233,24 +248,23 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
               scope: me
             }
           },
-          width: 510,
+          width: width1,
           colspan: 2
         }, {
           id: "PSI_CodeTable_CodeTableEditForm_editMemo",
           fieldLabel: "备注",
           name: "memo",
-          value: entity == null ? null : entity
-            .get("note"),
+          value: entity == null ? null : entity.get("note"),
           listeners: {
             specialkey: {
               fn: me.onEditLastSpecialKey,
               scope: me
             }
           },
-          width: 510,
+          width: width1,
           colspan: 2
         }],
-        buttons: buttons
+        buttons
       }],
       listeners: {
         show: {
