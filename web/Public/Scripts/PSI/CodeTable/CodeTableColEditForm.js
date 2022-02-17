@@ -357,6 +357,9 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       }
     }];
 
+    // 编辑相关的列
+    const cols4 =[];
+
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
@@ -439,6 +442,27 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
                 msgTarget: 'side'
               },
               items: cols3
+            }
+          }, {
+            title: "编辑",
+            border: 0,
+            layout: "fit",
+            items: {
+              border: 0,
+              xtype: "form",
+              layout: {
+                type: "table",
+                columns: 3,
+                tableAttrs: PSI.Const.TABLE_LAYOUT,
+              },
+              defaultType: 'textfield',
+              fieldDefaults: {
+                labelWidth: 120,
+                labelAlign: "right",
+                labelSeparator: "",
+                msgTarget: 'side'
+              },
+              items: cols4
             }
           }]
         }
