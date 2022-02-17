@@ -171,8 +171,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editForm");
-
     me.editName = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editName");
     me.editTableName = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editTableName");
     me.editCaption = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editCaption");
@@ -677,31 +675,40 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     const me = this;
 
     me.showInfo("TODO")
-
     return;
 
-    const f = me.editForm;
-    const el = f.getEl();
+    const params = {
+      id: me.edit
+    };
+    const el = me.getEl();
     el && el.mask(PSI.Const.SAVING);
-    f.submit({
+
+    const r = {
       url: me.URL("Home/CodeTable/editCodeTableCol"),
-      method: "POST",
-      success(form, action) {
+      params,
+      callback(options, success, response) {
         el && el.unmask();
-        me.tip("数据保存成功", true);
-        me.focus();
-        me.__lastId = action.result.id;
-        me.close();
-        const parentForm = me.getParentForm();
-        if (parentForm) {
-          parentForm.refreshColsGrid(me.__lastId);
+
+        if (success) {
+          const data = me.decodeJSON(response.responseText);
+          if (data.success) {
+            me.tip("数据保存成功", true);
+            me.__lastId = action.result.id;
+            me.close();
+            const parentForm = me.getParentForm();
+            if (parentForm) {
+              parentForm.refreshColsGrid.apply(parentForm, [me.__lastId]);
+            }
+          } else {
+            me.showInfo(data.msg);
+          }
+        } else {
+          me.showInfo("网络错误");
         }
-      },
-      failure(form, action) {
-        el && el.unmask();
-        me.showInfo(action.result.msg);
       }
-    });
+    };
+
+    me.ajax(r);
   },
 
   onEditSpecialKey(field, e) {
