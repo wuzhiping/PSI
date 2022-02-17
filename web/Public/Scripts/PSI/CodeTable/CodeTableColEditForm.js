@@ -197,6 +197,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editWidthInView",
       fieldLabel: "列视图宽度(px)",
+      labelWidth: 120,
       xtype: "numberfield",
       hideTrigger: true,
       allowDecimal: false,
