@@ -50,9 +50,13 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     });
 
     buttons.push({
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler() {
-        me.close();
+        const info = entity == null ? "新建码表分类" : "编辑码表分类";
+
+        me.confirm(`请确认是否取消：${info}?`, () => {
+          me.close();
+        });
       },
       scope: me
     });
@@ -64,7 +68,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 400,
+      width: 650,
       height: 290,
       layout: "border",
       listeners: {
@@ -79,7 +83,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
       },
       items: [{
         region: "north",
-        height: 70,
+        height: 55,
         border: 0,
         html: logoHtml
       }, {
@@ -89,7 +93,8 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 1
+          columns: 1,
+          tableAttrs: PSI.Const.TABLE_LAYOUT,
         },
         height: "100%",
         bodyPadding: 5,
@@ -99,7 +104,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
           labelAlign: "right",
           labelSeparator: "",
           msgTarget: 'side',
-          width: 370,
+          width: 600,
           margin: "5"
         },
         items: [{
