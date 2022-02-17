@@ -157,63 +157,6 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       name: "fieldDecimal",
       disabled: true
     }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editIsVisible",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
-      labelAlign: "right",
-      labelSeparator: "",
-      fieldLabel: "对用户可见",
-      allowBlank: false,
-      blankText: "没有输入对用户可见",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [[1, "对用户可见"],
-        [2, "对用户不可见"]]
-      }),
-      value: 1,
-      name: "isVisible"
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editMustInput",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
-      labelAlign: "right",
-      labelSeparator: "",
-      fieldLabel: "必须录入",
-      allowBlank: false,
-      blankText: "没有输入必须录入",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [[1, "非必须录入项"],
-        [2, "必须录入"]]
-      }),
-      value: 1,
-      name: "mustInput"
-    }, {
-      id: "PSI_CodeTable_CodeTableColEditForm_editWidthInView",
-      fieldLabel: "列视图宽度(px)",
-      labelWidth: 120,
-      xtype: "numberfield",
-      hideTrigger: true,
-      allowDecimal: false,
-      minValue: 10,
-      value: 120,
-      allowBlank: false,
-      blankText: "没有输入列视图宽度",
-      beforeLabelTextTpl: PSI.Const.REQUIRED,
-      name: "widthInView",
-      listeners: {
-        specialkey: {
-          fn: me.onEditSpecialKey,
-          scope: me
-        }
-      }
-    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editMemo",
       fieldLabel: "备注",
       name: "memo",
@@ -285,6 +228,25 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
 
     // 显示相关的列
     const cols3 = [{
+      id: "PSI_CodeTable_CodeTableColEditForm_editWidthInView",
+      fieldLabel: "列视图宽度(px)",
+      labelWidth: 100,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      minValue: 10,
+      value: 120,
+      allowBlank: false,
+      blankText: "没有输入列视图宽度",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      name: "widthInView",
+      listeners: {
+        specialkey: {
+          fn: me.onEditSpecialKey,
+          scope: me
+        }
+      }
+    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editShowOrderInView",
       fieldLabel: "视图界面显示次序",
       allowBlank: false,
@@ -358,6 +320,44 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       name: "editorXtype",
       colspan: 3,
       width: col2Width
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editIsVisible",
+      xtype: "combo",
+      queryMode: "local",
+      editable: false,
+      valueField: "id",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "对用户可见",
+      allowBlank: false,
+      blankText: "没有输入对用户可见",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      store: Ext.create("Ext.data.ArrayStore", {
+        fields: ["id", "text"],
+        data: [[1, "对用户可见"],
+        [2, "对用户不可见"]]
+      }),
+      value: 1,
+      name: "isVisible"
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editMustInput",
+      xtype: "combo",
+      queryMode: "local",
+      editable: false,
+      valueField: "id",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "必须录入",
+      allowBlank: false,
+      blankText: "没有输入必须录入",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      store: Ext.create("Ext.data.ArrayStore", {
+        fields: ["id", "text"],
+        data: [[1, "非必须录入项"],
+        [2, "必须录入"]]
+      }),
+      value: 1,
+      name: "mustInput"
     }];
 
     Ext.apply(me, {
@@ -366,7 +366,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
         height: 40
       },
       width: 890,
-      height: 460,
+      height: 370,
       layout: "border",
       items: [{
         region: "north",
@@ -457,7 +457,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
               },
               defaultType: 'textfield',
               fieldDefaults: {
-                labelWidth: 120,
+                labelWidth: 90,
                 labelAlign: "right",
                 labelSeparator: "",
                 msgTarget: 'side'
