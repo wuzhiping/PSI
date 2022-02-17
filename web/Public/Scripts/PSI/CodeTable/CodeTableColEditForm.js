@@ -273,9 +273,8 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       queryMode: "local",
       editable: false,
       valueField: "id",
-      labelAlign: "right",
-      labelSeparator: "",
       fieldLabel: "值来源",
+      labelWidth: 60,
       allowBlank: false,
       blankText: "没有输入值来源",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -306,6 +305,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editValueFromTableName",
       fieldLabel: "引用表名",
+      labelWidth: 60,
       disabled: true,
       name: "valueFromTableName"
     }, {
@@ -587,7 +587,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     const me = this;
 
     me.showInfo("TODO")
-    
+
     return;
 
     const f = me.editForm;
