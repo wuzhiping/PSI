@@ -59,7 +59,7 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 - [PSI标准进销存 - https://gitee.com/crm8000/PSI_SLN0001](https://gitee.com/crm8000/PSI_SLN0001)
 
-> TODO 逐步把现在手工编程的进销存模块用PSI低代码应用平台重新实现一遍
+> TODO: 逐步把现在手工编程的进销存模块用PSI低代码应用平台重新实现一遍
 
 - [PSI财务总账](https://gitee.com/crm8000/PSI/tree/master/web/Application/SLN0002)
 
@@ -67,7 +67,11 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 - [PSI人力资源 - https://gitee.com/crm8000/PSI_SLN0003](https://gitee.com/crm8000/PSI_SLN0003)
 
-> TODO 全新的解决方案，待用PSI低代码应用平台实现
+> TODO: 全新的解决方案，待用PSI低代码应用平台实现
+
+- [PSI知识管理 - https://gitee.com/crm8000/PSI_SLN0004](https://gitee.com/crm8000/PSI_SLN0004)
+
+> TODO: 全新的解决方案，待用PSI低代码应用平台实现
 
 - [PSI服装ERP - https://gitee.com/crm8000/PSI_SLN0010](https://gitee.com/crm8000/PSI_SLN0010)
 
