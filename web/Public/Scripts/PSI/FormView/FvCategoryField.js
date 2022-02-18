@@ -102,7 +102,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
         region: "center",
         xtype: "panel",
         layout: "fit",
-        border: 0,
+        border: 1,
         items: [lookupGrid]
       }, {
         xtype: "panel",
@@ -114,6 +114,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
           xtype: "form",
           layout: "form",
           bodyPadding: 5,
+          border: 0,
           items: [{
             id: "PSI_FormView_FvCategoryField_editCategory",
             xtype: "textfield",
