@@ -14,7 +14,7 @@ Ext.define("PSI.Form.RuntimeMainForm", {
   },
 
   initComponent() {
-    var me = this;
+    const me = this;
 
     Ext.apply(me, {
       tbar: {
@@ -53,8 +53,8 @@ Ext.define("PSI.Form.RuntimeMainForm", {
   },
 
   fetchMeatData() {
-    var me = this;
-    var el = me.getEl();
+    const me = this;
+    const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/Form/getMetaDataForRuntime"),
@@ -63,7 +63,7 @@ Ext.define("PSI.Form.RuntimeMainForm", {
       },
       callback(options, success, response) {
         if (success) {
-          var data = me.decodeJSON(response.responseText);
+          const data = me.decodeJSON(response.responseText);
 
           me.__md = data;
 
@@ -76,20 +76,20 @@ Ext.define("PSI.Form.RuntimeMainForm", {
   },
 
   initUI() {
-    var me = this;
+    const me = this;
 
-    var md = me.getMetaData();
+    const md = me.getMetaData();
     if (!md) {
       return;
     }
 
-    var name = md.name;
+    const name = md.name;
     if (!name) {
       return;
     }
 
     // 按钮
-    var toolBar = me.__toolBar;
+    const toolBar = me.__toolBar;
     toolBar.add([{
       text: "新增" + name,
       id: "buttonAddFormRecord",
@@ -126,13 +126,13 @@ Ext.define("PSI.Form.RuntimeMainForm", {
   },
 
   createMainGrid(md) {
-    var modelName = "PSIFormRuntime_" + Ext.id();
+    const modelName = "PSIFormRuntime_" + Ext.id();
 
-    var fields = [];
-    var cols = [];
-    var colsLength = md.cols.length;
-    for (var i = 0; i < colsLength; i++) {
-      var mdCol = md.cols[i];
+    const fields = [];
+    const cols = [];
+    const colsLength = md.cols.length;
+    for (let i = 0; i < colsLength; i++) {
+      const mdCol = md.cols[i];
 
       fields.push(mdCol.dataIndex);
 
@@ -167,13 +167,13 @@ Ext.define("PSI.Form.RuntimeMainForm", {
   },
 
   createDetailGrid(md) {
-    var modelName = "PSIFormRuntime_Detail_" + Ext.id();
+    const modelName = "PSIFormRuntime_Detail_" + Ext.id();
 
-    var fields = [];
-    var cols = [];
-    var colsLength = md.cols.length;
-    for (var i = 0; i < colsLength; i++) {
-      var mdCol = md.cols[i];
+    const fields = [];
+    const cols = [];
+    const colsLength = md.cols.length;
+    for (let i = 0; i < colsLength; i++) {
+      const mdCol = md.cols[i];
 
       fields.push(mdCol.dataIndex);
 
@@ -207,19 +207,18 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     });
   },
 
-
   onAddFormRecord() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO");
   },
 
   onEditFormRecord() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO");
   },
 
   onDeleteFormRecord() {
-    var me = this;
+    const me = this;
     me.showInfo("TODO");
   }
 });
