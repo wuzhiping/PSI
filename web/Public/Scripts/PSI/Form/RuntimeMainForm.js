@@ -13,6 +13,9 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     fid: null
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -41,17 +44,23 @@ Ext.define("PSI.Form.RuntimeMainForm", {
 
     me.callParent(arguments);
 
-    me.__toolBar = Ext.getCmp("PSI_Form_RuntimeMainForm_toolBar");
-    me.__panelMain = Ext.getCmp("PSI_Form_RuntimeMainForm_panelMain");
-    me.__panelDetail = Ext.getCmp("PSI_Form_RuntimeMainForm_panelDetail");
+    me._toolBar = Ext.getCmp("PSI_Form_RuntimeMainForm_toolBar");
+    me._panelMain = Ext.getCmp("PSI_Form_RuntimeMainForm_panelMain");
+    me._panelDetail = Ext.getCmp("PSI_Form_RuntimeMainForm_panelDetail");
 
     me.fetchMeatData();
   },
 
+  /**
+   * @private
+   */
   getMetaData() {
-    return this.__md;
+    return this._md;
   },
 
+  /**
+   * @private
+   */
   fetchMeatData() {
     const me = this;
     const el = me.getEl();
@@ -65,7 +74,7 @@ Ext.define("PSI.Form.RuntimeMainForm", {
         if (success) {
           const data = me.decodeJSON(response.responseText);
 
-          me.__md = data;
+          me._md = data;
 
           me.initUI();
         }
@@ -75,6 +84,9 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     });
   },
 
+  /**
+   * @private
+   */
   initUI() {
     const me = this;
 
@@ -89,21 +101,21 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     }
 
     // 按钮
-    const toolBar = me.__toolBar;
+    const toolBar = me._toolBar;
     toolBar.add([{
       text: "新增" + name,
       id: "buttonAddFormRecord",
-      handler: me.onAddFormRecord,
+      handler: me._onAddFormRecord,
       scope: me
     }, {
       text: "编辑" + name,
       id: "buttonEditFormRecord",
-      handler: me.onEditFormRecord,
+      handler: me._onEditFormRecord,
       scope: me
     }, {
       text: "删除" + name,
       id: "buttonDeleteFormRecord",
-      handler: me.onDeleteFormRecord,
+      handler: me._onDeleteFormRecord,
       scope: me
     }, "-", , {
       text: "关闭",
@@ -112,19 +124,22 @@ Ext.define("PSI.Form.RuntimeMainForm", {
       }
     }]);
 
-    me.__mainGrid = me.createMainGrid(md);
-    me.__panelMain.add(me.__mainGrid);
+    me._mainGrid = me.createMainGrid(md);
+    me._panelMain.add(me._mainGrid);
 
     // 明细表
     if (md.details.length > 1) {
       // 多个明细表
     } else {
       // 一个明细表
-      me.__detailGrid = me.createDetailGrid(md.details[0]);
-      me.__panelDetail.add(me.__detailGrid);
+      me._detailGrid = me.createDetailGrid(md.details[0]);
+      me._panelDetail.add(me._detailGrid);
     }
   },
 
+  /**
+   * @private
+   */
   createMainGrid(md) {
     const modelName = "PSIFormRuntime_" + Ext.id();
 
@@ -166,6 +181,9 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     });
   },
 
+  /**
+   * @private
+   */
   createDetailGrid(md) {
     const modelName = "PSIFormRuntime_Detail_" + Ext.id();
 
@@ -207,17 +225,26 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     });
   },
 
-  onAddFormRecord() {
+  /**
+   * @private
+   */
+  _onAddFormRecord() {
     const me = this;
     me.showInfo("TODO");
   },
 
-  onEditFormRecord() {
+  /**
+   * @private
+   */
+  _onEditFormRecord() {
     const me = this;
     me.showInfo("TODO");
   },
 
-  onDeleteFormRecord() {
+  /**
+   * @private
+   */
+  _onDeleteFormRecord() {
     const me = this;
     me.showInfo("TODO");
   }
