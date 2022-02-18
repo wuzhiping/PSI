@@ -85,7 +85,7 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 - 新一代的Web UI组件库：https://gitee.com/crm8000/PCL
 
-> PCL最终要替代ExtJS GPL4.2.1版本，在其完成后PSI总体开源许可改为Apache开源许可。
+> PCL在ExtJS 4.2 GPL版源代码的基础上演化，逐步编写中文注释、用ES6改写源代码和用基于npm打包工具重新打包。
 
 - 新一代的PHP Web框架：https://gitee.com/crm8000/PSI/tree/master/web/ThinkPHP
 
