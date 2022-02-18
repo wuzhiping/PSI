@@ -129,44 +129,7 @@ Ext.define("PSI.Form.FormColEditForm", {
                   labelSeparator: "",
                   msgTarget: 'side'
                 },
-                items: [{
-                  id: "PSI_Form_FormColEditForm_editWidthInView",
-                  fieldLabel: "列宽度",
-                  labelWidth: 60,
-                  allowBlank: false,
-                  blankText: "没有输入列宽度",
-                  beforeLabelTextTpl: PSI.Const.REQUIRED,
-                  xtype: "numberfield",
-                  hideTrigger: true,
-                  allowDecimal: false,
-                  name: "widthInView",
-                  value: entity == null ? 120 : entity.get("widthInView"),
-                  listeners: {
-                    specialkey: {
-                      fn: me._onEditSpecialKey,
-                      scope: me
-                    }
-                  }
-                }, {
-                  id: "PSI_Form_FormColEditForm_editShowOrderInView",
-                  fieldLabel: "视图界面显示次序",
-                  labelWidth: 120,
-                  allowBlank: false,
-                  blankText: "没有输入视图界面显示次序",
-                  beforeLabelTextTpl: PSI.Const.REQUIRED,
-                  xtype: "numberfield",
-                  hideTrigger: true,
-                  allowDecimal: false,
-                  name: "showOrderInView",
-                  value: entity == null ? 10 : entity.get("showOrderInView"),
-                  colspan: 2,
-                  listeners: {
-                    specialkey: {
-                      fn: me._onEditSpecialKey,
-                      scope: me
-                    }
-                  }
-                }]
+                items: me.getDisplayCols()
               }
             }]
           }
@@ -493,6 +456,57 @@ Ext.define("PSI.Form.FormColEditForm", {
       fieldLabel: "引用列名(显示用)",
       disabled: true,
       name: "valueFromColNameDisplay"
+    }];
+
+    return list;
+  },
+
+  /**
+   * 显示相关的列
+   * 
+   * @private
+   */
+  getDisplayCols() {
+    const me = this;
+    const entity = me.getEntity();
+
+    const list = [{
+      id: "PSI_Form_FormColEditForm_editWidthInView",
+      fieldLabel: "列宽度",
+      labelWidth: 60,
+      allowBlank: false,
+      blankText: "没有输入列宽度",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      name: "widthInView",
+      value: entity == null ? 120 : entity.get("widthInView"),
+      listeners: {
+        specialkey: {
+          fn: me._onEditSpecialKey,
+          scope: me
+        }
+      }
+    }, {
+      id: "PSI_Form_FormColEditForm_editShowOrderInView",
+      fieldLabel: "视图界面显示次序",
+      labelWidth: 120,
+      allowBlank: false,
+      blankText: "没有输入视图界面显示次序",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      xtype: "numberfield",
+      hideTrigger: true,
+      allowDecimal: false,
+      name: "showOrderInView",
+      value: entity == null ? 10 : entity.get("showOrderInView"),
+      colspan: 2,
+      listeners: {
+        specialkey: {
+          fn: me._onEditSpecialKey,
+          scope: me
+        }
+      }
     }];
 
     return list;
