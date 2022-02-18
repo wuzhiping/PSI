@@ -1337,7 +1337,7 @@ class CodeTableDAO extends PSIBaseExDAO
 
     // 新增
     $result[] = [
-      "caption" => "新增{$name}",
+      "caption" => "新建{$name}",
       "showOrder" => 1,
       "fid" => "{$fid}-add",
       "onClick" => "_onAddCodeTableRecord",
