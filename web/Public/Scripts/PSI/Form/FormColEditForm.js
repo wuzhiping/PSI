@@ -107,50 +107,7 @@ Ext.define("PSI.Form.FormColEditForm", {
                   labelSeparator: "",
                   msgTarget: 'side'
                 },
-                items: [{
-                  id: "PSI_Form_FormColEditForm_editValueFrom",
-                  xtype: "combo",
-                  queryMode: "local",
-                  editable: false,
-                  valueField: "id",
-                  labelAlign: "right",
-                  labelSeparator: "",
-                  fieldLabel: "值来源",
-                  allowBlank: false,
-                  blankText: "没有输入值来源",
-                  beforeLabelTextTpl: PSI.Const.REQUIRED,
-                  store: Ext.create("Ext.data.ArrayStore", {
-                    fields: ["id", "text"],
-                    data: [[1, "直接录入"],
-                    [2, "引用系统数据字典"],
-                    [3, "引用码表"],
-                    [5, "程序生成"]]
-                  }),
-                  value: 1,
-                  name: "valueFrom",
-                  listeners: {
-                    change: {
-                      fn: me._onValueFromChange,
-                      scope: me
-                    }
-                  },
-                  colspan: 3
-                }, {
-                  id: "PSI_Form_FormColEditForm_editValueFromTableName",
-                  fieldLabel: "引用表名",
-                  disabled: true,
-                  name: "valueFromTableName"
-                }, {
-                  id: "PSI_Form_FormColEditForm_editValueFromColName",
-                  fieldLabel: "引用列名(关联用)",
-                  disabled: true,
-                  name: "valueFromColName"
-                }, {
-                  id: "PSI_Form_FormColEditForm_editValueFromColNameDisplay",
-                  fieldLabel: "引用列名(显示用)",
-                  disabled: true,
-                  name: "valueFromColNameDisplay"
-                }]
+                items: me.getValueCols()
               }
             },
             {
@@ -260,6 +217,8 @@ Ext.define("PSI.Form.FormColEditForm", {
 
   /**
    * 数据库结构相关的列
+   * 
+   * @private
    */
   getDbStructCols() {
     const me = this;
@@ -479,6 +438,62 @@ Ext.define("PSI.Form.FormColEditForm", {
       width: col3Width,
       colspan: 3
     });
+
+    return list;
+  },
+
+  /**
+   * 取值相关的列
+   * 
+   * @private
+   */
+  getValueCols() {
+    const me = this;
+
+    const list = [{
+      id: "PSI_Form_FormColEditForm_editValueFrom",
+      xtype: "combo",
+      queryMode: "local",
+      editable: false,
+      valueField: "id",
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "值来源",
+      allowBlank: false,
+      blankText: "没有输入值来源",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      store: Ext.create("Ext.data.ArrayStore", {
+        fields: ["id", "text"],
+        data: [[1, "直接录入"],
+        [2, "引用系统数据字典"],
+        [3, "引用码表"],
+        [5, "程序生成"]]
+      }),
+      value: 1,
+      name: "valueFrom",
+      listeners: {
+        change: {
+          fn: me._onValueFromChange,
+          scope: me
+        }
+      },
+      colspan: 3
+    }, {
+      id: "PSI_Form_FormColEditForm_editValueFromTableName",
+      fieldLabel: "引用表名",
+      disabled: true,
+      name: "valueFromTableName"
+    }, {
+      id: "PSI_Form_FormColEditForm_editValueFromColName",
+      fieldLabel: "引用列名(关联用)",
+      disabled: true,
+      name: "valueFromColName"
+    }, {
+      id: "PSI_Form_FormColEditForm_editValueFromColNameDisplay",
+      fieldLabel: "引用列名(显示用)",
+      disabled: true,
+      name: "valueFromColNameDisplay"
+    }];
 
     return list;
   },
