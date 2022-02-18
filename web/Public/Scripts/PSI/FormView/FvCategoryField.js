@@ -13,7 +13,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
     showModal: false
   },
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     me.__idValue = null;
@@ -22,7 +22,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (me.readOnly) {
         return;
       }
@@ -40,8 +40,8 @@ Ext.define("PSI.FormView.FvCategoryField", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           if (me.readOnly) {
             return;
           }
@@ -52,7 +52,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
     });
   },
 
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     var me = this;
     var modelName = "PSIFvCategoryField";
     Ext.define(modelName, {
@@ -138,24 +138,24 @@ Ext.define("PSI.FormView.FvCategoryField", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
 
-    wnd.on("close", function () {
+    wnd.on("close", () => {
       me.focus();
     });
     if (!me.getShowModal()) {
-      wnd.on("deactivate", function () {
+      wnd.on("deactivate", () => {
         wnd.close();
       });
     }
     me.wnd = wnd;
 
     var editName = Ext.getCmp("PSI_FormView_FvCategoryField_editCategory");
-    editName.on("change", function () {
+    editName.on("change", () => {
       var store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/FormView/queryDataForFvCategory",
@@ -163,7 +163,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
           queryKey: editName.getValue()
         },
         method: "POST",
-        callback: function (opt, success, response) {
+        callback(opt, success, response) {
           store.removeAll();
           if (success) {
             var data = Ext.JSON.decode(response.responseText);
@@ -181,7 +181,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
 
     }, me);
 
-    editName.on("specialkey", function (field, e) {
+    editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
@@ -219,7 +219,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
       }
     }, me);
 
-    me.wnd.on("show", function () {
+    me.wnd.on("show", () => {
       editName.focus();
       editName.fireEvent("change");
     }, me);
@@ -227,7 +227,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
   },
 
   // private
-  onOK: function () {
+  onOK() {
     var me = this;
     var grid = me.lookupGrid;
     var item = grid.getSelectionModel().getSelection();
@@ -245,15 +245,15 @@ Ext.define("PSI.FormView.FvCategoryField", {
     me.setIdValue(data.get("id"));
   },
 
-  setIdValue: function (id) {
+  setIdValue(id) {
     this.__idValue = id;
   },
 
-  getIdValue: function () {
+  getIdValue() {
     return this.__idValue;
   },
 
-  clearIdValue: function () {
+  clearIdValue() {
     this.setValue(null);
     this.__idValue = null;
   }
