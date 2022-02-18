@@ -51,7 +51,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
     buttons.push(btn);
 
     btn = {
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler() {
         me.close();
       },
@@ -66,7 +66,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 400,
+      width: 650,
       height: 290,
       layout: "border",
       listeners: {
@@ -81,7 +81,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
       },
       items: [{
         region: "north",
-        height: 70,
+        height: 55,
         border: 0,
         html: logoHtml
       }, {
@@ -91,7 +91,8 @@ Ext.define("PSI.Form.CategoryEditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 1
+          columns: 1,
+          tableAttrs: PSI.Const.TABLE_LAYOUT,
         },
         height: "100%",
         bodyPadding: 5,
@@ -101,7 +102,7 @@ Ext.define("PSI.Form.CategoryEditForm", {
           labelAlign: "right",
           labelSeparator: "",
           msgTarget: 'side',
-          width: 370,
+          width: 600,
           margin: "5"
         },
         items: [{
