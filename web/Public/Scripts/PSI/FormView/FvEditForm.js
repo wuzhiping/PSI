@@ -88,6 +88,12 @@ Ext.define("PSI.FormView.FvEditForm", {
           xtype: "hidden",
           name: "categoryId"
         }, {
+          xtype: "displayfield",
+          colspan: 2,
+          width: 600,
+          fieldLabel: "解决方案",
+          value: `<span class='PSI-field-note'>${me.getSlnName()}</span>`
+        }, {
           id: "PSI_FormView_FvEditForm_editCategory",
           xtype: "psi_fvcategoryfield",
           slnCode: me.getSlnCode(),

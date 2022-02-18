@@ -89,7 +89,7 @@ Ext.define("PSI.Form.FormEditForm", {
         }, {
           xtype: "displayfield",
           colspan: 2,
-          width: 510,
+          width: 600,
           fieldLabel: "解决方案",
           value: `<span class='PSI-field-note'>${me.getSlnName()}</span>`
         }, {
