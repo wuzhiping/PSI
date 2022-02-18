@@ -6,14 +6,14 @@
  * @license GPL v3
  */
 Ext.define("PSI.Form.RuntimeMainForm", {
-  extend: "PSI.AFX.BaseMainExForm",
+  extend: "PSI.AFX.Form.MainForm",
   border: 0,
 
   config: {
     fid: null
   },
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     Ext.apply(me, {
@@ -48,11 +48,11 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     me.fetchMeatData();
   },
 
-  getMetaData: function () {
+  getMetaData() {
     return this.__md;
   },
 
-  fetchMeatData: function () {
+  fetchMeatData() {
     var me = this;
     var el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
@@ -61,7 +61,7 @@ Ext.define("PSI.Form.RuntimeMainForm", {
       params: {
         fid: me.getFid()
       },
-      callback: function (options, success, response) {
+      callback(options, success, response) {
         if (success) {
           var data = me.decodeJSON(response.responseText);
 
@@ -75,7 +75,7 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     });
   },
 
-  initUI: function () {
+  initUI() {
     var me = this;
 
     var md = me.getMetaData();
@@ -107,7 +107,7 @@ Ext.define("PSI.Form.RuntimeMainForm", {
       scope: me
     }, "-", , {
       text: "关闭",
-      handler: function () {
+      handler() {
         me.closeWindow();
       }
     }]);
@@ -125,7 +125,7 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     }
   },
 
-  createMainGrid: function (md) {
+  createMainGrid(md) {
     var modelName = "PSIFormRuntime_" + Ext.id();
 
     var fields = [];
@@ -166,7 +166,7 @@ Ext.define("PSI.Form.RuntimeMainForm", {
     });
   },
 
-  createDetailGrid: function (md) {
+  createDetailGrid(md) {
     var modelName = "PSIFormRuntime_Detail_" + Ext.id();
 
     var fields = [];
@@ -208,17 +208,17 @@ Ext.define("PSI.Form.RuntimeMainForm", {
   },
 
 
-  onAddFormRecord: function () {
+  onAddFormRecord() {
     var me = this;
     me.showInfo("TODO");
   },
 
-  onEditFormRecord: function () {
+  onEditFormRecord() {
     var me = this;
     me.showInfo("TODO");
   },
 
-  onDeleteFormRecord: function () {
+  onDeleteFormRecord() {
     var me = this;
     me.showInfo("TODO");
   }
