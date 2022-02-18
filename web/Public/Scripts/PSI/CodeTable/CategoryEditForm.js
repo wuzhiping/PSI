@@ -164,6 +164,8 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
 
   /**
    * 保存
+   * 
+   * @private
    */
   _onOK(thenAdd) {
     const me = this;
@@ -195,6 +197,9 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     f.submit(sf);
   },
 
+  /**
+   * @private
+   */
   _onLastEditSpecialKey(field, e) {
     const me = this;
 
@@ -206,6 +211,9 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     }
   },
 
+  /**
+   * @private
+   */
   clearEdit() {
     const me = this;
     me.editCode.focus();
@@ -217,6 +225,9 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     })
   },
 
+  /**
+   * @private
+   */
   _onWndClose() {
     const me = this;
 
@@ -230,6 +241,9 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
     }
   },
 
+  /**
+   * @private
+   */
   _onWndShow() {
     const me = this;
 
