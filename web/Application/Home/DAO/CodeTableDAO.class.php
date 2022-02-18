@@ -640,6 +640,9 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     $code = strtoupper($params["code"] ?? "");
+    if (!$code) {
+      return $this->bad("没有录入码表编码");
+    }
     $name = $params["name"];
     $moduleName = $params["moduleName"] ?? $name;
     $memo = $params["memo"] ?? "";
@@ -959,6 +962,10 @@ class CodeTableDAO extends PSIBaseExDAO
     // 码表id
     $id = $params["id"];
     $code = strtoupper($params["code"]) ?? "";
+    if (!$code) {
+      return $this->bad("没有录入码表编码");
+    }
+
     $name = $params["name"];
     $moduleName = $params["moduleName"];
     $categoryId = $params["categoryId"];

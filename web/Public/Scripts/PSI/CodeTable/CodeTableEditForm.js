@@ -117,6 +117,9 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           id: "PSI_CodeTable_CodeTableEditForm_editCode",
           fieldLabel: "编码",
           name: "code",
+          allowBlank: false,
+          blankText: "没有输入码表编码",
+          beforeLabelTextTpl: PSI.Const.REQUIRED,
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
