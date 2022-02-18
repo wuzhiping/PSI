@@ -10,7 +10,8 @@ Ext.define("PSI.FormView.FvCategoryField", {
   alias: "widget.psi_fvcategoryfield",
 
   config: {
-    showModal: false
+    showModal: false,
+    slnCode: "",
   },
 
   /**
@@ -167,7 +168,8 @@ Ext.define("PSI.FormView.FvCategoryField", {
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/FormView/queryDataForFvCategory",
         params: {
-          queryKey: editName.getValue()
+          queryKey: editName.getValue(),
+          slnCode: me.getSlnCode(),
         },
         method: "POST",
         callback(opt, success, response) {
