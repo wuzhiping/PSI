@@ -13,8 +13,8 @@ Ext.define("PSI.FormView.CodeTableViewCmp", {
     fid: null
   },
 
-  initComponent: function () {
-    var me = this;
+  initComponent() {
+    const me = this;
 
     Ext.apply(me, {
       layout: "fit",
@@ -25,14 +25,14 @@ Ext.define("PSI.FormView.CodeTableViewCmp", {
     me.callParent(arguments);
   },
 
-  getMainGrid: function () {
-    var me = this;
+  getMainGrid() {
+    const me = this;
 
     if (me.__mainGrid) {
       return me.__mainGrid;
     }
 
-    var modelName = "PSICodeTableViewCmp" + Ext.id();
+    const modelName = "PSICodeTableViewCmp" + Ext.id();
 
     Ext.define(modelName, {
       extend: "Ext.data.Model",
