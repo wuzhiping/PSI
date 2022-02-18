@@ -12,6 +12,9 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
     form: null
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
     const entity = me.getEntity();
@@ -24,7 +27,7 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK();
       },
       scope: me
     }, {
@@ -141,7 +144,7 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
           name: "fieldType",
           listeners: {
             change: {
-              fn: me.onFieldTypeChange,
+              fn: me._onFieldTypeChange,
               scope: me
             }
           }
@@ -199,7 +202,7 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
           name: "valueFrom",
           listeners: {
             change: {
-              fn: me.onValueFromChange,
+              fn: me._onValueFromChange,
               scope: me
             }
           },
@@ -367,6 +370,9 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
     ];
   },
 
+  /**
+   * @private
+   */
   _onWndShow() {
     const me = this;
 
@@ -425,7 +431,10 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
     });
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+   _onOK() {
     const me = this;
 
     const f = me.editForm;
@@ -452,7 +461,10 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
     });
   },
 
-  onEditSpecialKey(field, e) {
+  /**
+   * @private
+   */
+   onEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
@@ -468,18 +480,24 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
     }
   },
 
-  onEditLastSpecialKey(field, e) {
+  /**
+   * @private
+   */
+   onEditLastSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
       const f = me.editForm;
       if (f.getForm().isValid()) {
-        me.onOK();
+        me._onOK();
       }
     }
   },
 
-  _onWndClose() {
+  /**
+   * @private
+   */
+   _onWndClose() {
     const me = this;
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
@@ -491,7 +509,10 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
     }
   },
 
-  onFieldTypeChange() {
+  /**
+   * @private
+   */
+   _onFieldTypeChange() {
     const me = this;
     const v = me.editFieldType.getValue();
     if (v == "varchar") {
@@ -512,7 +533,10 @@ Ext.define("PSI.Form.FormDetailColEditForm", {
     }
   },
 
-  onValueFromChange() {
+  /**
+   * @private
+   */
+   _onValueFromChange() {
     const me = this;
     const v = me.editValueFrom.getValue();
     if (v == 1) {
