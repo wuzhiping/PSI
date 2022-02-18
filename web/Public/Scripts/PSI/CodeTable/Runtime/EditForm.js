@@ -49,7 +49,11 @@ Ext.define("PSI.CodeTable.Runtime.EditForm", {
     buttons.push(btn = {
       text: "取消",
       handler() {
-        me.close();
+        const info = entity == null ? "新建" + md.name : "编辑" + md.name;;
+
+        me.confirm(`请确认是否取消：${info}?`, () => {
+          me.close();
+        });
       },
       scope: me
     });
@@ -63,7 +67,7 @@ Ext.define("PSI.CodeTable.Runtime.EditForm", {
       }
     }
     const rowCount = Math.ceil(sumColSpan / md.editColCnt);
-    const formHeight = 190 + rowCount * 30;
+    const formHeight = 220 + rowCount * 30;
 
     // 每个字段的编辑器宽度
     const fieldWidth = 370;
@@ -91,7 +95,7 @@ Ext.define("PSI.CodeTable.Runtime.EditForm", {
       },
       items: [{
         region: "north",
-        height: 70,
+        height: 55,
         border: 0,
         html: logoHtml
       }, {
@@ -101,13 +105,14 @@ Ext.define("PSI.CodeTable.Runtime.EditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: md.editColCnt
+          columns: md.editColCnt,
+          tableAttrs: PSI.Const.TABLE_LAYOUT,
         },
         height: "100%",
         bodyPadding: 5,
         defaultType: 'textfield',
         fieldDefaults: {
-          labelWidth: 80,
+          labelWidth: 60,
           labelAlign: "right",
           labelSeparator: "",
           msgTarget: 'side',
