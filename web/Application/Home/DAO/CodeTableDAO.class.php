@@ -55,6 +55,11 @@ class CodeTableDAO extends PSIBaseExDAO
     $db = $this->db;
 
     $code = $params["code"] ?? "";
+
+    if (!$code) {
+      return $this->bad("没有录入分类编码");
+    }
+
     $code = strtoupper(trim($code));
     $name = trim($params["name"]);
     $slnCode = $params["slnCode"];
@@ -114,6 +119,10 @@ class CodeTableDAO extends PSIBaseExDAO
 
     $id = $params["id"];
     $code = $params["code"] ?? "";
+    if (!$code) {
+      return $this->bad("没有录入分类编码");
+    }
+
     $code = strtoupper($code);
     $name = $params["name"];
 
