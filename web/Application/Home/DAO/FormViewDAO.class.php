@@ -220,14 +220,16 @@ class FormViewDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
+    $slnCode = $params["slnCode"];
     $queryKey = $params["queryKey"] ?? "";
 
     $sql = "select id, code, name
             from t_fv_category
-            where code like '%s' or name like '%s' ";
+            where (code like '%s' or name like '%s') and (sln_code = '%s')";
     $queryParams = [];
     $queryParams[] = "%{$queryKey}%";
     $queryParams[] = "%{$queryKey}%";
+    $queryParams[] = $slnCode;
 
     $data = $db->query($sql, $queryParams);
 
