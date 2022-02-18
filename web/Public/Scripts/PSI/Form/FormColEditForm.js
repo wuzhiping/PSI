@@ -56,7 +56,7 @@ Ext.define("PSI.Form.FormColEditForm", {
       items: [{
         region: "north",
         border: 0,
-        height: 55,
+        height: 60,
         html: logoHtml
       }, {
         region: "center",
@@ -76,9 +76,10 @@ Ext.define("PSI.Form.FormColEditForm", {
                 xtype: "form",
                 layout: {
                   type: "table",
-                  columns: 3
+                  columns: 3,
+                  tableAttrs: PSI.Const.TABLE_LAYOUT,
                 },
-                bodyStyle: "margin-top:30px",
+                bodyStyle: "margin-top:10px",
                 defaultType: 'textfield',
                 fieldDefaults: {
                   labelWidth: 90,
@@ -97,9 +98,10 @@ Ext.define("PSI.Form.FormColEditForm", {
                 xtype: "form",
                 layout: {
                   type: "table",
-                  columns: 3
+                  columns: 3,
+                  tableAttrs: PSI.Const.TABLE_LAYOUT,
                 },
-                bodyStyle: "margin-top:30px",
+                bodyStyle: "margin-top:10px",
                 defaultType: 'textfield',
                 fieldDefaults: {
                   labelWidth: 60,
@@ -119,9 +121,10 @@ Ext.define("PSI.Form.FormColEditForm", {
                 xtype: "form",
                 layout: {
                   type: "table",
-                  columns: 3
+                  columns: 3,
+                  tableAttrs: PSI.Const.TABLE_LAYOUT,
                 },
-                bodyStyle: "margin-top:30px",
+                bodyStyle: "margin-top:10px",
                 defaultType: 'textfield',
                 fieldDefaults: {
                   labelWidth: 100,
