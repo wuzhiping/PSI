@@ -84,6 +84,10 @@ Ext.define("PSI.FormView.FvEditForm", {
           name: "id",
           value: entity == null ? null : entity.get("id")
         }, {
+          xtype: "hidden",
+          name: "slnCode",
+          value: me.getSlnCode()
+        }, {
           id: "PSI_FormView_FvEditForm_editCategoryId",
           xtype: "hidden",
           name: "categoryId"
