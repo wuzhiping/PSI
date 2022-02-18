@@ -52,7 +52,7 @@ Ext.define("PSI.FormView.FvEditForm", {
         height: 40
       },
       width: 650,
-      height: 460,
+      height: 490,
       layout: "border",
       items: [{
         region: "north",
