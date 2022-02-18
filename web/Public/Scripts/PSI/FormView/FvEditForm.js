@@ -28,28 +28,34 @@ Ext.define("PSI.FormView.FvEditForm", {
       },
       scope: me
     }, {
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler: function () {
-        me.close();
+        const info = entity == null ? "新建视图" : "编辑视图";
+
+        me.confirm(`请确认是否取消：${info}?`, () => {
+          me.close();
+        });
       },
       scope: me
     });
 
-    var t = entity == null ? "新增视图" : "编辑视图";
+    var t = entity == null ? "新建视图" : "编辑视图";
     var logoHtml = me.genLogoHtml(entity, t);
 
+    const width1 = 600;
+    const width2 = 300;
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 550,
-      height: 410,
+      width: 650,
+      height: 460,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 90,
+        height: 55,
         html: logoHtml
       }, {
         region: "center",
@@ -58,16 +64,18 @@ Ext.define("PSI.FormView.FvEditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 2
+          columns: 2,
+          tableAttrs: PSI.Const.TABLE_LAYOUT,
         },
         height: "100%",
         bodyPadding: 5,
         defaultType: 'textfield',
         fieldDefaults: {
-          labelWidth: 100,
+          labelWidth: 80,
           labelAlign: "right",
           labelSeparator: "",
-          msgTarget: 'side'
+          msgTarget: 'side',
+          width: width2
         },
         items: [{
           xtype: "hidden",
@@ -141,7 +149,7 @@ Ext.define("PSI.FormView.FvEditForm", {
             data: []
           }),
           name: "xtype",
-          width: 510,
+          width: width1,
           colspan: 2
         }, {
           id: "PSI_FormView_FvEditForm_editRegion",
@@ -209,7 +217,7 @@ Ext.define("PSI.FormView.FvEditForm", {
               scope: me
             }
           },
-          width: 510,
+          width: width1,
           colspan: 2
         }, {
           id: "PSI_FormView_FvEditForm_editHandlerClassName",
@@ -221,7 +229,7 @@ Ext.define("PSI.FormView.FvEditForm", {
               scope: me
             }
           },
-          width: 510,
+          width: width1,
           colspan: 2
         }, {
           id: "PSI_FormView_FvEditForm_editMemo",
@@ -234,10 +242,10 @@ Ext.define("PSI.FormView.FvEditForm", {
               scope: me
             }
           },
-          width: 510,
+          width: width1,
           colspan: 2
         }],
-        buttons: buttons
+        buttons
       }],
       listeners: {
         show: {
