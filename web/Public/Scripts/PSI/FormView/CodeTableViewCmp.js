@@ -13,6 +13,9 @@ Ext.define("PSI.FormView.CodeTableViewCmp", {
     fid: null
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -25,11 +28,14 @@ Ext.define("PSI.FormView.CodeTableViewCmp", {
     me.callParent(arguments);
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     const me = this;
 
-    if (me.__mainGrid) {
-      return me.__mainGrid;
+    if (me._mainGrid) {
+      return me._mainGrid;
     }
 
     const modelName = "PSICodeTableViewCmp" + Ext.id();
@@ -39,7 +45,7 @@ Ext.define("PSI.FormView.CodeTableViewCmp", {
       fields: ["id"]
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -58,6 +64,6 @@ Ext.define("PSI.FormView.CodeTableViewCmp", {
       })
     });
 
-    return me.__mainGrid;
+    return me._mainGrid;
   }
 });
