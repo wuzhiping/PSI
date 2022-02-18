@@ -15,6 +15,9 @@ Ext.define("PSI.Fid.FidField", {
     showModal: false
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     var me = this;
 
@@ -51,6 +54,9 @@ Ext.define("PSI.Fid.FidField", {
     });
   },
 
+  /**
+   * @override
+   */
   onTriggerClick(e) {
     var me = this;
     var modelName = "PSIFidField";
@@ -82,7 +88,7 @@ Ext.define("PSI.Fid.FidField", {
       }]
     });
     me.lookupGrid = lookupGrid;
-    me.lookupGrid.on("itemdblclick", me.onOK, me);
+    me.lookupGrid.on("itemdblclick", me._onOK, me);
 
     var wnd = Ext.create("Ext.window.Window", {
       title: "选择 - fid",
@@ -121,7 +127,7 @@ Ext.define("PSI.Fid.FidField", {
       }],
       buttons: [{
         text: "确定",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me
       }, {
         text: "取消",
@@ -172,7 +178,7 @@ Ext.define("PSI.Fid.FidField", {
 
     editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
-        me.onOK();
+        me._onOK();
       } else if (e.getKey() == e.UP) {
         var m = me.lookupGrid.getSelectionModel();
         var store = me.lookupGrid.getStore();
@@ -215,8 +221,10 @@ Ext.define("PSI.Fid.FidField", {
     wnd.showBy(me);
   },
 
-  // private
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     var me = this;
     var grid = me.lookupGrid;
     var item = grid.getSelectionModel().getSelection();
