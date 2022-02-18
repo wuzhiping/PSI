@@ -455,7 +455,8 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
     const me = this;
     const item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      me.showInfo("请选择要编辑的码表记录");
+      const name = me.getMetaData().name;
+      me.showInfo(`请选择要编辑的${name}`);
       return;
     }
 
@@ -596,7 +597,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
   /**
    * @private
    */
-   refreshMainGrid(id) {
+  refreshMainGrid(id) {
     const me = this;
     me._lastId = id;
 

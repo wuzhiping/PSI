@@ -47,7 +47,7 @@ Ext.define("PSI.CodeTable.Runtime.EditForm", {
     });
 
     buttons.push(btn = {
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler() {
         me.close();
       },
@@ -69,7 +69,7 @@ Ext.define("PSI.CodeTable.Runtime.EditForm", {
     const fieldWidth = 370;
     const formWidth = fieldWidth * md.editColCnt + 50;
 
-    const t = entity == null ? "新增" + md.name : "编辑" + md.name;
+    const t = entity == null ? "新建" + md.name : "编辑" + md.name;
     const logoHtml = me.genLogoHtml(entity, t);
     Ext.apply(me, {
       header: {
