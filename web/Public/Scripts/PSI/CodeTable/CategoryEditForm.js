@@ -123,6 +123,9 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
           id: "PSI_CodeTable_CategoryEditForm_editCode",
           fieldLabel: "分类编码",
           name: "code",
+          allowBlank: false,
+          blankText: "没有输入分类编码",
+          beforeLabelTextTpl: PSI.Const.REQUIRED,
           value: entity == null ? null : entity.get("code"),
           listeners: {
             specialkey: {
