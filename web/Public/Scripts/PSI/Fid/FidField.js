@@ -15,7 +15,7 @@ Ext.define("PSI.Fid.FidField", {
     showModal: false
   },
 
-  initComponent: function () {
+  initComponent() {
     var me = this;
 
     me.__idValue = null;
@@ -24,7 +24,7 @@ Ext.define("PSI.Fid.FidField", {
 
     me.callParent(arguments);
 
-    me.on("keydown", function (field, e) {
+    me.on("keydown", (field, e) => {
       if (me.readOnly) {
         return;
       }
@@ -42,8 +42,8 @@ Ext.define("PSI.Fid.FidField", {
     });
 
     me.on({
-      render: function (p) {
-        p.getEl().on("dblclick", function () {
+      render(p) {
+        p.getEl().on("dblclick", () => {
           me.onTriggerClick();
         });
       },
@@ -51,7 +51,7 @@ Ext.define("PSI.Fid.FidField", {
     });
   },
 
-  onTriggerClick: function (e) {
+  onTriggerClick(e) {
     var me = this;
     var modelName = "PSIFidField";
     Ext.define(modelName, {
@@ -125,24 +125,24 @@ Ext.define("PSI.Fid.FidField", {
         scope: me
       }, {
         text: "取消",
-        handler: function () {
+        handler() {
           wnd.close();
         }
       }]
     });
 
-    wnd.on("close", function () {
+    wnd.on("close", () => {
       me.focus();
     });
     if (!me.getShowModal()) {
-      wnd.on("deactivate", function () {
+      wnd.on("deactivate", () => {
         wnd.close();
       });
     }
     me.wnd = wnd;
 
     var editName = Ext.getCmp("PSI_Fid_FidField_editFid");
-    editName.on("change", function () {
+    editName.on("change", () => {
       var store = me.lookupGrid.getStore();
       Ext.Ajax.request({
         url: PSI.Const.BASE_URL
@@ -151,7 +151,7 @@ Ext.define("PSI.Fid.FidField", {
           queryKey: editName.getValue()
         },
         method: "POST",
-        callback: function (opt, success, response) {
+        callback(opt, success, response) {
           store.removeAll();
           if (success) {
             var data = Ext.JSON
@@ -170,7 +170,7 @@ Ext.define("PSI.Fid.FidField", {
 
     }, me);
 
-    editName.on("specialkey", function (field, e) {
+    editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
         me.onOK();
       } else if (e.getKey() == e.UP) {
@@ -208,7 +208,7 @@ Ext.define("PSI.Fid.FidField", {
       }
     }, me);
 
-    me.wnd.on("show", function () {
+    me.wnd.on("show", () => {
       editName.focus();
       editName.fireEvent("change");
     }, me);
@@ -216,7 +216,7 @@ Ext.define("PSI.Fid.FidField", {
   },
 
   // private
-  onOK: function () {
+  onOK() {
     var me = this;
     var grid = me.lookupGrid;
     var item = grid.getSelectionModel().getSelection();
@@ -239,15 +239,24 @@ Ext.define("PSI.Fid.FidField", {
     }
   },
 
-  setIdValue: function (id) {
+  /**
+   * @public
+   */
+  setIdValue(id) {
     this.__idValue = id;
   },
 
-  getIdValue: function () {
+  /**
+   * @public
+   */
+  getIdValue() {
     return this.__idValue;
   },
 
-  clearIdValue: function () {
+  /**
+   * @public
+   */
+  clearIdValue() {
     this.setValue(null);
     this.__idValue = null;
   }
