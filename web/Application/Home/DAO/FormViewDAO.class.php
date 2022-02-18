@@ -391,6 +391,16 @@ class FormViewDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
+    $slnCode = $params["slnCode"];
+
+    // 检查解决方案是否存在
+    $sql = "select count(*) as cnt from t_solution where code = '%s' ";
+    $data = $db->query($sql, $slnCode);
+    $cnt = $data[0]["cnt"];
+    if ($cnt != 1) {
+      return $this->bad("解决方案不存在");
+    }
+
     $categoryId = $params["categoryId"];
     $code = $params["code"];
     $name = $params["name"];
@@ -468,10 +478,10 @@ class FormViewDAO extends PSIBaseExDAO
 
     $sql = "insert into t_fv (id, category_id, code, name, memo, py, fid,
               module_name, xtype, region, width_or_height, layout_type,
-              data_source_type, data_source_table_name, handler_class_name)
+              data_source_type, data_source_table_name, handler_class_name, sln_code)
             values ('%s', '%s', '%s', '%s', '%s', '%s', '%s',
               '%s', '%s', '%s', '%s', %d,
-              %d, '%s', '%s')";
+              %d, '%s', '%s', '%s')";
     $rc = $db->execute(
       $sql,
       $id,
@@ -488,7 +498,8 @@ class FormViewDAO extends PSIBaseExDAO
       $layout,
       $layout == 1 ? $dataSourceType : 0,
       $layout == 1 ? $dataSourceTableName : "",
-      $handlerClassName
+      $handlerClassName,
+      $slnCode
     );
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);
