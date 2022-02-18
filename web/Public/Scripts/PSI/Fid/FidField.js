@@ -19,9 +19,9 @@ Ext.define("PSI.Fid.FidField", {
    * @override
    */
   initComponent() {
-    var me = this;
+    const me = this;
 
-    me.__idValue = null;
+    me._idValue = null;
 
     me.enableKeyEvents = true;
 
@@ -58,19 +58,19 @@ Ext.define("PSI.Fid.FidField", {
    * @override
    */
   onTriggerClick(e) {
-    var me = this;
-    var modelName = "PSIFidField";
+    const me = this;
+    const modelName = "PSIFidField";
     Ext.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    const store = Ext.create("Ext.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    const lookupGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -90,7 +90,7 @@ Ext.define("PSI.Fid.FidField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me._onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - fid",
       modal: me.getShowModal(),
       header: false,
@@ -147,12 +147,11 @@ Ext.define("PSI.Fid.FidField", {
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("PSI_Fid_FidField_editFid");
+    const editName = Ext.getCmp("PSI_Fid_FidField_editFid");
     editName.on("change", () => {
-      var store = me.lookupGrid.getStore();
+      const store = me.lookupGrid.getStore();
       Ext.Ajax.request({
-        url: PSI.Const.BASE_URL
-          + "Home/MainMenu/queryDataForFid",
+        url: PSI.Const.BASE_URL + "Home/MainMenu/queryDataForFid",
         params: {
           queryKey: editName.getValue()
         },
@@ -160,8 +159,7 @@ Ext.define("PSI.Fid.FidField", {
         callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            const data = Ext.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -171,7 +169,7 @@ Ext.define("PSI.Fid.FidField", {
             PSI.MsgBox.showInfo("网络错误");
           }
         },
-        scope: this
+        scope: me
       });
 
     }, me);
@@ -180,10 +178,10 @@ Ext.define("PSI.Fid.FidField", {
       if (e.getKey() == e.ENTER) {
         me._onOK();
       } else if (e.getKey() == e.UP) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -196,10 +194,10 @@ Ext.define("PSI.Fid.FidField", {
         e.preventDefault();
         editName.focus();
       } else if (e.getKey() == e.DOWN) {
-        var m = me.lookupGrid.getSelectionModel();
-        var store = me.lookupGrid.getStore();
-        var index = 0;
-        for (var i = 0; i < store.getCount(); i++) {
+        const m = me.lookupGrid.getSelectionModel();
+        const store = me.lookupGrid.getStore();
+        let index = 0;
+        for (let i = 0; i < store.getCount(); i++) {
           if (m.isSelected(i)) {
             index = i;
           }
@@ -225,14 +223,14 @@ Ext.define("PSI.Fid.FidField", {
    * @private
    */
   _onOK() {
-    var me = this;
-    var grid = me.lookupGrid;
-    var item = grid.getSelectionModel().getSelection();
+    const me = this;
+    const grid = me.lookupGrid;
+    const item = grid.getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
       return;
     }
 
-    var data = item[0];
+    const data = item[0];
 
     me.wnd.close();
     me.focus();
@@ -241,7 +239,7 @@ Ext.define("PSI.Fid.FidField", {
 
     me.setIdValue(data.get("id"));
 
-    var func = me.getCallbackFunc();
+    const func = me.getCallbackFunc();
     if (func) {
       func(data, me.getCallbackScope());
     }
@@ -251,14 +249,14 @@ Ext.define("PSI.Fid.FidField", {
    * @public
    */
   setIdValue(id) {
-    this.__idValue = id;
+    this._idValue = id;
   },
 
   /**
    * @public
    */
   getIdValue() {
-    return this.__idValue;
+    return this._idValue;
   },
 
   /**
@@ -266,6 +264,6 @@ Ext.define("PSI.Fid.FidField", {
    */
   clearIdValue() {
     this.setValue(null);
-    this.__idValue = null;
+    this._idValue = null;
   }
 });
