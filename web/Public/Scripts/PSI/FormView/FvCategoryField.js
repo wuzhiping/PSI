@@ -13,10 +13,13 @@ Ext.define("PSI.FormView.FvCategoryField", {
     showModal: false
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
-    me.__idValue = null;
+    me._idValue = null;
 
     me.enableKeyEvents = true;
 
@@ -52,6 +55,9 @@ Ext.define("PSI.FormView.FvCategoryField", {
     });
   },
 
+  /**
+   * @override
+   */
   onTriggerClick(e) {
     const me = this;
     const modelName = "PSIFvCategoryField";
@@ -82,7 +88,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
       }]
     });
     me.lookupGrid = lookupGrid;
-    me.lookupGrid.on("itemdblclick", me.onOK, me);
+    me.lookupGrid.on("itemdblclick", me._onOK, me);
 
     const wnd = Ext.create("Ext.window.Window", {
       title: "选择 - 视图分类",
@@ -134,7 +140,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
       }],
       buttons: [{
         text: "确定",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me
       }, {
         text: "取消",
@@ -183,7 +189,7 @@ Ext.define("PSI.FormView.FvCategoryField", {
 
     editName.on("specialkey", (field, e) => {
       if (e.getKey() == e.ENTER) {
-        me.onOK();
+        me._onOK();
       } else if (e.getKey() == e.UP) {
         const m = me.lookupGrid.getSelectionModel();
         const store = me.lookupGrid.getStore();
@@ -226,8 +232,10 @@ Ext.define("PSI.FormView.FvCategoryField", {
     wnd.showBy(me);
   },
 
-  // private
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
     const grid = me.lookupGrid;
     const item = grid.getSelectionModel().getSelection();
@@ -245,16 +253,25 @@ Ext.define("PSI.FormView.FvCategoryField", {
     me.setIdValue(data.get("id"));
   },
 
+  /**
+   * @public
+   */
   setIdValue(id) {
-    this.__idValue = id;
+    this._idValue = id;
   },
 
+  /**
+   * @public
+   */
   getIdValue() {
-    return this.__idValue;
+    return this._idValue;
   },
 
+  /**
+   * @public
+   */
   clearIdValue() {
     this.setValue(null);
-    this.__idValue = null;
+    this._idValue = null;
   }
 });
