@@ -33,7 +33,7 @@ Ext.define("PSI.Form.FormEditForm", {
       },
       scope: me
     }, {
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler() {
         me.close();
       },
@@ -43,18 +43,21 @@ Ext.define("PSI.Form.FormEditForm", {
     const t = entity == null ? "新增表单" : "编辑表单";
     const logoHtml = me.genLogoHtml(entity, t);
 
+    const width1 = 600;
+    const width2 = 295;
+
     Ext.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 550,
-      height: 350,
+      width: 650,
+      height: 380,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 70,
+        height: 55,
         html: logoHtml
       }, {
         region: "center",
@@ -63,13 +66,14 @@ Ext.define("PSI.Form.FormEditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 2
+          columns: 2,
+          tableAttrs: PSI.Const.TABLE_LAYOUT,
         },
         height: "100%",
         bodyPadding: 5,
         defaultType: 'textfield',
         fieldDefaults: {
-          labelWidth: 100,
+          labelWidth: 75,
           labelAlign: "right",
           labelSeparator: "",
           msgTarget: 'side'
@@ -97,7 +101,7 @@ Ext.define("PSI.Form.FormEditForm", {
           xtype: "psi_formcategoryfield",
           slnCode: me.getSlnCode(),
           fieldLabel: "分类",
-          width: 290,
+          width: width2,
           allowBlank: false,
           blankText: "没有输入表单分类",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -112,7 +116,8 @@ Ext.define("PSI.Form.FormEditForm", {
         }, {
           id: "PSI_Form_FormEditForm_editCode",
           fieldLabel: "编码",
-          labelWidth: 60,
+          labelWidth: 40,
+          width: width2,
           name: "code",
           listeners: {
             specialkey: {
@@ -134,7 +139,7 @@ Ext.define("PSI.Form.FormEditForm", {
             }
           },
           colspan: 2,
-          width: 510
+          width: width1
         }, {
           id: "PSI_Form_FormEditForm_editTableName",
           fieldLabel: "数据库表名",
@@ -149,7 +154,7 @@ Ext.define("PSI.Form.FormEditForm", {
             }
           },
           colspan: 2,
-          width: 510
+          width: width1
         }, {
           id: "PSI_Form_FormEditForm_editModuleName",
           fieldLabel: "模块名称",
@@ -164,7 +169,7 @@ Ext.define("PSI.Form.FormEditForm", {
             }
           },
           colspan: 2,
-          width: 510
+          width: width1
         }, {
           id: "PSI_Form_FormEditForm_editMemo",
           fieldLabel: "备注",
@@ -177,7 +182,7 @@ Ext.define("PSI.Form.FormEditForm", {
               scope: me
             }
           },
-          width: 510,
+          width: width1,
           colspan: 2
         }],
         buttons: buttons
