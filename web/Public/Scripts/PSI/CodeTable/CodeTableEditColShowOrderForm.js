@@ -42,7 +42,7 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
         height: 40
       },
       width: 900,
-      height: 200,
+      height: 230,
       layout: "border",
       items: [{
         region: "north",
