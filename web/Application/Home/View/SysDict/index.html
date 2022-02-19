@@ -9,8 +9,8 @@
 
 
 <script>
-  Ext.onReady(function () {
-    var app = Ext.create("PSI.App", {
+  PCL.onReady(() => {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -18,6 +18,6 @@
       }
     });
 
-    app.add(Ext.create("PSI.SysDict.MainForm"));
+    app.add(PCL.create("PSI.SysDict.MainForm"));
   });
 </script>
