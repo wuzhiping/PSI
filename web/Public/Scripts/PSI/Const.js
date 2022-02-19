@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Const", {
+PCL.define("PSI.Const", {
   statics: {
     REQUIRED: '<span style="color:red;font-weight:bold" data-qtip="必录项">*</span>',
     TABLE_LAYOUT: {
