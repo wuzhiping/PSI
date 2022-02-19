@@ -57,6 +57,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
 
     me.__mainGrid = Ext.create("Ext.grid.Panel", {
       cls: "PSI",
+      border: 0,
       columnLines: true,
       columns: {
         defaults: {
