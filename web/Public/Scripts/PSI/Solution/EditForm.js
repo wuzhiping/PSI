@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Solution.EditForm", {
+PCL.define("PSI.Solution.EditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   /**
@@ -21,7 +21,7 @@ Ext.define("PSI.Solution.EditForm", {
 
     const logoHtml = me.genLogoHtml(entity, t);
     const width1 = 300;
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -119,10 +119,10 @@ Ext.define("PSI.Solution.EditForm", {
 
     me.callParent(arguments);
 
-    me.editName = Ext.getCmp("PSI_Solution_EditForm_editName");
-    me.editCode = Ext.getCmp("PSI_Solution_EditForm_editCode");
+    me.editName = PCL.getCmp("PSI_Solution_EditForm_editName");
+    me.editCode = PCL.getCmp("PSI_Solution_EditForm_editCode");
 
-    me.editForm = Ext.getCmp("PSI_Solution_EditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Solution_EditForm_editForm");
 
     me.__editorList = [me.editCode, me.editName];
   },
@@ -133,7 +133,7 @@ Ext.define("PSI.Solution.EditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
   /**
@@ -142,7 +142,7 @@ Ext.define("PSI.Solution.EditForm", {
   _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     me.setFocusAndCursorPosToLast(me.editCode);
 
@@ -151,7 +151,7 @@ Ext.define("PSI.Solution.EditForm", {
       return;
     }
 
-    const el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || PCL.getBody();
     el.mask("数据加载中...");
     me.ajax({
       url: me.URL("Home/Solution/solutionInfo"),
