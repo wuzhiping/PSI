@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.MainMenu.MainForm", {
+PCL.define("PSI.MainMenu.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   /**
@@ -16,7 +16,7 @@ Ext.define("PSI.MainMenu.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: me.getToolbarCmp(),
       layout: "border",
       items: [{
@@ -86,13 +86,13 @@ Ext.define("PSI.MainMenu.MainForm", {
     }
 
     const modelName = "PSIMainMenu";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "caption", "fid", "showOrder",
         "sysItem", "leaf", "children"]
     });
 
-    const store = Ext.create("Ext.data.TreeStore", {
+    const store = PCL.create("PCL.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -105,7 +105,7 @@ Ext.define("PSI.MainMenu.MainForm", {
       }
     });
 
-    me._mainGrid = Ext.create("Ext.tree.Panel", {
+    me._mainGrid = PCL.create("PCL.tree.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -170,8 +170,8 @@ Ext.define("PSI.MainMenu.MainForm", {
    */
   _onMainGridSelect(rowModel, record) {
     const sysItem = parseInt(record.get("sysItem")) == 1;
-    Ext.getCmp("buttonEdit").setDisabled(sysItem);
-    Ext.getCmp("buttonDelete").setDisabled(sysItem);
+    PCL.getCmp("buttonEdit").setDisabled(sysItem);
+    PCL.getCmp("buttonDelete").setDisabled(sysItem);
   },
 
   /**
@@ -180,7 +180,7 @@ Ext.define("PSI.MainMenu.MainForm", {
   _onAddMenu() {
     const me = this;
 
-    const form = Ext.create("PSI.MainMenu.MenuItemEditForm", {
+    const form = PCL.create("PSI.MainMenu.MenuItemEditForm", {
       parentForm: me
     });
     form.show();
@@ -203,7 +203,7 @@ Ext.define("PSI.MainMenu.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.MainMenu.MenuItemEditForm", {
+    const form = PCL.create("PSI.MainMenu.MenuItemEditForm", {
       entity: menuItem,
       parentForm: me
     });
@@ -231,7 +231,7 @@ Ext.define("PSI.MainMenu.MainForm", {
     const info = `请确认是否删除菜单项: <span style='color:red'>${menuItem.get("caption")}</span> ?`;
 
     const confirmFunc = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在删除中...");
 
       const r = {
@@ -275,7 +275,7 @@ Ext.define("PSI.MainMenu.MainForm", {
   _onGenSQL() {
     const me = this;
 
-    const form = Ext.create("PSI.MainMenu.GenSQLForm");
+    const form = PCL.create("PSI.MainMenu.GenSQLForm");
     form.show();
   },
 });
