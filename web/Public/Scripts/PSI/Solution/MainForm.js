@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 
-Ext.define("PSI.Solution.MainForm", {
+PCL.define("PSI.Solution.MainForm", {
 
   extend: "PSI.AFX.Form.MainForm",
 
@@ -18,7 +18,7 @@ Ext.define("PSI.Solution.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: [{
         text: "新建解决方案",
         handler: me._onAdd,
@@ -72,12 +72,12 @@ Ext.define("PSI.Solution.MainForm", {
 
     const modelName = "PSIModel.PSI.Solution.MainForm.SolutionModel";
 
-    Ext.define(modelName, {
+    PCL.define(modelName, {
       extend: "Ext.data.Model",
       fields: ["id", "code", "name"]
     });
 
-    me._mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = PCL.create("Ext.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -88,7 +88,7 @@ Ext.define("PSI.Solution.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("Ext.grid.RowNumberer", {
           text: "#",
           align: "center",
           width: 60
@@ -102,7 +102,7 @@ Ext.define("PSI.Solution.MainForm", {
           width: 400,
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("Ext.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -126,7 +126,7 @@ Ext.define("PSI.Solution.MainForm", {
   _onAdd() {
     const me = this;
 
-    const form = Ext.create("PSI.Solution.EditForm", {
+    const form = PCL.create("PSI.Solution.EditForm", {
       parentForm: me
     });
     form.show();
@@ -148,7 +148,7 @@ Ext.define("PSI.Solution.MainForm", {
 
     const solution = item[0];
 
-    const form = Ext.create("PSI.Solution.EditForm", {
+    const form = PCL.create("PSI.Solution.EditForm", {
       entity: solution,
       parentForm: me
     });
