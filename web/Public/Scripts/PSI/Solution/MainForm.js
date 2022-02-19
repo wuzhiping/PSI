@@ -73,11 +73,11 @@ PCL.define("PSI.Solution.MainForm", {
     const modelName = "PSIModel.PSI.Solution.MainForm.SolutionModel";
 
     PCL.define(modelName, {
-      extend: "Ext.data.Model",
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name"]
     });
 
-    me._mainGrid = PCL.create("Ext.grid.Panel", {
+    me._mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -88,7 +88,7 @@ PCL.define("PSI.Solution.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [PCL.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           align: "center",
           width: 60
@@ -102,7 +102,7 @@ PCL.define("PSI.Solution.MainForm", {
           width: 400,
         }]
       },
-      store: PCL.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
