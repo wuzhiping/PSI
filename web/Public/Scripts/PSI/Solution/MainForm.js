@@ -181,14 +181,14 @@ PCL.define("PSI.Solution.MainForm", {
     }
 
     const funcConfirm = () => {
-      Ext.getBody().mask("正在删除中...");
+      PCL.getBody().mask("正在删除中...");
       const r = {
         url: me.URL("Home/Solution/deleteSolution"),
         params: {
           id: solution.get("id")
         },
         callback(options, success, response) {
-          Ext.getBody().unmask();
+          PCL.getBody().unmask();
 
           if (success) {
             const data = me.decodeJSON(response.responseText);
@@ -216,7 +216,7 @@ PCL.define("PSI.Solution.MainForm", {
     const me = this;
 
     const grid = me.getMainGrid();
-    const el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/Solution/solutionList"),
