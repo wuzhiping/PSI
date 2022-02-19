@@ -46,6 +46,7 @@ Ext.define("PSI.About.MainForm", {
               <p>PHP版本号: ${me.getPhpVersion()} , MySQL版本号: ${me.getMySQLVersion()}</p>
               <p>数据库表结构版本号: ${me.getPSIDBVersion()}</p>
               <p>数据库表结构更新时间: ${me.getPSIDBUpdateDT()}</p>
+              <p>UI组件PCL版本号：${PCL.VERSION}</p>
               <p>${c}</p>
               `
       }],
