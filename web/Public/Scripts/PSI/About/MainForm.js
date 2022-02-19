@@ -26,7 +26,7 @@ PCL.define("PSI.About.MainForm", {
     const year = new Date().getFullYear();
     const c = `Copyright &copy; 2015-${year} 艾格林门信息服务（大连）有限公司, All Rights Reserved`;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: `<span style='font-size:160%'>关于 - ${me.getProductionName()}</span>`,
         iconCls: "PSI-fid-9994",

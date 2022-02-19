@@ -7,7 +7,7 @@
 
 <script src="{$uri}Public/Scripts/PSI/About/MainForm.js?dt={$dtFlag}" type="text/javascript"></script>
 <script>
-  Ext.onReady(function () {
+  PCL.onReady(() => {
     const form = PCL.create("PSI.About.MainForm", {
       productionName: "{$productionName}",
       phpVersion: "{$phpVersion}",
