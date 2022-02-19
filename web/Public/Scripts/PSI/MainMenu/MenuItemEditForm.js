@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.MainMenu.MenuItemEditForm", {
+PCL.define("PSI.MainMenu.MenuItemEditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   /**
@@ -48,7 +48,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
 
     const t = entity == null ? "新增菜单项" : "编辑菜单项";
     const logoHtml = me.genLogoHtml(entity, t);
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -170,14 +170,14 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_MainMenu_MenuItemEditForm_editForm");
 
-    me.editFid = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editFid");
-    me.editCaption = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editCaption");
-    me.editParentMenu = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editParentMenu");
-    me.editShowOrder = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_editShowOrder");
-    me.hiddenFid = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_hiddenFid");
-    me.hiddenParentMenuId = Ext.getCmp("PSI_MainMenu_MenuItemEditForm_hiddenParentMenuId");
+    me.editFid = PCL.getCmp("PSI_MainMenu_MenuItemEditForm_editFid");
+    me.editCaption = PCL.getCmp("PSI_MainMenu_MenuItemEditForm_editCaption");
+    me.editParentMenu = PCL.getCmp("PSI_MainMenu_MenuItemEditForm_editParentMenu");
+    me.editShowOrder = PCL.getCmp("PSI_MainMenu_MenuItemEditForm_editShowOrder");
+    me.hiddenFid = PCL.getCmp("PSI_MainMenu_MenuItemEditForm_hiddenFid");
+    me.hiddenParentMenuId = PCL.getCmp("PSI_MainMenu_MenuItemEditForm_hiddenParentMenuId");
     me.__editorList = [me.editFid, me.editCaption, me.editParentMenu, me.editShowOrder];
   },
 
@@ -236,7 +236,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       const parentForm = me.getParentForm();
@@ -252,7 +252,7 @@ Ext.define("PSI.MainMenu.MenuItemEditForm", {
   _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     me.editFid.focus();
 
