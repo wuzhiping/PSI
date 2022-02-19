@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.About.MainForm", {
+PCL.define("PSI.About.MainForm", {
   extend: 'Ext.window.Window',
   config: {
     productionName: "PSI",
