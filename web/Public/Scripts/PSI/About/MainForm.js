@@ -69,7 +69,7 @@ PCL.define("PSI.About.MainForm", {
   },
 
   onWndShow() {
-    Ext.getCmp("buttonAboutFormOK").focus();
+    PCL.getCmp("buttonAboutFormOK").focus();
   },
 
   onOK() {
