@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SysDict.MainForm", {
+PCL.define("PSI.SysDict.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   /**
@@ -14,7 +14,7 @@ Ext.define("PSI.SysDict.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: me.getToolbarCmp(),
       items: [{
         region: "north",
@@ -94,12 +94,12 @@ Ext.define("PSI.SysDict.MainForm", {
 
     const modelName = "PSIModel.PSI.SysDict.MainForm.SysDictCategory";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name"]
     });
 
-    me._categoryGrid = Ext.create("Ext.grid.Panel", {
+    me._categoryGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -111,7 +111,7 @@ Ext.define("PSI.SysDict.MainForm", {
       tools: [{
         type: "close",
         handler() {
-          Ext.getCmp("panelCategory").collapse();
+          PCL.getCmp("panelCategory").collapse();
         }
       }],
       columnLines: true,
@@ -128,7 +128,7 @@ Ext.define("PSI.SysDict.MainForm", {
         menuDisabled: true,
         sortable: false
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -156,12 +156,12 @@ Ext.define("PSI.SysDict.MainForm", {
 
     const modelName = "PSIModel.PSI.SysDict.MainForm.SysDictModel";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "tableName", "memo"]
     });
 
-    me._mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -194,7 +194,7 @@ Ext.define("PSI.SysDict.MainForm", {
           width: 400,
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -222,12 +222,12 @@ Ext.define("PSI.SysDict.MainForm", {
 
     const modelName = "PSIModel.PSI.SysDict.MainForm.SysDictData";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "codeInt", "name", "memo"]
     });
 
-    me._dataGrid = Ext.create("Ext.grid.Panel", {
+    me._dataGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -242,7 +242,7 @@ Ext.define("PSI.SysDict.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           align: "center",
           width: 60
@@ -265,7 +265,7 @@ Ext.define("PSI.SysDict.MainForm", {
           width: 400
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -281,7 +281,7 @@ Ext.define("PSI.SysDict.MainForm", {
   refreshCategoryGrid(id) {
     const me = this;
     const grid = me.getCategoryGrid();
-    const el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/SysDict/categoryList"),
@@ -339,7 +339,7 @@ Ext.define("PSI.SysDict.MainForm", {
 
     const grid = me.getMainGrid();
     grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${category.get("name")}</span> - 数据字典列表`));
-    const el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/SysDict/sysDictList"),
@@ -398,7 +398,7 @@ Ext.define("PSI.SysDict.MainForm", {
 
     const grid = me.getDictDataGrid();
     grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${sysDict.get("name")} ${sysDict.get("tableName")}</span> - 数据`));
-    const el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/SysDict/dictDataList"),
