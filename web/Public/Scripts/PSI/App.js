@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.App", {
+PCL.define("PSI.App", {
   config: {
     userName: "",
     productionName: "PSI",
@@ -44,24 +44,24 @@ Ext.define("PSI.App", {
     const me = this;
 
     // mainPanel中放置各个具体模块的UI
-    me._mainPanel = Ext.create("Ext.panel.Panel", {
+    me._mainPanel = PCL.create("Ext.panel.Panel", {
       border: 0,
       layout: "fit"
     });
 
     const modelName = "PSIModel.PSI.App.FId";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["fid", "name"]
     });
 
-    const storeRecentFid = Ext.create("Ext.data.Store", {
+    const storeRecentFid = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.gridRecentFid = Ext.create("Ext.grid.Panel", {
+    me.gridRecentFid = PCL.create("PCL.grid.Panel", {
       header: {
         title: "常用功能 - 根据使用频率自动生成",
         height: 28
@@ -74,7 +74,7 @@ Ext.define("PSI.App", {
       tools: [{
         type: "close",
         handler() {
-          Ext.getCmp("PSI_Main_RecentPanel").collapse();
+          PCL.getCmp("PSI_Main_RecentPanel").collapse();
         },
         scope: me
       }],
@@ -164,7 +164,7 @@ Ext.define("PSI.App", {
 
     const year = new Date().getFullYear();
 
-    me._vp = Ext.create("Ext.container.Viewport", {
+    me._vp = PCL.create("PCL.container.Viewport", {
       layout: "fit",
       items: [{
         id: "_PSITopPanel",
@@ -240,15 +240,15 @@ Ext.define("PSI.App", {
       }]
     });
 
-    const el = Ext.getBody();
+    const el = PCL.getBody();
     el.mask("系统正在加载中...");
 
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: me.URL("Home/MainMenu/mainMenuItems"),
       method: "POST",
       callback(opt, success, response) {
         if (success) {
-          const data = Ext.JSON.decode(response.responseText);
+          const data = PCL.JSON.decode(response.responseText);
           me.createMainMenu(data);
           me.refreshRectFidGrid();
         }
@@ -267,17 +267,17 @@ Ext.define("PSI.App", {
   refreshRectFidGrid() {
     const me = this;
 
-    const el = me.gridRecentFid.getEl() || Ext.getBody();
+    const el = me.gridRecentFid.getEl() || PCL.getBody();
     el.mask("系统正在加载中...");
     const store = me.gridRecentFid.getStore();
     store.removeAll();
 
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: me.URL("Home/MainMenu/recentFid"),
       method: "POST",
       callback(opt, success, response) {
         if (success) {
-          const data = Ext.JSON.decode(response.responseText);
+          const data = PCL.JSON.decode(response.responseText);
           store.add(data);
         }
         el.unmask();
@@ -331,7 +331,7 @@ Ext.define("PSI.App", {
     };
 
     root.forEach((m1) => {
-      const menuItem = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
+      const menuItem = PCL.create("PCL.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
       m1.children.forEach((m2) => {
         if (m2.children.length === 0) {
           // 只有二级菜单
@@ -344,7 +344,7 @@ Ext.define("PSI.App", {
             });
           }
         } else {
-          const menuItem2 = Ext.create("Ext.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
+          const menuItem2 = PCL.create("PCL.menu.Menu", { plain: true, bodyCls: "PSI-App-MainMenu" });
 
           menuItem.add({
             text: m2.caption,
@@ -371,7 +371,7 @@ Ext.define("PSI.App", {
       }
     });
 
-    const mainToolbar = Ext.create("Ext.toolbar.Toolbar", {
+    const mainToolbar = PCL.create("PCL.toolbar.Toolbar", {
       cls: "PSI-App-MainMenu",
       border: 0,
       dock: "top"
@@ -418,7 +418,7 @@ Ext.define("PSI.App", {
       return;
     }
     const me = this;
-    const panel = Ext.getCmp("_PSITopPanel");
+    const panel = PCL.getCmp("_PSITopPanel");
     const title = `
       <span style='font-size:140%;color:#c7c6c6;font-weight:bold;'>
         ${header.title} - ${me.getProductionName()}
