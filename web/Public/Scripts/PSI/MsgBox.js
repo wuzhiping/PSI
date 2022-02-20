@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.MsgBox", {
+PCL.define("PSI.MsgBox", {
   statics: {
     /**
      * 显示提示信息
@@ -14,7 +14,7 @@ Ext.define("PSI.MsgBox", {
      */
     showInfo(info, func) {
 
-      const form = Ext.create("PSI.AFX.MessageBox.ShowInfoForm", {
+      const form = PCL.create("PSI.AFX.MessageBox.ShowInfoForm", {
         msg: info,
         fn: func
       });
@@ -28,7 +28,7 @@ Ext.define("PSI.MsgBox", {
      * @param {Function} funcOnYes 选择YES按钮后的回调函数 
      */
     confirm(confirmInfo, funcOnYes) {
-      const form = Ext.create("PSI.AFX.MessageBox.ConfirmForm", {
+      const form = PCL.create("PSI.AFX.MessageBox.ConfirmForm", {
         msg: confirmInfo,
         fn: funcOnYes
       });
@@ -52,9 +52,9 @@ Ext.define("PSI.MsgBox", {
           }
         });
       }
-      const wnd = Ext.create("Ext.window.Window", {
+      const wnd = PCL.create("PCL.window.Window", {
         modal: false,
-        onEsc: Ext.emptyFn,
+        onEsc: PCL.emptyFn,
         width: 400,
         height: 100,
         header: false,
@@ -75,7 +75,7 @@ Ext.define("PSI.MsgBox", {
 
       wnd.showAt(document.body.clientWidth - 420, 20);
 
-      Ext.Function.defer(() => {
+      PCL.Function.defer(() => {
         wnd.hide();
         wnd.close();
       }, 3500);
