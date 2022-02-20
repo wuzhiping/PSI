@@ -19,5 +19,5 @@ features:
     details: 咨询、研发、实施、运维、法务一体化的企业管理全面解决方案，包括：方法论、软件系统、咨询实施运维团队，即方法、工具和人才
   - title: Infrastructure - 基础设施
     details: 100%开源的企业管理软件系统 - PSI低代码应用平台
-footer: 版本：2022/02/18，GPL v3 Licensed | Copyright © 2015-present 艾格林门信息服务（大连）有限公司 
+footer: 版本：2022/02/20，GPL v3 Licensed | Copyright © 2015-present 艾格林门信息服务（大连）有限公司 
 ---
