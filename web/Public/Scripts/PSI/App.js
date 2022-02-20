@@ -44,7 +44,7 @@ PCL.define("PSI.App", {
     const me = this;
 
     // mainPanel中放置各个具体模块的UI
-    me._mainPanel = PCL.create("Ext.panel.Panel", {
+    me._mainPanel = PCL.create("PCL.panel.Panel", {
       border: 0,
       layout: "fit"
     });
