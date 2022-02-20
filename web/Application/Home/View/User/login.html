@@ -139,11 +139,11 @@
 </style>
 
 <script type="text/javascript">
-  Ext.onReady(function () {
+  PCL.onReady(() => {
     PSI.Const.BASE_URL = "{$uri}";
 
     if ("{$demoInfo}" == "") {
-      Ext.get("divDemoWarning").remove();
+      PCL.get("divDemoWarning").remove();
     }
 
     var editLoginName = document.getElementById("editLoginName");
@@ -170,8 +170,8 @@
       doLogin(editLoginName.value, editPassword.value);
     }
 
-    Ext.get("loading").remove();
-    Ext.get("loading-mask").remove();
+    PCL.get("loading").remove();
+    PCL.get("loading-mask").remove();
   });
 
   function doLogin(loginName, password) {
@@ -195,7 +195,7 @@
       },
       callback: function (options, success, response) {
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             setLoginNameToCookie(loginName);
 
@@ -213,7 +213,7 @@
       }
     };
 
-    Ext.Ajax.request(r);
+    PCL.Ajax.request(r);
   }
 
   function setInputFocus() {
