@@ -66,12 +66,13 @@ class UserController extends PSIBaseController
 
     $bcs = new BizConfigService();
     $productionName = $bcs->getProductionName();
-
+    $productionNameFull = $productionName;
     if ($productionName == "PSI低代码应用平台") {
-      $productionName .= "基于开源技术，提供人、财、物、产、供、销、存一体化的企业管理全面解决方案";
+      $productionNameFull = "{$productionName}基于开源技术，提供人、财、物、产、供、销、存一体化的企业管理全面解决方案";
     }
 
     $this->assign("productionName", $productionName);
+    $this->assign("productionNameFull", $productionNameFull);
 
     $this->assign("title", "登录");
 
