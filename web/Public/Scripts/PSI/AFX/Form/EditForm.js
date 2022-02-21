@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.AFX.Form.EditForm", {
-  extend: 'Ext.window.Window',
+PCL.define("PSI.AFX.Form.EditForm", {
+  extend: 'PCL.window.Window',
 
   mixins: ["PSI.AFX.Mix.Common"],
 
@@ -22,7 +22,7 @@ Ext.define("PSI.AFX.Form.EditForm", {
   modal: true,
   closable: false,
   resizable: false,
-  onEsc: Ext.emptyFn,
+  onEsc: PCL.emptyFn,
 
   /**
    * 
