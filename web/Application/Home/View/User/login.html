@@ -233,7 +233,7 @@
 
   function setLoginNameToCookie(loginName) {
     loginName = encodeURIComponent(loginName);
-    const dt = Ext.Date.add(new Date(), Ext.Date.YEAR, 1);
+    const dt = PCL.Date.add(new Date(), Ext.Date.YEAR, 1);
     PCL.util.Cookies.set("PSI_user_login_name", loginName, dt);
   }
 </script>
