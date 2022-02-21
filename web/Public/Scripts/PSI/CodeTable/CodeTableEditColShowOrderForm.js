@@ -125,7 +125,7 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
           if (success) {
             var data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成操作");
+              me.tip("成功完成操作", true);
               me.getParentForm().refreshColsGrid();
               me.close();
             } else {
