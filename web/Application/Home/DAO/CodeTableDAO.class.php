@@ -926,6 +926,7 @@ class CodeTableDAO extends PSIBaseExDAO
       $fieldLength = $v["fieldLength"];
       $fieldDecimal = $v["fieldDecimal"];
       $mustInput = $v["mustInput"];
+      $sysCol = $v["sysCol"];
 
       $type = $fieldType;
 
@@ -938,11 +939,23 @@ class CodeTableDAO extends PSIBaseExDAO
       }
 
       $sql .= "  `{$fieldName}` {$type} ";
-      if ($mustInput == 1) {
-        $sql .= " NOT NULL";
+
+      if ($sysCol == 1) {
+        // 系统字段除了update_dt、update_user_id之外，都不允许为NULL
+        if (($fieldName == "update_dt") || ($fieldName == "update_user_id")) {
+          $sql .= " DEFAULT NULL";
+        } else {
+          $sql .= " NOT NULL";
+        }
       } else {
-        $sql .= " DEFAULT NULL";
+        // 非系统字段
+        if ($mustInput == 1) {
+          $sql .= " NOT NULL";
+        } else {
+          $sql .= " DEFAULT NULL";
+        }
       }
+
       $sql .= ",\n";
     }
     $sql .= "  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8;\n";
@@ -2208,7 +2221,7 @@ class CodeTableDAO extends PSIBaseExDAO
     $result .= $lineSep;
 
     $sql = "select db_field_name, db_field_type, db_field_length,
-              db_field_decimal, must_input
+              db_field_decimal, must_input, sys_col
             from t_code_table_cols_md
             where table_id = '%s'
             order by show_order";
@@ -2221,6 +2234,7 @@ class CodeTableDAO extends PSIBaseExDAO
         "fieldLength" => $v["db_field_length"],
         "fieldDecimal" => $v["db_field_decimal"],
         "mustInput" => $v["must_input"],
+        "sysCol" => $v["sys_col"],
       ];
     }
     $result .= $this->buildCreateDDL($tableName, $cols);
