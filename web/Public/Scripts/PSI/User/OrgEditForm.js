@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.User.OrgEditForm", {
+PCL.define("PSI.User.OrgEditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   /**
@@ -22,7 +22,7 @@ Ext.define("PSI.User.OrgEditForm", {
     const logoHtml = me.genLogoHtml(entity, t);
     const width1 = 600;
     const width2 = 295;
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -116,7 +116,7 @@ Ext.define("PSI.User.OrgEditForm", {
           labelSeparator: "",
           fieldLabel: "性质",
           name: "orgType",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[0, "[无]"], [400, "事业部"],
             [500, "门店"], [600, "内部物流组织机构"],
@@ -170,13 +170,13 @@ Ext.define("PSI.User.OrgEditForm", {
 
     me.callParent(arguments);
 
-    me.editParentOrg = Ext.getCmp("PSI_User_OrgEditForm_editParentOrg");
-    me.editParentOrgId = Ext.getCmp("PSI_User_OrgEditForm_editParentOrgId");
-    me.editName = Ext.getCmp("PSI_User_OrgEditForm_editName");
-    me.editOrgCode = Ext.getCmp("PSI_User_OrgEditForm_editOrgCode");
-    me.editOrgType = Ext.getCmp("PSI_User_OrgEditForm_editOrgType");
+    me.editParentOrg = PCL.getCmp("PSI_User_OrgEditForm_editParentOrg");
+    me.editParentOrgId = PCL.getCmp("PSI_User_OrgEditForm_editParentOrgId");
+    me.editName = PCL.getCmp("PSI_User_OrgEditForm_editName");
+    me.editOrgCode = PCL.getCmp("PSI_User_OrgEditForm_editOrgCode");
+    me.editOrgType = PCL.getCmp("PSI_User_OrgEditForm_editOrgType");
 
-    me.editForm = Ext.getCmp("PSI_User_OrgEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_User_OrgEditForm_editForm");
 
     me.__editorList = [me.editOrgCode, me.editName, me.editParentOrg, me.editOrgType];
   },
@@ -187,7 +187,7 @@ Ext.define("PSI.User.OrgEditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
   /**
@@ -196,7 +196,7 @@ Ext.define("PSI.User.OrgEditForm", {
   _onEditFormShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     me.setFocusAndCursorPosToLast(me.editOrgCode);
 
@@ -204,7 +204,7 @@ Ext.define("PSI.User.OrgEditForm", {
     if (entity === null) {
       return;
     }
-    const el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || PCL.getBody();
     el.mask("数据加载中...");
     me.ajax({
       url: me.URL("Home/User/orgParentName"),
