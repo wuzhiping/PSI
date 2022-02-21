@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Bizlog.MainForm", {
+PCL.define("PSI.Bizlog.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   config: {
@@ -19,7 +19,7 @@ Ext.define("PSI.Bizlog.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: me.getToolbarCmp(),
       items: [{
         id: "panelQueryCmp",
@@ -46,12 +46,12 @@ Ext.define("PSI.Bizlog.MainForm", {
     me.callParent();
 
     me.__editorList =
-      [Ext.getCmp("editQueryLoginName"),
-      Ext.getCmp("editQueryUser"),
-      Ext.getCmp("editQueryFromDT"),
-      Ext.getCmp("editQueryToDT"),
-      Ext.getCmp("editQueryIP"),
-      Ext.getCmp("comboCategory"),];
+      [PCL.getCmp("editQueryLoginName"),
+      PCL.getCmp("editQueryUser"),
+      PCL.getCmp("editQueryFromDT"),
+      PCL.getCmp("editQueryToDT"),
+      PCL.getCmp("editQueryIP"),
+      PCL.getCmp("comboCategory"),];
 
     me.fetchLogCategory();
 
@@ -67,7 +67,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     const r = {
       url: me.URL("Home/Bizlog/getLogCategoryList"),
       callback: function (options, success, response) {
-        const combo = Ext.getCmp("comboCategory");
+        const combo = PCL.getCmp("comboCategory");
         const store = combo.getStore();
 
         store.removeAll();
@@ -108,7 +108,7 @@ Ext.define("PSI.Bizlog.MainForm", {
       xtype: "combobox",
       editable: false,
       width: 60,
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["text"],
         data: [["20"], ["50"], ["100"], ["300"],
         ["1000"]]
@@ -117,9 +117,9 @@ Ext.define("PSI.Bizlog.MainForm", {
       listeners: {
         change: {
           fn() {
-            store.pageSize = Ext.getCmp("comboCountPerPage").getValue();
+            store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
             store.currentPage = 1;
-            Ext.getCmp("pagingToobar").doRefresh();
+            PCL.getCmp("pagingToobar").doRefresh();
           },
           scope: me
         }
@@ -164,8 +164,8 @@ Ext.define("PSI.Bizlog.MainForm", {
     const me = this;
 
     const modelName = "PSIModel.PSI.Bizlog.MainForm.LogCategory";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
 
@@ -253,7 +253,7 @@ Ext.define("PSI.Bizlog.MainForm", {
       margin: "5, 0, 0, 0",
       valueField: "id",
       displayField: "name",
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -293,7 +293,7 @@ Ext.define("PSI.Bizlog.MainForm", {
         height: 26,
         margin: "5 0 0 10",
         handler() {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -310,13 +310,13 @@ Ext.define("PSI.Bizlog.MainForm", {
     }
 
     const modelName = "PSIModel.PSI.Bizlog.MainForm.LogModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "loginName", "userName", "ip", "ipFrom",
         "content", "dt", "logCategory"],
       idProperty: "id"
     });
-    const store = Ext.create("Ext.data.Store", {
+    const store = PCL.create("PCL.data.Store", {
       model: modelName,
       pageSize: 20,
       proxy: {
@@ -341,7 +341,7 @@ Ext.define("PSI.Bizlog.MainForm", {
       }
     });
 
-    me._mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -353,7 +353,7 @@ Ext.define("PSI.Bizlog.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 60
         }), {
@@ -430,10 +430,10 @@ Ext.define("PSI.Bizlog.MainForm", {
   _onCellDbclick(ths, td, cellIndex, record, tr, rowIndex, e, eOpts) {
     const me = this;
     if (cellIndex == 1) {
-      Ext.getCmp("editQueryLoginName").setValue(record.get("loginName"));
+      PCL.getCmp("editQueryLoginName").setValue(record.get("loginName"));
       me._onQuery();
     } else if (cellIndex == 3) {
-      Ext.getCmp("editQueryIP").setValue(record.get("ip"));
+      PCL.getCmp("editQueryIP").setValue(record.get("ip"));
       me._onQuery();
     }
   },
@@ -447,7 +447,7 @@ Ext.define("PSI.Bizlog.MainForm", {
     const me = this;
 
     me.getMainGrid().getStore().currentPage = 1;
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
   },
 
   /**
@@ -459,11 +459,9 @@ Ext.define("PSI.Bizlog.MainForm", {
     const me = this;
 
     me.confirm("请确认是否升级数据库？", () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在升级数据库，请稍等......");
 
-      // 把超时设置为5分钟，主要是为了在低端配置上能正确升级
-      Ext.Ajax.timeout = 5 * 60 * 1000;
       me.ajax({
         url: me.URL("Home/Bizlog/updateDatabase"),
         callback: function (options, success, response) {
@@ -472,7 +470,7 @@ Ext.define("PSI.Bizlog.MainForm", {
           if (success) {
             const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功升级数据库");
+              me.tip("成功升级数据库", true);
               me._onQuery();
             } else {
               me.showInfo(data.msg);
@@ -498,18 +496,18 @@ Ext.define("PSI.Bizlog.MainForm", {
    */
   getQueryParam() {
     const result = {
-      loginName: Ext.getCmp("editQueryLoginName").getValue(),
-      userId: Ext.getCmp("editQueryUser").getIdValue(),
-      ip: Ext.getCmp("editQueryIP").getValue(),
-      logCategory: Ext.getCmp("comboCategory").getValue()
+      loginName: PCL.getCmp("editQueryLoginName").getValue(),
+      userId: PCL.getCmp("editQueryUser").getIdValue(),
+      ip: PCL.getCmp("editQueryIP").getValue(),
+      logCategory: PCL.getCmp("comboCategory").getValue()
     };
 
-    const fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    const fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
       result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
     }
 
-    const toDT = Ext.getCmp("editQueryToDT").getValue();
+    const toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
       result.toDT = Ext.Date.format(toDT, "Y-m-d");
     }
@@ -523,12 +521,12 @@ Ext.define("PSI.Bizlog.MainForm", {
   _onClearQuery() {
     const me = this;
 
-    Ext.getCmp("editQueryLoginName").setValue(null);
-    Ext.getCmp("editQueryUser").clearIdValue();
-    Ext.getCmp("editQueryIP").setValue(null);
-    Ext.getCmp("editQueryFromDT").setValue(null);
-    Ext.getCmp("editQueryToDT").setValue(null);
-    const combo = Ext.getCmp("comboCategory");
+    PCL.getCmp("editQueryLoginName").setValue(null);
+    PCL.getCmp("editQueryUser").clearIdValue();
+    PCL.getCmp("editQueryIP").setValue(null);
+    PCL.getCmp("editQueryFromDT").setValue(null);
+    PCL.getCmp("editQueryToDT").setValue(null);
+    const combo = PCL.getCmp("comboCategory");
     const store = combo.getStore();
     if (store.getCount() > 0) {
       combo.setValue(store.getAt(0).get("id"))
