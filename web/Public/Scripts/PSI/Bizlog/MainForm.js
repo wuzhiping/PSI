@@ -504,12 +504,12 @@ PCL.define("PSI.Bizlog.MainForm", {
 
     const fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
     const toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
     return result;
