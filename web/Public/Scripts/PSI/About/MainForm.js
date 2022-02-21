@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 PCL.define("PSI.About.MainForm", {
-  extend: 'Ext.window.Window',
+  extend: "PCL.window.Window",
   config: {
     productionName: "PSI",
     phpVersion: "",
@@ -17,6 +17,7 @@ PCL.define("PSI.About.MainForm", {
 
   modal: true,
   closable: false,
+  resizable: false,
   width: 700,
   layout: "fit",
 
