@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.AFX.Form.MainForm", {
-  extend: "Ext.panel.Panel",
+PCL.define("PSI.AFX.Form.MainForm", {
+  extend: "PCL.panel.Panel",
 
   mixins: ["PSI.AFX.Mix.Common"],
 
