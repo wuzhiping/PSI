@@ -1144,5 +1144,5 @@ class FIdConst
   /**
    * FId一览
    */
-  const FIdList = "-6001";
+  const FID_LIST = "-6001";
 }
