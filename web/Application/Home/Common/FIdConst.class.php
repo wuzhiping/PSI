@@ -1140,4 +1140,9 @@ class FIdConst
    * 解决方案
    */
   const SOLUTION = "-6000";
+
+  /**
+   * FId一览
+   */
+  const FIdList = "-6001";
 }
