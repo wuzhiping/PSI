@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.AFX.Mix.Common", {
+PCL.define("PSI.AFX.Mix.Common", {
   showInfo: function (info, func) {
     PSI.MsgBox.showInfo(info, func);
   },
@@ -30,17 +30,17 @@ Ext.define("PSI.AFX.Mix.Common", {
     if (!r.method) {
       r.method = "POST";
     }
-    Ext.Ajax.request(r);
+    PCL.Ajax.request(r);
   },
 
   // 把字符串解析为JSON
   decodeJSON(str) {
-    return Ext.JSON.decode(str);
+    return PCL.JSON.decode(str);
   },
 
   // 把对象转换成JSON字符串
   encodeJSON(obj) {
-    return Ext.JSON.encode(obj);
+    return PCL.JSON.encode(obj);
   },
 
   // 关闭当前模块
