@@ -6,7 +6,7 @@
  * @license GPL v3
  */
 PCL.define("PSI.AFX.Form.EditForm", {
-  extend: 'PCL.window.Window',
+  extend: "PCL.window.Window",
 
   mixins: ["PSI.AFX.Mix.Common"],
 

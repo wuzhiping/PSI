@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.AFX.MessageBox.ConfirmForm", {
-  extend: 'Ext.window.Window',
+PCL.define("PSI.AFX.MessageBox.ConfirmForm", {
+  extend: "PCL.window.Window",
   config: {
     fn: null,
     msg: "",
@@ -23,7 +23,7 @@ Ext.define("PSI.AFX.MessageBox.ConfirmForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: `<span style='font-size:160%'>提示 - ${PSI.Const.PROD_NAME}</span>`,
         iconCls: "PSI-fid-9994",
@@ -65,7 +65,7 @@ Ext.define("PSI.AFX.MessageBox.ConfirmForm", {
    * @private
    */
   _onWndShow() {
-    Ext.getCmp("PSI_AFX_MessageBox_ConfirmForm_buttonCancel").focus();
+    PCL.getCmp("PSI_AFX_MessageBox_ConfirmForm_buttonCancel").focus();
   },
 
   /**
