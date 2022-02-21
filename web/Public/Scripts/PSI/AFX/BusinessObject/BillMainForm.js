@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.AFX.BusinessObject.BillMainForm", {
-  extend: "Ext.panel.Panel",
+PCL.define("PSI.AFX.BusinessObject.BillMainForm", {
+  extend: "PCL.panel.Panel",
 
   config: {
     // 元数据
@@ -26,7 +26,7 @@ Ext.define("PSI.AFX.BusinessObject.BillMainForm", {
   initComponent() {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: me.afxGetToolbarCmp()
     });
 
