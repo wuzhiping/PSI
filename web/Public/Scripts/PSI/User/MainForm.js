@@ -160,7 +160,7 @@ PCL.define("PSI.User.MainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: PCL.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [1, "允许登录"], [0, "禁止登录"]]
       }),
@@ -445,7 +445,7 @@ PCL.define("PSI.User.MainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: PCL.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"], ["300"],
             ["1000"]]
