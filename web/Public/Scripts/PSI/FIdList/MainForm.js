@@ -73,10 +73,6 @@ PCL.define("PSI.FIdList.MainForm", {
       viewConfig: {
         enableTextSelection: true
       },
-      header: {
-        height: 30,
-        title: me.formatGridHeaderTitle("FId一览")
-      },
       columnLines: true,
       columns: {
         defaults: {
