@@ -11,6 +11,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
 TRUNCATE TABLE `t_fid`;
 INSERT INTO `t_fid` (`fid`, `name`, `py`, `memo`) VALUES
+('-6001', 'FId一览', 'fidyl', ''),
 ('-6000', '解决方案', 'JJFA', ''),
 ('-7996', '码表设置', 'MBSZ', ''),
 ('-7995', '主菜单维护', 'ZCDWH', ''),
@@ -261,6 +262,7 @@ INSERT INTO `t_menu_item` (`id`, `caption`, `fid`, `parent_id`, `show_order`, `p
 ('090504', '主菜单维护', '-7995', '0905', 4, 'ZCDWH', ''),
 ('090505', '系统数据字典', '-7994', '0905', 5, 'XTSJZD', ''),
 ('090506', '解决方案', '-6000', '0905', 6, 'JJFA', ''),
+('090507', 'FId一览', '-6001', '0905', 7, 'FIDYL', ''),
 ('10', '指南', NULL, NULL, 12, 'ZN', ''),
 ('1001', '实施指南', '-9995', '10', 1, 'SSZN', ''),
 ('1003', '关于', '-9994', '10', 3, 'GY', '');
@@ -272,6 +274,7 @@ INSERT INTO `t_org` (`id`, `full_name`, `name`, `org_code`, `data_org`, `parent_
 
 TRUNCATE TABLE `t_permission`;
 INSERT INTO `t_permission` (`id`, `fid`, `name`, `note`, `category`, `py`, `show_order`) VALUES
+('-6001', '-6001', 'FId一览', '模块权限：通过菜单进入FId一览模块的权限', 'FId一览', 'FIDYL', 100),
 ('-6000', '-6000', '解决方案', '模块权限：通过菜单进入解决方案模块的权限', '解决方案', 'JJFA', 100),
 ('-7994', '-7994', '系统数据字典', '模块权限：通过菜单进入系统数据字典模块的权限', '系统数据字典', 'XTSJZD', 100),
 ('-7995', '-7995', '主菜单维护', '模块权限：通过菜单进入主菜单维护模块的权限', '主菜单维护', 'ZCDWH', 100),
