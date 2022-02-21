@@ -33,7 +33,7 @@ PCL.define("PSI.About.MainForm", {
         iconCls: "PSI-fid-9994",
         height: 40
       },
-      height: 400,
+      height: 450,
       bodyCls: "PSI-About-body",
       items: [{
         border: 0,
