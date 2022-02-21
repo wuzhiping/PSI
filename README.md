@@ -87,6 +87,8 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 
 > PCL在ExtJS 4.2 GPL版源代码的基础上演化，逐步编写中文注释、用ES6改写源代码和用基于npm打包工具重新打包。
 
+> PCL在研发的过程中，PSI就会逐步开始应用PCL
+
 - 新一代的PHP Web框架：https://gitee.com/crm8000/PSI/tree/master/web/ThinkPHP
 
 > 采用修改ThinkPHP 3.2现有的代码，通过修正、裁剪、代码注释等一系列的工作完成
