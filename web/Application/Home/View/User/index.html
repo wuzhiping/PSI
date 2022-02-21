@@ -14,8 +14,8 @@
 <script src="{$uri}Public/Scripts/PSI/User/ChangeUserPasswordForm.js?dt={$dtFlag}" type="text/javascript"></script>
 
 <script>
-  Ext.onReady(function () {
-    const app = Ext.create("PSI.App", {
+  PCL.onReady(() => {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -23,7 +23,7 @@
       }
     });
 
-    app.add(Ext.create("PSI.User.MainForm", {
+    app.add(PCL.create("PSI.User.MainForm", {
       pAddOrg: "{$pAddOrg}",
       pEditOrg: "{$pEditOrg}",
       pDeleteOrg: "{$pDeleteOrg}",
