@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.MainForm", {
+PCL.define("PSI.CodeTable.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   /**
@@ -14,7 +14,7 @@ Ext.define("PSI.CodeTable.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: me.getToolbarCmp(),
       layout: "border",
       items: [{
@@ -60,7 +60,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     me.callParent(arguments);
 
-    me.comboSolution = Ext.getCmp("comboSolution");
+    me.comboSolution = PCL.getCmp("comboSolution");
 
     me.querySolutionList();
   },
@@ -72,8 +72,8 @@ Ext.define("PSI.CodeTable.MainForm", {
     const me = this;
 
     const modelName = "PSI_CodeTable_MainForm_PSISolution";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["code", "name"]
     });
 
@@ -88,7 +88,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       editable: false,
       valueField: "code",
       displayField: "name",
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -166,12 +166,12 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const modelName = "PSICodeTableCategory";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "isSystem", "isSystemCaption"]
     });
 
-    me._categoryGrid = Ext.create("Ext.grid.Panel", {
+    me._categoryGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -183,7 +183,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       tools: [{
         type: "close",
         handler() {
-          Ext.getCmp("panelCategory").collapse();
+          PCL.getCmp("panelCategory").collapse();
         }
       }],
       columnLines: true,
@@ -206,7 +206,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           align: "center",
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -238,14 +238,14 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const modelName = "PSICodeTable";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "moduleName", "tableName",
         "memo", "fid", "mdVersion", "isFixed", "isFixedName", "enableParentId",
         "handlerClassName", "editColCnt", "viewPaging", "autoCodeLength"]
     });
 
-    me._mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -325,7 +325,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           width: 300,
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -357,8 +357,8 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const modelName = "PSICodeTableCols";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "caption", "fieldName",
         "fieldType", "fieldLength", "fieldDecimal",
         "valueFrom", "valueFromTableName",
@@ -368,7 +368,7 @@ Ext.define("PSI.CodeTable.MainForm", {
         "colSpan"]
     });
 
-    me._colsGrid = Ext.create("Ext.grid.Panel", {
+    me._colsGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -400,7 +400,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           align: "center",
           width: 60
@@ -484,7 +484,7 @@ Ext.define("PSI.CodeTable.MainForm", {
           width: 200
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -514,7 +514,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     }
     const slnName = sln.get("name");
 
-    const form = Ext.create("PSI.CodeTable.CategoryEditForm", {
+    const form = PCL.create("PSI.CodeTable.CategoryEditForm", {
       parentForm: me,
       slnCode, slnName,
     });
@@ -531,7 +531,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const slnCode = me.comboSolution.getValue();
 
-    const el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/CodeTable/categoryList"),
@@ -592,7 +592,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.CodeTable.CategoryEditForm", {
+    const form = PCL.create("PSI.CodeTable.CategoryEditForm", {
       parentForm: me,
       entity: category,
       slnCode, slnName,
@@ -631,7 +631,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     const info = `请确认是否删除码表分类: <span style='color:red'>${category.get("name")}</span> ?`;
 
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在删除中...");
 
       const r = {
@@ -688,7 +688,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const grid = me.getMainGrid();
     grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${category.get("name")}</span> - 码表`));
-    const el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/CodeTable/codeTableList"),
@@ -745,7 +745,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const category = item[0];
 
-    const form = Ext.create("PSI.CodeTable.CodeTableEditForm", {
+    const form = PCL.create("PSI.CodeTable.CodeTableEditForm", {
       parentForm: me,
       category,
       slnCode,
@@ -776,7 +776,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const codeTable = item[0];
 
-    const form = Ext.create("PSI.CodeTable.CodeTableEditForm", {
+    const form = PCL.create("PSI.CodeTable.CodeTableEditForm", {
       parentForm: me,
       entity: codeTable,
       slnCode,
@@ -809,7 +809,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const grid = me.getColsGrid();
     grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${codeTable.get("name")}</span> - 列`));
-    const el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("Home/CodeTable/codeTableColsList"),
@@ -869,7 +869,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     const info = `请确认是否删除码表: <span style='color:red'>${codeTable.get("name")}</span> ?<br /><br />当前操作只删除码表元数据，数据库实际表不会删除`;
 
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在删除中...");
 
       const r = {
@@ -914,7 +914,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const codeTable = item[0];
 
-    const form = Ext.create("PSI.CodeTable.CodeTableColEditForm", {
+    const form = PCL.create("PSI.CodeTable.CodeTableColEditForm", {
       codeTable: codeTable,
       parentForm: me
     });
@@ -942,7 +942,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     }
     const col = item[0];
 
-    const form = Ext.create("PSI.CodeTable.CodeTableColEditForm", {
+    const form = PCL.create("PSI.CodeTable.CodeTableColEditForm", {
       codeTable: codeTable,
       entity: col,
       parentForm: me
@@ -985,7 +985,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       + "</span><br /><br />当前操作只删除码表列的元数据，数据库表的字段不会删除";
 
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在删除中...");
 
       const r = {
@@ -1036,7 +1036,7 @@ Ext.define("PSI.CodeTable.MainForm", {
     const id = codeTable.get("id");
 
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在处理中...");
 
       const r = {
@@ -1083,7 +1083,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const codeTable = item[0];
 
-    const form = Ext.create("PSI.CodeTable.CodeTableEditColShowOrderForm", {
+    const form = PCL.create("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       codeTable: codeTable,
       parentForm: me
     });
@@ -1105,7 +1105,7 @@ Ext.define("PSI.CodeTable.MainForm", {
 
     const codeTable = item[0];
 
-    const form = Ext.create("PSI.CodeTable.CodeTableGenSQLForm", {
+    const form = PCL.create("PSI.CodeTable.CodeTableGenSQLForm", {
       codeTable
     });
     form.show();
@@ -1131,7 +1131,7 @@ Ext.define("PSI.CodeTable.MainForm", {
    */
   querySolutionList() {
     const me = this;
-    const el = Ext.getBody();
+    const el = PCL.getBody();
     const comboCompany = me.comboSolution;
     const store = comboCompany.getStore();
     el.mask(PSI.Const.LOADING);
@@ -1170,7 +1170,7 @@ Ext.define("PSI.CodeTable.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
+    const form = PCL.create("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
       slnCode
     });
     form.show();
