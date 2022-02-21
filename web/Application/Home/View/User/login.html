@@ -148,7 +148,7 @@
 
     var editLoginName = document.getElementById("editLoginName");
     var editPassword = document.getElementById("editPassword");
-    var loginName = Ext.util.Cookies.get("PSI_user_login_name");
+    var loginName = PCL.util.Cookies.get("PSI_user_login_name");
     if (loginName) {
       editLoginName.value = decodeURIComponent(loginName);
       editPassword.focus();
@@ -233,7 +233,7 @@
 
   function setLoginNameToCookie(loginName) {
     loginName = encodeURIComponent(loginName);
-    var dt = Ext.Date.add(new Date(), Ext.Date.YEAR, 1)
-    Ext.util.Cookies.set("PSI_user_login_name", loginName, dt);
+    const dt = Ext.Date.add(new Date(), Ext.Date.YEAR, 1);
+    PCL.util.Cookies.set("PSI_user_login_name", loginName, dt);
   }
 </script>
