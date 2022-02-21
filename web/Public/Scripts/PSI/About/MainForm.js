@@ -21,6 +21,9 @@ PCL.define("PSI.About.MainForm", {
   width: 700,
   layout: "fit",
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -54,13 +57,13 @@ PCL.define("PSI.About.MainForm", {
       buttons: [{
         id: "buttonAboutFormOK",
         text: "关闭",
-        handler: me.onOK,
+        handler: me._onOK,
         scope: me,
         iconCls: "PSI-button-ok"
       }],
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         }
       }
@@ -69,11 +72,17 @@ PCL.define("PSI.About.MainForm", {
     me.callParent(arguments);
   },
 
-  onWndShow() {
+  /**
+   * @private
+   */
+  _onWndShow() {
     PCL.getCmp("buttonAboutFormOK").focus();
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     if (PSI.Const.MOT == "0") {
       window.location.replace(PSI.Const.BASE_URL);
 
