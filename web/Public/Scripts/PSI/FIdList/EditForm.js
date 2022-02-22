@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.FIdList.EditForm", {
+PCL.define("PSI.FIdList.EditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   /**
@@ -44,7 +44,7 @@ Ext.define("PSI.FIdList.EditForm", {
 
     const t = "编辑FId";
     const logoHtml = me.genLogoHtml(entity, t);
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -128,10 +128,10 @@ Ext.define("PSI.FIdList.EditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_FIdList_EditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_FIdList_EditForm_editForm");
 
-    me.editCode = Ext.getCmp("PSI_FIdList_EditForm_editCode");
-    me.editPY = Ext.getCmp("PSI_FIdList_EditForm_editPY");
+    me.editCode = PCL.getCmp("PSI_FIdList_EditForm_editCode");
+    me.editPY = PCL.getCmp("PSI_FIdList_EditForm_editPY");
 
     me.__editorList = [me.editCode, me.editPY];
   },
@@ -187,7 +187,7 @@ Ext.define("PSI.FIdList.EditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me._lastId) {
       const parentForm = me.getParentForm();
@@ -203,7 +203,7 @@ Ext.define("PSI.FIdList.EditForm", {
   _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const editCode = me.editCode;
     me.setFocusAndCursorPosToLast(editCode);
