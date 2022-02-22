@@ -30,6 +30,7 @@ PCL.define("PSI.FIdList.MainForm", {
 
     me.callParent(arguments);
 
+    me.refreshMainGrid();
   },
 
   /**
@@ -112,5 +113,37 @@ PCL.define("PSI.FIdList.MainForm", {
     });
 
     return me._mainGrid;
+  },
+
+  /**
+   * @private
+   */
+  refreshMainGrid() {
+    const me = this;
+
+    const grid = me.getMainGrid();
+    const el = grid.getEl() || PCL.getBody();
+    el.mask(PSI.Const.LOADING);
+    const r = {
+      url: me.URL("Home/FIdList/fidList"),
+      callback(options, success, response) {
+        const store = grid.getStore();
+
+        store.removeAll();
+
+        if (success) {
+          const data = me.decodeJSON(response.responseText);
+          store.add(data);
+
+          if (store.getCount() > 0) {
+            grid.getSelectionModel().select(0);
+          }
+        }
+
+        el.unmask();
+      }
+    };
+
+    me.ajax(r);
   },
 });

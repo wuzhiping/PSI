@@ -33,4 +33,22 @@ class FIdListController extends PSIBaseController
       $this->gotoLoginPage("/Home/FIdList");
     }
   }
+
+  /**
+   * 查询全部FId数据
+   */
+  public function fidList()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::FID_LIST)) {
+        die("没有权限");
+      }
+
+
+      // $service = new FIdListService();
+      // $this->ajaxReturn($service->categoryList());
+      $this->ajaxReturn([]);
+    }
+  }
 }
