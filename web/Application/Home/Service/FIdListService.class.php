@@ -27,4 +27,12 @@ class FIdListService extends PSIBaseExService
     $dao = new FIdListDAO($this->db());
     return $dao->fidList();
   }
+
+  /**
+   * 编辑fid
+   */
+  public function editFId($params)
+  {
+    return $this->todo();
+  }
 }

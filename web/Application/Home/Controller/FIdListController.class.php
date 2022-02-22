@@ -51,4 +51,26 @@ class FIdListController extends PSIBaseController
       $this->ajaxReturn($service->fidList());
     }
   }
+
+  /**
+   * 编辑fid
+   */
+  public function editFId()
+  {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::FID_LIST)) {
+        die("没有权限");
+      }
+
+      $params = [
+        "fid" => I("post.fid"),
+        "code" => I("post.code"),
+        "py" => I("post.py"),
+      ];
+
+      $service = new FIdListService();
+      $this->ajaxReturn($service->editFId($params));
+    }
+  }
 }
