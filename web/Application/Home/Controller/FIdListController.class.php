@@ -3,6 +3,7 @@
 namespace Home\Controller;
 
 use Home\Common\FIdConst;
+use Home\Service\FIdListService;
 use Home\Service\UserService;
 
 /**
@@ -46,9 +47,8 @@ class FIdListController extends PSIBaseController
       }
 
 
-      // $service = new FIdListService();
-      // $this->ajaxReturn($service->categoryList());
-      $this->ajaxReturn([]);
+      $service = new FIdListService();
+      $this->ajaxReturn($service->fidList());
     }
   }
 }
