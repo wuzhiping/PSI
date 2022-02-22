@@ -82,4 +82,12 @@ class FIdListDAO extends PSIBaseExDAO
 
     return $result;
   }
+
+  /**
+   * 编辑fid
+   */
+  public function editFId(&$params)
+  {
+    return $this->todo();
+  }
 }

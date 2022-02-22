@@ -15,6 +15,8 @@ use Home\DAO\SysDictDAO;
 class FIdListService extends PSIBaseExService
 {
 
+  private $LOG_CATEGORY = "FId一览";
+
   /**
    * 查询全部FId数据
    */
@@ -33,6 +35,28 @@ class FIdListService extends PSIBaseExService
    */
   public function editFId($params)
   {
-    return $this->todo();
+    if ($this->isNotOnline()) {
+      return $this->notOnlineError();
+    }
+
+    $db = $this->db();
+    $db->startTrans();
+
+    $dao = new FIdListDAO($db);
+    $rc = $dao->editFId($params);
+    if ($rc) {
+      $db->rollback();
+      return $rc;
+    }
+
+    // 记录业务日志
+    $log = $params["log"];
+    $bs = new BizlogService($db);
+    $bs->insertBizlog($log, $this->LOG_CATEGORY);
+
+    $db->commit();
+
+    $fid = $params["fid"];
+    return $this->ok($fid);
   }
 }
