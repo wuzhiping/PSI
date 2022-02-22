@@ -50,7 +50,7 @@ PCL.define("PSI.FIdList.EditForm", {
         height: 40
       },
       width: 650,
-      height: 290,
+      height: 320,
       layout: "border",
       listeners: {
         show: {
@@ -96,6 +96,10 @@ PCL.define("PSI.FIdList.EditForm", {
           xtype: "displayfield",
           fieldLabel: "fid",
           value: `<span class='PSI-field-note'>${entity.get("fid")}</span>`
+        }, {
+          xtype: "displayfield",
+          fieldLabel: "名称",
+          value: `<span class='PSI-field-note'>${entity.get("name")}</span>`
         }, {
           id: "PSI_FIdList_EditForm_editCode",
           fieldLabel: "编码",
