@@ -54,7 +54,7 @@ PCL.define("PSI.MainMenu.ShortcutField", {
     const modelName = "PSIMenuShortcutField";
     PCL.define(modelName, {
       extend: "PCL.data.Model",
-      fields: ["id", "fid", "caption", "py"]
+      fields: ["id", "fid", "caption", "py", "code"]
     });
 
     const store = PCL.create("PCL.data.Store", {
@@ -72,6 +72,11 @@ PCL.define("PSI.MainMenu.ShortcutField", {
         dataIndex: "py",
         menuDisabled: true,
         width: 100
+      },{
+        header: "编码",
+        dataIndex: "code",
+        menuDisabled: true,
+        width: 100
       }, {
         header: "菜单",
         dataIndex: "caption",
@@ -87,8 +92,8 @@ PCL.define("PSI.MainMenu.ShortcutField", {
       modal: me.getShowModal(),
       header: false,
       border: 0,
-      width: 500,
-      height: 380,
+      width: 550,
+      height: 450,
       layout: "border",
       items: [{
         region: "center",
@@ -117,7 +122,7 @@ PCL.define("PSI.MainMenu.ShortcutField", {
           }, {
             xtype: "displayfield",
             fieldLabel: " ",
-            value: "输入菜单拼音字头可以过滤查询",
+            value: "输入菜单拼音字头或编码可以过滤查询",
             labelWidth: 30,
             labelAlign: "right",
             labelSeparator: ""
