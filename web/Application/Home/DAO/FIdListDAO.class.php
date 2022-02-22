@@ -25,7 +25,7 @@ class FIdListDAO extends PSIBaseExDAO
     $category = "系统固有";
     $sln = "SLN0000 - PSI低代码应用平台";
 
-    $sql = "select fid, code, py, name from t_fid order by code";
+    $sql = "select fid, code, py, name from t_fid order by fid";
     $data = $db->query($sql);
 
     foreach ($data as $v) {
@@ -40,7 +40,7 @@ class FIdListDAO extends PSIBaseExDAO
     }
 
     // t_fid_plus 由码表设置、自定义表单、视图开发助手等模块添加的Fid
-    $sql = "select fid, code, py, name from t_fid_plus order by code";
+    $sql = "select fid, code, py, name from t_fid_plus order by fid";
     $data = $db->query($sql);
 
     foreach ($data as $v) {
