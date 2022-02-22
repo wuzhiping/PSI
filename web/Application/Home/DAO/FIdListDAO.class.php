@@ -88,6 +88,49 @@ class FIdListDAO extends PSIBaseExDAO
    */
   public function editFId(&$params)
   {
-    return $this->todo();
+    $db = $this->db;
+
+    $fid = $params["fid"];
+    $code = strtoupper(trim($params["code"]));
+    $py = strtoupper(trim($params["py"]));
+
+    if (!$fid) {
+      return $this->badParam("fid");
+    }
+    if (!$py) {
+      return $this->bad("拼音字头不能为空");
+    }
+
+    $sql = "select count(*) as cnt from t_fid where fid = '%s' ";
+    $data = $db->query($sql, $fid);
+    $cnt = $data[0]["cnt"];
+    if ($cnt == 1) {
+      $sql = "update t_fid
+              set code = '%s', py = '%s'
+              where fid = '%s' ";
+      $rc = $db->execute($sql, $code, $py, $fid);
+      if ($rc === false) {
+        return $this->sqlError(__METHOD__, __LINE__);
+      }
+    } else {
+      $sql = "select count(*) as cnt from t_fid_plus where fid = '%s' ";
+      $data = $db->query($sql, $fid);
+      $cnt = $data[0]["cnt"];
+      if ($cnt == 1) {
+        $sql = "update t_fid_plus
+                set code = '%s', py = '%s'
+                where fid = '%s' ";
+        $rc = $db->execute($sql, $code, $py, $fid);
+        if ($rc === false) {
+          return $this->sqlError(__METHOD__, __LINE__);
+        }
+      } else {
+        return $this->bad("fid:{$fid} 不存在");
+      }
+    }
+
+    // 操作成功
+    $params["log"] = "编辑fid：{$fid} 的编码和拼音字头";
+    return null;
   }
 }
