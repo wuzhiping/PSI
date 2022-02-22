@@ -11,6 +11,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
 TRUNCATE TABLE `t_fid`;
 INSERT INTO `t_fid` (`fid`, `name`, `py`, `memo`) VALUES
+('-6001', 'FId一览', 'FIDYL', ''),
 ('-6000', '解决方案', 'JJFA', ''),
 ('-7996', '码表设置', 'MBSZ', ''),
 ('-7995', '主菜单维护', 'ZCDWH', ''),
