@@ -132,7 +132,7 @@ PCL.define("PSI.FIdList.MainForm", {
   /**
    * @private
    */
-  refreshMainGrid(id) {
+  refreshMainGrid(fid) {
     const me = this;
 
     const grid = me.getMainGrid();
@@ -150,8 +150,8 @@ PCL.define("PSI.FIdList.MainForm", {
           store.add(data);
 
           if (store.getCount() > 0) {
-            if (id) {
-              const r = store.findExact("id", id);
+            if (fid) {
+              const r = store.findExact("fid", fid);
               if (r != -1) {
                 grid.getSelectionModel().select(r);
               }
@@ -182,7 +182,8 @@ PCL.define("PSI.FIdList.MainForm", {
     const entity = item[0];
 
     const form = PCL.create("PSI.FIdList.EditForm", {
-      entity
+      entity,
+      parentForm: me,
     });
     form.show();
   },
