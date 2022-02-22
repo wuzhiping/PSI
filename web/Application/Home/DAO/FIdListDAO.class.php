@@ -71,6 +71,7 @@ class FIdListDAO extends PSIBaseExDAO
         }
       } else {
         // TODO 其他模块的查询逻辑
+        $category = "待处理";
       }
 
       $item["category"] = $category;
