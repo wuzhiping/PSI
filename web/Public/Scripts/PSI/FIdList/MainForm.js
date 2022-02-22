@@ -40,6 +40,10 @@ PCL.define("PSI.FIdList.MainForm", {
     const me = this;
 
     return [{
+      text: "编辑fid的编码和拼音字头",
+      handler: me._onEdit,
+      scope: me,
+    }, "-", {
       text: "指南",
       handler() {
         me.showInfo("TODO")
@@ -156,5 +160,13 @@ PCL.define("PSI.FIdList.MainForm", {
     };
 
     me.ajax(r);
+  },
+
+  /**
+   * 编辑FId的编码和拼音字头
+   */
+  _onEdit() {
+    const me = this;
+    me.showInfo("TODO")
   },
 });
