@@ -118,6 +118,12 @@ PCL.define("PSI.FIdList.MainForm", {
         autoLoad: false,
         data: []
       }),
+      listeners: {
+        itemdblclick: {
+          fn: me._onEdit,
+          scope: me
+        }
+      }
     });
 
     return me._mainGrid;
