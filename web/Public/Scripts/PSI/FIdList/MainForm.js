@@ -167,6 +167,17 @@ PCL.define("PSI.FIdList.MainForm", {
    */
   _onEdit() {
     const me = this;
-    me.showInfo("TODO")
+    const item = me.getMainGrid().getSelectionModel().getSelection();
+    if (item == null || item.length != 1) {
+      me.showInfo("请选择要编辑的FId");
+      return;
+    }
+
+    const entity = item[0];
+
+    const form = PCL.create("PSI.FIdList.EditForm", {
+      entity
+    });
+    form.show();
   },
 });
