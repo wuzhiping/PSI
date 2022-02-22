@@ -65,7 +65,7 @@ PCL.define("PSI.FIdList.MainForm", {
 
     PCL.define(modelName, {
       extend: "PCL.data.Model",
-      fields: ["id", "fid", "name",]
+      fields: ["id", "fid", "name", "code", "category", "sln"]
     });
 
     me._mainGrid = PCL.create("PCL.grid.Panel", {
@@ -79,7 +79,10 @@ PCL.define("PSI.FIdList.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [{
+        items: [PCL.create("PCL.grid.RowNumberer", {
+          text: "#",
+          width: 60
+        }), {
           header: "fid",
           dataIndex: "fid",
           width: 140,
@@ -87,6 +90,18 @@ PCL.define("PSI.FIdList.MainForm", {
           header: "名称",
           dataIndex: "name",
           width: 200,
+        }, {
+          header: "编码",
+          dataIndex: "code",
+          width: 200,
+        }, {
+          header: "来源",
+          dataIndex: "category",
+          width: 200,
+        }, {
+          header: "解决方案",
+          dataIndex: "sln",
+          width: 400,
         }]
       },
       store: PCL.create("PCL.data.Store", {
