@@ -17,7 +17,23 @@ class FIdListDAO extends PSIBaseExDAO
    */
   public function fidList()
   {
+    $db = $this->db;
+
     $result = [];
+
+    $sql = "select fid, code, py, name from t_fid order by code";
+    $data = $db->query($sql);
+
+    foreach ($data as $v) {
+      $result[] = [
+        "fid" => $v["fid"],
+        "code" => $v["code"],
+        "name" => $v["name"],
+        "py" => $v["py"],
+        "category" => "系统固有",
+        "sln" => "SLN0000 - PSI低代码应用平台",
+      ];
+    }
 
     return $result;
   }
