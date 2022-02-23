@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.CodeTableEditForm", {
+PCL.define("PSI.CodeTable.CodeTableEditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -46,7 +46,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
 
     const width1 = 600;
     const width2 = 300;
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -179,7 +179,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           fieldLabel: "层级数据",
           xtype: me.adding ? "combo" : "displayfield",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[0, "否"], [1, "是"]]
           }),
@@ -219,7 +219,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
           valueField: "id",
           fieldLabel: "视图分页",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1, "分页"], [2, "不分页"]]
           }),
@@ -296,20 +296,20 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editForm");
 
-    me.editCategoryId = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editCategoryId");
-    me.editCategory = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editCategory");
-    me.editCode = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editCode");
-    me.editName = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editName");
-    me.editModuleName = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editModuleName");
-    me.editTableName = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editTableName");
-    me.editEnableParentId = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editEnableParentId");
-    me.editEditColCnt = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editEditColCnt");
-    me.editAutoCodeLength = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editAutoCodeLength");
-    me.editHandlerClassName = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editHandlerClassName");
-    me.editMemo = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editMemo");
-    me.editViewPaging = Ext.getCmp("PSI_CodeTable_CodeTableEditForm_editViewPaging");
+    me.editCategoryId = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editCategoryId");
+    me.editCategory = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editCategory");
+    me.editCode = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editCode");
+    me.editName = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editName");
+    me.editModuleName = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editModuleName");
+    me.editTableName = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editTableName");
+    me.editEnableParentId = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editEnableParentId");
+    me.editEditColCnt = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editEditColCnt");
+    me.editAutoCodeLength = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editAutoCodeLength");
+    me.editHandlerClassName = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editHandlerClassName");
+    me.editMemo = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editMemo");
+    me.editViewPaging = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editViewPaging");
 
     const list = [me.editCategory, me.editCode, me.editName, me.editModuleName];
     if (me.adding) {
@@ -334,7 +334,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
   _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.adding) {
       // 新建
@@ -414,7 +414,7 @@ Ext.define("PSI.CodeTable.CodeTableEditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       const parentForm = me.getParentForm();
