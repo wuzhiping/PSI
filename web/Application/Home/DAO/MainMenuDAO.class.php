@@ -185,23 +185,11 @@ class MainMenuDAO extends PSIBaseExDAO
 
     $loginUserId = $params["loginUserId"];
     $queryParams = [];
-    if ($loginUserId == DemoConst::ADMIN_USER_ID) {
-      $sql = "select id, fid, caption, py
+    $sql = "select id, fid, caption, py, code
               from (select * from t_menu_item 
                     union 
                     select * from t_menu_item_plus) m
-              where (fid is not null) and (caption like '%s' or py like '%s')  
-                and (py <> '')
-              order by py limit 20
-              ";
-      $queryParams[] = "%{$queryKey}%";
-      $queryParams[] = "%{$queryKey}%";
-    } else {
-      $sql = "select id, fid, caption, py
-              from (select * from t_menu_item 
-                    union 
-                    select * from t_menu_item_plus) m
-              where (caption like '%s' or py like '%s') and (py <> '') 
+              where (caption like '%s' or py like '%s' or code like '%s') and (py <> '') 
                 and (fid in (
                       select p.fid
                       from  t_role_user ru, t_role_permission rp, 
@@ -212,10 +200,10 @@ class MainMenuDAO extends PSIBaseExDAO
                     )
               order by py limit 20
               ";
-      $queryParams[] = "%{$queryKey}%";
-      $queryParams[] = "%{$queryKey}%";
-      $queryParams[] = $loginUserId;
-    }
+    $queryParams[] = "%{$queryKey}%";
+    $queryParams[] = "%{$queryKey}%";
+    $queryParams[] = "%{$queryKey}%";
+    $queryParams[] = $loginUserId;
 
     $data = $db->query($sql, $queryParams);
 
@@ -225,7 +213,8 @@ class MainMenuDAO extends PSIBaseExDAO
         "id" => $v["id"],
         "fid" => $v["fid"],
         "caption" => $v["caption"],
-        "py" => $v["py"]
+        "py" => $v["py"],
+        "code" => $v["code"],
       ];
     }
 
