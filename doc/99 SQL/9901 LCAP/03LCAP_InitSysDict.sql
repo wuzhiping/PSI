@@ -85,7 +85,8 @@ INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`
 ('form', 'form', 33, '/help/dev/lcap/08-06.html', '', '访问实施指南页面：自定义表单', 33),
 ('formview', 'formview', 34, '/help/dev/lcap/08-04.html', '', '访问实施指南页面：视图开发助手', 34),
 ('solution', 'solution', 35, '/help/dev/lcap/08-05.html', '', '访问实施指南页面：解决方案', 35),
-('fromShortcut', 'fromShortcut', 36, '/help/index.html', '', '通过快捷访问进入实施指南页面', 36)
+('fidList', 'fidList', 36, '/help/dev/lcap/08-07.html', '', '访问实施指南页面：FId一览', 36),
+('fromShortcut', 'fromShortcut', 37, '/help/index.html', '', '通过快捷访问进入实施指南页面', 37)
 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
