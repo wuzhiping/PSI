@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.Runtime.MainForm", {
+PCL.define("PSI.CodeTable.Runtime.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   config: {
@@ -19,7 +19,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: {
         id: "PSI_CodeTable_RuntimeMainForm_toolBar",
         xtype: "toolbar"
@@ -36,8 +36,8 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
 
     me.callParent(arguments);
 
-    me._toolBar = Ext.getCmp("PSI_CodeTable_RuntimeMainForm_toolBar");
-    me._panelMain = Ext.getCmp("PSI_CodeTable_RuntimeMainForm_panelMain");
+    me._toolBar = PCL.getCmp("PSI_CodeTable_RuntimeMainForm_toolBar");
+    me._panelMain = PCL.getCmp("PSI_CodeTable_RuntimeMainForm_panelMain");
 
     me.fetchMeatData();
   },
@@ -134,7 +134,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"], ["300"],
             ["1000"]]
@@ -143,9 +143,9 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
           listeners: {
             change: {
               fn() {
-                store.pageSize = Ext.getCmp("comboCountPerPage").getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToobar").doRefresh();
+                PCL.getCmp("pagingToobar").doRefresh();
               },
               scope: me
             }
@@ -189,7 +189,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
     const modelName = "PSICodeTableRuntime_" + md.tableName;
 
     const fields = ["id", "record_status_code_int"];
-    const cols = [Ext.create("Ext.grid.RowNumberer", {
+    const cols = [PCL.create("PCL.grid.RowNumberer", {
       text: "#",
       align: "center",
       width: 60
@@ -204,7 +204,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
         sortable: false
       };
       if (mdCol.fieldName == "code") {
-        Ext.apply(col, {
+        PCL.apply(col, {
           renderer(value, metaData, record) {
             if (parseInt(record.get("record_status_code_int")) == 1000) {
               return value;
@@ -215,7 +215,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
         });
       }
       if (mdCol.fieldName == "record_status") {
-        Ext.apply(col, {
+        PCL.apply(col, {
           renderer(value, metaData, record) {
             if (parseInt(record.get("record_status_code_int")) == 1000) {
               return value;
@@ -229,12 +229,12 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
       cols.push(col);
     });// end of forEach
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: fields
     });
 
-    const store = Ext.create("Ext.data.Store", {
+    const store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -260,7 +260,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
       }
     });
 
-    return Ext.create("Ext.grid.Panel", {
+    return PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -347,12 +347,13 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
       }
     }
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: fields
     });
 
-    const store = new Ext.data.TreeStore({
+    // TODO 改为PCL.create
+    const store = new PCL.data.TreeStore({
       model: modelName,
       autoLoad: false,
       root: {
@@ -376,7 +377,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
       }
     });
 
-    return Ext.create("Ext.tree.Panel", {
+    return PCL.create("PCL.tree.Panel", {
       cls: "PSI",
       rootVisible: false,
       useArrows: true,
@@ -436,7 +437,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
   _onAddCodeTableRecord() {
     const me = this;
 
-    const form = Ext.create("PSI.CodeTable.Runtime.EditForm", {
+    const form = PCL.create("PSI.CodeTable.Runtime.EditForm", {
       parentForm: me,
       metaData: me.getMetaData()
     });
@@ -461,7 +462,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
     }
 
     const entity = item[0];
-    const form = Ext.create("PSI.CodeTable.Runtime.EditForm", {
+    const form = PCL.create("PSI.CodeTable.Runtime.EditForm", {
       parentForm: me,
       entity,
       metaData: me.getMetaData()
@@ -536,7 +537,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
     const preIndex = me.getPreIndexById(entity.get("id"));
 
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el && el.mask(PSI.Const.LOADING);
       const r = {
         url: me.URL("Home/CodeTableRuntime/deleteCodeTableRecord"),
@@ -635,7 +636,7 @@ Ext.define("PSI.CodeTable.Runtime.MainForm", {
     const info = "请确认是否保存视图布局?";
 
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el && el.mask(PSI.Const.LOADING);
       const r = {
         url: me.URL("Home/CodeTableRuntime/saveColViewLayout"),
