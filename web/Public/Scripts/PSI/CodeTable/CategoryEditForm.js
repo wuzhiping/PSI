@@ -176,7 +176,7 @@ PCL.define("PSI.CodeTable.CategoryEditForm", {
       url: me.URL("Home/CodeTable/editCodeTableCategory"),
       method: "POST",
       success(form, action) {
-        me.__lastId = action.result.id;
+        me._lastId = action.result.id;
         el.unmask();
 
         me.tip("数据保存成功", !thenAdd);
@@ -233,10 +233,10 @@ PCL.define("PSI.CodeTable.CategoryEditForm", {
 
     PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
-    if (me.__lastId) {
+    if (me._lastId) {
       const parentForm = me.getParentForm();
       if (parentForm) {
-        parentForm.refreshCategoryGrid.apply(parentForm, [me.__lastId]);
+        parentForm.refreshCategoryGrid.apply(parentForm, [me._lastId]);
       }
     }
   },
