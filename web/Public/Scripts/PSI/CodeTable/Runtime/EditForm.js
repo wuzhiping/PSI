@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.Runtime.EditForm", {
+PCL.define("PSI.CodeTable.Runtime.EditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -75,7 +75,7 @@ Ext.define("PSI.CodeTable.Runtime.EditForm", {
 
     const t = entity == null ? "新建" + md.name : "编辑" + md.name;
     const logoHtml = me.genLogoHtml(entity, t);
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -126,7 +126,7 @@ Ext.define("PSI.CodeTable.Runtime.EditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_CodeTable_RuntimeEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_CodeTable_RuntimeEditForm_editForm");
   },
 
   getEditItems() {
@@ -173,13 +173,13 @@ Ext.define("PSI.CodeTable.Runtime.EditForm", {
           width: parseInt(colMd.colSpan) * 370
         };
         if (colMd.editorXtype == "numberfield") {
-          Ext.apply(item, {
+          PCL.apply(item, {
             hideTrigger: true
           });
         }
         if (colMd.editorXtype == "datefield") {
           // 日期
-          Ext.apply(item, {
+          PCL.apply(item, {
             format: "Y-m-d"
           });
         }
