@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
+PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -35,7 +35,7 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       scope: me
     });
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       resizable: true,
       header: {
         title: me.formatTitle("调整编辑界面字段显示次序"),
@@ -70,13 +70,13 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
 
     me.callParent(arguments);
 
-    me.__mainPanel = Ext.getCmp("CodeTableEditColShowOrderForm_panelMain");
+    me.__mainPanel = PCL.getCmp("CodeTableEditColShowOrderForm_panelMain");
   },
 
   onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
@@ -112,7 +112,7 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
     const info = "请确认是否保存编辑字段显示次序?";
 
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el && el.mask(PSI.Const.LOADING);
       const r = {
         url: me.URL("Home/CodeTable/saveColEditShowOrder"),
@@ -150,7 +150,7 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
   onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
   getMainGrid() {
@@ -178,12 +178,12 @@ Ext.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
 
     const modelName = "PSICodeTableEditColShowOrder";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: fields
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       columnLines: true,
       columns: {
         defaults: {
