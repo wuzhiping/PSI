@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
-  extend: "Ext.window.Window",
+PCL.define("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
+  extend: "PCL.window.Window",
 
   mixins: ["PSI.AFX.Mix.Common"],
 
@@ -17,7 +17,7 @@ Ext.define("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       title: "解决方案全部码表导出SQL",
       width: 800,
       height: 420,
@@ -76,9 +76,9 @@ Ext.define("PSI.CodeTable.CodeTableSolutionGenSQLForm", {
           const data = me.decodeJSON(response.responseText);
 
           if (data.success) {
-            Ext.getCmp("editSQL").setValue(data.sql);
+            PCL.getCmp("editSQL").setValue(data.sql);
           } else {
-            Ext.getCmp("editSQL").setValue(data.msg);
+            PCL.getCmp("editSQL").setValue(data.msg);
           }
         } else {
           me.showInfo("网络错误");
