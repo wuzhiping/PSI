@@ -46,7 +46,8 @@ PCL.define("PSI.FIdList.MainForm", {
     }, "-", {
       text: "指南",
       handler() {
-        me.showInfo("TODO")
+        me.focus();
+        window.open(me.URL("/Home/Help/index?t=fidList"));
       }
     }, "-", {
       text: "关闭",
