@@ -186,13 +186,13 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
 
         if (md.treeView && colMd.fieldName == "parent_id") {
           // hiddenParentId用来在提交Form的时候向后台传递上级id
-          const hiddenParentId = Ext.create("Ext.form.field.Hidden", {
+          const hiddenParentId = PCL.create("PCL.form.field.Hidden", {
             id: me.buildEditId("parent_id"),
             name: "parent_id"
           });
           result.push(hiddenParentId);
 
-          Ext.apply(item, {
+          PCL.apply(item, {
             idCmp: hiddenParentId,
             metadata: md,
             id: me.buildEditId("parent_id_value"),
@@ -203,12 +203,12 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
         if (parseInt(colMd.valueFrom) == 2) {
           // 引用系统数据字典
           // TODO 当前是用combo来展示数据，当字典数据量大的时候是不合适的，需要进一步优化
-          const store = Ext.create("Ext.data.ArrayStore", {
+          const store = PCL.create("PCL.data.ArrayStore", {
             fields: [colMd.valueFromColName, "name"],
             data: []
           });
           store.add(colMd.valueFromExtData);
-          Ext.apply(item, {
+          PCL.apply(item, {
             xtype: "combo",
             queryMode: "local",
             editable: false,
@@ -220,12 +220,12 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
         } else if (parseInt(colMd.valueFrom) == 3) {
           // 引用其他码表
           // hiddenId用来在提交Form的时候向后台传递码表id
-          const hiddenId = Ext.create("Ext.form.field.Hidden", {
+          const hiddenId = PCL.create("PCL.form.field.Hidden", {
             id: me.buildEditId(colMd.fieldName + "_hidden_id"),
             name: colMd.fieldName
           });
           result.push(hiddenId);
-          Ext.apply(item, {
+          PCL.apply(item, {
             name: colMd.fieldName + "display",
             fid: colMd.valueFromFid
           });
@@ -233,7 +233,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
 
         if (colMd.mustInput) {
           // 必录项
-          Ext.apply(item, {
+          PCL.apply(item, {
             allowBlank: false,
             blankText: "没有输入" + colMd.caption,
             beforeLabelTextTpl: PSI.Const.REQUIRED
@@ -242,7 +242,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
         if (colMd.fieldName == "code") {
           // 处理自动编码
           if (autoCodeLength > 0 && me.adding) {
-            Ext.apply(item, {
+            PCL.apply(item, {
               xtype: "displayfield",
               value: "保存后自动生成"
             });
@@ -270,8 +270,8 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
       if (parseInt(colMd.valueFrom) == 3) {
         // 当前字段是引用其他码表，需要赋值id给对应的hidden
         const fieldName = colMd.fieldName;
-        const hidden = Ext.getCmp(me.buildEditId(fieldName + "_hidden_id"));
-        const editor = Ext.getCmp(me.buildEditId(fieldName));
+        const hidden = PCL.getCmp(me.buildEditId(fieldName + "_hidden_id"));
+        const editor = PCL.getCmp(me.buildEditId(fieldName));
         hidden.setValue(editor.getIdValue());
       }
     }
@@ -321,7 +321,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
 
       if (colMd.isVisible) {
         const id = me.buildEditId(colMd.fieldName);
-        const edit = Ext.getCmp(id);
+        const edit = PCL.getCmp(id);
         if (edit) {
           if (parseInt(colMd.valueFrom) == 2) {
             edit.setValue(edit.getStore().getAt(0));
@@ -339,7 +339,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       const parentForm = me.getParentForm();
@@ -353,7 +353,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
     const me = this;
     const md = me.getMetaData();
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
@@ -393,11 +393,11 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
         const fieldName = colMd.fieldName;
         let id = me.buildEditId(fieldName);
 
-        let edit = Ext.getCmp(id);
+        let edit = PCL.getCmp(id);
         if (edit) {
           if (fieldName == "parent_id") {
             id = me.buildEditId("parent_id_value");
-            edit = Ext.getCmp(id);
+            edit = PCL.getCmp(id);
             if (edit) {
               edit.setValue(data["parent_id_value"]);
               edit.setIdValue(data["parent_id"]);
@@ -430,7 +430,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
     if (autoCodeLength > 0) {
       // 自动编码的时候，把焦点设置在name字段上
       const id = me.buildEditId("name");
-      const edit = Ext.getCmp(id);
+      const edit = PCL.getCmp(id);
       if (edit) {
         edit.focus();
       }
@@ -443,7 +443,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
       const colMd = md.cols[i];
       if (colMd.isVisible) {
         const id = me.buildEditId(colMd.fieldName);
-        const edit = Ext.getCmp(id);
+        const edit = PCL.getCmp(id);
         if (edit) {
           edit.focus();
         }
@@ -483,7 +483,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
 
         if (currentEditIndex > -1) {
           const nextEditId = me.buildEditId(colMd.fieldName);
-          const edit = Ext.getCmp(nextEditId);
+          const edit = PCL.getCmp(nextEditId);
           if (edit) {
             me.setFocusAndCursorPosToLast(edit);
             return;
