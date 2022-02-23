@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Fid.FidField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Fid.FidField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_fidfield",
 
   config: {
@@ -60,17 +60,17 @@ Ext.define("PSI.Fid.FidField", {
   onTriggerClick(e) {
     const me = this;
     const modelName = "PSIFidField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
 
-    const store = Ext.create("Ext.data.Store", {
+    const store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    const lookupGrid = Ext.create("Ext.grid.Panel", {
+    const lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -90,7 +90,7 @@ Ext.define("PSI.Fid.FidField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me._onOK, me);
 
-    const wnd = Ext.create("Ext.window.Window", {
+    const wnd = PCL.create("PCL.window.Window", {
       title: "选择 - fid",
       modal: me.getShowModal(),
       header: false,
@@ -147,10 +147,10 @@ Ext.define("PSI.Fid.FidField", {
     }
     me.wnd = wnd;
 
-    const editName = Ext.getCmp("PSI_Fid_FidField_editFid");
+    const editName = PCL.getCmp("PSI_Fid_FidField_editFid");
     editName.on("change", () => {
       const store = me.lookupGrid.getStore();
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/MainMenu/queryDataForFid",
         params: {
           queryKey: editName.getValue()
@@ -159,7 +159,7 @@ Ext.define("PSI.Fid.FidField", {
         callback(opt, success, response) {
           store.removeAll();
           if (success) {
-            const data = Ext.JSON.decode(response.responseText);
+            const data = PCL.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
