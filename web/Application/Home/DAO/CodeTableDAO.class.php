@@ -1087,13 +1087,14 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     // 按钮及权限
-    $sql = "select fid
+    $sql = "select id, fid
             from t_code_table_buttons
             where table_id = '%s'
             order by show_order";
     $data = $db->query($sql, $id);
     foreach ($data as $v) {
       $fidButton = $v["fid"];
+      $idButton = $v["id"];
       $buttonCaption = "";
 
       if ($fidButton == $fid) {
@@ -1110,6 +1111,16 @@ class CodeTableDAO extends PSIBaseExDAO
         return $this->badParam("fidButton");
       }
 
+      // 按钮
+      $sql = "update t_code_table_buttons
+              set caption = '%s'
+              where id = '%s'";
+      $rc = $db->execute($sql, $buttonCaption, $idButton);
+      if ($rc === false) {
+        return $this->sqlError(__METHOD__, __LINE__);
+      }
+
+      // 权限
       $sql = "update t_permission_plus
               set category = '%s', name = '%s',
                 note = '%s' 
