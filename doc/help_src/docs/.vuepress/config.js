@@ -142,6 +142,9 @@ module.exports = {
         }, {
           text: '系统数据字典',
           link: '/dev/lcap/08-02.html'
+        }, {
+          text: 'FId一览',
+          link: '/dev/lcap/08-07.html'
         }]
       },
       {
