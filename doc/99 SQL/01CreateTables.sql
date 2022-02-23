@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `t_menu_item` (
   `py` varchar(255) DEFAULT NULL,
   `memo` varchar(255) DEFAULT NULL,
   `sys_category` int(11) NOT NULL DEFAULT 1,
+  `code` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1389,6 +1390,7 @@ CREATE TABLE IF NOT EXISTS `t_menu_item_plus` (
   `py` varchar(255) DEFAULT NULL,
   `memo` varchar(255) DEFAULT NULL,
   `sys_category` int(11) NOT NULL DEFAULT 1,
+  `code` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
