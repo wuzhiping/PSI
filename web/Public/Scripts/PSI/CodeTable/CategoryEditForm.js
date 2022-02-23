@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.CategoryEditForm", {
+PCL.define("PSI.CodeTable.CategoryEditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -63,7 +63,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
 
     const t = entity == null ? "新建码表分类" : "编辑码表分类";
     const logoHtml = me.genLogoHtml(entity, t);
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -154,10 +154,10 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_CodeTable_CategoryEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_CodeTable_CategoryEditForm_editForm");
 
-    me.editCode = Ext.getCmp("PSI_CodeTable_CategoryEditForm_editCode");
-    me.editName = Ext.getCmp("PSI_CodeTable_CategoryEditForm_editName");
+    me.editCode = PCL.getCmp("PSI_CodeTable_CategoryEditForm_editCode");
+    me.editName = PCL.getCmp("PSI_CodeTable_CategoryEditForm_editName");
 
     me.__editorList = [me.editCode, me.editName];
   },
@@ -231,7 +231,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       const parentForm = me.getParentForm();
@@ -247,7 +247,7 @@ Ext.define("PSI.CodeTable.CategoryEditForm", {
   _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const editCode = me.editCode;
     me.setFocusAndCursorPosToLast(editCode);
