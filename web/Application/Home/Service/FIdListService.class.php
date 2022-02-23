@@ -39,6 +39,10 @@ class FIdListService extends PSIBaseExService
       return $this->notOnlineError();
     }
 
+    if ($this->isDemo()) {
+      return $this->bad("演示环境下不能编辑fid");
+    }
+
     $db = $this->db();
     $db->startTrans();
 
