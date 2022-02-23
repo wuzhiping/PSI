@@ -190,7 +190,7 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       }
     }
 
-    const modelName = "PSICodeTableEditColShowOrder";
+    const modelName = "PSIModel.PSI.CodeTable.CodeTableEditColShowOrderForm.ColShowOrder";
 
     PCL.define(modelName, {
       extend: "PCL.data.Model",
