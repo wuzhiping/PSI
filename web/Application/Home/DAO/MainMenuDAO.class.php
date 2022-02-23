@@ -243,12 +243,12 @@ class MainMenuDAO extends PSIBaseExDAO
     $py = $params["py"];
 
     // 检查fid
-    $sql = "select count(*) as cnt from t_fid_plus where fid = '%s' ";
+    $sql = "select code from t_fid_plus where fid = '%s' ";
     $data = $db->query($sql, $fid);
-    $cnt = $data[0]["cnt"];
-    if ($cnt != 1) {
+    if (!$data) {
       return $this->bad("fid在表t_fid_plus中不存在");
     }
+    $fidCode = $data[0]["code"];
 
     $len = strlen($caption);
     if ($len <= 0) {
@@ -275,9 +275,9 @@ class MainMenuDAO extends PSIBaseExDAO
 
     $id = $this->newId();
 
-    $sql = "insert into t_menu_item_plus (id, caption, fid, parent_id, show_order, py, memo)
-            values ('%s', '%s', '%s', '%s', %d, '%s', '%s')";
-    $rc = $db->execute($sql, $id, $caption, $fid, $parentMenuId, $showOrder, $py, '');
+    $sql = "insert into t_menu_item_plus (id, caption, fid, parent_id, show_order, py, memo, code)
+            values ('%s', '%s', '%s', '%s', %d, '%s', '%s', '%s')";
+    $rc = $db->execute($sql, $id, $caption, $fid, $parentMenuId, $showOrder, $py, '', $fidCode);
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);
     }
@@ -382,12 +382,12 @@ class MainMenuDAO extends PSIBaseExDAO
     $py = $params["py"];
 
     // 检查fid
-    $sql = "select count(*) as cnt from t_fid_plus where fid = '%s' ";
+    $sql = "select code from t_fid_plus where fid = '%s' ";
     $data = $db->query($sql, $fid);
-    $cnt = $data[0]["cnt"];
-    if ($cnt != 1) {
+    if (!$data) {
       return $this->bad("fid在表t_fid_plus中不存在");
     }
+    $fidCode = $data[0]["code"];
 
     $len = strlen($caption);
     if ($len <= 0) {
@@ -406,9 +406,9 @@ class MainMenuDAO extends PSIBaseExDAO
 
     $sql = "update t_menu_item_plus
             set caption = '%s', fid = '%s', parent_id = '%s',
-              show_order = %d, py = '%s'
+              show_order = %d, py = '%s', code = '%s'
             where id = '%s' ";
-    $rc = $db->execute($sql, $caption, $fid, $parentMenuId, $showOrder, $py, $id);
+    $rc = $db->execute($sql, $caption, $fid, $parentMenuId, $showOrder, $py, $fidCode, $id);
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);
     }
