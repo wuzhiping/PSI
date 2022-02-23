@@ -59,10 +59,10 @@ PCL.define("PSI.Fid.FidField", {
    */
   onTriggerClick(e) {
     const me = this;
-    const modelName = "PSIFidField";
+    const modelName = "PSIModel.PSI.Fid.FidField.FidModel";
     PCL.define(modelName, {
       extend: "PCL.data.Model",
-      fields: ["id", "name"]
+      fields: ["id", "name", "code", "py"]
     });
 
     const store = PCL.create("PCL.data.Store", {
@@ -81,6 +81,16 @@ PCL.define("PSI.Fid.FidField", {
         menuDisabled: true,
         width: 150
       }, {
+        header: "编码",
+        dataIndex: "code",
+        menuDisabled: true,
+        width: 150
+      }, {
+        header: "拼音字头",
+        dataIndex: "py",
+        menuDisabled: true,
+        width: 150
+      }, {
         header: "名称",
         dataIndex: "name",
         menuDisabled: true,
@@ -95,7 +105,7 @@ PCL.define("PSI.Fid.FidField", {
       modal: me.getShowModal(),
       header: false,
       border: 0,
-      width: 500,
+      width: 700,
       height: 300,
       layout: "border",
       items: [{
@@ -118,8 +128,8 @@ PCL.define("PSI.Fid.FidField", {
           items: [{
             id: "PSI_Fid_FidField_editFid",
             xtype: "textfield",
-            fieldLabel: "fid",
-            labelWidth: 50,
+            fieldLabel: "fid/编码/拼音字头",
+            labelWidth: 110,
             labelAlign: "right",
             labelSeparator: ""
           }]
