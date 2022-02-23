@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.CodeTableColEditForm", {
+PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -45,7 +45,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
     const t = entity == null ? "新建码表列" : "编辑码表列";
     const logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -171,32 +171,32 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
 
     me.callParent(arguments);
 
-    me.editName = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editName");
-    me.editTableName = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editTableName");
-    me.editCaption = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editCaption");
-    me.editFieldName = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldName");
-    me.editFieldType = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldType");
-    me.editFieldLength = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldLength");
-    me.editFieldDec = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldDec");
-    me.editValueFrom = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFrom");
-    me.editValueFromTableName = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFromTableName");
-    me.editValueFromColName = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFromColName");
-    me.editValueFromColNameDisplay = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFromColNameDisplay");
-    me.editWidthInView = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editWidthInView");
-    me.editShowOrder = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editShowOrder");
-    me.editColSpan = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editColSpan");
-    me.editShowOrderInView = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editShowOrderInView");
-    me.editEditorXtype = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editEditorXtype");
-    me.editMemo = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editMemo");
-    me.editIsVisible = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editIsVisible");
-    me.editMustInput = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_editMustInput");
+    me.editName = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editName");
+    me.editTableName = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editTableName");
+    me.editCaption = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editCaption");
+    me.editFieldName = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldName");
+    me.editFieldType = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldType");
+    me.editFieldLength = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldLength");
+    me.editFieldDec = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldDec");
+    me.editValueFrom = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFrom");
+    me.editValueFromTableName = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFromTableName");
+    me.editValueFromColName = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFromColName");
+    me.editValueFromColNameDisplay = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFromColNameDisplay");
+    me.editWidthInView = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editWidthInView");
+    me.editShowOrder = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editShowOrder");
+    me.editColSpan = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editColSpan");
+    me.editShowOrderInView = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editShowOrderInView");
+    me.editEditorXtype = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editEditorXtype");
+    me.editMemo = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMemo");
+    me.editIsVisible = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editIsVisible");
+    me.editMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMustInput");
 
     me.__editorList = [
       me.editCaption, me.editFieldName, me.editWidthInView, me.editShowOrder,
       me.editColSpan, me.editShowOrderInView, me.editMemo
     ];
 
-    me.buttonRefCol = Ext.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
+    me.buttonRefCol = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
   },
 
   /**
@@ -276,7 +276,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       allowBlank: false,
       blankText: "没有输入列数据类型",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [["varchar", "varchar"],
         ["int", "int"],
@@ -360,7 +360,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       allowBlank: false,
       blankText: "没有输入值来源",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[1, "直接录入"],
         [2, "引用系统数据字典"],
@@ -509,7 +509,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       allowBlank: false,
       blankText: "没有输入编辑器类型",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: []
       }),
@@ -529,7 +529,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       allowBlank: false,
       blankText: "没有输入对用户可见",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[1, "对用户可见"],
         [2, "对用户不可见"]]
@@ -548,7 +548,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
       allowBlank: false,
       blankText: "没有输入必须录入",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[1, "非必须录入项"],
         [2, "必须录入"]]
@@ -566,7 +566,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
   _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
@@ -580,7 +580,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
         if (success) {
           el && el.unmask();
 
-          const data = Ext.JSON.decode(response.responseText);
+          const data = PCL.JSON.decode(response.responseText);
           if (data.editorXtype) {
             const store = me.editEditorXtype.getStore();
             store.removeAll();
@@ -759,7 +759,7 @@ Ext.define("PSI.CodeTable.CodeTableColEditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
