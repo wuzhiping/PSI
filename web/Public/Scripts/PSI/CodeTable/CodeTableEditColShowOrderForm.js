@@ -12,6 +12,9 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
     codeTable: null
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
     const entity = me.getEntity();
@@ -24,7 +27,7 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK();
       },
       scope: me
     }, {
@@ -58,11 +61,11 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       buttons: buttons,
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       }
@@ -73,10 +76,13 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
     me.__mainPanel = PCL.getCmp("CodeTableEditColShowOrderForm_panelMain");
   },
 
-  onWndShow() {
+  /**
+   * @private
+   */
+  _onWndShow() {
     const me = this;
 
-    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const el = me.getEl();
     el && el.mask(PSI.Const.LOADING);
@@ -97,7 +103,10 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
 
   },
 
-  onOK() {
+  /**
+   * @private
+   */
+  _onOK() {
     const me = this;
 
     const grid = me.getMainGrid();
@@ -143,21 +152,26 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
     me.confirm(info, funcConfirm);
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  /**
+   * @private
+   */
+  _onWndClose() {
     const me = this;
 
-    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
+  /**
+   * @private
+   */
   getMainGrid() {
     const me = this;
-    return me.__mainGrid;
+    return me._mainGrid;
   },
 
+  /**
+   * @private
+   */
   createMainGrid(cols) {
     const me = this;
 
@@ -183,7 +197,7 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       fields: fields
     });
 
-    me.__mainGrid = PCL.create("PCL.grid.Panel", {
+    me._mainGrid = PCL.create("PCL.grid.Panel", {
       columnLines: true,
       columns: {
         defaults: {
@@ -194,6 +208,6 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       }
     });
 
-    return me.__mainGrid;
+    return me._mainGrid;
   }
 });
