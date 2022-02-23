@@ -114,10 +114,13 @@ class MainMenuDAO extends PSIBaseExDAO
 
     $queryKey = $params["queryKey"] ?? "";
 
-    $sql = "select fid, name from t_fid_plus
-            where fid like '%s' or name like '%s' 
+    $sql = "select fid, name, code, py 
+            from t_fid_plus
+            where fid like '%s' or name like '%s' or code like '%s' or py like '%s'
             order by fid limit 20";
     $queryParams = [];
+    $queryParams[] = "%{$queryKey}%";
+    $queryParams[] = "%{$queryKey}%";
     $queryParams[] = "%{$queryKey}%";
     $queryParams[] = "%{$queryKey}%";
 
@@ -127,7 +130,9 @@ class MainMenuDAO extends PSIBaseExDAO
     foreach ($data as $v) {
       $result[] = [
         "id" => $v["fid"],
-        "name" => $v["name"]
+        "name" => $v["name"],
+        "code" => $v["code"],
+        "py" => $v["py"],
       ];
     }
 
