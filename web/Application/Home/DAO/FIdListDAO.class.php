@@ -129,6 +129,37 @@ class FIdListDAO extends PSIBaseExDAO
       }
     }
 
+    // 同步主菜单中fid的code字段
+    $sql = "select count(*) as cnt from t_menu_item where fid = '%s' ";
+    $data = $db->query($sql, $fid);
+    $cnt = $data[0]["cnt"];
+    if ($cnt > 0) {
+      $sql = "update t_menu_item
+              set code = '%s'
+              where fid = '%s' ";
+      $rc = $db->query($sql, $code, $fid);
+      if ($rc === false) {
+        return $this->sqlError(__METHOD__, __LINE__);
+      }
+    } else {
+      //  t_menu_item_plus
+      $sql = "select count(*) as cnt from t_menu_item_plus where fid = '%s' ";
+      $data = $db->query($sql, $fid);
+      $cnt = $data[0]["cnt"];
+
+      if ($cnt > 0) {
+        $sql = "update t_menu_item_plus
+                set code = '%s'
+                where fid = '%s' ";
+        $rc = $db->query($sql, $code, $fid);
+        if ($rc === false) {
+          return $this->sqlError(__METHOD__, __LINE__);
+        }
+      } else {
+        // 该fid没有挂接到主菜单中
+      }
+    }
+
     // 操作成功
     $params["log"] = "编辑fid：{$fid} 的编码和拼音字头";
     return null;
