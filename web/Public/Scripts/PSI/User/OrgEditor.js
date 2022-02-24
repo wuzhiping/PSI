@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.User.OrgEditor", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.User.OrgEditor", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.PSI_org_editor",
 
   config: {
@@ -48,13 +48,13 @@ Ext.define("PSI.User.OrgEditor", {
     const me = this;
 
     const modelName = "PSIModel.PSI.User.OrgEditor.OrgModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "text", "fullName", "orgCode",
         "leaf", "children"]
     });
 
-    const orgStore = Ext.create("Ext.data.TreeStore", {
+    const orgStore = PCL.create("PCL.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -68,7 +68,7 @@ Ext.define("PSI.User.OrgEditor", {
       }
     });
 
-    const orgTree = Ext.create("Ext.tree.Panel", {
+    const orgTree = PCL.create("PCL.tree.Panel", {
       cls: "PSI",
       store: orgStore,
       rootVisible: false,
@@ -97,7 +97,7 @@ Ext.define("PSI.User.OrgEditor", {
     orgTree.on("itemdblclick", me._onOK, me);
     me.tree = orgTree;
 
-    const wnd = Ext.create("Ext.window.Window", {
+    const wnd = PCL.create("PCL.window.Window", {
       title: "选择组织机构",
       modal: true,
       width: 500,
