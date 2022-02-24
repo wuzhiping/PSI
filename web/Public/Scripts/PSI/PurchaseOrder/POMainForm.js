@@ -294,7 +294,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
         height: 26,
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -311,8 +311,8 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     }
 
     var modelName = "PSIPOBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "supplierName", "contact", "tel",
         "fax", "inputUserName", "bizUserName",
         "billStatus", "goodsMoney", "dateCreated",
@@ -320,7 +320,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
         "dealAddress", "orgName", "confirmUserName",
         "confirmDate", "billMemo", "genPWBill"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -346,7 +346,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -489,7 +489,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"], ["300"],
             ["1000"]]
@@ -498,11 +498,9 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToobar").doRefresh();
+                PCL.getCmp("pagingToobar").doRefresh();
               },
               scope: me
             }
@@ -519,7 +517,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
         itemdblclick: {
           fn: me.getPermission().edit == "1"
             ? me.onEditBill
-            : Ext.emptyFn,
+            : PCL.emptyFn,
           scope: me
         }
       }
