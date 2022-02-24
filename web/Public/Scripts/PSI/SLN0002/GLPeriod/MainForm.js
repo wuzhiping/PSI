@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SLN0002.GLPeriod.MainForm", {
+PCL.define("PSI.SLN0002.GLPeriod.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   /**
@@ -14,7 +14,7 @@ Ext.define("PSI.SLN0002.GLPeriod.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: me.getToolbarCmp(),
       items: [{
         region: "north",
@@ -69,7 +69,7 @@ Ext.define("PSI.SLN0002.GLPeriod.MainForm", {
    */
   refreshCompanyGrid() {
     const me = this;
-    const el = Ext.getBody();
+    const el = PCL.getBody();
     const store = me.getCompanyGrid().getStore();
     el.mask(PSI.Const.LOADING);
     const r = {
@@ -102,12 +102,12 @@ Ext.define("PSI.SLN0002.GLPeriod.MainForm", {
 
     const modelName = "PSI_GLPeriod_Company";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "orgType"]
     });
 
-    me._companyGrid = Ext.create("Ext.grid.Panel", {
+    me._companyGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -134,7 +134,7 @@ Ext.define("PSI.SLN0002.GLPeriod.MainForm", {
         menuDisabled: true,
         sortable: false
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -201,8 +201,8 @@ Ext.define("PSI.SLN0002.GLPeriod.MainForm", {
     }
 
     const modelName = "PSIFMTProp";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "year", "month", "glKept", "glClosed",
         "detailKept", "detailClosed", "periodClosed", "yearForward"]
     });
@@ -213,7 +213,7 @@ Ext.define("PSI.SLN0002.GLPeriod.MainForm", {
       draggable: false
     };
 
-    me._mainGrid = Ext.create("Ext.grid.Panel", {
+    me._mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -274,7 +274,7 @@ Ext.define("PSI.SLN0002.GLPeriod.MainForm", {
           align: "center"
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -300,7 +300,7 @@ Ext.define("PSI.SLN0002.GLPeriod.MainForm", {
 
     const info = `请确认是否初始化[${company.get("name")}]的本年度会计期间?`;
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在操作中...");
       const r = {
         url: me.URL("SLN0002/GLPeriod/initPeriod"),
