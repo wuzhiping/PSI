@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.User.ChangeMyPasswordForm", {
-  extend: "Ext.panel.Panel",
+PCL.define("PSI.User.ChangeMyPasswordForm", {
+  extend: "PCL.panel.Panel",
 
   config: {
     loginUserId: null,
@@ -30,7 +30,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
       name: me.getLoginUserFullName()
     };
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         region: "center",
         xtype: "panel",
@@ -130,10 +130,10 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
 
     me.callParent(arguments);
 
-    me.editNewPassword = Ext.getCmp("PSI_User_ChangeMyPasswordForm_editNewPassword");
-    me.editConfirmPassword = Ext.getCmp("PSI_User_ChangeMyPasswordForm_editConfirmPassword");
-    me.editForm = Ext.getCmp("PSI_User_ChangeMyPasswordForm_editForm");
-    me.buttonOK = Ext.getCmp("PSI_User_ChangeMyPasswordForm_buttonOK");
+    me.editNewPassword = PCL.getCmp("PSI_User_ChangeMyPasswordForm_editNewPassword");
+    me.editConfirmPassword = PCL.getCmp("PSI_User_ChangeMyPasswordForm_editConfirmPassword");
+    me.editForm = PCL.getCmp("PSI_User_ChangeMyPasswordForm_editForm");
+    me.buttonOK = PCL.getCmp("PSI_User_ChangeMyPasswordForm_buttonOK");
   },
 
   /**
@@ -158,7 +158,7 @@ Ext.define("PSI.User.ChangeMyPasswordForm", {
     }
 
     const form = me.editForm;
-    const el = Ext.getBody();
+    const el = PCL.getBody();
     el.mask("数据保存中...");
     form.submit({
       url: PSI.Const.BASE_URL + "Home/User/changeMyPasswordPOST",
