@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.User.ChangeUserPasswordForm", {
+PCL.define("PSI.User.ChangeUserPasswordForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   /**
@@ -27,7 +27,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
 
     const width1 = 600;
     const width2 = 295;
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -132,9 +132,9 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
 
     me.callParent(arguments);
 
-    me.editPassword = Ext.getCmp("PSI_User_ChangeUserPasswordForm_editPassword");
-    me.editConfirmPassword = Ext.getCmp("PSI_User_ChangeUserPasswordForm_editConfirmPassword");
-    me.editForm = Ext.getCmp("PSI_User_ChangeUserPasswordForm_editForm");
+    me.editPassword = PCL.getCmp("PSI_User_ChangeUserPasswordForm_editPassword");
+    me.editConfirmPassword = PCL.getCmp("PSI_User_ChangeUserPasswordForm_editConfirmPassword");
+    me.editForm = PCL.getCmp("PSI_User_ChangeUserPasswordForm_editForm");
 
     me.__editorList = [me.editPassword, me.editConfirmPassword];
   },
@@ -146,7 +146,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
     const me = this;
     me.setFocusAndCursorPosToLast(me.editPassword);
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
   },
 
   /**
@@ -155,7 +155,7 @@ Ext.define("PSI.User.ChangeUserPasswordForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
   /**
