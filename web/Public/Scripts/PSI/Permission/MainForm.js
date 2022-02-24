@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Permission.MainForm", {
+PCL.define("PSI.Permission.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   config: {
@@ -22,7 +22,7 @@ Ext.define("PSI.Permission.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -74,7 +74,7 @@ Ext.define("PSI.Permission.MainForm", {
     me.refreshRoleGrid();
 
     // 查询控件input List
-    me.__editorList = [Ext.getCmp("editQueryLoginName"), Ext.getCmp("editQueryName")];
+    me.__editorList = [PCL.getCmp("editQueryLoginName"), PCL.getCmp("editQueryName")];
   },
 
   /**
@@ -136,7 +136,7 @@ Ext.define("PSI.Permission.MainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler() {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -196,18 +196,18 @@ Ext.define("PSI.Permission.MainForm", {
     }
 
     const modelName = "PSIModel.PSI.Permission.MainForm.RoleModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "code"]
     });
 
-    const roleStore = Ext.create("Ext.data.Store", {
+    const roleStore = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    me._roleGrid = Ext.create("Ext.grid.Panel", {
+    me._roleGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -258,18 +258,18 @@ Ext.define("PSI.Permission.MainForm", {
     }
 
     const modelName = "PSIModel.PSI.Permission.MainForm.PermissionModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "dataOrg", "dataOrgWithName", "note"]
     });
 
-    const permissionStore = Ext.create("Ext.data.Store", {
+    const permissionStore = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    me._permissionGrid = Ext.create("Ext.grid.Panel", {
+    me._permissionGrid = PCL.create("PCL.grid.Panel", {
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("权限")
@@ -285,7 +285,7 @@ Ext.define("PSI.Permission.MainForm", {
           sortable: false,
           menuDisabled: true,
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           align: "center",
           width: 60
@@ -327,19 +327,19 @@ Ext.define("PSI.Permission.MainForm", {
     }
 
     const modelName = "PSIModel.PSI.Permission.MainForm.UserModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "loginName", "name", "orgFullName",
         "enabled"]
     });
 
-    const userStore = Ext.create("Ext.data.Store", {
+    const userStore = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    me._userGrid = Ext.create("Ext.grid.Panel", {
+    me._userGrid = PCL.create("PCL.grid.Panel", {
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("用户")
@@ -355,7 +355,7 @@ Ext.define("PSI.Permission.MainForm", {
           sortable: false,
           menuDisabled: true,
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           align: "center",
           width: 60
@@ -388,12 +388,12 @@ Ext.define("PSI.Permission.MainForm", {
     const grid = me.getRoleGrid();
     const store = grid.getStore();
 
-    Ext.getBody().mask("数据加载中...");
+    PCL.getBody().mask("数据加载中...");
     me.ajax({
       url: me.URL("Home/Permission/roleList"),
       params: {
-        queryLoginName: Ext.getCmp("editQueryLoginName").getValue(),
-        queryName: Ext.getCmp("editQueryName").getValue()
+        queryLoginName: PCL.getCmp("editQueryLoginName").getValue(),
+        queryName: PCL.getCmp("editQueryName").getValue()
       },
       callback(options, success, response) {
         store.removeAll();
@@ -415,7 +415,7 @@ Ext.define("PSI.Permission.MainForm", {
           }
         }
 
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
       }
     });
   },
@@ -437,7 +437,7 @@ Ext.define("PSI.Permission.MainForm", {
     const store = grid.getStore();
     grid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${role.get("name")}</span> - 权限列表`));
 
-    const el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || PCL.getBody();
 
     el.mask("数据加载中...");
     me.ajax({
@@ -459,7 +459,7 @@ Ext.define("PSI.Permission.MainForm", {
 
     const userGrid = me.getUserGrid();
     const userStore = userGrid.getStore();
-    const userEl = userGrid.getEl() || Ext.getBody();
+    const userEl = userGrid.getEl() || PCL.getBody();
     userGrid.setTitle(me.formatGridHeaderTitle(`<span class='PSI-title-keyword'>${role.get("name")}</span> - 人员列表`));
     userEl.mask("数据加载中...");
     me.ajax({
@@ -487,7 +487,7 @@ Ext.define("PSI.Permission.MainForm", {
    */
   _onAddRole() {
     const me = this;
-    const form = Ext.create("PSI.Permission.EditForm", {
+    const form = PCL.create("PSI.Permission.EditForm", {
       parentForm: me
     });
 
@@ -511,7 +511,7 @@ Ext.define("PSI.Permission.MainForm", {
 
     const roleCopy = items[0];
 
-    const form = Ext.create("PSI.Permission.EditForm", {
+    const form = PCL.create("PSI.Permission.EditForm", {
       parentForm: me,
       roleCopy
     });
@@ -537,7 +537,7 @@ Ext.define("PSI.Permission.MainForm", {
 
     const role = items[0].data;
 
-    const form = Ext.create("PSI.Permission.EditForm", {
+    const form = PCL.create("PSI.Permission.EditForm", {
       entity: role,
       parentForm: me
     });
@@ -564,17 +564,17 @@ Ext.define("PSI.Permission.MainForm", {
 
     const info = `请确认是否删除角色 <span style='color:red'>${role.name}</span> ?`;
     const funcConfirm = () => {
-      Ext.getBody().mask("正在删除中...");
+      PCL.getBody().mask("正在删除中...");
       const r = {
         url: me.URL("Home/Permission/deleteRole"),
         params: {
           id: role.id
         },
         callback(options, success, response) {
-          Ext.getBody().unmask();
+          PCL.getBody().unmask();
 
           if (success) {
-            const data = Ext.JSON.decode(response.responseText);
+            const data = PCL.JSON.decode(response.responseText);
             if (data.success) {
               me.refreshRoleGrid();
               me.tip("成功完成删除操作", true);
@@ -597,8 +597,8 @@ Ext.define("PSI.Permission.MainForm", {
   _onClearQuery() {
     const me = this;
 
-    Ext.getCmp("editQueryLoginName").setValue(null);
-    Ext.getCmp("editQueryName").setValue(null);
+    PCL.getCmp("editQueryLoginName").setValue(null);
+    PCL.getCmp("editQueryName").setValue(null);
 
     me._onQuery();
   },
