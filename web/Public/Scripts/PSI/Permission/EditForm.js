@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Permission.EditForm", {
+PCL.define("PSI.Permission.EditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -20,18 +20,18 @@ Ext.define("PSI.Permission.EditForm", {
     const entity = me.getEntity();
 
     let modelName = "PSIModel.PSI.Permission.EditForm.PermissionModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "dataOrg", "dataOrgFullName"]
     });
 
-    const permissionStore = Ext.create("Ext.data.Store", {
+    const permissionStore = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    const permissionGrid = Ext.create("Ext.grid.Panel", {
+    const permissionGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -94,19 +94,19 @@ Ext.define("PSI.Permission.EditForm", {
     me.permissionGrid = permissionGrid;
 
     modelName = "PSIModel.PSI.Permission.EditForm.UserModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "loginName", "name", "orgFullName",
         "enabled"]
     });
 
-    const userStore = Ext.create("Ext.data.Store", {
+    const userStore = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    const userGrid = Ext.create("Ext.grid.Panel", {
+    const userGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -168,7 +168,7 @@ Ext.define("PSI.Permission.EditForm", {
     const t = entity == null ? "新建角色" : "编辑角色";
     const title = me.formatTitle(t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title,
         height: 40,
@@ -303,8 +303,8 @@ Ext.define("PSI.Permission.EditForm", {
 
     me.callParent(arguments);
 
-    me.editName = Ext.getCmp("editName");
-    me.editCode = Ext.getCmp("editCode");
+    me.editName = PCL.getCmp("editName");
+    me.editCode = PCL.getCmp("editCode");
 
     me.__editorList = [me.editName, me.editCode];
   },
@@ -315,7 +315,7 @@ Ext.define("PSI.Permission.EditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
   /**
@@ -331,7 +331,7 @@ Ext.define("PSI.Permission.EditForm", {
 
     // 获得数据
     const store = me.permissionGrid.getStore();
-    const el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || PCL.getBody();
     const roleId = roleCopy.get("id");
     el.mask("数据加载中...");
     me.ajax({
@@ -343,7 +343,7 @@ Ext.define("PSI.Permission.EditForm", {
         store.removeAll();
 
         if (success) {
-          const data = Ext.JSON.decode(response.responseText);
+          const data = PCL.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -353,7 +353,7 @@ Ext.define("PSI.Permission.EditForm", {
 
     const userGrid = me.userGrid;
     const userStore = userGrid.getStore();
-    const userEl = userGrid.getEl() || Ext.getBody();
+    const userEl = userGrid.getEl() || PCL.getBody();
     userGrid.setTitle("属于角色 [" + roleName + "] 的人员列表");
     userEl.mask("数据加载中...");
     me.ajax({
@@ -383,7 +383,7 @@ Ext.define("PSI.Permission.EditForm", {
 
     me.setFocusAndCursorPosToLast(me.editName);
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     const entity = me.getEntity();
     if (!entity) {
@@ -397,7 +397,7 @@ Ext.define("PSI.Permission.EditForm", {
     }
 
     const store = me.permissionGrid.getStore();
-    const el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || PCL.getBody();
 
     el.mask("数据加载中...");
     me.ajax({
@@ -409,7 +409,7 @@ Ext.define("PSI.Permission.EditForm", {
         store.removeAll();
 
         if (success) {
-          const data = Ext.JSON.decode(response.responseText);
+          const data = PCL.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -419,7 +419,7 @@ Ext.define("PSI.Permission.EditForm", {
 
     const userGrid = me.userGrid;
     const userStore = userGrid.getStore();
-    const userEl = userGrid.getEl() || Ext.getBody();
+    const userEl = userGrid.getEl() || PCL.getBody();
     userGrid.setTitle("属于角色 [" + entity.name + "] 的人员列表");
     userEl.mask("数据加载中...");
     me.ajax({
@@ -493,7 +493,7 @@ Ext.define("PSI.Permission.EditForm", {
    */
   _onOK() {
     const me = this;
-    const editName = Ext.getCmp("editName");
+    const editName = PCL.getCmp("editName");
 
     const name = editName.getValue();
     if (name == null || name == "") {
@@ -502,7 +502,7 @@ Ext.define("PSI.Permission.EditForm", {
       });
       return;
     }
-    const editCode = Ext.getCmp("editCode");
+    const editCode = PCL.getCmp("editCode");
     const code = editCode.getValue();
     if (code == null || code == "") {
       me.showInfo("没有输入角色编码", () => {
@@ -521,10 +521,10 @@ Ext.define("PSI.Permission.EditForm", {
       dataOrgList.push(item.dataOrg);
     }
 
-    const editPermissionIdList = Ext.getCmp("editPermissionIdList");
+    const editPermissionIdList = PCL.getCmp("editPermissionIdList");
     editPermissionIdList.setValue(idList.join());
 
-    Ext.getCmp("editDataOrgList").setValue(dataOrgList.join(","));
+    PCL.getCmp("editDataOrgList").setValue(dataOrgList.join(","));
 
     store = me.userGrid.getStore();
     data = store.data;
@@ -534,11 +534,11 @@ Ext.define("PSI.Permission.EditForm", {
       idList.push(item.id);
     }
 
-    const editUserIdList = Ext.getCmp("editUserIdList");
+    const editUserIdList = PCL.getCmp("editUserIdList");
     editUserIdList.setValue(idList.join());
 
-    const editForm = Ext.getCmp("editForm");
-    const el = this.getEl() || Ext.getBody();
+    const editForm = PCL.getCmp("editForm");
+    const el = this.getEl() || PCL.getBody();
     el.mask("数据保存中...");
 
     editForm.submit({
@@ -573,7 +573,7 @@ Ext.define("PSI.Permission.EditForm", {
       idList.push(item.id);
     }
 
-    const form = Ext.create("PSI.Permission.SelectPermissionForm", {
+    const form = PCL.create("PSI.Permission.SelectPermissionForm", {
       idList: idList,
       parentForm: me
     });
@@ -611,7 +611,7 @@ Ext.define("PSI.Permission.EditForm", {
       idList.push(item.id);
     }
 
-    const form = Ext.create("PSI.Permission.SelectUserForm", {
+    const form = PCL.create("PSI.Permission.SelectUserForm", {
       idList: idList,
       parentForm: me
     });
@@ -638,51 +638,6 @@ Ext.define("PSI.Permission.EditForm", {
 
   /**
    * @private
-   * 
-   * TODO 本函数没有用途，可以清理掉
-   */
-  getDataOrgGrid() {
-    const me = this;
-    if (me.__dataOrgGrid) {
-      return me.__dataOrgGrid;
-    }
-    const modelName = "PSIModel.PSI.Permission.EditForm.PermissionDataOrg";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
-      fields: ["dataOrg", "fullName"]
-    });
-
-    const store = Ext.create("Ext.data.Store", {
-      model: modelName,
-      autoLoad: false,
-      data: []
-    });
-
-    me.__dataOrgGrid = Ext.create("Ext.grid.Panel", {
-      title: "数据域",
-      store: store,
-      padding: 5,
-      tbar: [{
-        text: "设置数据域"
-      }],
-      columns: [{
-        header: "数据域",
-        dataIndex: "dataOrg",
-        flex: 1,
-        menuDisabled: true
-      }, {
-        header: "组织机构/人",
-        dataIndex: "fullName",
-        flex: 2,
-        menuDisabled: true
-      }]
-    });
-
-    return me.__dataOrgGrid;
-  },
-
-  /**
-   * @private
    */
   _onEditDataOrg() {
     const me = this;
@@ -695,7 +650,7 @@ Ext.define("PSI.Permission.EditForm", {
       return;
     }
 
-    const form = Ext.create("PSI.Permission.SelectDataOrgForm", {
+    const form = PCL.create("PSI.Permission.SelectDataOrgForm", {
       editForm: me
     });
     form.show();
