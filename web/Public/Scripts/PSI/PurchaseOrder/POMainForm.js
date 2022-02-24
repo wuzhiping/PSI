@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.PurchaseOrder.POMainForm", {
+PCL.define("PSI.PurchaseOrder.POMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -18,7 +18,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -203,7 +203,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "待审核"], [1000, "已审核"],
         [2000, "部分入库"], [3000, "全部入库"], [4000, "订单关闭"]]
@@ -254,7 +254,7 @@ Ext.define("PSI.PurchaseOrder.POMainForm", {
       queryMode: "local",
       editable: false,
       valueField: "id",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "记应付账款"], [1, "现金付款"],
         [2, "预付款"]]
