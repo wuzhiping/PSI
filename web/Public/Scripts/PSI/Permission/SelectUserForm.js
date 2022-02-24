@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Permission.SelectUserForm", {
+PCL.define("PSI.Permission.SelectUserForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -20,18 +20,18 @@ Ext.define("PSI.Permission.SelectUserForm", {
 
   initComponent() {
     const me = this;
-    Ext.define("PSIUser_SelectUserForm", {
-      extend: "Ext.data.Model",
+    PCL.define("PSIUser_SelectUserForm", {
+      extend: "PCL.data.Model",
       fields: ["id", "loginName", "code", "name", "orgFullName"]
     });
 
-    const userStore = Ext.create("Ext.data.Store", {
+    const userStore = PCL.create("PCL.data.Store", {
       model: "PSIUser_SelectUserForm",
       autoLoad: false,
       data: []
     });
 
-    const grid = Ext.create("Ext.grid.Panel", {
+    const grid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -73,7 +73,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
 
     me._mainGrid = grid;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         height: 40,
         title: me.formatTitle("选择用户")
@@ -128,7 +128,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
 
     me.callParent(arguments);
 
-    me.editName = Ext.getCmp("PSI_Permission_SelectUserForm_editUser");
+    me.editName = PCL.getCmp("PSI_Permission_SelectUserForm_editUser");
     me.editName.on("change", () => {
       me.refreshMainGrid();
     });
@@ -139,7 +139,7 @@ Ext.define("PSI.Permission.SelectUserForm", {
     const idList = me.getIdList();
     const userStore = me._mainGrid.getStore();
 
-    const el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || PCL.getBody();
     el.mask("数据加载中...");
     me.ajax({
       url: me.URL("Home/Permission/selectUsers"),
