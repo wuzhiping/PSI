@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Permission.SelectDataOrgForm", {
+PCL.define("PSI.Permission.SelectDataOrgForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -28,7 +28,7 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         height: 40,
         title: me.formatTitle("选择数据域")
@@ -66,16 +66,16 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
     const me = this;
     const store = me.getMainGrid().getStore();
 
-    const el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || PCL.getBody();
     el.mask("数据加载中...");
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL
         + "Home/Permission/selectDataOrg",
       params: {},
       method: "POST",
       callback(options, success, response) {
         if (success) {
-          const data = Ext.JSON.decode(response.responseText);
+          const data = PCL.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -111,7 +111,7 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
     const editForm = me.getEditForm();
     if (editForm) {
       editForm.getEl().mask("数据域更改中...");
-      Ext.Function.defer(() => {
+      PCL.Function.defer(() => {
         editForm.onEditDataOrgCallback.apply(editForm, [dataOrgList.join(";")]);
         editForm.getEl().unmask();
       }, 100);
@@ -127,18 +127,18 @@ Ext.define("PSI.Permission.SelectDataOrgForm", {
     }
 
     const modelName = "PSIModel.PSI.Permission.SelectDataOrgForm.DataOrgModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "fullName", "dataOrg"]
     });
 
-    const store = Ext.create("Ext.data.Store", {
+    const store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       padding: 5,
       selModel: {
