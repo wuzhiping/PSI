@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Permission.SelectPermissionForm", {
+PCL.define("PSI.Permission.SelectPermissionForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -20,7 +20,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         height: 40,
         title: me.formatTitle("选择权限")
@@ -141,7 +141,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
 
     me.callParent(arguments);
 
-    me.editQuery = Ext.getCmp("PSI_Permission_SelectPermissionForm_editQuery");
+    me.editQuery = PCL.getCmp("PSI_Permission_SelectPermissionForm_editQuery");
 
     me.editQuery.on("change", () => {
       me.refreshCategoryGrid();
@@ -153,7 +153,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     const idList = me.getIdList();
     const store = me.getCategoryGrid().getStore();
 
-    const el = me.getCategoryGrid().getEl() || Ext.getBody();
+    const el = me.getCategoryGrid().getEl() || PCL.getBody();
     el.mask("数据加载中...");
     const r = {
       url: me.URL("Home/Permission/permissionCategory"),
@@ -205,14 +205,14 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
       });
     }
 
-    const dataOrgList = Ext.getCmp("editDataOrgIdList").getValue();
+    const dataOrgList = PCL.getCmp("editDataOrgIdList").getValue();
     if (!dataOrgList) {
       PSI.MsgBox.showInfo("没有选择数据域");
       return;
     }
 
     if (me.getParentForm()) {
-      const fullNameList = Ext.getCmp("editDataOrg").getValue();
+      const fullNameList = PCL.getCmp("editDataOrg").getValue();
       me.getParentForm().setSelectedPermission(items, dataOrgList, fullNameList);
     }
 
@@ -221,15 +221,15 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
 
   onSelectDataOrg() {
     const me = this;
-    const form = Ext.create("PSI.Permission.SelectDataOrgForm", {
+    const form = PCL.create("PSI.Permission.SelectDataOrgForm", {
       parentForm: me
     });
     form.show();
   },
 
   setDataOrgList(fullNameList, dataOrgList) {
-    Ext.getCmp("editDataOrg").setValue(fullNameList);
-    Ext.getCmp("editDataOrgIdList").setValue(dataOrgList);
+    PCL.getCmp("editDataOrg").setValue(fullNameList);
+    PCL.getCmp("editDataOrgIdList").setValue(dataOrgList);
   },
 
   /**
@@ -242,18 +242,18 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     }
 
     const modelName = "PSIModel.PSI.Permission.SelectPermissionForm.PermissionModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "note"]
     });
 
-    const store = Ext.create("Ext.data.Store", {
+    const store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    me.__permissionGrid = Ext.create("Ext.grid.Panel", {
+    me.__permissionGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       store: store,
       columnLines: true,
@@ -314,18 +314,18 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     }
 
     const modelName = "PSIModel.PSI.Permission.SelectPermissionForm.SelectedPermission";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
 
-    const store = Ext.create("Ext.data.Store", {
+    const store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    me.__selectedGrid = Ext.create("Ext.grid.Panel", {
+    me.__selectedGrid = PCL.create("PCL.grid.Panel", {
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("已经选择的权限")
@@ -369,18 +369,18 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     }
 
     const modelName = "PSIModel.PSI.Permission.SelectPermissionForm.PermissionCategory";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["name"]
     });
 
-    const store = Ext.create("Ext.data.Store", {
+    const store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
 
-    me.__categoryGrid = Ext.create("Ext.grid.Panel", {
+    me.__categoryGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       store: store,
       columns: [{
@@ -412,7 +412,7 @@ Ext.define("PSI.Permission.SelectPermissionForm", {
     const category = item[0].get("name");
     const grid = me.getPermissionGrid();
     const store = grid.getStore();
-    const el = grid.getEl() || Ext.getBody();
+    const el = grid.getEl() || PCL.getBody();
 
     el.mask("数据加载中...");
     me.ajax({
