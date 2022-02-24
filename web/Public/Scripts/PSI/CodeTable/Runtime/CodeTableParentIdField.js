@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.CodeTable.Runtime.CodeTableParentIdField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.CodeTable.Runtime.CodeTableParentIdField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_codetable_parentidfield",
 
   config: {
@@ -50,13 +50,13 @@ Ext.define("PSI.CodeTable.Runtime.CodeTableParentIdField", {
   onTriggerClick(e) {
     const me = this;
     const modelName = "PSICodeTableParentIdField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "full_name", "code",
         "leaf", "children"]
     });
 
-    const store = Ext.create("Ext.data.TreeStore", {
+    const store = PCL.create("PCL.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -70,7 +70,7 @@ Ext.define("PSI.CodeTable.Runtime.CodeTableParentIdField", {
       }
     });
 
-    const tree = Ext.create("Ext.tree.Panel", {
+    const tree = PCL.create("PCL.tree.Panel", {
       cls: "PSI",
       store: store,
       rootVisible: false,
@@ -98,7 +98,7 @@ Ext.define("PSI.CodeTable.Runtime.CodeTableParentIdField", {
     tree.on("itemdblclick", me.onOK, me);
     me.tree = tree;
 
-    const wnd = Ext.create("Ext.window.Window", {
+    const wnd = PCL.create("PCL.window.Window", {
       title: "选择上级",
       modal: true,
       width: 400,
