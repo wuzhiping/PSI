@@ -178,7 +178,7 @@ INSERT INTO `t_sysdict_sln0000_org_type` (`id`, `code`, `code_int`, `name`, `py`
 # 性别
 TRUNCATE TABLE `t_sysdict_sln0000_gender`;
 INSERT INTO `t_sysdict_sln0000_gender` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
-('0', '0', 0, '', '', '', 1),
+('0', '0', 0, '', '', '空白，用于表示没有选择性别', 1),
 ('1', '1', 1, '男', '', '', 2),
 ('2', '2', 2, '女', '', '', 3);
 
