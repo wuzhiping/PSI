@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.BizConfig.MainForm", {
+PCL.define("PSI.BizConfig.MainForm", {
   extend: "PSI.AFX.BaseOneGridMainForm",
 
   /**
@@ -14,7 +14,7 @@ Ext.define("PSI.BizConfig.MainForm", {
   afxInitComponent: function () {
     var me = this;
 
-    me.comboCompany = Ext.getCmp("comboCompany");
+    me.comboCompany = PCL.getCmp("comboCompany");
 
     me.queryCompany();
   },
@@ -25,8 +25,8 @@ Ext.define("PSI.BizConfig.MainForm", {
   afxGetToolbarCmp: function () {
     var me = this;
     var modelName = "PSI_BizConfig_MainForm_PSICompany";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
     return [{
@@ -37,7 +37,7 @@ Ext.define("PSI.BizConfig.MainForm", {
       editable: false,
       valueField: "id",
       displayField: "name",
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -78,19 +78,19 @@ Ext.define("PSI.BizConfig.MainForm", {
     }
 
     var modelName = "PSI_BizConfig_MainForm_PSIBizConfig";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "value", "displayValue",
         "note"],
       idProperty: "id"
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       data: [],
       autoLoad: false
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -98,7 +98,7 @@ Ext.define("PSI.BizConfig.MainForm", {
       loadMask: true,
       border: 0,
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "#",
         width: 40
       }), {
@@ -153,7 +153,7 @@ Ext.define("PSI.BizConfig.MainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.BizConfig.EditForm", {
+    var form = PCL.create("PSI.BizConfig.EditForm", {
       parentForm: me,
       companyId: companyId
     });
@@ -165,7 +165,7 @@ Ext.define("PSI.BizConfig.MainForm", {
    */
   queryCompany: function () {
     var me = this;
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     var comboCompany = me.comboCompany;
     var store = comboCompany.getStore();
     el.mask(PSI.Const.LOADING);
@@ -187,7 +187,7 @@ Ext.define("PSI.BizConfig.MainForm", {
         el.unmask();
       }
     };
-    Ext.Ajax.request(r);
+    PCL.Ajax.request(r);
   },
 
   onComboCompanySelect: function () {
