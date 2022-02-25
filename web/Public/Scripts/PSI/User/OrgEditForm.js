@@ -174,6 +174,8 @@ PCL.define("PSI.User.OrgEditForm", {
   _onWndClose() {
     const me = this;
 
+    PCL.WindowManager.hideAll();
+
     PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
 
