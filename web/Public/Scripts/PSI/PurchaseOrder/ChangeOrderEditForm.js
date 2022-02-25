@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.PurchaseOrder.ChangeOrderEditForm", {
+PCL.define("PSI.PurchaseOrder.ChangeOrderEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -46,7 +46,7 @@ Ext.define("PSI.PurchaseOrder.ChangeOrderEditForm", {
       + t
       + "</h2>"
       + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -245,7 +245,7 @@ Ext.define("PSI.PurchaseOrder.ChangeOrderEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -257,7 +257,7 @@ Ext.define("PSI.PurchaseOrder.ChangeOrderEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     me.editGoodsCount.focus();
     me.editGoodsCount.setValue(me.editGoodsCount.getValue());
