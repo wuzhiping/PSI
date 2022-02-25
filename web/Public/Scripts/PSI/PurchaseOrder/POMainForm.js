@@ -536,21 +536,21 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     }
 
     var modelName = "PSIPOBillDetail";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount", "goodsMoney",
         "goodsPrice", "taxRate", "tax", "moneyWithTax",
         "pwCount", "leftCount", "memo", "goodsPriceWithTax",
         "rejCount", "realCount"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__detailGrid = Ext.create("Ext.grid.Panel", {
+    me.__detailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       title: "采购订单明细",
       viewConfig: {
@@ -562,7 +562,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 40
         }), {
@@ -703,7 +703,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.PurchaseOrder.ChangeOrderEditForm", {
+    var form = PCL.create("PSI.PurchaseOrder.ChangeOrderEditForm", {
       entity: entity,
       parentForm: me
     });
@@ -716,17 +716,17 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
   refreshMainGrid: function (id) {
     var me = this;
 
-    Ext.getCmp("buttonEdit").setDisabled(true);
-    Ext.getCmp("buttonDelete").setDisabled(true);
-    Ext.getCmp("buttonCommit").setDisabled(true);
-    Ext.getCmp("buttonCancelConfirm").setDisabled(true);
-    Ext.getCmp("buttonGenPWBill").setDisabled(true);
+    PCL.getCmp("buttonEdit").setDisabled(true);
+    PCL.getCmp("buttonDelete").setDisabled(true);
+    PCL.getCmp("buttonCommit").setDisabled(true);
+    PCL.getCmp("buttonCancelConfirm").setDisabled(true);
+    PCL.getCmp("buttonGenPWBill").setDisabled(true);
 
     var gridDetail = me.getDetailGrid();
     gridDetail.setTitle("采购订单明细");
     gridDetail.getStore().removeAll();
 
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
     me.__lastId = id;
   },
 
