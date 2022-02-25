@@ -29,18 +29,18 @@ h1, h2, h3, p {
 
 .x-panel-header-text-container-default {
 	font-size: 12px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-btn-default-small .x-btn-inner {
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-tree-node-text {
@@ -53,82 +53,82 @@ h1, h2, h3, p {
 
 .x-btn-default-toolbar-small .x-btn-inner {
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-menu-item-text {
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-toolbar .x-toolbar-text {
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-grid-row .x-grid-cell {
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-window-header-default {
 	font-size: 11px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-window-header-text-default {
 	font-size: 11px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-window-header-text-container-default {
 	font-size: 11px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-column-header {
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-tip-header, .x-tip-body, .x-form-invalid-tip-body {
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-tab button {
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 #msg-div {
@@ -269,10 +269,10 @@ h1, h2, h3, p {
 .x-tab-bar-default-top {
 	background-image: none;
 	background-color: #DAE6F3;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-panel-body-default {
@@ -324,10 +324,10 @@ h1, h2, h3, p {
 .x-tab-default .x-tab-inner {
 	font-weight: normal;
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 	color: #777777;
 }
 
@@ -396,35 +396,35 @@ h1, h2, h3, p {
 .x-form-item-label {
 	font-size: 13px;
 	color: #196d6d;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-toolbar-item .x-form-display-field {
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-form-display-field {
 	font-size: 13px;
 	color: #196d6d;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-form-cb-label {
 	color: #262626;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-form-date-trigger {
@@ -436,10 +436,10 @@ h1, h2, h3, p {
 }
 
 .x-toolbar-text {
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-grid-header-ct {
@@ -464,10 +464,10 @@ h1, h2, h3, p {
 
 .x-grid-cell-inner {
 	color: #262626;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .PSI .x-grid-row td, .x-grid-summary-row td {
@@ -490,10 +490,10 @@ h1, h2, h3, p {
 	font-size: 13px;
 	background-image: none;
 	border-color: transparent transparent #c5c5c59e transparent;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 	background-image: none;
 }
 
@@ -532,10 +532,10 @@ input:focus{
 .x-list-plain {
 	color: #262626;
 	font-size: 13px;
-	font-family: "Monospaced Number", "Chinese Quote", -apple-system,
+	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
-		Arial, sans-serif;
+		Arial, sans-serif; */
 }
 
 .x-datepicker-header {
