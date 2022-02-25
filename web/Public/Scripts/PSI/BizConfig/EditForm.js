@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.BizConfig.EditForm", {
+PCL.define("PSI.BizConfig.EditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   config: {
@@ -34,19 +34,19 @@ Ext.define("PSI.BizConfig.EditForm", {
     });
 
     var modelName = "PSIWarehouse";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
 
-    var storePW = Ext.create("Ext.data.Store", {
+    var storePW = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       fields: ["id", "name"],
       data: []
     });
     me.__storePW = storePW;
-    var storeWS = Ext.create("Ext.data.Store", {
+    var storeWS = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       fields: ["id", "name"],
@@ -54,7 +54,7 @@ Ext.define("PSI.BizConfig.EditForm", {
     });
     me.__storeWS = storeWS;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle("业务设置"),
         height: 40
@@ -127,8 +127,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [["0", "记应付账款"],
               ["1", "现金付款"],
@@ -144,8 +144,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [["0", "记应付账款"],
               ["1", "现金付款"],
@@ -161,8 +161,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [
                 ["0", "不做限制"],
@@ -196,8 +196,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [["0", "不允许编辑销售单价"],
               ["1", "允许编辑销售单价"]]
@@ -212,8 +212,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [["0", "记应收账款"],
               ["1", "现金收款"],
@@ -229,8 +229,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [["0", "记应收账款"],
               ["1", "现金收款"]]
@@ -245,8 +245,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [
                 ["0", "不做限制"],
@@ -268,8 +268,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [["0", "移动平均法"],
               ["1", "先进先出法"]]
@@ -388,8 +388,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [["0", "原窗口打开"],
               ["1", "新窗口打开"]]
@@ -403,8 +403,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [["0", "整数"],
               ["1", "1位小数"],
@@ -425,8 +425,8 @@ Ext.define("PSI.BizConfig.EditForm", {
             queryMode: "local",
             editable: false,
             valueField: "id",
-            store: Ext.create(
-              "Ext.data.ArrayStore", {
+            store: PCL.create(
+              "PCL.data.ArrayStore", {
               fields: ["id", "text"],
               data: [["0", "不启用"],
               ["1", "启用"]]
@@ -455,38 +455,38 @@ Ext.define("PSI.BizConfig.EditForm", {
 
     var result = {
       companyId: me.getCompanyId(),
-      'value9000-01': Ext.getCmp("editValue9000-01").getValue(),
-      'value9000-02': Ext.getCmp("editValue9000-02").getValue(),
-      'value9000-03': Ext.getCmp("editValue9000-03").getValue(),
-      'value9000-04': Ext.getCmp("editValue9000-04").getValue(),
-      'value9000-05': Ext.getCmp("editValue9000-05").getValue(),
-      'value1003-02': Ext.getCmp("editValue1003-02").getValue(),
-      'value2001-01': Ext.getCmp("editValue2001-01").getValue(),
-      'value2001-02': Ext.getCmp("editValue2001-02").getValue(),
-      'value2001-03': Ext.getCmp("editValue2001-03").getValue(),
-      'value2001-04': Ext.getCmp("editValue2001-04").getValue(),
-      'value2002-01': Ext.getCmp("editValue2002-01").getValue(),
-      'value2002-02': Ext.getCmp("editValue2002-02").getValue(),
-      'value2002-03': Ext.getCmp("editValue2002-03").getValue(),
-      'value2002-04': Ext.getCmp("editValue2002-04").getValue(),
-      'value2002-05': Ext.getCmp("editValue2002-05").getValue(),
-      'value9001-01': Ext.getCmp("editValue9001-01").getValue(),
-      'value9002-01': Ext.getCmp("editValue9002-01").getValue(),
-      'value9002-02': Ext.getCmp("editValue9002-02").getValue(),
-      'value9002-03': Ext.getCmp("editValue9002-03").getValue(),
-      'value9002-04': Ext.getCmp("editValue9002-04").getValue(),
-      'value9003-01': Ext.getCmp("editValue9003-01").getValue(),
-      'value9003-02': Ext.getCmp("editValue9003-02").getValue(),
-      'value9003-03': Ext.getCmp("editValue9003-03").getValue(),
-      'value9003-04': Ext.getCmp("editValue9003-04").getValue(),
-      'value9003-05': Ext.getCmp("editValue9003-05").getValue(),
-      'value9003-06': Ext.getCmp("editValue9003-06").getValue(),
-      'value9003-07': Ext.getCmp("editValue9003-07").getValue(),
-      'value9003-08': Ext.getCmp("editValue9003-08").getValue(),
-      'value9003-09': Ext.getCmp("editValue9003-09").getValue(),
-      'value9003-10': Ext.getCmp("editValue9003-10").getValue(),
-      'value9003-11': Ext.getCmp("editValue9003-11").getValue(),
-      'value9003-12': Ext.getCmp("editValue9003-12").getValue()
+      'value9000-01': PCL.getCmp("editValue9000-01").getValue(),
+      'value9000-02': PCL.getCmp("editValue9000-02").getValue(),
+      'value9000-03': PCL.getCmp("editValue9000-03").getValue(),
+      'value9000-04': PCL.getCmp("editValue9000-04").getValue(),
+      'value9000-05': PCL.getCmp("editValue9000-05").getValue(),
+      'value1003-02': PCL.getCmp("editValue1003-02").getValue(),
+      'value2001-01': PCL.getCmp("editValue2001-01").getValue(),
+      'value2001-02': PCL.getCmp("editValue2001-02").getValue(),
+      'value2001-03': PCL.getCmp("editValue2001-03").getValue(),
+      'value2001-04': PCL.getCmp("editValue2001-04").getValue(),
+      'value2002-01': PCL.getCmp("editValue2002-01").getValue(),
+      'value2002-02': PCL.getCmp("editValue2002-02").getValue(),
+      'value2002-03': PCL.getCmp("editValue2002-03").getValue(),
+      'value2002-04': PCL.getCmp("editValue2002-04").getValue(),
+      'value2002-05': PCL.getCmp("editValue2002-05").getValue(),
+      'value9001-01': PCL.getCmp("editValue9001-01").getValue(),
+      'value9002-01': PCL.getCmp("editValue9002-01").getValue(),
+      'value9002-02': PCL.getCmp("editValue9002-02").getValue(),
+      'value9002-03': PCL.getCmp("editValue9002-03").getValue(),
+      'value9002-04': PCL.getCmp("editValue9002-04").getValue(),
+      'value9003-01': PCL.getCmp("editValue9003-01").getValue(),
+      'value9003-02': PCL.getCmp("editValue9003-02").getValue(),
+      'value9003-03': PCL.getCmp("editValue9003-03").getValue(),
+      'value9003-04': PCL.getCmp("editValue9003-04").getValue(),
+      'value9003-05': PCL.getCmp("editValue9003-05").getValue(),
+      'value9003-06': PCL.getCmp("editValue9003-06").getValue(),
+      'value9003-07': PCL.getCmp("editValue9003-07").getValue(),
+      'value9003-08': PCL.getCmp("editValue9003-08").getValue(),
+      'value9003-09': PCL.getCmp("editValue9003-09").getValue(),
+      'value9003-10': PCL.getCmp("editValue9003-10").getValue(),
+      'value9003-11': PCL.getCmp("editValue9003-11").getValue(),
+      'value9003-12': PCL.getCmp("editValue9003-12").getValue()
     };
 
     return result;
@@ -494,21 +494,21 @@ Ext.define("PSI.BizConfig.EditForm", {
 
   onOK: function (thenAdd) {
     var me = this;
-    Ext.getBody().mask("正在保存中...");
-    Ext.Ajax.request({
+    PCL.getBody().mask("正在保存中...");
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/BizConfig/edit",
       method: "POST",
       params: me.getSaveData(),
       callback: function (options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             me.__saved = true;
             me.close();
 
-            me.tip("成功保存数据");
+            me.tip("成功保存数据", true);
           } else {
             PSI.MsgBox.showInfo(data.msg);
           }
@@ -524,7 +524,7 @@ Ext.define("PSI.BizConfig.EditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__saved) {
       me.getParentForm().refreshGrid();
@@ -535,11 +535,11 @@ Ext.define("PSI.BizConfig.EditForm", {
     var me = this;
     me.__saved = false;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/BizConfig/allConfigsWithExtData",
       params: {
         companyId: me.getCompanyId()
@@ -547,17 +547,17 @@ Ext.define("PSI.BizConfig.EditForm", {
       method: "POST",
       callback: function (options, success, response) {
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           me.__storePW.add(data.extData.warehouse);
           me.__storeWS.add(data.extData.warehouse);
 
           for (var i = 0; i < data.dataList.length; i++) {
             var item = data.dataList[i];
-            var editName = Ext.getCmp("editName" + item.id);
+            var editName = PCL.getCmp("editName" + item.id);
             if (editName) {
               editName.setValue(item.name);
             }
-            var editValue = Ext.getCmp("editValue"
+            var editValue = PCL.getCmp("editValue"
               + item.id);
             if (editValue) {
               editValue.setValue(item.value);
