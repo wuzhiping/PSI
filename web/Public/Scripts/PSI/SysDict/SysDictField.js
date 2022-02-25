@@ -159,6 +159,7 @@ PCL.define("PSI.SysDict.SysDictField", {
       PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/SysDict/queryDataForSysDictField",
         params: {
+          tableName: me.getTableName(),
           queryKey: editName.getValue()
         },
         method: "POST",
