@@ -668,7 +668,9 @@ class OrgDAO extends PSIBaseExDAO
       $result["name"] = $data[0]["name"];
       $result["orgCode"] = $data[0]["org_code"];
       $result["parentOrgId"] = $parentId;
-      $result["orgType"] = $data[0]["org_type"];
+      $orgTypeId = $data[0]["org_type"];
+      $result["orgTypeId"] = $orgTypeId;
+      $result["orgType"] = $this->orgTypeCodeToName($orgTypeId);
 
       $data = $db->query("select full_name from t_org where id = '%s' ", $parentId);
 
