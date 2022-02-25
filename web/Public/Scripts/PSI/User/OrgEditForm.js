@@ -108,23 +108,10 @@ PCL.define("PSI.User.OrgEditForm", {
           value: entity === null ? null : entity.get("parentId")
         }, {
           id: "PSI_User_OrgEditForm_editOrgType",
-          xtype: "combo",
-          queryMode: "local",
-          editable: false,
-          valueField: "id",
-          labelAlign: "right",
-          labelSeparator: "",
+          xtype: "psi_sysdictfield",
+          tableName: "t_sysdict_sln0000_org_type",
           fieldLabel: "性质",
           name: "orgType",
-          store: PCL.create("PCL.data.ArrayStore", {
-            fields: ["id", "text"],
-            data: [[0, "[无]"], [400, "事业部"],
-            [500, "门店"], [600, "内部物流组织机构"],
-            [700, "办事处"],
-            [2000, "客户"], [3000, "供应商"],
-            [4000, "外协工厂"], [5000, "外部物流商"]]
-          }),
-          value: 0,
           width: width1,
           colspan: 2,
           listeners: {

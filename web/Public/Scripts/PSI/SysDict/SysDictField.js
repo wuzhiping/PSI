@@ -96,8 +96,8 @@ PCL.define("PSI.SysDict.SysDictField", {
       modal: me.getShowModal(),
       header: false,
       border: 0,
-      width: 700,
-      height: 200,
+      width: 600,
+      height: 300,
       layout: "border",
       items: [{
         region: "center",
