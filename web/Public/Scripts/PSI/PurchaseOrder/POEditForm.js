@@ -299,22 +299,22 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
   onWndClose: function () {
     // 加上这个调用是为了解决 #IMQB2 - https://gitee.com/crm8000/PSI/issues/IMQB2
     // 这个只是目前的临时应急方法，实现的太丑陋了
-    Ext.WindowManager.hideAll();
+    PCL.WindowManager.hideAll();
 
     PCL.get(window).un('beforeunload', this.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
-    Ext.get(window).on('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', this.onWindowBeforeUnload);
 
     var me = this;
 
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/PurchaseOrder/poBillInfo",
       params: {
-        id: Ext.getCmp("hiddenId").getValue(),
+        id: PCL.getCmp("hiddenId").getValue(),
         genBill: me.getGenBill(),
         sobillRef: me.getSobillRef()
       },
@@ -323,38 +323,38 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
         el.unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
 
           if (data.ref) {
-            Ext.getCmp("editRef").setValue(data.ref);
-            Ext.getCmp("editSupplier")
+            PCL.getCmp("editRef").setValue(data.ref);
+            PCL.getCmp("editSupplier")
               .setIdValue(data.supplierId);
-            Ext.getCmp("editSupplier")
+            PCL.getCmp("editSupplier")
               .setValue(data.supplierName);
-            Ext.getCmp("editBillMemo")
+            PCL.getCmp("editBillMemo")
               .setValue(data.billMemo);
-            Ext.getCmp("editDealDate")
+            PCL.getCmp("editDealDate")
               .setValue(data.dealDate);
-            Ext.getCmp("editDealAddress")
+            PCL.getCmp("editDealAddress")
               .setValue(data.dealAddress);
-            Ext.getCmp("editContact")
+            PCL.getCmp("editContact")
               .setValue(data.contact);
-            Ext.getCmp("editTel").setValue(data.tel);
-            Ext.getCmp("editFax").setValue(data.fax);
+            PCL.getCmp("editTel").setValue(data.tel);
+            PCL.getCmp("editFax").setValue(data.fax);
           }
 
-          Ext.getCmp("editBizUser")
+          PCL.getCmp("editBizUser")
             .setIdValue(data.bizUserId);
-          Ext.getCmp("editBizUser")
+          PCL.getCmp("editBizUser")
             .setValue(data.bizUserName);
           if (data.orgId) {
-            Ext.getCmp("editOrg").setIdValue(data.orgId);
-            Ext.getCmp("editOrg")
+            PCL.getCmp("editOrg").setIdValue(data.orgId);
+            PCL.getCmp("editOrg")
               .setValue(data.orgFullName);
           }
 
           if (data.paymentType) {
-            Ext.getCmp("editPaymentType")
+            PCL.getCmp("editPaymentType")
               .setValue(data.paymentType);
           }
 
@@ -377,8 +377,8 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
 
   onOK: function () {
     var me = this;
-    Ext.getBody().mask("正在保存中...");
-    Ext.Ajax.request({
+    PCL.getBody().mask("正在保存中...");
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/PurchaseOrder/editPOBill",
       method: "POST",
       params: {
@@ -386,10 +386,10 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             me.close();
             if (!me.getGenBill()) {
@@ -411,7 +411,7 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
       for (var i = 0; i < me.__editorList.length; i++) {
         var editorId = me.__editorList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__editorList[i + 1]);
+          var edit = PCL.getCmp(me.__editorList[i + 1]);
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -441,8 +441,8 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
       return me.__goodsGrid;
     }
     var modelName = "PSIPOBill_EditForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsId", "goodsCode", "goodsName",
         "goodsSpec", "unitName", "goodsCount", {
           name: "goodsMoney",
@@ -458,13 +458,13 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
           type: "float"
         }, "memo", "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__cellEditing = Ext.create("PSI.UX.CellEditing", {
+    me.__cellEditing = PCL.create("PSI.UX.CellEditing", {
       clicksToEdit: 1,
       listeners: {
         edit: {
@@ -474,7 +474,7 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
       }
     });
 
-    me.__goodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__goodsGrid = PCL.create("PCL.grid.Panel", {
       viewConfig: {
         enableTextSelection: true,
         markDirty: !me.adding
@@ -779,18 +779,18 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
     var me = this;
 
     var result = {
-      id: Ext.getCmp("hiddenId").getValue(),
-      dealDate: Ext.Date.format(Ext.getCmp("editDealDate").getValue(),
+      id: PCL.getCmp("hiddenId").getValue(),
+      dealDate: PCL.Date.format(PCL.getCmp("editDealDate").getValue(),
         "Y-m-d"),
-      supplierId: Ext.getCmp("editSupplier").getIdValue(),
-      dealAddress: Ext.getCmp("editDealAddress").getValue(),
-      contact: Ext.getCmp("editContact").getValue(),
-      tel: Ext.getCmp("editTel").getValue(),
-      fax: Ext.getCmp("editFax").getValue(),
-      orgId: Ext.getCmp("editOrg").getIdValue(),
-      bizUserId: Ext.getCmp("editBizUser").getIdValue(),
-      paymentType: Ext.getCmp("editPaymentType").getValue(),
-      billMemo: Ext.getCmp("editBillMemo").getValue(),
+      supplierId: PCL.getCmp("editSupplier").getIdValue(),
+      dealAddress: PCL.getCmp("editDealAddress").getValue(),
+      contact: PCL.getCmp("editContact").getValue(),
+      tel: PCL.getCmp("editTel").getValue(),
+      fax: PCL.getCmp("editFax").getValue(),
+      orgId: PCL.getCmp("editOrg").getIdValue(),
+      bizUserId: PCL.getCmp("editBizUser").getIdValue(),
+      paymentType: PCL.getCmp("editPaymentType").getValue(),
+      billMemo: PCL.getCmp("editBillMemo").getValue(),
       sobillRef: me.getSobillRef(),
       items: []
     };
@@ -812,29 +812,29 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
       });
     }
 
-    return Ext.JSON.encode(result);
+    return PCL.JSON.encode(result);
   },
 
   setBillReadonly: function () {
     var me = this;
     me.__readonly = true;
     me.setTitle("<span style='font-size:160%;'>查看采购订单</span>");
-    Ext.getCmp("buttonSave").setDisabled(true);
-    Ext.getCmp("buttonCancel").setText("关闭");
-    Ext.getCmp("editDealDate").setReadOnly(true);
-    Ext.getCmp("editSupplier").setReadOnly(true);
-    Ext.getCmp("editDealAddress").setReadOnly(true);
-    Ext.getCmp("editContact").setReadOnly(true);
-    Ext.getCmp("editTel").setReadOnly(true);
-    Ext.getCmp("editFax").setReadOnly(true);
-    Ext.getCmp("editOrg").setReadOnly(true);
-    Ext.getCmp("editBizUser").setReadOnly(true);
-    Ext.getCmp("editPaymentType").setReadOnly(true);
-    Ext.getCmp("editBillMemo").setReadOnly(true);
+    PCL.getCmp("buttonSave").setDisabled(true);
+    PCL.getCmp("buttonCancel").setText("关闭");
+    PCL.getCmp("editDealDate").setReadOnly(true);
+    PCL.getCmp("editSupplier").setReadOnly(true);
+    PCL.getCmp("editDealAddress").setReadOnly(true);
+    PCL.getCmp("editContact").setReadOnly(true);
+    PCL.getCmp("editTel").setReadOnly(true);
+    PCL.getCmp("editFax").setReadOnly(true);
+    PCL.getCmp("editOrg").setReadOnly(true);
+    PCL.getCmp("editBizUser").setReadOnly(true);
+    PCL.getCmp("editPaymentType").setReadOnly(true);
+    PCL.getCmp("editBillMemo").setReadOnly(true);
 
-    Ext.getCmp("columnActionDelete").hide();
-    Ext.getCmp("columnActionAdd").hide();
-    Ext.getCmp("columnActionAppend").hide();
+    PCL.getCmp("columnActionDelete").hide();
+    PCL.getCmp("columnActionAdd").hide();
+    PCL.getCmp("columnActionAppend").hide();
   },
 
   // xtype:psi_supplierfield回调本方法
@@ -842,15 +842,15 @@ PCL.define("PSI.PurchaseOrder.POEditForm", {
   __setSupplierExtData: function (data, scope) {
     var me = scope;
 
-    Ext.getCmp("editDealAddress").setValue(data.address_shipping);
-    Ext.getCmp("editTel").setValue(data.tel01);
-    Ext.getCmp("editFax").setValue(data.fax);
-    Ext.getCmp("editContact").setValue(data.contact01);
+    PCL.getCmp("editDealAddress").setValue(data.address_shipping);
+    PCL.getCmp("editTel").setValue(data.tel01);
+    PCL.getCmp("editFax").setValue(data.fax);
+    PCL.getCmp("editContact").setValue(data.contact01);
 
     me.__taxRateBySupplier = data.taxRate;
   },
 
   __supplierIdFunc: function () {
-    return Ext.getCmp("editSupplier").getIdValue();
+    return PCL.getCmp("editSupplier").getIdValue();
   }
 });
