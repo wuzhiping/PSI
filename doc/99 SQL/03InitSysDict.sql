@@ -180,13 +180,13 @@ TRUNCATE TABLE `t_sysdict_sln0000_gender`;
 INSERT INTO `t_sysdict_sln0000_gender` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('0', '0', 0, '', '', '', 1),
 ('1', '1', 1, '男', '', '', 2),
-('2', '2', 2, '女', '', '', 3)；
+('2', '2', 2, '女', '', '', 3);
 
 # 用户能否登录
 TRUNCATE TABLE `t_sysdict_sln0000_user_enabled`;
 INSERT INTO `t_sysdict_sln0000_user_enabled` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('1', '1', 1, '允许登录', '', '', 1),
-('0', '0', 0, '禁止登录', '', '', 2)；
+('0', '0', 0, '禁止登录', '', '', 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
