@@ -89,6 +89,19 @@ INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`
 ('fromShortcut', 'fromShortcut', 37, '/help/index.html', '', '通过快捷访问进入实施指南页面', 37)
 ;
 
+# 组织机构性质
+TRUNCATE TABLE `t_sysdict_sln0000_org_type`;
+INSERT INTO `t_sysdict_sln0000_org_type` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('0', '0', 0, '[无]', '', '', 1),
+('400', '400', 400, '事业部', '', '', 2),
+('500', '500', 500, '门店', '', '', 3),
+('600', '600', 600, '内部物流组织机构', '', '', 4),
+('700', '700', 700, '办事处', '', '', 5),
+('2000', '2000', 2000, '客户', '', '', 6),
+('3000', '3000', 3000, '供应商', '', '', 7),
+('4000', '4000', 4000, '外协工厂', '', '', 8),
+('5000', '5000', 5000, '外部物流商', '', '', 9);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
