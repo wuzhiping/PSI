@@ -52,4 +52,17 @@ class SysDictService extends PSIBaseExService
     $dao = new SysDictDAO($this->db());
     return $dao->dictDataList($params);
   }
+
+  /**
+   * 自定义字段 - 查询数据
+   */
+  public function queryDataForSysDictField($params)
+  {
+    if ($this->isNotOnline()) {
+      return $this->emptyResult();
+    }
+
+    $dao = new SysDictDAO($this->db());
+    return $dao->queryDataForSysDictField($params);
+  }
 }

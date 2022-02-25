@@ -132,4 +132,12 @@ class PSIBaseExDAO extends PSIBaseDAO
   {
     return strlen($s) > $length;
   }
+
+  /**
+   * 自定义字段 - 查询数据
+   */
+  public function queryDataForSysDictField($params)
+  {
+    return [];
+  }
 }

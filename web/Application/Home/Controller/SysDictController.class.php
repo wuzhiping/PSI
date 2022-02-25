@@ -99,4 +99,29 @@ class SysDictController extends PSIBaseController
       $this->ajaxReturn($service->dictDataList($params));
     }
   }
+
+  /**
+   * 自定义字段 - 查询数据
+   * 
+   * JS：web\Public\Scripts\PSI\SysDict\SysDictField.js
+   */
+  public function queryDataForSysDictField()
+  {
+    if (IS_POST) {
+
+      // 因为自定义字段是用于用户界面的，所以这里不需要控制权限
+      // 而且整个数据字典是全部公开性质的，也不怕外泄
+      // 这也是数据字典和码表的区别点之一
+
+      $params = [
+        // 数据字典数据库表名
+        "tableName" => I("post.tableName"),
+        // 编码
+        "queryKey" => I("post.queryKey"),
+      ];
+
+      $service = new SysDictService();
+      $this->ajaxReturn($service->queryDataForSysDictField($params));
+    }
+  }
 }
