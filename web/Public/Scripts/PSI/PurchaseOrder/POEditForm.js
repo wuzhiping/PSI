@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.PurchaseOrder.POEditForm", {
+PCL.define("PSI.PurchaseOrder.POEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   config: {
@@ -28,7 +28,7 @@ Ext.define("PSI.PurchaseOrder.POEditForm", {
     var title = entity == null ? "新建采购订单" : "编辑采购订单";
     title = me.formatTitle(title);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: title,
         height: 40
@@ -243,7 +243,7 @@ Ext.define("PSI.PurchaseOrder.POEditForm", {
           queryMode: "local",
           editable: false,
           valueField: "id",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [["0", "记应付账款"],
             ["1", "现金付款"],
@@ -301,7 +301,7 @@ Ext.define("PSI.PurchaseOrder.POEditForm", {
     // 这个只是目前的临时应急方法，实现的太丑陋了
     Ext.WindowManager.hideAll();
 
-    Ext.get(window).un('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', this.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
