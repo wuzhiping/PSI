@@ -126,7 +126,9 @@ class SysDictDAO extends PSIBaseExDAO
     }
 
     $queryKey = $params["queryKey"];
-    $sql = "select code, name from {$tableName} where code like '%s' ";
+    $sql = "select code, name from {$tableName} 
+            where code like '%s'
+            order by show_order";
     $queryParams = [];
     $queryParams[] = "%{$queryKey}%";
     $data = $db->query($sql, $queryParams);
