@@ -120,7 +120,7 @@ PCL.define("PSI.SysDict.SysDictField", {
             id: "PSI_SysDict_SysDictField_editCode",
             xtype: "textfield",
             fieldLabel: "编码",
-            labelWidth: 60,
+            labelWidth: 30,
             labelAlign: "right",
             labelSeparator: ""
           }]
