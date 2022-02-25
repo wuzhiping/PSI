@@ -279,6 +279,10 @@ PCL.define("PSI.User.OrgEditForm", {
   _orgTypeCallback(data, scope) {
     const me = scope;
 
-    me.editOrgTypeId.setValue(data.get("id"));
+    let orgTypeId = data ? data.get("id") : null;
+    if (!orgTypeId) {
+      orgTypeId = 0;
+    }
+    me.editOrgTypeId.setValue(orgTypeId);
   }
 });

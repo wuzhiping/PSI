@@ -41,7 +41,7 @@ PCL.define("PSI.SysDict.SysDictField", {
 
         const func = me.getCallbackFunc();
         if (func) {
-          func(data, me.getCallbackScope());
+          func(null, me.getCallbackScope());
         }
 
         return false;
