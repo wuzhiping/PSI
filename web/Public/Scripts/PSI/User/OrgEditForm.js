@@ -110,6 +110,7 @@ PCL.define("PSI.User.OrgEditForm", {
           id: "PSI_User_OrgEditForm_editOrgTypeId",
           xtype: "hidden",
           name: "orgType",
+          value: 0,
         }, {
           id: "PSI_User_OrgEditForm_editOrgType",
           xtype: "psi_sysdictfield",
@@ -209,17 +210,14 @@ PCL.define("PSI.User.OrgEditForm", {
       callback(options, success, response) {
         el.unmask();
         if (success) {
-          const { parentOrgName, parentOrgId, name, orgCode, orgType }
+          const { parentOrgName, parentOrgId, name, orgCode, orgType, orgTypeId }
             = me.decodeJSON(response.responseText);
           me.editParentOrg.setValue(parentOrgName);
           me.editParentOrgId.setValue(parentOrgId);
           me.editName.setValue(name);
           me.editOrgCode.setValue(orgCode);
-          if (!orgType) {
-            me.editOrgType.setValue(0);
-          } else {
-            me.editOrgType.setValue(parseInt(orgType));
-          }
+          me.editOrgType.setValue(orgType);
+          me.editOrgTypeId.setValue(orgTypeId);
         }
       }
     });
