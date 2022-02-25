@@ -38,6 +38,12 @@ PCL.define("PSI.SysDict.SysDictField", {
         field.setValue(null);
         me.setIdValue(null);
         e.preventDefault();
+
+        const func = me.getCallbackFunc();
+        if (func) {
+          func(data, me.getCallbackScope());
+        }
+
         return false;
       }
 
@@ -77,7 +83,7 @@ PCL.define("PSI.SysDict.SysDictField", {
       columnLines: true,
       border: 1,
       store: store,
-      columns: [ {
+      columns: [{
         header: "编码",
         dataIndex: "id",
         menuDisabled: true,
