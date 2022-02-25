@@ -107,11 +107,16 @@ PCL.define("PSI.User.OrgEditForm", {
           name: "parentId",
           value: entity === null ? null : entity.get("parentId")
         }, {
+          id: "PSI_User_OrgEditForm_editOrgTypeId",
+          xtype: "hidden",
+          name: "orgType",
+        }, {
           id: "PSI_User_OrgEditForm_editOrgType",
           xtype: "psi_sysdictfield",
           tableName: "t_sysdict_sln0000_org_type",
+          callbackFunc: me._orgTypeCallback,
+          callbackScope: me,
           fieldLabel: "性质",
-          name: "orgType",
           width: width1,
           colspan: 2,
           listeners: {
@@ -162,6 +167,7 @@ PCL.define("PSI.User.OrgEditForm", {
     me.editName = PCL.getCmp("PSI_User_OrgEditForm_editName");
     me.editOrgCode = PCL.getCmp("PSI_User_OrgEditForm_editOrgCode");
     me.editOrgType = PCL.getCmp("PSI_User_OrgEditForm_editOrgType");
+    me.editOrgTypeId = PCL.getCmp("PSI_User_OrgEditForm_editOrgTypeId");
 
     me.editForm = PCL.getCmp("PSI_User_OrgEditForm_editForm");
 
@@ -266,5 +272,15 @@ PCL.define("PSI.User.OrgEditForm", {
         me._onOK();
       }
     }
+  },
+
+  /**
+   * 组织机构性质自定义字段回调本方法
+   * @private
+   */
+  _orgTypeCallback(data, scope) {
+    const me = scope;
+
+    me.editOrgTypeId.setValue(data.get("id"));
   }
 });
