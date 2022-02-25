@@ -105,4 +105,40 @@ class SysDictDAO extends PSIBaseExDAO
 
     return $result;
   }
+
+  /**
+   * 自定义字段 - 查询数据
+   */
+  public function queryDataForSysDictField($params)
+  {
+    $db = $this->db;
+
+    $tableName = $params["tableName"];
+
+    // 检查tableName在系统数据字典中是否存在
+    // 1. 防SQL注入攻击
+    // 2. 防查询非系统数据字典的表
+    $sql = "select count(*) as cnt from t_dict_table_md where table_name = '%s' ";
+    $data = $db->query($sql, $tableName);
+    $cnt = $data[0]["cnt"];
+    if ($cnt != 1) {
+      die("没有权限");
+    }
+
+    $queryKey = $params["queryKey"];
+    $sql = "select code, name from {$tableName} where code like '%s' ";
+    $queryParams = [];
+    $queryParams[] = "%{$queryKey}%";
+    $data = $db->query($sql, $queryParams);
+
+    $result = [];
+    foreach ($data as $v) {
+      $result[] = [
+        "id" => $v["code"],
+        "name" => $v["name"],
+      ];
+    }
+
+    return $result;
+  }
 }

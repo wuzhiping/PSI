@@ -64,7 +64,7 @@ PCL.define("PSI.SysDict.SysDictField", {
     const modelName = "PSIModel.PSI.Fid.FidField.FidModel";
     PCL.define(modelName, {
       extend: "PCL.data.Model",
-      fields: ["id", "name", "code", "py"]
+      fields: ["id", "name"]
     });
 
     const store = PCL.create("PCL.data.Store", {
@@ -77,14 +77,9 @@ PCL.define("PSI.SysDict.SysDictField", {
       columnLines: true,
       border: 1,
       store: store,
-      columns: [{
-        header: "fid",
-        dataIndex: "id",
-        menuDisabled: true,
-        width: 150
-      }, {
+      columns: [ {
         header: "编码",
-        dataIndex: "code",
+        dataIndex: "id",
         menuDisabled: true,
         width: 150
       }, {
@@ -102,7 +97,7 @@ PCL.define("PSI.SysDict.SysDictField", {
       header: false,
       border: 0,
       width: 700,
-      height: 300,
+      height: 200,
       layout: "border",
       items: [{
         region: "center",
