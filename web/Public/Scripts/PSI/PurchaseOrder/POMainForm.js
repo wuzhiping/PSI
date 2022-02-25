@@ -736,7 +736,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
   onAddBill: function () {
     var me = this;
 
-    var form = Ext.create("PSI.PurchaseOrder.POEditForm", {
+    var form = PCL.create("PSI.PurchaseOrder.POEditForm", {
       parentForm: me,
       showAddGoodsButton: me.getPermission().showAddGoodsButton
     });
@@ -755,7 +755,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     }
     var bill = item[0];
 
-    var form = Ext.create("PSI.PurchaseOrder.POEditForm", {
+    var form = PCL.create("PSI.PurchaseOrder.POEditForm", {
       parentForm: me,
       entity: bill,
       showAddGoodsButton: me.getPermission().showAddGoodsButton
@@ -793,7 +793,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     var info = "请确认是否删除采购订单: <span style='color:red'>" + bill.get("ref")
       + "</span>";
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       var r = {
         url: me.URL("Home/PurchaseOrder/deletePOBill"),
@@ -827,18 +827,18 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     me.getDetailGrid().setTitle("采购订单明细");
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      Ext.getCmp("buttonEdit").setDisabled(true);
-      Ext.getCmp("buttonDelete").setDisabled(true);
-      Ext.getCmp("buttonCommit").setDisabled(true);
-      Ext.getCmp("buttonCancelConfirm").setDisabled(true);
-      Ext.getCmp("buttonGenPWBill").setDisabled(true);
+      PCL.getCmp("buttonEdit").setDisabled(true);
+      PCL.getCmp("buttonDelete").setDisabled(true);
+      PCL.getCmp("buttonCommit").setDisabled(true);
+      PCL.getCmp("buttonCancelConfirm").setDisabled(true);
+      PCL.getCmp("buttonGenPWBill").setDisabled(true);
 
       return;
     }
     var bill = item[0];
     var commited = bill.get("billStatus") >= 1000;
 
-    var buttonEdit = Ext.getCmp("buttonEdit");
+    var buttonEdit = PCL.getCmp("buttonEdit");
     buttonEdit.setDisabled(false);
     if (commited) {
       buttonEdit.setText("查看采购订单");
@@ -846,16 +846,16 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
       buttonEdit.setText("编辑采购订单");
     }
     if (commited && me.getPermission().changeOrder == "1") {
-      Ext.getCmp("columnActionChangeOrder").show();
+      PCL.getCmp("columnActionChangeOrder").show();
     }
     else {
-      Ext.getCmp("columnActionChangeOrder").hide();
+      PCL.getCmp("columnActionChangeOrder").hide();
     }
 
-    Ext.getCmp("buttonDelete").setDisabled(commited);
-    Ext.getCmp("buttonCommit").setDisabled(commited);
-    Ext.getCmp("buttonCancelConfirm").setDisabled(!commited);
-    Ext.getCmp("buttonGenPWBill").setDisabled(!commited);
+    PCL.getCmp("buttonDelete").setDisabled(commited);
+    PCL.getCmp("buttonCommit").setDisabled(commited);
+    PCL.getCmp("buttonCancelConfirm").setDisabled(!commited);
+    PCL.getCmp("buttonGenPWBill").setDisabled(!commited);
 
     me.refreshDetailGrid();
     me.refreshPWGrid();
@@ -937,7 +937,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/PurchaseOrder/commitPOBill"),
@@ -986,7 +986,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
       + "</span> 的采购订单?";
     var id = bill.get("id");
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/PurchaseOrder/cancelConfirmPOBill"),
@@ -1047,13 +1047,13 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
   onClearQuery: function () {
     var me = this;
 
-    Ext.getCmp("editQueryBillStatus").setValue(-1);
-    Ext.getCmp("editQueryRef").setValue(null);
-    Ext.getCmp("editQueryFromDT").setValue(null);
-    Ext.getCmp("editQueryToDT").setValue(null);
-    Ext.getCmp("editQuerySupplier").clearIdValue();
-    Ext.getCmp("editQueryPaymentType").setValue(-1);
-    Ext.getCmp("editQueryGoods").clearIdValue();
+    PCL.getCmp("editQueryBillStatus").setValue(-1);
+    PCL.getCmp("editQueryRef").setValue(null);
+    PCL.getCmp("editQueryFromDT").setValue(null);
+    PCL.getCmp("editQueryToDT").setValue(null);
+    PCL.getCmp("editQuerySupplier").clearIdValue();
+    PCL.getCmp("editQueryPaymentType").setValue(-1);
+    PCL.getCmp("editQueryGoods").clearIdValue();
 
     me.onQuery();
   },
@@ -1062,33 +1062,33 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     var me = this;
 
     var result = {
-      billStatus: Ext.getCmp("editQueryBillStatus").getValue()
+      billStatus: PCL.getCmp("editQueryBillStatus").getValue()
     };
 
-    var ref = Ext.getCmp("editQueryRef").getValue();
+    var ref = PCL.getCmp("editQueryRef").getValue();
     if (ref) {
       result.ref = ref;
     }
 
-    var supplierId = Ext.getCmp("editQuerySupplier").getIdValue();
+    var supplierId = PCL.getCmp("editQuerySupplier").getIdValue();
     if (supplierId) {
       result.supplierId = supplierId;
     }
 
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
-    var paymentType = Ext.getCmp("editQueryPaymentType").getValue();
+    var paymentType = PCL.getCmp("editQueryPaymentType").getValue();
     result.paymentType = paymentType;
 
-    var goodsId = Ext.getCmp("editQueryGoods").getIdValue();
+    var goodsId = PCL.getCmp("editQueryGoods").getIdValue();
     if (goodsId) {
       result.goodsId = goodsId;
     }
@@ -1118,7 +1118,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.Purchase.PWEditForm", {
+    var form = PCL.create("PSI.Purchase.PWEditForm", {
       genBill: true,
       pobillRef: bill.get("ref")
     });
@@ -1157,20 +1157,20 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
       return me.__pwGrid;
     }
     var modelName = "PSIPOBill_PWBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "bizDate", "supplierName",
         "warehouseName", "inputUserName", "bizUserName",
         "billStatus", "amount", "dateCreated",
         "paymentType"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__pwGrid = Ext.create("Ext.grid.Panel", {
+    me.__pwGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       title: "采购订单入库详情",
       viewConfig: {
@@ -1316,7 +1316,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/PurchaseOrder/closePOBill"),
@@ -1358,7 +1358,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/PurchaseOrder/cancelClosedPOBill"),
@@ -1410,7 +1410,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/PurchaseOrder/genPOBillPrintPage",
@@ -1472,7 +1472,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/PurchaseOrder/genPOBillPrintPage",
