@@ -214,6 +214,9 @@ Ext.define("PSI.User.UserEditForm", {
           fieldLabel: "能否登录",
           id: "editEnabled",
           width: width2,
+          allowBlank: false,
+          blankText: "没有选择是否允许登录",
+          beforeLabelTextTpl: PSI.Const.REQUIRED,
         }, {
           xtype: "displayfield",
           fieldLabel: "说明",
