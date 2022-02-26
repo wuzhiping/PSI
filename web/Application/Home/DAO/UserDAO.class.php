@@ -223,7 +223,9 @@ class UserDAO extends PSIBaseExDAO
         "name" => $v["name"],
         "enabled" => $v["enabled"],
         "orgCode" => $v["org_code"],
-        "gender" => $v["gender"],
+        // 用genderCodeToName会导致多次SQL查询，性能很差，临时使用
+        // 需要优化SQL后直接取值
+        "gender" => $this->genderCodeToName($v["gender"]),
         "birthday" => $v["birthday"],
         "idCardNumber" => $v["id_card_number"],
         "tel" => $v["tel"],
