@@ -34,7 +34,7 @@ PCL.define("PSI.SysDict.SysDictField", {
         return;
       }
 
-      if (e.getKey() == e.BACKSPACE) {
+      if (e.getKey() == e.BACKSPACE || e.getKey() == e.DELETE) {
         field.setValue(null);
         me.setIdValue(null);
         e.preventDefault();
