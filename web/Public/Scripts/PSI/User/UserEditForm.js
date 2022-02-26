@@ -182,7 +182,7 @@ Ext.define("PSI.User.UserEditForm", {
           name: "address",
           listeners: {
             specialkey: {
-              fn: me._onLastEditSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -201,6 +201,12 @@ Ext.define("PSI.User.UserEditForm", {
           callbackScope: me,
           id: "editGender",
           width: width2,
+          listeners: {
+            specialkey: {
+              fn: me.__onEditSpecialKey,
+              scope: me
+            }
+          },
         }, {
           id: "editEnabledId",
           xtype: "hidden",
@@ -218,6 +224,12 @@ Ext.define("PSI.User.UserEditForm", {
           blankText: "没有选择是否允许登录",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           value: "允许登录",
+          listeners: {
+            specialkey: {
+              fn: me._onLastEditSpecialKey,
+              scope: me
+            }
+          },
         }, {
           xtype: "displayfield",
           fieldLabel: "说明",
@@ -283,7 +295,7 @@ Ext.define("PSI.User.UserEditForm", {
     me.__editorList = [
       me.editLoginName, me.editName, me.editOrgCode,
       me.editOrgName, me.editBirthday, me.editIdCardNumber, me.editTel,
-      me.editTel02, me.editAddress];
+      me.editTel02, me.editAddress, me.editGender, me.editEnabled];
   },
 
   /**
