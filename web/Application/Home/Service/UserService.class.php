@@ -611,6 +611,9 @@ class UserService extends PSIBaseExService
     return $dao->queryUserDataOrg($params);
   }
 
+  /**
+   * 获得某个用户的完整信息
+   */
   public function userInfo($params)
   {
     if ($this->isNotOnline()) {

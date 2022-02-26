@@ -953,6 +953,21 @@ class UserDAO extends PSIBaseExDAO
     return $result;
   }
 
+  private function genderCodeToName($code)
+  {
+    $db = $this->db;
+    $sql = "select name from t_sysdict_sln0000_gender where code = '%s' ";
+    $data = $db->query($sql, $code);
+    if ($data) {
+      return $data[0]["name"];
+    } else {
+      return "";
+    }
+  }
+
+  /**
+   * 获得某个用户的完整信息
+   */
   public function userInfo($params)
   {
     $db = $this->db;
@@ -987,7 +1002,8 @@ class UserDAO extends PSIBaseExDAO
         "tel" => $v["tel"],
         "tel02" => $v["tel02"],
         "address" => $v["address"],
-        "gender" => $v["gender"],
+        "gender" => $this->genderCodeToName($v["gender"]),
+        "genderId" => $v["gender"],
         "enabled" => $v["enabled"]
       ];
     }
