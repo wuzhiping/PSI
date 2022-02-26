@@ -36,11 +36,10 @@ class FIdListDAO extends PSIBaseExDAO
         // 21XX都是财务总账
         $sln = "SLN0002 - PSI财务总账";
       } else {
+        // TODO 还有一些是SLN0001 - PSI标准进销存的fid，在用低代码重新实现后，
+        // 其就会转移到t_fid_plus中
         $sln = "SLN0001 - PSI标准进销存";
       }
-
-      // TODO 还有一些是SLN0001 - PSI标准进销存的fid，在用低代码重新实现后，
-      // 其就会转移到t_fid_plus中
 
       $result[] = [
         "fid" => $fid,
