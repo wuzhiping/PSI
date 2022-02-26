@@ -27,13 +27,13 @@ h1, h2, h3, p {
 		Arial, sans-serif;
 }
 
-.x-panel-header-text-container-default {
-	font-size: 12px;
+/* .x-panel-header-text-container-default { */
+	/* font-size: 12px; */
 	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
 		Arial, sans-serif; */
-}
+/* } */
 
 .x-btn-default-small .x-btn-inner {
 	font-size: 13px;
@@ -43,9 +43,9 @@ h1, h2, h3, p {
 		Arial, sans-serif; */
 }
 
-.x-tree-node-text {
+/* .x-tree-node-text {
 	font-size: 13px;
-}
+} */
 
 .x-mask-msg div {
 	font-size: 12px;
@@ -67,13 +67,13 @@ h1, h2, h3, p {
 		Arial, sans-serif; */
 }
 
-.x-toolbar .x-toolbar-text {
-	font-size: 13px;
+/* .x-toolbar .x-toolbar-text { */
+	/* font-size: 13px; */
 	/* font-family: "Monospaced Number", "Chinese Quote", -apple-system,
 		BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
 		"Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica,
 		Arial, sans-serif; */
-}
+/* } */
 
 .x-grid-row .x-grid-cell {
 	font-size: 13px;
