@@ -506,13 +506,13 @@ h1, h2, h3, p {
 	border-color: #dbdbdb;
 }
 
-input{
+/* input{
   caret-color: #ad4e00;
 }
 input:focus{
   border-color:transparent transparent #9254de transparent;
   border-width: 1px;
-}
+} */
 
 .x-form-type-text textarea.x-form-invalid-field, .x-form-type-text input.x-form-invalid-field,
 	.x-form-type-password textarea.x-form-invalid-field,
