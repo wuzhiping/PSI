@@ -217,6 +217,7 @@ PCL.define("PSI.User.OrgEditForm", {
           me.editName.setValue(name);
           me.editOrgCode.setValue(orgCode);
           me.editOrgType.setValue(orgType);
+          me.editOrgType.setIdValue(orgTypeId);
           me.editOrgTypeId.setValue(orgTypeId);
         }
       }

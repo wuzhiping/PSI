@@ -336,9 +336,8 @@ Ext.define("PSI.User.UserEditForm", {
           me.editTel.setValue(data.tel);
           me.editTel02.setValue(data.tel02);
           me.editAddress.setValue(data.address);
-          me.editGender.setValue({
-            gender: data.gender
-          });
+          me.editGenderId.setValue(data.genderId);
+          me.editGender.setValue(data.gender);
           me.editEnabled.setValue({
             enabled: data.enabled == 1
           });
