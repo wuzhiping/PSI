@@ -967,6 +967,18 @@ class UserDAO extends PSIBaseExDAO
     }
   }
 
+  private function enabledCodeToName($code)
+  {
+    $db = $this->db;
+    $sql = "select name from t_sysdict_sln0000_user_enabled where code = '%s' ";
+    $data = $db->query($sql, $code);
+    if ($data) {
+      return $data[0]["name"];
+    } else {
+      return "";
+    }
+  }
+
   /**
    * 获得某个用户的完整信息
    */
@@ -1006,7 +1018,8 @@ class UserDAO extends PSIBaseExDAO
         "address" => $v["address"],
         "gender" => $this->genderCodeToName($v["gender"]),
         "genderId" => $v["gender"],
-        "enabled" => $v["enabled"]
+        "enabledId" => $v["enabled"],
+        "enabled" => $this->enabledCodeToName($v["enabled"]),
       ];
     }
   }
