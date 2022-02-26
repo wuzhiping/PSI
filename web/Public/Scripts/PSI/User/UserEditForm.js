@@ -202,21 +202,17 @@ Ext.define("PSI.User.UserEditForm", {
           id: "editGender",
           width: width2,
         }, {
-          xtype: "radiogroup",
+          id: "editEnabledId",
+          xtype: "hidden",
+          name: "enabled",
+          value: 0,
+        }, {
+          xtype: "psi_sysdictfield",
+          tableName: "t_sysdict_sln0000_user_enabled",
+          callbackFunc: me._enabledCallback,
+          callbackScope: me,
           fieldLabel: "能否登录",
           id: "editEnabled",
-          columns: 2,
-          items: [{
-            boxLabel: "允许登录",
-            name: "enabled",
-            inputValue: true,
-            checked: true
-          }, {
-            boxLabel: "<span style='color:red'>禁止登录</span>",
-            name: "enabled",
-            inputValue: false,
-            checked: false
-          }],
           width: width2,
         }, {
           xtype: "displayfield",
@@ -277,6 +273,7 @@ Ext.define("PSI.User.UserEditForm", {
     me.editAddress = Ext.getCmp("editAddress");
     me.editGenderId = Ext.getCmp("editGenderId");
     me.editGender = Ext.getCmp("editGender");
+    me.editEnabledId = Ext.getCmp("editEnabledId");
     me.editEnabled = Ext.getCmp("editEnabled");
 
     me.__editorList = [
@@ -410,5 +407,19 @@ Ext.define("PSI.User.UserEditForm", {
       id = 0;
     }
     me.editGenderId.setValue(id);
+  },
+
+  /**
+   * 能否登录字段回调本方法
+   * @private
+   */
+  _enabledCallback(data, scope) {
+    const me = scope;
+
+    let id = data ? data.get("id") : null;
+    if (!id) {
+      id = 0;
+    }
+    me.editEnabledId.setValue(id);
   },
 });
