@@ -409,6 +409,6 @@ Ext.define("PSI.User.UserEditForm", {
     if (!id) {
       id = 0;
     }
-    me.editOrgTypeId.setValue(id);
+    me.editGenderId.setValue(id);
   },
 });
