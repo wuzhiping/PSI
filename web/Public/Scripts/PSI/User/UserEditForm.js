@@ -189,21 +189,17 @@ Ext.define("PSI.User.UserEditForm", {
           colspan: 2,
           width: width1
         }, {
-          xtype: "radiogroup",
+          id: "editGenderId",
+          xtype: "hidden",
+          name: "gender",
+          value: 0,
+        }, {
           fieldLabel: "性别",
+          xtype: "psi_sysdictfield",
+          tableName: "t_sysdict_sln0000_gender",
+          callbackFunc: me._genderCallback,
+          callbackScope: me,
           id: "editGender",
-          columns: 2,
-          items: [{
-            boxLabel: "男 ",
-            name: "gender",
-            inputValue: "男",
-            checked: true
-          }, {
-            boxLabel: "女 ",
-            name: "gender",
-            inputValue: "女",
-            checked: false
-          }],
           width: width2,
         }, {
           xtype: "radiogroup",
@@ -279,6 +275,7 @@ Ext.define("PSI.User.UserEditForm", {
     me.editTel = Ext.getCmp("editTel");
     me.editTel02 = Ext.getCmp("editTel02");
     me.editAddress = Ext.getCmp("editAddress");
+    me.editGenderId = Ext.getCmp("editGenderId");
     me.editGender = Ext.getCmp("editGender");
     me.editEnabled = Ext.getCmp("editEnabled");
 
@@ -293,6 +290,8 @@ Ext.define("PSI.User.UserEditForm", {
    */
   _onWndClose() {
     const me = this;
+
+    PCL.WindowManager.hideAll();
 
     Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
   },
@@ -397,5 +396,19 @@ Ext.define("PSI.User.UserEditForm", {
         me._onOK();
       }
     }
-  }
+  },
+
+  /**
+   * 性别字段回调本方法
+   * @private
+   */
+  _genderCallback(data, scope) {
+    const me = scope;
+
+    let id = data ? data.get("id") : null;
+    if (!id) {
+      id = 0;
+    }
+    me.editOrgTypeId.setValue(id);
+  },
 });
