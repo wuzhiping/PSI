@@ -21,7 +21,7 @@ class FIdListDAO extends PSIBaseExDAO
 
     $result = [];
 
-    // t_fid中的均为 系统固有和SLN0000
+    // t_fid中的均为系统固有
     $category = "系统固有";
     $sln = "SLN0000 - PSI低代码应用平台";
 
@@ -29,8 +29,17 @@ class FIdListDAO extends PSIBaseExDAO
     $data = $db->query($sql);
 
     foreach ($data as $v) {
+      $fid = $v["fid"];
+      if (substr($fid, 0, 2) == "21") {
+        // 21XX都是财务总账
+        $sln = "SLN0002 - PSI财务总账";
+      }
+
+      // TODO 还有一些是SLN0001 - PSI标准进销存的fid，在用低代码重新实现后，
+      // 其就会转移到t_fid_plus中
+
       $result[] = [
-        "fid" => $v["fid"],
+        "fid" => $fid,
         "code" => $v["code"],
         "name" => $v["name"],
         "py" => $v["py"],
