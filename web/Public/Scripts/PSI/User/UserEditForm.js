@@ -205,7 +205,7 @@ Ext.define("PSI.User.UserEditForm", {
           id: "editEnabledId",
           xtype: "hidden",
           name: "enabled",
-          value: 0,
+          value: 1,
         }, {
           xtype: "psi_sysdictfield",
           tableName: "t_sysdict_sln0000_user_enabled",
@@ -217,6 +217,7 @@ Ext.define("PSI.User.UserEditForm", {
           allowBlank: false,
           blankText: "没有选择是否允许登录",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
+          value: "允许登录",
         }, {
           xtype: "displayfield",
           fieldLabel: "说明",
@@ -339,9 +340,9 @@ Ext.define("PSI.User.UserEditForm", {
           me.editGenderId.setValue(data.genderId);
           me.editGender.setValue(data.gender);
           me.editGender.setIdValue(data.genderId);
-          me.editEnabled.setValue({
-            enabled: data.enabled == 1
-          });
+          me.editEnabledId.setValue(data.enabledId);
+          me.editEnabled.setValue(data.enabled);
+          me.editEnabled.setIdValue(data.enabledId);
           me.editOrgId.setValue(data.orgId);
           me.editOrgName.setValue(data.orgFullName);
         }
