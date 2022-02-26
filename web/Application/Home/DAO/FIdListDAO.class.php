@@ -30,9 +30,13 @@ class FIdListDAO extends PSIBaseExDAO
 
     foreach ($data as $v) {
       $fid = $v["fid"];
-      if (substr($fid, 0, 2) == "21") {
+      if (substr($fid, 0, 1) == "-") {
+        $sln = "SLN0000 - PSI低代码应用平台";
+      } else if (substr($fid, 0, 2) == "21") {
         // 21XX都是财务总账
         $sln = "SLN0002 - PSI财务总账";
+      } else {
+        $sln = "SLN0001 - PSI标准进销存";
       }
 
       // TODO 还有一些是SLN0001 - PSI标准进销存的fid，在用低代码重新实现后，
