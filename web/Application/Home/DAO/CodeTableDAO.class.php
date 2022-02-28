@@ -609,7 +609,7 @@ class CodeTableDAO extends PSIBaseExDAO
       "sysCol" => 1,
       "isVisible" => 1,
       "widthInView" => 80,
-      "editorXtype" => "textfield"
+      "editorXtype" => "psi_sysdictfield"
     ];
 
     return $result;
