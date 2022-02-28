@@ -292,7 +292,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
       url: me.URL("Home/CodeTableRuntime/editCodeTableRecord"),
       method: "POST",
       success(form, action) {
-        me.__lastId = action.result.id;
+        me._lastId = action.result.id;
 
         el && el.unmask();
 
@@ -353,10 +353,10 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
 
     PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
-    if (me.__lastId) {
+    if (me._lastId) {
       const parentForm = me.getParentForm();
       if (parentForm) {
-        parentForm.refreshMainGrid.apply(parentForm, [me.__lastId]);
+        parentForm.refreshMainGrid.apply(parentForm, [me._lastId]);
       }
     }
   },
