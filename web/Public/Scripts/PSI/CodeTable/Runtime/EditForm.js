@@ -428,6 +428,8 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
               // 码表
               edit.setValue(data[fieldName + "_display_value"]);
               edit.setIdValue(data[fieldName]);
+            }if (parseInt(colMd.valueFrom) == 2){
+              // 系统数据字典
             } else {
               edit.setValue(data[fieldName]);
             }
