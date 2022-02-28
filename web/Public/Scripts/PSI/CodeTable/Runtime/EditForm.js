@@ -430,6 +430,9 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
               edit.setIdValue(data[fieldName]);
             } if (parseInt(colMd.valueFrom) == 2) {
               // 系统数据字典
+              const refId = me.buildEditId(fieldName + "_hidden_id");
+              const editRef = PCL.getCmp(refId);
+              editRef.setValue(data[fieldName]);
               edit.setValue(data[fieldName + "_display_value"]);
               edit.setIdValue(data[fieldName]);
             } else {
