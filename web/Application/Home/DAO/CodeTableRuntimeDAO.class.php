@@ -1008,6 +1008,7 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
       }
     }
 
+    // 层级数据
     if ($treeView) {
       $parentId = $data[0]["parent_id"];
       if ($parentId) {
@@ -1019,9 +1020,20 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
       }
     }
 
-    // 处理码表
     foreach ($md["cols"] as $colMd) {
       if ($colMd["valueFrom"] == 3) {
+        // 码表
+        $valueFromTableName = $colMd["valueFromTableName"];
+        $valueFromColName = $colMd["valueFromColName"];
+        $valueFromColNameDisplay = $colMd["valueFromColNameDisplay"];
+        $sql = "select {$valueFromColNameDisplay} as nd from {$valueFromTableName}
+                where {$valueFromColName} = '%s' ";
+        $d = $db->query($sql, $result[$colMd["fieldName"]]);
+        if ($d) {
+          $result[$colMd["fieldName"] . "_display_value"] = $d[0]["nd"];
+        }
+      } else if ($colMd["valueFrom"] == 2) {
+        // 系统数据字典
         $valueFromTableName = $colMd["valueFromTableName"];
         $valueFromColName = $colMd["valueFromColName"];
         $valueFromColNameDisplay = $colMd["valueFromColNameDisplay"];
