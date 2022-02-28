@@ -12,6 +12,7 @@ PCL.define("PSI.SysDict.SysDictField", {
   config: {
     callbackFunc: null,
     callbackScope: null,
+    editRef: null,
     showModal: false,
     // 系统数据字典的数据库表名
     tableName: "",
@@ -41,7 +42,7 @@ PCL.define("PSI.SysDict.SysDictField", {
 
         const func = me.getCallbackFunc();
         if (func) {
-          func(null, me.getCallbackScope());
+          func(null, me.getCallbackScope(), me.getEditRef());
         }
 
         return false;
@@ -249,7 +250,7 @@ PCL.define("PSI.SysDict.SysDictField", {
 
     const func = me.getCallbackFunc();
     if (func) {
-      func(data, me.getCallbackScope());
+      func(data, me.getCallbackScope(), me.getEditRef());
     }
   },
 

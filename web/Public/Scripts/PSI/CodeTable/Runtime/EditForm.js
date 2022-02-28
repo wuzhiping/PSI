@@ -218,6 +218,8 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
           PCL.apply(item, {
             xtype: "psi_sysdictfield",
             tableName: colMd.valueFromTableName,
+            callbackFunc: me._sysDictFieldCallback,
+            callbackScope: me,
           });
         } else if (parseInt(colMd.valueFrom) == 3) {
           // 引用其他码表
@@ -513,5 +515,21 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
         }
       }
     }
+  },
+
+  /**
+   * 系统数据字典字段回调本函数
+   * 
+   * @private
+   */
+  _sysDictFieldCallback(data, scope, editRef) {
+    const me = scope;
+
+    let id = data ? data.get("id") : null;
+    if (!id) {
+      // TODO 这需要系统数据字典的默认值的code为0，这未必满足全部需要，需要再仔细考虑设计
+      id = 0;
+    }
+    PCL.getCmp(editRef).setValue(id);
   }
 });
