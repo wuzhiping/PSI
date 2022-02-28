@@ -210,8 +210,9 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
         if (parseInt(colMd.valueFrom) == 2) {
           // 引用系统数据字典
           // hiddenId用来在提交Form的时候向后台传递码表id
+          const refId = me.buildEditId(colMd.fieldName + "_hidden_id");
           const hiddenId = PCL.create("PCL.form.field.Hidden", {
-            id: me.buildEditId(colMd.fieldName + "_hidden_id"),
+            id: refId,
             name: colMd.fieldName
           });
           result.push(hiddenId);
@@ -220,6 +221,8 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
             tableName: colMd.valueFromTableName,
             callbackFunc: me._sysDictFieldCallback,
             callbackScope: me,
+            editRef: refId,
+            name: colMd.fieldName + "_dispalyValue",
           });
         } else if (parseInt(colMd.valueFrom) == 3) {
           // 引用其他码表
