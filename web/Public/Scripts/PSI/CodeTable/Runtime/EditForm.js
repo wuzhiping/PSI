@@ -73,7 +73,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
 
     // 每个字段的编辑器宽度
     const fieldWidth = 370;
-    
+
     // TODO 宽度超过屏幕宽度，怎么办？
     const formWidth = fieldWidth * md.editColCnt + 50;
 
@@ -133,6 +133,9 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
     me.editForm = PCL.getCmp("PSI_CodeTable_RuntimeEditForm_editForm");
   },
 
+  /**
+   * @private
+   */
   getEditItems() {
     const me = this;
 
@@ -262,6 +265,8 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
 
   /**
    * 保存
+   * 
+   * @private
    */
   onOK(thenAdd) {
     const me = this;
@@ -312,6 +317,9 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
     f.submit(sf);
   },
 
+  /**
+   * @private
+   */
   clearEdit() {
     const me = this;
     const md = me.getMetaData();
@@ -340,6 +348,9 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
     me.focusOnFirstEdit();
   },
 
+  /**
+   * @private
+   */
   _onWndClose() {
     const me = this;
 
@@ -353,6 +364,9 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
     }
   },
 
+  /**
+   * @private
+   */
   _onWndShow() {
     const me = this;
     const md = me.getMetaData();
@@ -378,6 +392,9 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
     });
   },
 
+  /**
+   * @private
+   */
   setDataForEdit(data) {
     const me = this;
 
@@ -457,12 +474,18 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
     }
   },
 
+  /**
+   * @private
+   */
   buildEditId(fieldName) {
     const me = this;
     const md = me.getMetaData();
     return "PSI_CodeTable_RuntimeEditForm_edit_" + md.fid + "_" + fieldName;
   },
 
+  /**
+   * @private
+   */
   _onEditSpecialKey(field, e) {
     const me = this;
 
