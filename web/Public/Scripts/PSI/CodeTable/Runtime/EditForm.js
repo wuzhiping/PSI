@@ -258,7 +258,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
 
         result.push(item);
       }
-    }
+    } // end of for
 
     return result;
   },
