@@ -955,7 +955,7 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
   {
     $db = $this->db;
     $id = $params["id"];
-    $fid = $params["fid"];
+
     if (!$id) {
       return $this->emptyResult();
     }
