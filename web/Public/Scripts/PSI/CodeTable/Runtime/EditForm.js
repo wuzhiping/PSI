@@ -209,20 +209,15 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
 
         if (parseInt(colMd.valueFrom) == 2) {
           // 引用系统数据字典
-          // TODO 当前是用combo来展示数据，当字典数据量大的时候是不合适的，需要进一步优化
-          const store = PCL.create("PCL.data.ArrayStore", {
-            fields: [colMd.valueFromColName, "name"],
-            data: []
+          // hiddenId用来在提交Form的时候向后台传递码表id
+          const hiddenId = PCL.create("PCL.form.field.Hidden", {
+            id: me.buildEditId(colMd.fieldName + "_hidden_id"),
+            name: colMd.fieldName
           });
-          store.add(colMd.valueFromExtData);
+          result.push(hiddenId);
           PCL.apply(item, {
-            xtype: "combo",
-            queryMode: "local",
-            editable: false,
-            valueField: colMd.valueFromColName,
-            displayField: "name",
-            store: store,
-            value: store.getAt(0)
+            xtype: "psi_sysdictfield",
+            tableName: colMd.valueFromTableName,
           });
         } else if (parseInt(colMd.valueFrom) == 3) {
           // 引用其他码表
