@@ -396,8 +396,6 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
     }
 
     // 操作成功
-    $code = $params["code"];
-    $name = $params["name"];
     $params["id"] = $id;
     $params["log"] = "新增{$codeTableName} ：{$code}-{$name}";
     $params["logCategory"] = $codeTableName;
