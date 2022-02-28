@@ -251,7 +251,7 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
           if (autoCodeLength > 0 && me.adding) {
             PCL.apply(item, {
               xtype: "displayfield",
-              value: "保存后自动生成"
+              value: "<span class='PSI-field-note'>保存后自动生成</span>"
             });
           }
         }
