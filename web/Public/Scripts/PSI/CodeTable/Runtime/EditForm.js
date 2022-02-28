@@ -67,10 +67,14 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
       }
     }
     const rowCount = Math.ceil(sumColSpan / md.editColCnt);
+
+    // TODO 高度超过屏幕高度，怎么办？
     const formHeight = 220 + rowCount * 30;
 
     // 每个字段的编辑器宽度
     const fieldWidth = 370;
+    
+    // TODO 宽度超过屏幕宽度，怎么办？
     const formWidth = fieldWidth * md.editColCnt + 50;
 
     const t = entity == null ? "新建" + md.name : "编辑" + md.name;
