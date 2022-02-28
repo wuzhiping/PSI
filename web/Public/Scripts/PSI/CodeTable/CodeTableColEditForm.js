@@ -208,7 +208,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     const me = this;
     const entity = me.getEntity();
     const isSysCol = (entity != null) && (parseInt(entity.get("sysColRawValue")) == 1);
-    debugger;
+
     const col2Width = 550;
     const col3Width = 830;
 
