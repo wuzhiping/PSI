@@ -209,7 +209,7 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
 
     $db = $this->db;
 
-    $c = 1;
+    $c = "1";
 
     $tableName = $md["tableName"];
     $sql = "select code from %s order by code desc limit 1";
@@ -217,10 +217,11 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
     if ($data) {
       $code = $data[0]["code"];
       // 自动编码的时候，生成的编码都是数字流水号
-      $c = intval($code) + 1;
+      $next = intval($code) + 1;
+      $c = "{$next}";
     }
 
-    return str_pad($c, $autoCodeLength - 1, "0", STR_PAD_LEFT);;
+    return str_pad($c, $autoCodeLength, "0", STR_PAD_LEFT);;
   }
 
   /**
@@ -261,6 +262,7 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
     $autoCodeLength = intval($md["autoCodeLength"]);
     $code = $params["code"];
     if ($autoCodeLength > 0) {
+      // 自动编码
       $code = $this->autoCode($md);
     }
     if (!$code) {
