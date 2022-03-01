@@ -56,6 +56,12 @@ PCL.define("PSI.AFX.Form.EditForm", {
    * 例如 __editList = [[input1, input2], [input3, ...], [inputN, ...]];
    * 上述就表示有3个Tab页
    * 
+   * ------------------------------------------------------------------
+   * 注意 
+   * 有这样的业务场景：input会随着其他选项不同，被禁用或只读
+   * 这时候，在业务逻辑中需要重新给__editorList赋值。
+   * 也就是说，__editorList里面的input都是可以获得焦点的。
+   * 
    * @protected
    */
   __editorList: [],
