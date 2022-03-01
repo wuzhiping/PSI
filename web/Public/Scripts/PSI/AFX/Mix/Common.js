@@ -58,6 +58,10 @@ PCL.define("PSI.AFX.Mix.Common", {
 
   // 把input的光标定位到最后
   setFocusAndCursorPosToLast(edit) {
+    if (!edit) {
+      return;
+    }
+
     edit.focus();
     const v = edit.getValue();
     const dom = edit.inputEl.dom;
