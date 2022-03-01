@@ -46,7 +46,9 @@ PCL.define("PSI.AFX.Form.EditForm", {
    * 当__useTabPanel == false的时候，__editorList中直接存放对应的input控件，
    * 这时候__editorList是一维数组；
    * 
-   * 当__useTabPanel == true的时候，__editorList是二维数组
+   * 当__useTabPanel == true的时候，__editorList是二维数组，
+   * 例如 __editList = [[input1, input2], [input3, ...], [inputN, ...]];
+   * 上述就表示有3个Tab页
    * 
    * @protected
    */
