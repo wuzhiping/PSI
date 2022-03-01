@@ -67,12 +67,17 @@ PCL.define("PSI.AFX.Form.EditForm", {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
-      const id = field.getId();
-      for (let i = 0; i < me.__editorList.length; i++) {
-        const editor = me.__editorList[i];
-        if (id === editor.getId()) {
-          const edit = me.__editorList[i + 1];
-          me.setFocusAndCursorPosToLast(edit);
+      if (me.__useTabPanel) {
+        // TabPanel布局
+      } else {
+        // 单一的Form布局
+        const id = field.getId();
+        for (let i = 0; i < me.__editorList.length; i++) {
+          const editor = me.__editorList[i];
+          if (id === editor.getId()) {
+            const edit = me.__editorList[i + 1];
+            me.setFocusAndCursorPosToLast(edit);
+          }
         }
       }
     }
