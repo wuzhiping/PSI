@@ -191,6 +191,18 @@ INSERT INTO `t_sysdict_sln0000_user_enabled` (`id`, `code`, `code_int`, `name`, 
 ('1', '1', 1, '允许登录', '', '', 1),
 ('0', '0', 0, '禁止登录', '', '', 2);
 
+# 码表层级数据
+TRUNCATE TABLE `t_sysdict_sln0000_ct_tree_view`;
+INSERT INTO `t_sysdict_sln0000_ct_tree_view` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('0', '0', 0, '否', '', '码表是层级数据', 1),
+('1', '1', 1, '是', '', '码表不是层级数据', 2);
+
+# 码表视图分页
+TRUNCATE TABLE `t_sysdict_sln0000_ct_view_paging`;
+INSERT INTO `t_sysdict_sln0000_ct_view_paging` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('1', '1', 1, '分页', '', '码表视图分页显示', 1),
+('2', '2', 2, '不分页', '', '码表视图不分页显示', 2);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
