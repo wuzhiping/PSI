@@ -41,6 +41,12 @@ PCL.define("PSI.AFX.Form.EditForm", {
   __useTabPanel: false,
 
   /**
+   * 当__useTabPanel == true的时候，保存TabPanel的Id，用于获得对其的引用
+   * @protected
+   */
+  __tabPanelId: null,
+
+  /**
    * 保存input列表，用于在回车的时候跳转
    * 
    * 当__useTabPanel == false的时候，__editorList中直接存放对应的input控件，
