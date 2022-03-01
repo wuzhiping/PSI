@@ -187,7 +187,7 @@ PCL.define("PSI.SysDict.MainForm", {
         }, {
           header: "数据库表名",
           dataIndex: "tableName",
-          width: 200,
+          width: 300,
         }, {
           header: "备注",
           dataIndex: "memo",
