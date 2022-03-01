@@ -69,6 +69,34 @@ PCL.define("PSI.AFX.Form.EditForm", {
     if (e.getKey() === e.ENTER) {
       if (me.__useTabPanel) {
         // TabPanel布局
+        const id = field.getId();
+        for (let i = 0; i < me.__editorList.length; i++) {
+          const inputInTab = me.__editorList[i];
+          for (let j = 0; j < inputInTab.length; j++) {
+            const editor = inputInTab[j];
+            if (id === editor.getId()) {
+              if (j == inputInTab.length - 1) {
+                // 这是当前Tab页的最后一个input了
+                if (i == me.__editorList.length - 1) {
+                  // 这也是最后一个Tab页了，这时候就不需要做处理，留给具体的业务页面去处理
+                } else {
+                  // 调整到下一个Tab页
+                  const tab = PCL.getCmp(me.__tabPanelId);
+                  if (tab) {
+                    const nextTab = i + 1;
+                    tab.setActiveTab(nextTab);
+                    const edit = me.__editorList[nextTab][0];
+                    me.setFocusAndCursorPosToLast(edit);
+                  }
+                }
+              } else {
+                // 跳转到当前Tab页的下一个input
+                const edit = inputInTab[j + 1];
+                me.setFocusAndCursorPosToLast(edit);
+              }
+            }
+          }
+        }
       } else {
         // 单一的Form布局
         const id = field.getId();
