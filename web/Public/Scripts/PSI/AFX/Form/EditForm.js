@@ -33,7 +33,21 @@ PCL.define("PSI.AFX.Form.EditForm", {
   },
 
   /**
+   * 是否是使用的TabPanel布局
+   * true：是
+   * 
+   * @protected
+   */
+  __useTabPanel: false,
+
+  /**
    * 保存input列表，用于在回车的时候跳转
+   * 
+   * 当__useTabPanel == false的时候，__editorList中直接存放对应的input控件，
+   * 这时候__editorList是一维数组；
+   * 
+   * 当__useTabPanel == true的时候，__editorList是二维数组
+   * 
    * @protected
    */
   __editorList: [],
