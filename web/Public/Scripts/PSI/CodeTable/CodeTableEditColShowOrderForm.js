@@ -50,7 +50,7 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       items: [{
         region: "north",
         border: 0,
-        html: "<h1 style='margin-top:0px'>拖动列来调整显示次序</h1>"
+        html: "<h1 style='margin-top:0px;color:#0050b3'>拖动列来调整显示次序</h1>"
       }, {
         region: "center",
         layout: "fit",
