@@ -64,6 +64,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         layout: "fit",
         items: {
           xtype: "tabpanel",
+          id: "PSI_CodeTable_CodeTableColEditForm_tabPanel",
           border: 0,
           items: [{
             title: "数据库结构",
@@ -191,9 +192,13 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.editIsVisible = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editIsVisible");
     me.editMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMustInput");
 
+    me.__useTabPanel = true;
+    me.__tabPanelId = "PSI_CodeTable_CodeTableColEditForm_tabPanel";
     me.__editorList = [
-      me.editCaption, me.editFieldName, me.editWidthInView, me.editShowOrder,
-      me.editColSpan, me.editShowOrderInView, me.editMemo
+      [me.editCaption, me.editFieldName, me.editMemo],
+      [],
+      [me.editWidthInView, me.editShowOrderInView, me.editShowOrder],
+      [me.editColSpan]
     ];
 
     me.buttonRefCol = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
@@ -243,7 +248,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       beforeLabelTextTpl: PSI.Const.REQUIRED,
       listeners: {
         specialkey: {
-          fn: me.onEditSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       },
@@ -257,7 +262,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       beforeLabelTextTpl: PSI.Const.REQUIRED,
       listeners: {
         specialkey: {
-          fn: me.onEditSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       },
@@ -296,7 +301,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       fieldLabel: "列数据长度",
       listeners: {
         specialkey: {
-          fn: me.onEditSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       },
@@ -311,7 +316,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       fieldLabel: "列小数位数",
       listeners: {
         specialkey: {
-          fn: me.onEditSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       },
@@ -330,7 +335,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         .get("note"),
       listeners: {
         specialkey: {
-          fn: me.onEditLastSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       },
@@ -428,7 +433,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       name: "widthInView",
       listeners: {
         specialkey: {
-          fn: me.onEditSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       }
@@ -444,7 +449,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       name: "showOrderInView",
       listeners: {
         specialkey: {
-          fn: me.onEditSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       },
@@ -461,7 +466,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       name: "showOrder",
       listeners: {
         specialkey: {
-          fn: me.onEditSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       }
@@ -493,7 +498,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       value: 1,
       listeners: {
         specialkey: {
-          fn: me.onEditSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       }
@@ -725,21 +730,6 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     };
 
     me.ajax(r);
-  },
-
-  onEditSpecialKey(field, e) {
-    const me = this;
-
-    if (e.getKey() === e.ENTER) {
-      const id = field.getId();
-      for (let i = 0; i < me.__editorList.length; i++) {
-        const edit = me.__editorList[i];
-        if (id == edit.getId()) {
-          const edit = me.__editorList[i + 1];
-          me.setFocusAndCursorPosToLast(edit);
-        }
-      }
-    }
   },
 
   onEditLastSpecialKey(field, e) {
