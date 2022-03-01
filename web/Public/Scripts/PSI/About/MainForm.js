@@ -44,7 +44,7 @@ PCL.define("PSI.About.MainForm", {
         margin: "0 0 0 10",
         cls: "PSI-about",
         html: `
-              <h1 style='color:#0050b3'>${me.getProductionName()}基于开源技术，提供人、财、物、产、供、销、存一体化的企业管理全面解决方案</h1>
+              <h1 style='color:#0050b3;margin-top:0px'>${me.getProductionName()}基于开源技术，提供人、财、物、产、供、销、存一体化的企业管理全面解决方案</h1>
               <h3>当前版本：${PSI.Const.VERSION}</h3>
               <h3>官网&nbsp;<a style='text-decoration:none;' href='https://gitee.com/crm8000/PSI' target='_blank'>https://gitee.com/crm8000/PSI</a></h3>
               <p>PHP版本号: ${me.getPhpVersion()} , MySQL版本号: ${me.getMySQLVersion()}</p>
