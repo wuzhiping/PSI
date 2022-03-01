@@ -60,7 +60,10 @@ PCL.define("PSI.AFX.Mix.Common", {
   setFocusAndCursorPosToLast(edit) {
     edit.focus();
     const v = edit.getValue();
-    edit.inputEl.dom.selectionStart = v ? v.length : 0;
+    const dom = edit.inputEl.dom;
+    if (dom) {
+      dom.selectionStart = v ? v.length : 0;
+    }
   },
 
   // 格式化Dialogue Form的标题
