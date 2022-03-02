@@ -62,6 +62,8 @@ PCL.define("PSI.AFX.Form.EditForm", {
    * 这时候，在业务逻辑中需要重新给__editorList赋值。
    * 也就是说，__editorList里面的input都是可以获得焦点的。
    * 
+   * 典型应用见：web\Public\Scripts\PSI\CodeTable\CodeTableColEditForm.js
+   * 
    * @protected
    */
   __editorList: [],
