@@ -576,6 +576,55 @@ CREATE TABLE IF NOT EXISTS `t_sysdict_sln0000_ct_view_paging` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `t_sysdict_sln0000_ct_field_type`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_sln0000_ct_field_type` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `code_int` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `py` varchar(255) NOT NULL,
+  `memo` varchar(255) NOT NULL,
+  `show_order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_sysdict_sln0000_ct_value_from`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_sln0000_ct_value_from` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `code_int` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `py` varchar(255) NOT NULL,
+  `memo` varchar(255) NOT NULL,
+  `show_order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_sysdict_sln0000_ct_field_visible`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_sln0000_ct_field_visible` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `code_int` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `py` varchar(255) NOT NULL,
+  `memo` varchar(255) NOT NULL,
+  `show_order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_sysdict_sln0000_ct_must_input`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_sln0000_ct_must_input` (
+  `id` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `code_int` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `py` varchar(255) NOT NULL,
+  `memo` varchar(255) NOT NULL,
+  `show_order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
