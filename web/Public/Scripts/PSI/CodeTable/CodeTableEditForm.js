@@ -317,11 +317,8 @@ PCL.define("PSI.CodeTable.CodeTableEditForm", {
       list.push(me.editTableName);
       list.push(me.editEnableParentId);
     }
-    list.push(me.editEditColCnt);
-    if (me.adding) {
-      list.push(me.editViewPaging);
-    }
-    list.push(me.editAutoCodeLength, me.editHandlerClassName, me.editMemo);
+    list.push(me.editEditColCnt, me.editViewPaging, me.editAutoCodeLength,
+      me.editHandlerClassName, me.editMemo);
 
     me.__editorList = list;
 
