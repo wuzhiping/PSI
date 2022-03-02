@@ -172,19 +172,19 @@ PCL.define("PSI.CodeTable.CodeTableEditForm", {
           colspan: 2,
           width: width1
         }, {
-          id: "PSI_CodeTable_CodeTableEditForm_editEnableParentId",
-          queryMode: "local",
-          editable: false,
-          valueField: "id",
-          fieldLabel: "层级数据",
-          xtype: me.adding ? "combo" : "displayfield",
-          beforeLabelTextTpl: PSI.Const.REQUIRED,
-          store: PCL.create("PCL.data.ArrayStore", {
-            fields: ["id", "text"],
-            data: [[0, "否"], [1, "是"]]
-          }),
+          id: "PSI_CodeTable_CodeTableEditForm_hiddenEnableParentId",
+          xtype: "hidden",
           value: 0,
           name: "enableParentId",
+        }, {
+          id: "PSI_CodeTable_CodeTableEditForm_editEnableParentId",
+          fieldLabel: "层级数据",
+          xtype: me.adding ? "psi_sysdictfield" : "displayfield",
+          beforeLabelTextTpl: PSI.Const.REQUIRED,
+          tableName: "t_sysdict_sln0000_ct_tree_view",
+          callbackFunc: me._parentIdCallback,
+          callbackScope: me,
+          value: "否",
           width: width2,
           listeners: {
             specialkey: {
@@ -304,6 +304,7 @@ PCL.define("PSI.CodeTable.CodeTableEditForm", {
     me.editName = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editName");
     me.editModuleName = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editModuleName");
     me.editTableName = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editTableName");
+    me.hiddenEnableParentId = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_hiddenEnableParentId");
     me.editEnableParentId = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editEnableParentId");
     me.editEditColCnt = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editEditColCnt");
     me.editAutoCodeLength = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editAutoCodeLength");
@@ -422,5 +423,19 @@ PCL.define("PSI.CodeTable.CodeTableEditForm", {
         parentForm.refreshMainGrid.apply(parentForm, [me.__lastId]);
       }
     }
+  },
+
+  /**
+   * 层级数据 字段回调本方法
+   * @private
+   */
+  _parentIdCallback(data, scope) {
+    const me = scope;
+
+    let id = data ? data.get("id") : null;
+    if (!id) {
+      id = 0;
+    }
+    me.hiddenEnableParentId.setValue(id);
   }
 });
