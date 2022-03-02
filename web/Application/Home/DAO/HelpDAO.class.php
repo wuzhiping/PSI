@@ -21,7 +21,7 @@ class HelpDAO extends PSIBaseExDAO
 
     $code = $params["code"];
 
-    $sql = "select name, memo from t_sysdict_help_nav where code = '%s' ";
+    $sql = "select name, memo from t_sysdict_sln0000_help_nav where code = '%s' ";
     $data = $db->query($sql, $code);
     if ($data) {
       $v = $data[0];
