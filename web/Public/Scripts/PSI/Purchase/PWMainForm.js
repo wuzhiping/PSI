@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Purchase.PWMainForm", {
+PCL.define("PSI.Purchase.PWMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -15,7 +15,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -151,7 +151,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "待入库"], [1000, "已入库"],
         [2000, "部分退货"], [3000, "全部退货"]]
@@ -210,7 +210,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
       queryMode: "local",
       editable: false,
       valueField: "id",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "记应付账款"], [1, "现金付款"],
         [2, "预付款"]]
@@ -251,7 +251,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -265,15 +265,15 @@ Ext.define("PSI.Purchase.PWMainForm", {
     }
 
     var modelName = "PSIPWBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "bizDate", "supplierName",
         "warehouseName", "inputUserName", "bizUserName",
         "billStatus", "billStatusCode", "amount", "dateCreated",
         "paymentType", "billMemo", "expandByBOM",
         "wspBillRef", "tax", "moneyWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -299,7 +299,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -445,7 +445,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"], ["300"],
             ["1000"]]
@@ -454,9 +454,9 @@ Ext.define("PSI.Purchase.PWMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext.getCmp("comboCountPerPage").getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToobar").doRefresh();
+                PCL.getCmp("pagingToobar").doRefresh();
               },
               scope: me
             }
@@ -487,20 +487,20 @@ Ext.define("PSI.Purchase.PWMainForm", {
     }
 
     var modelName = "PSIPWBillDetail";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount", "goodsMoney",
         "goodsPrice", "memo", "taxRate", "tax",
         "moneyWithTax", "goodsPriceWithTax", "rejGoodsCount", "realGoodsCount"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__detailGrid = Ext.create("Ext.grid.Panel", {
+    me.__detailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -515,7 +515,7 @@ Ext.define("PSI.Purchase.PWMainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 40
         }), {
