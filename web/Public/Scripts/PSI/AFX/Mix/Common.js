@@ -63,7 +63,7 @@ PCL.define("PSI.AFX.Mix.Common", {
     }
 
     edit.focus();
-    const v = edit.getValue();
+    const v = `${edit.getValue()}`;
     const dom = edit.inputEl.dom;
     if (dom) {
       dom.selectionStart = v ? v.length : 0;
