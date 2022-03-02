@@ -1788,8 +1788,8 @@ CREATE TABLE IF NOT EXISTS `t_sysdict_mainmenu_nav` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `t_sysdict_help_nav`;
-CREATE TABLE IF NOT EXISTS `t_sysdict_help_nav` (
+DROP TABLE IF EXISTS `t_sysdict_sln0000_help_nav`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_sln0000_help_nav` (
   `id` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
   `code_int` int(11) NOT NULL,
