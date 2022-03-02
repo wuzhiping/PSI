@@ -32,7 +32,7 @@ INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`
 ('5DAC23B4-60AF-11EC-A41B-E86A641ED142', 'SLN0000.02.01', '表单字段编辑器类型', 't_sysdict_form_editor_xtype', 'SLN0000.02', '表单字段编辑器的类型', 'BDZDBJQLX'),
 ('68BE0DF3-60AF-11EC-A41B-E86A641ED142', 'SLN0000.03.01', '视图xtype', 't_sysdict_fv_xtype', 'SLN0000.03', '视图的组件类型(xtype)', 'STXTYPE'),
 ('6C5F4D19-8952-11EC-9791-E86A641ED142', 'SLN0000.05.01', '主菜单导航', 't_sysdict_mainmenu_nav', 'SLN0000.05', '主菜单导航 - 主菜单中单击模块后跳转的URL', 'ZCDDH'),
-('5E538B96-8973-11EC-9791-E86A641ED142', 'SLN0000.05.02', '实施指南导航', 't_sysdict_help_nav', 'SLN0000.05', '实施指南导航 - 模块中单击指南按钮后跳转的URL', 'SSZNDH'),
+('5E538B96-8973-11EC-9791-E86A641ED142', 'SLN0000.05.02', '实施指南导航', 't_sysdict_sln0000_help_nav', 'SLN0000.05', '实施指南导航 - 模块中单击指南按钮后跳转的URL', 'SSZNDH'),
 ('103CD8A1-95EB-11EC-A366-E86A641ED142', 'SLN0000.51.01', '组织机构性质', 't_sysdict_sln0000_org_type', 'SLN0000.51', '组织机构性质', 'ZZJGXZ'),
 ('8F7829F3-9602-11EC-A366-E86A641ED142', 'SLN0000.52.01', '性别', 't_sysdict_sln0000_gender', 'SLN0000.52', '', 'XB'),
 ('99913BDD-9602-11EC-A366-E86A641ED142', 'SLN0000.52.02', '能否登录', 't_sysdict_sln0000_user_enabled', 'SLN0000.52', '', 'NFDL');
@@ -81,8 +81,8 @@ INSERT INTO `t_sysdict_mainmenu_nav` (`id`, `code`, `code_int`, `name`, `py`, `m
 ;
 
 # 实施指南导航
-TRUNCATE TABLE `t_sysdict_help_nav`;
-INSERT INTO `t_sysdict_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+TRUNCATE TABLE `t_sysdict_sln0000_help_nav`;
+INSERT INTO `t_sysdict_sln0000_help_nav` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('login', 'login', 1, '/help/user/10.html', '', '', 1),
 ('user', 'user', 2, '/help/admin/02-01.html', '', '访问实施指南页面：用户管理', 2),
 ('permission', 'permission', 5, '/help/admin/02-02.html', '', '访问实施指南页面：权限管理', 5),
