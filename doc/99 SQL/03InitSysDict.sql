@@ -22,7 +22,7 @@ INSERT INTO `t_dict_table_category` (`id`, `code`, `name`, `parent_id`) VALUES
 TRUNCATE TABLE `t_dict_table_md`;
 INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`, `memo`, `py`) VALUES
 ('473D4804-60AF-11EC-A41B-E86A641ED142', 'SLN0000.01.01', '码表记录状态', 't_sysdict_ct_record_status', 'SLN0000.01', '码表记录的状态', 'MBJLZT'),
-('53965D61-60AF-11EC-A41B-E86A641ED142', 'SLN0000.01.02', '码表字段编辑器类型', 't_sysdict_ct_editor_xtype', 'SLN0000.01', '码表字段编辑器的类型', 'MBZDBJQLX'),
+('53965D61-60AF-11EC-A41B-E86A641ED142', 'SLN0000.01.02', '码表字段编辑器类型', 't_sysdict_sln0000_ct_editor_xtype', 'SLN0000.01', '码表字段编辑器的类型', 'MBZDBJQLX'),
 ('E314BAAD-9936-11EC-88C3-E86A641ED142', 'SLN0000.01.03', '码表层级数据', 't_sysdict_sln0000_ct_tree_view', 'SLN0000.01', '码表是否启用层级数据', 'MBCJSJ'),
 ('168711AD-9937-11EC-88C3-E86A641ED142', 'SLN0000.01.04', '码表视图分页', 't_sysdict_sln0000_ct_view_paging', 'SLN0000.01', '码表是否数据分页', 'MBSTFY'),
 ('45CEE82A-99F0-11EC-A344-E86A641ED142', 'SLN0000.01.05', '码表字段类型', 't_sysdict_sln0000_ct_field_type', 'SLN0000.01', '码表字段的数据库类型', 'MBZDLX'),
@@ -42,8 +42,8 @@ INSERT INTO `t_sysdict_ct_record_status` (`id`, `code`, `code_int`, `name`, `py`
 ('9B90C56E-696E-11E9-B2BF-782BCBD7746B', '1000', 1000, '启用', 'QY', '记录处于启用状态', 1),
 ('AC7F3FAB-696E-11E9-B2BF-782BCBD7746B', '0', 0, '停用', 'TY', '记录处于停用状态', 2);
 
-TRUNCATE TABLE `t_sysdict_ct_editor_xtype`;
-INSERT INTO `t_sysdict_ct_editor_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+TRUNCATE TABLE `t_sysdict_sln0000_ct_editor_xtype`;
+INSERT INTO `t_sysdict_sln0000_ct_editor_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('5104A62E-9F97-11E9-9BDF-F0BF9790E21F', '1', 1, 'textfield', 'textfield', '字符串编辑器', 1),
 ('7B795BEF-9F97-11E9-9BDF-F0BF9790E21F', '2', 2, 'numberfield', 'numberfield', '数值编辑器', 2),
 ('FD1F4CF4-9F97-11E9-9BDF-F0BF9790E21F', '3', 3, 'psi_codetable_parentidfield', 'psi_codetable_parentidfield', '上级记录编辑器', 3),

@@ -1788,7 +1788,7 @@ class CodeTableDAO extends PSIBaseExDAO
 
     $result = [];
 
-    $sql = "select name, memo from t_sysdict_ct_editor_xtype order by code";
+    $sql = "select name, memo from t_sysdict_sln0000_ct_editor_xtype order by code";
     $data = $db->query($sql);
     $xtype = [];
     foreach ($data as $v) {
