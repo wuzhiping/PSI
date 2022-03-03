@@ -743,7 +743,7 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
       }
     }
 
-    $sql .= " from %s cr, t_user u, t_sysdict_ct_record_status r ";
+    $sql .= " from %s cr, t_user u, t_sysdict_sln0000_ct_record_status r ";
     $queryParams = [];
     $queryParams[] = $tableName;
 
@@ -856,7 +856,7 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
       }
     }
 
-    $sql .= " from %s cr, t_user u, t_sysdict_ct_record_status r ";
+    $sql .= " from %s cr, t_user u, t_sysdict_sln0000_ct_record_status r ";
     $queryParams = [];
     $queryParams[] = $tableName;
 
@@ -918,7 +918,7 @@ class CodeTableRuntimeDAO extends PSIBaseExDAO
       }
     }
 
-    $sql .= " from %s cr, t_user u, t_sysdict_ct_record_status r ";
+    $sql .= " from %s cr, t_user u, t_sysdict_sln0000_ct_record_status r ";
     $queryParams = [];
     $queryParams[] = $tableName;
 

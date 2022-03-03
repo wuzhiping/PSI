@@ -600,7 +600,7 @@ class CodeTableDAO extends PSIBaseExDAO
       "fieldLength" => 11,
       "fieldDecimal" => 0,
       "valueFrom" => 2,
-      "valueFromTableName" => "t_sysdict_ct_record_status",
+      "valueFromTableName" => "t_sysdict_sln0000_ct_record_status",
       "valueFromColName" => "code_int",
       "valueFromColNameDisplay" => "name",
       "mustInput" => 2,

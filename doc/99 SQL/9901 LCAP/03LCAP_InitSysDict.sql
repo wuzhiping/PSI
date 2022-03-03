@@ -21,7 +21,7 @@ INSERT INTO `t_dict_table_category` (`id`, `code`, `name`, `parent_id`) VALUES
 
 TRUNCATE TABLE `t_dict_table_md`;
 INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`, `memo`, `py`) VALUES
-('473D4804-60AF-11EC-A41B-E86A641ED142', 'SLN0000.01.01', '码表记录状态', 't_sysdict_ct_record_status', 'SLN0000.01', '码表记录的状态', 'MBJLZT'),
+('473D4804-60AF-11EC-A41B-E86A641ED142', 'SLN0000.01.01', '码表记录状态', 't_sysdict_sln0000_ct_record_status', 'SLN0000.01', '码表记录的状态', 'MBJLZT'),
 ('53965D61-60AF-11EC-A41B-E86A641ED142', 'SLN0000.01.02', '码表字段编辑器类型', 't_sysdict_sln0000_ct_editor_xtype', 'SLN0000.01', '码表字段编辑器的类型', 'MBZDBJQLX'),
 ('E314BAAD-9936-11EC-88C3-E86A641ED142', 'SLN0000.01.03', '码表层级数据', 't_sysdict_sln0000_ct_tree_view', 'SLN0000.01', '码表是否启用层级数据', 'MBCJSJ'),
 ('168711AD-9937-11EC-88C3-E86A641ED142', 'SLN0000.01.04', '码表视图分页', 't_sysdict_sln0000_ct_view_paging', 'SLN0000.01', '码表是否数据分页', 'MBSTFY'),
@@ -37,8 +37,8 @@ INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`
 ('8F7829F3-9602-11EC-A366-E86A641ED142', 'SLN0000.52.01', '性别', 't_sysdict_sln0000_gender', 'SLN0000.52', '', 'XB'),
 ('99913BDD-9602-11EC-A366-E86A641ED142', 'SLN0000.52.02', '能否登录', 't_sysdict_sln0000_user_enabled', 'SLN0000.52', '', 'NFDL');
 
-TRUNCATE TABLE `t_sysdict_ct_record_status`;
-INSERT INTO `t_sysdict_ct_record_status` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+TRUNCATE TABLE `t_sysdict_sln0000_ct_record_status`;
+INSERT INTO `t_sysdict_sln0000_ct_record_status` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('9B90C56E-696E-11E9-B2BF-782BCBD7746B', '1000', 1000, '启用', 'QY', '记录处于启用状态', 1),
 ('AC7F3FAB-696E-11E9-B2BF-782BCBD7746B', '0', 0, '停用', 'TY', '记录处于停用状态', 2);
 
