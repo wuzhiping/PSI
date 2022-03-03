@@ -5,12 +5,12 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
+PCL.define("PSI.PurchaseRej.PRSelectPWBillForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
     var me = this;
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle("选择要退货的采购入库单"),
         height: 40
@@ -147,13 +147,13 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
     }
 
     var modelName = "PSIPRBill_PWSelectForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "bizDate", "supplierName",
         "warehouseName", "inputUserName", "bizUserName",
         "amount", "tax", "moneyWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -175,10 +175,10 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
       store.proxy.extraParams = me.getQueryParam();
     });
 
-    me.__billGrid = Ext.create("Ext.grid.Panel", {
+    me.__billGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "#",
         width: 50
       }), {
@@ -262,7 +262,7 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
         xtype: "combobox",
         editable: false,
         width: 60,
-        store: Ext.create("Ext.data.ArrayStore", {
+        store: PCL.create("PCL.data.ArrayStore", {
           fields: ["text"],
           data: [["20"], ["50"], ["100"], ["300"],
           ["1000"]]
@@ -271,13 +271,9 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
         listeners: {
           change: {
             fn: function () {
-              store.pageSize = Ext
-                .getCmp("prbill_selectform_comboCountPerPage")
-                .getValue();
+              store.pageSize = PCL.getCmp("prbill_selectform_comboCountPerPage").getValue();
               store.currentPage = 1;
-              Ext
-                .getCmp("prbill_selectform_pagingToobar")
-                .doRefresh();
+              PCL.getCmp("prbill_selectform_pagingToobar").doRefresh();
             },
             scope: me
           }
@@ -298,27 +294,27 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
     }
 
     var modelName = "PRSelectPWBillForm_PSIPWBillDetail";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount", "goodsMoney",
         "goodsPrice", "memo", "taxRate", "tax", "priceWithTax", "moneyWithTax",
         "rejGoodsCount", "realGoodsCount"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__pwbillDetailGrid = Ext.create("Ext.grid.Panel", {
+    me.__pwbillDetailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       title: "采购入库单明细",
       viewConfig: {
         enableTextSelection: true
       },
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "#",
         width: 40
       }), {
@@ -429,7 +425,7 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
   },
 
   onQuery: function () {
-    Ext.getCmp("prbill_selectform_pagingToobar").doRefresh();
+    PCL.getCmp("prbill_selectform_pagingToobar").doRefresh();
 
     this.refreshDetailGrid();
   },
@@ -437,40 +433,40 @@ Ext.define("PSI.PurchaseRej.PRSelectPWBillForm", {
   getQueryParam: function () {
     var result = {};
 
-    var ref = Ext.getCmp("editPWRef").getValue();
+    var ref = PCL.getCmp("editPWRef").getValue();
     if (ref) {
       result.ref = ref;
     }
 
-    var supplierId = Ext.getCmp("editPWSupplier").getIdValue();
+    var supplierId = PCL.getCmp("editPWSupplier").getIdValue();
     if (supplierId) {
       result.supplierId = supplierId;
     }
 
-    var warehouseId = Ext.getCmp("editPWWarehouse").getIdValue();
+    var warehouseId = PCL.getCmp("editPWWarehouse").getIdValue();
     if (warehouseId) {
       result.warehouseId = warehouseId;
     }
 
-    var fromDT = Ext.getCmp("editPWFromDT").getValue();
+    var fromDT = PCL.getCmp("editPWFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editPWToDT").getValue();
+    var toDT = PCL.getCmp("editPWToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
     return result;
   },
 
   onClearQuery: function () {
-    Ext.getCmp("editPWRef").setValue(null);
-    Ext.getCmp("editPWSupplier").clearIdValue();
-    Ext.getCmp("editPWWarehouse").clearIdValue();
-    Ext.getCmp("editPWFromDT").setValue(null);
-    Ext.getCmp("editPWToDT").setValue(null);
+    PCL.getCmp("editPWRef").setValue(null);
+    PCL.getCmp("editPWSupplier").clearIdValue();
+    PCL.getCmp("editPWWarehouse").clearIdValue();
+    PCL.getCmp("editPWFromDT").setValue(null);
+    PCL.getCmp("editPWToDT").setValue(null);
 
     this.onQuery();
   },
