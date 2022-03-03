@@ -51,7 +51,8 @@ PCL.define("PSI.About.MainForm", {
               <p>数据库表结构版本号: ${me.getPSIDBVersion()}</p>
               <p>数据库表结构更新时间: ${me.getPSIDBUpdateDT()}</p>
               <p>UI组件PCL版本号：${PCL.VERSION}</p>
-              <p>${c}</p>
+              <div style='height:40px'></div>
+              <p style='border-left:3px solid #1890ff'>&nbsp;&nbsp;${c}</p>
               `
       }],
       buttons: [{
