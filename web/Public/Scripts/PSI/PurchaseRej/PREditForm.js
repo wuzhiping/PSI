@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.PurchaseRej.PREditForm", {
+PCL.define("PSI.PurchaseRej.PREditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -17,7 +17,7 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
     var title = entity == null ? "新建采购退货出库单" : "编辑采购退货出库单";
     title = me.formatTitle(title);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: title,
         height: 40
@@ -173,7 +173,7 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
           queryMode: "local",
           editable: false,
           valueField: "id",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [["0", "记应收账款"],
             ["1", "现金收款"]]
@@ -224,51 +224,51 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
   onWndClose: function () {
     // 加上这个调用是为了解决 #IMQB2 - https://gitee.com/crm8000/PSI/issues/IMQB2
     // 这个只是目前的临时应急方法，实现的太丑陋了
-    Ext.WindowManager.hideAll();
+    PCL.WindowManager.hideAll();
 
-    Ext.get(window).un('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', this.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
-    Ext.get(window).on('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', this.onWindowBeforeUnload);
 
     var me = this;
 
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/PurchaseRej/prBillInfo",
       params: {
-        id: Ext.getCmp("hiddenId").getValue()
+        id: PCL.getCmp("hiddenId").getValue()
       },
       method: "POST",
       callback: function (options, success, response) {
         el.unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
 
           if (data.ref) {
-            Ext.getCmp("editRef").setValue(data.ref);
-            Ext.getCmp("editSupplierId").setValue(data.supplierId);
-            Ext.getCmp("editSupplier").setValue(data.supplierName + " 采购入库单单号：" + data.pwbillRef);
+            PCL.getCmp("editRef").setValue(data.ref);
+            PCL.getCmp("editSupplierId").setValue(data.supplierId);
+            PCL.getCmp("editSupplier").setValue(data.supplierName + " 采购入库单单号：" + data.pwbillRef);
 
-            Ext.getCmp("editWarehouse").setIdValue(data.warehouseId);
-            Ext.getCmp("editWarehouse").setValue(data.warehouseName);
-            Ext.getCmp("editBillMemo").setValue(data.billMemo);
+            PCL.getCmp("editWarehouse").setIdValue(data.warehouseId);
+            PCL.getCmp("editWarehouse").setValue(data.warehouseName);
+            PCL.getCmp("editBillMemo").setValue(data.billMemo);
           } else {
             // 新建采购退货出库单，第一步就是选择采购入库单
             me.onSelectPWBill();
           }
 
-          Ext.getCmp("editBizUser").setIdValue(data.bizUserId);
-          Ext.getCmp("editBizUser").setValue(data.bizUserName);
+          PCL.getCmp("editBizUser").setIdValue(data.bizUserId);
+          PCL.getCmp("editBizUser").setValue(data.bizUserName);
           if (data.bizDT) {
-            Ext.getCmp("editBizDT").setValue(data.bizDT);
+            PCL.getCmp("editBizDT").setValue(data.bizDT);
           }
 
           if (data.receivingType) {
-            Ext.getCmp("editReceivingType").setValue(data.receivingType);
+            PCL.getCmp("editReceivingType").setValue(data.receivingType);
           }
 
           me.__billId = data.pwbillId;
@@ -295,8 +295,8 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
       return;
     }
 
-    Ext.getBody().mask("正在保存中...");
-    Ext.Ajax.request({
+    PCL.getBody().mask("正在保存中...");
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/PurchaseRej/editPRBill",
       method: "POST",
       params: {
@@ -304,10 +304,10 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             me.close();
             me.getParentForm().refreshMainGrid(data.id);
@@ -322,23 +322,23 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
   },
   onEditBizDTSpecialKey: function (field, e) {
     if (e.getKey() == e.ENTER) {
-      Ext.getCmp("editWarehouse").focus();
+      PCL.getCmp("editWarehouse").focus();
     }
   },
   onEditWarehouseSpecialKey: function (field, e) {
     if (e.getKey() == e.ENTER) {
-      Ext.getCmp("editBizUser").focus();
+      PCL.getCmp("editBizUser").focus();
     }
   },
   onEditBizUserSpecialKey: function (field, e) {
     if (e.getKey() == e.ENTER) {
-      Ext.getCmp("editReceivingType").focus();
+      PCL.getCmp("editReceivingType").focus();
     }
   },
 
   onEditReceivingTypeSpecialKey: function (field, e) {
     if (e.getKey() == e.ENTER) {
-      Ext.getCmp("editBillMemo").focus();
+      PCL.getCmp("editBillMemo").focus();
     }
   },
 
@@ -356,8 +356,8 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
       return me.__goodsGrid;
     }
     var modelName = "PSIPRBillDetail_EditForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsId", "goodsCode", "goodsName",
         "goodsSpec", "unitName", "goodsCount",
         "goodsMoney", "goodsPrice", "rejCount", "rejPrice",
@@ -369,13 +369,13 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
           type: "float"
         }, "goodsMoneyWithTax", "goodsPriceWithTax", "taxRate"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__cellEditing = Ext.create("PSI.UX.CellEditing", {
+    me.__cellEditing = PCL.create("PSI.UX.CellEditing", {
       clicksToEdit: 1,
       listeners: {
         edit: {
@@ -385,7 +385,7 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
       }
     });
 
-    me.__goodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__goodsGrid = PCL.create("PCL.grid.Panel", {
       viewConfig: {
         enableTextSelection: true,
         markDirty: !me.adding
@@ -395,7 +395,7 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
       }],
       plugins: [me.__cellEditing],
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "#",
         width: 30
       }), {
@@ -672,13 +672,13 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
     var me = this;
 
     var result = {
-      id: Ext.getCmp("hiddenId").getValue(),
-      bizDT: Ext.Date
-        .format(Ext.getCmp("editBizDT").getValue(), "Y-m-d"),
-      warehouseId: Ext.getCmp("editWarehouse").getIdValue(),
-      bizUserId: Ext.getCmp("editBizUser").getIdValue(),
-      receivingType: Ext.getCmp("editReceivingType").getValue(),
-      billMemo: Ext.getCmp("editBillMemo").getValue(),
+      id: PCL.getCmp("hiddenId").getValue(),
+      bizDT: PCL.Date
+        .format(PCL.getCmp("editBizDT").getValue(), "Y-m-d"),
+      warehouseId: PCL.getCmp("editWarehouse").getIdValue(),
+      bizUserId: PCL.getCmp("editBizUser").getIdValue(),
+      receivingType: PCL.getCmp("editReceivingType").getValue(),
+      billMemo: PCL.getCmp("editBillMemo").getValue(),
       pwBillId: me.__billId,
       items: []
     };
@@ -703,11 +703,11 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
       });
     }
 
-    return Ext.JSON.encode(result);
+    return PCL.JSON.encode(result);
   },
 
   onSelectPWBill: function () {
-    var form = Ext.create("PSI.PurchaseRej.PRSelectPWBillForm", {
+    var form = PCL.create("PSI.PurchaseRej.PRSelectPWBillForm", {
       parentForm: this
     });
     form.show();
@@ -717,9 +717,9 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
   getPWBillInfo: function (id) {
     var me = this;
     me.__billId = id;
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/PurchaseRej/getPWBillInfoForPRBill",
       params: {
         id: id
@@ -727,11 +727,11 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
       method: "POST",
       callback: function (options, success, response) {
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
-          Ext.getCmp("editSupplier").setValue(data.supplierName + " 采购入库单单号: " + data.ref);
-          Ext.getCmp("editSupplierId").setValue(data.supplierId);
-          Ext.getCmp("editWarehouse").setIdValue(data.warehouseId);
-          Ext.getCmp("editWarehouse").setValue(data.warehouseName);
+          var data = PCL.JSON.decode(response.responseText);
+          PCL.getCmp("editSupplier").setValue(data.supplierName + " 采购入库单单号: " + data.ref);
+          PCL.getCmp("editSupplierId").setValue(data.supplierId);
+          PCL.getCmp("editWarehouse").setIdValue(data.warehouseId);
+          PCL.getCmp("editWarehouse").setValue(data.warehouseName);
 
           var store = me.getGoodsGrid().getStore();
           store.removeAll();
@@ -747,12 +747,12 @@ Ext.define("PSI.PurchaseRej.PREditForm", {
     var me = this;
     me.__readonly = true;
     me.setTitle("<span style='font-size:160%;'>查看采购退货出库单</span>");
-    Ext.getCmp("buttonSave").setDisabled(true);
-    Ext.getCmp("buttonCancel").setText("关闭");
-    Ext.getCmp("editWarehouse").setReadOnly(true);
-    Ext.getCmp("editBizUser").setReadOnly(true);
-    Ext.getCmp("editBizDT").setReadOnly(true);
-    Ext.getCmp("editReceivingType").setReadOnly(true);
-    Ext.getCmp("editBillMemo").setReadOnly(true);
+    PCL.getCmp("buttonSave").setDisabled(true);
+    PCL.getCmp("buttonCancel").setText("关闭");
+    PCL.getCmp("editWarehouse").setReadOnly(true);
+    PCL.getCmp("editBizUser").setReadOnly(true);
+    PCL.getCmp("editBizDT").setReadOnly(true);
+    PCL.getCmp("editReceivingType").setReadOnly(true);
+    PCL.getCmp("editBillMemo").setReadOnly(true);
   }
 });
