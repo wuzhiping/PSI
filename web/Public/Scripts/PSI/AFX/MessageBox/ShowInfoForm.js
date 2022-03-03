@@ -25,8 +25,7 @@ PCL.define("PSI.AFX.MessageBox.ShowInfoForm", {
 
     PCL.apply(me, {
       header: {
-        title: `<span style='font-size:160%'>提示 - ${PSI.Const.PROD_NAME}</span>`,
-        iconCls: "PSI-fid-9994",
+        title: `<span style='font-size:160%'>${PSI.Const.PROD_NAME}</span>`,
         height: 40
       },
       height: 160,
