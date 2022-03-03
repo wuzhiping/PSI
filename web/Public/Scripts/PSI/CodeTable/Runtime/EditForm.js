@@ -336,7 +336,8 @@ PCL.define("PSI.CodeTable.Runtime.EditForm", {
         const edit = PCL.getCmp(id);
         if (edit) {
           if (parseInt(colMd.valueFrom) == 2) {
-            edit.setValue(edit.getStore().getAt(0));
+            // 系统数据字典
+            // TODO 字段默认值
           } else {
             edit.setValue(null);
             edit.clearInvalid();
