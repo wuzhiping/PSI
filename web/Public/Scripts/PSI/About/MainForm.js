@@ -45,14 +45,17 @@ PCL.define("PSI.About.MainForm", {
         cls: "PSI-about",
         html: `
               <h1 style='color:#0050b3;margin-top:0px'>${me.getProductionName()}基于开源技术，提供人、财、物、产、供、销、存一体化的企业管理全面解决方案</h1>
-              <h3>当前版本：${PSI.Const.VERSION}</h3>
-              <h3>官网&nbsp;<a style='text-decoration:none;' href='https://gitee.com/crm8000/PSI' target='_blank'>https://gitee.com/crm8000/PSI</a></h3>
+              <hr color='#F2F6FC'/>
+              <p>当前版本：${PSI.Const.VERSION}</p>
               <p>PHP版本号: ${me.getPhpVersion()} , MySQL版本号: ${me.getMySQLVersion()}</p>
               <p>数据库表结构版本号: ${me.getPSIDBVersion()}</p>
               <p>数据库表结构更新时间: ${me.getPSIDBUpdateDT()}</p>
               <p>UI组件PCL版本号：${PCL.VERSION}</p>
               <div style='height:40px'></div>
-              <p style='border-left:3px solid #1890ff'>&nbsp;&nbsp;${c}</p>
+              <div style='border-left:3px solid #1890ff'>
+                <h3>&nbsp;&nbsp;官网&nbsp;<a style='text-decoration:none;' href='https://gitee.com/crm8000/PSI' target='_blank'>https://gitee.com/crm8000/PSI</a></h3>
+                <p>&nbsp;&nbsp;${c}</p>
+              </div>
               `
       }],
       buttons: [{
