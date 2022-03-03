@@ -246,8 +246,8 @@ CREATE TABLE IF NOT EXISTS `t_sysdict_form_editor_xtype` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `t_sysdict_fv_xtype`;
-CREATE TABLE IF NOT EXISTS `t_sysdict_fv_xtype` (
+DROP TABLE IF EXISTS `t_sysdict_sln0000_fv_xtype`;
+CREATE TABLE IF NOT EXISTS `t_sysdict_sln0000_fv_xtype` (
   `id` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
   `code_int` int(11) NOT NULL,

@@ -249,7 +249,7 @@ class FormViewDAO extends PSIBaseExDAO
   {
     $db = $this->db;
 
-    $sql = "select name, memo from t_sysdict_fv_xtype where code_int = %d";
+    $sql = "select name, memo from t_sysdict_sln0000_fv_xtype where code_int = %d";
     $data = $db->query($sql, $code);
     if ($data) {
       $v = $data[0];
@@ -815,7 +815,7 @@ class FormViewDAO extends PSIBaseExDAO
     // 视图id
     $id = $params["id"];
 
-    $sql = "select code_int, name, memo from t_sysdict_fv_xtype order by show_order";
+    $sql = "select code_int, name, memo from t_sysdict_sln0000_fv_xtype order by show_order";
     $data = $db->query($sql);
     $allXtype = [];
     foreach ($data as $v) {
@@ -911,7 +911,7 @@ class FormViewDAO extends PSIBaseExDAO
       $data = $db->query($sql, $id);
       $subView = [];
       foreach ($data as $v) {
-        $sql = "select name from t_sysdict_fv_xtype where code_int = %d";
+        $sql = "select name from t_sysdict_sln0000_fv_xtype where code_int = %d";
         $d = $db->query($sql, $v["xtype"]);
         $xtype = $d[0]["name"] ?? "panel";
 

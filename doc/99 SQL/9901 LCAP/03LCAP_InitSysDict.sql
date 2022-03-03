@@ -30,7 +30,7 @@ INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`
 ('E2FA7FCF-99F1-11EC-A344-E86A641ED142', 'SLN0000.01.07', '码表列是否可见', 't_sysdict_sln0000_ct_field_visible', 'SLN0000.01', '码表列对用户是否可见', 'MBLSFKJ'),
 ('EFD9A3F3-99F1-11EC-A344-E86A641ED142', 'SLN0000.01.08', '码表列是否必录', 't_sysdict_sln0000_ct_must_input', 'SLN0000.01', '码表列是否是必录项', 'MBLSFBL'),
 ('5DAC23B4-60AF-11EC-A41B-E86A641ED142', 'SLN0000.02.01', '表单字段编辑器类型', 't_sysdict_form_editor_xtype', 'SLN0000.02', '表单字段编辑器的类型', 'BDZDBJQLX'),
-('68BE0DF3-60AF-11EC-A41B-E86A641ED142', 'SLN0000.03.01', '视图xtype', 't_sysdict_fv_xtype', 'SLN0000.03', '视图的组件类型(xtype)', 'STXTYPE'),
+('68BE0DF3-60AF-11EC-A41B-E86A641ED142', 'SLN0000.03.01', '视图xtype', 't_sysdict_sln0000_fv_xtype', 'SLN0000.03', '视图的组件类型(xtype)', 'STXTYPE'),
 ('6C5F4D19-8952-11EC-9791-E86A641ED142', 'SLN0000.05.01', '主菜单导航', 't_sysdict_mainmenu_nav', 'SLN0000.05', '主菜单导航 - 主菜单中单击模块后跳转的URL', 'ZCDDH'),
 ('5E538B96-8973-11EC-9791-E86A641ED142', 'SLN0000.05.02', '实施指南导航', 't_sysdict_sln0000_help_nav', 'SLN0000.05', '实施指南导航 - 模块中单击指南按钮后跳转的URL', 'SSZNDH'),
 ('103CD8A1-95EB-11EC-A366-E86A641ED142', 'SLN0000.51.01', '组织机构性质', 't_sysdict_sln0000_org_type', 'SLN0000.51', '组织机构性质', 'ZZJGXZ'),
@@ -59,8 +59,8 @@ INSERT INTO `t_sysdict_form_editor_xtype` (`id`, `code`, `code_int`, `name`, `py
 ('BF6F569E-843D-11EA-8C00-E86A641ED142', '4', 4, 'displayfield', 'displayfield', '不使用编辑器', 4),
 ('CD0B859B-843D-11EA-8C00-E86A641ED142', '5', 5, 'psi_userfield', 'psi_userfield', '用户字段编辑器', 5);
 
-TRUNCATE TABLE `t_sysdict_fv_xtype`;
-INSERT INTO `t_sysdict_fv_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+TRUNCATE TABLE `t_sysdict_sln0000_fv_xtype`;
+INSERT INTO `t_sysdict_sln0000_fv_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('7E444093-97CF-11EA-8BF1-E86A641ED142', '-1', -1, 'panel', 'panel', '占位容器', -1),
 ('882978F6-90CA-11EA-B303-E86A641ED142', '1', 1, 'psi_codetable_view_cmp', 'psi_codetable_view_cmp', '数据来自码表的视图', 1);
 
