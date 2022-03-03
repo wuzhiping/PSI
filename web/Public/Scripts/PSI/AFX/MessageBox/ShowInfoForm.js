@@ -35,7 +35,7 @@ PCL.define("PSI.AFX.MessageBox.ShowInfoForm", {
         xtype: "container",
         margin: "0 0 0 5",
         html: `
-              <h2 style='color:#843fa1'>${me.getMsg()}</h2>
+              <h2 style='color:#843fa1;border-left:3px solid #1890ff'>&nbsp;${me.getMsg()}</h2>
               `
       }],
       buttons: [{
