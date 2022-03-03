@@ -1368,7 +1368,7 @@ class FormDAO extends PSIBaseExDAO
 
     $result = [];
 
-    $sql = "select name, memo from t_sysdict_form_editor_xtype order by code";
+    $sql = "select name, memo from t_sysdict_sln0000_form_editor_xtype order by code";
     $data = $db->query($sql);
     $xtype = [];
     foreach ($data as $v) {
@@ -1808,7 +1808,7 @@ class FormDAO extends PSIBaseExDAO
 
     $result = [];
 
-    $sql = "select name, memo from t_sysdict_form_editor_xtype order by code";
+    $sql = "select name, memo from t_sysdict_sln0000_form_editor_xtype order by code";
     $data = $db->query($sql);
     $xtype = [];
     foreach ($data as $v) {

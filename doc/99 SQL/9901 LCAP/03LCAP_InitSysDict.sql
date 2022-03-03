@@ -29,7 +29,7 @@ INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`
 ('856F8A8C-99F0-11EC-A344-E86A641ED142', 'SLN0000.01.06', '码表列值来源', 't_sysdict_sln0000_ct_value_from', 'SLN0000.01', '码表列值来源', 'MBLZLY'),
 ('E2FA7FCF-99F1-11EC-A344-E86A641ED142', 'SLN0000.01.07', '码表列是否可见', 't_sysdict_sln0000_ct_field_visible', 'SLN0000.01', '码表列对用户是否可见', 'MBLSFKJ'),
 ('EFD9A3F3-99F1-11EC-A344-E86A641ED142', 'SLN0000.01.08', '码表列是否必录', 't_sysdict_sln0000_ct_must_input', 'SLN0000.01', '码表列是否是必录项', 'MBLSFBL'),
-('5DAC23B4-60AF-11EC-A41B-E86A641ED142', 'SLN0000.02.01', '表单字段编辑器类型', 't_sysdict_form_editor_xtype', 'SLN0000.02', '表单字段编辑器的类型', 'BDZDBJQLX'),
+('5DAC23B4-60AF-11EC-A41B-E86A641ED142', 'SLN0000.02.01', '表单字段编辑器类型', 't_sysdict_sln0000_form_editor_xtype', 'SLN0000.02', '表单字段编辑器的类型', 'BDZDBJQLX'),
 ('68BE0DF3-60AF-11EC-A41B-E86A641ED142', 'SLN0000.03.01', '视图xtype', 't_sysdict_sln0000_fv_xtype', 'SLN0000.03', '视图的组件类型(xtype)', 'STXTYPE'),
 ('6C5F4D19-8952-11EC-9791-E86A641ED142', 'SLN0000.05.01', '主菜单导航', 't_sysdict_mainmenu_nav', 'SLN0000.05', '主菜单导航 - 主菜单中单击模块后跳转的URL', 'ZCDDH'),
 ('5E538B96-8973-11EC-9791-E86A641ED142', 'SLN0000.05.02', '实施指南导航', 't_sysdict_sln0000_help_nav', 'SLN0000.05', '实施指南导航 - 模块中单击指南按钮后跳转的URL', 'SSZNDH'),
@@ -51,8 +51,8 @@ INSERT INTO `t_sysdict_ct_editor_xtype` (`id`, `code`, `code_int`, `name`, `py`,
 ('D5A2BB45-F42F-11EA-843F-E86A641ED142', '5', 5, 'datefield', 'datefield', '日期编辑器', 5),
 ('CBAB9173-985E-11EC-93F2-E86A641ED142', '6', 6, 'psi_sysdictfield', 'psi_sysdictfield', '系统数据字典编辑器', 6);
 
-TRUNCATE TABLE `t_sysdict_form_editor_xtype`;
-INSERT INTO `t_sysdict_form_editor_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+TRUNCATE TABLE `t_sysdict_sln0000_form_editor_xtype`;
+INSERT INTO `t_sysdict_sln0000_form_editor_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('133BC834-62A4-11EA-BE39-F0BF9790E21F', '1', 1, 'textfield', 'textfield', '字符字段编辑器', 1),
 ('2E01A0A4-62A4-11EA-BE39-F0BF9790E21F', '2', 2, 'numberfield', 'numberfield', '数值字段编辑器', 2),
 ('28D248CD-843D-11EA-8C00-E86A641ED142', '3', 3, 'datefield', 'datefield', '日期字段编辑器', 3),
