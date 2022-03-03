@@ -32,7 +32,7 @@ PCL.define("PSI.AFX.MessageBox.ConfirmForm", {
       items: [{
         border: 0,
         xtype: "container",
-        margin: "0 0 0 5",
+        margin: "0 0 0 10",
         html: `
               <h2 style='color:#843fa1;border-left:3px solid #1890ff;'>&nbsp;${me.getMsg()}</h2>
               `
