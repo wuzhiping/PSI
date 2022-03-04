@@ -5,18 +5,18 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Inventory.InitInventoryMainForm", {
+PCL.define("PSI.Inventory.InitInventoryMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
   initComponent: function () {
     var me = this;
 
-    Ext.define("PSIInitInv", {
-      extend: "Ext.data.Model",
+    PCL.define("PSIInitInv", {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "goodsCount", "goodsUnit", "goodsMoney",
         "goodsPrice", "initDate"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: "PSIInitInv",
       data: [],
@@ -45,7 +45,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
 
             warehouseId = item[0].get("id");
 
-            Ext.apply(store.proxy.extraParams, {
+            PCL.apply(store.proxy.extraParams, {
               warehouseId: warehouseId
             });
           },
@@ -62,7 +62,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
       }
     });
 
-    var gridInitInv = Ext.create("Ext.grid.Panel", {
+    var gridInitInv = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -133,7 +133,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"],
             ["300"], ["1000"]]
@@ -142,12 +142,9 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToolbar")
-                  .doRefresh();
+                PCL.getCmp("pagingToolbar").doRefresh();
               },
               scope: me
             }
@@ -159,12 +156,12 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
     });
     this.gridInitInv = gridInitInv;
 
-    Ext.define("PSIWarehouse", {
-      extend: "Ext.data.Model",
+    PCL.define("PSIWarehouse", {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "inited"]
     });
 
-    var gridWarehouse = Ext.create("Ext.grid.Panel", {
+    var gridWarehouse = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -196,7 +193,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
             : "<span style='color:red'>未完</span>";
         }
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: "PSIWarehouse",
         autoLoad: false,
         data: []
@@ -210,7 +207,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
     });
     me.gridWarehouse = gridWarehouse;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: [{
         text: "录入建账数据",
         scope: me,
@@ -275,9 +272,9 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
   },
   freshWarehouseGrid: function () {
     var grid = this.gridWarehouse;
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL
         + "Home/InitInventory/warehouseList",
       method: "POST",
@@ -287,7 +284,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
           grid.getSelectionModel().select(0);
         }
@@ -312,7 +309,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
     grid.setTitle(me.formatGridHeaderTitle("仓库: " + warehouse.get("name")));
 
     me.__lastId = id;
-    Ext.getCmp("pagingToolbar").doRefresh()
+    PCL.getCmp("pagingToolbar").doRefresh()
   },
 
   onInitInv: function () {
@@ -328,7 +325,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.Inventory.InitInventoryEditForm", {
+    var form = PCL.create("PSI.Inventory.InitInventoryEditForm", {
       warehouse: warehouse
     });
     form.show();
@@ -369,9 +366,9 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
 
     PSI.MsgBox.confirm("请确认是否给仓库[" + warehouse.get("name") + "]标记建账完毕?",
       function () {
-        var el = Ext.getBody();
+        var el = PCL.getBody();
         el.mask(PSI.Const.SAVING);
-        Ext.Ajax.request({
+        PCL.Ajax.request({
           url: PSI.Const.BASE_URL
             + "Home/InitInventory/finish",
           params: {
@@ -381,8 +378,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
           callback: function (options, success, response) {
             el.unmask();
             if (success) {
-              var data = Ext.JSON
-                .decode(response.responseText);
+              var data = PCL.JSON.decode(response.responseText);
               if (data.success) {
                 PSI.MsgBox.showInfo("成功标记建账完毕",
                   function () {
@@ -414,9 +410,9 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
 
     PSI.MsgBox.confirm("请确认是否取消仓库[" + warehouse.get("name") + "]的建账完毕标志?",
       function () {
-        var el = Ext.getBody();
+        var el = PCL.getBody();
         el.mask(PSI.Const.SAVING);
-        Ext.Ajax.request({
+        PCL.Ajax.request({
           url: PSI.Const.BASE_URL
             + "Home/InitInventory/cancel",
           params: {
@@ -426,8 +422,7 @@ Ext.define("PSI.Inventory.InitInventoryMainForm", {
           callback: function (options, success, response) {
             el.unmask();
             if (success) {
-              var data = Ext.JSON
-                .decode(response.responseText);
+              var data = PCL.JSON.decode(response.responseText);
               if (data.success) {
                 PSI.MsgBox.showInfo("成功取消建账标志",
                   function () {
