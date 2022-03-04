@@ -891,7 +891,7 @@ PCL.define("PSI.Inventory.InvQueryMainForm", {
   onExcel: function () {
     var me = this;
 
-    me.confirm("请确认是否把库存总账导出为Excel文件？<br/><br/>(数据是根据当前查询条件生成)", function () {
+    me.confirm("请确认是否把库存总账导出为Excel文件？<br/><br/>&nbsp;数据根据当前查询条件生成", function () {
       var url = "Home/Inventory/exportExcel";
 
       var code = PCL.getCmp("editQueryCode").getValue();
