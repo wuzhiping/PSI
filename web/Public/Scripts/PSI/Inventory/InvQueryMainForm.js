@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Inventory.InvQueryMainForm", {
+PCL.define("PSI.Inventory.InvQueryMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -15,21 +15,21 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.define("PSIWarehouse", {
-      extend: "Ext.data.Model",
+    PCL.define("PSIWarehouse", {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "enabled"]
     });
 
-    Ext.define("PSIInventory", {
-      extend: "Ext.data.Model",
+    PCL.define("PSIInventory", {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsId", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "inCount", "inPrice", "inMoney", "outCount",
         "outPrice", "outMoney", "balanceCount", "balancePrice",
         "balanceMoney", "afloatCount", "afloatMoney", "afloatPrice"]
     });
 
-    Ext.define("PSIInventoryDetail", {
-      extend: "Ext.data.Model",
+    PCL.define("PSIInventoryDetail", {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "inCount", "inPrice", "inMoney",
         "outCount", "outPrice", "outMoney", "balanceCount",
@@ -37,7 +37,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
         "bizUserName", "refType", "refNumber"]
     });
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: [{
           text: "总账导出Excel",
@@ -92,8 +92,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
           tools: [{
             type: "close",
             handler: function () {
-              Ext.getCmp("panelDetail")
-                .collapse();
+              PCL.getCmp("panelDetail").collapse();
             }
           }],
           region: "south",
@@ -186,7 +185,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -228,7 +227,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
       return me.__warehouseGrid;
     }
 
-    me.__warehouseGrid = Ext.create("Ext.grid.Panel", {
+    me.__warehouseGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -237,7 +236,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
       tools: [{
         type: "close",
         handler: function () {
-          Ext.getCmp("panelWarehouse").collapse();
+          PCL.getCmp("panelWarehouse").collapse();
         }
       }],
       columnLines: true,
@@ -272,7 +271,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
           }
         }
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: "PSIWarehouse",
         autoLoad: false,
         data: []
@@ -290,9 +289,9 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
 
   refreshWarehouseGrid: function () {
     var grid = this.getWarehouseGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/Inventory/warehouseList",
       method: "POST",
       callback: function (options, success, response) {
@@ -301,7 +300,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -316,7 +315,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
       return me.__inventoryGrid;
     }
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: "PSIInventory",
       pageSize: 20,
       remoteSort: true,
@@ -340,7 +339,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
       store.proxy.extraParams = me.getInventoryGridParam();
     });
 
-    me.__inventoryGrid = Ext.create("Ext.grid.Panel", {
+    me.__inventoryGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -362,7 +361,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"],
             ["300"], ["1000"]]
@@ -371,12 +370,9 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToolbarInv")
-                  .doRefresh();
+                PCL.getCmp("pagingToolbarInv").doRefresh();
               },
               scope: me
             }
@@ -541,7 +537,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
       return me.__inventoryDetailGrid;
     }
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: "PSIInventoryDetail",
       pageSize: 20,
       proxy: {
@@ -560,17 +556,15 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
     });
 
     store.on("beforeload", function () {
-      Ext.apply(store.proxy.extraParams, {
+      PCL.apply(store.proxy.extraParams, {
         warehouseId: me.getWarehouseIdParam(),
         goodsId: me.getGoodsIdParam(),
-        dtFrom: Ext.Date.format(Ext.getCmp("dtFrom")
-          .getValue(), "Y-m-d"),
-        dtTo: Ext.Date.format(Ext.getCmp("dtTo")
-          .getValue(), "Y-m-d")
+        dtFrom: PCL.Date.format(PCL.getCmp("dtFrom").getValue(), "Y-m-d"),
+        dtTo: PCL.Date.format(PCL.getCmp("dtTo").getValue(), "Y-m-d")
       });
     });
 
-    me.__inventoryDetailGrid = Ext.create("Ext.grid.Panel", {
+    me.__inventoryDetailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -611,7 +605,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
         xtype: "combobox",
         editable: false,
         width: 60,
-        store: Ext.create("Ext.data.ArrayStore", {
+        store: PCL.create("PCL.data.ArrayStore", {
           fields: ["text"],
           data: [["20"], ["50"], ["100"],
           ["300"], ["1000"]]
@@ -620,12 +614,9 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
         listeners: {
           change: {
             fn: function () {
-              store.pageSize = Ext
-                .getCmp("comboCountPerPageDetail")
-                .getValue();
+              store.pageSize = PCL.getCmp("comboCountPerPageDetail").getValue();
               store.currentPage = 1;
-              Ext.getCmp("pagingtoolbarDetail")
-                .doRefresh();
+              PCL.getCmp("pagingtoolbarDetail").doRefresh();
             },
             scope: me
           }
@@ -635,7 +626,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
         value: "条记录"
       }],
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "序号",
         width: 40
       }), {
@@ -768,7 +759,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
 
     var dt = new Date();
     dt.setDate(dt.getDate() - 7);
-    Ext.getCmp("dtFrom").setValue(dt);
+    PCL.getCmp("dtFrom").setValue(dt);
 
     return me.__inventoryDetailGrid;
   },
@@ -789,27 +780,27 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
       warehouseId: warehouse.get("id")
     };
 
-    var code = Ext.getCmp("editQueryCode").getValue();
+    var code = PCL.getCmp("editQueryCode").getValue();
     if (code) {
       result.code = code;
     }
 
-    var name = Ext.getCmp("editQueryName").getValue();
+    var name = PCL.getCmp("editQueryName").getValue();
     if (name) {
       result.name = name;
     }
 
-    var spec = Ext.getCmp("editQuerySpec").getValue();
+    var spec = PCL.getCmp("editQuerySpec").getValue();
     if (spec) {
       result.spec = spec;
     }
 
-    var hasInv = Ext.getCmp("editQueryHasInv").getValue();
+    var hasInv = PCL.getCmp("editQueryHasInv").getValue();
     if (hasInv) {
       result.hasInv = hasInv ? 1 : 0;
     }
 
-    var brandId = Ext.getCmp("editQueryBrand").getIdValue();
+    var brandId = PCL.getCmp("editQueryBrand").getIdValue();
     if (brandId) {
       result.brandId = brandId;
     }
@@ -840,16 +831,16 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
   },
 
   onQuery: function () {
-    var dtTo = Ext.getCmp("dtTo").getValue();
+    var dtTo = PCL.getCmp("dtTo").getValue();
     if (dtTo == null) {
-      Ext.getCmp("dtTo").setValue(new Date());
+      PCL.getCmp("dtTo").setValue(new Date());
     }
 
-    var dtFrom = Ext.getCmp("dtFrom").getValue();
+    var dtFrom = PCL.getCmp("dtFrom").getValue();
     if (dtFrom == null) {
       var dt = new Date();
       dt.setDate(dt.getDate() - 7);
-      Ext.getCmp("dtFrom").setValue(dt);
+      PCL.getCmp("dtFrom").setValue(dt);
     }
 
     this.getInventoryDetailGrid().getStore().loadPage(1);
@@ -862,7 +853,7 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
       for (var i = 0; i < me.__queryEditNameList.length - 1; i++) {
         var editorId = me.__queryEditNameList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__queryEditNameList[i + 1]);
+          var edit = PCL.getCmp(me.__queryEditNameList[i + 1]);
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -880,14 +871,14 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
     var nameList = this.__queryEditNameList;
     for (var i = 0; i < nameList.length; i++) {
       var name = nameList[i];
-      var edit = Ext.getCmp(name);
+      var edit = PCL.getCmp(name);
       if (edit) {
         edit.setValue(null);
       }
     }
 
-    Ext.getCmp("editQueryHasInv").setValue(false);
-    Ext.getCmp("editQueryBrand").clearIdValue();
+    PCL.getCmp("editQueryHasInv").setValue(false);
+    PCL.getCmp("editQueryBrand").clearIdValue();
 
     this.onQueryGoods();
   },
@@ -903,19 +894,19 @@ Ext.define("PSI.Inventory.InvQueryMainForm", {
     me.confirm("请确认是否把库存总账导出为Excel文件？<br/><br/>(数据是根据当前查询条件生成)", function () {
       var url = "Home/Inventory/exportExcel";
 
-      var code = Ext.getCmp("editQueryCode").getValue();
+      var code = PCL.getCmp("editQueryCode").getValue();
       url += "?code=" + code;
 
-      var name = Ext.getCmp("editQueryName").getValue();
+      var name = PCL.getCmp("editQueryName").getValue();
       url += "&name=" + name;
 
-      var spec = Ext.getCmp("editQuerySpec").getValue();
+      var spec = PCL.getCmp("editQuerySpec").getValue();
       url += "&spec=" + spec;
 
-      var hasInv = Ext.getCmp("editQueryHasInv").getValue();
+      var hasInv = PCL.getCmp("editQueryHasInv").getValue();
       url += "&hasInv=" + (hasInv ? "1" : "0");
 
-      var brandId = Ext.getCmp("editQueryBrand").getIdValue();
+      var brandId = PCL.getCmp("editQueryBrand").getIdValue();
       url += "&brandId=" + (brandId ? brandId : "");
       window.open(me.URL(url));
     });
