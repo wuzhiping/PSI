@@ -239,6 +239,9 @@ PCL.define("PSI.Inventory.InvQueryMainForm", {
           PCL.getCmp("panelWarehouse").collapse();
         }
       }],
+      viewConfig: {
+        enableTextSelection: true
+      },
       columnLines: true,
       columns: [{
         header: "仓库编码",
