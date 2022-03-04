@@ -68,6 +68,9 @@ PCL.define("PSI.Inventory.InitInventoryMainForm", {
         height: 30,
         title: me.formatGridHeaderTitle("请选择一个仓库")
       },
+      viewConfig: {
+        enableTextSelection: true
+      },
       columnLines: true,
       columns: [{
         header: "物料编码",
@@ -168,6 +171,9 @@ PCL.define("PSI.Inventory.InitInventoryMainForm", {
         title: me.formatGridHeaderTitle("仓库")
       },
       forceFit: true,
+      viewConfig: {
+        enableTextSelection: true
+      },
       columnLines: true,
       columns: [{
         header: "仓库编码",
