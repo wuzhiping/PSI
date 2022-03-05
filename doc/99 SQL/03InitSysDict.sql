@@ -215,6 +215,14 @@ INSERT INTO `t_sysdict_sln0000_ct_field_type` (`id`, `code`, `code_int`, `name`,
 ('decimal', 'decimal', 3, 'decimal', '', '小数', 3),
 ('datetime', 'datetime', 4, 'datetime', '', '日期', 4);
 
+# 码表列值来源
+TRUNCATE TABLE `t_sysdict_sln0000_ct_value_from`;
+INSERT INTO `t_sysdict_sln0000_ct_value_from` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('1', '1', 1, '直接录入', '', '', 1),
+('2', '2', 2, '引用系统数据字典', '', '', 2),
+('3', '3', 3, '引用其他码表', '', '', 3),
+('4', '4', 4, '引用自身数据', '', '', 4);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
