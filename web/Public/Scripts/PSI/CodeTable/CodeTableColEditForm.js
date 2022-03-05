@@ -453,7 +453,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
           scope: me
         }
       },
-      colspan: 1
+      colspan: 1,
+      value: 1000,
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editShowOrder",
       fieldLabel: "编辑界面显示次序",
@@ -464,6 +465,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       hideTrigger: true,
       allowDecimal: false,
       name: "showOrder",
+      value: 1000,
       listeners: {
         specialkey: {
           fn: me.__onEditSpecialKey,
@@ -471,6 +473,16 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         }
       }
     }];
+
+    if (me.adding) {
+      list.push({
+        xtype: "displayfield",
+        fieldLabel: "提示",
+        labelWidth: 100,
+        colspan: 3,
+        value: "<span class='PSI-field-note'>显示次序可以通过其他可视化功能灵活调整，新建列的时候填写默认值1000即可</span>"
+      });
+    }
 
     return list;
   },
