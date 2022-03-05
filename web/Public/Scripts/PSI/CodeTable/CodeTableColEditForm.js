@@ -51,7 +51,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         height: 40
       },
       width: 890,
-      height: 370,
+      height: 410,
       layout: "border",
       items: [{
         region: "north",
