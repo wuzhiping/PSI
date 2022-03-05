@@ -480,7 +480,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         fieldLabel: "提示",
         labelWidth: 100,
         colspan: 3,
-        value: "<span class='PSI-field-note'>显示次序可以通过其他可视化功能灵活调整，新建列的时候填写默认值1000即可</span>"
+        value: "<span class='PSI-field-note'>显示次序可以通过其他处的可视化功能灵活调整，新建列的时候填写默认值1000即可</span>"
       });
     }
 
