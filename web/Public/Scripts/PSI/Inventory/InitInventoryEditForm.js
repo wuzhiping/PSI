@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Inventory.InitInventoryEditForm", {
-  extend: "Ext.window.Window",
+PCL.define("PSI.Inventory.InitInventoryEditForm", {
+  extend: "PCL.window.Window",
   config: {
     warehouse: null
   },
@@ -14,11 +14,11 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
   initComponent: function () {
     var me = this;
     var warehouse = me.getWarehouse();
-    Ext.define("PSIGoodsCategory", {
-      extend: "Ext.data.Model",
+    PCL.define("PSIGoodsCategory", {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
-    var storeGoodsCategory = Ext.create("Ext.data.Store", {
+    var storeGoodsCategory = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: "PSIGoodsCategory",
       data: []
@@ -31,13 +31,13 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
       + "<h2 style='margin:20px'>建账仓库：<span style='color:#cf1322'>"
       + warehouse.get("name") + "</span></h2>";
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: "<span style='font-size:160%'>录入建账数据</span>",
         height: 40
       },
       modal: true,
-      onEsc: Ext.emptyFn,
+      onEsc: PCL.emptyFn,
       width: 1000,
       height: 600,
       maximized: true,
@@ -217,14 +217,14 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
       }
     });
     me.callParent(arguments);
-    Ext.getCmp("editGoodsCount").on("specialkey", function (field, e) {
+    PCL.getCmp("editGoodsCount").on("specialkey", function (field, e) {
       if (e.getKey() == e.ENTER) {
-        Ext.getCmp("editGoodsMoney").focus();
+        PCL.getCmp("editGoodsMoney").focus();
       }
     });
-    Ext.getCmp("editGoodsMoney").on("specialkey", function (field, e) {
+    PCL.getCmp("editGoodsMoney").on("specialkey", function (field, e) {
       if (e.getKey() == e.ENTER) {
-        Ext.getCmp("buttonSubmit").focus();
+        PCL.getCmp("buttonSubmit").focus();
       }
     });
     me.getGoodsCategories();
@@ -237,13 +237,13 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
   },
 
   getGoodsGrid: function () {
@@ -252,13 +252,13 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
       return me.__gridGoods;
     }
 
-    Ext.define("PSIInitInvGoods", {
-      extend: "Ext.data.Model",
+    PCL.define("PSIInitInvGoods", {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "goodsCount", "unitName", "goodsMoney",
         "goodsPrice", "initDate"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: "PSIInitInvGoods",
       data: [],
@@ -278,12 +278,10 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
       listeners: {
         beforeload: {
           fn: function () {
-            var comboboxGoodsCategory = Ext
-              .getCmp("comboboxGoodsCategory");
-            var categoryId = comboboxGoodsCategory
-              .getValue();
-            var warehouseId = this.getWarehouse().get("id");
-            Ext.apply(store.proxy.extraParams, {
+            var comboboxGoodsCategory = PCL.getCmp("comboboxGoodsCategory");
+            var categoryId = comboboxGoodsCategory.getValue();
+            var warehouseId = me.getWarehouse().get("id");
+            PCL.apply(store.proxy.extraParams, {
               categoryId: categoryId,
               warehouseId: warehouseId
             });
@@ -293,20 +291,19 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
         load: {
           fn: function (e, records, successful) {
             if (successful) {
-              me.getGoodsGrid().getSelectionModel()
-                .select(0);
-              Ext.getCmp("editGoodsCount").focus();
+              me.getGoodsGrid().getSelectionModel().select(0);
+              PCL.getCmp("editGoodsCount").focus();
             }
           },
           scope: me
         }
       }
     });
-    me.__gridGoods = Ext.create("Ext.grid.Panel", {
+    me.__gridGoods = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       border: 0,
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "序号",
         width: 50
       }), {
@@ -367,7 +364,7 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
         xtype: "combobox",
         editable: false,
         width: 60,
-        store: Ext.create("Ext.data.ArrayStore", {
+        store: PCL.create("PCL.data.ArrayStore", {
           fields: ["text"],
           data: [["20"], ["50"], ["100"],
           ["300"], ["1000"]]
@@ -376,12 +373,9 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
         listeners: {
           change: {
             fn: function () {
-              store.pageSize = Ext
-                .getCmp("_comboCountPerPage")
-                .getValue();
+              store.pageSize = PCL.getCmp("_comboCountPerPage").getValue();
               store.currentPage = 1;
-              Ext.getCmp("_pagingToolbar")
-                .doRefresh();
+              PCL.getCmp("_pagingToolbar").doRefresh();
             },
             scope: me
           }
@@ -402,16 +396,16 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
   },
   getGoodsCategories: function () {
     var store = this.storeGoodsCategory;
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL
         + "Home/InitInventory/goodsCategoryList",
       method: "POST",
       callback: function (options, success, response) {
         store.removeAll();
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -419,11 +413,13 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
       }
     });
   },
+
   getGoods: function () {
     var me = this;
     me.getGoodsGrid().getStore().currentPage = 1;
-    Ext.getCmp("_pagingToolbar").doRefresh();
+    PCL.getCmp("_pagingToolbar").doRefresh();
   },
+
   onGoodsGridSelect: function () {
     var me = this;
     var grid = me.getGoodsGrid();
@@ -433,37 +429,39 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
     }
 
     var goods = item[0];
-    Ext.getCmp("editGoodsCode").setValue(goods.get("goodsCode"));
-    Ext.getCmp("editGoodsName").setValue(goods.get("goodsName"));
-    Ext.getCmp("editGoodsSpec").setValue(goods.get("goodsSpec"));
-    Ext.getCmp("editUnit").setValue("<strong>" + goods.get("unitName")
+    PCL.getCmp("editGoodsCode").setValue(goods.get("goodsCode"));
+    PCL.getCmp("editGoodsName").setValue(goods.get("goodsName"));
+    PCL.getCmp("editGoodsSpec").setValue(goods.get("goodsSpec"));
+    PCL.getCmp("editUnit").setValue("<strong>" + goods.get("unitName")
       + "</strong>");
     var goodsCount = goods.get("goodsCount");
     if (goodsCount == "0") {
-      Ext.getCmp("editGoodsCount").setValue(null);
-      Ext.getCmp("editGoodsMoney").setValue(null);
-      Ext.getCmp("editGoodsPrice").setValue(null);
+      PCL.getCmp("editGoodsCount").setValue(null);
+      PCL.getCmp("editGoodsMoney").setValue(null);
+      PCL.getCmp("editGoodsPrice").setValue(null);
     } else {
-      Ext.getCmp("editGoodsCount").setValue(goods.get("goodsCount"));
-      Ext.getCmp("editGoodsMoney").setValue(goods.get("goodsMoney"));
-      Ext.getCmp("editGoodsPrice").setValue(goods.get("goodsPrice"));
+      PCL.getCmp("editGoodsCount").setValue(goods.get("goodsCount"));
+      PCL.getCmp("editGoodsMoney").setValue(goods.get("goodsMoney"));
+      PCL.getCmp("editGoodsPrice").setValue(goods.get("goodsPrice"));
     }
   },
+
   updateAfterSave: function (goods) {
-    goods.set("goodsCount", Ext.getCmp("editGoodsCount").getValue());
-    goods.set("goodsMoney", Ext.getCmp("editGoodsMoney").getValue());
-    var cnt = Ext.getCmp("editGoodsCount").getValue();
+    goods.set("goodsCount", PCL.getCmp("editGoodsCount").getValue());
+    goods.set("goodsMoney", PCL.getCmp("editGoodsMoney").getValue());
+    var cnt = PCL.getCmp("editGoodsCount").getValue();
     if (cnt == 0) {
       goods.set("goodsPrice", null);
     } else {
-      var p = Ext.getCmp("editGoodsMoney").getValue()
-        / Ext.getCmp("editGoodsCount").getValue();
+      var p = PCL.getCmp("editGoodsMoney").getValue()
+        / PCL.getCmp("editGoodsCount").getValue();
       p = Ext.Number.toFixed(p, 2);
       goods.set("goodsPrice", p);
     }
     this.getGoodsGrid().getStore().commitChanges();
-    Ext.getCmp("editGoodsPrice").setValue(goods.get("goodsPrice"));
+    PCL.getCmp("editGoodsPrice").setValue(goods.get("goodsPrice"));
   },
+
   onSave: function () {
     var me = this;
     var grid = me.getGoodsGrid();
@@ -474,11 +472,11 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
     }
 
     var goods = item[0];
-    var goodsCount = Ext.getCmp("editGoodsCount").getValue();
-    var goodsMoney = Ext.getCmp("editGoodsMoney").getValue();
-    var el = Ext.getBody();
+    var goodsCount = PCL.getCmp("editGoodsCount").getValue();
+    var goodsMoney = PCL.getCmp("editGoodsMoney").getValue();
+    var el = PCL.getBody();
     el.mask(PSI.Const.SAVING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL
         + "Home/InitInventory/commitInitInventoryGoods",
       params: {
@@ -491,35 +489,35 @@ Ext.define("PSI.Inventory.InitInventoryEditForm", {
       callback: function (options, success, response) {
         el.unmask();
         if (success) {
-          var result = Ext.JSON.decode(response.responseText);
+          var result = PCL.JSON.decode(response.responseText);
           if (result.success) {
             me.updateAfterSave(goods);
-            if (!Ext.getCmp("checkboxGotoNext").getValue()) {
+            if (!PCL.getCmp("checkboxGotoNext").getValue()) {
               PSI.MsgBox.showInfo("数据成功保存");
             } else {
               me.gotoNext();
             }
           } else {
             PSI.MsgBox.showInfo(result.msg, function () {
-              Ext.getCmp("editGoodsCount")
-                .focus();
+              PCL.getCmp("editGoodsCount").focus();
             });
           }
         }
       }
     });
   },
+
   gotoNext: function () {
     var me = this;
-    if (!Ext.getCmp("checkboxGotoNext").getValue()) {
+    if (!PCL.getCmp("checkboxGotoNext").getValue()) {
       return;
     }
     var grid = me.getGoodsGrid();
     var hasNext = grid.getSelectionModel().selectNext();
     if (!hasNext) {
-      Ext.getCmp("_pagingToolbar").moveNext();
+      PCL.getCmp("_pagingToolbar").moveNext();
     }
-    var editCount = Ext.getCmp("editGoodsCount");
+    var editCount = PCL.getCmp("editGoodsCount");
     editCount.focus();
   }
 });
