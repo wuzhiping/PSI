@@ -68,6 +68,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
           border: 0,
           items: [{
             title: "数据库结构",
+            id: "tabDbStruct",
             border: 0,
             layout: "fit",
             items: {
@@ -90,6 +91,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
             }
           }, {
             title: "取值",
+            id: "tabValueFrom",
             border: 0,
             layout: "fit",
             items: {
@@ -112,6 +114,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
             }
           }, {
             title: "显示",
+            id: "tabDisplay",
             border: 0,
             layout: "fit",
             items: {
@@ -134,6 +137,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
             }
           }, {
             title: "编辑",
+            id: "tabEdit",
             border: 0,
             layout: "fit",
             items: {
@@ -154,7 +158,13 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
               },
               items: me.getEditCols()
             }
-          }]
+          }],
+          listeners: {
+            tabchange: {
+              fn: me._onTabChange,
+              scope: me
+            },
+          }
         }
       }],
       buttons,
@@ -834,5 +844,30 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   _onRefCol() {
     const me = this;
     me.showInfo("TODO")
+  },
+
+  /**
+   * TabPanel选中的Tab发生改变的时候的时间处理函数
+   * @private
+   */
+  _onTabChange(tabPanel, newCard, oldCard, eOpts) {
+    const me = this;
+
+    const id = newCard.getId();
+
+    // 延迟0.1秒后设置input焦点
+    // 这是一个奇怪的写法，不这样处理，就不能正确设置焦点
+    // 原因目前不明
+    PCL.Function.defer(() => {
+      if (id == "tabDbStruct") {
+        me.setFocusAndCursorPosToLast(me.editCaption);
+      } else if (id == "tabValueFrom") {
+        me.setFocusAndCursorPosToLast(me.editValueFrom);
+      } else if (id == "tabDisplay") {
+        me.setFocusAndCursorPosToLast(me.editWidthInView);
+      } else if (id == "tabEdit") {
+        me.setFocusAndCursorPosToLast(me.editColSpan);
+      }
+    }, 100);
   }
 });
