@@ -153,6 +153,12 @@ INSERT INTO `t_sysdict_sln0000_ct_value_from` (`id`, `code`, `code_int`, `name`,
 ('3', '3', 3, '引用其他码表', '', '', 3),
 ('4', '4', 4, '引用自身数据', '', '', 4);
 
+# 码表列是否可见
+TRUNCATE TABLE `t_sysdict_sln0000_ct_field_visible`;
+INSERT INTO `t_sysdict_sln0000_ct_field_visible` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('1', '1', 1, '对用户可见', '', '', 1),
+('2', '2', 2, '对用户不可见', '', '', 2);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
