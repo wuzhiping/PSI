@@ -346,7 +346,7 @@ PCL.define("PSI.PurchaseRej.PREditForm", {
     if (e.getKey() == e.ENTER) {
       var me = this;
       me.getGoodsGrid().focus();
-      me.__cellEditing.startEdit(0, 4);
+      me.__cellEditing.startEdit(0, 3);
     }
   },
 
