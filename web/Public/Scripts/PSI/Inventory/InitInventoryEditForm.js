@@ -455,7 +455,7 @@ PCL.define("PSI.Inventory.InitInventoryEditForm", {
     } else {
       var p = PCL.getCmp("editGoodsMoney").getValue()
         / PCL.getCmp("editGoodsCount").getValue();
-      p = Ext.Number.toFixed(p, 2);
+      p = PCL.Number.toFixed(p, 2);
       goods.set("goodsPrice", p);
     }
     this.getGoodsGrid().getStore().commitChanges();
