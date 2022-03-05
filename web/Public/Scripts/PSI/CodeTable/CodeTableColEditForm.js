@@ -736,11 +736,11 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
           const data = me.decodeJSON(response.responseText);
           if (data.success) {
             me.tip("数据保存成功", true);
-            me.__lastId = data.id;
+            me._lastId = data.id;
             me.close();
             const parentForm = me.getParentForm();
             if (parentForm) {
-              parentForm.refreshColsGrid.apply(parentForm, [me.__lastId]);
+              parentForm.refreshColsGrid.apply(parentForm, [me._lastId]);
             }
           } else {
             me.showInfo(data.msg);
@@ -772,12 +772,6 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     const me = this;
 
     PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
-
-    if (me.__lastId) {
-      if (me.getParentForm()) {
-        me.getParentForm().refreshColsGrid(me.__lastId);
-      }
-    }
   },
 
   /**
