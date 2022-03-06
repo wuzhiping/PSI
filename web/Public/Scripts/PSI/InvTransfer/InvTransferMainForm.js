@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.InvTransfer.InvTransferMainForm", {
+PCL.define("PSI.InvTransfer.InvTransferMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -15,7 +15,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -151,7 +151,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "待调拨"], [1000, "已调拨"]]
       }),
@@ -232,7 +232,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -240,21 +240,21 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
   },
 
   refreshMainGrid: function (id) {
-    Ext.getCmp("buttonEdit").setDisabled(true);
-    Ext.getCmp("buttonDelete").setDisabled(true);
-    Ext.getCmp("buttonCommit").setDisabled(true);
+    PCL.getCmp("buttonEdit").setDisabled(true);
+    PCL.getCmp("buttonDelete").setDisabled(true);
+    PCL.getCmp("buttonCommit").setDisabled(true);
 
     var me = this;
     var gridDetail = me.getDetailGrid();
     gridDetail.setTitle(me.formatGridHeaderTitle("调拨单明细"));
     gridDetail.getStore().removeAll();
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
     me.__lastId = id;
   },
 
   // 新增调拨单
   onAddBill: function () {
-    var form = Ext.create("PSI.InvTransfer.ITEditForm", {
+    var form = PCL.create("PSI.InvTransfer.ITEditForm", {
       parentForm: this
     });
 
@@ -271,7 +271,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
     }
     var bill = item[0];
 
-    var form = Ext.create("PSI.InvTransfer.ITEditForm", {
+    var form = PCL.create("PSI.InvTransfer.ITEditForm", {
       parentForm: me,
       entity: bill
     });
@@ -292,9 +292,9 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
       + "</span>";
 
     PSI.MsgBox.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL
           + "Home/InvTransfer/deleteITBill",
         method: "POST",
@@ -305,7 +305,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
           el.unmask();
 
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             if (data.success) {
               me.refreshMainGrid();
               me.tip("成功完成删除操作");
@@ -339,9 +339,9 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
     var info = "请确认是否提交单号: <span style='color:red'>" + bill.get("ref")
       + "</span> 的调拨单?";
     PSI.MsgBox.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL
           + "Home/InvTransfer/commitITBill",
         method: "POST",
@@ -352,8 +352,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
           el.unmask();
 
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             if (data.success) {
               me.refreshMainGrid(data.id);
               me.tip("成功完成提交操作");
@@ -375,13 +374,13 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
     }
 
     var modelName = "PSIITBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "bizDate", "fromWarehouseName",
         "toWarehouseName", "inputUserName", "bizUserName",
         "billStatus", "dateCreated", "billMemo"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -408,7 +407,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -487,7 +486,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
         itemdblclick: {
           fn: me.getPermission().edit == "1"
             ? me.onEditBill
-            : Ext.emptyFn,
+            : PCL.emptyFn,
           scope: me
         }
       },
@@ -505,7 +504,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"],
             ["300"], ["1000"]]
@@ -514,12 +513,9 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToobar")
-                  .doRefresh();
+                PCL.getCmp("pagingToobar").doRefresh();
               },
               scope: me
             }
@@ -540,18 +536,18 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
     }
 
     var modelName = "PSIITBillDetail";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount", "memo"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__detailGrid = Ext.create("Ext.grid.Panel", {
+    me.__detailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -561,7 +557,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
         title: me.formatGridHeaderTitle("调拨单明细")
       },
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "#",
         width: 40
       }), {
@@ -629,16 +625,16 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
     var grid = me.getMainGrid();
     var item = grid.getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      Ext.getCmp("buttonEdit").setDisabled(true);
-      Ext.getCmp("buttonDelete").setDisabled(true);
-      Ext.getCmp("buttonCommit").setDisabled(true);
+      PCL.getCmp("buttonEdit").setDisabled(true);
+      PCL.getCmp("buttonDelete").setDisabled(true);
+      PCL.getCmp("buttonCommit").setDisabled(true);
       return;
     }
     var bill = item[0];
 
     var commited = bill.get("billStatus") == "已调拨";
 
-    var buttonEdit = Ext.getCmp("buttonEdit");
+    var buttonEdit = PCL.getCmp("buttonEdit");
     buttonEdit.setDisabled(false);
     if (commited) {
       buttonEdit.setText("查看调拨单");
@@ -646,8 +642,8 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
       buttonEdit.setText("编辑调拨单");
     }
 
-    Ext.getCmp("buttonDelete").setDisabled(commited);
-    Ext.getCmp("buttonCommit").setDisabled(commited);
+    PCL.getCmp("buttonDelete").setDisabled(commited);
+    PCL.getCmp("buttonCommit").setDisabled(commited);
 
     me.refreshDetailGrid();
   },
@@ -668,7 +664,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
       + bill.get("toWarehouseName")));
     var el = grid.getEl();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL
         + "Home/InvTransfer/itBillDetailList",
       params: {
@@ -681,7 +677,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
@@ -709,13 +705,13 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
   onClearQuery: function () {
     var me = this;
 
-    Ext.getCmp("editQueryBillStatus").setValue(-1);
-    Ext.getCmp("editQueryRef").setValue(null);
-    Ext.getCmp("editQueryFromDT").setValue(null);
-    Ext.getCmp("editQueryToDT").setValue(null);
-    Ext.getCmp("editQueryFromWarehouse").clearIdValue();
-    Ext.getCmp("editQueryToWarehouse").clearIdValue();
-    Ext.getCmp("editQueryGoods").clearIdValue();
+    PCL.getCmp("editQueryBillStatus").setValue(-1);
+    PCL.getCmp("editQueryRef").setValue(null);
+    PCL.getCmp("editQueryFromDT").setValue(null);
+    PCL.getCmp("editQueryToDT").setValue(null);
+    PCL.getCmp("editQueryFromWarehouse").clearIdValue();
+    PCL.getCmp("editQueryToWarehouse").clearIdValue();
+    PCL.getCmp("editQueryGoods").clearIdValue();
 
     me.onQuery();
   },
@@ -724,35 +720,35 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
     var me = this;
 
     var result = {
-      billStatus: Ext.getCmp("editQueryBillStatus").getValue()
+      billStatus: PCL.getCmp("editQueryBillStatus").getValue()
     };
 
-    var ref = Ext.getCmp("editQueryRef").getValue();
+    var ref = PCL.getCmp("editQueryRef").getValue();
     if (ref) {
       result.ref = ref;
     }
 
-    var fromWarehouseId = Ext.getCmp("editQueryFromWarehouse").getIdValue();
+    var fromWarehouseId = PCL.getCmp("editQueryFromWarehouse").getIdValue();
     if (fromWarehouseId) {
       result.fromWarehouseId = fromWarehouseId;
     }
 
-    var toWarehouseId = Ext.getCmp("editQueryToWarehouse").getIdValue();
+    var toWarehouseId = PCL.getCmp("editQueryToWarehouse").getIdValue();
     if (toWarehouseId) {
       result.toWarehouseId = toWarehouseId;
     }
 
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
-    var goodsId = Ext.getCmp("editQueryGoods").getIdValue();
+    var goodsId = PCL.getCmp("editQueryGoods").getIdValue();
     if (goodsId) {
       result.goodsId = goodsId;
     }
@@ -795,7 +791,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/InvTransfer/genITBillPrintPage",
@@ -854,7 +850,7 @@ Ext.define("PSI.InvTransfer.InvTransferMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/InvTransfer/genITBillPrintPage",
