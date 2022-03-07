@@ -468,6 +468,10 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
             me._onMainGridItemSelect(record);
           },
           scope: me
+        },
+        itemdblclick: {
+          fn: me._onEditSubject,
+          scope: me
         }
       }
     });
