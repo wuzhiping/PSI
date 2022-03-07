@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.InvCheck.InvCheckMainForm", {
+PCL.define("PSI.InvCheck.InvCheckMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -18,7 +18,7 @@ Ext.define("PSI.InvCheck.InvCheckMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -154,7 +154,7 @@ Ext.define("PSI.InvCheck.InvCheckMainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "待盘点"], [1000, "已盘点"]]
       }),
@@ -230,7 +230,7 @@ Ext.define("PSI.InvCheck.InvCheckMainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -238,15 +238,15 @@ Ext.define("PSI.InvCheck.InvCheckMainForm", {
   },
 
   refreshMainGrid: function (id) {
-    Ext.getCmp("buttonEdit").setDisabled(true);
-    Ext.getCmp("buttonDelete").setDisabled(true);
-    Ext.getCmp("buttonCommit").setDisabled(true);
+    PCL.getCmp("buttonEdit").setDisabled(true);
+    PCL.getCmp("buttonDelete").setDisabled(true);
+    PCL.getCmp("buttonCommit").setDisabled(true);
 
     var me = this;
     var gridDetail = me.getDetailGrid();
     gridDetail.setTitle(me.formatGridHeaderTitle("盘点单明细"));
     gridDetail.getStore().removeAll();
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
     me.__lastId = id;
   },
 
@@ -254,7 +254,7 @@ Ext.define("PSI.InvCheck.InvCheckMainForm", {
    * 新增盘点单
    */
   onAddBill: function () {
-    var form = Ext.create("PSI.InvCheck.ICEditForm", {
+    var form = PCL.create("PSI.InvCheck.ICEditForm", {
       parentForm: this
     });
     form.show();
