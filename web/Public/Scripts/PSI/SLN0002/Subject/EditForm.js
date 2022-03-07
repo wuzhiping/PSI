@@ -129,7 +129,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
           value: null
         }, {
           id: "PSI_Subject_EditForm_editParentCode",
-          xtype: "PSI_parent_subject_field",
+          xtype: entity == null ? "PSI_parent_subject_field" : "displayfield",
           fieldLabel: "上级科目",
           allowBlank: false,
           blankText: "没有输入上级科目",
@@ -318,8 +318,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
         if (success) {
           const data = me.decodeJSON(response.responseText);
 
-          me.editParentCode.setValue(data.parentCode);
-          me.editParentCode.setReadOnly(true);
+          me.editParentCode.setValue(`<span class='PSI-field-note'>${data.parentCode}</span>`);
 
           me.editCode.setValue(data.code);
 
