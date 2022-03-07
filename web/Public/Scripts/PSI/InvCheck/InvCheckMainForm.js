@@ -272,7 +272,7 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
     }
     var bill = item[0];
 
-    var form = Ext.create("PSI.InvCheck.ICEditForm", {
+    var form = PCL.create("PSI.InvCheck.ICEditForm", {
       parentForm: me,
       entity: bill
     });
@@ -295,9 +295,9 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
       + "</span>";
 
     PSI.MsgBox.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/InvCheck/deleteICBill",
         method: "POST",
         params: {
@@ -307,8 +307,7 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
           el.unmask();
 
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             if (data.success) {
               me.refreshMainGrid();
               me.tip("成功完成删除操作");
@@ -345,9 +344,9 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
     var info = "请确认是否提交单号: <span style='color:red'>" + bill.get("ref")
       + "</span> 的盘点单?";
     PSI.MsgBox.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/InvCheck/commitICBill",
         method: "POST",
         params: {
@@ -357,8 +356,7 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
           el.unmask();
 
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             if (data.success) {
               me.refreshMainGrid(data.id);
               me.tip("成功完成提交操作");
@@ -383,13 +381,13 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
     }
 
     var modelName = "PSIICBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "bizDate", "warehouseName",
         "inputUserName", "bizUserName", "billStatus",
         "dateCreated", "billMemo"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -415,7 +413,7 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -488,7 +486,7 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
         itemdblclick: {
           fn: me.getPermission().edit == "1"
             ? me.onEditBill
-            : Ext.emptyFn,
+            : PCL.emptyFn,
           scope: me
         }
       },
@@ -506,7 +504,7 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"],
             ["300"], ["1000"]]
@@ -515,12 +513,9 @@ PCL.define("PSI.InvCheck.InvCheckMainForm", {
           listeners: {
             change: {
               fn: function () {
-                storeWSBill.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
-                storeWSBill.currentPage = 1;
-                Ext.getCmp("pagingToobar")
-                  .doRefresh();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
+                store.currentPage = 1;
+                PCL.getCmp("pagingToobar").doRefresh();
               },
               scope: me
             }
