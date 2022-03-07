@@ -700,7 +700,7 @@ class SubjectDAO extends PSIBaseExDAO
             where id = '%s' ";
     $data = $db->query($sql, $parentId);
     if ($data) {
-      $result["parentCode"] = $data[0]["code"];
+      $result["parentCode"] = $data[0]["code"] . " - " . $data[0]["name"];
     }
 
     return $result;
