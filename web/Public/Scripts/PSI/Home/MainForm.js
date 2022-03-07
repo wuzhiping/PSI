@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Home.MainForm", {
-  extend: "Ext.panel.Panel",
+PCL.define("PSI.Home.MainForm", {
+  extend: "PCL.panel.Panel",
 
   config: {
     pSale: "",
@@ -71,7 +71,7 @@ Ext.define("PSI.Home.MainForm", {
         items: [me.getInfoPortal()]
       });
     }
-    Ext.apply(me, {
+    PCL.apply(me, {
       layout: "vbox",
       autoScroll: true,
       items: items
@@ -103,12 +103,12 @@ Ext.define("PSI.Home.MainForm", {
     }
 
     var modelName = "PSIModel.PSI.Home.PortalSale";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["month", "saleMoney", "profit", "rate"]
     });
 
-    me.__saleGrid = Ext.create("Ext.grid.Panel", {
+    me.__saleGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -144,7 +144,7 @@ Ext.define("PSI.Home.MainForm", {
         sortable: false,
         align: "right"
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -161,12 +161,12 @@ Ext.define("PSI.Home.MainForm", {
     }
 
     var modelName = "PSIModel.PSI.Home.PortalPurchase";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["month", "purchaseMoney"]
     });
 
-    me.__purchaseGrid = Ext.create("Ext.grid.Panel", {
+    me.__purchaseGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -188,7 +188,7 @@ Ext.define("PSI.Home.MainForm", {
         align: "right",
         xtype: "numbercolumn"
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -205,14 +205,14 @@ Ext.define("PSI.Home.MainForm", {
     }
 
     var modelName = "PSIModel.PSI.Home.PortalInventory";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["warehouseName", { name: "inventoryMoney", type: "float" },
         { name: "siCount", type: "float" },
         { name: "iuCount", type: "float" }]
     });
 
-    me.__inventoryGrid = Ext.create("Ext.grid.Panel", {
+    me.__inventoryGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -274,7 +274,7 @@ Ext.define("PSI.Home.MainForm", {
         },
         summaryType: "sum"
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -291,13 +291,13 @@ Ext.define("PSI.Home.MainForm", {
     }
 
     var modelName = "PSIModel.PSI.Home.PortalMoney";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["item", "balanceMoney", "money30", "money30to60",
         "money60to90", "money90"]
     });
 
-    me.__moneyGrid = Ext.create("Ext.grid.Panel", {
+    me.__moneyGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -349,7 +349,7 @@ Ext.define("PSI.Home.MainForm", {
         xtype: "numbercolumn",
         width: 120
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -464,9 +464,9 @@ Ext.define("PSI.Home.MainForm", {
   queryInventoryData: function () {
     var me = this;
     var grid = me.getInventoryGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/Portal/inventoryPortal",
       method: "POST",
       callback: function (options, success, response) {
@@ -474,7 +474,7 @@ Ext.define("PSI.Home.MainForm", {
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -486,9 +486,9 @@ Ext.define("PSI.Home.MainForm", {
   querySaleData: function () {
     var me = this;
     var grid = me.getSaleGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/Portal/salePortal",
       method: "POST",
       callback: function (options, success, response) {
@@ -496,7 +496,7 @@ Ext.define("PSI.Home.MainForm", {
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
 
           me.copyDataFromSaleGrid(data);
@@ -525,9 +525,9 @@ Ext.define("PSI.Home.MainForm", {
   queryPurchaseData: function () {
     var me = this;
     var grid = me.getPurchaseGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/Portal/purchasePortal",
       method: "POST",
       callback: function (options, success, response) {
@@ -535,7 +535,7 @@ Ext.define("PSI.Home.MainForm", {
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
           me.copyDataFromPurchaseGrid(data);
         }
@@ -559,9 +559,9 @@ Ext.define("PSI.Home.MainForm", {
   queryMoneyData: function () {
     var me = this;
     var grid = me.getMoneyGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/Portal/moneyPortal",
       method: "POST",
       callback: function (options, success, response) {
@@ -569,7 +569,7 @@ Ext.define("PSI.Home.MainForm", {
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
         }
 
@@ -593,16 +593,16 @@ Ext.define("PSI.Home.MainForm", {
     }
 
     var modelName = "PSIModel.PSI.Home.SaleChart";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["不含税销售额", "毛利", "month"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       data: []
     });
 
-    me.__saleChart = Ext.create("Ext.chart.Chart", {
+    me.__saleChart = PCL.create("Ext.chart.Chart", {
       theme: "Category1",
       animate: true,
       legend: {
@@ -678,16 +678,16 @@ Ext.define("PSI.Home.MainForm", {
     }
 
     var modelName = "PSIModel.PSI.Home.PurchaseChart";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["purchaseMoney", "month"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       data: []
     });
 
-    me.__purchaseChart = Ext.create("Ext.chart.Chart", {
+    me.__purchaseChart = PCL.create("Ext.chart.Chart", {
       theme: "Green",
       animate: true,
       store: store,
