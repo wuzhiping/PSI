@@ -17,7 +17,8 @@ INSERT INTO `t_dict_table_category` (`id`, `code`, `name`, `parent_id`) VALUES
 ('SLN0000.04', 'SLN0000.04', '报表', NULL),
 ('SLN0000.05', 'SLN0000.05', '工作流', NULL),
 ('SLN0000.51', 'SLN0000.51', '组织机构', NULL),
-('SLN0000.52', 'SLN0000.52', '用户', NULL);
+('SLN0000.52', 'SLN0000.52', '用户', NULL),
+('SLN0002.01', 'SLN0002.01', '会计科目', NULL);
 
 TRUNCATE TABLE `t_dict_table_md`;
 INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`, `memo`, `py`) VALUES
