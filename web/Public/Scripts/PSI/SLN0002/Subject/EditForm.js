@@ -61,13 +61,14 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
     const t = entity == null ? "新建科目" : "编辑科目";
     const logoHtml = me.genLogoHtml(entity, t);
 
+    const width = 600;
     PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
-      width: 400,
-      height: 340,
+      width: 650,
+      height: 370,
       layout: "border",
       listeners: {
         show: {
@@ -91,7 +92,8 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
         xtype: "form",
         layout: {
           type: "table",
-          columns: 1
+          columns: 1,
+          tableAttrs: PSI.Const.TABLE_LAYOUT,
         },
         height: "100%",
         bodyPadding: 5,
@@ -101,7 +103,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
           labelAlign: "right",
           labelSeparator: "",
           msgTarget: 'side',
-          width: 370,
+          width,
           margin: "5"
         },
         items: [{
