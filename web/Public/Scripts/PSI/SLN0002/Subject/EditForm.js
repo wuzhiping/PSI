@@ -61,7 +61,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
     };
     buttons.push(btn);
 
-    const t = entity == null ? "新建科目" : "编辑科目";
+    const t = entity == null ? "新建会计科目" : "编辑会计科目";
     const logoHtml = me.genLogoHtml(entity, t);
 
     const width = 600;
