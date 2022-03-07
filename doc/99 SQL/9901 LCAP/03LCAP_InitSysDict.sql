@@ -36,7 +36,8 @@ INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`
 ('5E538B96-8973-11EC-9791-E86A641ED142', 'SLN0000.05.02', '实施指南导航', 't_sysdict_sln0000_help_nav', 'SLN0000.05', '实施指南导航 - 模块中单击指南按钮后跳转的URL', 'SSZNDH'),
 ('103CD8A1-95EB-11EC-A366-E86A641ED142', 'SLN0000.51.01', '组织机构性质', 't_sysdict_sln0000_org_type', 'SLN0000.51', '组织机构性质', 'ZZJGXZ'),
 ('8F7829F3-9602-11EC-A366-E86A641ED142', 'SLN0000.52.01', '性别', 't_sysdict_sln0000_gender', 'SLN0000.52', '', 'XB'),
-('99913BDD-9602-11EC-A366-E86A641ED142', 'SLN0000.52.02', '能否登录', 't_sysdict_sln0000_user_enabled', 'SLN0000.52', '', 'NFDL');
+('99913BDD-9602-11EC-A366-E86A641ED142', 'SLN0000.52.02', '能否登录', 't_sysdict_sln0000_user_enabled', 'SLN0000.52', '', 'NFDL'),
+('46A81380-9DE8-11EC-B333-E86A641ED142', 'SLN0002.01.01', '末级科目', 't_sysdict_sln0002_leaf_subject', 'SLN0002.01', '会计科目是否是末级科目', 'MJKM');
 
 TRUNCATE TABLE `t_sysdict_sln0000_ct_record_status`;
 INSERT INTO `t_sysdict_sln0000_ct_record_status` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
