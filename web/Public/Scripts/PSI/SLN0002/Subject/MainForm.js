@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SLN0002.Subject.MainForm", {
+PCL.define("PSI.SLN0002.Subject.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   /**
@@ -16,7 +16,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: me.getToolbarCmp(),
       items: [{
         region: "north",
@@ -147,7 +147,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
    */
   refreshCompanyGrid() {
     const me = this;
-    const el = Ext.getBody();
+    const el = PCL.getBody();
     const store = me.getCompanyGrid().getStore();
     el.mask(PSI.Const.LOADING);
     const r = {
@@ -180,12 +180,12 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
 
     const modelName = "PSIModel.PSI.Subject.MainForm.Company";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "orgType"]
     });
 
-    me._companyGrid = Ext.create("Ext.grid.Panel", {
+    me._companyGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -194,7 +194,7 @@ Ext.define("PSI.SLN0002.Subject.MainForm", {
       tools: [{
         type: "close",
         handler() {
-          Ext.getCmp("companyPanel").collapse();
+          PCL.getCmp("companyPanel").collapse();
         }
       }],
       forceFit: true,
