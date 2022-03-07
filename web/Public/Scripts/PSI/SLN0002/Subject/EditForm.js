@@ -50,9 +50,12 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
     buttons.push(btn);
 
     btn = {
-      text: entity == null ? "关闭" : "取消",
+      text: "取消",
       handler() {
-        me.close();
+        const info = !me.getEntity() ? "新建会计科目" : "编辑会计科目";
+        me.confirm(`请确认是否取消：${info} ?`, () => {
+          me.close();
+        });
       },
       scope: me
     };
