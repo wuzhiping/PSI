@@ -218,7 +218,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
         menuDisabled: true,
         sortable: false
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -250,7 +250,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
     }
 
     const company = item[0];
-    const title = Ext.String.format("<span class='PSI-title-keyword'>{0}</span> - 会计科目", company.get("name"));
+    const title = `<span class='PSI-title-keyword'>${company.get("name")}</span> - 会计科目`;
     me.getMainGrid().setTitle(me.formatGridHeaderTitle(title));
 
     const store = me.getMainGrid().getStore();
