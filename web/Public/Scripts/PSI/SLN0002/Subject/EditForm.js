@@ -160,6 +160,11 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
         }, {
           id: "PSI_Subject_EditForm_editName",
           fieldLabel: "科目名称",
+          xtype: entity == null ? "textfield" :
+            (
+              // 4: 一级科目
+              entity.get("code").length == 4 ? "displayfield" : "textfield"
+            ),
           allowBlank: false,
           blankText: "没有输入科目名称",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -325,15 +330,16 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
 
           me.editCode.setValue(`<span class='PSI-field-note'>${data.code}</span>`);
 
-          me.editName.setValue(data.name);
           me.editIsLeaf.setValue(parseInt(data.isLeaf));
 
           if (data.code.length == 4) {
             // 一级科目
-            me.editName.setReadOnly(true);
+            me.editName.setValue(`<span class='PSI-field-note'>${data.name}</span>`);
 
             me.setFocusAndCursorPosToLast(me.editIsLeaf);
           } else {
+            // 非一级科目的科目名称是可以编辑的
+            me.editName.setValue(data.name);
             me.setFocusAndCursorPosToLast(me.editName);
           }
         } else {
