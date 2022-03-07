@@ -734,9 +734,9 @@ PCL.define("PSI.Home.MainForm", {
     var value = parseFloat(value);
     var format = "0,000.00";
     if (value >= 0) {
-      return Ext.util.Format.number(value, format);
+      return PCL.util.Format.number(value, format);
     } else {
-      return "-" + Ext.util.Format.number(Math.abs(value), format);
+      return "-" + PCL.util.Format.number(Math.abs(value), format);
     }
   },
 
@@ -744,9 +744,9 @@ PCL.define("PSI.Home.MainForm", {
     var value = parseFloat(value);
     var format = "0,000";
     if (value >= 0) {
-      return Ext.util.Format.number(value, format);
+      return PCL.util.Format.number(value, format);
     } else {
-      return "-" + Ext.util.Format.number(Math.abs(value), format);
+      return "-" + PCL.util.Format.number(Math.abs(value), format);
     }
   }
 });
