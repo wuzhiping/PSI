@@ -132,7 +132,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           listeners: {
             specialkey: {
-              fn: me.onEditParentCodeSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           },
@@ -148,7 +148,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
           name: "code",
           listeners: {
             specialkey: {
-              fn: me.onEditCodeSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -161,7 +161,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
           name: "name",
           listeners: {
             specialkey: {
-              fn: me.onEditNameSpecialKey,
+              fn: me.__onEditSpecialKey,
               scope: me
             }
           }
@@ -194,6 +194,8 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
     me.editCode = PCL.getCmp("PSI_Subject_EditForm_editCode");
     me.editName = PCL.getCmp("PSI_Subject_EditForm_editName");
     me.editIsLeaf = PCL.getCmp("PSI_Subject_EditForm_editIsLeaf");
+
+    me.__editorList = [me.editParentCode, me.editCode, me.editName, me.editIsLeaf];
   },
 
   /**
