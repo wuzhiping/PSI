@@ -216,7 +216,9 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
   _onOK(thenAdd) {
     const me = this;
 
-    me.hiddenParentCode.setValue(me.editParentCode.getIdValue());
+    if (me.adding){
+      me.hiddenParentCode.setValue(me.editParentCode.getIdValue());
+    }
 
     const f = me.editForm;
     const el = f.getEl();
@@ -229,7 +231,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
 
         el.unmask();
 
-        PSI.MsgBox.tip("数据保存成功");
+        me.tip("数据保存成功", !thenAdd);
         me.focus();
         if (thenAdd) {
           me.clearEdit();
@@ -239,7 +241,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
       },
       failure(form, action) {
         el.unmask();
-        PSI.MsgBox.showInfo(action.result.msg, () => {
+        me.showInfo(action.result.msg, () => {
           me.editCode.focus();
         });
       }
