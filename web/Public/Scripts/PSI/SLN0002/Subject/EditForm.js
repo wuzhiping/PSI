@@ -14,6 +14,8 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
 
   /**
    * 初始化组件
+   * 
+   * @private
    */
   initComponent() {
     const me = this;
@@ -28,7 +30,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
         text: "保存并继续新建",
         formBind: true,
         handler() {
-          me.onOK(true);
+          me._onOK(true);
         },
         scope: me
       };
@@ -41,7 +43,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
       formBind: true,
       iconCls: "PSI-button-ok",
       handler() {
-        me.onOK(false);
+        me._onOK(false);
       },
       scope: me
     };
@@ -69,11 +71,11 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
       layout: "border",
       listeners: {
         show: {
-          fn: me.onWndShow,
+          fn: me._onWndShow,
           scope: me
         },
         close: {
-          fn: me.onWndClose,
+          fn: me._onWndClose,
           scope: me
         }
       },
@@ -134,7 +136,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
               scope: me
             }
           },
-          callbackFunc: me.onParentCodeCallback,
+          callbackFunc: me._onParentCodeCallback,
           callbackScope: me,
           companyId: me.getCompany().get("id")
         }, {
@@ -196,8 +198,10 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
 
   /**
    * 保存
+   * 
+   * @private
    */
-  onOK(thenAdd) {
+  _onOK(thenAdd) {
     const me = this;
 
     me.hiddenParentCode.setValue(me.editParentCode.getIdValue());
@@ -209,7 +213,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
       url: me.URL("SLN0002/Subject/editSubject"),
       method: "POST",
       success(form, action) {
-        me.__lastId = action.result.id;
+        me._lastId = action.result.id;
 
         el.unmask();
 
@@ -257,11 +261,14 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
     if (e.getKey() == e.ENTER) {
       const f = me.editForm;
       if (f.getForm().isValid()) {
-        me.onOK(me.adding);
+        me._onOK(me.adding);
       }
     }
   },
 
+  /**
+   * @private
+   */
   clearEdit() {
     const me = this;
     me.editParentCode.focus();
@@ -274,16 +281,15 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
     }
   },
 
-  onWindowBeforeUnload(e) {
-    return (window.event.returnValue = e.returnValue = '确认离开当前页面？');
-  },
-
-  onWndClose() {
+  /**
+   * @private
+   */
+  _onWndClose() {
     const me = this;
 
-    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
-    if (me.__lastId) {
+    if (me._lastId) {
       const parentForm = me.getParentForm();
       if (parentForm) {
         parentForm._onCompanyGridSelect.apply(parentForm, []);
@@ -291,10 +297,13 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
     }
   },
 
-  onWndShow() {
+  /**
+   * @private
+   */
+  _onWndShow() {
     const me = this;
 
-    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     if (me.adding) {
       me.editParentCode.focus();
@@ -343,7 +352,10 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
     me.ajax(r);
   },
 
-  onParentCodeCallback(data) {
+  /**
+   * @private
+   */
+  _onParentCodeCallback(data) {
     const me = this;
     me.editCode.setValue(data.code);
     me.editName.setValue(data.name + " - ");
