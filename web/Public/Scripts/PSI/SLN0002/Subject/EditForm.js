@@ -177,7 +177,13 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
             fields: ["id", "text"],
             data: [[1, "是"], [0, "否"]]
           }),
-          value: 1
+          value: 1,
+          listeners: {
+            specialkey: {
+              fn: me._onLastEditSpecialKey,
+              scope: me
+            }
+          }
         }],
         buttons: buttons
       }]
@@ -237,27 +243,10 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
     f.submit(sf);
   },
 
-  onEditParentCodeSpecialKey(field, e) {
-    const me = this;
-
-    if (e.getKey() == e.ENTER) {
-      const editName = me.editCode;
-      editName.focus();
-      editName.setValue(editName.getValue());
-    }
-  },
-
-  onEditCodeSpecialKey(field, e) {
-    const me = this;
-
-    if (e.getKey() == e.ENTER) {
-      const editName = me.editName;
-      editName.focus();
-      editName.setValue(editName.getValue());
-    }
-  },
-
-  onEditNameSpecialKey(field, e) {
+  /**
+   * @private
+   */
+  _onLastEditSpecialKey(field, e) {
     const me = this;
 
     if (e.getKey() == e.ENTER) {
@@ -345,7 +334,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
             me.setFocusAndCursorPosToLast(me.editName);
           }
         } else {
-          me.showInfo("网络错误")
+          me.showInfo("网络错误");
         }
       }
     };
