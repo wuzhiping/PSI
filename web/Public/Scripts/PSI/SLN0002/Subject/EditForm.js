@@ -146,6 +146,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
         }, {
           id: "PSI_Subject_EditForm_editCode",
           fieldLabel: "科目码",
+          xtype: entity == null ? "textfield" : "displayfield",
           allowBlank: false,
           blankText: "没有输入科目码",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
@@ -216,7 +217,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
   _onOK(thenAdd) {
     const me = this;
 
-    if (me.adding){
+    if (me.adding) {
       me.hiddenParentCode.setValue(me.editParentCode.getIdValue());
     }
 
@@ -322,13 +323,10 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
 
           me.editParentCode.setValue(`<span class='PSI-field-note'>${data.parentCode}</span>`);
 
-          me.editCode.setValue(data.code);
+          me.editCode.setValue(`<span class='PSI-field-note'>${data.code}</span>`);
 
           me.editName.setValue(data.name);
           me.editIsLeaf.setValue(parseInt(data.isLeaf));
-
-          // 编辑的时候不允许编辑科目码
-          me.editCode.setReadOnly(true);
 
           if (data.code.length == 4) {
             // 一级科目
