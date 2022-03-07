@@ -602,7 +602,7 @@ PCL.define("PSI.Home.MainForm", {
       data: []
     });
 
-    me.__saleChart = PCL.create("Ext.chart.Chart", {
+    me.__saleChart = PCL.create("PCL.chart.Chart", {
       theme: "Category1",
       animate: true,
       legend: {
@@ -687,7 +687,7 @@ PCL.define("PSI.Home.MainForm", {
       data: []
     });
 
-    me.__purchaseChart = PCL.create("Ext.chart.Chart", {
+    me.__purchaseChart = PCL.create("PCL.chart.Chart", {
       theme: "Green",
       animate: true,
       store: store,
