@@ -340,10 +340,9 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
             // 一级科目
             me.editName.setReadOnly(true);
 
-            me.editIsLeaf.focus();
+            me.setFocusAndCursorPosToLast(me.editIsLeaf);
           } else {
-            me.editName.focus();
-            me.editName.setValue(me.editName.getValue());
+            me.setFocusAndCursorPosToLast(me.editName);
           }
         } else {
           me.showInfo("网络错误")
