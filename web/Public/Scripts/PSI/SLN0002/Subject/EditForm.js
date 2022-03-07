@@ -122,7 +122,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
         }, {
           xtype: "displayfield",
           fieldLabel: "组织机构",
-          value: me.getCompany().get("name")
+          value: `<span class='PSI-field-note'>${me.getCompany().get("name")}</span>`
         }, {
           xtype: "hidden",
           id: "PSI_Subject_EditForm_hiddenParentCode",
