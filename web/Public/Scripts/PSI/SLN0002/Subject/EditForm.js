@@ -113,8 +113,7 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
           xtype: "hidden",
           id: "PSI_Subject_EditForm_hiddenId",
           name: "id",
-          value: entity == null ? null : entity
-            .get("id")
+          value: entity == null ? null : entity.get("id")
         }, {
           xtype: "hidden",
           name: "companyId",
