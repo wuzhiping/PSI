@@ -183,6 +183,9 @@ PCL.define("PSI.SLN0002.Subject.EditForm", {
           editable: false,
           valueField: "id",
           fieldLabel: "末级科目",
+          allowBlank: false,
+          blankText: "没有输入末级科目",
+          beforeLabelTextTpl: PSI.Const.REQUIRED,
           store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1, "是"], [0, "否"]]
