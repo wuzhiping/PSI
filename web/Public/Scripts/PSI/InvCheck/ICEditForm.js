@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.InvCheck.ICEditForm", {
+PCL.define("PSI.InvCheck.ICEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -17,7 +17,7 @@ Ext.define("PSI.InvCheck.ICEditForm", {
     var title = entity == null ? "新建盘点单" : "编辑盘点单";
     title = me.formatTitle(title);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: title,
         height: 40
@@ -188,49 +188,45 @@ Ext.define("PSI.InvCheck.ICEditForm", {
   onWndClose: function () {
     // 加上这个调用是为了解决 #IMQB2 - https://gitee.com/crm8000/PSI/issues/IMQB2
     // 这个只是目前的临时应急方法，实现的太丑陋了
-    Ext.WindowManager.hideAll();
+    PCL.WindowManager.hideAll();
 
-    Ext.get(window).un('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', this.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
-    Ext.get(window).on('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', this.onWindowBeforeUnload);
 
     var me = this;
     me.__canEditGoodsPrice = false;
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/InvCheck/icBillInfo",
       params: {
-        id: Ext.getCmp("hiddenId").getValue()
+        id: PCL.getCmp("hiddenId").getValue()
       },
       method: "POST",
       callback: function (options, success, response) {
         el.unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
 
           if (data.ref) {
-            Ext.getCmp("editRef").setValue(data.ref);
+            PCL.getCmp("editRef").setValue(data.ref);
           }
 
-          Ext.getCmp("editBizUser")
-            .setIdValue(data.bizUserId);
-          Ext.getCmp("editBizUser")
-            .setValue(data.bizUserName);
+          PCL.getCmp("editBizUser").setIdValue(data.bizUserId);
+          PCL.getCmp("editBizUser").setValue(data.bizUserName);
           if (data.bizDT) {
-            Ext.getCmp("editBizDT").setValue(data.bizDT);
+            PCL.getCmp("editBizDT").setValue(data.bizDT);
           }
           if (data.warehouseId) {
-            Ext.getCmp("editWarehouse")
-              .setIdValue(data.warehouseId);
-            Ext.getCmp("editWarehouse")
-              .setValue(data.warehouseName);
+            PCL.getCmp("editWarehouse").setIdValue(data.warehouseId);
+            PCL.getCmp("editWarehouse").setValue(data.warehouseName);
           }
 
-          Ext.getCmp("editBillMemo").setValue(data.billMemo);
+          PCL.getCmp("editBillMemo").setValue(data.billMemo);
 
           var store = me.getGoodsGrid().getStore();
           store.removeAll();
@@ -253,8 +249,8 @@ Ext.define("PSI.InvCheck.ICEditForm", {
 
   onOK: function () {
     var me = this;
-    Ext.getBody().mask("正在保存中...");
-    Ext.Ajax.request({
+    PCL.getBody().mask("正在保存中...");
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/InvCheck/editICBill",
       method: "POST",
       params: {
@@ -262,10 +258,10 @@ Ext.define("PSI.InvCheck.ICEditForm", {
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             me.close();
             me.getParentForm().refreshMainGrid(data.id);
@@ -280,19 +276,19 @@ Ext.define("PSI.InvCheck.ICEditForm", {
 
   onEditBizDTSpecialKey: function (field, e) {
     if (e.getKey() == e.ENTER) {
-      Ext.getCmp("editWarehouse").focus();
+      PCL.getCmp("editWarehouse").focus();
     }
   },
 
   onEditWarehouseSpecialKey: function (field, e) {
     if (e.getKey() == e.ENTER) {
-      Ext.getCmp("editBizUser").focus();
+      PCL.getCmp("editBizUser").focus();
     }
   },
 
   onEditBizUserSpecialKey: function (field, e) {
     if (e.getKey() == e.ENTER) {
-      Ext.getCmp("editBillMemo").focus();
+      PCL.getCmp("editBillMemo").focus();
     }
   },
 
@@ -318,19 +314,19 @@ Ext.define("PSI.InvCheck.ICEditForm", {
       return me.__goodsGrid;
     }
     var modelName = "PSIICBillDetail_EditForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsId", "goodsCode", "goodsName",
         "goodsSpec", "unitName", "goodsCount",
         "goodsMoney", "memo"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__cellEditing = Ext.create("PSI.UX.CellEditing", {
+    me.__cellEditing = PCL.create("PSI.UX.CellEditing", {
       clicksToEdit: 1,
       listeners: {
         edit: {
@@ -340,14 +336,14 @@ Ext.define("PSI.InvCheck.ICEditForm", {
       }
     });
 
-    me.__goodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__goodsGrid = PCL.create("PCL.grid.Panel", {
       viewConfig: {
         enableTextSelection: true,
         markDirty: !me.adding
       },
       plugins: [me.__cellEditing],
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "#",
         width: 30
       }), {
@@ -519,12 +515,11 @@ Ext.define("PSI.InvCheck.ICEditForm", {
 
   getSaveData: function () {
     var result = {
-      id: Ext.getCmp("hiddenId").getValue(),
-      bizDT: Ext.Date
-        .format(Ext.getCmp("editBizDT").getValue(), "Y-m-d"),
-      warehouseId: Ext.getCmp("editWarehouse").getIdValue(),
-      bizUserId: Ext.getCmp("editBizUser").getIdValue(),
-      billMemo: Ext.getCmp("editBillMemo").getValue(),
+      id: PCL.getCmp("hiddenId").getValue(),
+      bizDT: PCL.Date.format(PCL.getCmp("editBizDT").getValue(), "Y-m-d"),
+      warehouseId: PCL.getCmp("editWarehouse").getIdValue(),
+      bizUserId: PCL.getCmp("editBizUser").getIdValue(),
+      billMemo: PCL.getCmp("editBillMemo").getValue(),
       items: []
     };
 
@@ -540,21 +535,21 @@ Ext.define("PSI.InvCheck.ICEditForm", {
       });
     }
 
-    return Ext.JSON.encode(result);
+    return PCL.JSON.encode(result);
   },
 
   setBillReadonly: function () {
     var me = this;
     me.__readonly = true;
     me.setTitle("<span style='font-size:160%'>查看盘点单</span>");
-    Ext.getCmp("buttonSave").setDisabled(true);
-    Ext.getCmp("buttonCancel").setText("关闭");
-    Ext.getCmp("editBizDT").setReadOnly(true);
-    Ext.getCmp("editWarehouse").setReadOnly(true);
-    Ext.getCmp("editBizUser").setReadOnly(true);
-    Ext.getCmp("editBillMemo").setReadOnly(true);
-    Ext.getCmp("columnActionDelete").hide();
-    Ext.getCmp("columnActionAdd").hide();
-    Ext.getCmp("columnActionAppend").hide();
+    PCL.getCmp("buttonSave").setDisabled(true);
+    PCL.getCmp("buttonCancel").setText("关闭");
+    PCL.getCmp("editBizDT").setReadOnly(true);
+    PCL.getCmp("editWarehouse").setReadOnly(true);
+    PCL.getCmp("editBizUser").setReadOnly(true);
+    PCL.getCmp("editBillMemo").setReadOnly(true);
+    PCL.getCmp("columnActionDelete").hide();
+    PCL.getCmp("columnActionAdd").hide();
+    PCL.getCmp("columnActionAppend").hide();
   }
 });
