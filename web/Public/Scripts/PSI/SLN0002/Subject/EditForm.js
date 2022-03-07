@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SLN0002.Subject.EditForm", {
+PCL.define("PSI.SLN0002.Subject.EditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -59,7 +59,7 @@ Ext.define("PSI.SLN0002.Subject.EditForm", {
     const t = entity == null ? "新建科目" : "编辑科目";
     const logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -171,7 +171,7 @@ Ext.define("PSI.SLN0002.Subject.EditForm", {
           editable: false,
           valueField: "id",
           fieldLabel: "末级科目",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1, "是"], [0, "否"]]
           }),
@@ -183,15 +183,15 @@ Ext.define("PSI.SLN0002.Subject.EditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Subject_EditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Subject_EditForm_editForm");
 
-    me.hiddenId = Ext.getCmp("PSI_Subject_EditForm_hiddenId");
+    me.hiddenId = PCL.getCmp("PSI_Subject_EditForm_hiddenId");
 
-    me.hiddenParentCode = Ext.getCmp("PSI_Subject_EditForm_hiddenParentCode");
-    me.editParentCode = Ext.getCmp("PSI_Subject_EditForm_editParentCode");
-    me.editCode = Ext.getCmp("PSI_Subject_EditForm_editCode");
-    me.editName = Ext.getCmp("PSI_Subject_EditForm_editName");
-    me.editIsLeaf = Ext.getCmp("PSI_Subject_EditForm_editIsLeaf");
+    me.hiddenParentCode = PCL.getCmp("PSI_Subject_EditForm_hiddenParentCode");
+    me.editParentCode = PCL.getCmp("PSI_Subject_EditForm_editParentCode");
+    me.editCode = PCL.getCmp("PSI_Subject_EditForm_editCode");
+    me.editName = PCL.getCmp("PSI_Subject_EditForm_editName");
+    me.editIsLeaf = PCL.getCmp("PSI_Subject_EditForm_editIsLeaf");
   },
 
   /**
@@ -281,7 +281,7 @@ Ext.define("PSI.SLN0002.Subject.EditForm", {
   onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       const parentForm = me.getParentForm();
@@ -294,14 +294,14 @@ Ext.define("PSI.SLN0002.Subject.EditForm", {
   onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     if (me.adding) {
       me.editParentCode.focus();
       return;
     }
 
-    const el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("SLN0002/Subject/subjectInfo"),
