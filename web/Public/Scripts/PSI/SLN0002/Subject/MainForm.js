@@ -270,7 +270,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
 
     const company = item[0];
 
-    const form = Ext.create("PSI.SLN0002.Subject.EditForm", {
+    const form = PCL.create("PSI.SLN0002.Subject.EditForm", {
       parentForm: me,
       company: company
     });
@@ -302,7 +302,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.SLN0002.Subject.EditForm", {
+    const form = PCL.create("PSI.SLN0002.Subject.EditForm", {
       parentForm: me,
       company: company,
       entity: subject
@@ -345,7 +345,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
 
     const info = "请确认是否删除科目: <span style='color:red'>" + code + "</span>?";
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在删除中...");
       const r = {
         url: me.URL("SLN0002/Subject/deleteSubject"),
@@ -384,13 +384,13 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
     }
 
     const modelName = "PSIModel.PSI.Subject.MainForm.SubjectModel";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "category", "leaf",
         "children", "isLeaf"]
     });
 
-    const store = Ext.create("Ext.data.TreeStore", {
+    const store = PCL.create("PCL.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -409,7 +409,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
       }
     });
 
-    me._mainGrid = Ext.create("Ext.tree.Panel", {
+    me._mainGrid = PCL.create("PCL.tree.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -508,7 +508,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
     const company = item[0];
 
     const confirmFunc = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在操作中...");
       const r = {
         url: me.URL("SLN0002/Subject/init"),
@@ -519,9 +519,9 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
           el.unmask();
 
           if (success) {
-            const data = Ext.JSON.decode(response.responseText);
+            const data = me.decodeJSON(response.responseText);
             if (data.success) {
-              me.tip("成功完成初始化操作");
+              me.tip("成功完成初始化操作", true);
               me._onCompanyGridSelect();
             } else {
               me.showInfo(data.msg);
@@ -549,12 +549,12 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
     }
 
     const modelName = "PSIModel.PSI.Subject.MainForm.FMTProp";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "propName", "propValue"]
     });
 
-    me._fmtPropGrid = Ext.create("Ext.grid.Panel", {
+    me._fmtPropGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -576,7 +576,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
           width: 200
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -611,7 +611,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
 
     const info = `请确认是否初始化科目<span style='color:red'>${subject.get("code")}</span>的账样?`;
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在初始化中...");
       const r = {
         url: me.URL("SLN0002/Subject/initFmt"),
@@ -668,13 +668,13 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
     }
 
     const modelName = "PSIModel.PSI.Subject.MainForm.FMTCols";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "showOrder", "caption", "fieldName",
         "fieldType", "fieldLength", "fieldDecimal"]
     });
 
-    me._fmtColsGrid = Ext.create("Ext.grid.Panel", {
+    me._fmtColsGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -712,7 +712,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
           width: 100
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -856,7 +856,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
 
     const info = `请确认是否清空科目<span style='color:red'>${subject.get("code")}</span>的账样?`;
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在操作中...");
       const r = {
         url: me.URL("SLN0002/Subject/undoInitFmt"),
@@ -914,7 +914,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.SLN0002.Subject.FmtColEditForm", {
+    const form = PCL.create("PSI.SLN0002.Subject.FmtColEditForm", {
       parentForm: me,
       company: company,
       subject: subject
@@ -954,7 +954,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
     }
     const entity = item[0];
 
-    const form = Ext.create("PSI.SLN0002.Subject.FmtColEditForm", {
+    const form = PCL.create("PSI.SLN0002.Subject.FmtColEditForm", {
       parentForm: me,
       company,
       subject,
@@ -978,7 +978,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
 
     const info = `请确认是否删除账样字段: <span style='color:red'>${fmtCol.get("caption")}</span> ?`;
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask("正在删除中...");
       const r = {
         url: me.URL("SLN0002/Subject/deleteFmtCol"),
@@ -1031,7 +1031,7 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.SLN0002.Subject.FmtColShowOrderEditForm", {
+    const form = PCL.create("PSI.SLN0002.Subject.FmtColShowOrderEditForm", {
       parentForm: me,
       entity: subject
     });
