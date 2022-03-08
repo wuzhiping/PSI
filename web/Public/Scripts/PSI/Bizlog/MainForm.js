@@ -129,7 +129,6 @@ PCL.define("PSI.Bizlog.MainForm", {
       value: "条记录"
     }, "-", {
       text: "指南",
-      iconCls: "PSI-help",
       handler() {
         me.focus();
         window.open(me.URL("Home/Help/index?t=bizlog"));
@@ -141,7 +140,6 @@ PCL.define("PSI.Bizlog.MainForm", {
       }
     }, "->", {
       text: "一键升级数据库",
-      iconCls: "PSI-button-database",
       scope: me,
       handler: me._onUpdateDatabase
     }];

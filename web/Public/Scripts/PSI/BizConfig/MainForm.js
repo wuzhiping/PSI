@@ -51,7 +51,6 @@ PCL.define("PSI.BizConfig.MainForm", {
       }
     }, {
       text: "设置",
-      iconCls: "PSI-button-edit",
       handler: me.onEdit,
       scope: me
     }, "-", {
