@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Customer.CustomerField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Customer.CustomerField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_customerfield",
 
   config: {
@@ -58,19 +58,19 @@ Ext.define("PSI.Customer.CustomerField", {
     }
 
     var modelName = "PSICustomerField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "mobile01", "tel01", "fax",
         "address_receipt", "contact01", "warehouseName",
         "warehouseId"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    var lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -99,7 +99,7 @@ Ext.define("PSI.Customer.CustomerField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       title: "选择 - 客户",
       modal: me.getShowModal(),
       header: false,
@@ -177,10 +177,10 @@ Ext.define("PSI.Customer.CustomerField", {
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("__editCustomer");
+    var editName = PCL.getCmp("__editCustomer");
     editName.on("change", function () {
       var store = me.lookupGrid.getStore();
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/Customer/queryData",
         params: {
           queryKey: editName.getValue()
@@ -189,8 +189,7 @@ Ext.define("PSI.Customer.CustomerField", {
         callback: function (opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -290,7 +289,7 @@ Ext.define("PSI.Customer.CustomerField", {
    * 新增客户资料
    */
   onAdd: function () {
-    var form = Ext.create("PSI.Customer.CustomerEditForm");
+    var form = PCL.create("PSI.Customer.CustomerEditForm");
     form.show();
   }
 });
