@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Customer.CustomerImportForm", {
+PCL.define("PSI.Customer.CustomerImportForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -29,7 +29,7 @@ Ext.define("PSI.Customer.CustomerImportForm", {
         scope: me
       });
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       title: "导入客户",
       header: {
         title: me.formatTitle("导入客户"),
@@ -78,7 +78,7 @@ Ext.define("PSI.Customer.CustomerImportForm", {
 
   onOK: function () {
     var me = this;
-    var f = Ext.getCmp("importForm");
+    var f = PCL.getCmp("importForm");
     var el = f.getEl();
     el.mask('正在导入...');
     f.submit({
