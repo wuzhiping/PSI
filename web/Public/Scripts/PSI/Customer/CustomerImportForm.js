@@ -22,25 +22,26 @@ PCL.define("PSI.Customer.CustomerImportForm", {
       },
       scope: me
     }, {
-        text: "关闭",
-        handler: function () {
+      text: "取消",
+      handler: function () {
+        me.confirm("请确认是否取消操作：导入客户资料？", ()=>{
           me.close();
-        },
-        scope: me
-      });
+        })
+      },
+      scope: me
+    });
 
     PCL.apply(me, {
-      title: "导入客户",
       header: {
-        title: me.formatTitle("导入客户"),
-        height: 40,
-        iconCls: "PSI-button-import"
+        title: me.formatTitle(PSI.Const.PROD_NAME),
+        height: 40
       },
       width: 512,
       height: 170,
       layout: "fit",
       items: [{
         id: "importForm",
+        border: 0,
         xtype: "form",
         layout: {
           type: "table",
