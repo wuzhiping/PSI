@@ -65,8 +65,8 @@ PCL.define("PSI.MsgBox", {
           {
             xtype: "container",
             html: `
-              <h2 style='color:#843fa1;margin-top:25px;margin-left:10px;border-left:3px solid #1890ff;'>
-                &nbsp;${info}
+              <h2 style='color:#843fa1;margin-top:25px;margin-left:10px;border-left:3px solid #1890ff;;padding-left:5px;padding-right:10px'>
+                ${info}
               </h2>`
           }
         ],
