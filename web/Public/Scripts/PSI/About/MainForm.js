@@ -54,7 +54,9 @@ PCL.define("PSI.About.MainForm", {
                 <span style='display:inline-block;width:10px'></span>
                 数据库结构更新时间：<span style='border-bottom:1px solid #adc6ff'>${me.getPSIDBUpdateDT()}</span>
               </p>
+              <div style='margin-top:20px'></div>
               <p>UI组件PCL版本号：<span style='border-bottom:1px solid #adc6ff'>${PCL.VERSION}</span></p>
+              <div style='margin-top:20px'></div>
               <p>
                 PHP版本号：<span style='border-bottom:1px solid #adc6ff'>${me.getPhpVersion()}</span>
                 &nbsp;&nbsp;MySQL版本号：<span style='border-bottom:1px solid #adc6ff'>${me.getMySQLVersion()}</span></p>
