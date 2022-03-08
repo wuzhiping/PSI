@@ -579,7 +579,7 @@ input:focus{
 /* 说明或备注这类字段的样式 */
 .PSI-field-note {
   color: #a8071a;
-  border-bottom:3px solid #fff2e8;
+  border-bottom:2px solid #69c0ff;
 }
 
 /* 标题里面的关键高亮字词 */
