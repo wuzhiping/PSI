@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Customer.CategoryEditForm", {
+PCL.define("PSI.Customer.CategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -42,15 +42,15 @@ Ext.define("PSI.Customer.CategoryEditForm", {
       });
 
     var modelName = "PSIPriceSystem";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
 
     var t = entity == null ? "新建客户分类" : "编辑客户分类";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -126,7 +126,7 @@ Ext.define("PSI.Customer.CategoryEditForm", {
           editable: false,
           valueField: "id",
           displayField: "name",
-          store: Ext.create("Ext.data.Store", {
+          store: PCL.create("PCL.data.Store", {
             model: modelName,
             autoLoad: false,
             data: []
@@ -158,13 +158,13 @@ Ext.define("PSI.Customer.CategoryEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Customer_CategoryEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Customer_CategoryEditForm_editForm");
 
-    me.editCode = Ext.getCmp("PSI_Customer_CategoryEditForm_editCode");
-    me.editName = Ext.getCmp("PSI_Customer_CategoryEditForm_editName");
+    me.editCode = PCL.getCmp("PSI_Customer_CategoryEditForm_editCode");
+    me.editName = PCL.getCmp("PSI_Customer_CategoryEditForm_editName");
 
-    me.comboPrice = Ext.getCmp("PSI_Customer_CategoryEditForm_comboPrice");
-    me.editPsId = Ext.getCmp("PSI_Customer_CategoryEditForm_editPsId");
+    me.comboPrice = PCL.getCmp("PSI_Customer_CategoryEditForm_comboPrice");
+    me.editPsId = PCL.getCmp("PSI_Customer_CategoryEditForm_editPsId");
   },
 
   onOK: function (thenAdd) {
@@ -239,7 +239,7 @@ Ext.define("PSI.Customer.CategoryEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -251,7 +251,7 @@ Ext.define("PSI.Customer.CategoryEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     var editCode = me.editCode;
     editCode.focus();
