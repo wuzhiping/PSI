@@ -1,5 +1,5 @@
 /**
- * 商品导入
+ * 物料导入
  * 
  * @author 张健
  * @author 艾格林门信息服务（大连）有限公司
@@ -13,16 +13,16 @@ Ext.define("PSI.Goods.GoodsImportForm", {
     parentForm: null
   },
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
 
     var buttons = [];
 
     buttons.push({
-      text: "导入商品",
+      text: "导入物料",
       formBind: true,
       iconCls: "PSI-button-ok",
       handler: function () {
@@ -30,18 +30,19 @@ Ext.define("PSI.Goods.GoodsImportForm", {
       },
       scope: me
     }, {
-      text: "关闭",
+      text: "取消",
       handler: function () {
-        me.close();
+        me.confirm("请确认是否取消操作：导入物料？", () => {
+          me.close();
+        })
       },
       scope: me
     });
 
     Ext.apply(me, {
       header: {
-        title: me.formatTitle("导入商品"),
-        height: 40,
-        iconCls: "PSI-button-import"
+        title: me.formatTitle(PSI.Const.PROD_NAME),
+        height: 40
       },
       modal: true,
       resizable: false,
@@ -52,6 +53,7 @@ Ext.define("PSI.Goods.GoodsImportForm", {
       items: [{
         id: "importForm",
         xtype: "form",
+        border: 0,
         layout: {
           type: "table",
           columns: 1
@@ -74,9 +76,9 @@ Ext.define("PSI.Goods.GoodsImportForm", {
           msgTarget: 'side',
           allowBlank: false,
           anchor: '100%',
-          buttonText: '选择商品文件'
+          buttonText: '选择物料文件'
         }, {
-          html: "<a href=../Uploads/Goods/goodsModelFile.xls ><h4>下载商品导入模板</h4></a>",
+          html: "<a href=../Uploads/Goods/goodsModelFile.xls ><h4>下载物料导入模板</h4></a>",
           border: 0
         }],
         buttons: buttons
