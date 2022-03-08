@@ -77,17 +77,14 @@ PCL.define("PSI.Permission.EditForm", {
         text: "添加权限",
         handler: me._onAddPermission,
         scope: me,
-        iconCls: "PSI-button-add"
       }, "-", {
         text: "移除权限",
         handler: me._onRemovePermission,
         scope: me,
-        iconCls: "PSI-button-delete"
       }, "-", {
         text: "编辑数据域",
         handler: me._onEditDataOrg,
         scope: me,
-        iconCls: "PSI-button-edit"
       }]
     });
 
@@ -152,12 +149,10 @@ PCL.define("PSI.Permission.EditForm", {
       },
       tbar: [{
         text: "添加用户",
-        iconCls: "PSI-button-add",
         handler: me._onAddUser,
         scope: me
       }, "-", {
         text: "移除用户",
-        iconCls: "PSI-button-delete",
         handler: me._onRemoveUser,
         scope: me
       }]
