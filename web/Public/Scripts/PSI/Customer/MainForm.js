@@ -349,7 +349,7 @@ PCL.define("PSI.Customer.MainForm", {
         summaryType: "sum",
         align: "right"
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -377,8 +377,8 @@ PCL.define("PSI.Customer.MainForm", {
 
     var modelName = "PSICustomer";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "contact01", "tel01",
         "mobile01", "qq01", "contact02", "tel02",
         "mobile02", "qq02", "categoryId",
@@ -388,7 +388,7 @@ PCL.define("PSI.Customer.MainForm", {
         "recordStatus"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -423,7 +423,7 @@ PCL.define("PSI.Customer.MainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -438,7 +438,7 @@ PCL.define("PSI.Customer.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 40
         }), {
@@ -559,7 +559,7 @@ PCL.define("PSI.Customer.MainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"], ["300"],
             ["1000"]]
@@ -568,11 +568,9 @@ PCL.define("PSI.Customer.MainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToolbar").doRefresh();
+                PCL.getCmp("pagingToolbar").doRefresh();
               },
               scope: me
             }
@@ -598,7 +596,7 @@ PCL.define("PSI.Customer.MainForm", {
   onAddCategory: function () {
     var me = this;
 
-    var form = Ext.create("PSI.Customer.CategoryEditForm", {
+    var form = PCL.create("PSI.Customer.CategoryEditForm", {
       parentForm: me
     });
 
@@ -622,7 +620,7 @@ PCL.define("PSI.Customer.MainForm", {
 
     var category = item[0];
 
-    var form = Ext.create("PSI.Customer.CategoryEditForm", {
+    var form = PCL.create("PSI.Customer.CategoryEditForm", {
       parentForm: me,
       entity: category
     });
@@ -656,7 +654,7 @@ PCL.define("PSI.Customer.MainForm", {
       + category.get("name") + "</span>";
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
 
       var r = {
@@ -693,7 +691,7 @@ PCL.define("PSI.Customer.MainForm", {
   freshCategoryGrid: function (id) {
     var me = this;
     var grid = me.getCategoryGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/Customer/categoryList"),
@@ -744,7 +742,7 @@ PCL.define("PSI.Customer.MainForm", {
       + "] 的客户"));
 
     me.__lastId = id;
-    Ext.getCmp("pagingToolbar").doRefresh()
+    PCL.getCmp("pagingToolbar").doRefresh()
   },
 
   onCategoryGridSelect: function () {
@@ -764,7 +762,7 @@ PCL.define("PSI.Customer.MainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.Customer.CustomerEditForm", {
+    var form = PCL.create("PSI.Customer.CustomerEditForm", {
       parentForm: me
     });
 
@@ -775,7 +773,7 @@ PCL.define("PSI.Customer.MainForm", {
    * 导入客户资料
    */
   onImportCustomer: function () {
-    var form = Ext.create("PSI.Customer.CustomerImportForm", {
+    var form = PCL.create("PSI.Customer.CustomerImportForm", {
       parentForm: this
     });
 
@@ -806,7 +804,7 @@ PCL.define("PSI.Customer.MainForm", {
 
     var customer = item[0];
     customer.set("categoryId", category.get("id"));
-    var form = Ext.create("PSI.Customer.CustomerEditForm", {
+    var form = PCL.create("PSI.Customer.CustomerEditForm", {
       parentForm: me,
       entity: customer
     });
@@ -840,7 +838,7 @@ PCL.define("PSI.Customer.MainForm", {
       + "</span>";
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
 
       var r = {
@@ -905,7 +903,7 @@ PCL.define("PSI.Customer.MainForm", {
       for (var i = 0; i < me.__queryEditNameList.length - 1; i++) {
         var editorId = me.__queryEditNameList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__queryEditNameList[i + 1]);
+          var edit = PCL.getCmp(me.__queryEditNameList[i + 1]);
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -933,42 +931,42 @@ PCL.define("PSI.Customer.MainForm", {
       categoryId: categoryId
     };
 
-    var code = Ext.getCmp("editQueryCode").getValue();
+    var code = PCL.getCmp("editQueryCode").getValue();
     if (code) {
       result.code = code;
     }
 
-    var address = Ext.getCmp("editQueryAddress").getValue();
+    var address = PCL.getCmp("editQueryAddress").getValue();
     if (address) {
       result.address = address;
     }
 
-    var name = Ext.getCmp("editQueryName").getValue();
+    var name = PCL.getCmp("editQueryName").getValue();
     if (name) {
       result.name = name;
     }
 
-    var contact = Ext.getCmp("editQueryContact").getValue();
+    var contact = PCL.getCmp("editQueryContact").getValue();
     if (contact) {
       result.contact = contact;
     }
 
-    var mobile = Ext.getCmp("editQueryMobile").getValue();
+    var mobile = PCL.getCmp("editQueryMobile").getValue();
     if (mobile) {
       result.mobile = mobile;
     }
 
-    var tel = Ext.getCmp("editQueryTel").getValue();
+    var tel = PCL.getCmp("editQueryTel").getValue();
     if (tel) {
       result.tel = tel;
     }
 
-    var qq = Ext.getCmp("editQueryQQ").getValue();
+    var qq = PCL.getCmp("editQueryQQ").getValue();
     if (qq) {
       result.qq = qq;
     }
 
-    result.recordStatus = Ext.getCmp("editQueryRecordStatus").getValue();
+    result.recordStatus = PCL.getCmp("editQueryRecordStatus").getValue();
 
     return result;
   },
@@ -992,13 +990,13 @@ PCL.define("PSI.Customer.MainForm", {
     var nameList = me.__queryEditNameList;
     for (var i = 0; i < nameList.length; i++) {
       var name = nameList[i];
-      var edit = Ext.getCmp(name);
+      var edit = PCL.getCmp(name);
       if (edit) {
         edit.setValue(null);
       }
     }
 
-    Ext.getCmp("editQueryRecordStatus").setValue(-1);
+    PCL.getCmp("editQueryRecordStatus").setValue(-1);
 
     me.onQuery();
   }
