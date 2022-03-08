@@ -91,7 +91,9 @@ PCL.define("PSI.AFX.Mix.Common", {
       <div style='margin-left:60px;margin-top:0px;'>
         <h2 style='color:#196d83;margin-top:0px;'>${title}</h2>
         <p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>
-      </div>`;
+      </div>
+      <div style='margin:0px;border-bottom:1px solid #e6f7ff;height:1px' /></div>
+      `;
 
     return logoHtml;
   }

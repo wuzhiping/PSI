@@ -69,7 +69,7 @@ PCL.define("PSI.CodeTable.CategoryEditForm", {
         height: 40
       },
       width: 650,
-      height: 290,
+      height: 310,
       layout: "border",
       listeners: {
         show: {
@@ -83,7 +83,7 @@ PCL.define("PSI.CodeTable.CategoryEditForm", {
       },
       items: [{
         region: "north",
-        height: 55,
+        height: 70,
         border: 0,
         html: logoHtml
       }, {
