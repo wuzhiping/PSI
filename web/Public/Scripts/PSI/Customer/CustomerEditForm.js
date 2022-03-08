@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Customer.CustomerEditForm", {
+PCL.define("PSI.Customer.CustomerEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -48,7 +48,7 @@ Ext.define("PSI.Customer.CustomerEditForm", {
     var t = entity == null ? "新建客户资料" : "编辑客户资料";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -377,7 +377,7 @@ Ext.define("PSI.Customer.CustomerEditForm", {
           valueField: "id",
           fieldLabel: "状态",
           name: "recordStatus",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1000, "启用"], [0, "停用"]]
           }),
@@ -399,44 +399,30 @@ Ext.define("PSI.Customer.CustomerEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Customer_CustomerEditForm_editForm");
-    me.editCategory = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editCategory");
-    me.editCode = Ext.getCmp("PSI_Customer_CustomerEditForm_editCode");
-    me.editName = Ext.getCmp("PSI_Customer_CustomerEditForm_editName");
-    me.editAddress = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editAddress");
-    me.editContact01 = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editContact01");
-    me.editMobile01 = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editMobile01");
-    me.editTel01 = Ext.getCmp("PSI_Customer_CustomerEditForm_editTel01");
-    me.editQQ01 = Ext.getCmp("PSI_Customer_CustomerEditForm_editQQ01");
-    me.editContact02 = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editContact02");
-    me.editMobile02 = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editMobile02");
-    me.editTel02 = Ext.getCmp("PSI_Customer_CustomerEditForm_editTel02");
-    me.editQQ02 = Ext.getCmp("PSI_Customer_CustomerEditForm_editQQ02");
-    me.editAddressReceipt = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editAddressReceipt");
-    me.editBankName = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editBankName");
-    me.editBankAccount = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editBankAccount");
-    me.editTax = Ext.getCmp("PSI_Customer_CustomerEditForm_editTax");
-    me.editFax = Ext.getCmp("PSI_Customer_CustomerEditForm_editFax");
-    me.editInitReceivables = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editInitReceivables");
-    me.editInitReceivablesDT = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editInitReceivablesDT");
-    me.editWarehouse = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editWarehouse");
-    me.editWarehouseId = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editWarehouseId");
-    me.editNote = Ext.getCmp("PSI_Customer_CustomerEditForm_editNote");
-    me.editRecordStatus = Ext
-      .getCmp("PSI_Customer_CustomerEditForm_editRecordStatus");
+    me.editForm = PCL.getCmp("PSI_Customer_CustomerEditForm_editForm");
+    me.editCategory = PCL.getCmp("PSI_Customer_CustomerEditForm_editCategory");
+    me.editCode = PCL.getCmp("PSI_Customer_CustomerEditForm_editCode");
+    me.editName = PCL.getCmp("PSI_Customer_CustomerEditForm_editName");
+    me.editAddress = PCL.getCmp("PSI_Customer_CustomerEditForm_editAddress");
+    me.editContact01 = PCL.getCmp("PSI_Customer_CustomerEditForm_editContact01");
+    me.editMobile01 = PCL.getCmp("PSI_Customer_CustomerEditForm_editMobile01");
+    me.editTel01 = PCL.getCmp("PSI_Customer_CustomerEditForm_editTel01");
+    me.editQQ01 = PCL.getCmp("PSI_Customer_CustomerEditForm_editQQ01");
+    me.editContact02 = PCL.getCmp("PSI_Customer_CustomerEditForm_editContact02");
+    me.editMobile02 = PCL.getCmp("PSI_Customer_CustomerEditForm_editMobile02");
+    me.editTel02 = PCL.getCmp("PSI_Customer_CustomerEditForm_editTel02");
+    me.editQQ02 = PCL.getCmp("PSI_Customer_CustomerEditForm_editQQ02");
+    me.editAddressReceipt = PCL.getCmp("PSI_Customer_CustomerEditForm_editAddressReceipt");
+    me.editBankName = PCL.getCmp("PSI_Customer_CustomerEditForm_editBankName");
+    me.editBankAccount = PCL.getCmp("PSI_Customer_CustomerEditForm_editBankAccount");
+    me.editTax = PCL.getCmp("PSI_Customer_CustomerEditForm_editTax");
+    me.editFax = PCL.getCmp("PSI_Customer_CustomerEditForm_editFax");
+    me.editInitReceivables = PCL.getCmp("PSI_Customer_CustomerEditForm_editInitReceivables");
+    me.editInitReceivablesDT = PCL.getCmp("PSI_Customer_CustomerEditForm_editInitReceivablesDT");
+    me.editWarehouse = PCL.getCmp("PSI_Customer_CustomerEditForm_editWarehouse");
+    me.editWarehouseId = PCL.getCmp("PSI_Customer_CustomerEditForm_editWarehouseId");
+    me.editNote = PCL.getCmp("PSI_Customer_CustomerEditForm_editNote");
+    me.editRecordStatus = PCL.getCmp("PSI_Customer_CustomerEditForm_editRecordStatus");
 
     me.__editorList = [me.editCategory, me.editCode, me.editName,
     me.editAddress, me.editContact01, me.editMobile01,
@@ -454,13 +440,13 @@ Ext.define("PSI.Customer.CustomerEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     if (!me.adding) {
       // 编辑客户资料
       var el = me.getEl();
       el.mask(PSI.Const.LOADING);
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: me.URL("Home/Customer/customerInfo"),
         params: {
           id: me.getEntity().get("id")
@@ -468,8 +454,7 @@ Ext.define("PSI.Customer.CustomerEditForm", {
         method: "POST",
         callback: function (options, success, response) {
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             me.editCategory.setValue(data.categoryId);
             me.editCode.setValue(data.code);
             me.editName.setValue(data.name);
@@ -482,12 +467,9 @@ Ext.define("PSI.Customer.CustomerEditForm", {
             me.editMobile02.setValue(data.mobile02);
             me.editTel02.setValue(data.tel02);
             me.editQQ02.setValue(data.qq02);
-            me.editAddressReceipt
-              .setValue(data.addressReceipt);
-            me.editInitReceivables
-              .setValue(data.initReceivables);
-            me.editInitReceivablesDT
-              .setValue(data.initReceivablesDT);
+            me.editAddressReceipt.setValue(data.addressReceipt);
+            me.editInitReceivables.setValue(data.initReceivables);
+            me.editInitReceivablesDT.setValue(data.initReceivablesDT);
             me.editBankName.setValue(data.bankName);
             me.editBankAccount.setValue(data.bankAccount);
             me.editTax.setValue(data.tax);
@@ -495,14 +477,11 @@ Ext.define("PSI.Customer.CustomerEditForm", {
             me.editNote.setValue(data.note);
 
             if (data.warehouseId) {
-              me.editWarehouse
-                .setIdValue(data.warehouseId);
-              me.editWarehouse
-                .setValue(data.warehouseName);
+              me.editWarehouse.setIdValue(data.warehouseId);
+              me.editWarehouse.setValue(data.warehouseName);
             }
 
-            me.editRecordStatus
-              .setValue(parseInt(data.recordStatus));
+            me.editRecordStatus.setValue(parseInt(data.recordStatus));
           }
 
           el.unmask();
@@ -521,22 +500,22 @@ Ext.define("PSI.Customer.CustomerEditForm", {
       } else {
         // 在其他界面中调用新增客户资料
         var modelName = "PSICustomerCategory_CustomerEditForm";
-        Ext.define(modelName, {
-          extend: "Ext.data.Model",
+        PCL.define(modelName, {
+          extend: "PCL.data.Model",
           fields: ["id", "code", "name", {
             name: "cnt",
             type: "int"
           }]
         });
-        var store = Ext.create("Ext.data.Store", {
+        var store = PCL.create("PCL.data.Store", {
           model: modelName,
           autoLoad: false,
           data: []
         });
         me.editCategory.bindStore(store);
-        var el = Ext.getBody();
+        var el = PCL.getBody();
         el.mask(PSI.Const.LOADING);
-        Ext.Ajax.request({
+        PCL.Ajax.request({
           url: me.URL("Home/Customer/categoryList"),
           params: {
             recordStatus: -1
@@ -546,8 +525,7 @@ Ext.define("PSI.Customer.CustomerEditForm", {
             store.removeAll();
 
             if (success) {
-              var data = Ext.JSON
-                .decode(response.responseText);
+              var data = PCL.JSON.decode(response.responseText);
               store.add(data);
               if (store.getCount() > 0) {
                 var id = store.getAt(0).get("id");
@@ -569,7 +547,7 @@ Ext.define("PSI.Customer.CustomerEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
