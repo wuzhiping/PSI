@@ -264,7 +264,7 @@ PCL.define("PSI.Permission.EditForm", {
         items: [userGrid]
       }],
       tbar: [{
-        text: "确定",
+        text: "保存",
         formBind: true,
         iconCls: "PSI-button-ok",
         handler() {
@@ -278,7 +278,8 @@ PCL.define("PSI.Permission.EditForm", {
         text: "取消",
         handler() {
           const me = this;
-          me.confirm("请确认是否取消操作?", () => {
+          const info = entity == null ? "新建角色" : "编辑角色";
+          me.confirm(`请确认是否取消操作：${info}?`, () => {
             me.close();
           });
         },
