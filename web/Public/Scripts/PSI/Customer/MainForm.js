@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Customer.MainForm", {
+PCL.define("PSI.Customer.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
   border: 0,
 
@@ -25,7 +25,7 @@ Ext.define("PSI.Customer.MainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       layout: "border",
       items: [{
         tbar: me.getToolbarCmp(),
@@ -242,7 +242,7 @@ Ext.define("PSI.Customer.MainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [1000, "启用"], [0, "停用"]]
       }),
@@ -276,7 +276,7 @@ Ext.define("PSI.Customer.MainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -292,15 +292,15 @@ Ext.define("PSI.Customer.MainForm", {
 
     var modelName = "PSICustomerCategory";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", {
         name: "cnt",
         type: "int"
       }, "priceSystem"]
     });
 
-    me.__categoryGrid = Ext.create("Ext.grid.Panel", {
+    me.__categoryGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -312,7 +312,7 @@ Ext.define("PSI.Customer.MainForm", {
       tools: [{
         type: "close",
         handler: function () {
-          Ext.getCmp("panelCategory").collapse();
+          PCL.getCmp("panelCategory").collapse();
         }
       }],
       features: [{
