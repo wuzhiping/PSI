@@ -54,7 +54,7 @@ PCL.define("PSI.MainMenu.MenuItemEditForm", {
         height: 40
       },
       width: 650,
-      height: 260,
+      height: 280,
       layout: "border",
       listeners: {
         show: {
@@ -68,7 +68,7 @@ PCL.define("PSI.MainMenu.MenuItemEditForm", {
       },
       items: [{
         region: "north",
-        height: 55,
+        height: 70,
         border: 0,
         html: logoHtml
       }, {
