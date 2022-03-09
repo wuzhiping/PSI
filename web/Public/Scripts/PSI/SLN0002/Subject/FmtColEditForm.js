@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SLN0002.Subject.FmtColEditForm", {
+PCL.define("PSI.SLN0002.Subject.FmtColEditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -67,7 +67,7 @@ Ext.define("PSI.SLN0002.Subject.FmtColEditForm", {
       + t
       + "</h2>"
       + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -164,7 +164,7 @@ Ext.define("PSI.SLN0002.Subject.FmtColEditForm", {
           valueField: "id",
           fieldLabel: "类型",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1, "字符串"], [2, "日期"],
             [3, "金额(两位小数)"]]
@@ -183,12 +183,12 @@ Ext.define("PSI.SLN0002.Subject.FmtColEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Subject_FmtColEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Subject_FmtColEditForm_editForm");
 
-    me.hiddenId = Ext.getCmp("PSI_Subject_FmtColEditForm_hiddenId");
-    me.editCaption = Ext.getCmp("PSI_Subject_FmtColEditForm_editCaption");
-    me.editName = Ext.getCmp("PSI_Subject_FmtColEditForm_editName");
-    me.editType = Ext.getCmp("PSI_Subject_FmtColEditForm_editFieldType");
+    me.hiddenId = PCL.getCmp("PSI_Subject_FmtColEditForm_hiddenId");
+    me.editCaption = PCL.getCmp("PSI_Subject_FmtColEditForm_editCaption");
+    me.editName = PCL.getCmp("PSI_Subject_FmtColEditForm_editName");
+    me.editType = PCL.getCmp("PSI_Subject_FmtColEditForm_editFieldType");
   },
 
   // 保存
@@ -271,7 +271,7 @@ Ext.define("PSI.SLN0002.Subject.FmtColEditForm", {
   onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       const parentForm = me.getParentForm();
@@ -284,14 +284,14 @@ Ext.define("PSI.SLN0002.Subject.FmtColEditForm", {
   onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     if (me.adding) {
       me.editCaption.focus();
       return;
     }
 
-    const el = me.getEl() || Ext.getBody();
+    const el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     const r = {
       url: me.URL("SLN0002/Subject/fmtColInfo"),
