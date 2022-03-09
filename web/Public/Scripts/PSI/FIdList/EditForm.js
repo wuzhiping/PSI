@@ -50,7 +50,7 @@ PCL.define("PSI.FIdList.EditForm", {
         height: 40
       },
       width: 650,
-      height: 320,
+      height: 340,
       layout: "border",
       listeners: {
         show: {
@@ -64,7 +64,7 @@ PCL.define("PSI.FIdList.EditForm", {
       },
       items: [{
         region: "north",
-        height: 55,
+        height: 70,
         border: 0,
         html: logoHtml
       }, {
