@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Warehouse.EditDataOrgForm", {
+PCL.define("PSI.Warehouse.EditDataOrgForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
 	/**
@@ -51,14 +51,14 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
       + "<h2 style='color:#196d83;margin-top:0px;'>修改数据域</h2>"
       + "<p style='color:#196d83'>点击帮助按钮可以了解更多数据域的应用场景</p>";
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
       modal: true,
       resizable: false,
-      onEsc: Ext.emptyFn,
+      onEsc: PCL.emptyFn,
       width: 400,
       height: 330,
       layout: "border",
@@ -126,13 +126,11 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Warehouse_EditDataOrgForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Warehouse_EditDataOrgForm_editForm");
 
-    me.editId = Ext.getCmp("PSI_Warehouse_EditDataOrgForm_editId");
-    me.editOldDataOrg = Ext
-      .getCmp("PSI_Warehouse_EditDataOrgForm_editOldDataOrg");
-    me.editDataOrg = Ext
-      .getCmp("PSI_Warehouse_EditDataOrgForm_editDataOrg");
+    me.editId = PCL.getCmp("PSI_Warehouse_EditDataOrgForm_editId");
+    me.editOldDataOrg = PCL.getCmp("PSI_Warehouse_EditDataOrgForm_editOldDataOrg");
+    me.editDataOrg = PCL.getCmp("PSI_Warehouse_EditDataOrgForm_editDataOrg");
   },
 
 	/**
@@ -170,7 +168,7 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
       callback: function (options, success, response) {
         el.unmask();
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             me.__lastId = data.id;
             PSI.MsgBox.tip("成功修改数据域");
@@ -184,7 +182,7 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
       }
     };
 
-    Ext.Ajax.request(r);
+    PCL.Ajax.request(r);
   },
 
   onWindowBeforeUnload: function (e) {
@@ -194,7 +192,7 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -206,7 +204,7 @@ Ext.define("PSI.Warehouse.EditDataOrgForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     me.editDataOrg.focus();
   }
