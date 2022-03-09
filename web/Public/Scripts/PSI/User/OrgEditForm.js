@@ -28,12 +28,12 @@ PCL.define("PSI.User.OrgEditForm", {
         height: 40
       },
       width: 650,
-      height: 340,
+      height: 360,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 55,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
