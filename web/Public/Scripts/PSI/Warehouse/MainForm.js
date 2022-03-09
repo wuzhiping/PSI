@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Warehouse.MainForm", {
+PCL.define("PSI.Warehouse.MainForm", {
   extend: "PSI.AFX.BaseOneGridMainForm",
 
   config: {
@@ -87,14 +87,14 @@ Ext.define("PSI.Warehouse.MainForm", {
     }
 
     var modelName = "PSI_Warehouse_MainForm_PSIWarehouse";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "inited", "dataOrg",
         "enabled", "orgId", "orgName", "saleArea", "usageType", "usageTypeName",
         "limitGoods"]
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       border: 0,
       viewConfig: {
@@ -171,7 +171,7 @@ Ext.define("PSI.Warehouse.MainForm", {
           width: 150
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -193,7 +193,7 @@ Ext.define("PSI.Warehouse.MainForm", {
   onAddWarehouse: function () {
     var me = this;
 
-    var form = Ext.create("PSI.Warehouse.EditForm", {
+    var form = PCL.create("PSI.Warehouse.EditForm", {
       parentForm: me
     });
 
@@ -218,7 +218,7 @@ Ext.define("PSI.Warehouse.MainForm", {
 
     var warehouse = item[0];
 
-    var form = Ext.create("PSI.Warehouse.EditForm", {
+    var form = PCL.create("PSI.Warehouse.EditForm", {
       parentForm: me,
       entity: warehouse
     });
@@ -244,7 +244,7 @@ Ext.define("PSI.Warehouse.MainForm", {
     var preIndex = me.getPreIndexInMainGrid(warehouse.get("id"));
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask(PSI.Const.LOADING);
       var r = {
         url: me.URL("Home/Warehouse/deleteWarehouse"),
