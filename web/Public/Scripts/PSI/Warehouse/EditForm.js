@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Warehouse.EditForm", {
+PCL.define("PSI.Warehouse.EditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   /**
@@ -55,7 +55,7 @@ Ext.define("PSI.Warehouse.EditForm", {
     var t = entity == null ? "新建仓库" : "编辑仓库";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -175,7 +175,7 @@ Ext.define("PSI.Warehouse.EditForm", {
           labelSeparator: "",
           fieldLabel: "状态",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1, "启用"], [2, "停用"]]
           }),
@@ -196,7 +196,7 @@ Ext.define("PSI.Warehouse.EditForm", {
           labelSeparator: "",
           fieldLabel: "用途",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[10, "原材料库"], [20, "半成品库"], [30, "产成品库"], [40, "商品库"]]
           }),
@@ -217,7 +217,7 @@ Ext.define("PSI.Warehouse.EditForm", {
           labelSeparator: "",
           fieldLabel: "物料限制",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[0, "不启用物料限制"], [1, "启用物料限制"]]
           }),
@@ -232,17 +232,17 @@ Ext.define("PSI.Warehouse.EditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Warehouse_EditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Warehouse_EditForm_editForm");
 
-    me.editCode = Ext.getCmp("PSI_Warehouse_EditForm_editCode");
-    me.editName = Ext.getCmp("PSI_Warehouse_EditForm_editName");
-    me.editEnabled = Ext.getCmp("PSI_Warehouse_EditForm_editEnabled");
-    me.editOrg = Ext.getCmp("PSI_Warehouse_EditForm_editOrg");
-    me.editSaleArea = Ext.getCmp("PSI_Warehouse_EditForm_editSaleArea");
-    me.hiddenEnabled = Ext.getCmp("PSI_Warehouse_EditForm_hiddenEnabled");
-    me.hiddenOrgId = Ext.getCmp("PSI_Warehouse_EditForm_hiddenOrgId");
-    me.editUsageType = Ext.getCmp("PSI_Warehouse_EditForm_editUsageType");
-    me.hiddenUsageType = Ext.getCmp("PSI_Warehouse_EditForm_hiddenUsageType");
+    me.editCode = PCL.getCmp("PSI_Warehouse_EditForm_editCode");
+    me.editName = PCL.getCmp("PSI_Warehouse_EditForm_editName");
+    me.editEnabled = PCL.getCmp("PSI_Warehouse_EditForm_editEnabled");
+    me.editOrg = PCL.getCmp("PSI_Warehouse_EditForm_editOrg");
+    me.editSaleArea = PCL.getCmp("PSI_Warehouse_EditForm_editSaleArea");
+    me.hiddenEnabled = PCL.getCmp("PSI_Warehouse_EditForm_hiddenEnabled");
+    me.hiddenOrgId = PCL.getCmp("PSI_Warehouse_EditForm_hiddenOrgId");
+    me.editUsageType = PCL.getCmp("PSI_Warehouse_EditForm_editUsageType");
+    me.hiddenUsageType = PCL.getCmp("PSI_Warehouse_EditForm_hiddenUsageType");
 
     if (!me.adding) {
       me.editOrg.setIdValue(entity.get("orgId"));
@@ -348,7 +348,7 @@ Ext.define("PSI.Warehouse.EditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -360,7 +360,7 @@ Ext.define("PSI.Warehouse.EditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     var editCode = me.editCode;
     editCode.focus();
