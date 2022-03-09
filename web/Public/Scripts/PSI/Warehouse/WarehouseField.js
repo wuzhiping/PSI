@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Warehouse.WarehouseField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Warehouse.WarehouseField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_warehousefield",
 
   config: {
@@ -63,17 +63,17 @@ Ext.define("PSI.Warehouse.WarehouseField", {
     }
 
     var modelName = "PSIWarehouseField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    var lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -92,7 +92,7 @@ Ext.define("PSI.Warehouse.WarehouseField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       title: "选择 - 仓库",
       modal: me.getShowModal(),
       width: 420,
@@ -163,10 +163,10 @@ Ext.define("PSI.Warehouse.WarehouseField", {
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("PSI_Warehouse_WarehouseField_editWarehouse");
+    var editName = PCL.getCmp("PSI_Warehouse_WarehouseField_editWarehouse");
     editName.on("change", function () {
       var store = me.lookupGrid.getStore();
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/Warehouse/queryData",
         params: {
           queryKey: editName.getValue(),
@@ -176,8 +176,7 @@ Ext.define("PSI.Warehouse.WarehouseField", {
         callback: function (opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
