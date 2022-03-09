@@ -2,7 +2,6 @@
 
 namespace Home\Service;
 
-use Home\DAO\SubjectDAO;
 use Home\DAO\SupplierDAO;
 
 /**
