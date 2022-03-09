@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Supplier.SupplierEditForm", {
+PCL.define("PSI.Supplier.SupplierEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -49,7 +49,7 @@ Ext.define("PSI.Supplier.SupplierEditForm", {
     var t = entity == null ? "新建供应商档案" : "编辑供应商档案";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -379,7 +379,7 @@ Ext.define("PSI.Supplier.SupplierEditForm", {
           valueField: "id",
           fieldLabel: "状态",
           name: "recordStatus",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1000, "启用"], [0, "停用"]]
           }),
@@ -392,7 +392,7 @@ Ext.define("PSI.Supplier.SupplierEditForm", {
           valueField: "id",
           fieldLabel: "关联物料",
           name: "goodsRange",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1, "全部物料"],
             [2, "部分设置的物料"]]
@@ -415,47 +415,33 @@ Ext.define("PSI.Supplier.SupplierEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Supplier_SupplierEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Supplier_SupplierEditForm_editForm");
 
-    me.editCategory = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editCategory");
-    me.editCode = Ext.getCmp("PSI_Supplier_SupplierEditForm_editCode");
-    me.editName = Ext.getCmp("PSI_Supplier_SupplierEditForm_editName");
-    me.editAddress = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editAddress");
-    me.editContact01 = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editContact01");
-    me.editMobile01 = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editMobile01");
-    me.editTel01 = Ext.getCmp("PSI_Supplier_SupplierEditForm_editTel01");
-    me.editQQ01 = Ext.getCmp("PSI_Supplier_SupplierEditForm_editQQ01");
-    me.editContact02 = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editContact02");
-    me.editMobile02 = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editMobile02");
-    me.editTel02 = Ext.getCmp("PSI_Supplier_SupplierEditForm_editTel02");
-    me.editQQ02 = Ext.getCmp("PSI_Supplier_SupplierEditForm_editQQ02");
-    me.editAddressShipping = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editAddressShipping");
-    me.editBankName = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editBankName");
-    me.editBankAccount = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editBankAccount");
-    me.editTax = Ext.getCmp("PSI_Supplier_SupplierEditForm_editTax");
-    me.editFax = Ext.getCmp("PSI_Supplier_SupplierEditForm_editFax");
-    me.editInitPayables = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editInitPayables");
-    me.editInitPayablesDT = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editInitPayablesDT");
-    me.editNote = Ext.getCmp("PSI_Supplier_SupplierEditForm_editNote");
+    me.editCategory = PCL.getCmp("PSI_Supplier_SupplierEditForm_editCategory");
+    me.editCode = PCL.getCmp("PSI_Supplier_SupplierEditForm_editCode");
+    me.editName = PCL.getCmp("PSI_Supplier_SupplierEditForm_editName");
+    me.editAddress = PCL.getCmp("PSI_Supplier_SupplierEditForm_editAddress");
+    me.editContact01 = PCL.getCmp("PSI_Supplier_SupplierEditForm_editContact01");
+    me.editMobile01 = PCL.getCmp("PSI_Supplier_SupplierEditForm_editMobile01");
+    me.editTel01 = PCL.getCmp("PSI_Supplier_SupplierEditForm_editTel01");
+    me.editQQ01 = PCL.getCmp("PSI_Supplier_SupplierEditForm_editQQ01");
+    me.editContact02 = PCL.getCmp("PSI_Supplier_SupplierEditForm_editContact02");
+    me.editMobile02 = PCL.getCmp("PSI_Supplier_SupplierEditForm_editMobile02");
+    me.editTel02 = PCL.getCmp("PSI_Supplier_SupplierEditForm_editTel02");
+    me.editQQ02 = PCL.getCmp("PSI_Supplier_SupplierEditForm_editQQ02");
+    me.editAddressShipping = PCL.getCmp("PSI_Supplier_SupplierEditForm_editAddressShipping");
+    me.editBankName = PCL.getCmp("PSI_Supplier_SupplierEditForm_editBankName");
+    me.editBankAccount = PCL.getCmp("PSI_Supplier_SupplierEditForm_editBankAccount");
+    me.editTax = PCL.getCmp("PSI_Supplier_SupplierEditForm_editTax");
+    me.editFax = PCL.getCmp("PSI_Supplier_SupplierEditForm_editFax");
+    me.editInitPayables = PCL.getCmp("PSI_Supplier_SupplierEditForm_editInitPayables");
+    me.editInitPayablesDT = PCL.getCmp("PSI_Supplier_SupplierEditForm_editInitPayablesDT");
+    me.editNote = PCL.getCmp("PSI_Supplier_SupplierEditForm_editNote");
 
-    me.editTaxRate = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editTaxRate");
+    me.editTaxRate = PCL.getCmp("PSI_Supplier_SupplierEditForm_editTaxRate");
 
-    me.editRecordStatus = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editRecordStatus");
-    me.editGoodsRange = Ext
-      .getCmp("PSI_Supplier_SupplierEditForm_editGoodsRange");
+    me.editRecordStatus = PCL.getCmp("PSI_Supplier_SupplierEditForm_editRecordStatus");
+    me.editGoodsRange = PCL.getCmp("PSI_Supplier_SupplierEditForm_editGoodsRange");
 
     me.__editorList = [me.editCategory, me.editCode, me.editName,
     me.editAddress, me.editContact01, me.editMobile01,
