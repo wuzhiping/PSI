@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Supplier.CategoryEditForm", {
+PCL.define("PSI.Supplier.CategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -45,7 +45,7 @@ Ext.define("PSI.Supplier.CategoryEditForm", {
     var t = entity == null ? "新建供应商分类" : "编辑供应商分类";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -130,10 +130,10 @@ Ext.define("PSI.Supplier.CategoryEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Supplier_CategoryEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Supplier_CategoryEditForm_editForm");
 
-    me.editCode = Ext.getCmp("PSI_Supplier_CategoryEditForm_editCode");
-    me.editName = Ext.getCmp("PSI_Supplier_CategoryEditForm_editName");
+    me.editCode = PCL.getCmp("PSI_Supplier_CategoryEditForm_editCode");
+    me.editName = PCL.getCmp("PSI_Supplier_CategoryEditForm_editName");
   },
 
   onOK: function (thenAdd) {
@@ -200,7 +200,7 @@ Ext.define("PSI.Supplier.CategoryEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -212,7 +212,7 @@ Ext.define("PSI.Supplier.CategoryEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     var editCode = me.editCode;
     editCode.focus();
