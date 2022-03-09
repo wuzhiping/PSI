@@ -332,7 +332,7 @@ class SupplierService extends PSIBaseExService
       return $this->emptyResult();
     }
 
-    $dao = new SubjectDAO($this->db());
+    $dao = new SupplierDAO($this->db());
     return $dao->grCategoryList($params);
   }
 

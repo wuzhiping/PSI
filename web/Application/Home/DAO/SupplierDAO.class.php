@@ -1304,4 +1304,33 @@ class SupplierDAO extends PSIBaseExDAO
 
     return false;
   }
+
+  /**
+   * 关联物料 - 已经设置的物料分类
+   */
+  public function grCategoryList($params)
+  {
+    $db = $this->db;
+
+    // 供应商id
+    $id = $params["id"];
+
+    $sql = "select r.id, c.code, c.full_name
+            from t_supplier_goods_range r, t_goods_category c
+            where r.supplier_id = '%s' and r.g_id_type = 2
+              and r.g_id = c.id
+            order by c.code";
+    $data = $db->query($sql, $id);
+    $result = [];
+
+    foreach ($data as $v) {
+      $result[] = [
+        "id" => $v["id"],
+        "code" => $v["code"],
+        "name" => $v["full_name"]
+      ];
+    }
+
+    return $result;
+  }
 }
