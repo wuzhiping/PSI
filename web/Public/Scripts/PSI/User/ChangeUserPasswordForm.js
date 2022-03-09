@@ -23,7 +23,11 @@ PCL.define("PSI.User.ChangeUserPasswordForm", {
       <img style='float:left;margin:0px 20px 0px 10px;width:48px;height:48px;' 
         src='${PSI.Const.BASE_URL}Public/Images/${f}'></img>
       <h2 style='color:#196d83;margin-top:0px;'>${t}</h2>
-      <p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>`;
+      <p style='color:#196d83'>标记
+        <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段
+      </p>
+      <div style='margin:0px;border-bottom:1px solid #e6f7ff;height:1px' /></div>
+      `;
 
     const width1 = 600;
     const width2 = 295;
@@ -33,12 +37,12 @@ PCL.define("PSI.User.ChangeUserPasswordForm", {
         height: 40
       },
       width: 650,
-      height: 300,
+      height: 320,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 55,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
