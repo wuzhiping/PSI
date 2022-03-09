@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Supplier.SupplierField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Supplier.SupplierField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_supplierfield",
 
   config: {
@@ -60,18 +60,18 @@ Ext.define("PSI.Supplier.SupplierField", {
     }
 
     var modelName = "PSISupplierField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "tel01", "fax",
         "address_shipping", "contact01", "taxRate"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    var lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -90,7 +90,7 @@ Ext.define("PSI.Supplier.SupplierField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       title: "选择 - 供应商",
       modal: me.getShowModal(),
       header: false,
@@ -167,10 +167,10 @@ Ext.define("PSI.Supplier.SupplierField", {
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("PSI_Supplier_SupplierField_editSupplier");
+    var editName = PCL.getCmp("PSI_Supplier_SupplierField_editSupplier");
     editName.on("change", function () {
       var store = me.lookupGrid.getStore();
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/Supplier/queryData",
         params: {
           queryKey: editName.getValue()
@@ -179,8 +179,7 @@ Ext.define("PSI.Supplier.SupplierField", {
         callback: function (opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -278,7 +277,7 @@ Ext.define("PSI.Supplier.SupplierField", {
   },
 
   onAdd: function () {
-    var form = Ext.create("PSI.Supplier.SupplierEditForm");
+    var form = PCL.create("PSI.Supplier.SupplierEditForm");
     form.show();
   }
 });
