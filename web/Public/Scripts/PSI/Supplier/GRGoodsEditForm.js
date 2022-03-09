@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Supplier.GRGoodsEditForm", {
+PCL.define("PSI.Supplier.GRGoodsEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -55,7 +55,7 @@ Ext.define("PSI.Supplier.GRGoodsEditForm", {
       + "</h2>"
       + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -139,15 +139,12 @@ Ext.define("PSI.Supplier.GRGoodsEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Supplier_GRGoodsEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Supplier_GRGoodsEditForm_editForm");
 
-    me.editGoodsId = Ext.getCmp("PSI_Supplier_GRGoodsEditForm_editGoodsId");
-    me.editGoodsCode = Ext
-      .getCmp("PSI_Supplier_GRGoodsEditForm_editGoodsCode");
-    me.editGoodsName = Ext
-      .getCmp("PSI_Supplier_GRGoodsEditForm_editGoodsName");
-    me.editGoodsSpec = Ext
-      .getCmp("PSI_Supplier_GRGoodsEditForm_editGoodsSpec");
+    me.editGoodsId = PCL.getCmp("PSI_Supplier_GRGoodsEditForm_editGoodsId");
+    me.editGoodsCode = PCL.getCmp("PSI_Supplier_GRGoodsEditForm_editGoodsCode");
+    me.editGoodsName = PCL.getCmp("PSI_Supplier_GRGoodsEditForm_editGoodsName");
+    me.editGoodsSpec = PCL.getCmp("PSI_Supplier_GRGoodsEditForm_editGoodsSpec");
   },
 
 	/**
@@ -212,7 +209,7 @@ Ext.define("PSI.Supplier.GRGoodsEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.getParentForm()) {
       me.getParentForm().refreshGRGoodsGrid();
@@ -222,7 +219,7 @@ Ext.define("PSI.Supplier.GRGoodsEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     var editCode = me.editGoodsCode;
     editCode.focus();
