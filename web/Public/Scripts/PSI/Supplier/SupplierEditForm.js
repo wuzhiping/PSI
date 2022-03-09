@@ -455,7 +455,7 @@ PCL.define("PSI.Supplier.SupplierEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     if (me.adding) {
       // 新建
@@ -470,20 +470,20 @@ PCL.define("PSI.Supplier.SupplierEditForm", {
       } else {
         // 从其他界面调用本窗口
         var modelName = "PSISupplierCategory_SupplierEditForm";
-        Ext.define(modelName, {
-          extend: "Ext.data.Model",
+        PCL.define(modelName, {
+          extend: "PCL.data.Model",
           fields: ["id", "code", "name", {
             name: "cnt",
             type: "int"
           }]
         });
-        var store = Ext.create("Ext.data.Store", {
+        var store = PCL.create("PCL.data.Store", {
           model: modelName,
           autoLoad: false,
           data: []
         });
         me.editCategory.bindStore(store);
-        var el = Ext.getBody();
+        var el = PCL.getBody();
         el.mask(PSI.Const.LOADING);
         var r = {
           url: me.URL("Home/Supplier/categoryList"),
@@ -511,7 +511,7 @@ PCL.define("PSI.Supplier.SupplierEditForm", {
       // 编辑
       var el = me.getEl();
       el.mask(PSI.Const.LOADING);
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: me.URL("Home/Supplier/supplierInfo"),
         params: {
           id: me.getEntity().get("id")
@@ -519,8 +519,7 @@ PCL.define("PSI.Supplier.SupplierEditForm", {
         method: "POST",
         callback: function (options, success, response) {
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             me.editCategory.setValue(data.categoryId);
             me.editCode.setValue(data.code);
             me.editName.setValue(data.name);
@@ -591,7 +590,7 @@ PCL.define("PSI.Supplier.SupplierEditForm", {
       failure: function (form, action) {
         el.unmask();
         PSI.MsgBox.showInfo(action.result.msg, function () {
-          Ext.getCmp("editCode").focus();
+          PCL.getCmp("editCode").focus();
         });
       }
     });
@@ -649,7 +648,7 @@ PCL.define("PSI.Supplier.SupplierEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
