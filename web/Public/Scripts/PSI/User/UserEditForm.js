@@ -36,12 +36,12 @@ Ext.define("PSI.User.UserEditForm", {
       modal: true,
       onEsc: Ext.emptyFn,
       width: 650,
-      height: me.adding ? 480 : 450,
+      height: me.adding ? 500 : 470,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 55,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
