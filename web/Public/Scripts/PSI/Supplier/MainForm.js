@@ -582,7 +582,7 @@ PCL.define("PSI.Supplier.MainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"], ["300"],
             ["1000"]]
@@ -591,11 +591,9 @@ PCL.define("PSI.Supplier.MainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToolbar").doRefresh();
+                PCL.getCmp("pagingToolbar").doRefresh();
               },
               scope: me
             }
@@ -625,7 +623,7 @@ PCL.define("PSI.Supplier.MainForm", {
   onAddCategory: function () {
     var me = this;
 
-    var form = Ext.create("PSI.Supplier.CategoryEditForm", {
+    var form = PCL.create("PSI.Supplier.CategoryEditForm", {
       parentForm: me
     });
 
@@ -649,7 +647,7 @@ PCL.define("PSI.Supplier.MainForm", {
 
     var category = item[0];
 
-    var form = Ext.create("PSI.Supplier.CategoryEditForm", {
+    var form = PCL.create("PSI.Supplier.CategoryEditForm", {
       parentForm: me,
       entity: category
     });
@@ -683,7 +681,7 @@ PCL.define("PSI.Supplier.MainForm", {
     }
 
     me.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       me.ajax({
         url: me.URL("Home/Supplier/deleteCategory"),
@@ -710,7 +708,7 @@ PCL.define("PSI.Supplier.MainForm", {
   freshCategoryGrid: function (id) {
     var me = this;
     var grid = me.getCategoryGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/Supplier/categoryList"),
@@ -756,7 +754,7 @@ PCL.define("PSI.Supplier.MainForm", {
       + "] 的供应商"));
 
     me.__lastId = id;
-    Ext.getCmp("pagingToolbar").doRefresh()
+    PCL.getCmp("pagingToolbar").doRefresh()
   },
 
   onCategoryGridSelect: function () {
@@ -773,7 +771,7 @@ PCL.define("PSI.Supplier.MainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.Supplier.SupplierEditForm", {
+    var form = PCL.create("PSI.Supplier.SupplierEditForm", {
       parentForm: me
     });
 
@@ -804,7 +802,7 @@ PCL.define("PSI.Supplier.MainForm", {
 
     var supplier = item[0];
     supplier.set("categoryId", category.get("id"));
-    var form = Ext.create("PSI.Supplier.SupplierEditForm", {
+    var form = PCL.create("PSI.Supplier.SupplierEditForm", {
       parentForm: me,
       entity: supplier
     });
