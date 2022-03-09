@@ -27,12 +27,12 @@ PCL.define("PSI.Solution.EditForm", {
         height: 40
       },
       width: 650,
-      height: 220,
+      height: 240,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        height: 55,
+        height: 70,
         html: logoHtml
       }, {
         region: "center",
