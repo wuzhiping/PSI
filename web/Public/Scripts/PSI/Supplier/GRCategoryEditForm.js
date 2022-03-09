@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Supplier.GRCategoryEditForm", {
+PCL.define("PSI.Supplier.GRCategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   /**
@@ -52,7 +52,7 @@ Ext.define("PSI.Supplier.GRCategoryEditForm", {
       + "</h2>"
       + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -122,11 +122,9 @@ Ext.define("PSI.Supplier.GRCategoryEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Supplier_GRCategoryEditForm_editForm");
-    me.editCategory = Ext
-      .getCmp("PSI_Supplier_GRCategoryEditForm_editCategory");
-    me.editCategoryId = Ext
-      .getCmp("PSI_Supplier_GRCategoryEditForm_editCategoryId");
+    me.editForm = PCL.getCmp("PSI_Supplier_GRCategoryEditForm_editForm");
+    me.editCategory = PCL.getCmp("PSI_Supplier_GRCategoryEditForm_editCategory");
+    me.editCategoryId = PCL.getCmp("PSI_Supplier_GRCategoryEditForm_editCategoryId");
   },
 
   onWindowBeforeUnload: function (e) {
@@ -136,7 +134,7 @@ Ext.define("PSI.Supplier.GRCategoryEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     me.editCategory.focus();
   },
@@ -195,7 +193,7 @@ Ext.define("PSI.Supplier.GRCategoryEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.getParentForm()) {
       me.getParentForm().refreshGRCategoryGrid();
