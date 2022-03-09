@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Supplier.MainForm", {
+PCL.define("PSI.Supplier.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -20,7 +20,7 @@ Ext.define("PSI.Supplier.MainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -266,7 +266,7 @@ Ext.define("PSI.Supplier.MainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [1000, "启用"], [0, "停用"]]
       }),
@@ -300,7 +300,7 @@ Ext.define("PSI.Supplier.MainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -314,15 +314,15 @@ Ext.define("PSI.Supplier.MainForm", {
     }
 
     var modelName = "PSISupplierCategory";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", {
         name: "cnt",
         type: "int"
       }]
     });
 
-    me.__categoryGrid = Ext.create("Ext.grid.Panel", {
+    me.__categoryGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -334,7 +334,7 @@ Ext.define("PSI.Supplier.MainForm", {
       tools: [{
         type: "close",
         handler: function () {
-          Ext.getCmp("panelCategory").collapse();
+          PCL.getCmp("panelCategory").collapse();
         }
       }],
       features: [{
@@ -365,7 +365,7 @@ Ext.define("PSI.Supplier.MainForm", {
         summaryType: "sum",
         align: "right"
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -392,8 +392,8 @@ Ext.define("PSI.Supplier.MainForm", {
     }
 
     var modelName = "PSISupplier";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "contact01", "tel01",
         "mobile01", "qq01", "contact02", "tel02",
         "mobile02", "qq02", "categoryId", "initPayables",
@@ -402,7 +402,7 @@ Ext.define("PSI.Supplier.MainForm", {
         "dataOrg", "taxRate", "recordStatus", "goodsRange"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -437,7 +437,7 @@ Ext.define("PSI.Supplier.MainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -452,7 +452,7 @@ Ext.define("PSI.Supplier.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 40
         }), {
