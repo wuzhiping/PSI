@@ -832,7 +832,7 @@ PCL.define("PSI.Supplier.MainForm", {
     var info = "请确认是否删除供应商: <span style='color:red'>"
       + supplier.get("name") + "</span>";
     me.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       me.ajax({
         url: me.URL("Home/Supplier/deleteSupplier"),
@@ -906,7 +906,7 @@ PCL.define("PSI.Supplier.MainForm", {
       for (var i = 0; i < me.__queryEditNameList.length - 1; i++) {
         var editorId = me.__queryEditNameList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__queryEditNameList[i + 1]);
+          var edit = PCL.getCmp(me.__queryEditNameList[i + 1]);
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -936,42 +936,42 @@ PCL.define("PSI.Supplier.MainForm", {
       categoryId: categoryId
     };
 
-    var code = Ext.getCmp("editQueryCode").getValue();
+    var code = PCL.getCmp("editQueryCode").getValue();
     if (code) {
       result.code = code;
     }
 
-    var address = Ext.getCmp("editQueryAddress").getValue();
+    var address = PCL.getCmp("editQueryAddress").getValue();
     if (address) {
       result.address = address;
     }
 
-    var name = Ext.getCmp("editQueryName").getValue();
+    var name = PCL.getCmp("editQueryName").getValue();
     if (name) {
       result.name = name;
     }
 
-    var contact = Ext.getCmp("editQueryContact").getValue();
+    var contact = PCL.getCmp("editQueryContact").getValue();
     if (contact) {
       result.contact = contact;
     }
 
-    var mobile = Ext.getCmp("editQueryMobile").getValue();
+    var mobile = PCL.getCmp("editQueryMobile").getValue();
     if (mobile) {
       result.mobile = mobile;
     }
 
-    var tel = Ext.getCmp("editQueryTel").getValue();
+    var tel = PCL.getCmp("editQueryTel").getValue();
     if (tel) {
       result.tel = tel;
     }
 
-    var qq = Ext.getCmp("editQueryQQ").getValue();
+    var qq = PCL.getCmp("editQueryQQ").getValue();
     if (qq) {
       result.qq = qq;
     }
 
-    result.recordStatus = Ext.getCmp("editQueryRecordStatus").getValue();
+    result.recordStatus = PCL.getCmp("editQueryRecordStatus").getValue();
 
     return result;
   },
@@ -989,13 +989,13 @@ PCL.define("PSI.Supplier.MainForm", {
     var nameList = me.__queryEditNameList;
     for (var i = 0; i < nameList.length; i++) {
       var name = nameList[i];
-      var edit = Ext.getCmp(name);
+      var edit = PCL.getCmp(name);
       if (edit) {
         edit.setValue(null);
       }
     }
 
-    Ext.getCmp("editQueryRecordStatus").setValue(-1);
+    PCL.getCmp("editQueryRecordStatus").setValue(-1);
 
     me.onQuery();
   },
@@ -1008,12 +1008,12 @@ PCL.define("PSI.Supplier.MainForm", {
     }
 
     var modelName = "PSISupplierGRCategory";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name"]
     });
 
-    me.__grcategoryGrid = Ext.create("Ext.grid.Panel", {
+    me.__grcategoryGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -1049,7 +1049,7 @@ PCL.define("PSI.Supplier.MainForm", {
         menuDisabled: true,
         sortable: false
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -1068,12 +1068,12 @@ PCL.define("PSI.Supplier.MainForm", {
     }
 
     var modelName = "PSISupplierGRGoods";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "spec"]
     });
 
-    me.__grgoodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__grgoodsGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -1115,7 +1115,7 @@ PCL.define("PSI.Supplier.MainForm", {
         menuDisabled: true,
         sortable: false
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -1137,7 +1137,7 @@ PCL.define("PSI.Supplier.MainForm", {
 
     var supplier = item[0];
 
-    var form = Ext.create("PSI.Supplier.GRCategoryEditForm", {
+    var form = PCL.create("PSI.Supplier.GRCategoryEditForm", {
       entity: supplier,
       parentForm: me
     });
@@ -1167,7 +1167,7 @@ PCL.define("PSI.Supplier.MainForm", {
 
     var info = "请确认是否要移除选中的物料分类?";
     var confirmFunc = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       var r = {
         url: me.URL("Home/Supplier/deleteGRCategory"),
@@ -1206,7 +1206,7 @@ PCL.define("PSI.Supplier.MainForm", {
 
     var supplier = item[0];
 
-    var form = Ext.create("PSI.Supplier.GRGoodsEditForm", {
+    var form = PCL.create("PSI.Supplier.GRGoodsEditForm", {
       entity: supplier,
       parentForm: me
     });
@@ -1236,7 +1236,7 @@ PCL.define("PSI.Supplier.MainForm", {
 
     var info = "请确认是否要移除选中的物料?";
     var confirmFunc = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       var r = {
         url: me.URL("Home/Supplier/deleteGRGoods"),
@@ -1281,7 +1281,7 @@ PCL.define("PSI.Supplier.MainForm", {
       info += "只能使用如下设置中的<strong>关联物料</strong>";
     }
     info = "<span style='font-size:120%;'>" + info + "</span>";
-    Ext.getCmp("panelGoodsRange").setTitle(info);
+    PCL.getCmp("panelGoodsRange").setTitle(info);
 
     me.refreshGRCategoryGrid();
     me.refreshGRGoodsGrid();
@@ -1297,7 +1297,7 @@ PCL.define("PSI.Supplier.MainForm", {
     var supplier = item[0];
 
     var grid = me.getGRCategoryGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/Supplier/grCategoryList"),
@@ -1330,7 +1330,7 @@ PCL.define("PSI.Supplier.MainForm", {
     var supplier = item[0];
 
     var grid = me.getGRGoodsGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/Supplier/grGoodsList"),
