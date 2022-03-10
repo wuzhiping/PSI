@@ -240,10 +240,6 @@ Ext.define("PSI.Goods.GoodsUnitField", {
     me.setValue(data.name);
     me.focus();
     me.setIdValue(data.id);
-
-    if (me.getParentCmp() && me.getParentCmp().__setGoodsInfo) {
-      me.getParentCmp().__setGoodsUnitInfo(data)
-    }
   },
 
   setIdValue: function (id) {
