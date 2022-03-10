@@ -68,6 +68,11 @@ PCL.define("PSI.SysDict.SysDictField", {
    */
   onTriggerClick(e) {
     const me = this;
+
+    if (me.readOnly) {
+      return;
+    }
+
     const modelName = "PSIModel.PSI.Fid.FidField.FidModel";
     PCL.define(modelName, {
       extend: "PCL.data.Model",
