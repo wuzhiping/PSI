@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SLN0002.Bank.EditForm", {
+PCL.define("PSI.SLN0002.Bank.EditForm", {
   extend: "PSI.AFX.Form.EditForm",
 
   config: {
@@ -59,7 +59,7 @@ Ext.define("PSI.SLN0002.Bank.EditForm", {
     const t = entity == null ? "新建银行账户" : "编辑银行账户";
     const logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -160,11 +160,11 @@ Ext.define("PSI.SLN0002.Bank.EditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Bank_EditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Bank_EditForm_editForm");
 
-    me.editBankName = Ext.getCmp("PSI_Bank_EditForm_editBankName");
-    me.editBankNumber = Ext.getCmp("PSI_Bank_EditForm_editBankNumber");
-    me.editMemo = Ext.getCmp("PSI_Bank_EditForm_editMemo");
+    me.editBankName = PCL.getCmp("PSI_Bank_EditForm_editBankName");
+    me.editBankNumber = PCL.getCmp("PSI_Bank_EditForm_editBankNumber");
+    me.editMemo = PCL.getCmp("PSI_Bank_EditForm_editMemo");
 
     me.__editorList = [me.editBankName, me.editBankNumber, me.editMemo];
   },
@@ -245,7 +245,7 @@ Ext.define("PSI.SLN0002.Bank.EditForm", {
   _onWndClose() {
     const me = this;
 
-    Ext.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
 
     if (me._lastId) {
       if (me.getParentForm()) {
@@ -262,7 +262,7 @@ Ext.define("PSI.SLN0002.Bank.EditForm", {
   _onWndShow() {
     const me = this;
 
-    Ext.get(window).on('beforeunload', me.__onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.__onWindowBeforeUnload);
 
     me.setFocusAndCursorPosToLast(me.editBankName);
   }
