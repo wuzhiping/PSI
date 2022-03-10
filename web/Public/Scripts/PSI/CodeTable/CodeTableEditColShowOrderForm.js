@@ -41,16 +41,16 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
     PCL.apply(me, {
       resizable: true,
       header: {
-        title: me.formatTitle("调整编辑界面字段显示次序"),
+        title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
       width: 900,
-      height: 230,
+      height: 250,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        html: "<h1 style='margin-top:0px;color:#0050b3'>拖动列来调整显示次序</h1>"
+        html: "<h1 style='margin-top:0px;color:#0050b3'>拖动列来调整编辑界面字段显示次序</h1>"
       }, {
         region: "center",
         layout: "fit",
