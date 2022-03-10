@@ -1163,19 +1163,14 @@ class CodeTableDAO extends PSIBaseExDAO
 
   private function valueFromCodeToName($valueFrom)
   {
-    switch ($valueFrom) {
-      case 1:
-        return "直接录入";
-      case 2:
-        return "引用系统数据字典";
-      case 3:
-        return "引用其他码表";
-      case 4:
-        return "引用自身数据";
-      case 5:
-        return "自动生成";
-      default:
-        return "";
+    $db = $this->db;
+
+    $sql = "select name from t_sysdict_sln0000_ct_value_from where code = '%s' ";
+    $data = $db->query($sql, $valueFrom);
+    if ($data) {
+      return $data[0]["name"];
+    } else {
+      return "[未定义]";
     }
   }
 
@@ -1781,24 +1776,12 @@ class CodeTableDAO extends PSIBaseExDAO
   public function codeTableColInfo($params)
   {
     $db = $this->db;
-    $tableId = $params["tableId"];
+    // $tableId = $params["tableId"];
 
     // col id
     $id = $params["id"];
 
     $result = [];
-
-    $sql = "select name, memo from t_sysdict_sln0000_ct_editor_xtype order by code";
-    $data = $db->query($sql);
-    $xtype = [];
-    foreach ($data as $v) {
-      $xtype[] = [
-        "id" => $v["name"],
-        "text" => $v["name"] . " - " . $v["memo"]
-      ];
-    }
-
-    $result["editorXtype"] = $xtype;
 
     if ($id) {
       // 编辑
@@ -1821,6 +1804,7 @@ class CodeTableDAO extends PSIBaseExDAO
           "memo" => $v["note"],
           "showOrder" => $v["show_order"],
           "valueFrom" => $v["value_from"],
+          "valueFromDisplay" => $this->valueFromCodeToName($v["value_from"]),
           "valueFromTableName" => $v["value_from_table_name"],
           "valueFromColName" => $v["value_from_col_name"],
           "valueFromColNameDisplay" => $v["value_from_col_name_display"],

@@ -650,7 +650,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
               me.editFieldLength.setValue(`<span class='PSI-field-note'>${col.fieldLength}</span>`);
               me.editFieldDec.setValue(`<span class='PSI-field-note'>${col.fieldDecimal}</span>`);
               const valueFrom = parseInt(col.valueFrom);
-              me.editValueFrom.setValue(valueFrom);
+              me.hiddenValueFrom.setValue(valueFrom);
+              me.editValueFrom.setValue(col.valueFromDisplay);
               me.editValueFromTableName.setValue(col.valueFromTableName);
               me.editValueFromColName.setValue(col.valueFromColName);
               me.editValueFromColNameDisplay.setValue(col.valueFromColNameDisplay);

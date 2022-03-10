@@ -352,6 +352,7 @@ class CodeTableController extends PSIBaseController
 
       $params = [
         "tableId" => I("post.tableId"),
+        // id: 列id
         "id" => I("post.id")
       ];
 
