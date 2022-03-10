@@ -199,6 +199,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.editShowOrder = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editShowOrder");
     me.editColSpan = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editColSpan");
     me.editShowOrderInView = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editShowOrderInView");
+    me.hiddenEditorXtype = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenEditorXtype");
     me.editEditorXtype = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editEditorXtype");
     me.editMemo = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMemo");
     me.editIsVisible = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editIsVisible");
@@ -521,11 +522,16 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         }
       }
     }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_hiddenEditorXtype",
+      xtype: "hidden",
+      name: "editorXtype",
+      value: 1,
+    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editEditorXtype",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
+      xtype: "psi_sysdictfield",
+      tableName: "t_sysdict_sln0000_ct_editor_xtype",
+      callbackFunc: me._editorXtypeCallback,
+      callbackScope: me,
       labelAlign: "right",
       labelSeparator: "",
       fieldLabel: "编辑器类型",
@@ -537,8 +543,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         data: []
       }),
       value: "textfield",
-      name: "editorXtype",
-      colspan: 3,
+      colspan: 2,
       width: col2Width
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editIsVisible",
@@ -715,7 +720,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       showOrder: me.editShowOrder.getValue(),
       showOrderInView: me.editShowOrderInView.getValue(),
       isVisible: me.editIsVisible.getValue(),
-      editorXtype: me.editEditorXtype.getValue(),
+      editorXtype: me.hiddenEditorXtype.getValue(),
       memo: me.editMemo.getValue(),
       colSpan: me.editColSpan.getValue(),
     };
