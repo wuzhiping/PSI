@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SLN0002.Bank.MainForm", {
+PCL.define("PSI.SLN0002.Bank.MainForm", {
   extend: "PSI.AFX.Form.MainForm",
 
   /**
@@ -16,7 +16,7 @@ Ext.define("PSI.SLN0002.Bank.MainForm", {
   initComponent() {
     const me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: me.getToolbarCmp(),
       items: [{
         region: "north",
@@ -76,7 +76,7 @@ Ext.define("PSI.SLN0002.Bank.MainForm", {
    */
   refreshCompanyGrid() {
     const me = this;
-    const el = Ext.getBody();
+    const el = PCL.getBody();
     const store = me.getCompanyGrid().getStore();
     el.mask(PSI.Const.LOADING);
     const r = {
@@ -162,12 +162,12 @@ Ext.define("PSI.SLN0002.Bank.MainForm", {
 
     const modelName = "PSI_Bank_CompanyModel";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "orgType"]
     });
 
-    me.__companyGrid = Ext.create("Ext.grid.Panel", {
+    me.__companyGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -194,7 +194,7 @@ Ext.define("PSI.SLN0002.Bank.MainForm", {
           width: 100,
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -222,12 +222,12 @@ Ext.define("PSI.SLN0002.Bank.MainForm", {
 
     const modelName = "PSI_Bank_BankAccountModel";
 
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "bankName", "bankNumber", "memo"]
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -253,7 +253,7 @@ Ext.define("PSI.SLN0002.Bank.MainForm", {
           width: 400,
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -295,7 +295,7 @@ Ext.define("PSI.SLN0002.Bank.MainForm", {
 
     const company = item[0];
 
-    const form = Ext.create("PSI.SLN0002.Bank.EditForm", {
+    const form = PCL.create("PSI.SLN0002.Bank.EditForm", {
       parentForm: me,
       company: company
     });
@@ -324,7 +324,7 @@ Ext.define("PSI.SLN0002.Bank.MainForm", {
     }
 
     const bank = item[0];
-    const form = Ext.create("PSI.SLN0002.Bank.EditForm", {
+    const form = PCL.create("PSI.SLN0002.Bank.EditForm", {
       parentForm: me,
       company: company,
       entity: bank
@@ -369,7 +369,7 @@ Ext.define("PSI.SLN0002.Bank.MainForm", {
     }
 
     const funcConfirm = () => {
-      const el = Ext.getBody();
+      const el = PCL.getBody();
       el.mask(PSI.Const.LOADING);
       const r = {
         url: me.URL("SLN0002/Bank/deleteBank"),
