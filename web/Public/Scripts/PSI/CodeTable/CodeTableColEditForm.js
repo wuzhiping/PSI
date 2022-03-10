@@ -658,9 +658,6 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
                 // 引用自身数据
                 me.editValueFrom.setReadOnly(true);
                 me.editValueFromTableName.setReadOnly(true);
-                me.editValueFromTableName.setDisabled(false);
-                me.editValueFromColName.setDisabled(false);
-                me.editValueFromColNameDisplay.setDisabled(false);
               }
 
               me.hiddenIsVisible.setValue(parseInt(col.isVisible));

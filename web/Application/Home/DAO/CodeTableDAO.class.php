@@ -1762,12 +1762,11 @@ class CodeTableDAO extends PSIBaseExDAO
     if ($sysCol == 1) {
       // 系统列
       $sql = "update t_code_table_cols_md
-              set caption = '%s', width_in_view = %d, show_order = %d,
+              set width_in_view = %d, show_order = %d,
                 show_order_in_view = %d, note = '%s', col_span = %d
               where id = '%s' ";
       $rc = $db->execute(
         $sql,
-        $caption,
         $widthInView,
         $showOrder,
         $showOrderInView,
