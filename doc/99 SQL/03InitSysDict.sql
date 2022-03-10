@@ -45,14 +45,15 @@ INSERT INTO `t_sysdict_sln0000_ct_record_status` (`id`, `code`, `code_int`, `nam
 ('9B90C56E-696E-11E9-B2BF-782BCBD7746B', '1000', 1000, '启用', 'QY', '记录处于启用状态', 1),
 ('AC7F3FAB-696E-11E9-B2BF-782BCBD7746B', '0', 0, '停用', 'TY', '记录处于停用状态', 2);
 
+# 码表列编辑器类型
 TRUNCATE TABLE `t_sysdict_sln0000_ct_editor_xtype`;
 INSERT INTO `t_sysdict_sln0000_ct_editor_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
-('5104A62E-9F97-11E9-9BDF-F0BF9790E21F', '1', 1, 'textfield', 'textfield', '字符串编辑器', 1),
-('7B795BEF-9F97-11E9-9BDF-F0BF9790E21F', '2', 2, 'numberfield', 'numberfield', '数值编辑器', 2),
-('FD1F4CF4-9F97-11E9-9BDF-F0BF9790E21F', '3', 3, 'psi_codetable_parentidfield', 'psi_codetable_parentidfield', '上级记录编辑器', 3),
-('9929B6FA-AD1A-11E9-B2D3-F0BF9790E21F', '4', 4, 'psi_codetable_recordreffield', 'psi_codetable_recordreffield', '码表记录引用字段编辑器', 4),
-('D5A2BB45-F42F-11EA-843F-E86A641ED142', '5', 5, 'datefield', 'datefield', '日期编辑器', 5),
-('CBAB9173-985E-11EC-93F2-E86A641ED142', '6', 6, 'psi_sysdictfield', 'psi_sysdictfield', '系统数据字典编辑器', 6);
+('5104A62E-9F97-11E9-9BDF-F0BF9790E21F', 'textfield', 1, 'textfield - 字符串编辑器', 'textfield', '字符串编辑器', 1),
+('7B795BEF-9F97-11E9-9BDF-F0BF9790E21F', 'numberfield', 2, 'numberfield - 数值编辑器', 'numberfield', '数值编辑器', 2),
+('FD1F4CF4-9F97-11E9-9BDF-F0BF9790E21F', 'psi_codetable_parentidfield', 3, 'psi_codetable_parentidfield - 上级记录编辑器', 'psi_codetable_parentidfield', '上级记录编辑器', 3),
+('9929B6FA-AD1A-11E9-B2D3-F0BF9790E21F', 'psi_codetable_recordreffield', 4, 'psi_codetable_recordreffield - 码表记录引用字段编辑器', 'psi_codetable_recordreffield', '码表记录引用字段编辑器', 4),
+('D5A2BB45-F42F-11EA-843F-E86A641ED142', 'datefield', 5, 'datefield - 日期编辑器', 'datefield', '日期编辑器', 5),
+('CBAB9173-985E-11EC-93F2-E86A641ED142', 'psi_sysdictfield', 6, 'psi_sysdictfield - 系统数据字典编辑器', 'psi_sysdictfield', '系统数据字典编辑器', 6);
 
 TRUNCATE TABLE `t_sysdict_sln0000_form_editor_xtype`;
 INSERT INTO `t_sysdict_sln0000_form_editor_xtype` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
