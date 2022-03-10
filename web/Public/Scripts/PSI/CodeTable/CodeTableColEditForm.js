@@ -204,6 +204,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.editMemo = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMemo");
     me.hiddenIsVisible = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenIsVisible");
     me.editIsVisible = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editIsVisible");
+    me.hiddenMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenMustInput");
     me.editMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMustInput");
 
     me.__useTabPanel = true;
@@ -577,24 +578,23 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         }
       }
     }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_hiddenMustInput",
+      xtype: "hidden",
+      name: "mustInput",
+      value: 1,
+    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editMustInput",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
+      xtype: "psi_sysdictfield",
+      tableName: "t_sysdict_sln0000_ct_must_input",
+      callbackFunc: me._mustInputCallback,
+      callbackScope: me,
       labelAlign: "right",
       labelSeparator: "",
       fieldLabel: "必须录入",
       allowBlank: false,
       blankText: "没有输入必须录入",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: PCL.create("PCL.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [[1, "非必须录入项"],
-        [2, "必须录入"]]
-      }),
-      value: 1,
-      name: "mustInput",
+      value: "非必须录入项",
       listeners: {
         specialkey: {
           fn: me._onEditLastSpecialKey,
@@ -725,7 +725,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       valueFromTableName: me.editValueFromTableName.getValue(),
       valueFromColName: me.editValueFromColName.getValue(),
       valueFromColNameDisplay: me.editValueFromColNameDisplay.getValue(),
-      mustInput: me.editMustInput.getValue(),
+      mustInput: me.hiddenMustInput.getValue(),
       widthInView: me.editWidthInView.getValue(),
       showOrder: me.editShowOrder.getValue(),
       showOrderInView: me.editShowOrderInView.getValue(),
@@ -766,7 +766,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   },
 
   _onEditLastSpecialKey(field, e) {
-    // const me = this;
+    const me = this;
+    me.tip("TODO")
 
     // if (e.getKey() === e.ENTER) {
     //   const f = me.editForm;
@@ -938,5 +939,20 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       t = 1; // 可见
     }
     me.hiddenIsVisible.setValue(parseInt(t));
+  },
+
+  /**
+   * 必须录入 - 回调本方法
+   * 
+   * @private
+   */
+  _mustInputCallback(data, scope) {
+    const me = scope;
+
+    let t = data ? data.get("id") : null;
+    if (!t) {
+      t = 1; // 非必录项
+    }
+    me.hiddenMustInput.setValue(parseInt(t));
   },
 });
