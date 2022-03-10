@@ -1174,6 +1174,19 @@ class CodeTableDAO extends PSIBaseExDAO
     }
   }
 
+  private function editorXtypeCodeToName($code)
+  {
+    $db = $this->db;
+
+    $sql = "select name from t_sysdict_sln0000_ct_editor_xtype where code = '%s' ";
+    $data = $db->query($sql, $code);
+    if ($data) {
+      return $data[0]["name"];
+    } else {
+      return "[未定义]";
+    }
+  }
+
   /**
    * 某个码表的列
    */
@@ -1216,7 +1229,7 @@ class CodeTableDAO extends PSIBaseExDAO
         "widthInView" => $isVisible ? ($v["width_in_view"] ?? 100) : null,
         "note" => $v["note"],
         "showOrderInView" => $v["show_order_in_view"],
-        "editorXtype" => $v["editor_xtype"],
+        "editorXtype" => $this->editorXtypeCodeToName($v["editor_xtype"]),
         "colSpan" => $v["col_span"],
       ];
     }
