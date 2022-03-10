@@ -211,7 +211,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       [me.editCaption, me.editFieldName, me.editFieldType, me.editMemo],
       [me.editValueFrom],
       [me.editWidthInView, me.editShowOrderInView, me.editShowOrder],
-      [me.editColSpan]
+      [me.editColSpan, me.editEditorXtype, me.editIsVisible, me.editMustInput]
     ];
 
     me.buttonRefCol = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
@@ -544,7 +544,13 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       }),
       value: "textfield",
       colspan: 2,
-      width: col2Width
+      width: col2Width,
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editIsVisible",
       xtype: "combo",
@@ -563,7 +569,13 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         [2, "对用户不可见"]]
       }),
       value: 1,
-      name: "isVisible"
+      name: "isVisible",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editMustInput",
       xtype: "combo",
@@ -582,7 +594,13 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         [2, "必须录入"]]
       }),
       value: 1,
-      name: "mustInput"
+      name: "mustInput",
+      listeners: {
+        specialkey: {
+          fn: me._onEditLastSpecialKey,
+          scope: me
+        }
+      }
     }];
 
     return list;
@@ -747,7 +765,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.ajax(r);
   },
 
-  onEditLastSpecialKey(field, e) {
+  _onEditLastSpecialKey(field, e) {
     // const me = this;
 
     // if (e.getKey() === e.ENTER) {
@@ -897,7 +915,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
    * 
    * @private
    */
-   _editorXtypeCallback(data, scope) {
+  _editorXtypeCallback(data, scope) {
     const me = scope;
 
     let t = data ? data.get("id") : null;
