@@ -256,7 +256,7 @@ class PermissionDAO extends PSIBaseExDAO
       $sql .= " where " . $rs[0];
       $queryParams = $rs[1];
     }
-    $sql .= " order by convert(full_name USING gbk) collate gbk_chinese_ci";
+    $sql .= " order by data_org";
 
     $data = $db->query($sql, $queryParams);
     foreach ($data as $i => $v) {
