@@ -1200,6 +1200,19 @@ class CodeTableDAO extends PSIBaseExDAO
     }
   }
 
+  private function mustInputCodeToName($code)
+  {
+    $db = $this->db;
+
+    $sql = "select name from t_sysdict_sln0000_ct_must_input where code = '%s' ";
+    $data = $db->query($sql, $code);
+    if ($data) {
+      return $data[0]["name"];
+    } else {
+      return "[未定义]";
+    }
+  }
+
   /**
    * 某个码表的列
    */
@@ -1835,6 +1848,7 @@ class CodeTableDAO extends PSIBaseExDAO
           "valueFromColName" => $v["value_from_col_name"],
           "valueFromColNameDisplay" => $v["value_from_col_name_display"],
           "mustInput" => $v["must_input"],
+          "mustInputDisplay" => $this->mustInputCodeToName($v["must_input"]),
           "sysCol" => $v["sys_col"],
           "isVisible" => $v["is_visible"],
           "isVisibleDisplay" => $this->isVisibleCodeToName($v["is_visible"]),
