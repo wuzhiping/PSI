@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.MainForm", {
+PCL.define("PSI.Goods.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -30,7 +30,7 @@ Ext.define("PSI.Goods.MainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -223,7 +223,7 @@ Ext.define("PSI.Goods.MainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -265,15 +265,15 @@ Ext.define("PSI.Goods.MainForm", {
       return me.__mainGrid;
     }
     var modelName = "PSIGoods";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "spec", "unitId",
         "unitName", "categoryId", "salePrice",
         "purchasePrice", "barCode", "memo", "dataOrg",
         "brandFullName", "recordStatus", "taxRate", "mType"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -301,7 +301,7 @@ Ext.define("PSI.Goods.MainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -323,7 +323,7 @@ Ext.define("PSI.Goods.MainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"], ["300"],
             ["1000"]]
@@ -332,11 +332,9 @@ Ext.define("PSI.Goods.MainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToolbar").doRefresh();
+                PCL.getCmp("pagingToolbar").doRefresh();
               },
               scope: me
             }
