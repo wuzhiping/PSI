@@ -771,7 +771,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
    */
   _onFieldTypeChange() {
     const me = this;
-    const v = me.editFieldType.getValue();
+    const v = me.hiddenFieldType.getValue();
     if (v == "varchar") {
       me.editFieldLength.setValue(255);
       me.editFieldLength.setDisabled(false);
