@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Factory.MainForm", {
+PCL.define("PSI.Factory.MainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -15,7 +15,7 @@ Ext.define("PSI.Factory.MainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -228,7 +228,7 @@ Ext.define("PSI.Factory.MainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [1000, "启用"], [0, "停用"]]
       }),
@@ -259,7 +259,7 @@ Ext.define("PSI.Factory.MainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -273,15 +273,15 @@ Ext.define("PSI.Factory.MainForm", {
     }
 
     var modelName = "PSIFactoryCategory";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", {
         name: "cnt",
         type: "int"
       }]
     });
 
-    me.__categoryGrid = Ext.create("Ext.grid.Panel", {
+    me.__categoryGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -293,7 +293,7 @@ Ext.define("PSI.Factory.MainForm", {
       tools: [{
         type: "close",
         handler: function () {
-          Ext.getCmp("panelCategory").collapse();
+          PCL.getCmp("panelCategory").collapse();
         }
       }],
       features: [{
@@ -324,7 +324,7 @@ Ext.define("PSI.Factory.MainForm", {
         summaryType: "sum",
         align: "right"
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -351,8 +351,8 @@ Ext.define("PSI.Factory.MainForm", {
     }
 
     var modelName = "PSIFactory";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "contact01", "tel01",
         "mobile01", "contact02", "tel02", "mobile02",
         "categoryId", "initPayables", "initPayablesDT",
@@ -360,7 +360,7 @@ Ext.define("PSI.Factory.MainForm", {
         "note", "dataOrg", "recordStatus"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -395,7 +395,7 @@ Ext.define("PSI.Factory.MainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -410,7 +410,7 @@ Ext.define("PSI.Factory.MainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 40
         }), {
@@ -517,7 +517,7 @@ Ext.define("PSI.Factory.MainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"], ["300"],
             ["1000"]]
@@ -526,11 +526,9 @@ Ext.define("PSI.Factory.MainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToolbar").doRefresh();
+                PCL.getCmp("pagingToolbar").doRefresh();
               },
               scope: me
             }
@@ -553,7 +551,7 @@ Ext.define("PSI.Factory.MainForm", {
   onAddCategory: function () {
     var me = this;
 
-    var form = Ext.create("PSI.Factory.CategoryEditForm", {
+    var form = PCL.create("PSI.Factory.CategoryEditForm", {
       parentForm: me
     });
 
@@ -574,7 +572,7 @@ Ext.define("PSI.Factory.MainForm", {
 
     var category = item[0];
 
-    var form = Ext.create("PSI.Factory.CategoryEditForm", {
+    var form = PCL.create("PSI.Factory.CategoryEditForm", {
       parentForm: me,
       entity: category
     });
@@ -605,7 +603,7 @@ Ext.define("PSI.Factory.MainForm", {
     }
 
     me.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       me.ajax({
         url: me.URL("Home/Factory/deleteCategory"),
@@ -632,7 +630,7 @@ Ext.define("PSI.Factory.MainForm", {
   freshCategoryGrid: function (id) {
     var me = this;
     var grid = me.getCategoryGrid();
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/Factory/categoryList"),
@@ -678,7 +676,7 @@ Ext.define("PSI.Factory.MainForm", {
       + "] 的工厂"));
 
     me.__lastId = id;
-    Ext.getCmp("pagingToolbar").doRefresh()
+    PCL.getCmp("pagingToolbar").doRefresh()
   },
 
   onCategoryGridSelect: function () {
@@ -695,7 +693,7 @@ Ext.define("PSI.Factory.MainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.Factory.FactoryEditForm", {
+    var form = PCL.create("PSI.Factory.FactoryEditForm", {
       parentForm: me
     });
 
@@ -723,7 +721,7 @@ Ext.define("PSI.Factory.MainForm", {
 
     var factory = item[0];
     factory.set("categoryId", category.get("id"));
-    var form = Ext.create("PSI.Factory.FactoryEditForm", {
+    var form = PCL.create("PSI.Factory.FactoryEditForm", {
       parentForm: me,
       entity: factory
     });
@@ -753,7 +751,7 @@ Ext.define("PSI.Factory.MainForm", {
     var info = "请确认是否删除工厂: <span style='color:red'>" + factory.get("name")
       + "</span>";
     me.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       me.ajax({
         url: me.URL("Home/Factory/deleteFactory"),
@@ -813,7 +811,7 @@ Ext.define("PSI.Factory.MainForm", {
       for (var i = 0; i < me.__queryEditNameList.length - 1; i++) {
         var editorId = me.__queryEditNameList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__queryEditNameList[i + 1]);
+          var edit = PCL.getCmp(me.__queryEditNameList[i + 1]);
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -843,37 +841,37 @@ Ext.define("PSI.Factory.MainForm", {
       categoryId: categoryId
     };
 
-    var code = Ext.getCmp("editQueryCode").getValue();
+    var code = PCL.getCmp("editQueryCode").getValue();
     if (code) {
       result.code = code;
     }
 
-    var address = Ext.getCmp("editQueryAddress").getValue();
+    var address = PCL.getCmp("editQueryAddress").getValue();
     if (address) {
       result.address = address;
     }
 
-    var name = Ext.getCmp("editQueryName").getValue();
+    var name = PCL.getCmp("editQueryName").getValue();
     if (name) {
       result.name = name;
     }
 
-    var contact = Ext.getCmp("editQueryContact").getValue();
+    var contact = PCL.getCmp("editQueryContact").getValue();
     if (contact) {
       result.contact = contact;
     }
 
-    var mobile = Ext.getCmp("editQueryMobile").getValue();
+    var mobile = PCL.getCmp("editQueryMobile").getValue();
     if (mobile) {
       result.mobile = mobile;
     }
 
-    var tel = Ext.getCmp("editQueryTel").getValue();
+    var tel = PCL.getCmp("editQueryTel").getValue();
     if (tel) {
       result.tel = tel;
     }
 
-    result.recordStatus = Ext.getCmp("editQueryRecordStatus").getValue();
+    result.recordStatus = PCL.getCmp("editQueryRecordStatus").getValue();
 
     return result;
   },
@@ -891,13 +889,13 @@ Ext.define("PSI.Factory.MainForm", {
     var nameList = me.__queryEditNameList;
     for (var i = 0; i < nameList.length; i++) {
       var name = nameList[i];
-      var edit = Ext.getCmp(name);
+      var edit = PCL.getCmp(name);
       if (edit) {
         edit.setValue(null);
       }
     }
 
-    Ext.getCmp("editQueryRecordStatus").setValue(-1);
+    PCL.getCmp("editQueryRecordStatus").setValue(-1);
 
     me.onQuery();
   }
