@@ -105,13 +105,13 @@ PCL.define("PSI.FIdList.MainForm", {
           dataIndex: "name",
           width: 400,
         }, {
-          header: "来源",
+          header: "性质",
           dataIndex: "category",
           width: 100,
         }, {
           header: "解决方案",
           dataIndex: "sln",
-          width: 400,
+          width: 350,
         }]
       },
       store: PCL.create("PCL.data.Store", {
