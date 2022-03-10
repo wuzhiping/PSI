@@ -1757,6 +1757,7 @@ class CodeTableDAO extends PSIBaseExDAO
     if ($colSpan < 1) {
       $colSpan = 1;
     }
+    $editorXtype = $params["editorXtype"];
 
     if ($sysCol == 1) {
       // 系统列
@@ -1786,7 +1787,7 @@ class CodeTableDAO extends PSIBaseExDAO
       $sql = "update t_code_table_cols_md
               set caption = '%s', width_in_view = %d, show_order = %d,
                 show_order_in_view = %d, note = '%s', col_span = %d,
-                must_input = %d
+                must_input = %d, editor_xtype = '%s'
               where id = '%s' ";
       $rc = $db->execute(
         $sql,
@@ -1797,6 +1798,7 @@ class CodeTableDAO extends PSIBaseExDAO
         $note,
         $colSpan,
         $mustInput,
+        $editorXtype,
         $id
       );
       if ($rc === false) {
