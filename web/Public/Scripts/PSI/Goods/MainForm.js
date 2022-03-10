@@ -344,7 +344,7 @@ PCL.define("PSI.Goods.MainForm", {
           value: "条记录"
         }],
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "#",
         width: 40
       }), {
@@ -468,7 +468,7 @@ PCL.define("PSI.Goods.MainForm", {
   onAddCategory: function () {
     var me = this;
 
-    var form = Ext.create("PSI.Goods.CategoryEditForm", {
+    var form = PCL.create("PSI.Goods.CategoryEditForm", {
       parentForm: me
     });
 
@@ -489,7 +489,7 @@ PCL.define("PSI.Goods.MainForm", {
 
     var category = item[0];
 
-    var form = Ext.create("PSI.Goods.CategoryEditForm", {
+    var form = PCL.create("PSI.Goods.CategoryEditForm", {
       parentForm: me,
       entity: category
     });
@@ -516,7 +516,7 @@ PCL.define("PSI.Goods.MainForm", {
       + category.get("text") + "</span>";
 
     me.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       me.ajax({
         url: me.URL("Home/Goods/deleteCategory"),
@@ -563,7 +563,7 @@ PCL.define("PSI.Goods.MainForm", {
       return;
     }
 
-    Ext.getCmp("pagingToolbar").doRefresh()
+    PCL.getCmp("pagingToolbar").doRefresh()
   },
 
   onCategoryGridSelect: function () {
@@ -589,7 +589,7 @@ PCL.define("PSI.Goods.MainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.Goods.GoodsEditForm", {
+    var form = PCL.create("PSI.Goods.GoodsEditForm", {
       parentForm: me
     });
 
@@ -621,7 +621,7 @@ PCL.define("PSI.Goods.MainForm", {
 
     var goods = item[0];
     goods.set("categoryId", category.get("id"));
-    var form = Ext.create("PSI.Goods.GoodsEditForm", {
+    var form = PCL.create("PSI.Goods.GoodsEditForm", {
       parentForm: me,
       entity: goods
     });
@@ -654,7 +654,7 @@ PCL.define("PSI.Goods.MainForm", {
       + " " + goods.get("spec") + "</span>";
 
     me.confirm(info, function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       me.ajax({
         url: me.URL("Home/Goods/deleteGoods"),
@@ -724,7 +724,7 @@ PCL.define("PSI.Goods.MainForm", {
       for (var i = 0; i < me.__queryEditNameList.length - 1; i++) {
         var editorId = me.__queryEditNameList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__queryEditNameList[i + 1]);
+          var edit = PCL.getCmp(me.__queryEditNameList[i + 1]);
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -742,31 +742,31 @@ PCL.define("PSI.Goods.MainForm", {
     var me = this;
     var result = {};
 
-    if (Ext.getCmp("editQueryCode") == null) {
+    if (PCL.getCmp("editQueryCode") == null) {
       return result;
     }
 
-    var code = Ext.getCmp("editQueryCode").getValue();
+    var code = PCL.getCmp("editQueryCode").getValue();
     if (code) {
       result.code = code;
     }
 
-    var name = Ext.getCmp("editQueryName").getValue();
+    var name = PCL.getCmp("editQueryName").getValue();
     if (name) {
       result.name = name;
     }
 
-    var spec = Ext.getCmp("editQuerySpec").getValue();
+    var spec = PCL.getCmp("editQuerySpec").getValue();
     if (spec) {
       result.spec = spec;
     }
 
-    var barCode = Ext.getCmp("editQueryBarCode").getValue();
+    var barCode = PCL.getCmp("editQueryBarCode").getValue();
     if (barCode) {
       result.barCode = barCode;
     }
 
-    var brandId = Ext.getCmp("editQueryBrand").getIdValue();
+    var brandId = PCL.getCmp("editQueryBrand").getIdValue();
     if (brandId) {
       result.brandId = brandId;
     }
@@ -788,27 +788,27 @@ PCL.define("PSI.Goods.MainForm", {
       categoryId: categoryId
     };
 
-    var code = Ext.getCmp("editQueryCode").getValue();
+    var code = PCL.getCmp("editQueryCode").getValue();
     if (code) {
       result.code = code;
     }
 
-    var name = Ext.getCmp("editQueryName").getValue();
+    var name = PCL.getCmp("editQueryName").getValue();
     if (name) {
       result.name = name;
     }
 
-    var spec = Ext.getCmp("editQuerySpec").getValue();
+    var spec = PCL.getCmp("editQuerySpec").getValue();
     if (spec) {
       result.spec = spec;
     }
 
-    var barCode = Ext.getCmp("editQueryBarCode").getValue();
+    var barCode = PCL.getCmp("editQueryBarCode").getValue();
     if (barCode) {
       result.barCode = barCode;
     }
 
-    var brandId = Ext.getCmp("editQueryBrand").getIdValue();
+    var brandId = PCL.getCmp("editQueryBrand").getIdValue();
     if (brandId) {
       result.brandId = brandId;
     }
