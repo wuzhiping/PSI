@@ -1187,6 +1187,19 @@ class CodeTableDAO extends PSIBaseExDAO
     }
   }
 
+  private function isVisibleCodeToName($code)
+  {
+    $db = $this->db;
+
+    $sql = "select name from t_sysdict_sln0000_ct_field_visible where code = '%s' ";
+    $data = $db->query($sql, $code);
+    if ($data) {
+      return $data[0]["name"];
+    } else {
+      return "[未定义]";
+    }
+  }
+
   /**
    * 某个码表的列
    */
@@ -1824,6 +1837,7 @@ class CodeTableDAO extends PSIBaseExDAO
           "mustInput" => $v["must_input"],
           "sysCol" => $v["sys_col"],
           "isVisible" => $v["is_visible"],
+          "isVisibleDisplay" => $this->isVisibleCodeToName($v["is_visible"]),
           "widthInView" => $v["width_in_view"],
           "showOrderInView" => $v["show_order_in_view"],
           "editorXtype" => $v["editor_xtype"],

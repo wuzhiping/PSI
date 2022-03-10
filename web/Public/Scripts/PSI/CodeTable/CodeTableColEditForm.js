@@ -665,7 +665,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
                 me.editValueFromColNameDisplay.setDisabled(false);
               }
 
-              me.editIsVisible.setValue(parseInt(col.isVisible));
+              me.hiddenIsVisible.setValue(parseInt(col.isVisible));
+              me.editIsVisible.setValue(col.isVisibleDisplay);
               me.editMustInput.setValue(parseInt(col.mustInput));
               me.editWidthInView.setValue(col.widthInView);
               me.editShowOrder.setValue(col.showOrder);
