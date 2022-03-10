@@ -527,7 +527,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       id: "PSI_CodeTable_CodeTableColEditForm_hiddenEditorXtype",
       xtype: "hidden",
       name: "editorXtype",
-      value: 1,
+      value: "textfield",
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editEditorXtype",
       xtype: "psi_sysdictfield",
@@ -540,11 +540,6 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       allowBlank: false,
       blankText: "没有输入编辑器类型",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: PCL.create("PCL.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: []
-      }),
-      value: "textfield",
       colspan: 2,
       width: col2Width,
       listeners: {
@@ -925,9 +920,9 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
 
     let t = data ? data.get("id") : null;
     if (!t) {
-      t = 1; // textfield
+      t = "textfield";
     }
-    me.hiddenEditorXtype.setValue(parseInt(t));
+    me.hiddenEditorXtype.setValue(t);
   },
 
   /**
