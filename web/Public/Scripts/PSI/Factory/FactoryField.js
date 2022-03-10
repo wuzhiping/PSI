@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Factory.FactoryField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Factory.FactoryField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_factoryfield",
 
   config: {
@@ -55,18 +55,18 @@ Ext.define("PSI.Factory.FactoryField", {
   onTriggerClick: function (e) {
     var me = this;
     var modelName = "PSIFactoryField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "tel01", "fax",
         "contact01"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    var lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -85,7 +85,7 @@ Ext.define("PSI.Factory.FactoryField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       title: "选择 - 工厂",
       modal: me.getShowModal(),
       header: false,
@@ -162,10 +162,10 @@ Ext.define("PSI.Factory.FactoryField", {
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("PSI_Factory_FactoryField_editFactory");
+    var editName = PCL.getCmp("PSI_Factory_FactoryField_editFactory");
     editName.on("change", function () {
       var store = me.lookupGrid.getStore();
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/Factory/queryData",
         params: {
           queryKey: editName.getValue()
@@ -174,8 +174,7 @@ Ext.define("PSI.Factory.FactoryField", {
         callback: function (opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -273,7 +272,7 @@ Ext.define("PSI.Factory.FactoryField", {
   },
 
   onAdd: function () {
-    var form = Ext.create("PSI.Factory.FactoryEditForm");
+    var form = PCL.create("PSI.Factory.FactoryEditForm");
     form.show();
   }
 });
