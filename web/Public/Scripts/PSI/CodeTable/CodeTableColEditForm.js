@@ -186,6 +186,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.editTableName = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editTableName");
     me.editCaption = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editCaption");
     me.editFieldName = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldName");
+    me.hiddenFieldType = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenFieldType");
     me.editFieldType = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldType");
     me.editFieldLength = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldLength");
     me.editFieldDec = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldDec");
@@ -280,32 +281,23 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       width: col2Width,
       name: "fieldName"
     }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_hiddenFieldType",
+      xtype: "hidden",
+      name: "fieldType",
+      value: "varchar",
+    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editFieldType",
-      xtype: me.adding ? "combo" : "displayfield",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
+      xtype: me.adding ? "psi_sysdictfield" : "displayfield",
+      tableName: "t_sysdict_sln0000_ct_field_type",
+      callbackFunc: me._fieldTypeCallback,
+      callbackScope: me,
       labelAlign: "right",
       labelSeparator: "",
       fieldLabel: "列数据类型",
       allowBlank: false,
       blankText: "没有输入列数据类型",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: PCL.create("PCL.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [["varchar", "varchar"],
-        ["int", "int"],
-        ["decimal", "decimal"],
-        ["datetime", "datetime"]]
-      }),
       value: "varchar",
-      name: "fieldType",
-      listeners: {
-        change: {
-          fn: me._onFieldTypeChange,
-          scope: me
-        }
-      }
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editFieldLength",
       fieldLabel: "列数据长度",
@@ -863,5 +855,21 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         me.setFocusAndCursorPosToLast(me.editColSpan);
       }
     }, 100);
+  },
+
+  /**
+   * 列数据类型 - 回调本方法
+   */
+  _fieldTypeCallback(data, scope) {
+    const me = scope;
+
+    let t = data ? data.get("id") : null;
+    if (!t) {
+      t = "varchar";
+    }
+    me.hiddenFieldType.setValue(t);
+
+    me._onFieldTypeChange();
   }
+
 });
