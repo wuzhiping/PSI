@@ -366,6 +366,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   getFetchValueCols() {
     const me = this;
 
+    const col3Width = 830;
     const list = [{
       id: "PSI_CodeTable_CodeTableColEditForm_hiddenValueFrom",
       xtype: "hidden",
@@ -403,6 +404,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       fieldLabel: "引用表名",
       labelWidth: 60,
       disabled: true,
+      colspan: 3,
+      width: col3Width,
       name: "valueFromTableName"
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editValueFromColName",
