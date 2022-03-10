@@ -609,17 +609,9 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
           el && el.unmask();
 
           const data = PCL.JSON.decode(response.responseText);
-          if (data.editorXtype) {
-            const store = me.editEditorXtype.getStore();
-            store.removeAll();
-            store.add(data.editorXtype);
-          }
 
           if (me.adding) {
             // 新建
-            const store = me.editEditorXtype.getStore();
-            me.editEditorXtype.setValue(store.getAt(0));
-
             me.editCaption.focus();
           } else {
             // 编辑
@@ -900,4 +892,18 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me._onValueFromChange();
   },
 
+  /**
+   * 编辑器类型 - 回调本方法
+   * 
+   * @private
+   */
+   _editorXtypeCallback(data, scope) {
+    const me = scope;
+
+    let t = data ? data.get("id") : null;
+    if (!t) {
+      t = 1; // textfield
+    }
+    me.hiddenEditorXtype.setValue(parseInt(t));
+  },
 });
