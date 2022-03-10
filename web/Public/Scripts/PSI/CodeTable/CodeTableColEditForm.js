@@ -190,6 +190,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.editFieldType = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldType");
     me.editFieldLength = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldLength");
     me.editFieldDec = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editFieldDec");
+    me.hiddenValueFrom = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenValueFrom");
     me.editValueFrom = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFrom");
     me.editValueFromTableName = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFromTableName");
     me.editValueFromColName = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editValueFromColName");
@@ -363,31 +364,22 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     const me = this;
 
     const list = [{
+      id: "PSI_CodeTable_CodeTableColEditForm_hiddenValueFrom",
+      xtype: "hidden",
+      name: "fieldType",
+      value: 1,
+    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editValueFrom",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
+      xtype: me.adding ? "psi_sysdictfield" : "displayfield",
+      tableName: "t_sysdict_sln0000_ct_value_from",
+      callbackFunc: me._valueFromCallback,
+      callbackScope: me,
       fieldLabel: "值来源",
       labelWidth: 60,
       allowBlank: false,
       blankText: "没有输入值来源",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: PCL.create("PCL.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [[1, "直接录入"],
-        [2, "引用系统数据字典"],
-        [3, "引用其他码表"],
-        [4, "引用自身数据"]]
-      }),
-      value: 1,
-      name: "valueFrom",
-      listeners: {
-        change: {
-          fn: me._onValueFromChange,
-          scope: me
-        }
-      },
+      value: "直接录入",
       colspan: 1
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_buttonRefCol",
@@ -806,7 +798,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
    */
   _onValueFromChange() {
     const me = this;
-    const v = me.editValueFrom.getValue();
+    const v = me.hiddenValueFrom.getValue();
     if (v == 1) {
       me.buttonRefCol.setDisabled(true);
       me.editValueFromTableName.setDisabled(true);
@@ -865,6 +857,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
 
   /**
    * 列数据类型 - 回调本方法
+   * 
+   * @private
    */
   _fieldTypeCallback(data, scope) {
     const me = scope;
@@ -876,6 +870,23 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.hiddenFieldType.setValue(t);
 
     me._onFieldTypeChange();
-  }
+  },
+
+  /**
+   * 值来源 - 回调本方法
+   * 
+   * @private
+   */
+  _valueFromCallback(data, scope) {
+    const me = scope;
+
+    let t = data ? data.get("id") : null;
+    if (!t) {
+      t = 1; // 直接录入
+    }
+    me.hiddenValueFrom.setValue(parseInt(t));
+
+    me._onValueFromChange();
+  },
 
 });
