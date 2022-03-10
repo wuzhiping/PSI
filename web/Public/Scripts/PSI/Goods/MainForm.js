@@ -841,13 +841,13 @@ PCL.define("PSI.Goods.MainForm", {
     var nameList = me.__queryEditNameList;
     for (var i = 0; i < nameList.length; i++) {
       var name = nameList[i];
-      var edit = Ext.getCmp(name);
+      var edit = PCL.getCmp(name);
       if (edit) {
         edit.setValue(null);
       }
     }
 
-    Ext.getCmp("editQueryBrand").clearIdValue();
+    PCL.getCmp("editQueryBrand").clearIdValue();
 
     me.onQuery();
   },
@@ -862,8 +862,8 @@ PCL.define("PSI.Goods.MainForm", {
     }
 
     var modelName = "PSIGoodsSafetyInventory";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "warehouseCode", "warehouseName",
         "safetyInventory", {
           name: "inventoryCount",
@@ -871,7 +871,7 @@ PCL.define("PSI.Goods.MainForm", {
         }, "unitName", "inventoryUpper"]
     });
 
-    me.__siGrid = Ext.create("Ext.grid.Panel", {
+    me.__siGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -939,7 +939,7 @@ PCL.define("PSI.Goods.MainForm", {
         menuDisabled: true,
         sortable: false
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -985,7 +985,7 @@ PCL.define("PSI.Goods.MainForm", {
     var grid = me.getSIGrid();
     grid.setTitle("物料[" + info + "]的安全库存");
 
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/Goods/goodsSafetyInventoryList"),
@@ -1063,7 +1063,7 @@ PCL.define("PSI.Goods.MainForm", {
 
     var goods = item[0];
 
-    var form = Ext.create("PSI.Goods.SafetyInventoryEditForm", {
+    var form = PCL.create("PSI.Goods.SafetyInventoryEditForm", {
       parentForm: me,
       entity: goods
     });
@@ -1075,7 +1075,7 @@ PCL.define("PSI.Goods.MainForm", {
    * 导入物料
    */
   onImportGoods: function () {
-    var form = Ext.create("PSI.Goods.GoodsImportForm", {
+    var form = PCL.create("PSI.Goods.GoodsImportForm", {
       parentForm: this
     });
 
@@ -1092,13 +1092,13 @@ PCL.define("PSI.Goods.MainForm", {
     }
 
     var modelName = "PSIGoodsCategory";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "text", "fullName", "code", "cnt", "leaf",
         "children", "taxRate", "mType"]
     });
 
-    var store = Ext.create("Ext.data.TreeStore", {
+    var store = PCL.create("PCL.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -1120,7 +1120,7 @@ PCL.define("PSI.Goods.MainForm", {
 
     store.on("load", me.onCategoryStoreLoad, me);
 
-    me.__categoryGrid = Ext.create("Ext.tree.Panel", {
+    me.__categoryGrid = PCL.create("PCL.tree.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -1135,7 +1135,7 @@ PCL.define("PSI.Goods.MainForm", {
       tools: [{
         type: "close",
         handler: function () {
-          Ext.getCmp("panelCategory").collapse();
+          PCL.getCmp("panelCategory").collapse();
         }
       }],
       bbar: [{
@@ -1230,7 +1230,7 @@ PCL.define("PSI.Goods.MainForm", {
 
         if (success) {
           var data = me.decodeJSON(response.responseText);
-          Ext.getCmp("fieldTotalGoodsCount").setValue("共有物料"
+          PCL.getCmp("fieldTotalGoodsCount").setValue("共有物料"
             + data.cnt + "种");
         }
       }
@@ -1247,14 +1247,14 @@ PCL.define("PSI.Goods.MainForm", {
     }
 
     var modelName = "PSIGoodsBOM";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsId", "goodsCode", "goodsName",
         "goodsCount", "goodsSpec", "unitName",
         "costWeight", "costWeightNote"]
     });
 
-    me.__bomGrid = Ext.create("Ext.grid.Panel", {
+    me.__bomGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -1316,7 +1316,7 @@ PCL.define("PSI.Goods.MainForm", {
           width: 200
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -1340,7 +1340,7 @@ PCL.define("PSI.Goods.MainForm", {
 
     var goods = item[0];
 
-    var form = Ext.create("PSI.Goods.GoodsBOMEditForm", {
+    var form = PCL.create("PSI.Goods.GoodsBOMEditForm", {
       parentForm: me,
       goods: goods
     });
@@ -1367,7 +1367,7 @@ PCL.define("PSI.Goods.MainForm", {
     }
     var subGoods = item[0];
 
-    var form = Ext.create("PSI.Goods.GoodsBOMEditForm", {
+    var form = PCL.create("PSI.Goods.GoodsBOMEditForm", {
       parentForm: me,
       goods: goods,
       entity: subGoods
@@ -1402,7 +1402,7 @@ PCL.define("PSI.Goods.MainForm", {
       + "</span>?";
 
     var confirmFunc = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
 
       var r = {
@@ -1443,12 +1443,12 @@ PCL.define("PSI.Goods.MainForm", {
     }
 
     var modelName = "PSIGoodsPriceSystem";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "price"]
     });
 
-    me.__priceGrid = Ext.create("Ext.grid.Panel", {
+    me.__priceGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -1470,7 +1470,7 @@ PCL.define("PSI.Goods.MainForm", {
         xtype: "numbercolumn",
         align: "right"
       }],
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -1546,7 +1546,7 @@ PCL.define("PSI.Goods.MainForm", {
       return;
     }
 
-    const form = Ext.create("PSI.Goods.GoodsPriceSystemEditForm", {
+    const form = PCL.create("PSI.Goods.GoodsPriceSystemEditForm", {
       parentForm: me,
       entity: goods
     });
