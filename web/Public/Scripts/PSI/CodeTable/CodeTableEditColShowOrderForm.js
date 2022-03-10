@@ -38,6 +38,16 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
       scope: me
     });
 
+    const t = "调整编辑界面字段显示次序";
+    const f = "edit-form-update.png";
+    const html = `
+      <img style='float:left;margin:10px 20px 0px 10px;width:48px;height:48px;' src='${PSI.Const.BASE_URL}Public/Images/${f}'></img>
+      <h2 style='color:#196d83'>
+        ${t}
+      </h2>
+      <p style='color:#196d83'>通过拖动列来调整显示次序</p>
+      `;
+
     PCL.apply(me, {
       resizable: true,
       header: {
@@ -45,18 +55,23 @@ PCL.define("PSI.CodeTable.CodeTableEditColShowOrderForm", {
         height: 40
       },
       width: 900,
-      height: 250,
+      height: 320,
       layout: "border",
       items: [{
         region: "north",
         border: 0,
-        html: "<h1 style='margin-top:0px;color:#0050b3'>拖动列来调整编辑界面字段显示次序</h1>"
+        html,
       }, {
         region: "center",
         layout: "fit",
         border: 0,
         id: "CodeTableEditColShowOrderForm_panelMain",
         items: []
+      }, {
+        // 占位用
+        region: "south",
+        border: 0,
+        height: 30
       }],
       buttons: buttons,
       listeners: {
