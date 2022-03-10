@@ -1827,6 +1827,7 @@ class CodeTableDAO extends PSIBaseExDAO
           "widthInView" => $v["width_in_view"],
           "showOrderInView" => $v["show_order_in_view"],
           "editorXtype" => $v["editor_xtype"],
+          "editorXtypeDisplay" => $this->editorXtypeCodeToName($v["editor_xtype"]),
           "colSpan" => $v["col_span"],
         ];
       }

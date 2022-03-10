@@ -671,7 +671,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
               me.editShowOrder.setValue(col.showOrder);
               me.editColSpan.setValue(col.colSpan);
               me.editShowOrderInView.setValue(col.showOrderInView);
-              me.editEditorXtype.setValue(col.editorXtype);
+              me.hiddenEditorXtype.setValue(col.editorXtype);
+              me.editEditorXtype.setValue(col.editorXtypeDisplay);
               me.editMemo.setValue(col.memo);
 
               if (col.sysCol == 1) {
