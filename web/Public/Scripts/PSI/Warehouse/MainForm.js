@@ -288,7 +288,7 @@ PCL.define("PSI.Warehouse.MainForm", {
 
     var warehouse = item[0];
 
-    var form = Ext.create("PSI.Warehouse.EditDataOrgForm", {
+    var form = PCL.create("PSI.Warehouse.EditDataOrgForm", {
       parentForm: me,
       entity: warehouse
     });
