@@ -208,7 +208,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.__tabPanelId = "PSI_CodeTable_CodeTableColEditForm_tabPanel";
     me.__editorList = [
       [me.editCaption, me.editFieldName, me.editFieldType, me.editMemo],
-      [],
+      [me.editValueFrom],
       [me.editWidthInView, me.editShowOrderInView, me.editShowOrder],
       [me.editColSpan]
     ];
@@ -380,7 +380,13 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       blankText: "没有输入值来源",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
       value: "直接录入",
-      colspan: 1
+      colspan: 1,
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      },
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_buttonRefCol",
       xtype: "button",
