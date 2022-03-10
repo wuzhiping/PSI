@@ -202,6 +202,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.hiddenEditorXtype = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenEditorXtype");
     me.editEditorXtype = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editEditorXtype");
     me.editMemo = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMemo");
+    me.hiddenIsVisible = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenIsVisible");
     me.editIsVisible = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editIsVisible");
     me.editMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMustInput");
 
@@ -552,24 +553,23 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         }
       }
     }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_hiddenIsVisible",
+      xtype: "hidden",
+      name: "isVisible",
+      value: 1,
+    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editIsVisible",
-      xtype: "combo",
-      queryMode: "local",
-      editable: false,
-      valueField: "id",
+      xtype: "psi_sysdictfield",
+      tableName: "t_sysdict_sln0000_ct_field_visible",
+      callbackFunc: me._isVisibleCallback,
+      callbackScope: me,
       labelAlign: "right",
       labelSeparator: "",
       fieldLabel: "对用户可见",
       allowBlank: false,
-      blankText: "没有输入对用户可见",
+      blankText: "没有输入是否对用户可见",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      store: PCL.create("PCL.data.ArrayStore", {
-        fields: ["id", "text"],
-        data: [[1, "对用户可见"],
-        [2, "对用户不可见"]]
-      }),
-      value: 1,
-      name: "isVisible",
+      value: "对用户可见",
       listeners: {
         specialkey: {
           fn: me.__onEditSpecialKey,
@@ -729,7 +729,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       widthInView: me.editWidthInView.getValue(),
       showOrder: me.editShowOrder.getValue(),
       showOrderInView: me.editShowOrderInView.getValue(),
-      isVisible: me.editIsVisible.getValue(),
+      isVisible: me.hiddenIsVisible.getValue(),
       editorXtype: me.hiddenEditorXtype.getValue(),
       memo: me.editMemo.getValue(),
       colSpan: me.editColSpan.getValue(),
@@ -923,5 +923,20 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       t = 1; // textfield
     }
     me.hiddenEditorXtype.setValue(parseInt(t));
+  },
+
+  /**
+   * 对用户是否可见 - 回调本方法
+   * 
+   * @private
+   */
+  _isVisibleCallback(data, scope) {
+    const me = scope;
+
+    let t = data ? data.get("id") : null;
+    if (!t) {
+      t = 1; // 可见
+    }
+    me.hiddenIsVisible.setValue(parseInt(t));
   },
 });
