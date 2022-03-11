@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.BrandEditForm", {
+PCL.define("PSI.Goods.BrandEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   /**
@@ -18,7 +18,7 @@ Ext.define("PSI.Goods.BrandEditForm", {
     var t = entity == null ? "新建物料品牌" : "编辑物料品牌";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -100,14 +100,13 @@ Ext.define("PSI.Goods.BrandEditForm", {
           blankText: "没有输入状态",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "recordStatus",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1, "启用"], [2, "停用"]]
           }),
           value: entity == null
             ? 1
-            : parseInt(entity
-              .get("recordStatus")),
+            : parseInt(entity.get("recordStatus")),
           width: 370
         }],
         buttons: [{
@@ -141,13 +140,11 @@ Ext.define("PSI.Goods.BrandEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Goods_BrandEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Goods_BrandEditForm_editForm");
 
-    me.editName = Ext.getCmp("PSI_Goods_BrandEditForm_editName");
-    me.editParentBrand = Ext
-      .getCmp("PSI_Goods_BrandEditForm_editParentBrand");
-    me.editParentBrandId = Ext
-      .getCmp("PSI_Goods_BrandEditForm_editParentBrandId");
+    me.editName = PCL.getCmp("PSI_Goods_BrandEditForm_editName");
+    me.editParentBrand = PCL.getCmp("PSI_Goods_BrandEditForm_editParentBrand");
+    me.editParentBrandId = PCL.getCmp("PSI_Goods_BrandEditForm_editParentBrandId");
   },
 
   onWindowBeforeUnload: function (e) {
@@ -157,13 +154,13 @@ Ext.define("PSI.Goods.BrandEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
   onEditFormShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     me.editName.focus();
 
@@ -173,7 +170,7 @@ Ext.define("PSI.Goods.BrandEditForm", {
     }
 
     me.getEl().mask("数据加载中...");
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: me.URL("Home/Goods/brandParentName"),
       method: "POST",
       params: {
@@ -182,9 +179,8 @@ Ext.define("PSI.Goods.BrandEditForm", {
       callback: function (options, success, response) {
         me.getEl().unmask();
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
-          me.editParentBrand.setValue(me
-            .htmlDecode(data.parentBrandName));
+          var data = PCL.JSON.decode(response.responseText);
+          me.editParentBrand.setValue(me.htmlDecode(data.parentBrandName));
           me.editParentBrandId.setValue(data.parentBrandId);
           me.editName.setValue(me.htmlDecode(data.name));
         }
@@ -195,7 +191,7 @@ Ext.define("PSI.Goods.BrandEditForm", {
   setParentBrand: function (data) {
     var me = this;
 
-    me.editParentBrand.setValue(Ext.String.htmlDecode(data.fullName));
+    me.editParentBrand.setValue(me.htmlDecode(data.fullName));
     me.editParentBrandId.setValue(data.id);
   },
 
