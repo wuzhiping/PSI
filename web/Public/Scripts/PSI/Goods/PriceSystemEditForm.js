@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.PriceSystemEditForm", {
+PCL.define("PSI.Goods.PriceSystemEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   config: {
@@ -52,14 +52,14 @@ Ext.define("PSI.Goods.PriceSystemEditForm", {
     var t = entity == null ? "新建价格" : "编辑价格";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
       modal: true,
       resizable: false,
-      onEsc: Ext.emptyFn,
+      onEsc: PCL.emptyFn,
       width: 400,
       height: 250,
       layout: "border",
@@ -145,7 +145,7 @@ Ext.define("PSI.Goods.PriceSystemEditForm", {
 
   onOK: function (thenAdd) {
     var me = this;
-    var f = Ext.getCmp("editForm");
+    var f = PCL.getCmp("editForm");
     var el = f.getEl();
     el.mask(PSI.Const.SAVING);
     f.submit({
@@ -157,7 +157,7 @@ Ext.define("PSI.Goods.PriceSystemEditForm", {
         PSI.MsgBox.tip("数据保存成功");
         me.focus();
         if (thenAdd) {
-          var editName = Ext.getCmp("editName");
+          var editName = PCL.getCmp("editName");
           editName.focus();
           editName.setValue(null);
           editName.clearInvalid();
@@ -168,7 +168,7 @@ Ext.define("PSI.Goods.PriceSystemEditForm", {
       failure: function (form, action) {
         el.unmask();
         PSI.MsgBox.showInfo(action.result.msg, function () {
-          Ext.getCmp("editName").focus();
+          PCL.getCmp("editName").focus();
         });
       }
     });
@@ -176,7 +176,7 @@ Ext.define("PSI.Goods.PriceSystemEditForm", {
 
   onEditNameSpecialKey: function (field, e) {
     if (e.getKey() == e.ENTER) {
-      var editFactor = Ext.getCmp("editFactor");
+      var editFactor = PCL.getCmp("editFactor");
       editFactor.focus();
       editFactor.setValue(editFactor.getValue());
     }
@@ -184,7 +184,7 @@ Ext.define("PSI.Goods.PriceSystemEditForm", {
 
   onEditFactorSpecialKey: function (field, e) {
     if (e.getKey() == e.ENTER) {
-      var f = Ext.getCmp("editForm");
+      var f = PCL.getCmp("editForm");
       if (f.getForm().isValid()) {
         this.onOK(this.adding);
       }
@@ -198,7 +198,7 @@ Ext.define("PSI.Goods.PriceSystemEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       me.getParentForm().freshGrid(me.__lastId);
@@ -208,9 +208,9 @@ Ext.define("PSI.Goods.PriceSystemEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var editName = Ext.getCmp("editName");
+    var editName = PCL.getCmp("editName");
     editName.focus();
     editName.setValue(editName.getValue());
   }
