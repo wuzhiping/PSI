@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.UnitEditForm", {
+PCL.define("PSI.Goods.UnitEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   /**
@@ -47,7 +47,7 @@ Ext.define("PSI.Goods.UnitEditForm", {
     var t = entity == null ? "新建物料计量单位" : "编辑物料计量单位";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -125,14 +125,13 @@ Ext.define("PSI.Goods.UnitEditForm", {
           blankText: "没有输入状态",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "recordStatus",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1, "启用"], [2, "停用"]]
           }),
           value: entity == null
             ? 1
-            : parseInt(entity
-              .get("recordStatus"))
+            : parseInt(entity.get("recordStatus"))
         }],
         buttons: buttons
       }],
@@ -150,9 +149,9 @@ Ext.define("PSI.Goods.UnitEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Goods_UnitEditForm_editForm");
-    me.editName = Ext.getCmp("PSI_Goods_UnitEditForm_editName");
-    me.editCode = Ext.getCmp("PSI_Goods_UnitEditForm_editCode");
+    me.editForm = PCL.getCmp("PSI_Goods_UnitEditForm_editForm");
+    me.editName = PCL.getCmp("PSI_Goods_UnitEditForm_editName");
+    me.editCode = PCL.getCmp("PSI_Goods_UnitEditForm_editCode");
   },
 
   onOK: function (thenAdd) {
@@ -224,7 +223,7 @@ Ext.define("PSI.Goods.UnitEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -236,7 +235,7 @@ Ext.define("PSI.Goods.UnitEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     var editName = me.editName;
     editName.focus();
@@ -269,6 +268,6 @@ Ext.define("PSI.Goods.UnitEditForm", {
         }
       }
     };
-    Ext.Ajax.request(r);
+    PCL.Ajax.request(r);
   }
 });
