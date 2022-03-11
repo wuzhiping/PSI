@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.UnitMainForm", {
+PCL.define("PSI.Goods.UnitMainForm", {
   extend: "PSI.AFX.BaseOneGridMainForm",
 
   /**
@@ -49,13 +49,13 @@ Ext.define("PSI.Goods.UnitMainForm", {
     }
 
     var modelName = "PSI_Goods_UnitMainForm_PSIGoodsUnit";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "goodsCount", "goodsEnabledCount",
         "goodsDisabledCount", "code", "recordStatus"]
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       border: 0,
       columnLines: true,
@@ -130,7 +130,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
           }]
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
@@ -158,7 +158,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
    */
   onAddUnit: function () {
     var me = this;
-    var form = Ext.create("PSI.Goods.UnitEditForm", {
+    var form = PCL.create("PSI.Goods.UnitEditForm", {
       parentForm: me
     });
 
@@ -179,7 +179,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
 
     var unit = item[0];
 
-    var form = Ext.create("PSI.Goods.UnitEditForm", {
+    var form = PCL.create("PSI.Goods.UnitEditForm", {
       parentForm: me,
       entity: unit
     });
@@ -205,7 +205,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
     var preIndex = me.getPreIndexInMainGrid(unit.get("id"));
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask(PSI.Const.LOADING);
       var r = {
         url: PSI.Const.BASE_URL + "Home/Goods/deleteUnit",
@@ -216,7 +216,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
         callback: function (options, success, response) {
           el.unmask();
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             if (data.success) {
               PSI.MsgBox.tip("成功完成删除操作");
               me.freshGrid(preIndex);
@@ -228,7 +228,7 @@ Ext.define("PSI.Goods.UnitMainForm", {
           }
         }
       };
-      Ext.Ajax.request(r);
+      PCL.Ajax.request(r);
     };
 
     PSI.MsgBox.confirm(info, funcConfirm);
