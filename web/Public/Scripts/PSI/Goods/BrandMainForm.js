@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.BrandMainForm", {
+PCL.define("PSI.Goods.BrandMainForm", {
   extend: "PSI.AFX.BaseOneGridMainForm",
 
   /**
@@ -53,14 +53,14 @@ Ext.define("PSI.Goods.BrandMainForm", {
     }
 
     var modelName = "PSIGoodsBrand";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "text", "fullName", "recordStatus", "leaf",
         "children", "goodsCount", "goodsEnabledCount",
         "goodsDisabledCount"]
     });
 
-    var store = Ext.create("Ext.data.TreeStore", {
+    var store = PCL.create("PCL.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -71,7 +71,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.tree.Panel", {
+    me.__mainGrid = PCL.create("PCL.tree.Panel", {
       cls: "PSI",
       border: 0,
       store: store,
@@ -178,7 +178,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
    */
   onAddBrand: function () {
     var me = this;
-    var form = Ext.create("PSI.Goods.BrandEditForm", {
+    var form = PCL.create("PSI.Goods.BrandEditForm", {
       parentForm: me
     });
     form.show();
@@ -197,7 +197,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
 
     var brand = item[0];
 
-    var form = Ext.create("PSI.Goods.BrandEditForm", {
+    var form = PCL.create("PSI.Goods.BrandEditForm", {
       parentForm: me,
       entity: brand
     });
@@ -220,7 +220,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
     var info = "请确认是否删除品牌: <span style='color:red'>" + brand.get("text")
       + "</span>";
     var confimFunc = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       var r = {
         url: me.URL("Home/Goods/deleteBrand"),
@@ -232,7 +232,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
           el.unmask();
 
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             if (data.success) {
               PSI.MsgBox.tip("成功完成删除操作")
               me.refreshGrid();
@@ -246,7 +246,7 @@ Ext.define("PSI.Goods.BrandMainForm", {
           }
         }
       };
-      Ext.Ajax.request(r);
+      PCL.Ajax.request(r);
     };
     PSI.MsgBox.confirm(info, confimFunc);
   },
