@@ -86,6 +86,9 @@ PCL.define("PSI.SysDict.SysDictField", {
     });
     const lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
+      viewConfig: {
+        enableTextSelection: true
+      },
       columnLines: true,
       border: 1,
       store: store,
