@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.PriceSystemMainForm", {
+PCL.define("PSI.Goods.PriceSystemMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   /**
@@ -14,7 +14,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       border: 0,
       layout: "border",
       tbar: [{
@@ -62,7 +62,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
   onAddPrice: function () {
     var me = this;
 
-    var form = Ext.create("PSI.Goods.PriceSystemEditForm", {
+    var form = PCL.create("PSI.Goods.PriceSystemEditForm", {
       parentForm: me
     });
 
@@ -83,7 +83,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
 
     var price = item[0];
 
-    var form = Ext.create("PSI.Goods.PriceSystemEditForm", {
+    var form = PCL.create("PSI.Goods.PriceSystemEditForm", {
       parentForm: me,
       entity: price
     });
@@ -116,7 +116,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
     }
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask(PSI.Const.LOADING);
       var r = {
         url: PSI.Const.BASE_URL + "Home/Goods/deletePriceSystem",
@@ -127,7 +127,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
         callback: function (options, success, response) {
           el.unmask();
           if (success) {
-            var data = Ext.JSON.decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             if (data.success) {
               PSI.MsgBox.tip("成功完成删除操作");
               me.freshGrid(preIndex);
@@ -139,7 +139,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
           }
         }
       };
-      Ext.Ajax.request(r);
+      PCL.Ajax.request(r);
     };
 
     PSI.MsgBox.confirm(info, funcConfirm);
@@ -152,9 +152,9 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
     var me = this;
     var grid = me.getMainGrid();
 
-    var el = grid.getEl() || Ext.getBody();
+    var el = grid.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/Goods/priceSystemList",
       method: "POST",
       callback: function (options, success, response) {
@@ -163,7 +163,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
           if (id) {
             var r = store.findExact("id", id);
@@ -189,12 +189,12 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
     }
 
     var modelName = "PSIGoodsPS";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "factor"]
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       border: 0,
       columnLines: true,
@@ -218,7 +218,7 @@ Ext.define("PSI.Goods.PriceSystemMainForm", {
           align: "right"
         }]
       },
-      store: Ext.create("Ext.data.Store", {
+      store: PCL.create("PCL.data.Store", {
         model: modelName,
         autoLoad: false,
         data: []
