@@ -545,6 +545,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       beforeLabelTextTpl: PSI.Const.REQUIRED,
       colspan: 2,
       width: col2Width,
+      value: "textfield - 字符串编辑器",
       listeners: {
         specialkey: {
           fn: me.__onEditSpecialKey,
