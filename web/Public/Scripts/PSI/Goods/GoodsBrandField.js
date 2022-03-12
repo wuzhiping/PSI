@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.GoodsBrandField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Goods.GoodsBrandField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.PSI_goods_brand_field",
 
   config: {
@@ -47,17 +47,17 @@ Ext.define("PSI.Goods.GoodsBrandField", {
     var me = this;
 
     var modelName = "PSIGoodsBrandField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    var lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -72,7 +72,7 @@ Ext.define("PSI.Goods.GoodsBrandField", {
     me.lookupGrid = lookupGrid;
     me.lookupGrid.on("itemdblclick", me.onOK, me);
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       title: "选择 - 物料品牌",
       modal: me.getShowModal(),
       width: 400,
@@ -127,10 +127,10 @@ Ext.define("PSI.Goods.GoodsBrandField", {
     }
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("__editGoodsBrand");
+    var editName = PCL.getCmp("__editGoodsBrand");
     editName.on("change", function () {
       var store = me.lookupGrid.getStore();
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL
           + "Home/Goods/queryGoodsBrandData",
         params: {
@@ -140,8 +140,7 @@ Ext.define("PSI.Goods.GoodsBrandField", {
         callback: function (opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
