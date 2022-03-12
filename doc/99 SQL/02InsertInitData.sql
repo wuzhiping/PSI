@@ -532,7 +532,7 @@ values ('A2B72BA1-BC54-11EB-8835-E86A641ED142', '编号', '序列');
 
 TRUNCATE TABLE `t_psi_db_version`;
 INSERT INTO `t_psi_db_version` (`db_version`, `update_dt`) VALUES
-('20220307-01', now());
+('20220309-01', now());
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
