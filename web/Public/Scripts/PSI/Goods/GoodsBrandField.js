@@ -209,7 +209,7 @@ PCL.define("PSI.Goods.GoodsBrandField", {
     }
 
     var data = item[0].data;
-    me.setValue(Ext.String.htmlDecode(data.name));
+    me.setValue(PCL.String.htmlDecode(data.name));
     me.setIdValue(data.id);
     me.wnd.close();
     me.focus();
