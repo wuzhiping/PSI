@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
+PCL.define("PSI.Goods.GoodsPriceSystemEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   /**
@@ -15,7 +15,7 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
     var me = this;
     var entity = me.getEntity();
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40,
@@ -108,36 +108,34 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL
         + "Home/Goods/goodsPriceSystemInfo",
       params: {
-        id: Ext.getCmp("hiddenId").getValue()
+        id: PCL.getCmp("hiddenId").getValue()
       },
       method: "POST",
       callback: function (options, success, response) {
         el.unmask();
 
         if (success) {
-          var data = Ext.JSON
-            .decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
 
           var store = me.getGoodsGrid().getStore();
           store.removeAll();
           store.add(data.priceList);
 
-          Ext.getCmp("editBaseSalePrice")
-            .setValue(data.baseSalePrice);
+          PCL.getCmp("editBaseSalePrice").setValue(data.baseSalePrice);
         } else {
           PSI.MsgBox.showInfo("网络错误")
         }
@@ -147,8 +145,8 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
 
   onOK: function () {
     const me = this;
-    Ext.getBody().mask("正在保存中...");
-    Ext.Ajax.request({
+    PCL.getBody().mask("正在保存中...");
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL
         + "Home/Goods/editGoodsPriceSystem",
       method: "POST",
@@ -156,10 +154,10 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
         jsonStr: me.getSaveData()
       },
       callback(options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
-          const data = Ext.JSON.decode(response.responseText);
+          const data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             me.close();
             me.getParentForm().onGoodsSelect();
@@ -178,17 +176,17 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
       return me.__goodsGrid;
     }
     var modelName = "PSIGoodsPriceSystem_EditForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name", "factor", "price"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__cellEditing = Ext.create("PSI.UX.CellEditing", {
+    me.__cellEditing = PCL.create("PSI.UX.CellEditing", {
       clicksToEdit: 1,
       listeners: {
         edit: {
@@ -198,7 +196,7 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
       }
     });
 
-    me.__goodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__goodsGrid = PCL.create("PCL.grid.Panel", {
       viewConfig: {
         enableTextSelection: true
       },
@@ -256,8 +254,8 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
     var me = this;
 
     var result = {
-      id: Ext.getCmp("hiddenId").getValue(),
-      basePrice: Ext.getCmp("editBaseSalePrice").getValue(),
+      id: PCL.getCmp("hiddenId").getValue(),
+      basePrice: PCL.getCmp("editBaseSalePrice").getValue(),
       items: []
     };
 
@@ -270,12 +268,12 @@ Ext.define("PSI.Goods.GoodsPriceSystemEditForm", {
       });
     }
 
-    return Ext.JSON.encode(result);
+    return PCL.JSON.encode(result);
   },
 
   onCalPrice: function () {
     var me = this;
-    var editBaseSalePrice = Ext.getCmp("editBaseSalePrice");
+    var editBaseSalePrice = PCL.getCmp("editBaseSalePrice");
     var basePrice = editBaseSalePrice.getValue();
 
     if (!basePrice) {
