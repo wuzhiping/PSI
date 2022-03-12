@@ -8,9 +8,9 @@
 PCL.define("PSI.Goods.SafetyInventoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
-	/**
-	 * 初始化组件
-	 */
+  /**
+   * 初始化组件
+   */
   initComponent: function () {
     var me = this;
     var entity = me.getEntity();
@@ -144,10 +144,9 @@ PCL.define("PSI.Goods.SafetyInventoryEditForm", {
         if (success) {
           var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
-            PSI.MsgBox.showInfo("成功保存数据", function () {
-              me.close();
-              me.getParentForm().onGoodsSelect();
-            });
+            PSI.MsgBox.tip("成功保存数据");
+            me.close();
+            me.getParentForm().onGoodsSelect();
           } else {
             PSI.MsgBox.showInfo(data.msg);
           }
