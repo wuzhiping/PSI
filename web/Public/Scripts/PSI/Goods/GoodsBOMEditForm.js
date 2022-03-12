@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.GoodsBOMEditForm", {
+PCL.define("PSI.Goods.GoodsBOMEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   config: {
@@ -61,7 +61,7 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
     var t = entity == null ? "新建子件" : "编辑子件";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -224,22 +224,15 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Goods_GoodsBOMEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Goods_GoodsBOMEditForm_editForm");
 
-    me.editSubGoodsCode = Ext
-      .getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsCode");
-    me.editSubGoodsName = Ext
-      .getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsName");
-    me.editSubGoodsCount = Ext
-      .getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsCount");
-    me.editSubGoodsId = Ext
-      .getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsId");
-    me.editSubGoodsSpec = Ext
-      .getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsSpec");
-    me.editSubGoodsUnitName = Ext
-      .getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsUnitName");
-    me.editCostWeight = Ext
-      .getCmp("PSI_Goods_GoodsBOMEditForm_editCostWeight");
+    me.editSubGoodsCode = PCL.getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsCode");
+    me.editSubGoodsName = PCL.getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsName");
+    me.editSubGoodsCount = PCL.getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsCount");
+    me.editSubGoodsId = PCL.getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsId");
+    me.editSubGoodsSpec = PCL.getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsSpec");
+    me.editSubGoodsUnitName = PCL.getCmp("PSI_Goods_GoodsBOMEditForm_editSubGoodsUnitName");
+    me.editCostWeight = PCL.getCmp("PSI_Goods_GoodsBOMEditForm_editCostWeight");
   },
 
   /**
@@ -328,7 +321,7 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.getParentForm()) {
       me.getParentForm().refreshGoodsBOM();
@@ -338,7 +331,7 @@ Ext.define("PSI.Goods.GoodsBOMEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     var subGoods = me.getEntity();
     if (!subGoods) {
