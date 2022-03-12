@@ -549,31 +549,31 @@ input:focus{
 
 .x-grid-row-before-selected .x-grid-td {
   border-bottom-style: solid;
-  border-bottom-color: #e4e7fc;
+  border-bottom-color: #d0d2e6;
 }
 .x-grid-row-selected .x-grid-td {
   border-bottom-style: solid;
-  border-bottom-color: #87a7e9;
+  border-bottom-color: #1890ff;
 }
 .x-grid-row-before-focused .x-grid-td {
   border-bottom-style: solid;
-  border-bottom-color: #e4e7fc;
+  border-bottom-color: #d0d2e6;
   border-bottom-width: 1px;
 }
 .x-grid-row-focused .x-grid-td {
   border-bottom-style: solid;
-  border-bottom-color: #87a7e9;
+  border-bottom-color: #1890ff;
   border-bottom-width: 1px;
 }
 .x-grid-table .x-grid-row-focused-first .x-grid-td {
-  border-top: 1px solid #e4e7fc;
+  border-top: 1px solid #d0d2e6;
 }
 .x-grid-with-row-lines .x-grid-table-selected-first {
   border-top-style: solid;
-  border-top-color: #e4e7fc;
+  border-top-color: #d0d2e6;
 }
 .x-grid-body .x-grid-table-focused-first {
-  border-top: 1px solid #e4e7fc;
+  border-top: 1px solid #d0d2e6;
 }
 
 /* 说明或备注这类字段的样式 */
