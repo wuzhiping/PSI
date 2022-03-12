@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.GoodsEditForm", {
+PCL.define("PSI.Goods.GoodsEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   /**
@@ -16,8 +16,8 @@ Ext.define("PSI.Goods.GoodsEditForm", {
     var entity = me.getEntity();
 
     var modelName = "PSIGoodsUnit";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
 
@@ -69,7 +69,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
     var t = entity == null ? "新建物料" : "编辑物料";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -261,7 +261,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           valueField: "id",
           fieldLabel: "状态",
           name: "recordStatus",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1000, "启用"], [0, "停用"]]
           }),
@@ -273,7 +273,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           editable: false,
           valueField: "id",
           fieldLabel: "税率",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[-1, "[不设定]"],
             [0, "0%"], [1, "1%"],
@@ -301,7 +301,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
           valueField: "id",
           fieldLabel: "物料类型",
           name: "mType",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[1000, "原材料"], [2000, "半成品"],
             [3000, "产成品"], [4000, "商品"], [5000, "虚拟件"]]
@@ -324,23 +324,23 @@ Ext.define("PSI.Goods.GoodsEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Goods_GoodsEditForm_editForm");
-    me.editCategory = Ext.getCmp("PSI_Goods_GoodsEditForm_editCategory");
-    me.editCategoryId = Ext.getCmp("PSI_Goods_GoodsEditForm_editCategoryId");
-    me.editCode = Ext.getCmp("PSI_Goods_GoodsEditForm_editCode");
-    me.editName = Ext.getCmp("PSI_Goods_GoodsEditForm_editName");
-    me.editSpec = Ext.getCmp("PSI_Goods_GoodsEditForm_editSpec");
-    me.editUnit = Ext.getCmp("PSI_Goods_GoodsEditForm_editUnit");
-    me.editUnitId = Ext.getCmp("PSI_Goods_GoodsEditForm_editUnitId");
-    me.editBarCode = Ext.getCmp("PSI_Goods_GoodsEditForm_editBarCode");
-    me.editBrand = Ext.getCmp("PSI_Goods_GoodsEditForm_editBrand");
-    me.editBrandId = Ext.getCmp("PSI_Goods_GoodsEditForm_editBrandId");
-    me.editSalePrice = Ext.getCmp("PSI_Goods_GoodsEditForm_editSalePrice");
-    me.editPurchasePrice = Ext.getCmp("PSI_Goods_GoodsEditForm_editPurchasePrice");
-    me.editMemo = Ext.getCmp("PSI_Goods_GoodsEditForm_editMemo");
-    me.editRecordStatus = Ext.getCmp("PSI_Goods_GoodsEditForm_editRecordStatus");
-    me.editTaxRate = Ext.getCmp("PSI_Goods_GoodsEditForm_editTaxRate");
-    me.editMType = Ext.getCmp("PSI_Goods_GoodsEditForm_editMType");
+    me.editForm = PCL.getCmp("PSI_Goods_GoodsEditForm_editForm");
+    me.editCategory = PCL.getCmp("PSI_Goods_GoodsEditForm_editCategory");
+    me.editCategoryId = PCL.getCmp("PSI_Goods_GoodsEditForm_editCategoryId");
+    me.editCode = PCL.getCmp("PSI_Goods_GoodsEditForm_editCode");
+    me.editName = PCL.getCmp("PSI_Goods_GoodsEditForm_editName");
+    me.editSpec = PCL.getCmp("PSI_Goods_GoodsEditForm_editSpec");
+    me.editUnit = PCL.getCmp("PSI_Goods_GoodsEditForm_editUnit");
+    me.editUnitId = PCL.getCmp("PSI_Goods_GoodsEditForm_editUnitId");
+    me.editBarCode = PCL.getCmp("PSI_Goods_GoodsEditForm_editBarCode");
+    me.editBrand = PCL.getCmp("PSI_Goods_GoodsEditForm_editBrand");
+    me.editBrandId = PCL.getCmp("PSI_Goods_GoodsEditForm_editBrandId");
+    me.editSalePrice = PCL.getCmp("PSI_Goods_GoodsEditForm_editSalePrice");
+    me.editPurchasePrice = PCL.getCmp("PSI_Goods_GoodsEditForm_editPurchasePrice");
+    me.editMemo = PCL.getCmp("PSI_Goods_GoodsEditForm_editMemo");
+    me.editRecordStatus = PCL.getCmp("PSI_Goods_GoodsEditForm_editRecordStatus");
+    me.editTaxRate = PCL.getCmp("PSI_Goods_GoodsEditForm_editTaxRate");
+    me.editMType = PCL.getCmp("PSI_Goods_GoodsEditForm_editMType");
 
     me.__editorList = [
       me.editCategory, me.editCode, me.editName,
@@ -356,7 +356,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     var editCode = me.editCode;
     editCode.focus();
@@ -367,7 +367,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
     var categoryId = me.editCategoryId.getValue();
     var el = me.getEl();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: me.URL("Home/Goods/goodsInfo"),
       params: {
         id: me.adding ? null : me.getEntity().get("id"),
@@ -376,7 +376,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
       method: "POST",
       callback: function (options, success, response) {
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
 
           if (!me.adding) {
             // 编辑商品信息
@@ -522,7 +522,7 @@ Ext.define("PSI.Goods.GoodsEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.getParentForm()) {
       me.getParentForm().__lastId = me.__lastId;
