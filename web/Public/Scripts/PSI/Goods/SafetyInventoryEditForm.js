@@ -1,11 +1,11 @@
 /**
- * 商品安全库存设置界面
+ * 物料安全库存设置界面
  * 
  * @author 艾格林门信息服务（大连）有限公司
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.SafetyInventoryEditForm", {
+PCL.define("PSI.Goods.SafetyInventoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
 	/**
@@ -15,14 +15,14 @@ Ext.define("PSI.Goods.SafetyInventoryEditForm", {
     var me = this;
     var entity = me.getEntity();
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle("设置商品安全库存"),
         height: 40,
         iconCls: "PSI-button-commit"
       },
       modal: true,
-      onEsc: Ext.emptyFn,
+      onEsc: PCL.emptyFn,
       width: 620,
       height: 400,
       layout: "border",
@@ -97,27 +97,27 @@ Ext.define("PSI.Goods.SafetyInventoryEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/Goods/siInfo",
       params: {
-        id: Ext.getCmp("hiddenId").getValue()
+        id: PCL.getCmp("hiddenId").getValue()
       },
       method: "POST",
       callback: function (options, success, response) {
         el.unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
 
           var store = me.getGoodsGrid().getStore();
           store.removeAll();
@@ -131,18 +131,18 @@ Ext.define("PSI.Goods.SafetyInventoryEditForm", {
 
   onOK: function () {
     var me = this;
-    Ext.getBody().mask("正在保存中...");
-    Ext.Ajax.request({
+    PCL.getBody().mask("正在保存中...");
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/Goods/editSafetyInventory",
       method: "POST",
       params: {
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             PSI.MsgBox.showInfo("成功保存数据", function () {
               me.close();
@@ -162,18 +162,18 @@ Ext.define("PSI.Goods.SafetyInventoryEditForm", {
       return me.__goodsGrid;
     }
     var modelName = "PSIGoodsSafetyInventory_EditForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["warehouseId", "warehouseCode", "warehouseName",
         "safetyInventory", "unitName", "inventoryUpper"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__cellEditing = Ext.create("PSI.UX.CellEditing", {
+    me.__cellEditing = PCL.create("PSI.UX.CellEditing", {
       clicksToEdit: 1,
       listeners: {
         edit: {
@@ -183,7 +183,7 @@ Ext.define("PSI.Goods.SafetyInventoryEditForm", {
       }
     });
 
-    me.__goodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__goodsGrid = PCL.create("PCL.grid.Panel", {
       viewConfig: {
         enableTextSelection: true
       },
@@ -247,7 +247,7 @@ Ext.define("PSI.Goods.SafetyInventoryEditForm", {
 
   getSaveData: function () {
     var result = {
-      id: Ext.getCmp("hiddenId").getValue(),
+      id: PCL.getCmp("hiddenId").getValue(),
       items: []
     };
 
@@ -261,6 +261,6 @@ Ext.define("PSI.Goods.SafetyInventoryEditForm", {
       });
     }
 
-    return Ext.JSON.encode(result);
+    return PCL.JSON.encode(result);
   }
 });
