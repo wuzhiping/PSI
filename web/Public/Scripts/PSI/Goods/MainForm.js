@@ -884,7 +884,6 @@ PCL.define("PSI.Goods.MainForm", {
       tbar: [{
         text: "设置物料安全库存",
         disabled: me.getPGoodsSI() == "0",
-        iconCls: "PSI-button-commit",
         handler: me.onSafetyInventory,
         scope: me
       }],
@@ -1263,19 +1262,16 @@ PCL.define("PSI.Goods.MainForm", {
       tbar: [{
         text: "新建子件",
         scope: me,
-        iconCls: "PSI-button-add",
         disabled: me.getPAddBOM() == "0",
         handler: me.onAddBOM
       }, "-", {
         text: "编辑子件",
         scope: me,
-        iconCls: "PSI-button-edit",
         disabled: me.getPEditBOM() == "0",
         handler: me.onEditBOM
       }, "-", {
         text: "删除子件",
         scope: me,
-        iconCls: "PSI-button-delete",
         disabled: me.getPDeleteBOM() == "0",
         handler: me.onDeleteBOM
       }],
@@ -1478,7 +1474,6 @@ PCL.define("PSI.Goods.MainForm", {
       tbar: [{
         text: "设置商品价格体系",
         disabled: me.getPPriceSystem() == "0",
-        iconCls: "PSI-button-commit",
         handler: me.onGoodsPriceSystem,
         scope: me
       }]
