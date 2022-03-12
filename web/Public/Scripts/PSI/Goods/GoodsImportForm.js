@@ -6,7 +6,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.GoodsImportForm", {
+PCL.define("PSI.Goods.GoodsImportForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   config: {
@@ -39,14 +39,14 @@ Ext.define("PSI.Goods.GoodsImportForm", {
       scope: me
     });
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
       },
       modal: true,
       resizable: false,
-      onEsc: Ext.emptyFn,
+      onEsc: PCL.emptyFn,
       width: 512,
       height: 150,
       layout: "fit",
@@ -90,7 +90,7 @@ Ext.define("PSI.Goods.GoodsImportForm", {
 
   onOK: function () {
     var me = this;
-    var f = Ext.getCmp("importForm");
+    var f = PCL.getCmp("importForm");
     var el = f.getEl();
     el && el.mask('正在导入...');
     f.submit({
