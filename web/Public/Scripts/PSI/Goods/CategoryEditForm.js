@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.CategoryEditForm", {
+PCL.define("PSI.Goods.CategoryEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   /**
@@ -50,7 +50,7 @@ Ext.define("PSI.Goods.CategoryEditForm", {
     var t = entity == null ? "新建物料分类" : "编辑物料分类";
     var logoHtml = me.genLogoHtml(entity, t);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -140,7 +140,7 @@ Ext.define("PSI.Goods.CategoryEditForm", {
           labelAlign: "right",
           labelSeparator: "",
           fieldLabel: "默认税率",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[-1, "[不设定]"],
             [0, "0%"], [1, "1%"],
@@ -168,7 +168,7 @@ Ext.define("PSI.Goods.CategoryEditForm", {
           labelAlign: "right",
           labelSeparator: "",
           fieldLabel: "物料类型",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [[-1, "[不限]"],
             [1000, "原材料"],
@@ -195,16 +195,14 @@ Ext.define("PSI.Goods.CategoryEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_Goods_CategoryEditForm_editForm");
+    me.editForm = PCL.getCmp("PSI_Goods_CategoryEditForm_editForm");
 
-    me.editCode = Ext.getCmp("PSI_Goods_CategoryEditForm_editCode");
-    me.editName = Ext.getCmp("PSI_Goods_CategoryEditForm_editName");
-    me.editParentCategory = Ext
-      .getCmp("PSI_Goods_CategoryEditForm_editParentCategory");
-    me.editParentCategoryId = Ext
-      .getCmp("PSI_Goods_CategoryEditForm_editParentCategoryId");
-    me.editTaxRate = Ext.getCmp("PSI_Goods_CategoryEditForm_editTaxRate");
-    me.editMType = Ext.getCmp("PSI_Goods_CategoryEditForm_editMType");
+    me.editCode = PCL.getCmp("PSI_Goods_CategoryEditForm_editCode");
+    me.editName = PCL.getCmp("PSI_Goods_CategoryEditForm_editName");
+    me.editParentCategory = PCL.getCmp("PSI_Goods_CategoryEditForm_editParentCategory");
+    me.editParentCategoryId = PCL.getCmp("PSI_Goods_CategoryEditForm_editParentCategoryId");
+    me.editTaxRate = PCL.getCmp("PSI_Goods_CategoryEditForm_editTaxRate");
+    me.editMType = PCL.getCmp("PSI_Goods_CategoryEditForm_editMType");
   },
 
   onOK: function (thenAdd) {
@@ -276,7 +274,7 @@ Ext.define("PSI.Goods.CategoryEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -295,7 +293,7 @@ Ext.define("PSI.Goods.CategoryEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     var editCode = me.editCode;
     editCode.focus();
@@ -307,7 +305,7 @@ Ext.define("PSI.Goods.CategoryEditForm", {
 
     var el = me.getEl();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: me.URL("Home/Goods/getCategoryInfo"),
       params: {
         id: me.getEntity().get("id")
@@ -315,7 +313,7 @@ Ext.define("PSI.Goods.CategoryEditForm", {
       method: "POST",
       callback: function (options, success, response) {
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
 
           if (data.code) {
             me.editCode.setValue(data.code);
