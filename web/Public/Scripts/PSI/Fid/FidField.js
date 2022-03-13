@@ -86,7 +86,7 @@ PCL.define("PSI.Fid.FidField", {
         menuDisabled: true,
         width: 150
       }, {
-        header: "拼音字头",
+        header: "助记码",
         dataIndex: "py",
         menuDisabled: true,
         width: 150
@@ -128,7 +128,7 @@ PCL.define("PSI.Fid.FidField", {
           items: [{
             id: "PSI_Fid_FidField_editFid",
             xtype: "textfield",
-            fieldLabel: "fid/编码/拼音字头",
+            fieldLabel: "fid/编码/助记码",
             labelWidth: 110,
             labelAlign: "right",
             labelSeparator: ""
