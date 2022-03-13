@@ -452,9 +452,9 @@ class CodeTableDAO extends PSIBaseExDAO
       "editorXtype" => "textfield"
     ];
 
-    // 拼音字头
+    // 助记码
     $result[] = [
-      "caption" => "拼音字头",
+      "caption" => "助记码",
       "fieldName" => "py",
       "fieldType" => "varchar",
       "fieldLength" => 255,
