@@ -40,7 +40,7 @@ PCL.define("PSI.FIdList.MainForm", {
     const me = this;
 
     return [{
-      text: "编辑fid的编码和拼音字头",
+      text: "编辑fid的编码和助记码",
       handler: me._onEdit,
       scope: me,
     }, "-", {
@@ -97,7 +97,7 @@ PCL.define("PSI.FIdList.MainForm", {
           dataIndex: "code",
           width: 140,
         }, {
-          header: "拼音字头",
+          header: "助记码",
           dataIndex: "py",
           width: 140,
         }, {

@@ -81,7 +81,7 @@ PCL.define("PSI.FIdList.EditForm", {
         bodyPadding: 5,
         defaultType: 'textfield',
         fieldDefaults: {
-          labelWidth: 60,
+          labelWidth: 50,
           labelAlign: "right",
           labelSeparator: "",
           msgTarget: 'side',
@@ -113,9 +113,9 @@ PCL.define("PSI.FIdList.EditForm", {
           }
         }, {
           id: "PSI_FIdList_EditForm_editPY",
-          fieldLabel: "拼音字头",
+          fieldLabel: "助记码",
           allowBlank: false,
-          blankText: "没有输入拼音字头",
+          blankText: "没有输入助记码",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
           name: "py",
           value: entity.get("py"),
