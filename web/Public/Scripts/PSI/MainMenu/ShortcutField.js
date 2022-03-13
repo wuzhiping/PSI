@@ -68,7 +68,7 @@ PCL.define("PSI.MainMenu.ShortcutField", {
       border: 1,
       store: store,
       columns: [{
-        header: "拼音字头",
+        header: "助记码",
         dataIndex: "py",
         menuDisabled: true,
         width: 100
@@ -122,7 +122,7 @@ PCL.define("PSI.MainMenu.ShortcutField", {
           }, {
             xtype: "displayfield",
             fieldLabel: " ",
-            value: "输入菜单拼音字头或编码可以过滤查询",
+            value: "输入助记码或编码可以过滤查询",
             labelWidth: 30,
             labelAlign: "right",
             labelSeparator: ""
