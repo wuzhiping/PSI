@@ -50,7 +50,7 @@ Ext.define("PSI.Bill.PWViewForm", {
           labelSeparator: ":",
           fieldLabel: "单号",
           xtype: "displayfield",
-          value: me.getRef()
+          value: `<span class='PSI-field-note'>${me.getRef()}</span>`
         }, {
           id: "editBizDT",
           fieldLabel: "业务日期",
@@ -111,10 +111,10 @@ Ext.define("PSI.Bill.PWViewForm", {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
 
-          Ext.getCmp("editSupplier").setValue(data.supplierName);
-          Ext.getCmp("editWarehouse").setValue(data.warehouseName);
-          Ext.getCmp("editBizUser").setValue(data.bizUserName);
-          Ext.getCmp("editBizDT").setValue(data.bizDT);
+          Ext.getCmp("editSupplier").setValue(`<span class='PSI-field-note'>${data.supplierName}</span>`);
+          Ext.getCmp("editWarehouse").setValue(`<span class='PSI-field-note'>${data.warehouseName}</span>`);
+          Ext.getCmp("editBizUser").setValue(`<span class='PSI-field-note'>${data.bizUserName}</span>`);
+          Ext.getCmp("editBizDT").setValue(`<span class='PSI-field-note'>${data.bizDT}</span>`);
 
           var store = me.getGoodsGrid().getStore();
           store.removeAll();
