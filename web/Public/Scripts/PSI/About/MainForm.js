@@ -45,6 +45,7 @@ PCL.define("PSI.About.MainForm", {
         cls: "PSI-about",
         html: `
               <h1 style='color:#0050b3;margin-top:0px'>${me.getProductionName()}基于开源技术，提供人、财、物、产、供、销、存一体化的企业管理全面解决方案</h1>
+              <div style='margin-left:-10px;border-bottom:1px solid #e6f7ff;height:1px' /></div>
               <p>
                 当前版本：<span style='border-bottom:1px solid #adc6ff'>${PSI.Const.VERSION}</span>
               </p>
