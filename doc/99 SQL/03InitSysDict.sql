@@ -258,7 +258,7 @@ TRUNCATE TABLE `t_sysdict_sln0000_ct_field_default_value`;
 INSERT INTO `t_sysdict_sln0000_ct_field_default_value` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
 ('100', '100', 100, '[无]', '', '', 1),
 ('200', '200', 200, '固定值', '', '例如：状态的默认值为1000 - 启用', 2),
-('300', '300', 300, '宏', '', '例如：今天日期 - $today', 3),
+('300', '300', 300, '宏', '', '例如：今天日期 - $today，其数据引用系统数据字典t_sysdict_sln0000_ct_field_default_value_macro', 3),
 ('400', '400', 400, '后台代码', '', '由后台业务逻辑类返回默认值', 4);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
