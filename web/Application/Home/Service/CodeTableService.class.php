@@ -186,6 +186,9 @@ class CodeTableService extends PSIBaseExService
     $db->commit();
 
     if (!$isModify) {
+      // 新建码表，创建数据库中的实际物理表
+      // 因为MySQL的DDL自动提交事务，所以该代码在创建元数据之后执行
+      // 也不需要启动事务
       $rc = $dao->createCodeTableInDb($params);
       if ($rc) {
         return $rc;
