@@ -1803,6 +1803,11 @@ class CodeTableDAO extends PSIBaseExDAO
     }
     $editorXtype = $params["editorXtype"];
 
+    $isVisible = intval($params["isVisible"]);
+    if (!in_array($isVisible, [1, 2])) {
+      return $this->badParam("isVisible");
+    }
+
     if ($sysCol == 1) {
       // 系统列
       $sql = "update t_code_table_cols_md
@@ -1830,7 +1835,7 @@ class CodeTableDAO extends PSIBaseExDAO
       $sql = "update t_code_table_cols_md
               set caption = '%s', width_in_view = %d, show_order = %d,
                 show_order_in_view = %d, note = '%s', col_span = %d,
-                must_input = %d, editor_xtype = '%s'
+                must_input = %d, editor_xtype = '%s', is_visible = %d
               where id = '%s' ";
       $rc = $db->execute(
         $sql,
@@ -1842,6 +1847,7 @@ class CodeTableDAO extends PSIBaseExDAO
         $colSpan,
         $mustInput,
         $editorXtype,
+        $isVisible,
         $id
       );
       if ($rc === false) {
