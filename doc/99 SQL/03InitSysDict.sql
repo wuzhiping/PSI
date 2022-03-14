@@ -253,6 +253,14 @@ INSERT INTO `t_sysdict_sln0002_fmt_field_type` (`id`, `code`, `code_int`, `name`
 ('2', '2', 2, '日期', '', '', 2),
 ('3', '3', 3, '金额(两位小数)', '', '', 3);
 
+# 码表列的默认值
+TRUNCATE TABLE `t_sysdict_sln0000_ct_field_default_value`;
+INSERT INTO `t_sysdict_sln0000_ct_field_default_value` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('1', '1', 1, '[无]', '', '', 1),
+('2', '2', 2, '固定值', '', '例如：状态的默认值为1000 - 启用', 2),
+('3', '3', 3, '宏', '', '例如：今天日期 - $today', 3),
+('4', '4', 4, '后台代码', '', '由后台业务逻辑类返回默认值', 4);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
