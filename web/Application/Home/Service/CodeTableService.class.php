@@ -183,10 +183,13 @@ class CodeTableService extends PSIBaseExService
     $bs = new BizlogService($db);
     $bs->insertBizlog($log, $this->LOG_CATEGORY);
 
-    if ($isModify) {
-      // 因为新建码表的时候，MySQL的DDL语句是自动提交事务
-      // 所以只有在编辑的时候，才需要提交事务
-      $db->commit();
+    $db->commit();
+
+    if (!$isModify) {
+      $rc = $dao->createCodeTableInDb($params);
+      if ($rc) {
+        return $rc;
+      }
     }
 
     return $this->ok($id);

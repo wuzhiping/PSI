@@ -903,17 +903,33 @@ class CodeTableDAO extends PSIBaseExDAO
       return $this->sqlError(__METHOD__, __LINE__);
     }
 
-    // 创建数据库表
+    // 操作成功
+    $log = "解决方案[{$slnCode}-{$slnName}] - 新建码表[{$name}]";
+    $params["log"] = $log;
+    $params["id"] = $id;
+    return null;
+  }
+
+  /**
+   * 创建码表在数据库中对应的物理表
+   * 
+   * 因为MySQL的DDL是自动提交事务，所以这段代码需要在创建码表的元数据提交后再执行
+   */
+  public function createCodeTableInDb($params)
+  {
+    $db = $this->db;
+
+    // tableName在之前的创建元数据的方法中已经做了校验了，
+    // 这里就不需要再检查是否是正确的表名了
+    $tableName = strtolower($params["tableName"]);
+
+    $cols = $this->getCodeTableSysCols();
     $sql = $this->buildCreateDDL($tableName, $cols);
     $rc = $db->execute($sql);
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);
     }
 
-    // 操作成功
-    $log = "解决方案[{$slnCode}-{$slnName}] - 新建码表[{$name}]";
-    $params["log"] = $log;
-    $params["id"] = $id;
     return null;
   }
 
