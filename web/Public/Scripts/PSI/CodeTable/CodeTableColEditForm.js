@@ -74,6 +74,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
             items: {
               border: 0,
               xtype: "form",
+              id: "form1",
               bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
@@ -97,6 +98,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
             items: {
               border: 0,
               xtype: "form",
+              id: "form2",
               bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
@@ -120,6 +122,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
             items: {
               border: 0,
               xtype: "form",
+              id: "form3",
               bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
@@ -143,6 +146,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
             items: {
               border: 0,
               xtype: "form",
+              id: "form4",
               bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
@@ -217,6 +221,12 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     ];
 
     me.buttonRefCol = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
+
+    me.form1 = PCL.getCmp("form1");
+    me.form2 = PCL.getCmp("form2");
+    me.form3 = PCL.getCmp("form3");
+    me.form4 = PCL.getCmp("form4");
+    me.tabPanelMain = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_tabPanel");
   },
 
   /**
@@ -712,6 +722,43 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   _onOK() {
     const me = this;
 
+    // 检查数据是否录入完整
+    let f = me.form1;
+    if (!f.getForm().isValid()) {
+      me.showInfo("数据没有录入完整", () => {
+        me.tabPanelMain.setActiveTab(0);
+      });
+
+      return;
+    }
+
+    f = me.form2;
+    if (!f.getForm().isValid()) {
+      me.showInfo("数据没有录入完整", () => {
+        me.tabPanelMain.setActiveTab(1);
+      });
+
+      return;
+    }
+
+    f = me.form3;
+    if (!f.getForm().isValid()) {
+      me.showInfo("数据没有录入完整", () => {
+        me.tabPanelMain.setActiveTab(2);
+      });
+
+      return;
+    }
+
+    f = me.form4;
+    if (!f.getForm().isValid()) {
+      me.showInfo("数据没有录入完整", () => {
+        me.tabPanelMain.setActiveTab(3);
+      });
+
+      return;
+    }
+
     const entity = me.getEntity();
     const params = {
       id: entity == null ? null : entity.get("id"),
@@ -767,14 +814,10 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
 
   _onEditLastSpecialKey(field, e) {
     const me = this;
-    me.tip("TODO")
 
-    // if (e.getKey() === e.ENTER) {
-    //   const f = me.editForm;
-    //   if (f.getForm().isValid()) {
-    //     me.onOK();
-    //   }
-    // }
+    if (e.getKey() === e.ENTER) {
+      me._onOK();
+    }
   },
 
   /**
