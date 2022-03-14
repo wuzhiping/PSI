@@ -20,6 +20,6 @@ PCL.define("PSI.Const", {
     GC_DEC_NUMBER: 0, // 物料数量小数位数
     ENABLE_LODOP: "0", //是否启用Lodop打印
     PROD_NAME: "PSI", // 产品名称
-    VERSION: "PSI 2022 - built2022-03-12 15:30"
+    VERSION: "PSI 2022 - built2022-03-14 10:15"
   }
 });
