@@ -192,6 +192,9 @@ PCL.define("PSI.SysDict.MainForm", {
           header: "备注",
           dataIndex: "memo",
           width: 400,
+          renderer(value) {
+            return `<div class='PSI-grid-cell-autoWrap'>${value}</div>`;
+          }
         }]
       },
       store: PCL.create("PCL.data.Store", {
@@ -262,7 +265,10 @@ PCL.define("PSI.SysDict.MainForm", {
         }, {
           header: "备注",
           dataIndex: "memo",
-          width: 400
+          width: 400,
+          renderer(value) {
+            return `<div class='PSI-grid-cell-autoWrap'>${value}</div>`;
+          }
         }]
       },
       store: PCL.create("PCL.data.Store", {
