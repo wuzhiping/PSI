@@ -522,7 +522,8 @@ Ext.define("PSI.SaleOrder.SOEditForm", {
           xtype: "psi_goods_with_saleprice_field",
           showAddButton: me.getShowAddGoodsButton() == "1",
           parentCmp: me,
-          editCustomerName: "editCustomer"
+          editCustomerName: "editCustomer",
+          sumInv: "1",
         }
       }, {
         menuDisabled: true,

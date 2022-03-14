@@ -787,14 +787,14 @@ class GoodsDAO extends PSIBaseExDAO
     $dataScale = $bcDAO->getGoodsCountDecNumber($companyId);
     $fmt = "decimal(19, " . $dataScale . ")";
 
-
     if ($queryKey == null) {
       $queryKey = "";
     }
 
     $key = "%{$queryKey}%";
 
-    $sql = "select g.id, g.code, g.name, g.spec, u.name as unit_name, g.sale_price, g.memo
+    $sql = "select g.id, g.code, g.name, g.spec, u.name as unit_name, g.sale_price, g.memo,
+              category_id
             from t_goods g, t_goods_unit u
             where (g.unit_id = u.id) and (g.record_status = 1000)
               and (g.code like '%s' or g.name like '%s' or g.py like '%s'
@@ -813,6 +813,8 @@ class GoodsDAO extends PSIBaseExDAO
       $sql .= " and " . $rs[0];
       $queryParams = array_merge($queryParams, $rs[1]);
     }
+
+    $sumInv = $params["sumInv"];
 
     $sql .= " order by g.code
               limit 20";
@@ -866,6 +868,44 @@ class GoodsDAO extends PSIBaseExDAO
         $d = $db->query($sql, $warehouseId, $goodsId);
         if ($d) {
           $cnt = $d[0]["balance_count"];
+        }
+      } else {
+        // $sumInv == true的场景是：
+        // 销售合同、销售订单中，因为没有具体的仓库
+        // 为了显示当前库存，就取库存合计值作为当前库存
+        // TODO: 下面的算法也是比较低效，有优化的空间
+        if ($sumInv) {
+          // 通过当前用户的可见仓库的数据域查询其可见的仓库id
+          $sql = "select id from t_warehouse ";
+          $qp = [];
+          $rs = $ds->buildSQL(FIdConst::WAREHOUSE_BILL, "t_warehouse", $loginUserId);
+          if ($rs) {
+            $sql .= " where " . $rs[0];
+            $qp = $rs[1];
+          }
+          $wl = $db->query($sql, $qp);
+          if (count($wl) == 0) {
+            // 没有可见的仓库
+            $cnt = "";
+          } else {
+            $qp = [];
+            $qp[] = $goodsId;
+            $sql = "select sum(convert(balance_count, $fmt)) as balance_count 
+                    from t_inventory
+                    where (goods_id = '%s') and ( warehouse_id in (";
+            foreach ($wl as $index => $it) {
+              if ($index > 0) {
+                $sql .= ",";
+              }
+              $sql .= " '%s'";
+              $qp[] = $it["id"];
+            }
+            $sql .= "))";
+            $d = $db->query($sql, $qp);
+            if ($d) {
+              $cnt = $d[0]["balance_count"];
+            }
+          }
         }
       }
 

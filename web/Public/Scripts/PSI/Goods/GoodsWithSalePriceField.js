@@ -13,7 +13,8 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
     parentCmp: null,
     editCustomerName: null,
     editWarehouseName: null,
-    showAddButton: false
+    showAddButton: false,
+    sumInv: "0", // 是否合计当前库存：0 - 不合计；1 - 合计
   },
 
   /**
@@ -218,7 +219,8 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
         params: {
           queryKey: editName.getValue(),
           customerId: customerId,
-          warehouseId: warehouseId
+          warehouseId: warehouseId,
+          sumInv: me.getSumInv(),
         },
         method: "POST",
         callback: function (opt, success, response) {

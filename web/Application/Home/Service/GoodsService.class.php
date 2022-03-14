@@ -398,7 +398,7 @@ class GoodsService extends PSIBaseExService
   /**
    * 商品字段，查询数据
    */
-  public function queryDataWithSalePrice($queryKey, $customerId, $warehouseId)
+  public function queryDataWithSalePrice($queryKey, $customerId, $warehouseId, $sumInv)
   {
     if ($this->isNotOnline()) {
       return $this->emptyResult();
@@ -408,6 +408,7 @@ class GoodsService extends PSIBaseExService
       "queryKey" => $queryKey,
       "customerId" => $customerId,
       "warehouseId" => $warehouseId,
+      "sumInv" => $sumInv == "1",
       "loginUserId" => $this->getLoginUserId(),
       "companyId" => $this->getCompanyId()
     ];
