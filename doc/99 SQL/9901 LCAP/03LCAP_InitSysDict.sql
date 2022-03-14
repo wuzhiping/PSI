@@ -31,6 +31,7 @@ INSERT INTO `t_dict_table_md` (`id`, `code`, `name`, `table_name`, `category_id`
 ('E2FA7FCF-99F1-11EC-A344-E86A641ED142', 'SLN0000.01.07', '码表列是否可见', 't_sysdict_sln0000_ct_field_visible', 'SLN0000.01', '码表列对用户是否可见', 'MBLSFKJ'),
 ('EFD9A3F3-99F1-11EC-A344-E86A641ED142', 'SLN0000.01.08', '码表列是否必录', 't_sysdict_sln0000_ct_must_input', 'SLN0000.01', '码表列是否是必录项', 'MBLSFBL'),
 ('00D176CE-A367-11EC-9B63-E86A641ED142', 'SLN0000.01.09', '码表列默认值', 't_sysdict_sln0000_ct_field_default_value', 'SLN0000.01', '码表列的默认值', 'MBLMRZ'),
+('647CE48D-A383-11EC-8B93-E86A641ED142', 'SLN0000.01.10', '码表列默认值的宏', 't_sysdict_sln0000_ct_field_default_value_macro', 'SLN0000.01', '码表列默认值是宏的时候，其宏的取值列表', 'MBLMRZDH'),
 ('5DAC23B4-60AF-11EC-A41B-E86A641ED142', 'SLN0000.02.01', '表单字段编辑器类型', 't_sysdict_sln0000_form_editor_xtype', 'SLN0000.02', '表单字段编辑器的类型', 'BDZDBJQLX'),
 ('68BE0DF3-60AF-11EC-A41B-E86A641ED142', 'SLN0000.03.01', '视图xtype', 't_sysdict_sln0000_fv_xtype', 'SLN0000.03', '视图的组件类型(xtype)', 'STXTYPE'),
 ('6C5F4D19-8952-11EC-9791-E86A641ED142', 'SLN0000.05.01', '主菜单导航', 't_sysdict_mainmenu_nav', 'SLN0000.05', '主菜单导航 - 主菜单中单击模块后跳转的URL', 'ZCDDH'),
