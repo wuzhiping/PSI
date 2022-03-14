@@ -1502,7 +1502,7 @@ class CodeTableDAO extends PSIBaseExDAO
   }
 
   /**
-   * 新增码表列
+   * 新增码表列 - 写入元数据
    *
    * @param array $params
    * @return null|array
@@ -1710,6 +1710,36 @@ class CodeTableDAO extends PSIBaseExDAO
       return $this->sqlError(__METHOD__, __LINE__);
     }
 
+    //操作成功
+    $params["log"] = "新增码表[{$codeTableName}]列 ：{$caption}";
+    $params["id"] = $id;
+    return null;
+  }
+
+  /**
+   * 新增码表列 - 创建实际列
+   *
+   * @param array $params
+   * @return null|array
+   */
+  public function addCodeTableColInDb($params)
+  {
+    $db = $this->db;
+
+    $codeTableId = $params["codeTableId"];
+    // 检查码表是否存在
+    $codeTable = $this->getCodeTableById($codeTableId);
+    if (!$codeTable) {
+      return $this->bad("要新增列的码表不存在");
+    }
+    $tableName = $codeTable["tableName"];
+
+    // 在创建元数据的方法中保证下列参数正确
+    $fieldName = strtolower($params["fieldName"]);
+    $fieldType = strtolower($params["fieldType"]);
+    $fieldLength = $params["fieldLength"];
+    $fieldDecimal = $params["fieldDecimal"];
+
     // 在数据库表中创建字段
     $sql = "alter table {$tableName} add {$fieldName} ";
     if ($fieldType == "varchar") {
@@ -1730,13 +1760,11 @@ class CodeTableDAO extends PSIBaseExDAO
     }
 
     //操作成功
-    $params["log"] = "新增码表[{$codeTableName}]列 ：{$caption}";
-    $params["id"] = $id;
     return null;
   }
 
   /**
-   * 编辑码表列
+   * 编辑码表列 - 编辑元数据
    */
   public function updateCodeTableCol(&$params)
   {

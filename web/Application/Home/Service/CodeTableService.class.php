@@ -308,9 +308,13 @@ class CodeTableService extends PSIBaseExService
     $bs = new BizlogService($db);
     $bs->insertBizlog($log, $this->LOG_CATEGORY);
 
-    if ($isModify) {
-      // 新增字段的时候，执行了DDL语句会自动提交事务
-      $db->commit();
+    $db->commit();
+
+    if (!$isModify) {
+      $rc = $dao->addCodeTableColInDb($params);
+      if ($rc) {
+        return $rc;
+      }
     }
 
     return $this->ok($id);
