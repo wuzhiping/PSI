@@ -262,6 +262,13 @@ INSERT INTO `t_sysdict_sln0000_ct_field_default_value` (`id`, `code`, `code_int`
 ('300', '300', 300, '宏', '', '例如：今天日期 - $today，其数据引用系统数据字典<br/>t_sysdict_sln0000_ct_field_default_value_macro', 3),
 ('400', '400', 400, '后台代码', '', '由后台业务逻辑类返回默认值', 4);
 
+# 码表列的默认值的宏列表
+TRUNCATE TABLE `t_sysdict_sln0000_ct_field_default_value_macro`;
+INSERT INTO `t_sysdict_sln0000_ct_field_default_value_macro` (`id`, `code`, `code_int`, `name`, `py`, `memo`, `show_order`) VALUES
+('$today', '$today', 1, '$today', '', '今天日期', 1),
+('$login_user_id', '$login_user_id', 2, '$login_user_id', '', '当前登录用户的id - 对应与t_user表中的id', 2),
+('$login_user_name', '$login_user_name', 3, '$login_user_name', '', '当前登录用户的姓名', 3);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
