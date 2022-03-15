@@ -76,7 +76,7 @@ PCL.define("PSI.SysDict.SysDictField", {
     const modelName = "PSIModel.PSI.Fid.FidField.FidModel";
     PCL.define(modelName, {
       extend: "PCL.data.Model",
-      fields: ["id", "name"]
+      fields: ["id", "name", "memo"]
     });
 
     const store = PCL.create("PCL.data.Store", {
@@ -102,6 +102,14 @@ PCL.define("PSI.SysDict.SysDictField", {
         dataIndex: "name",
         menuDisabled: true,
         flex: 1
+      }, {
+        header: "备注",
+        dataIndex: "memo",
+        menuDisabled: true,
+        flex: 1,
+        renderer(value) {
+          return `<div class='PSI-grid-cell-autoWrap'>${value}</div>`;
+        }
       }]
     });
     me.lookupGrid = lookupGrid;
@@ -111,7 +119,7 @@ PCL.define("PSI.SysDict.SysDictField", {
       modal: me.getShowModal(),
       header: false,
       border: 0,
-      width: 600,
+      width: 700,
       height: 300,
       layout: "border",
       items: [{

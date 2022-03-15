@@ -126,7 +126,7 @@ class SysDictDAO extends PSIBaseExDAO
     }
 
     $queryKey = $params["queryKey"];
-    $sql = "select code, name from {$tableName} 
+    $sql = "select code, name, memo from {$tableName} 
             where code like '%s'
             order by show_order";
     $queryParams = [];
@@ -138,6 +138,7 @@ class SysDictDAO extends PSIBaseExDAO
       $result[] = [
         "id" => $v["code"],
         "name" => $v["name"],
+        "memo" => $v["memo"],
       ];
     }
 
