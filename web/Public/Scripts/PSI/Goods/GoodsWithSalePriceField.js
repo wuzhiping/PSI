@@ -87,7 +87,7 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
         menuDisabled: true,
         flex: 1
       }, {
-        header: "当前库存",
+        header: me.getSumInv() == "1" ? "当前库存合计" : "当前库存",
         dataIndex: "invCnt",
         menuDisabled: true,
         align: "right",
