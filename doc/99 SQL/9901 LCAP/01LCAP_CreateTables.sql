@@ -321,6 +321,8 @@ CREATE TABLE IF NOT EXISTS `t_code_table_cols_md` (
   `show_order_in_view` int(11) NOT NULL DEFAULT -1,
   `editor_xtype` varchar(255) NOT NULL DEFAULT 'textfield',
   `col_span` int(11) NOT NULL DEFAULT 1,
+  `default_value` int(11) NOT NULL DEFAULT 100,
+  `default_value_ext` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
