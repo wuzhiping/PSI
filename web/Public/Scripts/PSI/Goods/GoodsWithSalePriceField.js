@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.GoodsWithSalePriceField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Goods.GoodsWithSalePriceField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_goods_with_saleprice_field",
 
   config: {
@@ -55,18 +55,18 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
   onTriggerClick: function (e) {
     var me = this;
     var modelName = "PSIGoodsField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "spec", "unitName",
         "salePrice", "memo", "priceSystem", "taxRate", "invCnt"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    var lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -138,7 +138,7 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
       }
     });
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       title: "选择 - 商品",
       header: false,
       border: 0,
@@ -190,13 +190,13 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
     });
 
     var customerId = null;
-    var editCustomer = Ext.getCmp(me.getEditCustomerName());
+    var editCustomer = PCL.getCmp(me.getEditCustomerName());
     if (editCustomer) {
       customerId = editCustomer.getIdValue();
     }
 
     var warehouseId = null;
-    var editWarehouse = Ext.getCmp(me.getEditWarehouseName());
+    var editWarehouse = PCL.getCmp(me.getEditWarehouseName());
     if (editWarehouse) {
       warehouseId = editWarehouse.getIdValue();
     }
@@ -210,10 +210,10 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
 
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("__editGoods");
+    var editName = PCL.getCmp("__editGoods");
     editName.on("change", function () {
       var store = me.lookupGrid.getStore();
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL
           + "Home/Goods/queryDataWithSalePrice",
         params: {
@@ -226,8 +226,7 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
         callback: function (opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -308,7 +307,7 @@ Ext.define("PSI.Goods.GoodsWithSalePriceField", {
   },
 
   onAddGoods: function () {
-    var form = Ext.create("PSI.Goods.GoodsEditForm");
+    var form = PCL.create("PSI.Goods.GoodsEditForm");
 
     form.show();
   }
