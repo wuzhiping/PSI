@@ -186,6 +186,8 @@ PCL.define("PSI.CodeTable.CodeTableEditForm", {
           callbackScope: me,
           value: "否",
           width: width2,
+          allowBlank: false,
+          blankText: "没有选择是否是层级数据",
           listeners: {
             specialkey: {
               fn: me.__onEditSpecialKey,
