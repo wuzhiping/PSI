@@ -33,11 +33,12 @@ class DataOrgDAO extends PSIBaseExDAO
 
     $result = [];
 
-    if ($loginUserId == DemoConst::ADMIN_USER_ID) {
-      // admin 是超级管理员
-      $result[] = "*";
-      return $result;
-    }
+    // 2022-3-15 取消admin的数据域全域
+    // if ($loginUserId == DemoConst::ADMIN_USER_ID) {
+    //   // admin 是超级管理员
+    //   $result[] = "*";
+    //   return $result;
+    // }
 
     $sql = "select distinct rpd.data_org
             from t_role_permission rp, t_role_permission_dataorg rpd,
@@ -66,15 +67,21 @@ class DataOrgDAO extends PSIBaseExDAO
     $dataOrgList = $this->getDataOrgForFId($fid, $loginUserId);
 
     if (count($dataOrgList) == 0) {
-      return null; // 全部数据域
+      // return null; // 全部数据域
+
+      // 2022-3-15
+      // 原来是返回 null，作为全域
+      // 现在改为返回一个假条件，生成空域
+      return " ( 1 = 2) ";
     }
 
     // data_org is null 是为了兼容之前的版本遗留下的数据
     $result = " ( " . $tableName . ".data_org is null or " . $tableName . ".data_org = '' ";
     foreach ($dataOrgList as $dataOrg) {
-      if ($dataOrg == "*") {
-        return null; // 全部数据域
-      }
+      // 2022-3-15 取消全域
+      // if ($dataOrg == "*") {
+      //   return null; // 全部数据域
+      // }
 
       // # 表示是当前用户自身的数据域
       if ($dataOrg == "#") {

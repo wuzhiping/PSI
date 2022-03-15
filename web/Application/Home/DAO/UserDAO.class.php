@@ -932,11 +932,12 @@ class UserDAO extends PSIBaseExDAO
     $result = [];
     $loginUserId = $params["loginUserId"];
 
-    if ($loginUserId == DemoConst::ADMIN_USER_ID) {
-      // admin 是超级管理员
-      $result[] = "*";
-      return $result;
-    }
+    // 2022-3-15 取消admin的数据域全域
+    // if ($loginUserId == DemoConst::ADMIN_USER_ID) {
+    //   // admin 是超级管理员
+    //   $result[] = "*";
+    //   return $result;
+    // }
 
     $db = $this->db;
 

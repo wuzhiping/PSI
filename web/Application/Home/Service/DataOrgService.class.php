@@ -24,15 +24,21 @@ class DataOrgService extends PSIBaseService
 
     $dataOrgList = $us->getDataOrgForFId($fid);
     if (count($dataOrgList) == 0) {
-      return null; // 全部数据域
+      // return null; // 全部数据域
+
+      // 2022-3-15
+      // 原来是返回 null，作为全域
+      // 现在改为返回一个假条件，生成空域
+      return " ( 1 = 2) ";
     }
 
     // data_org is null 是为了兼容之前的版本遗留下的数据
     $result = " ( " . $tableName . ".data_org is null or " . $tableName . ".data_org = '' ";
     foreach ($dataOrgList as $dataOrg) {
-      if ($dataOrg == "*") {
-        return null; // 全部数据域
-      }
+      // 2022-3-15 取消全域
+      // if ($dataOrg == "*") {
+      //   return null; // 全部数据域
+      // }
 
       if ($dataOrg == "#") {
         $result .= " or " . $tableName . ".data_org = '%s' ";
