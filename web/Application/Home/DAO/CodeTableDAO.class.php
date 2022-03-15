@@ -1462,6 +1462,11 @@ class CodeTableDAO extends PSIBaseExDAO
     }
   }
 
+  private function viewPagingCodeToName($code)
+  {
+    return $code == 1 ? "分页" : "不分页";
+  }
+
   /**
    * 查询码表主表元数据
    */
@@ -1494,6 +1499,7 @@ class CodeTableDAO extends PSIBaseExDAO
         "memo" => $v["memo"],
         "editColCnt" => $v["edit_col_cnt"],
         "viewPaging" => $v["view_paging"],
+        "viewPagingDisplay" => $this->viewPagingCodeToName($v["view_paging"]),
         "autoCodeLength" => $v["auto_code_length"],
       ];
     } else {

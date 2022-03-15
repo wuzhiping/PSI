@@ -366,7 +366,8 @@ PCL.define("PSI.CodeTable.CodeTableEditForm", {
             me.editAutoCodeLength.setValue(data.autoCodeLength);
             me.editHandlerClassName.setValue(data.handlerClassName);
             me.editMemo.setValue(data.memo);
-            me.editViewPaging.setValue(parseInt(data.viewPaging));
+            me.hiddenViewPaging.setValue(data.viewPaging);
+            me.editViewPaging.setValue(data.viewPagingDisplay);
           }
 
           el && el.unmask();
