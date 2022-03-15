@@ -214,19 +214,21 @@ PCL.define("PSI.CodeTable.CodeTableEditForm", {
           },
           width: width2,
         }, {
+          id: "PSI_CodeTable_CodeTableEditForm_hiddenViewPaging",
+          xtype: "hidden",
+          value: "2",
+          name: "viewPaging",
+        }, {
           id: "PSI_CodeTable_CodeTableEditForm_editViewPaging",
-          xtype: "combo",
-          queryMode: "local",
-          editable: false,
-          valueField: "id",
+          xtype: "psi_sysdictfield",
+          tableName: "t_sysdict_sln0000_ct_view_paging",
+          callbackFunc: me._viewPagingCallback,
+          callbackScope: me,
           fieldLabel: "视图分页",
           beforeLabelTextTpl: PSI.Const.REQUIRED,
-          store: PCL.create("PCL.data.ArrayStore", {
-            fields: ["id", "text"],
-            data: [[1, "分页"], [2, "不分页"]]
-          }),
-          value: 2,
-          name: "viewPaging",
+          allowBlank: false,
+          blankText: "没有选择视图是否需要分页",
+          value: "不分页",
           width: width2,
           listeners: {
             specialkey: {
@@ -312,6 +314,7 @@ PCL.define("PSI.CodeTable.CodeTableEditForm", {
     me.editAutoCodeLength = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editAutoCodeLength");
     me.editHandlerClassName = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editHandlerClassName");
     me.editMemo = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editMemo");
+    me.hiddenViewPaging = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_hiddenViewPaging");
     me.editViewPaging = PCL.getCmp("PSI_CodeTable_CodeTableEditForm_editViewPaging");
 
     const list = [me.editCategory, me.editCode, me.editName, me.editModuleName];
@@ -436,5 +439,19 @@ PCL.define("PSI.CodeTable.CodeTableEditForm", {
       id = 0;
     }
     me.hiddenEnableParentId.setValue(id);
-  }
+  },
+
+  /**
+   * 视图分页 字段回调本方法
+   * @private
+   */
+  _viewPagingCallback(data, scope) {
+    const me = scope;
+
+    let id = data ? data.get("id") : null;
+    if (!id) {
+      id = "2"; // 不分页
+    }
+    me.hiddenViewPaging.setValue(id);
+  },
 });
