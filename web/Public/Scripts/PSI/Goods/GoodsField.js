@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.GoodsField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Goods.GoodsField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_goodsfield",
 
   config: {
@@ -55,25 +55,25 @@ Ext.define("PSI.Goods.GoodsField", {
   onTriggerClick: function (e) {
     var me = this;
 
-    var editWarehouse = Ext.getCmp(me.getWarehouseEditName());
+    var editWarehouse = PCL.getCmp(me.getWarehouseEditName());
     var warehouseId = null;
     if (editWarehouse) {
       warehouseId = editWarehouse.getIdValue();
     }
 
     var modelName = "PSIGoodsField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name", "spec", "unitName",
         "taxRate", "invCnt"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    var lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -131,7 +131,7 @@ Ext.define("PSI.Goods.GoodsField", {
       }
     });
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       title: "选择 - 物料",
       header: false,
       modal: me.getShowModal(),
@@ -192,10 +192,10 @@ Ext.define("PSI.Goods.GoodsField", {
 
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("__editGoods");
+    var editName = PCL.getCmp("__editGoods");
     editName.on("change", function () {
       var store = me.lookupGrid.getStore();
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/Goods/queryData",
         params: {
           queryKey: editName.getValue(),
@@ -205,8 +205,7 @@ Ext.define("PSI.Goods.GoodsField", {
         callback: function (opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
@@ -301,7 +300,7 @@ Ext.define("PSI.Goods.GoodsField", {
   },
 
   onAddGoods: function () {
-    var form = Ext.create("PSI.Goods.GoodsEditForm");
+    var form = PCL.create("PSI.Goods.GoodsEditForm");
 
     form.show();
   }
