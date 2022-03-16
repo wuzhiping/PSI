@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.GoodsUnitField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Goods.GoodsUnitField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_goodsunitfield",
 
   config: {
@@ -49,17 +49,17 @@ Ext.define("PSI.Goods.GoodsUnitField", {
     var me = this;
 
     var modelName = "PSIGoodsUnitField";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "code", "name"]
     });
 
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       model: modelName,
       autoLoad: false,
       data: []
     });
-    var lookupGrid = Ext.create("Ext.grid.Panel", {
+    var lookupGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       columnLines: true,
       border: 1,
@@ -92,7 +92,7 @@ Ext.define("PSI.Goods.GoodsUnitField", {
       }
     });
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       title: "选择 - 物料计量单位",
       header: false,
       border: 0,
@@ -152,10 +152,10 @@ Ext.define("PSI.Goods.GoodsUnitField", {
 
     me.wnd = wnd;
 
-    var editName = Ext.getCmp("__editGoodsUnit");
+    var editName = PCL.getCmp("__editGoodsUnit");
     editName.on("change", function () {
       var store = me.lookupGrid.getStore();
-      Ext.Ajax.request({
+      PCL.Ajax.request({
         url: PSI.Const.BASE_URL + "Home/Goods/queryUnitData",
         params: {
           queryKey: editName.getValue(),
@@ -164,8 +164,7 @@ Ext.define("PSI.Goods.GoodsUnitField", {
         callback: function (opt, success, response) {
           store.removeAll();
           if (success) {
-            var data = Ext.JSON
-              .decode(response.responseText);
+            var data = PCL.JSON.decode(response.responseText);
             store.add(data);
             if (data.length > 0) {
               me.lookupGrid.getSelectionModel().select(0);
