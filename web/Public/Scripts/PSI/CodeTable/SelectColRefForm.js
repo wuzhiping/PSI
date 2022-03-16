@@ -15,6 +15,9 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
     valueFrom: 2,
   },
 
+  /**
+   * @override
+   */
   initComponent() {
     const me = this;
 
@@ -44,6 +47,9 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
     me.callParent(arguments);
   },
 
+  /**
+   * @private
+   */
   _onWndShow() {
     const me = this;
   }
