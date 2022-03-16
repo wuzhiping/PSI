@@ -827,6 +827,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     const me = this;
 
     PCL.get(window).un('beforeunload', me.__onWindowBeforeUnload);
+
+    PCL.WindowManager.hideAll();
   },
 
   /**
