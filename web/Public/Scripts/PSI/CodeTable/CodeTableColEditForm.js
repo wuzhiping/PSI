@@ -892,7 +892,11 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
    */
   _onRefCol() {
     const me = this;
-    me.showInfo("TODO")
+
+    const form = PCL.create("PSI.CodeTable.SelectColRefForm", {
+      codeTable: me.getCodeTable(),
+    });
+    form.show();
   },
 
   /**
