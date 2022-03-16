@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.GoodsParentCategoryField", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Goods.GoodsParentCategoryField", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.psi_goodsparentcategoryfield",
 
   /**
@@ -40,13 +40,13 @@ Ext.define("PSI.Goods.GoodsParentCategoryField", {
    */
   onTriggerClick: function (e) {
     var modelName = "PSIGoodsCategoryModel_Field";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "text", "fullName", "code", "leaf",
         "children"]
     });
 
-    var orgStore = Ext.create("Ext.data.TreeStore", {
+    var orgStore = PCL.create("PCL.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -58,7 +58,7 @@ Ext.define("PSI.Goods.GoodsParentCategoryField", {
       }
     });
 
-    var orgTree = Ext.create("Ext.tree.Panel", {
+    var orgTree = PCL.create("PCL.tree.Panel", {
       store: orgStore,
       rootVisible: false,
       useArrows: true,
@@ -85,7 +85,7 @@ Ext.define("PSI.Goods.GoodsParentCategoryField", {
     orgTree.on("itemdblclick", this.onOK, this);
     this.tree = orgTree;
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       header: {
         title: "<span style='font-size:160%'>选择物料分类</span>",
         height: 40
