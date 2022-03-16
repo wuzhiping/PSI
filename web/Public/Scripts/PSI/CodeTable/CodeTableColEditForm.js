@@ -895,8 +895,18 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   _onRefCol() {
     const me = this;
 
+    const valueFrom = parseInt(me.hiddenValueFrom.getValue());
+
+    if (valueFrom != 2 && valueFrom != 3 && valueFrom != 4) {
+      me.showInfo("请先选择正确的值来源");
+      return;
+    }
+
+    const codeTable = me.getCodeTable();
+
     const form = PCL.create("PSI.CodeTable.SelectColRefForm", {
-      codeTable: me.getCodeTable(),
+      codeTable,
+      valueFrom,
     });
     form.show();
   },

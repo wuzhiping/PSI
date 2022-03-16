@@ -11,7 +11,8 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
   mixins: ["PSI.AFX.Mix.Common"],
 
   config: {
-    codeTable: null
+    codeTable: null,
+    valueFrom: 2,
   },
 
   initComponent() {
