@@ -365,7 +365,7 @@ PCL.define("PSI.PurchaseOrder.POMainForm", {
         }, {
           header: "状态",
           dataIndex: "billStatus",
-          width: 100,
+          width: 110,
           renderer: function (value) {
             if (value == 0) {
               return "<span style='color:red'>待审核</span>";
