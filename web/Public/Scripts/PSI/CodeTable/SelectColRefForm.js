@@ -23,7 +23,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
         height: 40
       },
       width: 800,
-      height: 420,
+      height: 600,
       layout: "border",
       buttons: [{
         text: "关闭",
