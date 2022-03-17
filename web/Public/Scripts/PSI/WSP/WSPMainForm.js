@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.WSP.WSPMainForm", {
+PCL.define("PSI.WSP.WSPMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -15,7 +15,7 @@ Ext.define("PSI.WSP.WSPMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -171,7 +171,7 @@ Ext.define("PSI.WSP.WSPMainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "待拆分"], [1000, "已拆分"]]
       }),
@@ -252,7 +252,7 @@ Ext.define("PSI.WSP.WSPMainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -269,13 +269,13 @@ Ext.define("PSI.WSP.WSPMainForm", {
   onClearQuery: function () {
     var me = this;
 
-    Ext.getCmp("editQueryBillStatus").setValue(-1);
-    Ext.getCmp("editQueryRef").setValue(null);
-    Ext.getCmp("editQueryFromDT").setValue(null);
-    Ext.getCmp("editQueryToDT").setValue(null);
-    Ext.getCmp("editQueryFromWarehouse").clearIdValue();
-    Ext.getCmp("editQueryToWarehouse").clearIdValue();
-    Ext.getCmp("editQueryGoods").clearIdValue();
+    PCL.getCmp("editQueryBillStatus").setValue(-1);
+    PCL.getCmp("editQueryRef").setValue(null);
+    PCL.getCmp("editQueryFromDT").setValue(null);
+    PCL.getCmp("editQueryToDT").setValue(null);
+    PCL.getCmp("editQueryFromWarehouse").clearIdValue();
+    PCL.getCmp("editQueryToWarehouse").clearIdValue();
+    PCL.getCmp("editQueryGoods").clearIdValue();
 
     me.onQuery();
   },
