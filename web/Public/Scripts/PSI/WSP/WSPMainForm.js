@@ -284,35 +284,35 @@ PCL.define("PSI.WSP.WSPMainForm", {
     var me = this;
 
     var result = {
-      billStatus: Ext.getCmp("editQueryBillStatus").getValue()
+      billStatus: PCL.getCmp("editQueryBillStatus").getValue()
     };
 
-    var ref = Ext.getCmp("editQueryRef").getValue();
+    var ref = PCL.getCmp("editQueryRef").getValue();
     if (ref) {
       result.ref = ref;
     }
 
-    var fromWarehouseId = Ext.getCmp("editQueryFromWarehouse").getIdValue();
+    var fromWarehouseId = PCL.getCmp("editQueryFromWarehouse").getIdValue();
     if (fromWarehouseId) {
       result.fromWarehouseId = fromWarehouseId;
     }
 
-    var toWarehouseId = Ext.getCmp("editQueryToWarehouse").getIdValue();
+    var toWarehouseId = PCL.getCmp("editQueryToWarehouse").getIdValue();
     if (toWarehouseId) {
       result.toWarehouseId = toWarehouseId;
     }
 
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
-    var goodsId = Ext.getCmp("editQueryGoods").getIdValue();
+    var goodsId = PCL.getCmp("editQueryGoods").getIdValue();
     if (goodsId) {
       result.goodsId = goodsId;
     }
@@ -327,13 +327,13 @@ PCL.define("PSI.WSP.WSPMainForm", {
     }
 
     var modelName = "PSIWSPBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "bizDate", "fromWarehouseName",
         "toWarehouseName", "inputUserName", "bizUserName",
         "billStatus", "dateCreated", "billMemo"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -359,7 +359,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -425,7 +425,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
         itemdblclick: {
           fn: me.getPermission().edit == "1"
             ? me.onEditBill
-            : Ext.emptyFn,
+            : PCL.emptyFn,
           scope: me
         }
       },
@@ -443,7 +443,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"],
             ["300"], ["1000"]]
@@ -452,12 +452,9 @@ PCL.define("PSI.WSP.WSPMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToobar")
-                  .doRefresh();
+                PCL.getCmp("pagingToobar").doRefresh();
               },
               scope: me
             }
@@ -477,16 +474,16 @@ PCL.define("PSI.WSP.WSPMainForm", {
     var grid = me.getMainGrid();
     var item = grid.getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      Ext.getCmp("buttonEdit").setDisabled(true);
-      Ext.getCmp("buttonDelete").setDisabled(true);
-      Ext.getCmp("buttonCommit").setDisabled(true);
+      PCL.getCmp("buttonEdit").setDisabled(true);
+      PCL.getCmp("buttonDelete").setDisabled(true);
+      PCL.getCmp("buttonCommit").setDisabled(true);
       return;
     }
     var bill = item[0];
 
     var commited = parseInt(bill.get("billStatus")) == 1000;
 
-    var buttonEdit = Ext.getCmp("buttonEdit");
+    var buttonEdit = PCL.getCmp("buttonEdit");
     buttonEdit.setDisabled(false);
     if (commited) {
       buttonEdit.setText("查看拆分单");
@@ -494,17 +491,17 @@ PCL.define("PSI.WSP.WSPMainForm", {
       buttonEdit.setText("编辑拆分单");
     }
 
-    Ext.getCmp("buttonDelete").setDisabled(commited);
-    Ext.getCmp("buttonCommit").setDisabled(commited);
+    PCL.getCmp("buttonDelete").setDisabled(commited);
+    PCL.getCmp("buttonCommit").setDisabled(commited);
 
     me.refreshDetailGrid();
     me.refreshDetailGridEx();
   },
 
   refreshMainGrid: function (id) {
-    Ext.getCmp("buttonEdit").setDisabled(true);
-    Ext.getCmp("buttonDelete").setDisabled(true);
-    Ext.getCmp("buttonCommit").setDisabled(true);
+    PCL.getCmp("buttonEdit").setDisabled(true);
+    PCL.getCmp("buttonDelete").setDisabled(true);
+    PCL.getCmp("buttonCommit").setDisabled(true);
 
     var me = this;
     var gridDetail = me.getDetailGrid();
@@ -513,7 +510,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
 
     me.getDetailGridEx().getStore().removeAll();
 
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
     me.__lastId = id;
   },
 
