@@ -5,8 +5,8 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Goods.ParentBrandEditor", {
-  extend: "Ext.form.field.Trigger",
+PCL.define("PSI.Goods.ParentBrandEditor", {
+  extend: "PCL.form.field.Trigger",
   alias: "widget.PSI_parent_brand_editor",
 
   config: {
@@ -34,13 +34,13 @@ Ext.define("PSI.Goods.ParentBrandEditor", {
     var me = this;
 
     var modelName = "PSIModel_ParentBrandEditor";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "text", "fullName", "leaf",
         "children"]
     });
 
-    var store = Ext.create("Ext.data.TreeStore", {
+    var store = PCL.create("PCL.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -52,7 +52,7 @@ Ext.define("PSI.Goods.ParentBrandEditor", {
       }
     });
 
-    var tree = Ext.create("Ext.tree.Panel", {
+    var tree = PCL.create("PCL.tree.Panel", {
       cls: "PSI",
       store: store,
       rootVisible: false,
@@ -77,7 +77,7 @@ Ext.define("PSI.Goods.ParentBrandEditor", {
     tree.on("itemdblclick", me.onOK, me);
     me.tree = tree;
 
-    var wnd = Ext.create("Ext.window.Window", {
+    var wnd = PCL.create("PCL.window.Window", {
       title: "选择上级品牌",
       modal: true,
       width: 400,
