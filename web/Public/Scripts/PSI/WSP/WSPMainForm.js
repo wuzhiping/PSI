@@ -543,7 +543,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
           .removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
@@ -584,7 +584,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
         store.removeAll();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           store.add(data);
 
           if (store.getCount() > 0) {
@@ -609,18 +609,18 @@ PCL.define("PSI.WSP.WSPMainForm", {
     }
 
     var modelName = "PSIWSPBillDetail";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount", "memo"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__detailGrid = Ext.create("Ext.grid.Panel", {
+    me.__detailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -635,7 +635,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 40
         }), {
@@ -686,14 +686,14 @@ PCL.define("PSI.WSP.WSPMainForm", {
     }
 
     var modelName = "PSIGoodsBOM";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "text", "goodsName", "goodsSpec",
         "unitName", "bomCount", "goodsCount", "leaf",
         "children", "costWeight", "costWeightNote"]
     });
 
-    var store = Ext.create("Ext.data.TreeStore", {
+    var store = PCL.create("PCL.data.TreeStore", {
       model: modelName,
       proxy: {
         type: "ajax",
@@ -705,15 +705,14 @@ PCL.define("PSI.WSP.WSPMainForm", {
       listeners: {
         beforeload: {
           fn: function () {
-            store.proxy.extraParams = me
-              .getQueryParamForBOM();
+            store.proxy.extraParams = me.getQueryParamForBOM();
           },
           scope: me
         }
       }
     });
 
-    me.__goodsBOMGrid = Ext.create("Ext.tree.Panel", {
+    me.__goodsBOMGrid = PCL.create("PCL.tree.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -797,18 +796,18 @@ PCL.define("PSI.WSP.WSPMainForm", {
     }
 
     var modelName = "PSIWSPBillDetailEx";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__detailGridEx = Ext.create("Ext.grid.Panel", {
+    me.__detailGridEx = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -820,7 +819,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 40
         }), {
@@ -887,7 +886,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
   onAddBill: function () {
     var me = this;
 
-    var form = Ext.create("PSI.WSP.WSPEditForm", {
+    var form = PCL.create("PSI.WSP.WSPEditForm", {
       parentForm: me
     });
 
@@ -903,7 +902,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
     }
     var bill = item[0];
 
-    var form = Ext.create("PSI.WSP.WSPEditForm", {
+    var form = PCL.create("PSI.WSP.WSPEditForm", {
       parentForm: me,
       entity: bill
     });
@@ -937,7 +936,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
       + "</span>";
 
     var confirmFunc = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       var r = {
         url: me.URL("Home/WSP/deleteWSPBill"),
@@ -993,7 +992,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
     var info = "请确认是否提交单号为: <span style='color:red'>" + bill.get("ref")
       + "</span> 的拆分单?";
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/WSP/commitWSPBill"),
@@ -1056,7 +1055,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: me.URL("Home/WSP/genWSPBillPrintPage"),
@@ -1115,7 +1114,7 @@ PCL.define("PSI.WSP.WSPMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: me.URL("Home/WSP/genWSPBillPrintPage"),
