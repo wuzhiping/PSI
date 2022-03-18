@@ -15,6 +15,14 @@ Ext.define("PSI.Bill.SRViewForm", {
   initComponent: function () {
     var me = this;
 
+    const fieldProps = {
+      xtype: "textfield",
+      readOnly: true,
+      fieldCls: "PSI-viewBill-field",
+      labelSeparator: "",
+      labelAlign: "right",
+    };
+
     Ext.apply(me, {
       header: {
         title: "<span style='font-size:160%'>查看销售退货入库单</span>",
@@ -40,7 +48,7 @@ Ext.define("PSI.Bill.SRViewForm", {
           type: "table",
           columns: 2
         },
-        height: 100,
+        height: 90,
         bodyPadding: 10,
         items: [{
           id: "editCustomer",
@@ -55,31 +63,23 @@ Ext.define("PSI.Bill.SRViewForm", {
           id: "editRef",
           fieldLabel: "单号",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield",
-          value: me.getRef()
+          value: me.getRef(),
+          ...fieldProps,
         }, {
           id: "editBizDT",
           fieldLabel: "业务日期",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editWarehouse",
           fieldLabel: "入库仓库",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editBizUser",
           fieldLabel: "业务员",
-          xtype: "displayfield",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":"
+          ...fieldProps,
         }]
       }],
       listeners: {
@@ -109,7 +109,8 @@ Ext.define("PSI.Bill.SRViewForm", {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
 
-          Ext.getCmp("editCustomer").setValue(data.customerName + " 销售单号: " + data.wsBillRef);
+          const s = `<span class='PSI-field-note'>${data.customerName} (销售单号: ${data.wsBillRef})</span>`;
+          Ext.getCmp("editCustomer").setValue(s);
 
           Ext.getCmp("editWarehouse").setValue(data.warehouseName);
 
