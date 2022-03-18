@@ -166,7 +166,7 @@ PCL.define("PSI.Warehouse.MainForm", {
               : "<span style='color:red'>停用</span>";
           }
         }, {
-          header: "创建人的数据域",
+          header: "数据域",
           dataIndex: "dataOrg",
           width: 150
         }]
