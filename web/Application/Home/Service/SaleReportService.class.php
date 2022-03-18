@@ -2387,6 +2387,7 @@ class SaleReportService extends PSIBaseExService
     }
 
     $params["companyId"] = $this->getCompanyId();
+    $params["loginUserId"] = $this->getLoginUserId();
 
     $dao = new SaleReportDAO($this->db());
     $data = $dao->saleDetailQueryData($params);
@@ -2517,6 +2518,7 @@ class SaleReportService extends PSIBaseExService
     $productionName = $bs->getProductionName();
 
     $params["companyId"] = $this->getCompanyId();
+    $params["loginUserId"] = $this->getLoginUserId();
 
     $dao = new SaleReportDAO($this->db());
     $data = $dao->saleDetailQueryData($params);
