@@ -1398,6 +1398,18 @@ class SOBillDAO extends PSIBaseExDAO
     return null;
   }
 
+  private function receivingCodeToName($code)
+  {
+    switch ($code) {
+      case 0:
+        return "记应收账款";
+      case 1:
+        return "现金收款";
+      default:
+        return "";
+    }
+  }
+
   /**
    * 根据单号查询销售订单的完整数据，包括明细表的数据
    */
@@ -1429,7 +1441,7 @@ class SOBillDAO extends PSIBaseExDAO
     $result["fax"] = $v["fax"];
     $result["orgFullName"] = $v["full_name"];
     $result["bizUserName"] = $v["biz_user_name"];
-    $result["receivingType"] = $v["receiving_type"];
+    $result["receivingType"] = $this->receivingCodeToName($v["receiving_type"]);
     $result["billMemo"] = $v["bill_memo"];
     $result["billStatus"] = $v["bill_status"];
 
