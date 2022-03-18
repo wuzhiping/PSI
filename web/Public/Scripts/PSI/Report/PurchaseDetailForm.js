@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.Report.PurchaseDetailForm", {
+PCL.define("PSI.Report.PurchaseDetailForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   initComponent: function () {
@@ -13,7 +13,7 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
 
     var store = me.getMainGrid().getStore();
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       tbar: [{
         id: "pagingToobar",
         cls: "PSI-toolbox",
@@ -29,7 +29,7 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
         xtype: "combobox",
         editable: false,
         width: 60,
-        store: Ext.create("Ext.data.ArrayStore", {
+        store: PCL.create("PCL.data.ArrayStore", {
           fields: ["text"],
           data: [["20"], ["50"], ["100"],
           ["300"], ["1000"]]
@@ -38,12 +38,9 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
         listeners: {
           change: {
             fn: function () {
-              store.pageSize = Ext
-                .getCmp("comboCountPerPage")
-                .getValue();
+              store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
               store.currentPage = 1;
-              Ext.getCmp("pagingToobar")
-                .doRefresh();
+              PCL.getCmp("pagingToobar").doRefresh();
             },
             scope: me
           }
@@ -115,8 +112,8 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
   getQueryCmp: function () {
     var me = this;
 
-    Ext.define("PSILogCategory", {
-      extend: "Ext.data.Model",
+    PCL.define("PSILogCategory", {
+      extend: "PCL.data.Model",
       fields: ["id", "name"]
     });
 
@@ -163,7 +160,7 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
         height: 26,
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -193,14 +190,14 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
     }
 
     var modelName = "PSIPurchaseDetailReport";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["supplierName", "poBillRef", "pwBillRef", "bizDate", "warehouseName", "goodsCode",
         "goodsName", "goodsSpec", "unitName", "goodsCount", "goodsMoney",
         "goodsPrice", "memo", "taxRate", "tax",
         "moneyWithTax", "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -221,7 +218,7 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
       store.proxy.extraParams = me.getQueryParam();
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -351,18 +348,18 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
 
   getQueryParam: function () {
     var result = {
-      supplierId: Ext.getCmp("editQuerySupplier").getIdValue(),
-      warehouseId: Ext.getCmp("editQueryWarehouse").getIdValue()
+      supplierId: PCL.getCmp("editQuerySupplier").getIdValue(),
+      warehouseId: PCL.getCmp("editQueryWarehouse").getIdValue()
     };
 
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
     return result;
@@ -371,10 +368,10 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
   onClearQuery: function () {
     var me = this;
 
-    Ext.getCmp("editQuerySupplier").clearIdValue();
-    Ext.getCmp("editQueryWarehouse").clearIdValue();
-    Ext.getCmp("editQueryFromDT").setValue(null);
-    Ext.getCmp("editQueryToDT").setValue(null);
+    PCL.getCmp("editQuerySupplier").clearIdValue();
+    PCL.getCmp("editQueryWarehouse").clearIdValue();
+    PCL.getCmp("editQueryFromDT").setValue(null);
+    PCL.getCmp("editQueryToDT").setValue(null);
 
     me.getMainGrid().getStore().currentPage = 1;
 
@@ -382,7 +379,7 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
   },
 
   refreshMainGrid: function (id) {
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
   },
 
   onPrintPreview: function () {
@@ -398,7 +395,7 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
 
     var me = this;
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: me.URL("Home/Report/genInventoryUpperPrintPage"),
@@ -449,7 +446,7 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
 
     var me = this;
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: me.URL("Home/Report/genPurchaseDetailPrintPage"),
@@ -488,22 +485,22 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
     var me = this;
 
     var url = "Home/Report/purchaseDetailPdf?limit=-1";
-    var supplierId = Ext.getCmp("editQuerySupplier").getIdValue();
+    var supplierId = PCL.getCmp("editQuerySupplier").getIdValue();
     if (supplierId) {
       url = url + "&supplierId=" + supplierId;
     }
-    var warehouseId = Ext.getCmp("editQueryWarehouse").getIdValue();
+    var warehouseId = PCL.getCmp("editQueryWarehouse").getIdValue();
     if (warehouseId) {
       url = url + "&warehouseId=" + warehouseId;
     }
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      var dt = Ext.Date.format(fromDT, "Y-m-d");
+      var dt = PCL.Date.format(fromDT, "Y-m-d");
       url = url + "&fromDT=" + dt;
     }
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      var dt = Ext.Date.format(toDT, "Y-m-d");
+      var dt = PCL.Date.format(toDT, "Y-m-d");
       url = url + "&toDT=" + dt;
     }
 
@@ -514,22 +511,22 @@ Ext.define("PSI.Report.PurchaseDetailForm", {
     var me = this;
 
     var url = "Home/Report/purchaseDetailExcel?limit=-1";
-    var supplierId = Ext.getCmp("editQuerySupplier").getIdValue();
+    var supplierId = PCL.getCmp("editQuerySupplier").getIdValue();
     if (supplierId) {
       url = url + "&supplierId=" + supplierId;
     }
-    var warehouseId = Ext.getCmp("editQueryWarehouse").getIdValue();
+    var warehouseId = PCL.getCmp("editQueryWarehouse").getIdValue();
     if (warehouseId) {
       url = url + "&warehouseId=" + warehouseId;
     }
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      var dt = Ext.Date.format(fromDT, "Y-m-d");
+      var dt = PCL.Date.format(fromDT, "Y-m-d");
       url = url + "&fromDT=" + dt;
     }
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      var dt = Ext.Date.format(toDT, "Y-m-d");
+      var dt = PCL.Date.format(toDT, "Y-m-d");
       url = url + "&toDT=" + dt;
     }
 
