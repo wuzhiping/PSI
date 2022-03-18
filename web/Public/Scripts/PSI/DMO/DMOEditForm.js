@@ -360,7 +360,7 @@ PCL.define("PSI.DMO.DMOEditForm", {
 
   onOK: function () {
     var me = this;
-    Ext.getBody().mask("正在保存中...");
+    PCL.getBody().mask("正在保存中...");
     me.ajax({
       url: me.URL("Home/DMO/editDMOBill"),
       params: {
@@ -368,7 +368,7 @@ PCL.define("PSI.DMO.DMOEditForm", {
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
           var data = me.decodeJSON(response.responseText);
@@ -391,7 +391,7 @@ PCL.define("PSI.DMO.DMOEditForm", {
       for (var i = 0; i < me.__editorList.length; i++) {
         var editorId = me.__editorList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__editorList[i + 1]);
+          var edit = PCL.getCmp(me.__editorList[i + 1]);
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -421,8 +421,8 @@ PCL.define("PSI.DMO.DMOEditForm", {
       return me.__goodsGrid;
     }
     var modelName = "PSIDMOBill_EditForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsId", "goodsCode", "goodsName",
         "goodsSpec", "unitName", "goodsCount", {
           name: "goodsMoney",
@@ -438,13 +438,13 @@ PCL.define("PSI.DMO.DMOEditForm", {
           type: "float"
         }, "memo", "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__cellEditing = Ext.create("PSI.UX.CellEditing", {
+    me.__cellEditing = PCL.create("PSI.UX.CellEditing", {
       clicksToEdit: 1,
       listeners: {
         edit: {
@@ -454,7 +454,7 @@ PCL.define("PSI.DMO.DMOEditForm", {
       }
     });
 
-    me.__goodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__goodsGrid = PCL.create("PCL.grid.Panel", {
       viewConfig: {
         enableTextSelection: true,
         markDirty: !me.adding
@@ -739,18 +739,17 @@ PCL.define("PSI.DMO.DMOEditForm", {
 
   getSaveData: function () {
     var result = {
-      id: Ext.getCmp("hiddenId").getValue(),
-      dealDate: Ext.Date.format(Ext.getCmp("editDealDate").getValue(),
-        "Y-m-d"),
-      factoryId: Ext.getCmp("editFactory").getIdValue(),
-      dealAddress: Ext.getCmp("editDealAddress").getValue(),
-      contact: Ext.getCmp("editContact").getValue(),
-      tel: Ext.getCmp("editTel").getValue(),
-      fax: Ext.getCmp("editFax").getValue(),
-      orgId: Ext.getCmp("editOrg").getIdValue(),
-      bizUserId: Ext.getCmp("editBizUser").getIdValue(),
-      paymentType: Ext.getCmp("editPaymentType").getValue(),
-      billMemo: Ext.getCmp("editBillMemo").getValue(),
+      id: PCL.getCmp("hiddenId").getValue(),
+      dealDate: PCL.Date.format(PCL.getCmp("editDealDate").getValue(), "Y-m-d"),
+      factoryId: PCL.getCmp("editFactory").getIdValue(),
+      dealAddress: PCL.getCmp("editDealAddress").getValue(),
+      contact: PCL.getCmp("editContact").getValue(),
+      tel: PCL.getCmp("editTel").getValue(),
+      fax: PCL.getCmp("editFax").getValue(),
+      orgId: PCL.getCmp("editOrg").getIdValue(),
+      bizUserId: PCL.getCmp("editBizUser").getIdValue(),
+      paymentType: PCL.getCmp("editPaymentType").getValue(),
+      billMemo: PCL.getCmp("editBillMemo").getValue(),
       items: []
     };
 
@@ -771,37 +770,37 @@ PCL.define("PSI.DMO.DMOEditForm", {
       });
     }
 
-    return Ext.JSON.encode(result);
+    return PCL.JSON.encode(result);
   },
 
   setBillReadonly: function () {
     var me = this;
     me.__readonly = true;
     me.setTitle("<span style='font-size:160%;'>查看成品委托生产订单</span>");
-    Ext.getCmp("buttonSave").setDisabled(true);
-    Ext.getCmp("buttonCancel").setText("关闭");
-    Ext.getCmp("editDealDate").setReadOnly(true);
-    Ext.getCmp("editFactory").setReadOnly(true);
-    Ext.getCmp("editDealAddress").setReadOnly(true);
-    Ext.getCmp("editContact").setReadOnly(true);
-    Ext.getCmp("editTel").setReadOnly(true);
-    Ext.getCmp("editFax").setReadOnly(true);
-    Ext.getCmp("editOrg").setReadOnly(true);
-    Ext.getCmp("editBizUser").setReadOnly(true);
-    Ext.getCmp("editPaymentType").setReadOnly(true);
-    Ext.getCmp("editBillMemo").setReadOnly(true);
+    PCL.getCmp("buttonSave").setDisabled(true);
+    PCL.getCmp("buttonCancel").setText("关闭");
+    PCL.getCmp("editDealDate").setReadOnly(true);
+    PCL.getCmp("editFactory").setReadOnly(true);
+    PCL.getCmp("editDealAddress").setReadOnly(true);
+    PCL.getCmp("editContact").setReadOnly(true);
+    PCL.getCmp("editTel").setReadOnly(true);
+    PCL.getCmp("editFax").setReadOnly(true);
+    PCL.getCmp("editOrg").setReadOnly(true);
+    PCL.getCmp("editBizUser").setReadOnly(true);
+    PCL.getCmp("editPaymentType").setReadOnly(true);
+    PCL.getCmp("editBillMemo").setReadOnly(true);
 
-    Ext.getCmp("columnActionDelete").hide();
-    Ext.getCmp("columnActionAdd").hide();
-    Ext.getCmp("columnActionAppend").hide();
+    PCL.getCmp("columnActionDelete").hide();
+    PCL.getCmp("columnActionAdd").hide();
+    PCL.getCmp("columnActionAppend").hide();
   },
 
   // xtype:psi_factoryfield回调本方法
   __setFactoryExtData: function (data, scope) {
     var me = scope;
 
-    Ext.getCmp("editTel").setValue(data.tel01);
-    Ext.getCmp("editFax").setValue(data.fax);
-    Ext.getCmp("editContact").setValue(data.contact01);
+    PCL.getCmp("editTel").setValue(data.tel01);
+    PCL.getCmp("editFax").setValue(data.fax);
+    PCL.getCmp("editContact").setValue(data.contact01);
   }
 });
