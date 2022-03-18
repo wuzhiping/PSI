@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.DMO.DMOEditForm", {
+PCL.define("PSI.DMO.DMOEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   config: {
@@ -24,7 +24,7 @@ Ext.define("PSI.DMO.DMOEditForm", {
     var title = entity == null ? "新建成品委托生产订单" : "编辑成品委托生产订单";
     title = me.formatTitle(title);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: title,
         height: 40
@@ -240,7 +240,7 @@ Ext.define("PSI.DMO.DMOEditForm", {
           queryMode: "local",
           editable: false,
           valueField: "id",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [["0", "记应付账款"]]
           }),
@@ -294,22 +294,22 @@ Ext.define("PSI.DMO.DMOEditForm", {
   onWndClose: function () {
     // 加上这个调用是为了解决 #IMQB2 - https://gitee.com/crm8000/PSI/issues/IMQB2
     // 这个只是目前的临时应急方法，实现的太丑陋了
-    Ext.WindowManager.hideAll();
+    PCL.WindowManager.hideAll();
 
-    Ext.get(window).un('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', this.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
-    Ext.get(window).on('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', this.onWindowBeforeUnload);
 
     var me = this;
 
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: me.URL("Home/DMO/dmoBillInfo"),
       params: {
-        id: Ext.getCmp("hiddenId").getValue()
+        id: PCL.getCmp("hiddenId").getValue()
       },
       method: "POST",
       callback: function (options, success, response) {
@@ -319,36 +319,26 @@ Ext.define("PSI.DMO.DMOEditForm", {
           var data = me.decodeJSON(response.responseText);
 
           if (data.ref) {
-            Ext.getCmp("editRef").setValue(data.ref);
-            Ext.getCmp("editFactory")
-              .setIdValue(data.factoryId);
-            Ext.getCmp("editFactory")
-              .setValue(data.factoryName);
-            Ext.getCmp("editBillMemo")
-              .setValue(data.billMemo);
-            Ext.getCmp("editDealDate")
-              .setValue(data.dealDate);
-            Ext.getCmp("editDealAddress")
-              .setValue(data.dealAddress);
-            Ext.getCmp("editContact")
-              .setValue(data.contact);
-            Ext.getCmp("editTel").setValue(data.tel);
-            Ext.getCmp("editFax").setValue(data.fax);
+            PCL.getCmp("editRef").setValue(data.ref);
+            PCL.getCmp("editFactory").setIdValue(data.factoryId);
+            PCL.getCmp("editFactory").setValue(data.factoryName);
+            PCL.getCmp("editBillMemo").setValue(data.billMemo);
+            PCL.getCmp("editDealDate").setValue(data.dealDate);
+            PCL.getCmp("editDealAddress").setValue(data.dealAddress);
+            PCL.getCmp("editContact").setValue(data.contact);
+            PCL.getCmp("editTel").setValue(data.tel);
+            PCL.getCmp("editFax").setValue(data.fax);
           }
 
-          Ext.getCmp("editBizUser")
-            .setIdValue(data.bizUserId);
-          Ext.getCmp("editBizUser")
-            .setValue(data.bizUserName);
+          PCL.getCmp("editBizUser").setIdValue(data.bizUserId);
+          PCL.getCmp("editBizUser").setValue(data.bizUserName);
           if (data.orgId) {
-            Ext.getCmp("editOrg").setIdValue(data.orgId);
-            Ext.getCmp("editOrg")
-              .setValue(data.orgFullName);
+            PCL.getCmp("editOrg").setIdValue(data.orgId);
+            PCL.getCmp("editOrg").setValue(data.orgFullName);
           }
 
           if (data.paymentType) {
-            Ext.getCmp("editPaymentType")
-              .setValue(data.paymentType);
+            PCL.getCmp("editPaymentType").setValue(data.paymentType);
           }
 
           var store = me.getGoodsGrid().getStore();
