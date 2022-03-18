@@ -15,6 +15,14 @@ Ext.define("PSI.Bill.SOViewForm", {
   initComponent: function () {
     var me = this;
 
+    const fieldProps = {
+      xtype: "textfield",
+      readOnly: true,
+      fieldCls: "PSI-viewBill-field",
+      labelSeparator: "",
+      labelAlign: "right",
+    };
+
     Ext.apply(me, {
       header: {
         title: "<span style='font-size:160%'>查看销售订单</span>",
@@ -46,89 +54,67 @@ Ext.define("PSI.Bill.SOViewForm", {
         items: [{
           id: "editRef",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "单号",
-          xtype: "displayfield",
-          value: me.getRef()
+          value: me.getRef(),
+          ...fieldProps,
         }, {
           id: "editDealDate",
           fieldLabel: "交货日期",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editCustomer",
           colspan: 2,
           width: 430,
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield",
-          fieldLabel: "客户"
+          fieldLabel: "客户",
+          ...fieldProps,
         }, {
           id: "editDealAddress",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "交货地址",
           colspan: 2,
           width: 430,
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editContact",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "联系人",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editTel",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "电话",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editFax",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "传真",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editOrg",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "组织机构",
-          xtype: "displayfield",
           colspan: 2,
-          width: 430
+          width: 430,
+          ...fieldProps,
         }, {
           id: "editBizUser",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "业务员",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
-          id: "editPaymentType",
+          id: "editReceivingType",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          fieldLabel: "付款方式",
-          xtype: "displayfield"
+          fieldLabel: "收款方式",
+          ...fieldProps,
         }, {
           id: "editBillMemo",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "备注",
-          xtype: "displayfield",
           colspan: 3,
-          width: 645
+          width: 645,
+          ...fieldProps,
         }]
       }],
       listeners: {
@@ -170,7 +156,7 @@ Ext.define("PSI.Bill.SOViewForm", {
           Ext.getCmp("editBizUser").setValue(data.bizUserName);
           Ext.getCmp("editOrg").setValue(data.orgFullName);
 
-          Ext.getCmp("editPaymentType").setValue(data.paymentType);
+          Ext.getCmp("editReceivingType").setValue(data.receivingType);
 
           var store = me.getGoodsGrid().getStore();
           store.removeAll();
