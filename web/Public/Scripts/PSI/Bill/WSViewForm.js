@@ -14,6 +14,14 @@ Ext.define("PSI.Bill.WSViewForm", {
   initComponent: function () {
     var me = this;
 
+    const fieldProps = {
+      xtype: "textfield",
+      readOnly: true,
+      fieldCls: "PSI-viewBill-field",
+      labelSeparator: "",
+      labelAlign: "right",
+    };
+
     Ext.apply(me, {
       header: {
         title: "<span style='font-size:160%'>查看销售出库单</span>",
@@ -37,56 +45,45 @@ Ext.define("PSI.Bill.WSViewForm", {
         border: 0,
         layout: {
           type: "table",
-          columns: 2
+          columns: 4
         },
-        height: 120,
+        height: 60,
         bodyPadding: 10,
         items: [{
           id: "editRef",
           fieldLabel: "单号",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield",
-          value: me.getRef()
+          value: me.getRef(),
+          ...fieldProps,
         }, {
           id: "editBizDT",
           fieldLabel: "业务日期",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editCustomer",
-          xtype: "displayfield",
           fieldLabel: "客户",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           colspan: 2,
-          width: 430
+          width: 430,
+          ...fieldProps,
         }, {
           id: "editWarehouse",
           fieldLabel: "出库仓库",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editBizUser",
           fieldLabel: "业务员",
-          xtype: "displayfield",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":"
+          ...fieldProps,
         }, {
           id: "editBillMemo",
           fieldLabel: "备注",
           colspan: 2,
-          xtype: "displayfield",
+          width: 430,
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":"
+          ...fieldProps,
         }]
       }],
       listeners: {
