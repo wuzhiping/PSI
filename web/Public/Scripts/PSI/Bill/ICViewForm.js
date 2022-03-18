@@ -15,6 +15,14 @@ Ext.define("PSI.Bill.ICViewForm", {
   initComponent: function () {
     var me = this;
 
+    const fieldProps = {
+      xtype: "textfield",
+      readOnly: true,
+      fieldCls: "PSI-viewBill-field",
+      labelSeparator: "",
+      labelAlign: "right",
+    };
+
     Ext.apply(me, {
       header: {
         title: "<span style='font-size:160%'>查看盘点单</span>",
@@ -46,31 +54,23 @@ Ext.define("PSI.Bill.ICViewForm", {
           id: "editRef",
           fieldLabel: "单号",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield",
-          value: me.getRef()
+          value: me.getRef(),
+          ...fieldProps,
         }, {
           id: "editBizDT",
           fieldLabel: "业务日期",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editWarehouse",
           fieldLabel: "盘点仓库",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editBizUser",
           fieldLabel: "业务员",
-          xtype: "displayfield",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":"
+          ...fieldProps,
         }]
       }],
       listeners: {
