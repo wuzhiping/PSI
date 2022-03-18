@@ -101,14 +101,12 @@ class SubjectService extends PSIBaseExService
     }
 
     $id = $params["id"];
-    $code = $params["code"];
 
     $params["dataOrg"] = $this->getLoginUserDataOrg();
 
     $db = $this->db();
     $db->startTrans();
 
-    $log = null;
     $dao = new SubjectDAO($db);
     if ($id) {
       // 编辑
@@ -117,7 +115,6 @@ class SubjectService extends PSIBaseExService
         $db->rollback();
         return $rc;
       }
-      $log = "编辑科目：{$code}";
     } else {
       // 新增
       $rc = $dao->addSubject($params);
@@ -126,11 +123,10 @@ class SubjectService extends PSIBaseExService
         return $rc;
       }
       $id = $params["id"];
-
-      $log = "新增科目：{$code}";
     }
 
     // 记录业务日志
+    $log = $params["log"];
     $bs = new BizlogService($db);
     $bs->insertBizlog($log, $this->LOG_CATEGORY);
 

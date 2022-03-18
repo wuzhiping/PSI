@@ -543,9 +543,13 @@ class SubjectDAO extends PSIBaseExDAO
     }
 
     $companyId = $params["companyId"];
-    if ($this->companyIdNotExists($companyId)) {
+    $sql = "select name from t_org where id = '%s' ";
+    $data = $db->query($sql, $companyId);
+    if (!$data) {
       return $this->badParam("companyId");
     }
+    $companyName = $data[0]["name"];
+
     $code = $params["code"];
     $name = $params["name"];
     $isLeaf = $params["isLeaf"];
@@ -617,6 +621,7 @@ class SubjectDAO extends PSIBaseExDAO
 
     // 操作成功
     $params["id"] = $id;
+    $params["log"] = "[$companyName] - 新建科目:{$code}";
     return null;
   }
 
@@ -633,11 +638,19 @@ class SubjectDAO extends PSIBaseExDAO
     $name = $params["name"];
     $isLeaf = $params["isLeaf"];
 
-    $sql = "select parent_id from t_subject where id = '%s' ";
+    $sql = "select code, parent_id, company_id from t_subject where id = '%s' ";
     $data = $db->query($sql, $id);
     if (!$data) {
       return $this->bad("要编辑的科目不存在");
     }
+    $code = $data[0]["code"];
+    $companyId = $data[0]["company_id"];
+    $sql = "select name from t_org where id = '%s' ";
+    $d = $db->query($sql, $companyId);
+    if (!$d) {
+      return $this->badParam("companyId");
+    }
+    $companyName = $d[0]["name"];
 
     $parentId = $data[0]["parent_id"];
     if (!$parentId) {
@@ -662,6 +675,7 @@ class SubjectDAO extends PSIBaseExDAO
     }
 
     // 操作成功
+    $params["log"] = "[$companyName] - 编辑科目：{$code}";
     return null;
   }
 
