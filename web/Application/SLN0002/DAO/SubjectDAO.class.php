@@ -1036,7 +1036,7 @@ class SubjectDAO extends PSIBaseExDAO
     if ($data) {
       $v = $data[0];
       $result[] = [
-        "propName" => "账簿号",
+        "propName" => "账簿码",
         "propValue" => $v["acc_number"]
       ];
 
