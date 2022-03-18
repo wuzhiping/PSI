@@ -15,6 +15,14 @@ Ext.define("PSI.Bill.PRViewForm", {
   initComponent: function () {
     var me = this;
 
+    const fieldProps = {
+      xtype: "textfield",
+      readOnly: true,
+      fieldCls: "PSI-viewBill-field",
+      labelSeparator: "",
+      labelAlign: "right",
+    };
+
     Ext.apply(me, {
       header: {
         title: "<span style='font-size:160%'>查看采购退货出库单</span>",
@@ -40,47 +48,39 @@ Ext.define("PSI.Bill.PRViewForm", {
           type: "table",
           columns: 2
         },
-        height: 100,
+        height: 90,
         bodyPadding: 10,
         border: 0,
         items: [{
           id: "editSupplier",
-          xtype: "displayfield",
           fieldLabel: "供应商",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           colspan: 2,
-          width: 500
+          width: 500,
+          labelSeparator: "",
+          labelAlign: "right",
+              xtype: "displayfield",
         }, {
           id: "editRef",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "单号",
-          xtype: "displayfield",
-          value: me.getRef()
+          value: me.getRef(),
+          ...fieldProps,
         }, {
           id: "editBizDT",
           fieldLabel: "业务日期",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editWarehouse",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "出库仓库",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editBizUser",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "业务员",
-          xtype: "displayfield"
+          ...fieldProps,
         }]
       }],
       listeners: {
@@ -111,7 +111,8 @@ Ext.define("PSI.Bill.PRViewForm", {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
 
-          Ext.getCmp("editSupplier").setValue(data.supplierName + " 采购入库单单号：" + data.pwbillRef);
+          const s = `<span class='PSI-field-note'>${data.supplierName} (采购入库单单号：${data.pwbillRef})</span>`;
+          Ext.getCmp("editSupplier").setValue(s);
 
           Ext.getCmp("editWarehouse").setValue(data.warehouseName);
 
