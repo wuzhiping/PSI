@@ -29,7 +29,10 @@ class DataOrgService extends PSIBaseService
       // 2022-3-15
       // 原来是返回 null，作为全域
       // 现在改为返回一个假条件，生成空域
-      return " ( 1 = 2) ";
+      return [
+        0 => " ( 1 = 2) ",
+        1 => [],
+      ];
     }
 
     // data_org is null 是为了兼容之前的版本遗留下的数据
