@@ -495,21 +495,21 @@ PCL.define("PSI.DMO.DMOMainForm", {
     }
 
     var modelName = "PSIDMOBillDetail";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount", "goodsMoney",
         "goodsPrice", "taxRate", "tax", "moneyWithTax",
         "dmwCount", "leftCount", "memo",
         "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__detailGrid = Ext.create("Ext.grid.Panel", {
+    me.__detailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       title: "生产订单明细",
       viewConfig: {
@@ -521,7 +521,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 50
         }), {
@@ -617,24 +617,24 @@ PCL.define("PSI.DMO.DMOMainForm", {
   refreshMainGrid: function (id) {
     var me = this;
 
-    Ext.getCmp("buttonEdit").setDisabled(true);
-    Ext.getCmp("buttonDelete").setDisabled(true);
-    Ext.getCmp("buttonCommit").setDisabled(true);
-    Ext.getCmp("buttonCancelConfirm").setDisabled(true);
-    Ext.getCmp("buttonGenDMWBill").setDisabled(true);
+    PCL.getCmp("buttonEdit").setDisabled(true);
+    PCL.getCmp("buttonDelete").setDisabled(true);
+    PCL.getCmp("buttonCommit").setDisabled(true);
+    PCL.getCmp("buttonCancelConfirm").setDisabled(true);
+    PCL.getCmp("buttonGenDMWBill").setDisabled(true);
 
     var gridDetail = me.getDetailGrid();
     gridDetail.setTitle("生产订单明细");
     gridDetail.getStore().removeAll();
 
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
     me.__lastId = id;
   },
 
   onAddBill: function () {
     var me = this;
 
-    var form = Ext.create("PSI.DMO.DMOEditForm", {
+    var form = PCL.create("PSI.DMO.DMOEditForm", {
       parentForm: me,
       showAddGoodsButton: me.getPermission().showAddGoodsButton,
       showAddFactoryButton: me.getPermission().showAddFactoryButton
@@ -651,7 +651,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
     }
     var bill = item[0];
 
-    var form = Ext.create("PSI.DMO.DMOEditForm", {
+    var form = PCL.create("PSI.DMO.DMOEditForm", {
       parentForm: me,
       entity: bill,
       showAddGoodsButton: me.getPermission().showAddGoodsButton,
@@ -687,7 +687,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
     var info = "请确认是否删除生产订单: <span style='color:red'>" + bill.get("ref")
       + "</span>";
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       var r = {
         url: me.URL("Home/DMO/deleteDMOBill"),
@@ -721,18 +721,18 @@ PCL.define("PSI.DMO.DMOMainForm", {
     me.getDetailGrid().setTitle("生产订单明细");
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      Ext.getCmp("buttonEdit").setDisabled(true);
-      Ext.getCmp("buttonDelete").setDisabled(true);
-      Ext.getCmp("buttonCommit").setDisabled(true);
-      Ext.getCmp("buttonCancelConfirm").setDisabled(true);
-      Ext.getCmp("buttonGenDMWBill").setDisabled(true);
+      PCL.getCmp("buttonEdit").setDisabled(true);
+      PCL.getCmp("buttonDelete").setDisabled(true);
+      PCL.getCmp("buttonCommit").setDisabled(true);
+      PCL.getCmp("buttonCancelConfirm").setDisabled(true);
+      PCL.getCmp("buttonGenDMWBill").setDisabled(true);
 
       return;
     }
     var bill = item[0];
     var commited = bill.get("billStatus") >= 1000;
 
-    var buttonEdit = Ext.getCmp("buttonEdit");
+    var buttonEdit = PCL.getCmp("buttonEdit");
     buttonEdit.setDisabled(false);
     if (commited) {
       buttonEdit.setText("查看成品委托生产订单");
@@ -740,10 +740,10 @@ PCL.define("PSI.DMO.DMOMainForm", {
       buttonEdit.setText("编辑成品委托生产订单");
     }
 
-    Ext.getCmp("buttonDelete").setDisabled(commited);
-    Ext.getCmp("buttonCommit").setDisabled(commited);
-    Ext.getCmp("buttonCancelConfirm").setDisabled(!commited);
-    Ext.getCmp("buttonGenDMWBill").setDisabled(!commited);
+    PCL.getCmp("buttonDelete").setDisabled(commited);
+    PCL.getCmp("buttonCommit").setDisabled(commited);
+    PCL.getCmp("buttonCancelConfirm").setDisabled(!commited);
+    PCL.getCmp("buttonGenDMWBill").setDisabled(!commited);
 
     me.refreshDetailGrid();
     me.refreshDMWGrid();
@@ -819,7 +819,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/DMO/commitDMOBill"),
@@ -865,7 +865,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
       + "</span> 的生产订单?";
     var id = bill.get("id");
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/DMO/cancelConfirmDMOBill"),
@@ -920,12 +920,12 @@ PCL.define("PSI.DMO.DMOMainForm", {
   onClearQuery: function () {
     var me = this;
 
-    Ext.getCmp("editQueryBillStatus").setValue(-1);
-    Ext.getCmp("editQueryRef").setValue(null);
-    Ext.getCmp("editQueryFromDT").setValue(null);
-    Ext.getCmp("editQueryToDT").setValue(null);
-    Ext.getCmp("editQueryFactory").clearIdValue();
-    Ext.getCmp("editQueryGoods").clearIdValue();
+    PCL.getCmp("editQueryBillStatus").setValue(-1);
+    PCL.getCmp("editQueryRef").setValue(null);
+    PCL.getCmp("editQueryFromDT").setValue(null);
+    PCL.getCmp("editQueryToDT").setValue(null);
+    PCL.getCmp("editQueryFactory").clearIdValue();
+    PCL.getCmp("editQueryGoods").clearIdValue();
 
     me.onQuery();
   },
@@ -934,30 +934,30 @@ PCL.define("PSI.DMO.DMOMainForm", {
     var me = this;
 
     var result = {
-      billStatus: Ext.getCmp("editQueryBillStatus").getValue()
+      billStatus: PCL.getCmp("editQueryBillStatus").getValue()
     };
 
-    var ref = Ext.getCmp("editQueryRef").getValue();
+    var ref = PCL.getCmp("editQueryRef").getValue();
     if (ref) {
       result.ref = ref;
     }
 
-    var factoryId = Ext.getCmp("editQueryFactory").getIdValue();
+    var factoryId = PCL.getCmp("editQueryFactory").getIdValue();
     if (factoryId) {
       result.factoryId = factoryId;
     }
 
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
-    var goodsId = Ext.getCmp("editQueryGoods").getIdValue();
+    var goodsId = PCL.getCmp("editQueryGoods").getIdValue();
     if (goodsId) {
       result.goodsId = goodsId;
     }
@@ -984,7 +984,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.DMW.DMWEditForm", {
+    var form = PCL.create("PSI.DMW.DMWEditForm", {
       genBill: true,
       dmobillRef: bill.get("ref")
     });
@@ -1010,20 +1010,20 @@ PCL.define("PSI.DMO.DMOMainForm", {
       return me.__dmwGrid;
     }
     var modelName = "PSIDMOBill_DMWBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "bizDate", "factoryName",
         "warehouseName", "inputUserName", "bizUserName",
         "billStatus", "amount", "dateCreated",
         "paymentType"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__dmwGrid = Ext.create("Ext.grid.Panel", {
+    me.__dmwGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       title: "生产订单入库详情",
       viewConfig: {
@@ -1163,7 +1163,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/DMO/closeDMOBill"),
@@ -1205,7 +1205,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/DMO/cancelClosedDMOBill"),
@@ -1254,7 +1254,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/DMO/genDMOBillPrintPage",
@@ -1313,7 +1313,7 @@ PCL.define("PSI.DMO.DMOMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/DMO/genDMOBillPrintPage",
