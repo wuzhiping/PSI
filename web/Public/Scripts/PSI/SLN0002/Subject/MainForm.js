@@ -191,6 +191,9 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
         height: 30,
         title: me.formatGridHeaderTitle("独立核算的组织机构")
       },
+      viewConfig: {
+        enableTextSelection: true
+      },
       tools: [{
         type: "close",
         handler() {
@@ -564,6 +567,9 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
         height: 30,
         title: me.formatGridHeaderTitle("账样属性")
       },
+      viewConfig: {
+        enableTextSelection: true
+      },
       columnLines: true,
       columns: {
         defaults: {
@@ -683,6 +689,9 @@ PCL.define("PSI.SLN0002.Subject.MainForm", {
       header: {
         height: 30,
         title: me.formatGridHeaderTitle("账样字段")
+      },
+      viewConfig: {
+        enableTextSelection: true
       },
       columnLines: true,
       columns: {
