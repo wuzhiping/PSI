@@ -621,7 +621,7 @@ class SubjectDAO extends PSIBaseExDAO
 
     // 操作成功
     $params["id"] = $id;
-    $params["log"] = "[$companyName] - 新建科目:{$code}";
+    $params["log"] = "[$companyName] - 新建科目：{$code} - {$name}";
     return null;
   }
 
@@ -675,7 +675,7 @@ class SubjectDAO extends PSIBaseExDAO
     }
 
     // 操作成功
-    $params["log"] = "[$companyName] - 编辑科目：{$code}";
+    $params["log"] = "[$companyName] - 编辑科目：{$code} - {$name}";
     return null;
   }
 
