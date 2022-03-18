@@ -15,6 +15,14 @@ Ext.define("PSI.Bill.POViewForm", {
   initComponent: function () {
     var me = this;
 
+    const fieldProps = {
+      xtype: "textfield",
+      readOnly: true,
+      fieldCls: "PSI-viewBill-field",
+      labelSeparator: "",
+      labelAlign: "right",
+    };
+
     Ext.apply(me, {
       header: {
         title: me.formatTitle("查看采购订单"),
@@ -46,89 +54,67 @@ Ext.define("PSI.Bill.POViewForm", {
         items: [{
           id: "editRef",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
           fieldLabel: "单号",
-          xtype: "displayfield",
-          value: `<span class='PSI-field-note'>${me.getRef()}</span>`
+          value: me.getRef(),
+          ...fieldProps,
         }, {
           id: "editDealDate",
           fieldLabel: "交货日期",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
-          xtype: "displayfield",
+          ...fieldProps,
         }, {
           id: "editSupplier",
           colspan: 2,
           width: 430,
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
-          xtype: "displayfield",
-          fieldLabel: "供应商"
+          fieldLabel: "供应商",
+          ...fieldProps,
         }, {
           id: "editDealAddress",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
           fieldLabel: "交货地址",
           colspan: 2,
-          width: 430,
-          xtype: "displayfield",
+          width: 450,
+          ...fieldProps,
         }, {
           id: "editContact",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
           fieldLabel: "联系人",
-          xtype: "displayfield",
+          ...fieldProps,
         }, {
           id: "editTel",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
           fieldLabel: "电话",
-          xtype: "displayfield",
+          ...fieldProps,
         }, {
           id: "editFax",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
           fieldLabel: "传真",
-          xtype: "displayfield",
+          ...fieldProps,
         }, {
           id: "editOrg",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
           fieldLabel: "组织机构",
-          xtype: "displayfield",
           colspan: 2,
-          width: 430
+          width: 430,
+          ...fieldProps,
         }, {
           id: "editBizUser",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
           fieldLabel: "业务员",
-          xtype: "displayfield",
+          ...fieldProps,
         }, {
           id: "editPaymentType",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
           fieldLabel: "付款方式",
-          xtype: "displayfield",
+          ...fieldProps,
         }, {
           id: "editBillMemo",
           labelWidth: 70,
-          labelAlign: "right",
-          labelSeparator: "：",
           fieldLabel: "备注",
-          xtype: "displayfield",
           colspan: 3,
-          width: 645
+          width: 645,
+          ...fieldProps,
         }]
       }],
       listeners: {
@@ -159,20 +145,18 @@ Ext.define("PSI.Bill.POViewForm", {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
 
-          const _t = (info)=> `<span class='PSI-field-note'>${info}</span>`;
+          Ext.getCmp("editSupplier").setValue(data.supplierName);
+          Ext.getCmp("editBillMemo").setValue(data.billMemo);
+          Ext.getCmp("editDealDate").setValue(data.dealDate);
+          Ext.getCmp("editDealAddress").setValue(data.dealAddress);
+          Ext.getCmp("editContact").setValue(data.contact);
+          Ext.getCmp("editTel").setValue(data.tel);
+          Ext.getCmp("editFax").setValue(data.fax);
 
-          Ext.getCmp("editSupplier").setValue(_t(data.supplierName));
-          Ext.getCmp("editBillMemo").setValue(_t(data.billMemo));
-          Ext.getCmp("editDealDate").setValue(_t(data.dealDate));
-          Ext.getCmp("editDealAddress").setValue(_t(data.dealAddress));
-          Ext.getCmp("editContact").setValue(_t(data.contact));
-          Ext.getCmp("editTel").setValue(_t(data.tel));
-          Ext.getCmp("editFax").setValue(_t(data.fax));
+          Ext.getCmp("editBizUser").setValue(data.bizUserName);
+          Ext.getCmp("editOrg").setValue(data.orgFullName);
 
-          Ext.getCmp("editBizUser").setValue(_t(data.bizUserName));
-          Ext.getCmp("editOrg").setValue(_t(data.orgFullName));
-
-          Ext.getCmp("editPaymentType").setValue(_t(data.paymentType));
+          Ext.getCmp("editPaymentType").setValue(data.paymentType);
 
           var store = me.getGoodsGrid().getStore();
           store.removeAll();
