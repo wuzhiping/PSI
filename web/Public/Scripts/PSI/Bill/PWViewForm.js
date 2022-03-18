@@ -15,6 +15,14 @@ Ext.define("PSI.Bill.PWViewForm", {
   initComponent: function () {
     var me = this;
 
+    const fieldProps = {
+      xtype: "textfield",
+      readOnly: true,
+      fieldCls: "PSI-viewBill-field",
+      labelSeparator: "",
+      labelAlign: "right",
+    };
+
     Ext.apply(me, {
       header: {
         title: "<span style='font-size:160%'>查看采购入库单</span>",
@@ -38,49 +46,39 @@ Ext.define("PSI.Bill.PWViewForm", {
         id: "editForm",
         layout: {
           type: "table",
-          columns: 2
+          columns: 4
         },
-        height: 100,
+        height: 60,
         bodyPadding: 10,
         border: 0,
         items: [{
           id: "editRef",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "单号",
-          xtype: "displayfield",
-          value: `<span class='PSI-field-note'>${me.getRef()}</span>`
+          value: me.getRef(),
+          ...fieldProps,
         }, {
           id: "editBizDT",
           fieldLabel: "业务日期",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editSupplier",
           colspan: 2,
           width: 430,
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield",
-          fieldLabel: "供应商"
+          fieldLabel: "供应商",
+          ...fieldProps,
         }, {
           id: "editWarehouse",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "入库仓库",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editBizUser",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "业务员",
-          xtype: "displayfield"
+          ...fieldProps,
         }]
       }],
       listeners: {
@@ -111,10 +109,10 @@ Ext.define("PSI.Bill.PWViewForm", {
         if (success) {
           var data = Ext.JSON.decode(response.responseText);
 
-          Ext.getCmp("editSupplier").setValue(`<span class='PSI-field-note'>${data.supplierName}</span>`);
-          Ext.getCmp("editWarehouse").setValue(`<span class='PSI-field-note'>${data.warehouseName}</span>`);
-          Ext.getCmp("editBizUser").setValue(`<span class='PSI-field-note'>${data.bizUserName}</span>`);
-          Ext.getCmp("editBizDT").setValue(`<span class='PSI-field-note'>${data.bizDT}</span>`);
+          Ext.getCmp("editSupplier").setValue(data.supplierName);
+          Ext.getCmp("editWarehouse").setValue(data.warehouseName);
+          Ext.getCmp("editBizUser").setValue(data.bizUserName);
+          Ext.getCmp("editBizDT").setValue(data.bizDT);
 
           var store = me.getGoodsGrid().getStore();
           store.removeAll();
