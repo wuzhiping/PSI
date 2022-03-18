@@ -799,8 +799,25 @@ PCL.define("PSI.DMO.DMOEditForm", {
   __setFactoryExtData: function (data, scope) {
     var me = scope;
 
-    PCL.getCmp("editTel").setValue(data.tel01);
-    PCL.getCmp("editFax").setValue(data.fax);
-    PCL.getCmp("editContact").setValue(data.contact01);
+    // 从工厂基础数据中调取默认值
+    // 如果对应的input中已经有值了，则仍保持当前值不变化，不用默认值覆盖当前值
+
+    const editTel = PCL.getCmp("editTel");
+    const tel = editTel.getValue();
+    if (!tel) {
+      editTel.setValue(data.tel01);
+    }
+
+    const editFax = PCL.getCmp("editFax");
+    const fax = editFax.getValue();
+    if (!fax) {
+      editFax.setValue(data.fax);
+    }
+
+    const editContact = PCL.getCmp("editContact");
+    const contact = editContact.getValue();
+    if (!contact) {
+      editContact.setValue(data.contact01);
+    }
   }
 });
