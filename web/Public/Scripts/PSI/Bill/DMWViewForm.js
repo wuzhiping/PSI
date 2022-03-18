@@ -15,6 +15,14 @@ Ext.define("PSI.Bill.DMWViewForm", {
   initComponent: function () {
     var me = this;
 
+    const fieldProps = {
+      xtype: "textfield",
+      readOnly: true,
+      fieldCls: "PSI-viewBill-field",
+      labelSeparator: "",
+      labelAlign: "right",
+    };
+
     Ext.apply(me, {
       header: {
         title: "<span style='font-size:160%'>查看成品委托生产入库单</span>",
@@ -38,49 +46,39 @@ Ext.define("PSI.Bill.DMWViewForm", {
         id: "editForm",
         layout: {
           type: "table",
-          columns: 2
+          columns: 4
         },
-        height: 100,
+        height: 60,
         bodyPadding: 10,
         border: 0,
         items: [{
           id: "editRef",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "单号",
-          xtype: "displayfield",
-          value: me.getRef()
+          value: me.getRef(),
+          ...fieldProps,
         }, {
           id: "editBizDT",
           fieldLabel: "业务日期",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editFactory",
           colspan: 2,
           width: 430,
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
-          xtype: "displayfield",
-          fieldLabel: "工厂"
+          fieldLabel: "工厂",
+          ...fieldProps,
         }, {
           id: "editWarehouse",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "入库仓库",
-          xtype: "displayfield"
+          ...fieldProps,
         }, {
           id: "editBizUser",
           labelWidth: 60,
-          labelAlign: "right",
-          labelSeparator: ":",
           fieldLabel: "业务员",
-          xtype: "displayfield"
+          ...fieldProps,
         }]
       }],
       listeners: {
