@@ -30,7 +30,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
       closable: false,
       resizable: false,
       onEsc: PCL.emptyFn,
-      width: 800,
+      width: 1200,
       height: 600,
       layout: "border",
       items: [
@@ -109,7 +109,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
 
     PCL.define(modelName, {
       extend: "PCL.data.Model",
-      fields: ["name"]
+      fields: ["name","caption"]
     });
 
     me._tableGrid = PCL.create("PCL.grid.Panel", {
@@ -125,8 +125,12 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           sortable: false,
         },
         items: [{
-          header: "表名",
+          header: "数据库表名",
           dataIndex: "name",
+          flex: 1,
+        },{
+          header: "名称",
+          dataIndex: "caption",
           flex: 1,
         }]
       },
