@@ -13,6 +13,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
   config: {
     codeTable: null,
     valueFrom: 2,
+    parentForm: null,
   },
 
   /**
@@ -391,6 +392,39 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
    */
   _onOK() {
     const me = this;
-    me.showInfo("TODO")
+
+    let item = me.getTableGrid().getSelectionModel().getSelection();
+    if (item == null || item.length != 1) {
+      me.showInfo("请选择表");
+      return;
+    }
+
+    const table = item[0];
+    const tableName = table.get("name");
+
+    item = me.getColForKeyGrid().getSelectionModel().getSelection();
+    if (item == null || item.length != 1) {
+      me.showInfo("请选择关联列");
+      return;
+    }
+    const col1 = item[0];
+    const colName = col1.get("dbFieldName");
+
+    item = me.getColForDisplayGrid().getSelectionModel().getSelection();
+    if (item == null || item.length != 1) {
+      me.showInfo("请选择显示列");
+      return;
+    }
+    const col2 = item[0];
+    const colNameDisplay = col2.get("dbFieldName");
+
+    // 回调方法
+    const parentForm = me.getParentForm();
+    if (parentForm && parentForm._refColCallbackFn) {
+      parentForm._refColCallbackFn.apply(parentForm, [{
+        tableName, colName, colNameDisplay,
+      }]);
+    }
+    me.close();
   }
 });

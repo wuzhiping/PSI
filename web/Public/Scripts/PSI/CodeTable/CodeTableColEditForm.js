@@ -911,6 +911,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     const form = PCL.create("PSI.CodeTable.SelectColRefForm", {
       codeTable,
       valueFrom,
+      parentForm: me,
     });
     form.show();
   },
@@ -1018,4 +1019,16 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     }
     me.hiddenMustInput.setValue(parseInt(t));
   },
+
+  /**
+   * PSI.CodeTable.SelectColRefForm回调本方法
+   * 
+   * @private
+   */
+  _refColCallbackFn(data) {
+    const me = this;
+    me.editValueFromTableName.setValue(data.tableName);
+    me.editValueFromColName.setValue(data.colName);
+    me.editValueFromColNameDisplay.setValue(data.colNameDisplay);
+  }
 });
