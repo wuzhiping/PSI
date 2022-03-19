@@ -282,7 +282,10 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
   /**
    * @private
    */
-  _onTableGridSelect() { },
+  _onTableGridSelect() {
+    const me = this;
+    me.refreshColGrid();
+  },
 
   /**
    * @private
@@ -336,6 +339,11 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
       me.ajax(r);
     }
   },
+
+  /**
+   * @private
+   */
+  refreshColGrid() { },
 
   /**
    * @private
