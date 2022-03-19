@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.DMW.DMWMainForm", {
+PCL.define("PSI.DMW.DMWMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -15,7 +15,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -151,7 +151,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "待入库"], [1000, "已入库"],
         [2000, "已退货"]]
@@ -235,7 +235,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -249,14 +249,14 @@ Ext.define("PSI.DMW.DMWMainForm", {
     }
 
     var modelName = "PSIDMWBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "bizDate", "factoryName",
         "warehouseName", "inputUserName", "bizUserName",
         "billStatus", "amount", "dateCreated",
         "paymentType", "billMemo", "tax", "moneyWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -282,7 +282,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -393,7 +393,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"],
             ["300"], ["1000"]]
@@ -402,12 +402,9 @@ Ext.define("PSI.DMW.DMWMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToobar")
-                  .doRefresh();
+                PCL.getCmp("pagingToobar").doRefresh();
               },
               scope: me
             }
@@ -438,20 +435,20 @@ Ext.define("PSI.DMW.DMWMainForm", {
     }
 
     var modelName = "PSIPWBillDetail";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount", "goodsMoney",
         "goodsPrice", "memo", "taxRate", "tax",
         "moneyWithTax", "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__detailGrid = Ext.create("Ext.grid.Panel", {
+    me.__detailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       header: {
         height: 30,
@@ -466,7 +463,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
           menuDisabled: true,
           sortable: false
         },
-        items: [Ext.create("Ext.grid.RowNumberer", {
+        items: [PCL.create("PCL.grid.RowNumberer", {
           text: "#",
           width: 40
         }), {
@@ -544,22 +541,22 @@ Ext.define("PSI.DMW.DMWMainForm", {
   refreshMainGrid: function (id) {
     var me = this;
 
-    Ext.getCmp("buttonEdit").setDisabled(true);
-    Ext.getCmp("buttonDelete").setDisabled(true);
-    Ext.getCmp("buttonCommit").setDisabled(true);
+    PCL.getCmp("buttonEdit").setDisabled(true);
+    PCL.getCmp("buttonDelete").setDisabled(true);
+    PCL.getCmp("buttonCommit").setDisabled(true);
 
     var gridDetail = me.getDetailGrid();
     gridDetail.setTitle(me.formatGridHeaderTitle("成品委托生产入库单明细"));
     gridDetail.getStore().removeAll();
 
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
     me.__lastId = id;
   },
 
   onAddBill: function () {
     var me = this;
 
-    var form = Ext.create("PSI.DMW.DMWEditForm", {
+    var form = PCL.create("PSI.DMW.DMWEditForm", {
       parentForm: me
     });
     form.show();
@@ -574,7 +571,7 @@ Ext.define("PSI.DMW.DMWMainForm", {
     }
     var bill = item[0];
 
-    var form = Ext.create("PSI.DMW.DMWEditForm", {
+    var form = PCL.create("PSI.DMW.DMWEditForm", {
       parentForm: me,
       entity: bill
     });
