@@ -2487,7 +2487,10 @@ class CodeTableDAO extends PSIBaseExDAO
   public function queryColsForColRef($params)
   {
     $db = $this->db;
-    $result = [];
+    $result = [
+      "dbFieldName" => "TODO_1",
+      "caption" => "TODO_2"
+    ];
 
     return $result;
   }

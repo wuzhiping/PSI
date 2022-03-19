@@ -343,7 +343,38 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
   /**
    * @private
    */
-  refreshColGrid() { },
+  refreshColGrid() {
+    const me = this;
+
+    const editTableName = PCL.getCmp("editTableName");
+    const valueFrom = me.getValueFrom();
+
+    const el = PCL.getBody();
+    el.mask(PSI.Const.LOADING);
+    const r = {
+      url: me.URL("Home/CodeTable/queryColsForColRef"),
+      params: {
+        valueFrom,
+        tableName: me.getCodeTable().get("tableName"),
+        searchKey: editTableName.getValue(),
+      },
+      callback(options, success, response) {
+        if (success) {
+          const data = me.decodeJSON(response.responseText);
+          const store1 = me.getColForKeyGrid().getStore();
+          store1.removeAll();
+          store1.add(data);
+
+          const store2 = me.getColForDisplayGrid().getStore();
+          store2.removeAll();
+          store2.add(data);
+        }
+        el.unmask();
+      }
+    };
+
+    me.ajax(r);
+  },
 
   /**
    * @private
