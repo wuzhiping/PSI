@@ -485,4 +485,17 @@ class CodeTableService extends PSIBaseExService
     $dao = new CodeTableDAO($this->db());
     return $dao->querySolutionList();
   }
+
+  /**
+   * 选择值来源的引用列
+   */
+  public function queryColsForColRef($params)
+  {
+    if ($this->isNotOnline()) {
+      return $this->emptyResult();
+    }
+
+    $dao = new CodeTableDAO($this->db());
+    return $dao->queryColsForColRef($params);
+  }
 }

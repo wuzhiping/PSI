@@ -2431,4 +2431,12 @@ class CodeTableDAO extends PSIBaseExDAO
 
     return $result;
   }
+
+  /**
+   * 选择值来源的引用列
+   */
+  public function queryColsForColRef($params)
+  {
+    return [];
+  }
 }
