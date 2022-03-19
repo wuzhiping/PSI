@@ -498,12 +498,28 @@ class CodeTableController extends PSIBaseController
     }
   }
 
-    /**
+  /**
    * 选择值来源的引用列 - 查询列
    * 
    * JS：web\Public\Scripts\PSI\CodeTable\SelectColRefForm.js
    */
   public function queryColsForColRef()
   {
+    if (IS_POST) {
+      $us = new UserService();
+      if (!$us->hasPermission(FIdConst::CODE_TABLE)) {
+        die("没有权限");
+      }
+
+      $params = [
+        // 值来源，见：t_sysdict_sln0000_ct_value_from
+        "valueFrom" => I("post.valueFrom"),
+        // 数据库表名
+        "tableName" => I("post.tableName"),
+      ];
+
+      $service = new CodeTableService();
+      $this->ajaxReturn($service->queryColsForColRef($params));
+    }
   }
 }
