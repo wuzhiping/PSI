@@ -346,7 +346,6 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
   refreshColGrid() {
     const me = this;
 
-    const editTableName = PCL.getCmp("editTableName");
     const valueFrom = me.getValueFrom();
 
     const el = PCL.getBody();
@@ -356,7 +355,6 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
       params: {
         valueFrom,
         tableName: me.getCodeTable().get("tableName"),
-        searchKey: editTableName.getValue(),
       },
       callback(options, success, response) {
         if (success) {
