@@ -84,6 +84,8 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
     });
 
     me.callParent(arguments);
+
+    me.refreshTableGrid();
   },
 
   /**
@@ -150,6 +152,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
         },
       },
       bbar: [{
+        id: "labelTableName",
         xtype: "displayfield",
         value: "输入表名可以过滤上面的数据",
       }, {
@@ -281,7 +284,22 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
    */
   refreshTableGrid() {
     const me = this;
+    const editTableName = PCL.getCmp("editTableName");
     const valueFrom = me.getValueFrom();
+    if (valueFrom == 4) {
+      // 引用自身
+      const store = me.getTableGrid().getStore();
+      store.removeAll();
+      const codeTable = me.getCodeTable();
+      store.add({
+        name: codeTable.get("tableName"),
+        caption: codeTable.get("name"),
+      });
+      editTableName.setVisible(false);
+      PCL.getCmp("labelTableName").setVisible(false);
+    } else {
+      // 从后台查询数据
+    }
   },
 
   /**
