@@ -39,6 +39,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           width: "50%",
           layout: "fit",
           border: 0,
+          split: true,
           items: me.getTableGrid(),
         },
         {
@@ -49,11 +50,15 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
             {
               region: "north",
               border: 0,
-              height: "50%"
+              height: "50%",
+              layout: "fit",
+              items: me.getColForKeyGrid(),
             },
             {
               region: "center",
               border: 0,
+              layout: "fit",
+              items: me.getColForDisplayGrid(),
             }
           ]
         }
@@ -144,7 +149,48 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
    * @private
    */
   getColForKeyGrid() {
+    const me = this;
 
+    if (me._colForKeyGrid) {
+      return me._colForKeyGrid;
+    }
+
+    const modelName = "PSIModel.PSI.CodeTable.SelectColRefForm.ColForKeyModel";
+
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
+      fields: ["name"]
+    });
+
+    me._colForKeyGrid = PCL.create("PCL.grid.Panel", {
+      cls: "PSI",
+      viewConfig: {
+        enableTextSelection: true
+      },
+      header: {
+        height: 30,
+        title: me.formatGridHeaderTitle("字段")
+      },
+      columnLines: true,
+      columns: {
+        defaults: {
+          menuDisabled: true,
+          sortable: false,
+        },
+        items: [{
+          header: "字段名",
+          dataIndex: "name",
+          flex: 1,
+        }]
+      },
+      store: PCL.create("PCL.data.Store", {
+        model: modelName,
+        autoLoad: false,
+        data: []
+      }),
+    });
+
+    return me._colForKeyGrid;
   },
 
   /**
@@ -152,7 +198,51 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
    * 
    * @private
    */
-  getColForDisplayGrid() { },
+  getColForDisplayGrid() {
+    const me = this;
+
+    if (me._colForDisplayGrid) {
+      return me._colForDisplayGrid;
+    }
+
+    const modelName = "PSIModel.PSI.CodeTable.SelectColRefForm.ColForDisplayModel";
+
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
+      fields: ["name"]
+    });
+
+    me._colForDisplayGrid = PCL.create("PCL.grid.Panel", {
+      cls: "PSI",
+      viewConfig: {
+        enableTextSelection: true
+      },
+      header: {
+        height: 30,
+        title: me.formatGridHeaderTitle("字段")
+      },
+      columnLines: true,
+      columns: {
+        defaults: {
+          menuDisabled: true,
+          sortable: false,
+        },
+        items: [{
+          header: "字段名",
+          dataIndex: "name",
+          flex: 1,
+        }]
+      },
+      store: PCL.create("PCL.data.Store", {
+        model: modelName,
+        autoLoad: false,
+        data: []
+      }),
+    });
+
+    return me._colForDisplayGrid;
+
+  },
 
   /**
    * @private
