@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SaleContract.SCEditForm", {
+PCL.define("PSI.SaleContract.SCEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   config: {
@@ -23,7 +23,7 @@ Ext.define("PSI.SaleContract.SCEditForm", {
     var title = entity == null ? "新建销售合同" : "编辑销售合同";
     title = me.formatTitle(title);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: title,
         height: 40
@@ -103,22 +103,22 @@ Ext.define("PSI.SaleContract.SCEditForm", {
 
     me.callParent(arguments);
 
-    me.hiddenId = Ext.getCmp("PSI_SaleContract_SCEditForm_hiddenId");
-    me.editRef = Ext.getCmp("PSI_SaleContract_SCEditForm_editRef");
-    me.editCustomer = Ext.getCmp("PSI_SaleContract_SCEditForm_editCustomer");
-    me.editBeginDT = Ext.getCmp("PSI_SaleContract_SCEditForm_editBeginDT");
-    me.editEndDT = Ext.getCmp("PSI_SaleContract_SCEditForm_editEndDT");
-    me.editOrg = Ext.getCmp("PSI_SaleContract_SCEditForm_editOrg");
-    me.editBizDT = Ext.getCmp("PSI_SaleContract_SCEditForm_editBizDT");
-    me.editDealDate = Ext.getCmp("PSI_SaleContract_SCEditForm_editDealDate");
-    me.editDealAddress = Ext.getCmp("PSI_SaleContract_SCEditForm_editDealAddress");
-    me.editBizUser = Ext.getCmp("PSI_SaleContract_SCEditForm_editBizUser");
-    me.editDiscount = Ext.getCmp("PSI_SaleContract_SCEditForm_editDiscount");
-    me.editBillMemo = Ext.getCmp("PSI_SaleContract_SCEditForm_editBillMemo");
-    me.editQualityClause = Ext.getCmp("PSI_SaleContract_SCEditForm_editQualityClause");
-    me.editInsuranceClause = Ext.getCmp("PSI_SaleContract_SCEditForm_editInsuranceClause");
-    me.editTransportClause = Ext.getCmp("PSI_SaleContract_SCEditForm_editTrasportClause");
-    me.editOtherClause = Ext.getCmp("PSI_SaleContract_SCEditForm_editOtherClause");
+    me.hiddenId = PCL.getCmp("PSI_SaleContract_SCEditForm_hiddenId");
+    me.editRef = PCL.getCmp("PSI_SaleContract_SCEditForm_editRef");
+    me.editCustomer = PCL.getCmp("PSI_SaleContract_SCEditForm_editCustomer");
+    me.editBeginDT = PCL.getCmp("PSI_SaleContract_SCEditForm_editBeginDT");
+    me.editEndDT = PCL.getCmp("PSI_SaleContract_SCEditForm_editEndDT");
+    me.editOrg = PCL.getCmp("PSI_SaleContract_SCEditForm_editOrg");
+    me.editBizDT = PCL.getCmp("PSI_SaleContract_SCEditForm_editBizDT");
+    me.editDealDate = PCL.getCmp("PSI_SaleContract_SCEditForm_editDealDate");
+    me.editDealAddress = PCL.getCmp("PSI_SaleContract_SCEditForm_editDealAddress");
+    me.editBizUser = PCL.getCmp("PSI_SaleContract_SCEditForm_editBizUser");
+    me.editDiscount = PCL.getCmp("PSI_SaleContract_SCEditForm_editDiscount");
+    me.editBillMemo = PCL.getCmp("PSI_SaleContract_SCEditForm_editBillMemo");
+    me.editQualityClause = PCL.getCmp("PSI_SaleContract_SCEditForm_editQualityClause");
+    me.editInsuranceClause = PCL.getCmp("PSI_SaleContract_SCEditForm_editInsuranceClause");
+    me.editTransportClause = PCL.getCmp("PSI_SaleContract_SCEditForm_editTrasportClause");
+    me.editOtherClause = PCL.getCmp("PSI_SaleContract_SCEditForm_editOtherClause");
 
     me.__editorList = ["PSI_SaleContract_SCEditForm_editCustomer",
       "PSI_SaleContract_SCEditForm_editBeginDT",
@@ -329,19 +329,19 @@ Ext.define("PSI.SaleContract.SCEditForm", {
   onWndClose: function () {
     // 加上这个调用是为了解决 #IMQB2 - https://gitee.com/crm8000/PSI/issues/IMQB2
     // 这个只是目前的临时应急方法，实现的太丑陋了
-    Ext.WindowManager.hideAll();
+    PCL.WindowManager.hideAll();
 
-    Ext.get(window).un('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', this.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
-    Ext.get(window).on('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', this.onWindowBeforeUnload);
 
     var me = this;
 
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/SaleContract/scBillInfo",
       params: {
         id: me.hiddenId.getValue()
@@ -351,7 +351,7 @@ Ext.define("PSI.SaleContract.SCEditForm", {
         el.unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
 
           if (data.ref) {
             me.editRef.setValue(data.ref);
@@ -439,8 +439,8 @@ Ext.define("PSI.SaleContract.SCEditForm", {
       return;
     }
 
-    Ext.getBody().mask("正在保存中...");
-    Ext.Ajax.request({
+    PCL.getBody().mask("正在保存中...");
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/SaleContract/editSCBill",
       method: "POST",
       params: {
@@ -448,10 +448,10 @@ Ext.define("PSI.SaleContract.SCEditForm", {
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             me.close();
             me.getParentForm().refreshMainGrid(data.id);
@@ -472,7 +472,7 @@ Ext.define("PSI.SaleContract.SCEditForm", {
       for (var i = 0; i < me.__editorList.length; i++) {
         var editorId = me.__editorList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__editorList[i + 1]);
+          var edit = PCL.getCmp(me.__editorList[i + 1]);
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -502,8 +502,8 @@ Ext.define("PSI.SaleContract.SCEditForm", {
       return me.__goodsGrid;
     }
     var modelName = "PSISCBillDetail_EditForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsId", "goodsCode", "goodsName",
         "goodsSpec", "unitName", "goodsCount", {
           name: "goodsMoney",
@@ -519,13 +519,13 @@ Ext.define("PSI.SaleContract.SCEditForm", {
           type: "float"
         }, "memo", "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__cellEditing = Ext.create("PSI.UX.CellEditing", {
+    me.__cellEditing = PCL.create("PSI.UX.CellEditing", {
       clicksToEdit: 1,
       listeners: {
         edit: {
@@ -535,7 +535,7 @@ Ext.define("PSI.SaleContract.SCEditForm", {
       }
     });
 
-    me.__goodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__goodsGrid = PCL.create("PCL.grid.Panel", {
       viewConfig: {
         enableTextSelection: true,
         markDirty: !me.adding
@@ -758,7 +758,7 @@ Ext.define("PSI.SaleContract.SCEditForm", {
       return me.__clausePanel;
     }
 
-    me.__clausePanel = Ext.create("Ext.panel.Panel", {
+    me.__clausePanel = PCL.create("PCL.panel.Panel", {
       title: "合同条款",
       autoScroll: true,
       border: 0,
@@ -877,11 +877,11 @@ Ext.define("PSI.SaleContract.SCEditForm", {
     var result = {
       id: me.hiddenId.getValue(),
       customerId: me.editCustomer.getIdValue(),
-      beginDT: Ext.Date.format(me.editBeginDT.getValue(), "Y-m-d"),
-      endDT: Ext.Date.format(me.editEndDT.getValue(), "Y-m-d"),
+      beginDT: PCL.Date.format(me.editBeginDT.getValue(), "Y-m-d"),
+      endDT: PCL.Date.format(me.editEndDT.getValue(), "Y-m-d"),
       orgId: me.editOrg.getIdValue(),
-      bizDT: Ext.Date.format(me.editBizDT.getValue(), "Y-m-d"),
-      dealDate: Ext.Date.format(me.editDealDate.getValue(), "Y-m-d"),
+      bizDT: PCL.Date.format(me.editBizDT.getValue(), "Y-m-d"),
+      dealDate: PCL.Date.format(me.editDealDate.getValue(), "Y-m-d"),
       dealAddress: me.editDealAddress.getValue(),
       bizUserId: me.editBizUser.getIdValue(),
       discount: me.editDiscount.getValue(),
@@ -910,15 +910,15 @@ Ext.define("PSI.SaleContract.SCEditForm", {
       });
     }
 
-    return Ext.JSON.encode(result);
+    return PCL.JSON.encode(result);
   },
 
   setBillReadonly: function () {
     var me = this;
     me.__readonly = true;
     me.setTitle("<span style='font-size:160%;'>查看销售合同</span>");
-    Ext.getCmp("buttonSave").setDisabled(true);
-    Ext.getCmp("buttonCancel").setText("关闭");
+    PCL.getCmp("buttonSave").setDisabled(true);
+    PCL.getCmp("buttonCancel").setText("关闭");
     me.editDealDate.setReadOnly(true);
     me.editCustomer.setReadOnly(true);
     me.editBeginDT.setReadOnly(true);
@@ -935,9 +935,9 @@ Ext.define("PSI.SaleContract.SCEditForm", {
     me.editTransportClause.setReadOnly(true);
     me.editOtherClause.setReadOnly(true);
 
-    Ext.getCmp("columnActionDelete").hide();
-    Ext.getCmp("columnActionAdd").hide();
-    Ext.getCmp("columnActionAppend").hide();
+    PCL.getCmp("columnActionDelete").hide();
+    PCL.getCmp("columnActionAdd").hide();
+    PCL.getCmp("columnActionAppend").hide();
   },
 
   // xtype:psi_customerfield回调本方法
@@ -945,7 +945,7 @@ Ext.define("PSI.SaleContract.SCEditForm", {
   __setCustomerExtData: function (data) {
     var me = this;
 
-    Ext.getCmp("PSI_SaleContract_SCEditForm_editDealDate")
+    PCL.getCmp("PSI_SaleContract_SCEditForm_editDealDate")
       .setValue(data.address_receipt);
   }
 });
