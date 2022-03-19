@@ -2461,6 +2461,22 @@ class CodeTableDAO extends PSIBaseExDAO
       }
     } else if ($valueFrom == 3) {
       // 引用其他码表
+      $sql = "select name, table_name from t_code_table_md
+              where table_name <> '%s' ";
+      $queryParams = [];
+      $queryParams[] = $tableName;
+      if ($searchKey) {
+        $sql .= " and table_name like '%s' ";
+        $queryParams[] = "%{$searchKey}%";
+      }
+      $sql .= " order by table_name";
+      $data = $db->query($sql, $queryParams);
+      foreach ($data as $v) {
+        $result[] = [
+          "name" => $v["table_name"],
+          "caption" => $v["name"],
+        ];
+      }
     }
     return $result;
   }
