@@ -299,6 +299,35 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
       PCL.getCmp("labelTableName").setVisible(false);
     } else {
       // 从后台查询数据
+      const grid = me.getTableGrid();
+      const el = grid.getEl() || PCL.getBody();
+      el.mask(PSI.Const.LOADING);
+      const r = {
+        url: me.URL("Home/CodeTable/queryColsForColRef"),
+        params: {
+          valueFrom,
+          tableName: me.getCodeTable().get("tableName"),
+          searchKey: editTableName.getValue(),
+        },
+        callback(options, success, response) {
+          const store = grid.getStore();
+
+          store.removeAll();
+
+          if (success) {
+            const data = me.decodeJSON(response.responseText);
+            store.add(data);
+
+            if (store.getCount() > 0) {
+              grid.getSelectionModel().select(0);
+            }
+          }
+
+          el.unmask();
+        }
+      };
+
+      me.ajax(r);
     }
   },
 
