@@ -347,6 +347,18 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
     const me = this;
 
     const valueFrom = me.getValueFrom();
+    let tableName = "";
+    if (valueFrom == 4) {
+      tableName = me.getCodeTable().get("tableName");
+    } else {
+      const item = me.getTableGrid().getSelectionModel().getSelection();
+      if (item == null || item.length != 1) {
+        return;
+      }
+
+      const table = item[0];
+      tableName = table.get("name");
+    }
 
     const el = PCL.getBody();
     el.mask(PSI.Const.LOADING);
@@ -354,7 +366,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
       url: me.URL("Home/CodeTable/queryColsForColRef"),
       params: {
         valueFrom,
-        tableName: me.getCodeTable().get("tableName"),
+        tableName,
       },
       callback(options, success, response) {
         if (success) {
