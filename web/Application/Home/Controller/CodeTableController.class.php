@@ -472,11 +472,11 @@ class CodeTableController extends PSIBaseController
   }
 
   /**
-   * 选择值来源的引用列
+   * 选择值来源的引用列 - 查询表
    * 
    * JS：web\Public\Scripts\PSI\CodeTable\SelectColRefForm.js
    */
-  public function queryColsForColRef()
+  public function queryTablesForColRef()
   {
     if (IS_POST) {
       $us = new UserService();
@@ -494,7 +494,16 @@ class CodeTableController extends PSIBaseController
       ];
 
       $service = new CodeTableService();
-      $this->ajaxReturn($service->queryColsForColRef($params));
+      $this->ajaxReturn($service->queryTablesForColRef($params));
     }
+  }
+
+    /**
+   * 选择值来源的引用列 - 查询列
+   * 
+   * JS：web\Public\Scripts\PSI\CodeTable\SelectColRefForm.js
+   */
+  public function queryColsForColRef()
+  {
   }
 }

@@ -2433,9 +2433,9 @@ class CodeTableDAO extends PSIBaseExDAO
   }
 
   /**
-   * 选择值来源的引用列
+   * 选择值来源的引用列 - 查询表
    */
-  public function queryColsForColRef($params)
+  public function queryTablesForColRef($params)
   {
     $db = $this->db;
 

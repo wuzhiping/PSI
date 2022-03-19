@@ -315,7 +315,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
       const el = grid.getEl() || PCL.getBody();
       el.mask(PSI.Const.LOADING);
       const r = {
-        url: me.URL("Home/CodeTable/queryColsForColRef"),
+        url: me.URL("Home/CodeTable/queryTablesForColRef"),
         params: {
           valueFrom,
           tableName: me.getCodeTable().get("tableName"),
