@@ -455,8 +455,8 @@ PCL.define("PSI.SaleContract.SCMainForm", {
           scope: me
         },
         itemdblclick: {
-          fn: me.getPermission().genPDF == "0"
-            ? Ext.emptyFn
+          fn: me.getPermission().edit == "0"
+            ? PCL.emptyFn
             : me.onEditBill,
           scope: me
         }
@@ -472,7 +472,7 @@ PCL.define("PSI.SaleContract.SCMainForm", {
       return me.__clausePanel;
     }
 
-    me.__clausePanel = Ext.create("Ext.panel.Panel", {
+    me.__clausePanel = PCL.create("PCL.panel.Panel", {
       title: "合同条款",
       autoScroll: true,
       border: 0,
@@ -525,20 +525,20 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     }
 
     var modelName = "PSISOBillDetail";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount", "goodsMoney",
         "goodsPrice", "taxRate", "tax", "moneyWithTax",
         "soCount", "leftCount", "memo", "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__detailGrid = Ext.create("Ext.grid.Panel", {
+    me.__detailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       title: "销售订单明细",
       viewConfig: {
@@ -546,7 +546,7 @@ PCL.define("PSI.SaleContract.SCMainForm", {
       },
       border: 0,
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "#",
         width: 40
       }), {
@@ -675,10 +675,10 @@ PCL.define("PSI.SaleContract.SCMainForm", {
   refreshMainGrid: function (id) {
     var me = this;
 
-    Ext.getCmp("buttonEdit").setDisabled(true);
-    Ext.getCmp("buttonDelete").setDisabled(true);
-    Ext.getCmp("buttonCommit").setDisabled(true);
-    Ext.getCmp("buttonCancelConfirm").setDisabled(true);
+    PCL.getCmp("buttonEdit").setDisabled(true);
+    PCL.getCmp("buttonDelete").setDisabled(true);
+    PCL.getCmp("buttonCommit").setDisabled(true);
+    PCL.getCmp("buttonCancelConfirm").setDisabled(true);
 
     me.clearClauseEditor();
 
@@ -686,14 +686,14 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     gridDetail.setTitle("销售合同明细");
     gridDetail.getStore().removeAll();
 
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
     me.__lastId = id;
   },
 
   onAddBill: function () {
     var me = this;
 
-    var form = Ext.create("PSI.SaleContract.SCEditForm", {
+    var form = PCL.create("PSI.SaleContract.SCEditForm", {
       parentForm: me,
       showAddGoodsButton: me.getPermission().showAddGoodsButton
     });
@@ -709,7 +709,7 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     }
     var bill = item[0];
 
-    var form = Ext.create("PSI.SaleContract.SCEditForm", {
+    var form = PCL.create("PSI.SaleContract.SCEditForm", {
       parentForm: me,
       showAddGoodsButton: me.getPermission().showAddGoodsButton,
       entity: bill
@@ -744,7 +744,7 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     var info = "请确认是否删除销售合同: <span style='color:red'>" + bill.get("ref")
       + "</span>";
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       var r = {
         url: me.URL("Home/SaleContract/deleteSCBill"),
@@ -778,17 +778,17 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     me.getDetailGrid().setTitle("销售合同明细");
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      Ext.getCmp("buttonEdit").setDisabled(true);
-      Ext.getCmp("buttonDelete").setDisabled(true);
-      Ext.getCmp("buttonCommit").setDisabled(true);
-      Ext.getCmp("buttonCancelConfirm").setDisabled(true);
+      PCL.getCmp("buttonEdit").setDisabled(true);
+      PCL.getCmp("buttonDelete").setDisabled(true);
+      PCL.getCmp("buttonCommit").setDisabled(true);
+      PCL.getCmp("buttonCancelConfirm").setDisabled(true);
 
       return;
     }
     var bill = item[0];
     var commited = bill.get("billStatus") >= 1000;
 
-    var buttonEdit = Ext.getCmp("buttonEdit");
+    var buttonEdit = PCL.getCmp("buttonEdit");
     buttonEdit.setDisabled(false);
     if (commited) {
       buttonEdit.setText("查看销售合同");
@@ -796,9 +796,9 @@ PCL.define("PSI.SaleContract.SCMainForm", {
       buttonEdit.setText("编辑销售合同");
     }
 
-    Ext.getCmp("buttonDelete").setDisabled(commited);
-    Ext.getCmp("buttonCommit").setDisabled(commited);
-    Ext.getCmp("buttonCancelConfirm").setDisabled(!commited);
+    PCL.getCmp("buttonDelete").setDisabled(commited);
+    PCL.getCmp("buttonCommit").setDisabled(commited);
+    PCL.getCmp("buttonCancelConfirm").setDisabled(!commited);
 
     me.refreshDetailGrid();
   },
@@ -878,7 +878,7 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在操作中...");
       var r = {
         url: me.URL("Home/SaleContract/commitSCBill"),
@@ -926,7 +926,7 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在操作中...");
       var r = {
         url: me.URL("Home/SaleContract/cancelConfirmSCBill"),
@@ -981,12 +981,12 @@ PCL.define("PSI.SaleContract.SCMainForm", {
   onClearQuery: function () {
     var me = this;
 
-    Ext.getCmp("editQueryBillStatus").setValue(-1);
-    Ext.getCmp("editQueryRef").setValue(null);
-    Ext.getCmp("editQueryFromDT").setValue(null);
-    Ext.getCmp("editQueryToDT").setValue(null);
-    Ext.getCmp("editQueryCustomer").clearIdValue();
-    Ext.getCmp("editQueryGoods").clearIdValue();
+    PCL.getCmp("editQueryBillStatus").setValue(-1);
+    PCL.getCmp("editQueryRef").setValue(null);
+    PCL.getCmp("editQueryFromDT").setValue(null);
+    PCL.getCmp("editQueryToDT").setValue(null);
+    PCL.getCmp("editQueryCustomer").clearIdValue();
+    PCL.getCmp("editQueryGoods").clearIdValue();
 
     me.onQuery();
   },
@@ -995,30 +995,30 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     var me = this;
 
     var result = {
-      billStatus: Ext.getCmp("editQueryBillStatus").getValue()
+      billStatus: PCL.getCmp("editQueryBillStatus").getValue()
     };
 
-    var ref = Ext.getCmp("editQueryRef").getValue();
+    var ref = PCL.getCmp("editQueryRef").getValue();
     if (ref) {
       result.ref = ref;
     }
 
-    var customerId = Ext.getCmp("editQueryCustomer").getIdValue();
+    var customerId = PCL.getCmp("editQueryCustomer").getIdValue();
     if (customerId) {
       result.customerId = customerId;
     }
 
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
-    var goodsId = Ext.getCmp("editQueryGoods").getIdValue();
+    var goodsId = PCL.getCmp("editQueryGoods").getIdValue();
     if (goodsId) {
       result.goodsId = goodsId;
     }
@@ -1041,7 +1041,7 @@ PCL.define("PSI.SaleContract.SCMainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.SaleOrder.SOEditForm", {
+    var form = PCL.create("PSI.SaleOrder.SOEditForm", {
       genBill: true,
       scbillRef: bill.get("ref")
     });
@@ -1095,7 +1095,7 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: me.URL("Home/SaleContract/genSCBillPrintPage"),
@@ -1156,7 +1156,7 @@ PCL.define("PSI.SaleContract.SCMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/SaleContract/genSCBillPrintPage",
