@@ -102,7 +102,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
               bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
-                columns: 3,
+                columns: 2,
                 tableAttrs: PSI.Const.TABLE_LAYOUT,
               },
               defaultType: 'textfield',
@@ -376,7 +376,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   getFetchValueCols() {
     const me = this;
 
-    const col3Width = 830;
+    const col1Width = 405;
+    const col3Width = 820;
     const list = [{
       id: "PSI_CodeTable_CodeTableColEditForm_hiddenValueFrom",
       xtype: "hidden",
@@ -389,12 +390,12 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       callbackFunc: me._valueFromCallback,
       callbackScope: me,
       fieldLabel: "值来源",
-      labelWidth: 60,
+      labelWidth: 100,
       allowBlank: false,
       blankText: "没有输入值来源",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
       value: "直接录入",
-      colspan: 1,
+      width: col1Width,
       listeners: {
         specialkey: {
           fn: me.__onEditSpecialKey,
@@ -408,25 +409,28 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       disabled: true,
       handler: me._onRefCol,
       scope: me,
-      colspan: 2
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editValueFromTableName",
       fieldLabel: "引用表名",
-      labelWidth: 60,
+      labelWidth: 100,
       disabled: true,
-      colspan: 3,
+      colspan: 2,
       width: col3Width,
       name: "valueFromTableName"
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editValueFromColName",
       fieldLabel: "引用列名(关联用)",
+      labelWidth: 100,
       disabled: true,
-      name: "valueFromColName"
+      name: "valueFromColName",
+      width: col1Width,
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editValueFromColNameDisplay",
       fieldLabel: "引用列名(显示用)",
+      labelWidth: 100,
       disabled: true,
-      name: "valueFromColNameDisplay"
+      name: "valueFromColNameDisplay",
+      width: col1Width,
     }];
 
     return list;
