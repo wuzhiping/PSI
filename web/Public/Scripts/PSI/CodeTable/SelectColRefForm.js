@@ -85,6 +85,11 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
 
     me.callParent(arguments);
 
+    const editTableName = PCL.getCmp("editTableName");
+    editTableName.on("change", () => {
+      me.refreshTableGrid()
+    });
+
     me.refreshTableGrid();
   },
 
