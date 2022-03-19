@@ -52,6 +52,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
               border: 0,
               height: "50%",
               layout: "fit",
+              split: true,
               items: me.getColForKeyGrid(),
             },
             {
@@ -111,10 +112,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
       viewConfig: {
         enableTextSelection: true
       },
-      header: {
-        height: 30,
-        title: me.formatGridHeaderTitle("表")
-      },
+      header: false,
       columnLines: true,
       columns: {
         defaults: {
@@ -159,7 +157,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
 
     PCL.define(modelName, {
       extend: "PCL.data.Model",
-      fields: ["name"]
+      fields: ["caption", "dbFieldName"]
     });
 
     me._colForKeyGrid = PCL.create("PCL.grid.Panel", {
@@ -169,7 +167,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
       },
       header: {
         height: 30,
-        title: me.formatGridHeaderTitle("字段")
+        title: me.formatGridHeaderTitle("列 - 关联用")
       },
       columnLines: true,
       columns: {
@@ -178,8 +176,12 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           sortable: false,
         },
         items: [{
-          header: "字段名",
-          dataIndex: "name",
+          header: "列标题",
+          dataIndex: "caption",
+          flex: 1,
+        },{
+          header: "列数据库名",
+          dataIndex: "dbFieldName",
           flex: 1,
         }]
       },
@@ -209,7 +211,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
 
     PCL.define(modelName, {
       extend: "PCL.data.Model",
-      fields: ["name"]
+      fields: ["caption", "dbFieldName"]
     });
 
     me._colForDisplayGrid = PCL.create("PCL.grid.Panel", {
@@ -219,7 +221,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
       },
       header: {
         height: 30,
-        title: me.formatGridHeaderTitle("字段")
+        title: me.formatGridHeaderTitle("列 - 显示用")
       },
       columnLines: true,
       columns: {
@@ -228,8 +230,12 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           sortable: false,
         },
         items: [{
-          header: "字段名",
-          dataIndex: "name",
+          header: "列标题",
+          dataIndex: "caption",
+          flex: 1,
+        },{
+          header: "列数据库名",
+          dataIndex: "dbFieldName",
           flex: 1,
         }]
       },
