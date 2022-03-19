@@ -605,7 +605,7 @@ PCL.define("PSI.DMW.DMWMainForm", {
     var info = "请确认是否删除成品委托生产入库单: <span style='color:red'>"
       + bill.get("ref") + "</span>";
     var confirmFunc = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
 
       var r = {
@@ -639,16 +639,16 @@ PCL.define("PSI.DMW.DMWMainForm", {
     me.getDetailGrid().setTitle(me.formatGridHeaderTitle("成品委托生产入库单明细"));
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      Ext.getCmp("buttonEdit").setDisabled(true);
-      Ext.getCmp("buttonDelete").setDisabled(true);
-      Ext.getCmp("buttonCommit").setDisabled(true);
+      PCL.getCmp("buttonEdit").setDisabled(true);
+      PCL.getCmp("buttonDelete").setDisabled(true);
+      PCL.getCmp("buttonCommit").setDisabled(true);
 
       return;
     }
     var bill = item[0];
     var commited = bill.get("billStatus") == "已入库";
 
-    var buttonEdit = Ext.getCmp("buttonEdit");
+    var buttonEdit = PCL.getCmp("buttonEdit");
     buttonEdit.setDisabled(false);
     if (commited) {
       buttonEdit.setText("查看成品委托生产入库单");
@@ -656,8 +656,8 @@ PCL.define("PSI.DMW.DMWMainForm", {
       buttonEdit.setText("编辑成品委托生产入库单");
     }
 
-    Ext.getCmp("buttonDelete").setDisabled(commited);
-    Ext.getCmp("buttonCommit").setDisabled(commited);
+    PCL.getCmp("buttonDelete").setDisabled(commited);
+    PCL.getCmp("buttonCommit").setDisabled(commited);
 
     me.refreshDetailGrid();
   },
@@ -730,7 +730,7 @@ PCL.define("PSI.DMW.DMWMainForm", {
       + "</span> 的成品委托生产入库单?";
     var id = bill.get("id");
     var confirmFunc = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/DMW/commitDMWBill"),
@@ -785,13 +785,13 @@ PCL.define("PSI.DMW.DMWMainForm", {
   onClearQuery: function () {
     var me = this;
 
-    Ext.getCmp("editQueryBillStatus").setValue(-1);
-    Ext.getCmp("editQueryRef").setValue(null);
-    Ext.getCmp("editQueryFromDT").setValue(null);
-    Ext.getCmp("editQueryToDT").setValue(null);
-    Ext.getCmp("editQueryFactory").clearIdValue();
-    Ext.getCmp("editQueryWarehouse").clearIdValue();
-    Ext.getCmp("editQueryGoods").clearIdValue();
+    PCL.getCmp("editQueryBillStatus").setValue(-1);
+    PCL.getCmp("editQueryRef").setValue(null);
+    PCL.getCmp("editQueryFromDT").setValue(null);
+    PCL.getCmp("editQueryToDT").setValue(null);
+    PCL.getCmp("editQueryFactory").clearIdValue();
+    PCL.getCmp("editQueryWarehouse").clearIdValue();
+    PCL.getCmp("editQueryGoods").clearIdValue();
 
     me.onQuery();
   },
@@ -800,35 +800,35 @@ PCL.define("PSI.DMW.DMWMainForm", {
     var me = this;
 
     var result = {
-      billStatus: Ext.getCmp("editQueryBillStatus").getValue()
+      billStatus: PCL.getCmp("editQueryBillStatus").getValue()
     };
 
-    var ref = Ext.getCmp("editQueryRef").getValue();
+    var ref = PCL.getCmp("editQueryRef").getValue();
     if (ref) {
       result.ref = ref;
     }
 
-    var factoryId = Ext.getCmp("editQueryFactory").getIdValue();
+    var factoryId = PCL.getCmp("editQueryFactory").getIdValue();
     if (factoryId) {
       result.factoryId = factoryId;
     }
 
-    var warehouseId = Ext.getCmp("editQueryWarehouse").getIdValue();
+    var warehouseId = PCL.getCmp("editQueryWarehouse").getIdValue();
     if (warehouseId) {
       result.warehouseId = warehouseId;
     }
 
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
-    var goodsId = Ext.getCmp("editQueryGoods").getIdValue();
+    var goodsId = PCL.getCmp("editQueryGoods").getIdValue();
     if (goodsId) {
       result.goodsId = goodsId;
     }
@@ -870,7 +870,7 @@ PCL.define("PSI.DMW.DMWMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/DMW/genDMWBillPrintPage",
@@ -929,7 +929,7 @@ PCL.define("PSI.DMW.DMWMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/DMW/genDMWBillPrintPage",
