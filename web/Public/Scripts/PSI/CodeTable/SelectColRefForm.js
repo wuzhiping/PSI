@@ -87,6 +87,11 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
    */
   _onWndShow() {
     const me = this;
+
+    const edit = PCL.getCmp("editTableName");
+    if (edit) {
+      edit.focus();
+    }
   },
 
   /**
@@ -135,7 +140,15 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           fn: me._onTableGridSelect,
           scope: me
         },
-      }
+      },
+      bbar: [{
+        xtype: "displayfield",
+        value: "输入表名可以过滤上面的数据",
+      }, {
+        id: "editTableName",
+        xtype: "textfield",
+        width: 200,
+      }]
     });
 
     return me._tableGrid;
@@ -179,7 +192,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           header: "列标题",
           dataIndex: "caption",
           flex: 1,
-        },{
+        }, {
           header: "列数据库名",
           dataIndex: "dbFieldName",
           flex: 1,
@@ -233,7 +246,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           header: "列标题",
           dataIndex: "caption",
           flex: 1,
-        },{
+        }, {
           header: "列数据库名",
           dataIndex: "dbFieldName",
           flex: 1,
