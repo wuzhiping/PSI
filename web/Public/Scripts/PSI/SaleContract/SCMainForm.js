@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SaleContract.SCMainForm", {
+PCL.define("PSI.SaleContract.SCMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -15,7 +15,7 @@ Ext.define("PSI.SaleContract.SCMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -53,10 +53,10 @@ Ext.define("PSI.SaleContract.SCMainForm", {
 
     me.callParent(arguments);
 
-    me.editQualityClause = Ext.getCmp("PSI_SaleContract_SCMainForm_editQulityClause");
-    me.editInsuranceClause = Ext.getCmp("PSI_SaleContract_SCMainForm_editInsuranceClause");
-    me.editTransportClause = Ext.getCmp("PSI_SaleContract_SCMainForm_editTrasportClause");
-    me.editOtherClause = Ext.getCmp("PSI_SaleContract_SCMainForm_editOtherClause");
+    me.editQualityClause = PCL.getCmp("PSI_SaleContract_SCMainForm_editQulityClause");
+    me.editInsuranceClause = PCL.getCmp("PSI_SaleContract_SCMainForm_editInsuranceClause");
+    me.editTransportClause = PCL.getCmp("PSI_SaleContract_SCMainForm_editTrasportClause");
+    me.editOtherClause = PCL.getCmp("PSI_SaleContract_SCMainForm_editOtherClause");
 
     me.refreshMainGrid();
   },
@@ -184,7 +184,7 @@ Ext.define("PSI.SaleContract.SCMainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "待审核"], [1000, "已审核"]]
       }),
@@ -260,7 +260,7 @@ Ext.define("PSI.SaleContract.SCMainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -277,8 +277,8 @@ Ext.define("PSI.SaleContract.SCMainForm", {
     }
 
     var modelName = "PSISOBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "customerName", "inputUserName",
         "bizUserName", "bizDT", "billStatus", "goodsMoney",
         "dateCreated", "tax", "moneyWithTax", "beginDT",
@@ -286,7 +286,7 @@ Ext.define("PSI.SaleContract.SCMainForm", {
         "orgName", "confirmUserName", "confirmDate",
         "billMemo"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -312,7 +312,7 @@ Ext.define("PSI.SaleContract.SCMainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -429,7 +429,7 @@ Ext.define("PSI.SaleContract.SCMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"], ["300"],
             ["1000"]]
@@ -438,11 +438,9 @@ Ext.define("PSI.SaleContract.SCMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToobar").doRefresh();
+                PCL.getCmp("pagingToobar").doRefresh();
               },
               scope: me
             }
