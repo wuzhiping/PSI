@@ -2508,6 +2508,18 @@ class CodeTableDAO extends PSIBaseExDAO
     } else if ($valueFrom == 3 || $valueFrom == 4) {
       // 码表
       $tableName = $params["tableName"];
+
+      $sql = "select caption, db_field_name
+              from t_code_table_md t, t_code_table_cols_md c
+              where t.id = c.table_id and t.table_name = '%s' 
+              order by db_field_name";
+      $data = $db->query($sql, $tableName);
+      foreach ($data as $v) {
+        $result[] = [
+          "dbFieldName" => $v["db_field_name"],
+          "caption" => $v["caption"],
+        ];
+      }
     }
 
     return $result;
