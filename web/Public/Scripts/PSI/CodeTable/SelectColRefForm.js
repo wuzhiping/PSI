@@ -65,6 +65,10 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
         }
       ],
       buttons: [{
+        text: "确定",
+        handler: me._onOK,
+        scope: me
+      }, {
         text: "取消",
         handler() {
           me.close();
@@ -109,7 +113,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
 
     PCL.define(modelName, {
       extend: "PCL.data.Model",
-      fields: ["name","caption"]
+      fields: ["name", "caption"]
     });
 
     me._tableGrid = PCL.create("PCL.grid.Panel", {
@@ -128,7 +132,7 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           header: "数据库表名",
           dataIndex: "name",
           flex: 1,
-        },{
+        }, {
           header: "名称",
           dataIndex: "caption",
           flex: 1,
@@ -271,4 +275,20 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
    * @private
    */
   _onTableGridSelect() { },
+
+  /**
+   * @private
+   */
+  refreshTableGrid() {
+    const me = this;
+    const valueFrom = me.getValueFrom();
+  },
+
+  /**
+   * @private
+   */
+  _onOK() {
+    const me = this;
+    me.showInfo("TODO")
+  }
 });
