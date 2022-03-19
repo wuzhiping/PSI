@@ -2437,6 +2437,31 @@ class CodeTableDAO extends PSIBaseExDAO
    */
   public function queryColsForColRef($params)
   {
-    return [];
+    $db = $this->db;
+
+    $result = [];
+    $valueFrom = $params["valueFrom"];
+    $tableName = $params["tableName"];
+    $searchKey = $params["searchKey"];
+    if ($valueFrom == 2) {
+      // 引用系统数据字典
+      $sql = "select name, table_name from t_dict_table_md";
+      $queryParams = [];
+      if ($searchKey) {
+        $sql .= " where table_name like '%s' ";
+        $queryParams[] = "%{$searchKey}%";
+      }
+      $sql .= " order by table_name";
+      $data = $db->query($sql, $queryParams);
+      foreach ($data as $v) {
+        $result[] = [
+          "name" => $v["table_name"],
+          "caption" => $v["name"],
+        ];
+      }
+    } else if ($valueFrom == 3) {
+      // 引用其他码表
+    }
+    return $result;
   }
 }
