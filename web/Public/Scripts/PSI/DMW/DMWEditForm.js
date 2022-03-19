@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.DMW.DMWEditForm", {
+PCL.define("PSI.DMW.DMWEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
   config: {
     genBill: false,
@@ -24,7 +24,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
     var title = entity == null ? "新建成品委托生产入库单" : "编辑成品委托生产入库单";
     title = me.formatTitle(title);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: title,
         height: 40
@@ -182,7 +182,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
           queryMode: "local",
           editable: false,
           valueField: "id",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [["0", "记应付账款"]]
           }),
@@ -225,26 +225,26 @@ Ext.define("PSI.DMW.DMWEditForm", {
 
     me.callParent(arguments);
 
-    me.editRef = Ext.getCmp("editRef");
-    me.editBizDT = Ext.getCmp("editBizDT");
-    me.editFactory = Ext.getCmp("editFactory");
-    me.editWarehouse = Ext.getCmp("editWarehouse");
-    me.editBizUser = Ext.getCmp("editBizUser");
-    me.editPaymentType = Ext.getCmp("editPaymentType");
-    me.editBillMemo = Ext.getCmp("editBillMemo");
+    me.editRef = PCL.getCmp("editRef");
+    me.editBizDT = PCL.getCmp("editBizDT");
+    me.editFactory = PCL.getCmp("editFactory");
+    me.editWarehouse = PCL.getCmp("editWarehouse");
+    me.editBizUser = PCL.getCmp("editBizUser");
+    me.editPaymentType = PCL.getCmp("editPaymentType");
+    me.editBillMemo = PCL.getCmp("editBillMemo");
 
-    me.editHiddenId = Ext.getCmp("hiddenId");
+    me.editHiddenId = PCL.getCmp("hiddenId");
 
-    me.columnActionDelete = Ext.getCmp("columnActionDelete");
-    me.columnActionAdd = Ext.getCmp("columnActionAdd");
-    me.columnActionAppend = Ext.getCmp("columnActionAppend");
+    me.columnActionDelete = PCL.getCmp("columnActionDelete");
+    me.columnActionAdd = PCL.getCmp("columnActionAdd");
+    me.columnActionAppend = PCL.getCmp("columnActionAppend");
 
-    me.columnGoodsCode = Ext.getCmp("columnGoodsCode");
-    me.columnGoodsPrice = Ext.getCmp("columnGoodsPrice");
-    me.columnGoodsMoney = Ext.getCmp("columnGoodsMoney");
+    me.columnGoodsCode = PCL.getCmp("columnGoodsCode");
+    me.columnGoodsPrice = PCL.getCmp("columnGoodsPrice");
+    me.columnGoodsMoney = PCL.getCmp("columnGoodsMoney");
 
-    me.buttonSave = Ext.getCmp("buttonSave");
-    me.buttonCancel = Ext.getCmp("buttonCancel");
+    me.buttonSave = PCL.getCmp("buttonSave");
+    me.buttonCancel = PCL.getCmp("buttonCancel");
   },
 
   onWindowBeforeUnload: function (e) {
@@ -254,17 +254,17 @@ Ext.define("PSI.DMW.DMWEditForm", {
   onWndClose: function () {
     // 加上这个调用是为了解决 #IMQB2 - https://gitee.com/crm8000/PSI/issues/IMQB2
     // 这个只是目前的临时应急方法，实现的太丑陋了
-    Ext.WindowManager.hideAll();
+    PCL.WindowManager.hideAll();
 
-    Ext.get(window).un('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', this.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
-    Ext.get(window).on('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', this.onWindowBeforeUnload);
 
     var me = this;
 
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
     me.ajax({
       url: me.URL("Home/DMW/dmwBillInfo"),
@@ -361,7 +361,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
 
   onOK: function () {
     var me = this;
-    Ext.getBody().mask("正在保存中...");
+    PCL.getBody().mask("正在保存中...");
     var r = {
       url: me.URL("Home/DMW/editDMWBill"),
       params: {
@@ -369,7 +369,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
           var data = me.decodeJSON(response.responseText);
@@ -460,8 +460,8 @@ Ext.define("PSI.DMW.DMWEditForm", {
       return me.__goodsGrid;
     }
     var modelName = "PSIDMWBillDetail_EditForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsId", "goodsCode", "goodsName",
         "goodsSpec", "unitName", "goodsCount", {
           name: "goodsMoney",
@@ -477,13 +477,13 @@ Ext.define("PSI.DMW.DMWEditForm", {
           type: "float"
         }, "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__cellEditing = Ext.create("PSI.UX.CellEditing", {
+    me.__cellEditing = PCL.create("PSI.UX.CellEditing", {
       clicksToEdit: 1,
       listeners: {
         edit: {
@@ -493,7 +493,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
       }
     });
 
-    me.__goodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__goodsGrid = PCL.create("PCL.grid.Panel", {
       viewConfig: {
         enableTextSelection: true,
         markDirty: !me.adding
@@ -749,7 +749,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
 
     var result = {
       id: me.editHiddenId.getValue(),
-      bizDT: Ext.Date.format(me.editBizDT.getValue(), "Y-m-d"),
+      bizDT: PCL.Date.format(me.editBizDT.getValue(), "Y-m-d"),
       factoryId: me.editFactory.getIdValue(),
       warehouseId: me.editWarehouse.getIdValue(),
       bizUserId: me.editBizUser.getIdValue(),
@@ -777,7 +777,7 @@ Ext.define("PSI.DMW.DMWEditForm", {
       });
     }
 
-    return Ext.JSON.encode(result);
+    return PCL.JSON.encode(result);
   },
 
   setBillReadonly: function () {
