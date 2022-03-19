@@ -305,6 +305,8 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
     } else {
       // 从后台查询数据
       const grid = me.getTableGrid();
+      const el = grid.getEl() || PCL.getBody();
+      el.mask(PSI.Const.LOADING);
       const r = {
         url: me.URL("Home/CodeTable/queryColsForColRef"),
         params: {
@@ -321,6 +323,9 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
             const data = me.decodeJSON(response.responseText);
             store.add(data);
           }
+          el.unmask();
+
+          editTableName.focus();
         }
       };
 
