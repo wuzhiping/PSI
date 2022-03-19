@@ -205,12 +205,12 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           sortable: false,
         },
         items: [{
-          header: "列标题",
-          dataIndex: "caption",
-          flex: 1,
-        }, {
           header: "列数据库名",
           dataIndex: "dbFieldName",
+          flex: 1,
+        }, {
+          header: "列标题",
+          dataIndex: "caption",
           flex: 1,
         }]
       },
@@ -259,12 +259,12 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
           sortable: false,
         },
         items: [{
-          header: "列标题",
-          dataIndex: "caption",
-          flex: 1,
-        }, {
           header: "列数据库名",
           dataIndex: "dbFieldName",
+          flex: 1,
+        }, {
+          header: "列标题",
+          dataIndex: "caption",
           flex: 1,
         }]
       },
