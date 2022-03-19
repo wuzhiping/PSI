@@ -289,6 +289,10 @@ PCL.define("PSI.CodeTable.SelectColRefForm", {
    */
   refreshTableGrid() {
     const me = this;
+
+    me.getColForKeyGrid().getStore().removeAll();
+    me.getColForDisplayGrid().getStore().removeAll();
+
     const editTableName = PCL.getCmp("editTableName");
     const valueFrom = me.getValueFrom();
     if (valueFrom == 4) {
