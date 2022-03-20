@@ -480,6 +480,8 @@ class PermissionDAO extends PSIBaseExDAO
 
     $loginUserId = $params["loginUserId"];
 
+    $isAdmin = $loginUserId == DemoConst::ADMIN_USER_ID;
+
     $queryKey = $params["queryKey"];
 
     $list = explode(",", $idList);
@@ -495,7 +497,7 @@ class PermissionDAO extends PSIBaseExDAO
     $queryParams = [];
     $ds = new DataOrgDAO($db);
     $rs = $ds->buildSQL(FIdConst::PERMISSION_MANAGEMENT, "u", $loginUserId);
-    if ($rs) {
+    if (!$isAdmin && $rs) {
       $sql .= " and " . $rs[0];
       $queryParams = $rs[1];
     }
