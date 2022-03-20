@@ -2,6 +2,7 @@
 
 namespace Home\DAO;
 
+use Home\Common\DemoConst;
 use Home\Common\FIdConst;
 
 /**
@@ -496,6 +497,8 @@ class OrgDAO extends PSIBaseExDAO
     $loginUserId = $params["loginUserId"];
     $enabled = intval($params["enabled"]);
 
+    $isAdmin = $loginUserId == DemoConst::ADMIN_USER_ID;
+
     $ds = new DataOrgDAO($db);
     $queryParams = [];
     $rs = $ds->buildSQL(FIdConst::USR_MANAGEMENT, "t_org", $loginUserId);
@@ -503,7 +506,10 @@ class OrgDAO extends PSIBaseExDAO
     $sql = "select id, name, org_code, full_name, data_org, org_type
             from t_org
             where parent_id is null ";
-    if ($rs) {
+    // $isAdmin的时候，仍然让admin用户具有组织机构的全域
+    // 这里对admin做了特殊对待
+    // 不然的话，会出现一个死结：新加的组织机构没有人可以查看到
+    if (!$isAdmin && $rs) {
       $sql .= " and " . $rs[0];
       $queryParams = $rs[1];
     }
