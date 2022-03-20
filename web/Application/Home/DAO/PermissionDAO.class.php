@@ -2,6 +2,7 @@
 
 namespace Home\DAO;
 
+use Home\Common\DemoConst;
 use Home\Common\FIdConst;
 
 /**
@@ -245,6 +246,8 @@ class PermissionDAO extends PSIBaseExDAO
 
     $loginUserId = $params["loginUserId"];
 
+    $isAdmin = $loginUserId == DemoConst::ADMIN_USER_ID;
+
     $result = [];
     $sql = "select full_name, data_org
             from t_org ";
@@ -252,7 +255,9 @@ class PermissionDAO extends PSIBaseExDAO
     $ds = new DataOrgDAO($db);
 
     $rs = $ds->buildSQL(FIdConst::PERMISSION_MANAGEMENT, "t_org", $loginUserId);
-    if ($rs) {
+    // $isAdmin == true: 当前用户是admin
+    // 对admin做特殊对待，不然就会出现没有用户能看到新的公司级别的组织机构了
+    if (!$isAdmin && $rs) {
       $sql .= " where " . $rs[0];
       $queryParams = $rs[1];
     }
