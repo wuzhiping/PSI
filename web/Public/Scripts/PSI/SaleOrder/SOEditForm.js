@@ -821,37 +821,37 @@ PCL.define("PSI.SaleOrder.SOEditForm", {
       });
     }
 
-    return Ext.JSON.encode(result);
+    return PCL.JSON.encode(result);
   },
 
   setBillReadonly: function () {
     var me = this;
     me.__readonly = true;
     me.setTitle("<span style='font-size:160%;'>查看销售订单</span>");
-    Ext.getCmp("buttonSave").setDisabled(true);
-    Ext.getCmp("buttonCancel").setText("关闭");
-    Ext.getCmp("editDealDate").setReadOnly(true);
-    Ext.getCmp("editCustomer").setReadOnly(true);
-    Ext.getCmp("editDealAddress").setReadOnly(true);
-    Ext.getCmp("editContact").setReadOnly(true);
-    Ext.getCmp("editTel").setReadOnly(true);
-    Ext.getCmp("editFax").setReadOnly(true);
-    Ext.getCmp("editOrg").setReadOnly(true);
-    Ext.getCmp("editBizUser").setReadOnly(true);
-    Ext.getCmp("editReceivingType").setReadOnly(true);
-    Ext.getCmp("editBillMemo").setReadOnly(true);
+    PCL.getCmp("buttonSave").setDisabled(true);
+    PCL.getCmp("buttonCancel").setText("关闭");
+    PCL.getCmp("editDealDate").setReadOnly(true);
+    PCL.getCmp("editCustomer").setReadOnly(true);
+    PCL.getCmp("editDealAddress").setReadOnly(true);
+    PCL.getCmp("editContact").setReadOnly(true);
+    PCL.getCmp("editTel").setReadOnly(true);
+    PCL.getCmp("editFax").setReadOnly(true);
+    PCL.getCmp("editOrg").setReadOnly(true);
+    PCL.getCmp("editBizUser").setReadOnly(true);
+    PCL.getCmp("editReceivingType").setReadOnly(true);
+    PCL.getCmp("editBillMemo").setReadOnly(true);
 
-    Ext.getCmp("columnActionDelete").hide();
-    Ext.getCmp("columnActionAdd").hide();
-    Ext.getCmp("columnActionAppend").hide();
+    PCL.getCmp("columnActionDelete").hide();
+    PCL.getCmp("columnActionAdd").hide();
+    PCL.getCmp("columnActionAppend").hide();
   },
 
   // xtype:psi_customerfield回调本方法
   // 参见PSI.Customer.CustomerField的onOK方法
   __setCustomerExtData: function (data) {
-    Ext.getCmp("editDealAddress").setValue(data.address_receipt);
-    Ext.getCmp("editTel").setValue(data.tel01);
-    Ext.getCmp("editFax").setValue(data.fax);
-    Ext.getCmp("editContact").setValue(data.contact01);
+    PCL.getCmp("editDealAddress").setValue(data.address_receipt);
+    PCL.getCmp("editTel").setValue(data.tel01);
+    PCL.getCmp("editFax").setValue(data.fax);
+    PCL.getCmp("editContact").setValue(data.contact01);
   }
 });
