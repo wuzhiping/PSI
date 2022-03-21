@@ -832,6 +832,15 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       return;
     }
 
+    f = me.form5;
+    if (!f.getForm().isValid()) {
+      me.showInfo("数据没有录入完整", () => {
+        me.tabPanelMain.setActiveTab(4);
+      });
+
+      return;
+    }
+
     const entity = me.getEntity();
     const params = {
       id: entity == null ? null : entity.get("id"),
@@ -1006,7 +1015,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         me.setFocusAndCursorPosToLast(me.editWidthInView);
       } else if (id == "tabEdit") {
         me.setFocusAndCursorPosToLast(me.editColSpan);
-      } else if (id =="tabDefaultValue"){
+      } else if (id == "tabDefaultValue") {
         me.setFocusAndCursorPosToLast(me.editDefaultVaue);
       }
     }, 100);
@@ -1089,6 +1098,21 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       t = 1; // 非必录项
     }
     me.hiddenMustInput.setValue(parseInt(t));
+  },
+
+  /**
+   * 默认值 - 回调本方法
+   * 
+   * @private
+   */
+  _defaultValueCallback(data, scope) {
+    const me = scope;
+
+    let t = data ? data.get("id") : null;
+    if (!t) {
+      t = "100"; // [无]
+    }
+    me.hiddenDefaultVaue.setValue(t);
   },
 
   /**
