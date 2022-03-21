@@ -170,7 +170,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
             items: {
               border: 0,
               xtype: "form",
-              id: "form4",
+              id: "form5",
               bodyStyle: "margin-top:10px",
               layout: {
                 type: "table",
