@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SaleOrder.SOMainForm", {
+PCL.define("PSI.SaleOrder.SOMainForm", {
   extend: "PSI.AFX.BaseMainExForm",
 
   config: {
@@ -18,7 +18,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
   initComponent: function () {
     var me = this;
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       items: [{
         tbar: me.getToolbarCmp(),
         id: "panelQueryCmp",
@@ -201,7 +201,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       labelSeparator: "",
       fieldLabel: "状态",
       margin: "5, 0, 0, 0",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "待审核"], [1000, "已审核"],
         [2000, "部分出库"], [3000, "全部出库"], [4000, "订单关闭"]]
@@ -251,7 +251,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       queryMode: "local",
       editable: false,
       valueField: "id",
-      store: Ext.create("Ext.data.ArrayStore", {
+      store: PCL.create("PCL.data.ArrayStore", {
         fields: ["id", "text"],
         data: [[-1, "全部"], [0, "记应收账款"], [1, "现金收款"]]
       }),
@@ -300,7 +300,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
         iconCls: "PSI-button-hide",
         margin: "5 0 0 10",
         handler: function () {
-          Ext.getCmp("panelQueryCmp").collapse();
+          PCL.getCmp("panelQueryCmp").collapse();
         },
         scope: me
       }]
@@ -317,8 +317,8 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
     }
 
     var modelName = "PSISOBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "customerName", "contact", "tel",
         "fax", "inputUserName", "bizUserName",
         "billStatus", "goodsMoney", "dateCreated",
@@ -326,7 +326,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
         "dealAddress", "orgName", "confirmUserName",
         "confirmDate", "billMemo", "genPWBill"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: [],
@@ -352,7 +352,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
       }
     });
 
-    me.__mainGrid = Ext.create("Ext.grid.Panel", {
+    me.__mainGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       viewConfig: {
         enableTextSelection: true
@@ -524,7 +524,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
           xtype: "combobox",
           editable: false,
           width: 60,
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["text"],
             data: [["20"], ["50"], ["100"],
             ["300"], ["1000"]]
@@ -533,12 +533,9 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
           listeners: {
             change: {
               fn: function () {
-                store.pageSize = Ext
-                  .getCmp("comboCountPerPage")
-                  .getValue();
+                store.pageSize = PCL.getCmp("comboCountPerPage").getValue();
                 store.currentPage = 1;
-                Ext.getCmp("pagingToobar")
-                  .doRefresh();
+                PCL.getCmp("pagingToobar").doRefresh();
               },
               scope: me
             }
@@ -555,7 +552,7 @@ Ext.define("PSI.SaleOrder.SOMainForm", {
         itemdblclick: {
           fn: me.getPermission().edit == "1"
             ? me.onEditBill
-            : Ext.emptyFn,
+            : PCL.emptyFn,
           scope: me
         }
       }
