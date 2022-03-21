@@ -237,6 +237,9 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
 
     me.hiddenDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValue");
     me.editDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValue");
+    me.editDefaultVaueText = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueText");
+    me.hiddenDefalutValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValueMacro");
+    me.editDefalutValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueMacro");
 
     me.__useTabPanel = true;
     me.__tabPanelId = "PSI_CodeTable_CodeTableColEditForm_tabPanel";
@@ -639,7 +642,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       value: "非必须录入项",
       listeners: {
         specialkey: {
-          fn: me._onEditLastSpecialKey,
+          fn: me.__onEditSpecialKey,
           scope: me
         }
       }
@@ -670,12 +673,10 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       callbackScope: me,
       labelAlign: "right",
       labelSeparator: "",
-      fieldLabel: "默认值",
+      fieldLabel: "默认值类型",
       allowBlank: false,
-      blankText: "没有输入默认值",
+      blankText: "没有输入默认值类型",
       beforeLabelTextTpl: PSI.Const.REQUIRED,
-      colspan: 2,
-      width: col2Width,
       value: "[无]",
       listeners: {
         specialkey: {
@@ -683,6 +684,45 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
           scope: me
         }
       }
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editDefaultValueText",
+      fieldLabel: "默认值",
+      xtype: "textfield",
+      colspan: 2,
+      width: col2Width,
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      },
+      name: "defaultValueText",
+      hidden: true,
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValueMacro",
+      xtype: "hidden",
+      name: "defaultValue",
+      value: "100",
+      name: "defaultValueMacro"
+    }, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editDefaultValueMacro",
+      xtype: "psi_sysdictfield",
+      tableName: "t_sysdict_sln0000_ct_field_default_value_macro",
+      callbackFunc: me._defaultValueMacroCallback,
+      callbackScope: me,
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "默认值",
+      colspan: 2,
+      width: col2Width,
+      value: "",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      },
+      hidden: true,
     }];
 
     return list;
