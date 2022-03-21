@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SaleOrder.ChangeOrderEditForm", {
+PCL.define("PSI.SaleOrder.ChangeOrderEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   initComponent: function () {
@@ -46,7 +46,7 @@ Ext.define("PSI.SaleOrder.ChangeOrderEditForm", {
       + t
       + "</h2>"
       + "<p style='color:#196d83'>标记 <span style='color:red;font-weight:bold'>*</span>的是必须录入数据的字段</p>";
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: me.formatTitle(PSI.Const.PROD_NAME),
         height: 40
@@ -190,17 +190,12 @@ Ext.define("PSI.SaleOrder.ChangeOrderEditForm", {
 
     me.callParent(arguments);
 
-    me.editForm = Ext.getCmp("PSI_SaleOrder_ChangeOrderEditForm_editForm");
-    me.editGoodsCount = Ext
-      .getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsCount");
-    me.editGoodsPrice = Ext
-      .getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsPrice");
-    me.editGoodsMoney = Ext
-      .getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsMoney");
-    me.editWSCount = Ext
-      .getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsWSCount");
-    me.editLeftCount = Ext
-      .getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsLeftCount");
+    me.editForm = PCL.getCmp("PSI_SaleOrder_ChangeOrderEditForm_editForm");
+    me.editGoodsCount = PCL.getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsCount");
+    me.editGoodsPrice = PCL.getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsPrice");
+    me.editGoodsMoney = PCL.getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsMoney");
+    me.editWSCount = PCL.getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsWSCount");
+    me.editLeftCount = PCL.getCmp("PSI_SaleOrder_ChangeOrderEditForm_editGoodsLeftCount");
   },
 
   onOK: function (thenAdd) {
@@ -244,7 +239,7 @@ Ext.define("PSI.SaleOrder.ChangeOrderEditForm", {
   onWndClose: function () {
     var me = this;
 
-    Ext.get(window).un('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', me.onWindowBeforeUnload);
 
     if (me.__lastId) {
       if (me.getParentForm()) {
@@ -256,7 +251,7 @@ Ext.define("PSI.SaleOrder.ChangeOrderEditForm", {
   onWndShow: function () {
     var me = this;
 
-    Ext.get(window).on('beforeunload', me.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', me.onWindowBeforeUnload);
 
     me.editGoodsCount.focus();
     me.editGoodsCount.setValue(me.editGoodsCount.getValue());
