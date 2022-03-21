@@ -237,7 +237,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
 
     me.hiddenDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValue");
     me.editDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValue");
-    me.editDefaultVaueText = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueText");
+    me.editDefaultValueText = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueText");
     me.hiddenDefalutValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValueMacro");
     me.editDefalutValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueMacro");
 
@@ -683,12 +683,13 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
           fn: me.__onEditSpecialKey,
           scope: me
         }
-      }
+      },
+      colspan: 3,
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editDefaultValueText",
-      fieldLabel: "默认值",
+      fieldLabel: "固定值",
       xtype: "textfield",
-      colspan: 2,
+      colspan: 3,
       width: col2Width,
       listeners: {
         specialkey: {
@@ -696,8 +697,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
           scope: me
         }
       },
+      disabled: true,
       name: "defaultValueText",
-      hidden: true,
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValueMacro",
       xtype: "hidden",
@@ -712,8 +713,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       callbackScope: me,
       labelAlign: "right",
       labelSeparator: "",
-      fieldLabel: "默认值",
-      colspan: 2,
+      fieldLabel: "宏",
+      colspan: 3,
       width: col2Width,
       value: "",
       listeners: {
@@ -722,7 +723,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
           scope: me
         }
       },
-      hidden: true,
+      disabled: true,
     }];
 
     return list;
@@ -1147,11 +1148,20 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
    */
   _defaultValueCallback(data, scope) {
     const me = scope;
+    me.editDefaultValueText.setDisabled(true);
+    me.editDefalutValueMacro.setDisabled(true);
 
     let t = data ? data.get("id") : null;
     if (!t) {
       t = "100"; // [无]
+    } else {
+      if (t == "200") {
+        me.editDefaultValueText.setDisabled(false);
+      } else if (t == "300") {
+        me.editDefalutValueMacro.setDisabled(false);
+      }
     }
+
     me.hiddenDefaultVaue.setValue(t);
   },
 
