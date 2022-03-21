@@ -239,7 +239,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.editDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValue");
     me.editDefaultValueText = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueText");
     me.hiddenDefalutValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValueMacro");
-    me.editDefalutValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueMacro");
+    me.editDefaultValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueMacro");
 
     me.__useTabPanel = true;
     me.__tabPanelId = "PSI_CodeTable_CodeTableColEditForm_tabPanel";
@@ -680,7 +680,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       value: "[无]",
       listeners: {
         specialkey: {
-          fn: me.__onEditSpecialKey,
+          fn: me._onDefaultValueEditSpecialKey,
           scope: me
         }
       },
@@ -693,7 +693,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       width: col2Width,
       listeners: {
         specialkey: {
-          fn: me.__onEditSpecialKey,
+          fn: me._onEditLastSpecialKey,
           scope: me
         }
       },
@@ -719,7 +719,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       value: "",
       listeners: {
         specialkey: {
-          fn: me.__onEditSpecialKey,
+          fn: me._onEditLastSpecialKey,
           scope: me
         }
       },
@@ -943,6 +943,21 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     }
   },
 
+  _onDefaultValueEditSpecialKey(field, e) {
+    const me = this;
+
+    if (e.getKey() === e.ENTER) {
+      const v = me.editDefaultVaue.getIdValue();
+      if (v == "200") {
+        me.setFocusAndCursorPosToLast(me.editDefaultValueText);
+      } else if (v == "300") {
+        me.setFocusAndCursorPosToLast(me.editDefaultValueMacro);
+      } else {
+        me._onOK();
+      }
+    }
+  },
+
   /**
    * @private
    */
@@ -1149,7 +1164,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   _defaultValueCallback(data, scope) {
     const me = scope;
     me.editDefaultValueText.setDisabled(true);
-    me.editDefalutValueMacro.setDisabled(true);
+    me.editDefaultValueMacro.setDisabled(true);
 
     let t = data ? data.get("id") : null;
     if (!t) {
@@ -1158,7 +1173,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       if (t == "200") {
         me.editDefaultValueText.setDisabled(false);
       } else if (t == "300") {
-        me.editDefalutValueMacro.setDisabled(false);
+        me.editDefaultValueMacro.setDisabled(false);
       }
     }
 
