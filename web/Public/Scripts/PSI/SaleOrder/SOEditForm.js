@@ -388,8 +388,8 @@ PCL.define("PSI.SaleOrder.SOEditForm", {
 
   onOK: function () {
     var me = this;
-    Ext.getBody().mask("正在保存中...");
-    Ext.Ajax.request({
+    PCL.getBody().mask("正在保存中...");
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/SaleOrder/editSOBill",
       method: "POST",
       params: {
@@ -397,10 +397,10 @@ PCL.define("PSI.SaleOrder.SOEditForm", {
         jsonStr: me.getSaveData()
       },
       callback: function (options, success, response) {
-        Ext.getBody().unmask();
+        PCL.getBody().unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
           if (data.success) {
             me.close();
             me.getParentForm().refreshMainGrid(data.id);
@@ -421,7 +421,7 @@ PCL.define("PSI.SaleOrder.SOEditForm", {
       for (var i = 0; i < me.__editorList.length; i++) {
         var editorId = me.__editorList[i];
         if (id === editorId) {
-          var edit = Ext.getCmp(me.__editorList[i + 1]);
+          var edit = PCL.getCmp(me.__editorList[i + 1]);
           edit.focus();
           edit.setValue(edit.getValue());
         }
@@ -451,8 +451,8 @@ PCL.define("PSI.SaleOrder.SOEditForm", {
       return me.__goodsGrid;
     }
     var modelName = "PSISOBillDetail_EditForm";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsId", "goodsCode", "goodsName",
         "goodsSpec", "unitName", "goodsCount", {
           name: "goodsMoney",
@@ -468,13 +468,13 @@ PCL.define("PSI.SaleOrder.SOEditForm", {
           type: "float"
         }, "memo", "scbillDetailId", "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__cellEditing = Ext.create("PSI.UX.CellEditing", {
+    me.__cellEditing = PCL.create("PSI.UX.CellEditing", {
       clicksToEdit: 1,
       listeners: {
         beforeedit: {
@@ -488,7 +488,7 @@ PCL.define("PSI.SaleOrder.SOEditForm", {
       }
     });
 
-    me.__goodsGrid = Ext.create("Ext.grid.Panel", {
+    me.__goodsGrid = PCL.create("PCL.grid.Panel", {
       viewConfig: {
         enableTextSelection: true,
         markDirty: !me.adding
@@ -788,18 +788,17 @@ PCL.define("PSI.SaleOrder.SOEditForm", {
   getSaveData: function () {
     var me = this;
     var result = {
-      id: Ext.getCmp("hiddenId").getValue(),
-      dealDate: Ext.Date.format(Ext.getCmp("editDealDate").getValue(),
-        "Y-m-d"),
-      customerId: Ext.getCmp("editCustomer").getIdValue(),
-      dealAddress: Ext.getCmp("editDealAddress").getValue(),
-      contact: Ext.getCmp("editContact").getValue(),
-      tel: Ext.getCmp("editTel").getValue(),
-      fax: Ext.getCmp("editFax").getValue(),
-      orgId: Ext.getCmp("editOrg").getIdValue(),
-      bizUserId: Ext.getCmp("editBizUser").getIdValue(),
-      receivingType: Ext.getCmp("editReceivingType").getValue(),
-      billMemo: Ext.getCmp("editBillMemo").getValue(),
+      id: PCL.getCmp("hiddenId").getValue(),
+      dealDate: PCL.Date.format(PCL.getCmp("editDealDate").getValue(),"Y-m-d"),
+      customerId: PCL.getCmp("editCustomer").getIdValue(),
+      dealAddress: PCL.getCmp("editDealAddress").getValue(),
+      contact: PCL.getCmp("editContact").getValue(),
+      tel: PCL.getCmp("editTel").getValue(),
+      fax: PCL.getCmp("editFax").getValue(),
+      orgId: PCL.getCmp("editOrg").getIdValue(),
+      bizUserId: PCL.getCmp("editBizUser").getIdValue(),
+      receivingType: PCL.getCmp("editReceivingType").getValue(),
+      billMemo: PCL.getCmp("editBillMemo").getValue(),
       scbillRef: me.getScbillRef(),
       items: []
     };
