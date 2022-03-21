@@ -5,7 +5,7 @@
  * @copyright 2015 - present
  * @license GPL v3
  */
-Ext.define("PSI.SaleOrder.SOEditForm", {
+PCL.define("PSI.SaleOrder.SOEditForm", {
   extend: "PSI.AFX.BaseDialogForm",
 
   config: {
@@ -29,7 +29,7 @@ Ext.define("PSI.SaleOrder.SOEditForm", {
     var title = entity == null ? "新建销售订单" : "编辑销售订单";
     title = me.formatTitle(title);
 
-    Ext.apply(me, {
+    PCL.apply(me, {
       header: {
         title: title,
         height: 40
@@ -243,7 +243,7 @@ Ext.define("PSI.SaleOrder.SOEditForm", {
           queryMode: "local",
           editable: false,
           valueField: "id",
-          store: Ext.create("Ext.data.ArrayStore", {
+          store: PCL.create("PCL.data.ArrayStore", {
             fields: ["id", "text"],
             data: [["0", "记应收账款"],
             ["1", "现金收款"]]
@@ -298,22 +298,22 @@ Ext.define("PSI.SaleOrder.SOEditForm", {
   onWndClose: function () {
     // 加上这个调用是为了解决 #IMQB2 - https://gitee.com/crm8000/PSI/issues/IMQB2
     // 这个只是目前的临时应急方法，实现的太丑陋了
-    Ext.WindowManager.hideAll();
+    PCL.WindowManager.hideAll();
 
-    Ext.get(window).un('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).un('beforeunload', this.onWindowBeforeUnload);
   },
 
   onWndShow: function () {
-    Ext.get(window).on('beforeunload', this.onWindowBeforeUnload);
+    PCL.get(window).on('beforeunload', this.onWindowBeforeUnload);
 
     var me = this;
 
-    var el = me.getEl() || Ext.getBody();
+    var el = me.getEl() || PCL.getBody();
     el.mask(PSI.Const.LOADING);
-    Ext.Ajax.request({
+    PCL.Ajax.request({
       url: PSI.Const.BASE_URL + "Home/SaleOrder/soBillInfo",
       params: {
-        id: Ext.getCmp("hiddenId").getValue(),
+        id: PCL.getCmp("hiddenId").getValue(),
         genBill: me.getGenBill() ? "1" : "0",
         scbillRef: me.getScbillRef()
       },
@@ -322,62 +322,51 @@ Ext.define("PSI.SaleOrder.SOEditForm", {
         el.unmask();
 
         if (success) {
-          var data = Ext.JSON.decode(response.responseText);
+          var data = PCL.JSON.decode(response.responseText);
 
           if (data.genBill == "1") {
-            var editCustomer = Ext.getCmp("editCustomer");
+            var editCustomer = PCL.getCmp("editCustomer");
             editCustomer.setIdValue(data.customerId);
             editCustomer.setValue(data.customerName);
-            Ext.getCmp("editDealDate")
-              .setValue(data.dealDate);
-            Ext.getCmp("editDealAddress")
-              .setValue(data.dealAddress);
-            Ext.getCmp("editOrg").setIdValue(data.orgId);
-            Ext.getCmp("editOrg")
-              .setValue(data.orgFullName);
+            PCL.getCmp("editDealDate").setValue(data.dealDate);
+            PCL.getCmp("editDealAddress").setValue(data.dealAddress);
+            PCL.getCmp("editOrg").setIdValue(data.orgId);
+            PCL.getCmp("editOrg").setValue(data.orgFullName);
 
             // 甲乙双方就不能再编辑
             editCustomer.setReadOnly(true);
-            Ext.getCmp("editOrg").setReadOnly(true);
+            PCL.getCmp("editOrg").setReadOnly(true);
 
-            Ext.getCmp("columnActionDelete").hide();
-            Ext.getCmp("columnActionAdd").hide();
-            Ext.getCmp("columnActionAppend").hide();
+            PCL.getCmp("columnActionDelete").hide();
+            PCL.getCmp("columnActionAdd").hide();
+            PCL.getCmp("columnActionAppend").hide();
           }
 
           if (data.ref) {
             // 编辑状态
             me.setGenBill(data.genBill == "1");
 
-            Ext.getCmp("editRef").setValue(data.ref);
-            var editCustomer = Ext.getCmp("editCustomer");
+            PCL.getCmp("editRef").setValue(data.ref);
+            var editCustomer = PCL.getCmp("editCustomer");
             editCustomer.setIdValue(data.customerId);
             editCustomer.setValue(data.customerName);
-            Ext.getCmp("editBillMemo")
-              .setValue(data.billMemo);
-            Ext.getCmp("editDealDate")
-              .setValue(data.dealDate);
-            Ext.getCmp("editDealAddress")
-              .setValue(data.dealAddress);
-            Ext.getCmp("editContact")
-              .setValue(data.contact);
-            Ext.getCmp("editTel").setValue(data.tel);
-            Ext.getCmp("editFax").setValue(data.fax);
+            PCL.getCmp("editBillMemo").setValue(data.billMemo);
+            PCL.getCmp("editDealDate").setValue(data.dealDate);
+            PCL.getCmp("editDealAddress").setValue(data.dealAddress);
+            PCL.getCmp("editContact").setValue(data.contact);
+            PCL.getCmp("editTel").setValue(data.tel);
+            PCL.getCmp("editFax").setValue(data.fax);
           }
 
-          Ext.getCmp("editBizUser")
-            .setIdValue(data.bizUserId);
-          Ext.getCmp("editBizUser")
-            .setValue(data.bizUserName);
+          PCL.getCmp("editBizUser").setIdValue(data.bizUserId);
+          PCL.getCmp("editBizUser").setValue(data.bizUserName);
           if (data.orgId) {
-            Ext.getCmp("editOrg").setIdValue(data.orgId);
-            Ext.getCmp("editOrg")
-              .setValue(data.orgFullName);
+            PCL.getCmp("editOrg").setIdValue(data.orgId);
+            PCL.getCmp("editOrg").setValue(data.orgFullName);
           }
 
           if (data.receivingType) {
-            Ext.getCmp("editReceivingType")
-              .setValue(data.receivingType);
+            PCL.getCmp("editReceivingType").setValue(data.receivingType);
           }
 
           var store = me.getGoodsGrid().getStore();
