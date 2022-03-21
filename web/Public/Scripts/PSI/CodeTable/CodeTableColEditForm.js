@@ -18,7 +18,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   initComponent() {
     const me = this;
     const entity = me.getEntity();
-    this.adding = entity == null;
+    me.adding = entity == null;
 
     const buttons = [];
 
@@ -243,8 +243,14 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
 
     me.__useTabPanel = true;
     me.__tabPanelId = "PSI_CodeTable_CodeTableColEditForm_tabPanel";
+    inputForm1 = [me.editCaption];
+    if (me.adding) {
+      inputForm1.push(me.editFieldName, me.editFieldType);
+    }
+    inputForm1.push(me.editMemo);
+
     me.__editorList = [
-      [me.editCaption, me.editFieldName, me.editFieldType, me.editMemo],
+      inputForm1,
       [me.editValueFrom],
       [me.editWidthInView, me.editShowOrderInView, me.editShowOrder],
       [me.editColSpan, me.editEditorXtype, me.editIsVisible, me.editMustInput],
