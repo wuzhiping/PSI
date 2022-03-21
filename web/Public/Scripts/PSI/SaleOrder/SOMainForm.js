@@ -958,7 +958,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/SaleOrder/commitSOBill"),
@@ -1007,7 +1007,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
       + "</span> 的销售订单?";
     var id = bill.get("id");
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/SaleOrder/cancelConfirmSOBill"),
@@ -1068,14 +1068,14 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
   onClearQuery: function () {
     var me = this;
 
-    Ext.getCmp("editQueryBillStatus").setValue(-1);
-    Ext.getCmp("editQueryRef").setValue(null);
-    Ext.getCmp("editQueryFromDT").setValue(null);
-    Ext.getCmp("editQueryToDT").setValue(null);
-    Ext.getCmp("editQueryCustomer").clearIdValue();
-    Ext.getCmp("editQueryReceivingType").setValue(-1);
-    Ext.getCmp("editQueryGoods").clearIdValue();
-    Ext.getCmp("editQueryUser").clearIdValue();
+    PCL.getCmp("editQueryBillStatus").setValue(-1);
+    PCL.getCmp("editQueryRef").setValue(null);
+    PCL.getCmp("editQueryFromDT").setValue(null);
+    PCL.getCmp("editQueryToDT").setValue(null);
+    PCL.getCmp("editQueryCustomer").clearIdValue();
+    PCL.getCmp("editQueryReceivingType").setValue(-1);
+    PCL.getCmp("editQueryGoods").clearIdValue();
+    PCL.getCmp("editQueryUser").clearIdValue();
 
     me.onQuery();
   },
@@ -1084,38 +1084,38 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     var me = this;
 
     var result = {
-      billStatus: Ext.getCmp("editQueryBillStatus").getValue()
+      billStatus: PCL.getCmp("editQueryBillStatus").getValue()
     };
 
-    var ref = Ext.getCmp("editQueryRef").getValue();
+    var ref = PCL.getCmp("editQueryRef").getValue();
     if (ref) {
       result.ref = ref;
     }
 
-    var customerId = Ext.getCmp("editQueryCustomer").getIdValue();
+    var customerId = PCL.getCmp("editQueryCustomer").getIdValue();
     if (customerId) {
       result.customerId = customerId;
     }
 
-    var fromDT = Ext.getCmp("editQueryFromDT").getValue();
+    var fromDT = PCL.getCmp("editQueryFromDT").getValue();
     if (fromDT) {
-      result.fromDT = Ext.Date.format(fromDT, "Y-m-d");
+      result.fromDT = PCL.Date.format(fromDT, "Y-m-d");
     }
 
-    var toDT = Ext.getCmp("editQueryToDT").getValue();
+    var toDT = PCL.getCmp("editQueryToDT").getValue();
     if (toDT) {
-      result.toDT = Ext.Date.format(toDT, "Y-m-d");
+      result.toDT = PCL.Date.format(toDT, "Y-m-d");
     }
 
-    var receivingType = Ext.getCmp("editQueryReceivingType").getValue();
+    var receivingType = PCL.getCmp("editQueryReceivingType").getValue();
     result.receivingType = receivingType;
 
-    var goodsId = Ext.getCmp("editQueryGoods").getIdValue();
+    var goodsId = PCL.getCmp("editQueryGoods").getIdValue();
     if (goodsId) {
       result.goodsId = goodsId;
     }
 
-    var userId = Ext.getCmp("editQueryUser").getIdValue();
+    var userId = PCL.getCmp("editQueryUser").getIdValue();
     if (userId) {
       result.userId = userId;
     }
@@ -1139,7 +1139,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     }
 
     var funShowForm = function () {
-      var form = Ext.create("PSI.PurchaseOrder.POEditForm", {
+      var form = PCL.create("PSI.PurchaseOrder.POEditForm", {
         parentForm: me,
         sobillRef: bill.get("ref"),
         genBill: true
@@ -1149,7 +1149,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
 
     // 先判断是否已经生成过采购订单了
     // 如果已经生成过，就提醒用户
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("正在查询是否已经生成过采购订单...");
     var r = {
       url: me.URL("Home/SaleOrder/getPOBillRefListBySOBillRef"),
@@ -1204,7 +1204,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     }
 
     var funShowForm = function () {
-      var form = Ext.create("PSI.Sale.WSEditForm", {
+      var form = PCL.create("PSI.Sale.WSEditForm", {
         genBill: true,
         sobillRef: bill.get("ref")
       });
@@ -1213,7 +1213,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
 
     // 先判断是否已经生成过销售出库单了
     // 如果已经生成过，就提醒用户
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("正在查询是否已经生成过销售出库单...");
     var r = {
       url: me.URL("Home/SaleOrder/getWSBillRefListBySOBillRef"),
@@ -1269,20 +1269,20 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
       return me.__wsGrid;
     }
     var modelName = "PSISOBill_WSBill";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "ref", "bizDate", "customerName",
         "warehouseName", "inputUserName", "bizUserName",
         "billStatus", "amount", "dateCreated",
         "receivingType", "memo"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__wsGrid = Ext.create("Ext.grid.Panel", {
+    me.__wsGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       title: "销售订单出库详情",
       viewConfig: {
@@ -1451,7 +1451,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/SaleOrder/genSOBillPrintPage",
@@ -1510,7 +1510,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     }
     var bill = item[0];
 
-    var el = Ext.getBody();
+    var el = PCL.getBody();
     el.mask("数据加载中...");
     var r = {
       url: PSI.Const.BASE_URL + "Home/SaleOrder/genSOBillPrintPage",
@@ -1570,7 +1570,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
       return;
     }
 
-    var form = Ext.create("PSI.SaleOrder.ChangeOrderEditForm", {
+    var form = PCL.create("PSI.SaleOrder.ChangeOrderEditForm", {
       entity: entity,
       parentForm: me
     });
@@ -1626,7 +1626,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/SaleOrder/closeSOBill"),
@@ -1669,7 +1669,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     var id = bill.get("id");
 
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在提交中...");
       var r = {
         url: me.URL("Home/SaleOrder/cancelClosedSOBill"),
