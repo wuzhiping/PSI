@@ -423,7 +423,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       value: 1,
     }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editValueFrom",
-      xtype: me.adding ? "psi_sysdictfield" : "displayfield",
+      xtype: "psi_sysdictfield",
       tableName: "t_sysdict_sln0000_ct_value_from",
       callbackFunc: me._valueFromCallback,
       callbackScope: me,
@@ -787,7 +787,6 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
 
               if (valueFrom == 4) {
                 // 引用自身数据
-                me.editValueFrom.setReadOnly(true);
                 me.editValueFromTableName.setReadOnly(true);
               }
 
