@@ -235,13 +235,17 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.hiddenMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenMustInput");
     me.editMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMustInput");
 
+    me.hiddenDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValue");
+    me.editDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValue");
+
     me.__useTabPanel = true;
     me.__tabPanelId = "PSI_CodeTable_CodeTableColEditForm_tabPanel";
     me.__editorList = [
       [me.editCaption, me.editFieldName, me.editFieldType, me.editMemo],
       [me.editValueFrom],
       [me.editWidthInView, me.editShowOrderInView, me.editShowOrder],
-      [me.editColSpan, me.editEditorXtype, me.editIsVisible, me.editMustInput]
+      [me.editColSpan, me.editEditorXtype, me.editIsVisible, me.editMustInput],
+      [me.editDefaultVaue],
     ];
 
     me.buttonRefCol = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
@@ -653,7 +657,12 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     const me = this;
     const col2Width = 550;
 
-    const list = [, {
+    const list = [{
+      id: "PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValue",
+      xtype: "hidden",
+      name: "defaultValue",
+      value: "100",
+    }, {
       id: "PSI_CodeTable_CodeTableColEditForm_editDefaultValue",
       xtype: "psi_sysdictfield",
       tableName: "t_sysdict_sln0000_ct_field_default_value",
@@ -997,6 +1006,8 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         me.setFocusAndCursorPosToLast(me.editWidthInView);
       } else if (id == "tabEdit") {
         me.setFocusAndCursorPosToLast(me.editColSpan);
+      } else if (id =="tabDefaultValue"){
+        me.setFocusAndCursorPosToLast(me.editDefaultVaue);
       }
     }, 100);
   },
