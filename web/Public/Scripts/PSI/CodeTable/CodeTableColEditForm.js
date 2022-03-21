@@ -162,6 +162,30 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
               },
               items: me.getEditCols()
             }
+          }, {
+            title: "默认值",
+            id: "tabDefaultValue",
+            border: 0,
+            layout: "fit",
+            items: {
+              border: 0,
+              xtype: "form",
+              id: "form4",
+              bodyStyle: "margin-top:10px",
+              layout: {
+                type: "table",
+                columns: 3,
+                tableAttrs: PSI.Const.TABLE_LAYOUT,
+              },
+              defaultType: 'textfield',
+              fieldDefaults: {
+                labelWidth: 90,
+                labelAlign: "right",
+                labelSeparator: "",
+                msgTarget: 'side'
+              },
+              items: []
+            }
           }],
           listeners: {
             tabchange: {
