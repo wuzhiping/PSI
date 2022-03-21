@@ -571,27 +571,27 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     }
 
     var modelName = "PSISOBillDetail";
-    Ext.define(modelName, {
-      extend: "Ext.data.Model",
+    PCL.define(modelName, {
+      extend: "PCL.data.Model",
       fields: ["id", "goodsCode", "goodsName", "goodsSpec",
         "unitName", "goodsCount", "goodsMoney",
         "goodsPrice", "taxRate", "tax", "moneyWithTax",
         "wsCount", "leftCount", "memo", "goodsPriceWithTax"]
     });
-    var store = Ext.create("Ext.data.Store", {
+    var store = PCL.create("PCL.data.Store", {
       autoLoad: false,
       model: modelName,
       data: []
     });
 
-    me.__detailGrid = Ext.create("Ext.grid.Panel", {
+    me.__detailGrid = PCL.create("PCL.grid.Panel", {
       cls: "PSI",
       title: "销售订单明细",
       viewConfig: {
         enableTextSelection: true
       },
       columnLines: true,
-      columns: [Ext.create("Ext.grid.RowNumberer", {
+      columns: [PCL.create("PCL.grid.RowNumberer", {
         text: "序号",
         width: 40
       }), {
@@ -730,12 +730,12 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
   refreshMainGrid: function (id) {
     var me = this;
 
-    Ext.getCmp("buttonEdit").setDisabled(true);
-    Ext.getCmp("buttonDelete").setDisabled(true);
-    Ext.getCmp("buttonCommit").setDisabled(true);
-    Ext.getCmp("buttonCancelConfirm").setDisabled(true);
-    Ext.getCmp("buttonGenWSBill").setDisabled(true);
-    Ext.getCmp("buttonGenPOBill").setDisabled(true);
+    PCL.getCmp("buttonEdit").setDisabled(true);
+    PCL.getCmp("buttonDelete").setDisabled(true);
+    PCL.getCmp("buttonCommit").setDisabled(true);
+    PCL.getCmp("buttonCancelConfirm").setDisabled(true);
+    PCL.getCmp("buttonGenWSBill").setDisabled(true);
+    PCL.getCmp("buttonGenPOBill").setDisabled(true);
 
     var gridDetail = me.getDetailGrid();
     gridDetail.setTitle("销售订单明细");
@@ -744,7 +744,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     var grid = me.getWSGrid();
     grid.getStore().removeAll();
 
-    Ext.getCmp("pagingToobar").doRefresh();
+    PCL.getCmp("pagingToobar").doRefresh();
     me.__lastId = id;
   },
 
@@ -754,7 +754,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
   onAddBill: function () {
     var me = this;
 
-    var form = Ext.create("PSI.SaleOrder.SOEditForm", {
+    var form = PCL.create("PSI.SaleOrder.SOEditForm", {
       parentForm: me,
       showAddGoodsButton: me.getPermission().showAddGoodsButton
     });
@@ -773,7 +773,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     }
     var bill = item[0];
 
-    var form = Ext.create("PSI.SaleOrder.SOEditForm", {
+    var form = PCL.create("PSI.SaleOrder.SOEditForm", {
       parentForm: me,
       showAddGoodsButton: me.getPermission().showAddGoodsButton,
       entity: bill
@@ -811,7 +811,7 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     var info = "请确认是否删除销售订单: <span style='color:red'>" + bill.get("ref")
       + "</span>";
     var funcConfirm = function () {
-      var el = Ext.getBody();
+      var el = PCL.getBody();
       el.mask("正在删除中...");
       var r = {
         url: me.URL("Home/SaleOrder/deleteSOBill"),
@@ -845,37 +845,37 @@ PCL.define("PSI.SaleOrder.SOMainForm", {
     me.getDetailGrid().setTitle("销售订单明细");
     var item = me.getMainGrid().getSelectionModel().getSelection();
     if (item == null || item.length != 1) {
-      Ext.getCmp("buttonEdit").setDisabled(true);
-      Ext.getCmp("buttonDelete").setDisabled(true);
-      Ext.getCmp("buttonCommit").setDisabled(true);
-      Ext.getCmp("buttonCancelConfirm").setDisabled(true);
-      Ext.getCmp("buttonGenWSBill").setDisabled(true);
-      Ext.getCmp("buttonGenPOBill").setDisabled(true);
+      PCL.getCmp("buttonEdit").setDisabled(true);
+      PCL.getCmp("buttonDelete").setDisabled(true);
+      PCL.getCmp("buttonCommit").setDisabled(true);
+      PCL.getCmp("buttonCancelConfirm").setDisabled(true);
+      PCL.getCmp("buttonGenWSBill").setDisabled(true);
+      PCL.getCmp("buttonGenPOBill").setDisabled(true);
 
       return;
     }
     var bill = item[0];
     var commited = bill.get("billStatus") >= 1000;
 
-    var buttonEdit = Ext.getCmp("buttonEdit");
+    var buttonEdit = PCL.getCmp("buttonEdit");
     buttonEdit.setDisabled(false);
     if (commited) {
       buttonEdit.setText("查看销售订单");
-      Ext.getCmp("columnActionChangeOrder").show();
+      PCL.getCmp("columnActionChangeOrder").show();
     } else {
       buttonEdit.setText("编辑销售订单");
-      Ext.getCmp("columnActionChangeOrder").hide();
+      PCL.getCmp("columnActionChangeOrder").hide();
     }
     if (me.getPermission().confirm == "0") {
       // 没有审核权限就不能做订单变更
-      Ext.getCmp("columnActionChangeOrder").hide();
+      PCL.getCmp("columnActionChangeOrder").hide();
     }
 
-    Ext.getCmp("buttonDelete").setDisabled(commited);
-    Ext.getCmp("buttonCommit").setDisabled(commited);
-    Ext.getCmp("buttonCancelConfirm").setDisabled(!commited);
-    Ext.getCmp("buttonGenWSBill").setDisabled(!commited);
-    Ext.getCmp("buttonGenPOBill").setDisabled(!commited);
+    PCL.getCmp("buttonDelete").setDisabled(commited);
+    PCL.getCmp("buttonCommit").setDisabled(commited);
+    PCL.getCmp("buttonCancelConfirm").setDisabled(!commited);
+    PCL.getCmp("buttonGenWSBill").setDisabled(!commited);
+    PCL.getCmp("buttonGenPOBill").setDisabled(!commited);
 
     me.refreshDetailGrid();
 
