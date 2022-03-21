@@ -651,7 +651,30 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
    */
   getDefaultValueInputs() {
     const me = this;
-    const list = [];
+    const col2Width = 550;
+
+    const list = [, {
+      id: "PSI_CodeTable_CodeTableColEditForm_editDefaultValue",
+      xtype: "psi_sysdictfield",
+      tableName: "t_sysdict_sln0000_ct_field_default_value",
+      callbackFunc: me._defaultValueCallback,
+      callbackScope: me,
+      labelAlign: "right",
+      labelSeparator: "",
+      fieldLabel: "默认值",
+      allowBlank: false,
+      blankText: "没有输入默认值",
+      beforeLabelTextTpl: PSI.Const.REQUIRED,
+      colspan: 2,
+      width: col2Width,
+      value: "[无]",
+      listeners: {
+        specialkey: {
+          fn: me.__onEditSpecialKey,
+          scope: me
+        }
+      }
+    }];
 
     return list;
   },
