@@ -88,7 +88,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
                 labelSeparator: "",
                 msgTarget: 'side'
               },
-              items: me.getDbStructCols()
+              items: me.getDbStructInputs()
             }
           }, {
             title: "取值",
@@ -112,7 +112,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
                 labelSeparator: "",
                 msgTarget: 'side'
               },
-              items: me.getFetchValueCols()
+              items: me.getFetchValueInputs()
             }
           }, {
             title: "显示",
@@ -136,7 +136,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
                 labelSeparator: "",
                 msgTarget: 'side'
               },
-              items: me.getDisplayCols()
+              items: me.getDisplayInput()
             }
           }, {
             title: "编辑",
@@ -160,7 +160,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
                 labelSeparator: "",
                 msgTarget: 'side'
               },
-              items: me.getEditCols()
+              items: me.getEditInputs()
             }
           }, {
             title: "默认值",
@@ -184,7 +184,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
                 labelSeparator: "",
                 msgTarget: 'side'
               },
-              items: []
+              items: me.getDefaultValueInputs(),
             }
           }],
           listeners: {
@@ -250,15 +250,16 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.form2 = PCL.getCmp("form2");
     me.form3 = PCL.getCmp("form3");
     me.form4 = PCL.getCmp("form4");
+    me.form5 = PCL.getCmp("form5");
     me.tabPanelMain = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_tabPanel");
   },
 
   /**
    * @private
    * 
-   * 和数据库结构相关的列
+   * 和数据库结构相关的属性input
    */
-  getDbStructCols() {
+  getDbStructInputs() {
     const me = this;
     const entity = me.getEntity();
     const isSysCol = (entity != null) && (parseInt(entity.get("sysColRawValue")) == 1);
@@ -395,9 +396,9 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   /**
    * @private
    * 
-   * 和取值相关的列
+   * 和取值相关的列属性input
    */
-  getFetchValueCols() {
+  getFetchValueInputs() {
     const me = this;
 
     const col1Width = 405;
@@ -463,9 +464,9 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   /**
    * @private
    * 
-   * 显示相关的列
+   * 显示相关的属性input
    */
-  getDisplayCols() {
+  getDisplayInput() {
     const me = this;
 
     const list = [{
@@ -540,9 +541,9 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
   /**
    * @private
    * 
-   * 编辑相关的列
+   * 编辑相关的属性input
    */
-  getEditCols() {
+  getEditInputs() {
     const me = this;
     const col2Width = 550;
 
@@ -639,6 +640,18 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
         }
       }
     }];
+
+    return list;
+  },
+
+  /**
+   * 默认值相关的属性input
+   * 
+   * @private
+   */
+  getDefaultValueInputs() {
+    const me = this;
+    const list = [];
 
     return list;
   },
