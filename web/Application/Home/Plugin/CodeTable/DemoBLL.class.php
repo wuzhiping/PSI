@@ -93,7 +93,7 @@ class DemoBLL
    * @param $db 数据库对象
    * @param $fid fid
    * @return null|array; 
-   *    null : 表示没有返回默认值
+   *    null : 表示码表的默认值均不需要后台PHP代码处理
    */
   public function getDefaultValues($db, $fid)
   {
@@ -108,7 +108,8 @@ class DemoBLL
     ];
 
     // 用法2 返回null
-    // 这种用法极少
+    // 当码表的默认值均不需要后台PHP代码处理时候，返回null
+    // 这样可以简化一些逻辑判断
     // return null;
   }
 }
