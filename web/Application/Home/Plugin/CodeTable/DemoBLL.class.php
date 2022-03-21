@@ -84,4 +84,29 @@ class DemoBLL
      */
     //return null;
   }
+
+  /**
+   * 获得码表的默认值，其触发时机是新建一个码表记录的时候
+   * 
+   * @param $db 数据库对象
+   * @param $fid fid
+   * @return null|array; 
+   *    null : 表示没有返回默认值
+   */
+  public function getDefaultValues($db, $fid)
+  {
+    // 在本方法中使用$db的时候不要启动事务，因为当前已经处于事务中
+
+    // 用法1 返回array
+    return [
+      // 该字段有默认值
+      "db_field_name1" => "defalut value1",
+      "db_field_name2" => "defalut value2",
+      // ...
+    ];
+
+    // 用法2 返回null
+    // 这种用法极少
+    // return null;
+  }
 }
