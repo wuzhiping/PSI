@@ -908,7 +908,23 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       editorXtype: me.hiddenEditorXtype.getValue(),
       memo: me.editMemo.getValue(),
       colSpan: me.editColSpan.getValue(),
+      defaultValue: me.hiddenDefaultValue.getValue(),
     };
+
+    const defaultValue = me.hiddenDefaultValue.getValue();
+    let defaultValueExt = "";
+    if (defaultValue == "200") {
+      // 固定值
+      defaultValueExt = me.editDefaultValueText.getValue();
+    } else if (defaultValue == "300") {
+      // 宏
+      defaultValueExt = me.hiddenDefaultValueMacro.getValue();
+    }
+    PCL.apply(params, {
+      defaultValue,
+      defaultValueExt,
+    });
+
     const el = me.getEl();
     el && el.mask(PSI.Const.SAVING);
 
@@ -1190,7 +1206,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
    * 
    * @private
    */
-   _defaultValueMacroCallback(data, scope) {
+  _defaultValueMacroCallback(data, scope) {
     const me = scope;
 
     let t = data ? data.get("id") : null;
