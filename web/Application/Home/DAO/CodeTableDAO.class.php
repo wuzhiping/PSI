@@ -1229,6 +1229,22 @@ class CodeTableDAO extends PSIBaseExDAO
     }
   }
 
+  private function defaultValueCodeToName($code)
+  {
+    switch ($code) {
+      default:
+      case 100:
+        return "";
+      case 200:
+        return "固定值";
+      case 300:
+        return "宏";
+      case 400:
+        return "后台代码";
+        return "";
+    }
+  }
+
   /**
    * 某个码表的列
    */
@@ -1243,7 +1259,7 @@ class CodeTableDAO extends PSIBaseExDAO
               db_field_decimal, show_order, value_from, value_from_table_name,
               value_from_col_name, must_input, sys_col, is_visible, width_in_view,
               note, show_order_in_view, editor_xtype, value_from_col_name_display,
-              col_span
+              col_span, default_value, default_value_ext
             from t_code_table_cols_md
             where table_id = '%s' 
             order by show_order";
@@ -1273,6 +1289,8 @@ class CodeTableDAO extends PSIBaseExDAO
         "showOrderInView" => $v["show_order_in_view"],
         "editorXtype" => $this->editorXtypeCodeToName($v["editor_xtype"]),
         "colSpan" => $v["col_span"],
+        "defaultValue" => $this->defaultValueCodeToName($v["default_value"]),
+        "defaultValueExt" => $v["default_value_ext"],
       ];
     }
 
