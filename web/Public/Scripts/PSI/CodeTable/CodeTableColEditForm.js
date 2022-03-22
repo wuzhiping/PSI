@@ -236,9 +236,9 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.editMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMustInput");
 
     me.hiddenDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValue");
-    me.editDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValue");
+    me.editDefaultValue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValue");
     me.editDefaultValueText = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueText");
-    me.hiddenDefalutValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValueMacro");
+    me.hiddenDefaultValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValueMacro");
     me.editDefaultValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueMacro");
 
     me.__useTabPanel = true;
@@ -254,7 +254,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       [me.editValueFrom],
       [me.editWidthInView, me.editShowOrderInView, me.editShowOrder],
       [me.editColSpan, me.editEditorXtype, me.editIsVisible, me.editMustInput],
-      [me.editDefaultVaue],
+      [me.editDefaultValue],
     ];
 
     me.buttonRefCol = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_buttonRefCol");
@@ -952,7 +952,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     const me = this;
 
     if (e.getKey() === e.ENTER) {
-      const v = me.editDefaultVaue.getIdValue();
+      const v = me.editDefaultValue.getIdValue();
       if (v == "200") {
         me.setFocusAndCursorPosToLast(me.editDefaultValueText);
       } else if (v == "300") {
@@ -1077,7 +1077,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       } else if (id == "tabEdit") {
         me.setFocusAndCursorPosToLast(me.editColSpan);
       } else if (id == "tabDefaultValue") {
-        me.setFocusAndCursorPosToLast(me.editDefaultVaue);
+        me.setFocusAndCursorPosToLast(me.editDefaultValue);
       }
     }, 100);
   },
@@ -1183,6 +1183,22 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     }
 
     me.hiddenDefaultVaue.setValue(t);
+  },
+
+  /**
+   * 宏 - 回调本方法
+   * 
+   * @private
+   */
+   _defaultValueMacroCallback(data, scope) {
+    const me = scope;
+
+    let t = data ? data.get("id") : null;
+    if (!t) {
+      t = "100"; // [无]
+    }
+
+    me.hiddenDefaultValueMacro.setValue(t);
   },
 
   /**
