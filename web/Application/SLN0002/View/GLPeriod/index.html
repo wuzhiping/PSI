@@ -7,10 +7,10 @@
 <script src="{$uri}Public/Scripts/PSI/SLN0002/GLPeriod/MainForm.js?dt={$dtFlag}" type="text/javascript"></script>
 
 <script>
-  Ext.onReady(() => {
+  PCL.onReady(() => {
     PSI.Const.PROD_NAME = "{$productionName}";
 
-    const app = Ext.create("PSI.App", {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -18,6 +18,6 @@
       }
     });
 
-    app.add(Ext.create("PSI.SLN0002.GLPeriod.MainForm"));
+    app.add(PCL.create("PSI.SLN0002.GLPeriod.MainForm"));
   });
 </script>
