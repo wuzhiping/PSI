@@ -1539,7 +1539,7 @@ class CodeTableDAO extends PSIBaseExDAO
       $colSpan = 1;
     }
     $defaultValue = intval($params["defaultValue"]);
-    $defaultValueExt = $params["defalutValueExt"];
+    $defaultValueExt = $params["defaultValueExt"];
     if (!in_array($defaultValue, [100, 200, 300, 400])) {
       $defaultValue = 100;
       $defaultValueExt = "";
