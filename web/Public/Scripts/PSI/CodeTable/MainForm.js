@@ -452,10 +452,12 @@ PCL.define("PSI.CodeTable.MainForm", {
           width: 150
         }, {
           header: "系统列",
+          align: "center",
           dataIndex: "sysCol",
-          width: 70
+          width: 60
         }, {
           header: "对用户可见",
+          align: "center",
           dataIndex: "isVisible",
           width: 80
         }, {
