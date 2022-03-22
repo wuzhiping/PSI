@@ -459,7 +459,15 @@ PCL.define("PSI.CodeTable.MainForm", {
           header: "对用户可见",
           align: "center",
           dataIndex: "isVisible",
-          width: 80
+          width: 80,
+          renderer(value){
+            if (value == "不可见"){
+              return `<span style='color:gray'>${value}</span>`;
+            }
+            else {
+              return value;
+            }
+          }
         }, {
           header: "必须录入",
           dataIndex: "mustInput",
