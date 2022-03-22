@@ -802,6 +802,25 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
               me.editEditorXtype.setValue(col.editorXtypeDisplay);
               me.editMemo.setValue(col.memo);
 
+              // 默认值
+              const defaultValue = col.defaultValue;
+              const defaultValueDisplay = col.defaultValueDisplay;
+              const defaultValueExt = col.defaultValueExt;
+              me.hiddenDefaultValue.setValue(defaultValue);
+              me.editDefaultValue.setValue(defaultValueDisplay);
+              me.editDefaultValue.setIdValue(defaultValue);
+              if (defaultValue == "200") {
+                // 固定值
+                me.editDefaultValueText.setDisabled(false);
+                me.editDefaultValueText.setValue(defaultValueExt);
+              } else if (defaultValue == "300") {
+                // 宏
+                me.editDefaultValueMacro.setDisabled(false);
+                me.editDefaultValueMacro.setValue(defaultValueExt);
+                me.editDefaultValueMacro.setIdValue(defaultValueExt);
+                me.hiddenDefaultValueMacro.setValue(defaultValueExt);
+              }
+
               if (col.sysCol == 1) {
                 // 系统列的时候，进一步限制字段的修改
                 me.editCaption.setValue(`<span class='PSI-field-note'>${col.caption}</span>`);
