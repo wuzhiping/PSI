@@ -41,10 +41,10 @@ PCL.define("PSI.About.MainForm", {
       items: [{
         border: 0,
         xtype: "container",
-        margin: "0 0 0 10",
+        margin: "0 0 0 20",
         cls: "PSI-about",
         html: `
-              <h1 style='color:#0050b3;margin-top:0px;margin-left:-5px'>${me.getProductionName()}基于开源技术，提供人、财、物、产、供、销、存一体化的企业管理全面解决方案</h1>
+              <h1 style='color:#0050b3;margin-top:0px;margin-left:-15px'>${me.getProductionName()}基于开源技术，提供人、财、物、产、供、销、存一体化的企业管理全面解决方案</h1>
               <div style='margin-left:-10px;border-bottom:1px solid #e6f7ff;height:1px' /></div>
               <p>
                 当前版本：<span style='border-bottom:1px solid #adc6ff'>${PSI.Const.VERSION}</span>
@@ -62,8 +62,8 @@ PCL.define("PSI.About.MainForm", {
                 &nbsp;&nbsp;MySQL版本号：<span style='border-bottom:1px solid #adc6ff'>${me.getMySQLVersion()}</span>
               </p>
               <div style='margin-top:40px;border-left:3px solid #fa8c16'>
-                <h3>&nbsp;&nbsp;代码授权说明</h3>
-                <p>&nbsp;&nbsp;在遵守GPL开源协议的前提下，授权您可以把PSI的代码用于<span style='border-bottom:2px solid #d3adf7'>任何</span>您需要的商业用途</p>
+                <h3>&nbsp;&nbsp;授权</h3>
+                <p>&nbsp;&nbsp;在遵守 GPL v3 开源协议的前提下，授权您可以把PSI的全部代码和文档用于<span style='border-bottom:2px solid #d3adf7'>任何</span>您需要的商业用途</p>
                 <p>&nbsp;&nbsp;利用PSI的代码给您带来商业收益，这是对PSI最大的褒奖</p>
               </div>
               <div style='margin-top:40px;border-left:3px solid #1890ff'>
