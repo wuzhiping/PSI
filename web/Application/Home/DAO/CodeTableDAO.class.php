@@ -1538,6 +1538,12 @@ class CodeTableDAO extends PSIBaseExDAO
     if ($colSpan < 1) {
       $colSpan = 1;
     }
+    $defaultValue = intval($params["defaultValue"]);
+    $defaultValueExt = $params["defalutValueExt"];
+    if (!in_array($defaultValue, [100, 200, 300, 400])) {
+      $defaultValue = 100;
+      $defaultValueExt = "";
+    }
 
     $t = $this->isPSISystemCodeTable($codeTableId);
     if ($t) {
@@ -1682,13 +1688,13 @@ class CodeTableDAO extends PSIBaseExDAO
               show_order, value_from, value_from_table_name, value_from_col_name,
               must_input, sys_col, is_visible, width_in_view, note, 
               show_order_in_view, editor_xtype, value_from_col_name_display,
-              col_span)
+              col_span, default_value, default_value_ext)
             values ('%s', '%s', '%s',
               '%s', '%s', %d, %d,
               %d, %d, '%s', '%s',
               %d, %d, %d, %d, '%s',
               %d, '%s', '%s',
-              %d)";
+              %d, %d, '%s')";
     $rc = $db->execute(
       $sql,
       $id,
@@ -1710,7 +1716,9 @@ class CodeTableDAO extends PSIBaseExDAO
       $showOrderInView,
       $editorXtype,
       $valueFromColNameDisplay,
-      $colSpan
+      $colSpan,
+      $defaultValue,
+      $defaultValueExt
     );
     if ($rc === false) {
       return $this->sqlError(__METHOD__, __LINE__);

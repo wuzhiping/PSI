@@ -262,6 +262,8 @@ class CodeTableController extends PSIBaseController
         "editorXtype" => I("post.editorXtype"),
         "memo" => I("post.memo"),
         "colSpan" => I("post.colSpan"),
+        "defaultValue" => I("post.defaultValue"),
+        "defaultValueExt" => I("post.defaultValueExt"),
       ];
 
       $service = new CodeTableService();
