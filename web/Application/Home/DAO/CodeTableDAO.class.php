@@ -1911,7 +1911,7 @@ class CodeTableDAO extends PSIBaseExDAO
                 db_field_decimal, note, show_order, value_from, 
                 value_from_table_name, value_from_col_name, value_from_col_name_display,
                 must_input, sys_col, is_visible, width_in_view, show_order_in_view,
-                editor_xtype, col_span
+                editor_xtype, col_span, default_value, default_value_ext
               from t_code_table_cols_md
               where id = '%s' ";
       $data = $db->query($sql, $id);
@@ -1940,6 +1940,9 @@ class CodeTableDAO extends PSIBaseExDAO
           "editorXtype" => $v["editor_xtype"],
           "editorXtypeDisplay" => $this->editorXtypeCodeToName($v["editor_xtype"]),
           "colSpan" => $v["col_span"],
+          "defaultValue" => $v["default_value"],
+          "defaultValueDisplay" => $this->defaultValueCodeToName($v["default_value"]),
+          "defaultValueExt" => $v["default_value_ext"],
         ];
       }
     }
