@@ -235,7 +235,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
     me.hiddenMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenMustInput");
     me.editMustInput = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editMustInput");
 
-    me.hiddenDefaultVaue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValue");
+    me.hiddenDefaultValue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValue");
     me.editDefaultValue = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValue");
     me.editDefaultValueText = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_editDefaultValueText");
     me.hiddenDefaultValueMacro = PCL.getCmp("PSI_CodeTable_CodeTableColEditForm_hiddenDefaultValueMacro");
@@ -908,7 +908,6 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       editorXtype: me.hiddenEditorXtype.getValue(),
       memo: me.editMemo.getValue(),
       colSpan: me.editColSpan.getValue(),
-      defaultValue: me.hiddenDefaultValue.getValue(),
     };
 
     const defaultValue = me.hiddenDefaultValue.getValue();
@@ -1198,7 +1197,7 @@ PCL.define("PSI.CodeTable.CodeTableColEditForm", {
       }
     }
 
-    me.hiddenDefaultVaue.setValue(t);
+    me.hiddenDefaultValue.setValue(t);
   },
 
   /**
