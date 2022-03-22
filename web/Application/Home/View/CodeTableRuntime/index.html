@@ -13,23 +13,24 @@
 <script src="{$uri}Public/Scripts/PSI/SysDict/SysDictField.js?dt={$dtFlag}" type="text/javascript"></script>
 
 {/*
-  上级字段
-    TODO：因为不是每个码表都是层级结构，所以这个地方需要优化一下JS的冗余引用
+上级字段
+TODO：因为不是每个码表都是层级结构，所以这个地方需要优化一下JS的冗余引用
 */}
-<script src="{$uri}Public/Scripts/PSI/CodeTable/Runtime/CodeTableParentIdField.js?dt={$dtFlag}" type="text/javascript"></script>
+<script src="{$uri}Public/Scripts/PSI/CodeTable/Runtime/CodeTableParentIdField.js?dt={$dtFlag}"
+  type="text/javascript"></script>
 
 {/*
-  码表记录引用字段
-    TODO：这个地方需要优化一下JS的冗余引用
+码表记录引用字段
+TODO：这个地方需要优化一下JS的冗余引用
 */}
 <script src="{$uri}Public/Scripts/PSI/CodeTable/Runtime/CodeTableRecordRefField.js?dt={$dtFlag}"
   type="text/javascript"></script>
 
 <script>
-  Ext.onReady(function () {
+  PCL.onReady(() => {
     PSI.Const.PROD_NAME = "{$productionName}";
 
-    var app = Ext.create("PSI.App", {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -37,7 +38,7 @@
       }
     });
 
-    app.add(Ext.create("PSI.CodeTable.Runtime.MainForm", {
+    app.add(PCL.create("PSI.CodeTable.Runtime.MainForm", {
       fid: "{$fid}",
       pDesignTool: "{$pDesignTool}"
     }));
