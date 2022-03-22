@@ -365,7 +365,7 @@ PCL.define("PSI.CodeTable.MainForm", {
         "valueFromColName", "valueFromColNameDisplay", "mustInput",
         "showOrder", "sysCol", "sysColRawValue", "isVisible",
         "widthInView", "note", "showOrderInView", "editorXtype",
-        "colSpan"]
+        "colSpan", "defaultValue", "defaultValueExt"]
     });
 
     me._colsGrid = PCL.create("PCL.grid.Panel", {
@@ -477,6 +477,14 @@ PCL.define("PSI.CodeTable.MainForm", {
         }, {
           header: "编辑器类型",
           dataIndex: "editorXtype",
+          width: 130
+        }, {
+          header: "默认值类型",
+          dataIndex: "defaultValue",
+          width: 130
+        }, {
+          header: "默认值",
+          dataIndex: "defaultValueExt",
           width: 130
         }, {
           header: "备注",
