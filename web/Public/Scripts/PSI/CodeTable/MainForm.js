@@ -481,7 +481,7 @@ PCL.define("PSI.CodeTable.MainForm", {
         }, {
           header: "默认值类型",
           dataIndex: "defaultValue",
-          width: 130
+          width: 90
         }, {
           header: "默认值",
           dataIndex: "defaultValueExt",
