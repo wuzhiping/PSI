@@ -408,7 +408,14 @@ PCL.define("PSI.CodeTable.MainForm", {
           header: "列标题",
           dataIndex: "caption",
           width: 150,
-          locked: true
+          locked: true,
+          renderer(value, metaData, record) {
+            if (record.get("sysCol")) {
+              return `<span style='color:#2f54eb'>${value}</span>`;
+            } else {
+              return value;
+            }
+          },
         }, {
           header: "列数据库名",
           dataIndex: "fieldName",
@@ -444,7 +451,7 @@ PCL.define("PSI.CodeTable.MainForm", {
           dataIndex: "valueFromColNameDisplay",
           width: 150
         }, {
-          header: "系统字段",
+          header: "系统列",
           dataIndex: "sysCol",
           width: 70
         }, {
