@@ -33,8 +33,8 @@
 </if>
 
 <script>
-  Ext.onReady(function () {
-    var app = Ext.create("PSI.App", {
+  PCL.onReady(() => {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -42,7 +42,7 @@
       }
     });
 
-    var permission = {
+    const permission = {
       add: "{$pAdd}",
       edit: "{$pEdit}",
       del: "{$pDelete}",
@@ -55,8 +55,8 @@
       print: "{$pPrint}"
     };
 
-    app.add(Ext.create("PSI.DMO.DMOMainForm", {
-      permission: permission
+    app.add(PCL.create("PSI.DMO.DMOMainForm", {
+      permission
     }));
   });
 </script>
