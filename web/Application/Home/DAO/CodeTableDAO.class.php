@@ -1229,8 +1229,20 @@ class CodeTableDAO extends PSIBaseExDAO
     }
   }
 
-  private function defaultValueCodeToName($code)
+  private function defaultValueCodeToName($code, $queryFromDB =  false)
   {
+    if ($queryFromDB) {
+      $db = $this->db;
+      $sql = "select name from t_sysdict_sln0000_ct_field_default_value where code = '%s' ";
+      $data = $db->query($sql, $code);
+      if ($data) {
+        return $data[0]["name"];
+      } else {
+        return "[未定义]";
+      }
+    }
+
+
     switch ($code) {
       default:
       case 100:
@@ -1941,7 +1953,7 @@ class CodeTableDAO extends PSIBaseExDAO
           "editorXtypeDisplay" => $this->editorXtypeCodeToName($v["editor_xtype"]),
           "colSpan" => $v["col_span"],
           "defaultValue" => $v["default_value"],
-          "defaultValueDisplay" => $this->defaultValueCodeToName($v["default_value"]),
+          "defaultValueDisplay" => $this->defaultValueCodeToName($v["default_value"], true),
           "defaultValueExt" => $v["default_value_ext"],
         ];
       }
