@@ -10,8 +10,8 @@
 <script src="{$uri}Public/Scripts/PSI/BizConfig/MainForm.js?dt={$dtFlag}" type="text/javascript"></script>
 <script src="{$uri}Public/Scripts/PSI/BizConfig/EditForm.js?dt={$dtFlag}" type="text/javascript"></script>
 <script>
-  Ext.onReady(function () {
-    var app = Ext.create("PSI.App", {
+  PCL.onReady(() => {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -19,6 +19,6 @@
       }
     });
 
-    app.add(Ext.create("PSI.BizConfig.MainForm"));
+    app.add(PCL.create("PSI.BizConfig.MainForm"));
   });
 </script>
