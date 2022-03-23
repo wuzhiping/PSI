@@ -9,8 +9,8 @@
 <script src="{$uri}Public/Scripts/PSI/Goods/PriceSystemEditForm.js?dt={$dtFlag}" type="text/javascript"></script>
 
 <script>
-  Ext.onReady(function () {
-    var app = Ext.create("PSI.App", {
+  PCL.onReady(function () {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -18,6 +18,6 @@
       }
     });
 
-    app.add(Ext.create("PSI.Goods.PriceSystemMainForm"));
+    app.add(PCL.create("PSI.Goods.PriceSystemMainForm"));
   });
 </script>
