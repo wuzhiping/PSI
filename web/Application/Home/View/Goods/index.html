@@ -19,8 +19,8 @@
 
 <script src="{$uri}Public/Scripts/PSI/Goods/GoodsPriceSystemEditForm.js?dt={$dtFlag}" type="text/javascript"></script>
 <script>
-  Ext.onReady(function () {
-    var app = Ext.create("PSI.App", {
+  PCL.onReady(() => {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -28,7 +28,7 @@
       }
     });
 
-    app.add(Ext.create("PSI.Goods.MainForm", {
+    app.add(PCL.create("PSI.Goods.MainForm", {
       pAddCategory: "{$pAddCategory}",
       pEditCategory: "{$pEditCategory}",
       pDeleteCategory: "{$pDeleteCategory}",
