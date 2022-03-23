@@ -10,8 +10,8 @@
 <script src="{$uri}Public/Scripts/PSI/Factory/FactoryEditForm.js?dt={$dtFlag}" type="text/javascript"></script>
 
 <script>
-  Ext.onReady(function () {
-    var app = Ext.create("PSI.App", {
+  PCL.onReady(() => {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -19,7 +19,7 @@
       }
     });
 
-    var permission = {
+    const permission = {
       addCategory: "{$pAddCategory}",
       editCategory: "{$pEditCategory}",
       deleteCategory: "{$pDeleteCategory}",
@@ -28,8 +28,8 @@
       del: "{$pDelete}"
     };
 
-    app.add(Ext.create("PSI.Factory.MainForm", {
-      permission: permission
+    app.add(PCL.create("PSI.Factory.MainForm", {
+      permission
     }));
   });
 </script>
