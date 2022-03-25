@@ -56,10 +56,9 @@ Ext.define("PSI.Bill.PRViewForm", {
           fieldLabel: "供应商",
           labelWidth: 60,
           colspan: 2,
-          width: 500,
           labelSeparator: "",
           labelAlign: "right",
-              xtype: "displayfield",
+          xtype: "displayfield",
         }, {
           id: "editRef",
           labelWidth: 60,
