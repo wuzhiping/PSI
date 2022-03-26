@@ -58,7 +58,6 @@ Ext.define("PSI.Bill.SRViewForm", {
           labelAlign: "right",
           labelSeparator: ":",
           colspan: 2,
-          width: 430
         }, {
           id: "editRef",
           fieldLabel: "单号",
