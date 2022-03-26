@@ -8,8 +8,8 @@
 <script src="{$uri}Public/Scripts/PSI/Bill/SRViewForm.js?dt={$dtFlag}" type="text/javascript"></script>
 
 <script>
-  Ext.onReady(function () {
-    var form = Ext.create("PSI.Bill.SRViewForm", {
+  PCL.onReady(() => {
+    const form = PCL.create("PSI.Bill.SRViewForm", {
       ref: "{$ref}"
     });
     form.show();
