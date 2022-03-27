@@ -92,5 +92,3 @@ PSI的开源协议是GPL v3，有关GPL v3商用的细节说明见[这里](https
 - 新一代的PHP Web框架：https://gitee.com/crm8000/PSI/tree/master/web/ThinkPHP
 
 > 采用修改ThinkPHP 3.2现有的代码，通过修正、裁剪、代码注释等一系列的工作完成
-
-- PSI桌面版，POS应用：https://gitee.com/crm8000/PSI_Desktop
