@@ -39,7 +39,11 @@
     font-weight: normal;
   }
 
-  .PSI_Login_input {
+  label {
+    color: #196d6d !important;
+  }
+
+  input {
     caret-color: #ad4e00;
     background: transparent !important;
     box-shadow: none !important;
@@ -51,7 +55,7 @@
 
   input:focus {
     border-color: transparent transparent #9254de transparent !important;
-    border-width: 1px !important;
+    border-width: 2px !important;
   }
 
   ::selection {
@@ -104,18 +108,18 @@
         <form>
           <div class="row" style="margin-top:70px;">
             <div class="small-3 columns">
-              <label style="color:#196d6d" for="editLoginName" class="text-right middle">登录名</label>
+              <label for="editLoginName" class="text-right middle">登录名</label>
             </div>
             <div class="small-9 columns">
-              <input class="PSI_Login_input" type="text" id="editLoginName">
+              <input type="text" id="editLoginName">
             </div>
           </div>
           <div class="row">
             <div class="small-3 columns">
-              <label style="color:#196d6d" for="editPassword" class="text-right middle">密码</label>
+              <label for="editPassword" class="text-right middle">密码</label>
             </div>
             <div class="small-9 columns">
-              <input class="PSI_Login_input" type="password" id="editPassword">
+              <input type="password" id="editPassword">
             </div>
           </div>
           <div class="row">
