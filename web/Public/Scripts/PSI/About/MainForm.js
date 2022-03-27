@@ -18,7 +18,7 @@ PCL.define("PSI.About.MainForm", {
   modal: true,
   closable: false,
   resizable: false,
-  width: 700,
+  width: 760,
   layout: "fit",
 
   /**
