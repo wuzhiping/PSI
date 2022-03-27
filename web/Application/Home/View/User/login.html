@@ -38,6 +38,26 @@
     font-size: 10px;
     font-weight: normal;
   }
+
+  .PSI_Login_input {
+    caret-color: #ad4e00;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-top: 0px solid transparent !important;
+    border-left: 0px solid transparent !important;
+    border-right: 0px solid transparent !important;
+    border-bottom: 1px solid #dbdbdb !important;
+  }
+
+  input:focus {
+    border-color: transparent transparent #9254de transparent !important;
+    border-width: 1px !important;
+  }
+
+  ::selection {
+    background-color: #006d75;
+    color: white;
+  }
 </style>
 
 <div id="loading-mask"></div>
@@ -84,18 +104,18 @@
         <form>
           <div class="row" style="margin-top:70px;">
             <div class="small-3 columns">
-              <label for="editLoginName" class="text-right middle">登录名</label>
+              <label style="color:#196d6d" for="editLoginName" class="text-right middle">登录名</label>
             </div>
             <div class="small-9 columns">
-              <input type="text" id="editLoginName">
+              <input class="PSI_Login_input" type="text" id="editLoginName">
             </div>
           </div>
           <div class="row">
             <div class="small-3 columns">
-              <label for="editPassword" class="text-right middle">密码</label>
+              <label style="color:#196d6d" for="editPassword" class="text-right middle">密码</label>
             </div>
             <div class="small-9 columns">
-              <input type="password" id="editPassword">
+              <input class="PSI_Login_input" type="password" id="editPassword">
             </div>
           </div>
           <div class="row">
