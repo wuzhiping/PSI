@@ -17,8 +17,8 @@
 <script src="{$uri}Public/Scripts/PSI/Factory/FactoryField.js?dt={$dtFlag}" type="text/javascript"></script>
 
 <script>
-  Ext.onReady(function () {
-    var app = Ext.create("PSI.App", {
+  PCL.onReady(() => {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -26,6 +26,6 @@
       }
     });
 
-    app.add(Ext.create("PSI.Funds.PayMainForm"));
+    app.add(PCL.create("PSI.Funds.PayMainForm"));
   });
 </script>
