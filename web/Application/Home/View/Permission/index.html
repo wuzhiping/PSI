@@ -12,8 +12,8 @@
 <script src="{$uri}Public/Scripts/PSI/Permission/SelectDataOrgForm.js?dt={$dtFlag}" type="text/javascript"></script>
 
 <script>
-  Ext.onReady(function () {
-    var app = Ext.create("PSI.App", {
+  PCL.onReady(() => {
+    const app = PCL.create("PSI.App", {
       userName: "{$loginUserName}",
       productionName: "{$productionName}",
       appHeaderInfo: {
@@ -21,7 +21,7 @@
       }
     });
 
-    app.add(Ext.create("PSI.Permission.MainForm", {
+    app.add(PCL.create("PSI.Permission.MainForm", {
       pAdd: "{$pAdd}",
       pEdit: "{$pEdit}",
       pDelete: "{$pDelete}"
